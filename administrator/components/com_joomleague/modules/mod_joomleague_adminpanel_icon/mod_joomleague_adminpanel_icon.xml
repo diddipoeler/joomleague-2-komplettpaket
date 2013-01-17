@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="administrator" method="upgrade">
+	<name>JoomLeague Module Adminpanel Icon</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>MOD_JOOMLEAGUE_ADMINPANEL_ICON_DESC</description>
+	
+	<files>
+		<filename  module="mod_joomleague_adminpanel_icon">mod_joomleague_adminpanel_icon.php</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_adminpanel_icon.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_adminpanel_icon.sys.ini</language>
+	</languages>
+	
+</extension>

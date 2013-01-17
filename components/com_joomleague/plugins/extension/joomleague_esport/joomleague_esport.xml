@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="extension">
+	<name>plg_extension_joomleague_esport</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.
+	</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>PLG_EXTENSION_JOOMLEAGUE_ESPORT_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="joomleague_esport">joomleague_esport.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_extension_joomleague_esport.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_extension_joomleague_esport.sys.ini</language>
+	</languages>
+</extension>

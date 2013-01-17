@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>	
+		<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_S_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_S_NAME_DESC"
+			class="inputbox"
+			required="true"/>				
+		<field
+			name="address"
+			type="textarea"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADDRESS"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ADDRESS_DESC"
+			class="inputbox"/>		
+		<field
+			name="zipcode"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ZIPCODE"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_ZIPCODE_DESC"
+			class="inputbox"/>	
+		<field
+			name="city"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CITY"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CITY_DESC"
+			class="inputbox"/>				
+		<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_COUNTRY"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_COUNTRY_DESC"
+			class="inputbox">
+		<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+	</field>		
+	<field
+			name="website"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_WEBSITE"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_WEBSITE_DESC"
+			class="inputbox"/>	
+	<field
+			name="max_visitors"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CAPACITY"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CAPACITY_DESC"
+			class="inputbox"/>	
+	<field
+			name="club_id"
+			type="sql"
+			class="inputbox"
+			default="0"
+			size="1"
+			label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CLUB"
+			description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_CLUB_DESC"
+			query="SELECT id AS value, name AS club_id FROM #__joomleague_club ORDER BY name ASC">
+			<option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB</option>
+		</field>				
+	</fieldset>			
+	<fieldset name="picture">
+			<field
+				name="picture"
+				type="media"
+				label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE_DESC"
+				class="inputbox"
+				preview="show"				
+				directory="com_joomleague/database/playgrounds"/>				
+	</fieldset>	
+	<fieldset name="description">		
+			<field
+				name="notes"
+				type="editor"
+				label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_DESCRIPTION"
+				description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_DESCRIPTION_DESC"
+				width="450" 
+				filter="safehtml"/>			
+	</fieldset>			
+</form>

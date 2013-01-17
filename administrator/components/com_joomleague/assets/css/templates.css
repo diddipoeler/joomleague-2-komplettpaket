@@ -1,0 +1,14 @@
+div#masterimport {
+  margin: 5px 0;
+  float: left;
+}
+
+p.helpText {
+  font-size:120%;
+  font-weight:bold;
+}
+span.masterName {
+  color: green;
+  font-style:italic;
+}
+

@@ -1,0 +1,7 @@
+.red {
+	font-weight: bold;
+	color: red;
+}
+div.current select {
+    margin-bottom: 0 !important;
+}

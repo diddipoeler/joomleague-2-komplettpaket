@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_joomleague_sports_type_statistics</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_XML_DESCRIPTION</description>
+
+	<files>
+		<filename module="mod_joomleague_sports_type_statistics">mod_joomleague_sports_type_statistics.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+		<folder>css</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_sports_type_statistics.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_sports_type_statistics.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic"
+				addfieldpath="/administrator/components/com_joomleague/elements">
+				<field name="sportstypes" type="sportstypes" default=""
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SPORTS_TYPE_LABEL"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SPORTS_TYPE_DESC" />
+
+				<field name="show_project" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PROJECTS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PROJECTS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_leagues" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_seasons" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_teams" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_players" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_divisions" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_rounds" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_matches" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_player_events" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+				<field name="show_player_stats" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS_DESC">
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_YES</option>
+				</field>
+			</fieldset>
+
+			<fieldset name="advanced">
+
+				<field name="cache" type="list" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHING_LABEL"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHING_DESCR">
+					<option value="1">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHING_USE_GLOBAL
+					</option>
+					<option value="0">MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHING_NO_CACHING
+					</option>
+				</field>
+
+				<field name="cache_time" type="text" default="900"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHE_TIME_LABEL"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_CACHE_TIME_DESCR">
+				</field>
+
+				<field name="moduleclass_sfx" type="text" default=""
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MODULE_CLASS_SUFFIX_LABEL"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MODULE_CLASS_SUFFIX_DESCR">
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

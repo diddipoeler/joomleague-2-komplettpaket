@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+div.modjlgranking .teamlogo {
+	max-height: 20px;
+	max-width: 20px;
+	vertical-align: middle;
+}
+
+div.modjlgranking .projectname {
+	font-weight:bold;
+}
+
+div.modjlgranking .fulltablelink {
+	text-align:center;
+}
+
+div.modjlgranking table.ranking {
+	width:100%;
+	border-collapse:collapse;
+}
+div.modjlgranking table.ranking td {
+
+}
+div.modjlgranking .team {
+	white-space:nowrap;
+}
+
+div.modjlgranking .rankcolval {
+	text-align:center;
+}

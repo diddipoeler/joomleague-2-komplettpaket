@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>			
+		
+		<field
+		    addfieldpath="/administrator/components/com_joomleague/elements"
+			name="sports_type_id"
+			type="sportstypes"
+			default="0"
+			size="1"
+			label="COM_JOOMLEAGUE_GLOBAL_SPORT_TYPE"
+			description="COM_JOOMLEAGUE_GLOBAL_SPORT_TYPE_DESC"
+			required="true">
+		</field>
+		<field
+			name="published"
+			type="list"
+			class="inputbox"
+			default="1"
+			size="1"
+			label="JSTATUS"
+			description="JFIELD_PUBLISHED_DESC">
+			<option
+				value="1">
+				JPUBLISHED</option>
+			<option
+				value="0">
+				JUNPUBLISHED</option>
+		</field>		
+		<field
+			name="splitt"
+			type="radio"
+			label="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_NOTE"
+			description="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_NOTE_DESC"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>			
+		</field>
+
+		<field
+			name="directions"
+			type="list"
+			label="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_SORTING"
+			description="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_SORTING_DESC"
+			class="inputbox"			
+			default="0">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_DESCENDING</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_ASCENDING</option>
+		</field>		
+
+		<field
+			name="double"
+			type="radio"
+			label="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_PAIR_EVENT"
+			description="COM_JOOMLEAGUE_ADMIN_EVENTTYPE_PAIR_EVENT_DESC"
+			default="0">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>			
+		</field>	
+	</fieldset>	
+
+	<fieldset 	name="picture">
+				
+		<field 	name="icon" 
+				type="media" 
+				directory="com_joomleague/database/events"
+				preview="show"				
+				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
+				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
+		</field>
+	</fieldset>			
+</form>

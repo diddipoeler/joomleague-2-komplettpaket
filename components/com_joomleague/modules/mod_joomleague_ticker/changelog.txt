@@ -1,0 +1,87 @@
+2012-02-02 And_One <andone@mfga.at>
+
+	*added favteams support
+
+2012-01-31 And_One <andone@mfga.at>
+
+	*reworked to support multiple ticker instances
+	
+2010-09-12 zeta65 <martizva@alice.it>
+
+	*added match type select (ended upcoming etc.)
+	
+2010-07-20 And_One <andone@mfga.at>
+
+	*added multiple project select
+	*added multiple team select
+
+2010-07-12 Ingalb	<vllaznia.tk@gmail.com>
+
+    * fixed scroller (new javascript)
+
+2010-04-12 Ingalb	<vllaznia.tk@gmail.com>
+
+    * Added new function refresh option
+    * added minutes for all matches and a icon when the match is live,also add full time and half time
+    * added a link to score for match report
+    * change module to show the match that will play
+
+2009-07-12 Timoline	<timoline@gmail.com>
+
+	* made it compatible for joomleague 1.5
+	* added horizontal scroll (not working yet)
+	
+	
+2009-04-16  Jappe Dekker  <jippej@hotmail.com>
+
+	* Joomleague ticker module 1.5.2b
+	* Bugfix: Corrected wrong URL for link options
+	* Bugfix: Adjusted radiobuttons to Joomla standard (NO - YES in stead of YES - NO) 
+	* Module function added: Itemid addition when link option will be used. 
+	
+
+2009-04-14  Jappe Dekker  <jippej@hotmail.com>
+
+	* Joomleague ticker module 1.5.2
+	* Bugfix: vertical scroll mode working again
+	* Module function added: Project id now expanded to selection of multiple projects (separated by ;)
+	* Module function added: Vertical scrolling enable pause while mouse over 
+	* Module function added: Possible to add selectable link to team names
+	
+
+2009-04-09  Jappe Dekker  <jippej@hotmail.com>
+
+	* Joomleague ticker module 1.5.2 Alpha
+	* Module function added: outline of teams and result further expanded with three options
+	* Module function added: Selecting matchresults only for X days in the past
+	
+
+2009-04-07  Jappe Dekker  <jippej@hotmail.com>
+
+	* Bugfix: list and vertical scroll mode are working again
+	
+	
+2009-04-06	Jappe Dekker  <jippej@hotmail.com>
+
+	* Module function added: outline of teams and results possible in three different ways now
+	
+	
+2009-04-05	Jappe Dekker  <jippej@hotmail.com>
+
+	* Module function added: vertical scrolling
+	* Module function added: match/result seperator now possible to change	
+	* default.php: changed way of getting base url to prevent / \ problem
+	
+			
+2009-04-04  Jappe Dekker  <jippej@hotmail.com>
+
+	* Joomleague ticker module 1.5.0 Alpha, implemented features are:
+		- shows results for a specific project or for all projects
+		- show/hide project name
+		- define the format for the date
+		- show/hide date
+		- input of maximum number of results
+		- show team names as: long name, middle name, short name or as icon
+		- list mode
+		- ticker mode
+		- pause time between results (ticker mode only)  

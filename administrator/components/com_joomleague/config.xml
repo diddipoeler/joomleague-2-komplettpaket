@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
+		<field name="cfg_edit_club_info_update_notify" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="cfg_edit_person_info_update_notify" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
+		<field name="JoomLeague updates" type="list" default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_UPDATES_TITLE" description="COM_JOOMLEAGUE_SETTINGS_UPDATES_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_ON</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_MANUAL</option>
+			<option value="2">COM_JOOMLEAGUE_GLOBAL_OFF</option>
+		</field>
+		<field name="cfg_drop_joomleague_tables_when_uninstalled" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_debug_info" type="radio" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="max_import_time" type="text" default="480"
+			label="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_TIME_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_TIME_DESCR">
+		</field>
+		<field name="max_import_memory" type="text" default="256M"
+			label="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_MEMORY_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_MEMORY_DESCR">
+		</field>
+
+		<field name="modal_popup_width" type="text" default="900"
+			label="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_WIDTH" description="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_WIDTH_DESCR">
+		</field>
+		<field name="modal_popup_height" type="text" default="600"
+			label="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT" description="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT_DESCR">
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
+		<field name="show_footer" type="radio" default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="cfg_google_api_key" type="text" default=""
+			label="COM_JOOMLEAGUE_SETTINGS_GMAP_APIKEY_TITLE" description="COM_JOOMLEAGUE_SETTINGS_GMAP_APIKEY_DESCR">
+		</field>
+		<field name="force_ranking_cache" type="radio" default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE" description="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE_DESC">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="use_highslide" type="radio" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY"
+			description="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY_DESC">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="usethumblib" type="radio" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION"
+			description="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_DESC">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="thumbformat" type="list" default="PNG"
+			label="COM_JOOMLEAGUE_SETTINGS_THUMB_FORMAT" description="COM_JOOMLEAGUE_SETTINGS_THUMB_FORMAT_DESCR">
+			<option value="GIF">GIF</option>
+			<option value="JPG">JPG</option>
+			<option value="PNG">PNG</option>
+		</field>
+		<field name="default_itemid" type="text" default=""
+			label="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_TITLE" description="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_DESCR">
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_BACKEND"
+		addfieldpath="/administrator/components/com_joomleague/elements">
+		<field name="defsportstype" type="sql" default="Soccer"
+			label="COM_JOOMLEAGUE_SETTINGS_SELECT_DEFAULT_SPORTS_TYPE_LABEL"
+			description="COM_JOOMLEAGUE_SETTINGS_SELECT_DEFAULT_SPORTS_TYPE_LABEL_DESCR"
+			query="	SELECT	id AS value,
+								name AS defsportstype
+			 			FROM #__joomleague_sports_type
+			 			ORDER BY id, name" />
+		<field name="image_max_size" type="text" default="120"
+			label="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_DESCR">
+		</field>
+		<field name="name_format" type="nameformat" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_NAME_FORMAT" description="COM_JOOMLEAGUE_SETTINGS_DESCR_NAME_FORMAT">
+		</field>
+		<field name="cfg_be_show_matchdays_order" type="list" default="ASC"
+			label="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_DESCR">
+			<option value="ASC">COM_JOOMLEAGUE_GLOBAL_ASC</option>
+			<option value="DESC">COM_JOOMLEAGUE_GLOBAL_DESC</option>
+		</field>
+		<field name="cfg_show_seasons_in_project_drop_down" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="on_prefill_delete_current_match_roster" type="radio"
+			default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER"
+			description="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="use_prefilled_match_roster" type="list" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER"
+			description="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_WITH_LAST_MATCH_ROSTER
+			</option>
+			<option value="2">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_WITH_PROJECTTEAM_PLAYERS
+			</option>
+			<option value="3">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_ASK
+			</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
+		addfieldpath="/administrator/components/com_joomleague/models/fields">
+		
+		<field name="ph_flags" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_flags.png"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_FLAGS" 
+			description="COM_JOOMLEAGUE_SETTINGS_field_DESCR_PH_FLAGS"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">
+		</field>
+		<field name="ph_icon" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_21.png" 
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_ICON"
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_ICON"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">
+		</field>
+		<field name="ph_logo_small" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_small.gif"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_LOGO_SMALL" 
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_LOGO_SMALL"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">			
+		</field>
+		<field name="ph_logo_medium" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_50.png" 
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_LOGO_MEDIUM"
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_LOGO_MEDIUM"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">			
+		</field>
+		<field name="ph_logo_big" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_150.png"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_LOGO_BIG" 
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_LOGO_BIG"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">			
+		</field>
+		<field name="ph_player" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_150_2.png"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_PLAYER" 
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_PLAYER"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">			
+		</field>
+		<field name="ph_team" type="media"
+			default="images/com_joomleague/database/placeholders/placeholder_450_2.png"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_PH_TEAM" 
+			description="COM_JOOMLEAGUE_SETTINGS_DESCR_PH_TEAM"
+			directory="images/com_joomleague/database/placeholders/"
+			preview="show">			
+		</field>
+	</fieldset>
+	<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC">
+		<field name="rules" type="rules" label="COM_JOOMLEAGUE_SETTINGS_ACCESS_COMPONENT"
+			class="inputbox" filter="rules" validate="rules" component="com_joomleague"
+			section="component" />
+	</fieldset>
+
+</config>

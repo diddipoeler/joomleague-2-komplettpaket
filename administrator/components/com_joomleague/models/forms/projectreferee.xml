@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+
+	</fieldset>		
+	<fieldset name="picture">		
+			<field
+				name="picture"
+				type="media"
+				label="COM_JOOMLEAGUE_ADMIN_P_REF_PIC"
+				description="COM_JOOMLEAGUE_ADMIN_P_REF_PIC_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/projectreferees"/>			
+	</fieldset>	
+	<fieldset name="description">		
+			<field
+				name="notes"
+				type="editor"
+				label="COM_JOOMLEAGUE_ADMIN_P_REF_DESCR"
+				description="COM_JOOMLEAGUE_ADMIN_P_REF_DESCR_DESC"
+				width="450" 
+				filter="safehtml"/>			
+	</fieldset>		
+</form>

@@ -1,0 +1,11 @@
+.calendar, .calendar table {
+    background: none repeat scroll 0 0 #EFEFEF;
+    border: 1px solid #CCCCCC;
+    color: #000000;
+    cursor: default;
+    font-family: arial,verdana,sans-serif;
+    font-size: 11px;
+    left: 4px;
+    position: relative;
+    top: 5px;
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="content" method="upgrade">
+	<name>plg_content_joomleague_comments</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.
+	</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>PLG_CONTENT_JOOMLEAGUE_COMMENTS_XML_DESC</description>
+
+	<files>
+		<filename plugin="joomleague_comments">joomleague_comments.php</filename>
+		<filename>index.html</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_joomleague_comments.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_content_joomleague_comments.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="separate_comments" type="radio" default="0"
+					label="PLG_CONTENT_JOOMLEAGUE_COMMENTS_SEPARATE_COMMENTS_LABEL" description="PLG_CONTENT_JOOMLEAGUE_COMMENTS_SEPARATE_COMMENTS_DESC">
+					<option value="0">PLG_CONTENT_JOOMLEAGUE_COMMENTS_NO</option>
+					<option value="1">PLG_CONTENT_JOOMLEAGUE_COMMENTS_YES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

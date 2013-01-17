@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>	
+		<field
+			name="middle_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_MID_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_MID_NAME_DESC"
+			class="inputbox"/>	
+		<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_SHORT_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_SHORT_NAME_DESC"
+			class="inputbox"
+			required="true"/>		
+	<field
+			name="website"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_WEBSITE"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_WEBSITE_DESC"
+			class="inputbox"/>	
+	<field
+			name="info"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_INFO"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_INFO_DESC"
+			class="inputbox"/>	
+	<field
+			name="club_id"
+			type="sql"
+			class="inputbox"
+			default="0"
+			size="1"
+			required="true"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB_DESC"
+			query="SELECT id AS value, name AS club_id FROM #__joomleague_club ORDER BY name ASC">
+			<option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB</option>
+		</field>		
+	</fieldset>			
+	<fieldset name="picture">
+			<field
+				name="picture"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_450_2.png"				
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_PIC"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_PIC_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/teams"/>			
+	</fieldset>	
+	<fieldset name="description">		
+			<field
+				name="notes"
+				type="editor"
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_DESCRIPTION"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_DESCRIPTION_DESC"
+				width="450" 
+				filter="safehtml"/>			
+	</fieldset>		
+</form>

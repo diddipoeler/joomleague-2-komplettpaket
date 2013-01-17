@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
+		<field name="show_project_heading" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_NAME"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_NAME">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_project_country" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_COUNTRY"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_COUNTRY">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_project_picture" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_PICTURE"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_PICTURE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_project_text" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_TEXT"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_TEXT">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="picture_width" type="text" default="50"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PROJECT_PICTURE_WIDTH"
+			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PROJECT_PICTURE_WIDTH">
+		</field>
+		<field name="picture_height" type="text" default="50"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PROJECT_PICTURE_HEIGHT"
+			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PROJECT_PICTURE_HEIGHT">
+		</field>
+		<field name="show_icons" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_ICONS"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_ICONS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field	name="show_print_button" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PRINT_BUTTON"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PRINT_BUTTON">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS">
+		<field name="seperator" type="text" default="-"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_WHICH_SEPARATOR"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_WHICH_SEPARATOR">
+		</field>
+		<field name="results_below" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_RESULTS_BELOW"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_RESULTS_BELOW">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="use_jl_substitution" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SUBST_SYSTEM"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SUBST_SYSTEM">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="use_jl_events" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_EVENTS_SYSTEM"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_EVENTS_SYSTEM">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="use_jl_events_required" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_EVENTS_REQUIRED"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_EVENTS_REQUIRED">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="time_format" type="text" default="H:i"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_TIME_FORMAT"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_TIME_FORMAT">
+		</field>
+	</fieldset>
+	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONAL_DATA"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PERSONAL_DATA">
+		<field name="nospam_email" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_PROTECT_EMAIL"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_PROTECT_EMAIL">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+	</fieldset>
+</form>

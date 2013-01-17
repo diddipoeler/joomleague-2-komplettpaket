@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_joomleague_logo</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>MOD_JOOMLEAGUE_LOGO_MODULE_DESC</description>
+
+	<files>
+		<filename module="mod_joomleague_logo">mod_joomleague_logo.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<folder>tmpl</folder>
+		<folder>css</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_logo.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_logo.sys.ini</language>
+	</languages>
+	
+	<config>
+		<fields name="params">
+			<fieldset 	name="basic"
+						addfieldpath="/administrator/components/com_joomleague/elements">
+				<field 	name="p" type="project"
+						default="" label="MOD_JOOMLEAGUE_LOGO_PROJECT_ID_LABEL" 
+						description="MOD_JOOMLEAGUE_LOGO_PROJECT_ID_LABEL_DESC" />
+						
+				<field 	name="division_id" type="dependsql" 
+						depends="p" task="projectdivisionsoptions" 			
+						label="MOD_JOOMLEAGUE_LOGO_DIVISION_ID_LABEL" 
+						description="MOD_JOOMLEAGUE_LOGO_DIVISION_ID_LABEL_DESC" />
+						
+				<field 	name="limit" type="text" default="10" 
+						label="MOD_JOOMLEAGUE_LOGO_ROW_LIMIT_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_ROW_LIMIT_LABEL_DESC" />
+						
+				<field 	name="@spacer" type="spacer" default="" 
+						label=""
+						description="" />
+						
+				<field 	name="show_project_name" type="list" default="0"
+						label="MOD_JOOMLEAGUE_LOGO_SHOW_PROJECT_NAME" 
+						description="MOD_JOOMLEAGUE_LOGO_SHOW_PROJECT_NAME_DESC">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
+				
+				<field 	name="nametype" type="list" default="name" 
+						label="MOD_JOOMLEAGUE_LOGO_TEAM_NAME_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_TEAM_NAME_DESC=">
+					<option value="short_name">MOD_JOOMLEAGUE_LOGO_TEAM_NAME_SHORT</option>
+					<option value="middle_name">MOD_JOOMLEAGUE_LOGO_TEAM_NAME_MEDIUM</option>
+					<option value="name">MOD_JOOMLEAGUE_LOGO_TEAM_NAME_FULL</option>
+				</field>
+				
+				<field 	name="show_logo" type="list" default="0" 
+						label="MOD_JOOMLEAGUE_LOGO_SHOW_LOGO_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_SHOW_LOGO_LABEL_DESC">
+					<option value="0">MOD_JOOMLEAGUE_LOGO_SHOW_SMALL_LOGO</option>
+					<option value="1">MOD_JOOMLEAGUE_LOGO_SHOW_MEDIUM_LOGO</option>
+					<option value="2">MOD_JOOMLEAGUE_LOGO_SHOW_BIG_LOGO</option>
+					<option value="3">MOD_JOOMLEAGUE_LOGO_SHOW_TEAM_LOGO</option>
+					<option value="4">MOD_JOOMLEAGUE_LOGO_SHOW_PROJECTTEAM_LOGO</option>
+				</field>
+				
+				<field 	name="teamlink" type="list" default="teaminfo" 
+						label="MOD_JOOMLEAGUE_LOGO_TEAM_LINK_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_TEAM_LINK_DESC">
+					<option value="">MOD_JOOMLEAGUE_LOGO_LINK_NO_LINK</option>
+					<option value="teaminfo">MOD_JOOMLEAGUE_LOGO_LINK_TEAMINFO</option>
+					<option value="roster">MOD_JOOMLEAGUE_LOGO_LINK_ROSTER</option>
+					<option value="teamplan">MOD_JOOMLEAGUE_LOGO_LINK_TEAMPLAN</option>
+					<option value="clubinfo">MOD_JOOMLEAGUE_LOGO_LINK_CLUBINFO</option>
+					<option value="teamwww">MOD_JOOMLEAGUE_LOGO_LINK_TEAMWWW</option>
+					<option value="clubwww">MOD_JOOMLEAGUE_LOGO_LINK_CLUBWWW</option>
+				</field>
+			</fieldset>
+		
+			<fieldset name="advanced">
+				<field 	name="cache" type="list" default="1" 
+						label="MOD_JOOMLEAGUE_LOGO_CACHING_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_CACHING_DESCR">
+					<option value="1">MOD_JOOMLEAGUE_LOGO_CACHING_USE_GLOBAL</option>
+					<option value="0">MOD_JOOMLEAGUE_LOGO_CACHING_NO_CACHING</option>
+				</field>
+				<field 	name="cache_time" type="text" default="900" 
+						label="MOD_JOOMLEAGUE_LOGO_CACHE_TIME_LABEL"
+						description="MOD_JOOMLEAGUE_LOGO_CACHE_TIME_DESCR">
+				</field>
+				<field 	name="moduleclass_sfx" type="text" default=""
+						label="MOD_JOOMLEAGUE_LOGO_MODULE_CLASS_SUFFIX_LABEL" 
+						description="MOD_JOOMLEAGUE_LOGO_MODULE_CLASS_SUFFIX_DESCR">
+				</field>
+			</fieldset>
+		</fields>
+	</config>		
+</extension>

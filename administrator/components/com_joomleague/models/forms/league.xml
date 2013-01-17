@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+	<field
+			name="middle_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_MIDDLE_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_MIDDLE_NAME_DESC"
+			class="inputbox"/>
+	<field
+			name="short_name"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_SHORT_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_SHORT_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+	<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>	
+	<field
+			name="country"
+			type="country"
+			label="COM_JOOMLEAGUE_ADMIN_LEAGUE_COUNTRY"
+			description="COM_JOOMLEAGUE_ADMIN_LEAGUE_COUNTRY_DESC"
+			class="inputbox">
+		<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
+	</field>	
+		
+	</fieldset>			
+	
+</form>

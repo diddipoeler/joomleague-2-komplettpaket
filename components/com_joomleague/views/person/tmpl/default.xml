@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_JOOMLEAGUE_XML_PERSON_LAYOUT_TITLE">
+		<message>
+			<![CDATA[COM_JOOMLEAGUE_XML_PERSON_LAYOUT_DESCR]]>
+		</message>
+	</layout>
+	<fields name="request">
+		<fieldset addfieldpath="/administrator/components/com_joomleague/elements"
+			name="request" label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL">
+
+			<field	type="jlsql" name="p" updates="pid" rawview="persons" 
+					label="COM_JOOMLEAGUE_XML_SELECT_PROJECT_LABEL"
+					description="COM_JOOMLEAGUE_XML_SELECT_PROJECT_DESCR"
+					query="	SELECT	id AS value,
+							name AS p
+						FROM #__joomleague_project
+						WHERE published=1
+						ORDER BY name" />
+
+			<field	type="jlsql" name="pid" depends="p" rawview="persons" 
+					label="COM_JOOMLEAGUE_XML_PERSON_SELECT_PERSON_LABEL"
+					description="COM_JOOMLEAGUE_XML_PERSON_SELECT_PERSON_DESCR"
+					query="	SELECT	id AS value,
+							CONCAT(lastname, ', ', firstname, ' (', birthday, ')') AS pid
+						FROM #__joomleague_person
+						ORDER BY lastname" />
+
+			<!--
+			<field name="pt" type="list" default="1" label="Show as what?" description="Select to show as Player, Staffmember, Referee or Club-Staffmember">
+				<option value="1">Player</option>
+				<option value="2">Staffmember</option>
+				<option value="3">Referee</option>
+				<option value="4">Club-Staff</option>
+			</field>
+			/-->
+
+		</fieldset>
+	</fields>
+</metadata>

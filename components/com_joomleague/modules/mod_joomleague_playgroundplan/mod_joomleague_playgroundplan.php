@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @version	 $Id: mod_joomleague_playgroundplan.php zeta65$
+ * @package	 Joomla
+ * @subpackage  Joomleague results module
+ * @copyright   Copyright (C) 2008 Open Source Matters. All rights reserved.
+ * @license	 GNU/GPL, see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant to the
+ * GNU General Public License, and as distributed it includes or is derivative
+ * of works licensed under the GNU General Public License or other free or open
+ * source software licenses. See COPYRIGHT.php for copyright notices and
+ * details.
+ */
+
+// no direct access
+defined('_JEXEC') or die('Restricted access');
+
+// get helper
+require_once (dirname(__FILE__).DS.'helper.php');
+
+require_once(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
+
+$list = modJLGPlaygroundplanHelper::getData($params);
+
+$document = JFactory::getDocument();
+
+
+//add css file
+$document->addStyleSheet(JURI::base().'modules/mod_joomleague_playgroundplan/css/mod_joomleague_playgroundplan.css');
+
+$mode = $params->def("mode");
+
+switch ($mode)
+	{
+	case 0:
+		$document->addScript(JURI::base().'modules/mod_joomleague_playgroundplan/js/qscroller.js');
+		require_once(dirname(__FILE__).DS.'js'.DS.'ticker.js');
+		break;
+	case 1:
+		break;
+}
+
+require(JModuleHelper::getLayoutPath('mod_joomleague_playgroundplan'));

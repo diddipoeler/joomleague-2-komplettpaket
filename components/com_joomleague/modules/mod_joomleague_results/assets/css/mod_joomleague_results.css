@@ -1,0 +1,33 @@
+@CHARSET "UTF-8";
+
+div.modjlgresults .teamlogo {
+	max-height: 20px;
+	max-width: 20px;
+	vertical-align: middle;
+}
+
+div.modjlgresults .projectname {
+	font-weight:bold;
+}
+
+div.modjlgresults .fulltablelink {
+	text-align:center;
+}
+
+div.modjlgresults table {
+	width: 95%;
+	white-space:nowrap;
+}
+
+div.modjlgresults .left {
+	text-align: left;
+}
+
+div.modjlgresults .right {
+	text-align: right;
+}
+
+div.modjlgresults .mrscore {
+	text-align: center;
+	white-space: nowrap;
+}

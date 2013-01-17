@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+/*****************************************************************************
+ * Hide navigation elements and TOC
+ *****************************************************************************/
+div.navheader {
+	display: none;
+}
+
+div.navfooter {
+	display: none;
+}
+
+div.toc
+{
+	display: none;
+}

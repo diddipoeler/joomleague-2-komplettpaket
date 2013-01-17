@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_joomleague_results</name>
+	<creationDate>2012</creationDate>
+	<author>JoomLeague Developers</author>
+	<authorEmail>andone@mfga.at</authorEmail>
+	<authorUrl>http://www.joomleague.net</authorUrl>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
+	<version>2.0.43.b3fd04d</version>
+	<description>MOD_JOOMLEAGUE_RESULTS_XML_DESC</description>
+
+	<files>
+		<filename module="mod_joomleague_results">mod_joomleague_results.php</filename>
+		<filename>index.html</filename>
+		<filename>helper.php</filename>
+		<filename>mod_joomleague_results.xml</filename>
+		<folder>tmpl</folder>
+		<folder>assets</folder>		
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_results.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_joomleague_results.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+
+			<fieldset	name="basic"
+						addfieldpath="/administrator/components/com_joomleague/elements" >
+
+				<field 	name="sportstype" type="sportstypes" required="true"
+						label="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_SPORTSTYPE_ID_DESCR" />
+ 				<field 	name="p" type="dependsql"  required="true" 
+ 						depends="sportstype" task="projectsbysportstypesoptions" 
+						label="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_PROJECT_ID_DESCR" />
+				<field 	name="division_id" type="dependsql"
+				 		required="false" 
+						depends="p" task="projectdivisionsoptions" 
+						label="MOD_JOOMLEAGUE_RESULTS_DIVISION_ID_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_DIVISION_ID_DESCR" />
+				<field 	name="id" type="dependsql"  
+						required="false" 
+						depends="p" task="roundsoptions"  
+						label="MOD_JOOMLEAGUE_RESULTS_SELECT_ROUND_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_SELECT_ROUND_DESCR"/>
+				<field 	name="round_selection" type="list" default="0"
+						required="false" 
+						label="MOD_JOOMLEAGUE_RESULTS_ROUND_SELECTION_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_ROUND_SELECTION_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_ROUND_SELECTION_LATEST</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_ROUND_SELECTION_NEXT</option>
+					<option value="2">MOD_JOOMLEAGUE_RESULTS_ROUND_SELECTION_MANUAL</option>
+				</field>
+				<field 	name="limit" type="text" default="10" 
+						label="MOD_JOOMLEAGUE_RESULTS_ROW_LIMIT_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_ROW_LIMIT_DESCR" />
+				<field 	name="@spacer" type="spacer" default="" 
+						label=""
+						description="" />
+				<field 	name="show_project_name" type="list" default="0"
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_PROJECT_NAME_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_PROJECT_NAME_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_round_name" type="list" default="0"
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_ROUND_NAME_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_ROUND_NAME_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_score_design" type="list" default="1"
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_SCORE_DESIGN_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_SCORE_DESIGN_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_SCORE_DESIGN_EXTRA_LINE</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_SCORE_DESIGN_SAME_LINE</option>
+				</field>
+				<field 	name="date_format" type="text" default="%a, %d.%m."
+						label="MOD_JOOMLEAGUE_RESULTS_DATE_FORMAT_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_DATE_FORMAT_DESCR" />
+				<field 	name="time_format" type="text" default="%H:%M" 
+						label="MOD_JOOMLEAGUE_RESULTS_TIME_FORMAT_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_TIME_FORMAT_DESCR" />
+				<field 	name="show_picture" type="list" default="team_picture"
+						label="COM_JOOMLEAGUE_FES_TEAMINFO_SHOW_PICTURE"
+						description="COM_JOOMLEAGUE_FES_TEAMINFO_SHOW_PICTURE_DESC">
+					<option value="team_picture">COM_JOOMLEAGUE_FES_TEAMINFO_TEAM_PICTURE</option>
+					<option value="projectteam_picture">COM_JOOMLEAGUE_FES_TEAMINFO_PROJECTTEAM_PICTURE</option>
+					<option value="logo_small">COM_JOOMLEAGUE_FES_TEAMINFO_CLUB_LOGO_SMALL</option>
+					<option value="logo_middle">COM_JOOMLEAGUE_FES_TEAMINFO_CLUB_LOGO_MIDDLE</option>
+					<option value="logo_big">COM_JOOMLEAGUE_FES_TEAMINFO_CLUB_LOGO_BIG</option>
+					<option value="country_flag">MOD_JOOMLEAGUE_RESULTS_COUNTRY_FLAG</option>
+				</field>
+				<field name="team_picture_width" type="text" default="0"
+					label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH" 
+					description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
+				</field>
+				<field name="team_picture_height" type="text" default="21"
+					label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT" 
+					description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
+				</field>
+				<field 	name="nametype" type="list" default="short_name" 
+						label="MOD_JOOMLEAGUE_RESULTS_TEAM_NAME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_TEAM_NAME_DESCR">
+					<option value="short_name">MOD_JOOMLEAGUE_RESULTS_TEAM_NAME_SHORT</option>
+					<option value="middle_name">MOD_JOOMLEAGUE_RESULTS_TEAM_NAME_MEDIUM</option>
+					<option value="name">MOD_JOOMLEAGUE_RESULTS_TEAM_NAME_FULL</option>
+				</field>
+				<field 	name="teamlink" type="list" default="teaminfo" 
+						label="MOD_JOOMLEAGUE_RESULTS_TEAM_LINK_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_TEAM_LINK_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_LINK_NO_LINK</option>
+					<option value="teaminfo">MOD_JOOMLEAGUE_RESULTS_LINK_TEAM_INFO</option>
+					<option value="roster">MOD_JOOMLEAGUE_RESULTS_LINK_ROSTER</option>
+					<option value="teamplan">MOD_JOOMLEAGUE_RESULTS_LINK_TEAM_PLAN</option>
+					<option value="clubinfo">MOD_JOOMLEAGUE_RESULTS_LINK_CLUB_INFO</option>
+				</field>
+				<field 	name="scorelink" type="list" default="scorelink" 
+						label="MOD_JOOMLEAGUE_RESULTS_SCORE_LINK_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_SCORE_LINK_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_date_heading" type="list" 
+						default="1"
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_DATE_HEADING_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_DATE_HEADING_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_date" type="list" default="1" 
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_DATE_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_DATE_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_time" type="list" default="1" 
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_TIME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_TIME_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="show_full_link" type="list" default="1"
+						label="MOD_JOOMLEAGUE_RESULTS_SHOW_FULL_LINK_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_SHOW_FULL_LINK_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="@spacer" type="spacer" default="" 
+						label=""
+						description="" />
+				<field 	name="show_custom_css" type="list" default="1" 
+						label="MOD_JOOMLEAGUE_RESULTS_CUSTOM_CSS_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_CUSTOM_CSS_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_YES</option>
+				</field>
+				<field 	name="style_mod_jl_results" type="text" default="width: 100%;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_DESCR" />
+				<field 	name="style_mod_jl_results_link" type="text" default="color: #c3c3c3;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_LINK_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_LINK_DESCR" />
+				<field 	name="style_mod_jl_results_matches" type="text" default="width: 95%;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCHES_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCHES_DESCR" />
+				<field 	name="style_mod_jl_results_project_name" type="text" default="text-align: left; font-weight: bold;" 
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_PROJECT_NAME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_PROJECT_NAME_DESCR" />
+				<field 	name="style_mod_jl_results_round_name" type="text" default="text-align: left; font-weight: bold;" 
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_ROUND_NAME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_ROUND_NAME_DESCR" />
+				<field 	name="style_mod_jl_results_date" type="text" default="text-align: left; font-weight: bold;" 
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_DATE_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_DATE_DESCR" />
+				<field 	name="style_mod_jl_results_time" type="text" default="text-align: left;font-weight: bold;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_TIME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_TIME_DESCR" />
+				<field 	name="style_mod_jl_results_score" type="text" default="text-align: center; font-weight: bold;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_SCORE_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_SCORE_DESCR" />
+				<field 	name="style_mod_jl_results_opponent_left" type="text" default="text-align: right; font-weight: bold;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_OPPONENT_LEFT_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_OPPONENT_LEFT_DESCR" />
+				<field 	name="style_mod_jl_results_opponent_right" type="text" default="text-align: left; font-weight: bold;" 
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_OPPONENT_RIGHT_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_OPPONENT_RIGHT_DESCR" />
+				<field 	name="style_mod_jl_results_fulltablelink" type="text" default="text-align: center; padding: 5px 0 5px 0;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_FULL_TABLE_LINK_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_FULL_TABLE_LINK_DESCR" />
+				<field 	name="style_mod_jl_results_matchwin" type="text" default="color: #72ff00;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_WIN_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_WIN_DESCR" />
+				<field 	name="style_mod_jl_results_matchloss" type="text" default="color: #ff0000;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_LOSS_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_LOSS_DESCR" />
+				<field 	name="style_mod_jl_results_matchdraw" type="text" default="color: #ffae00;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_DRAW_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_MATCH_DRAW_DESCR" />
+				<field 	name="style_mod_jl_results_note" type="text" default="color: #ffae00;"
+						label="MOD_JOOMLEAGUE_RESULTS_STYLE_NOTE_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_STYLE_NOTE_DESCR" />
+				<field 	name="@spacer" type="spacer" default="" 
+						label=""
+						description="" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field 	name="cache" type="list" default="1" 
+						label="MOD_JOOMLEAGUE_RESULTS_CACHING_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_CACHING_DESCR">
+					<option value="1">MOD_JOOMLEAGUE_RESULTS_CACHING_USE_GLOBAL</option>
+					<option value="0">MOD_JOOMLEAGUE_RESULTS_CACHING_NO_CACHING</option>
+				</field>
+				<field 	name="cache_time" type="text" default="900" 
+						label="MOD_JOOMLEAGUE_RESULTS_CACHE_TIME_LABEL"
+						description="MOD_JOOMLEAGUE_RESULTS_CACHE_TIME_DESCR">
+				</field>		
+				<field 	name="moduleclass_sfx" type="text" default=""
+						label="MOD_JOOMLEAGUE_RESULTS_MODULE_CLASS_SUFFIX_LABEL" 
+						description="MOD_JOOMLEAGUE_RESULTS_MODULE_CLASS_SUFFIX_DESCR">
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

@@ -1,0 +1,100 @@
+@CHARSET "UTF-8";
+
+div#ajaxresponse {
+  height:1.2em;
+}
+.ajax-loading {
+  background-image : url("../images/ajaxload_1.gif");
+  background-repeat: no-repeat;
+  background-position: 100px;
+}
+
+/** header icons **/
+.icon-48-sportstypes{
+  background-image: url(../images/icon-48-sportstypes.png); 
+}
+
+.icon-48-leagues { 
+	background-image: url(../images/icon-48-leagues.png); 
+}
+
+.icon-48-seasons{
+  background-image: url(../images/icon-48-seasons.png); 
+}
+
+.icon-48-clubs{
+  background-image: url(../images/icon-48-clubs.png); 
+}
+
+.icon-48-statistics { 
+	background-image: url(../images/icon-48-statistics.png); 
+}
+
+.icon-48-events { 
+	background-image: url(../images/icon-48-events.png); 
+}
+
+.icon-48-playground { 
+	background-image: url(../images/icon-48-playground.png); 
+}
+
+.icon-48-ProjectSettings {
+  background-image: url(../images/icon-48-ProjectSettings.png); 
+}
+
+.icon-48-FrontendSettings{
+  background-image: url(../images/icon-48-FrontendSettings.png); 
+}
+
+.icon-48-Divisions{
+  background-image: url(../images/icon-48-Divisions.png); 
+}
+.icon-48-Tree{
+  background-image: url(../images/icon-48-Tree.png); 
+}
+
+.icon-48-Positions{
+  background-image: url(../images/icon-48-Positions.png); 
+}
+
+.icon-48-Referees{
+  background-image: url(../images/icon-48-Referees.png); 
+}
+
+.icon-48-Teams{
+  background-image: url(../images/icon-48-Teams.png); 
+}
+
+.icon-48-Matchdays {
+  background-image: url(../images/icon-48-Matchdays.png); 
+}
+
+#adminForm {
+    float: left;
+    width: 100%;
+}
+
+/*Because admintable class does not exist in default Joomla 1.6.x -2.5x template,I created one here*/
+table.admintable td.key.vtop { vertical-align: top; }
+table.admintable td { 
+	text-align: left;
+	width: 100%;
+	color: #666;
+	border-bottom: 1px solid #e9e9e9;
+	}
+table.admintable td.key,
+table.admintable td.paramlist_key {
+	white-space:nowrap;
+	background-color: #FFFFFF;
+	text-align: left;
+	width: 200px;
+	color: #666;
+	font-weight: bold;
+	border-bottom: 1px solid #e9e9e9;
+	border-right: 1px solid #e9e9e9;
+	vertical-align: top; 	
+}
+
+fieldset img {
+    margin: 0px !important;
+}

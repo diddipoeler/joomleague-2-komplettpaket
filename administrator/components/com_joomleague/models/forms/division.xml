@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form
+	addrulepath="/administrator/components/com_joomleague/models/rules"
+	addfieldpath="/administrator/components/com_joomleague/models/fields">
+	<fieldset name="details">
+		<field
+			name="name"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_NAME"
+			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
+			class="inputbox"
+			required="true"/>
+		<field
+			name="alias"
+			type="text"
+			label="COM_JOOMLEAGUE_GLOBAL_ALIAS"
+			description="COM_JOOMLEAGUE_GLOBAL_ALIAS_DESC"
+			class="inputbox"/>	
+
+		<field
+			name="shortname"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_DIVISION_S_NAME"
+			description="COM_JOOMLEAGUE_ADMIN_DIVISION_S_NAME_DESC"
+			class="inputbox"/>	
+
+			
+	<field
+			name="notes"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_DIVISION_DESCR"
+			description="COM_JOOMLEAGUE_ADMIN_DIVISION_DESCR_DESC"
+			class="inputbox"/>	
+	</fieldset>		
+</form>
