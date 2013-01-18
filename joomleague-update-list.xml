@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extensionset name="Packages Teste" description="Packages Teste">
-   <extension name="pkg_teste" element="pkg_teste" type="package" version="1.0.1" detailsurl="https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml"/>
+<extensionset name="joomleague Packages Teste" description="joomleague Packages Teste">
+   <extension name="joomleague" element="joomleague" type="package" version="1.0.1" detailsurl="https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml"/>
 </extensionset>
