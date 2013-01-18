@@ -3,8 +3,8 @@
    <update>
       <name>Joomleague</name>
       <description>Joomleague Component</description>
-      <element>com_joomleague</element>
-      <type>component</type>
+      <element>joomleague</element>
+      <type>file</type>
       <version>2.0.45</version>
  
       <infourl title="Joomleague update">http://fussballineuropa.de</infourl>
@@ -18,6 +18,6 @@
       <maintainer>diddipoeler</maintainer>
       <maintainerurl>http://fussballineuropa.de</maintainerurl>
       <section>some-section</section>
-      <targetplatform name="Joomleague" version="2.0" />
+      <targetplatform name="joomleague" version="2.0" />
    </update>
 </updates>
