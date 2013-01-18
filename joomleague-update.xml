@@ -9,7 +9,7 @@
  
       <infourl title="HalloWorld URL">http://fussballineuropa.de</infourl>
       <downloads>
-         <downloadurl type="full" format="zip">http://yourdomain.com/files/com_helloworld-1.5.0-final.zip</downloadurl>
+         <downloadurl type="full" format="zip">https://github.com/diddipoeler/joomleague-2-komplettpaket/archive/master.zip</downloadurl>
       </downloads>
       <tags>
          <tag>some-tag</tag>
