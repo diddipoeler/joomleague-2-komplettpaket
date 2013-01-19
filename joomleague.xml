@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <extension type="component" version="2.5" method="upgrade">
-<<<<<<< HEAD
 	<name>joomleague</name>
-=======
-  <name>joomleague</name>
->>>>>>> ee6bde544446da8ea45c3225aad840c38b997fe3
 	<creationDate>2012</creationDate>
 	<author>JoomLeague Developers</author>
 	<authorEmail>andone@mfga.at</authorEmail>
