@@ -32,6 +32,10 @@ require_once( JLG_PATH_SITE.DS.'helpers'.DS.'extraparams.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'ranking.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'html.php' );
 
+// google map
+require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapAPI.php' );
+require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapGeocoder.php' );
+
 require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'jlcommon.php' );
 require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'imageselect.php' );
 require_once( JLG_PATH_ADMIN.DS.'tables'.DS.'jltable.php' );

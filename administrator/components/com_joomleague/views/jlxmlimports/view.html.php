@@ -88,7 +88,7 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$this->assignRef('leagues',$model->getLeagueList());
 		$this->assignRef('seasons',$model->getSeasonList());
 		$this->assignRef('sportstypes',$model->getSportsTypeList());
-		$this->assignRef('admins',$model->getUserList(true));
+		$this->assignRef('admins',$model->getUserList(false));
 		$this->assignRef('editors',$model->getUserList(false));
 		$this->assignRef('templates',$model->getTemplateList());
 		$this->assignRef('teams',$model->getTeamList());

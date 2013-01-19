@@ -1,45 +1,60 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
+<?php 
+defined( '_JEXEC' ) or die( 'Restricted access' ); 
 
-<?php
-if ( $this->gmap )
-{  
 ?>
-<div style="width: 100%; float: left">
-	<div class="contentpaneopen">
-		<div class="contentheading">
-			<?php echo JText::_('COM_JOOMLEAGUE_GMAP_DIRECTIONS'); ?>
-		</div>
-	</div>
 
-	<?php
-		// create the container for map
-		echo $this->gmap->MapHolder();
-
-		// write a link to center location in map if is configured
-		if ( $this->mapconfig['center_link'] == 1 ){
-			echo $this->gmap->GetSideClick();
-		}
-		if ( $this->config['show_route'] == 1 ){
-			$this->gmap->RouteForm();
-		}
-	?>
-
-
-	<?php
-	    // insert script tag for google maps api
-	    echo $this->gmap->GmapsKey();
-
-	    // write javascript for map creation
-	    echo $this->gmap->InitJs();
-	    if ( $this->config['show_route'] == 1 )
-	    {
-	        $this->gmap->InitRouteJs();
-	    }
-
-	    // write a javascript to properly unload map when leaving site
-	    echo $this->gmap->UnloadMap();
-	?>
-</div>
-<?php	
+<script type="text/javascript">
+function initialize() 
+{
+  //if (GBrowserIsCompatible()) 
+  //{
+    map = document.getElementById("gmap_canvas");
+    
+    //map.setCenter(new GLatLng(52.521653, 13.41091), 14);
+    // Add resize control PResizeControl with default settings.
+    //map.addControl(new PResizeControl());
+    //showmap();
+    google.maps.event.trigger(map, "resize");
+    //showmap();
+    //map.setUIToDefault();
+  //}
 }
-?>
+
+window.addEvent('load', function() {
+    initialize();
+    $('ul.jwts_tabbernav a').filterByAttribute('title','=','Google Maps').each(function(el) {
+        el.addEvent('click',function() {
+            initialize();
+            //map.checkResize();
+        });
+    });
+});
+
+</script>
+<div class="no-column">
+<div class="contentpaneopen">
+<div class="contentheading">
+			<?php echo JText::_('JL_GMAP_DIRECTIONS'); ?>
+		</div>
+
+                
+                <?php
+// create div for the map canvas
+echo "\n<!-- DIV container for the map -->";
+echo "\n<div id=\"gmap_canvas\" style=\"width: ".$this->mapconfig['width']."px; height: ".$this->mapconfig['height']."px;\">\n</div>\n";                
+                //$map->printGMapsJS();
+                ?>
+                
+                <?PHP
+                // showMap with auto zoom enabled
+                //$map->showMap(true);
+                //$this->map->showMap(false);
+                ?>
+        
+            <script type="text/javascript">
+        showmap();
+        
+        </script>  
+          
+</div>
+</div>

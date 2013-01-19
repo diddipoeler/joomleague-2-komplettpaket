@@ -273,7 +273,7 @@ class com_joomleagueInstallerScript
 		//Table `#__extensions` Bugfix needed due a wrong client_id for the update system
 		//-----------------------------------------------------
 		$db = JFactory::getDBO();
-		$query="UPDATE `#__extensions` SET client_id=0 WHERE name='joomleague'";
+		$query="UPDATE `#__extensions` SET client_id=1 WHERE name='joomleague'";
 		$db->setQuery($query);
 		if (!$db->query()) {
 			echo $db->getErrorMsg();

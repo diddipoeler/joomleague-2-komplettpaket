@@ -87,8 +87,14 @@
 		</files>
 	</administration>
 	
-	<updateservers>
-		<!-- server type="collection">http://localhost/core/list.xml</server-->
-		<!-- server type="collection">http://localhost/ext/list.xml</server-->
+	<!--
+  <updateservers>
+		<server type="collection">http://localhost/core/list.xml</server>
+		<server type="collection">http://localhost/ext/list.xml</server>
 	</updateservers>
+  -->
+  <updateservers>
+  <server type="extension" priority="1" name="diddipoeler Joomleague Update Site">https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml</server>
+	</updateservers>
+  
 </extension>
