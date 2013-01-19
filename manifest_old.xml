@@ -87,10 +87,17 @@
 		</files>
 	</administration>
 	
+<<<<<<< HEAD:manifest_old.xml
 	<!--
   <updateservers>
 		<server type="collection">http://localhost/core/list.xml</server>
 		<server type="collection">http://localhost/ext/list.xml</server>
+=======
+	<updateservers>
+	<server type="extension" priority="1" name="diddipoeler Update Site">https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml</server>
+	
+		
+>>>>>>> ee6bde544446da8ea45c3225aad840c38b997fe3:manifest.xml
 	</updateservers>
   -->
   <updateservers>
