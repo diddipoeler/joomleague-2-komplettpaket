@@ -18,9 +18,12 @@ class JoomleagueViewRanking extends JLGView {
 		$model = $this->getModel();
 		$config = $model->getTemplateConfig($this->getName());
 		$project = $model->getProject();
+		$map_config		= $model->getMapConfig();
 		$rounds = JoomleagueHelper::getRoundsOptions($project->id, 'ASC', true);
 			
 		$model->setProjectId($project->id);
+		
+		$this->assignRef( 'mapconfig',		$map_config ); // Loads the project-template -settings for the GoogleMap
 		
 		$this->assignRef('project', $project);
 		$this->assignRef('overallconfig', $model->getOverallConfig());
@@ -123,8 +126,9 @@ class JoomleagueViewRanking extends JLGView {
 			$address_parts[] = Countries::getShortCountryName($row->club_country);
 		}
 		$row->address_string = implode(', ', $address_parts);
-    //$this->map->addMarkerByAddress($row->address_string, $row->team_name, '"<a href="'.$row->club_www.'" target="_blank">'.$row->club_www.'</a>"', "http://maps.google.com/mapfiles/kml/pal2/icon49.png");		
+    $this->map->addMarkerByAddress($row->address_string, $row->team_name, '"<a href="'.$row->club_www.'" target="_blank">'.$row->club_www.'</a>"', "http://maps.google.com/mapfiles/kml/pal2/icon49.png");		
     
+    /*
     $paramsdata	= $row->club_extended;
 		$paramsdefs	= JLG_PATH_ADMIN . DS . 'assets' . DS . 'extended' . DS . 'club.xml';
 		$extended	= new JLGExtraParams( $paramsdata, $paramsdefs );
@@ -137,18 +141,7 @@ class JoomleagueViewRanking extends JLGView {
     if ( $lat && $lng )
     {
     $adressecountry_flag = Countries::getCountryFlag($row->club_country);
-    /*
-    $path = JURI::root().'media/com_joomleague/map_icons/'.'icon49.png'; 
-    //$path = Countries::getIso3Flag($row->club_country);
-    $adressecountry_flag = Countries::getCountryFlag($row->club_country);
-    $picture = $row->logo_big;
-    $club_logo = JoomleagueHelper::getPictureThumb($picture, 
-								$row->club_name,
-								150,
-								150,
-								1);
-		*/
-    
+        
     //echo JURI::root().'<br>';
     						
 		if ( $row->logo_big )
@@ -164,7 +157,7 @@ class JoomleagueViewRanking extends JLGView {
     						
     $this->map->addMarker($lat, $lng, $row->club_name, $adressecountry_flag.' '.$row->address_string.'<br>',$path);
     }
-    
+    */
     
     }
     
