@@ -18,11 +18,12 @@ class JoomleagueViewRanking extends JLGView {
 		$model = $this->getModel();
 		$config = $model->getTemplateConfig($this->getName());
 		$project = $model->getProject();
-		$map_config		= $model->getMapConfig();
+		
 		$rounds = JoomleagueHelper::getRoundsOptions($project->id, 'ASC', true);
 			
 		$model->setProjectId($project->id);
 		
+		$map_config		= $model->getMapConfig();
 		$this->assignRef( 'mapconfig',		$map_config ); // Loads the project-template -settings for the GoogleMap
 		
 		$this->assignRef('project', $project);
