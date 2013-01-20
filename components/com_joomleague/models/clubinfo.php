@@ -41,7 +41,7 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		$teams = array( 0 );
 		if ( $this->clubid > 0 )
 		{
-			$query = ' SELECT id as ptid, '
+			$query = ' SELECT id, '
 				     	. ' CASE WHEN CHAR_LENGTH( alias ) THEN CONCAT_WS( \':\', id, alias ) ELSE id END AS slug, '
 				       . ' name as team_name, '
 				       . ' short_name as team_shortcut, '
