@@ -23,6 +23,13 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="show_ranking_maps" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_RANKING_MAPS_PARAM_LABEL_SHOW_RANKING"
+			description="COM_JOOMLEAGUE_FES_RANKING_MAPS_PARAM_DESCR_SHOW_RANKING">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
 
 		<field name="show_colorlegend" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_SHOW_LEGEND"
