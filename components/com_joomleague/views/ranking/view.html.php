@@ -167,7 +167,8 @@ class JoomleagueViewRanking extends JLGView {
   $document->addScriptDeclaration($this->map->JLshowMap(false));
   
 	}
-	
+	  $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+	  
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_RANKING_PAGE_TITLE' );
 		if ( isset( $this->project->name ) )
