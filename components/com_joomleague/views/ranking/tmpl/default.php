@@ -39,7 +39,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('pagnav');
 	}
 	
-	if (($this->config['show_maps'])==1)
+	if (($this->config['show_ranking_maps'])==1)
 	{ 
 		echo $this->loadTemplate('maps');
 	}
