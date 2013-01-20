@@ -3,6 +3,9 @@
 if ( $this->show_debug_info )
 {
 echo 'address_string<pre>',print_r($this->address_string,true),'</pre><br>';
+echo 'teams<pre>',print_r($this->teams,true),'</pre><br>';
+
+
 }
 
 // Make sure that in case extensions are written for mentioned (common) views,
