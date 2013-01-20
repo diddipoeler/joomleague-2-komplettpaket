@@ -84,7 +84,7 @@ class JoomleagueViewRanking extends JLGView {
   $this->geo = new simpleGMapGeocoder();
   $this->map->setWidth($this->mapconfig['width']);
   $this->map->setHeight($this->mapconfig['height']);
-  $this->map->setZoomLevel($this->mapconfig['ranking_map_zoom']); 
+  $this->map->setZoomLevel($this->mapconfig['map_zoom']); 
   $this->map->setMapType($this->mapconfig['default_map_type']);
   $this->map->setBackgroundColor('#d0d0d0');
   $this->map->setMapDraggable(true);
