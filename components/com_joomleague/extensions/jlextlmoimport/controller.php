@@ -12,7 +12,7 @@
 // Check to ensure this file is included in Joomla!
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-jimport( 'joomla.application.component.controller' );
+//jimport( 'joomla.application.component.controller' );
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.archive');
@@ -22,11 +22,11 @@ jimport('joomla.filesystem.archive');
 /**
  * Joomleague Component LMO-Import Controller
  *
- * @author	Dieter Plöger
+ * @author	Dieter Plï¿½ger
  * @package	Joomleague
  * @since	1.5.0a
  */
-class JoomleagueControllerjlextlmoimport extends JoomleagueController
+class jlextlmoimportController extends JLGController
 {
 
 function __construct()
@@ -44,7 +44,7 @@ function __construct()
 function display()  
 {
 global $mainframe,$option;
-
+echo "jlextlmoimport controller loaded";
 $document	=& JFactory::getDocument();
 		$mainframe	=& JFactory::getApplication();
 
