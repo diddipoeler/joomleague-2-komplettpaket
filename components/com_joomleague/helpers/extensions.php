@@ -83,10 +83,7 @@ echo 'view_pathes<pre>',print_r($view_pathes,true),'</pre><br>';
 
 }
 
-<<<<<<< HEAD
-	
-=======
->>>>>>> 02104661bbe95b7ac968d5e7b6a87fb589048e65
+
 }
 if(is_null($controller) && !($controller instanceof JController)) {
 	//fallback if no extensions controller has been initialized
@@ -98,11 +95,10 @@ foreach ($model_pathes as $path) {
 foreach ($view_pathes as $path) {
 	$controller->addViewPath($path);		
 }
-<<<<<<< HEAD
+
 
 if ($show_debug_info)
 {
 echo 'ende controller<pre>',print_r($controller,true),'</pre><br>';
 }
-=======
->>>>>>> 02104661bbe95b7ac968d5e7b6a87fb589048e65
+
