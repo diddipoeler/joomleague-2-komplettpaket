@@ -16,6 +16,7 @@
 defined('_JEXEC') or die;
 $app			= JFactory::getApplication();
 $arrExtensions 	= JoomleagueHelper::getExtensions(JRequest::getInt('p'));
+$show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) ;
 $model_pathes[]	= array();
 $view_pathes[]	= array();
 $lang 			= JFactory::getLanguage();
@@ -47,11 +48,31 @@ for ($e = 0; $e < count($arrExtensions); $e++) {
 		$params = array();
 	}
 	*/
+	try  {
+		$controller = JLGController::getInstance(ucfirst($extension), $params);
+	} catch (Exception $exc) {
+		//fallback if no extensions controller has been initialized
+		$controller	= JLGController::getInstance('joomleague');
+	}
+	/*
 	$extension = "joomleague";
 	$params = array();
 	$controller = JLGController::getInstance($extension, $params);
+	*/
 	$model_pathes[] = $base_path.DS.'models';
 	$view_pathes[] = $base_path.DS.'views';
+if ($show_debug_info)
+{
+echo 'extension<pre>',print_r($extension,true),'</pre><br>';
+echo 'extensionpath<pre>',print_r($extensionpath,true),'</pre><br>';
+
+echo 'base_path<pre>',print_r($base_path,true),'</pre><br>';
+echo 'controller<pre>',print_r($controller,true),'</pre><br>';
+echo 'model_pathes<pre>',print_r($model_pathes,true),'</pre><br>';
+echo 'view_pathes<pre>',print_r($view_pathes,true),'</pre><br>';
+
+}
+
 }
 if(is_null($controller) && !($controller instanceof JController)) {
 	//fallback if no extensions controller has been initialized
