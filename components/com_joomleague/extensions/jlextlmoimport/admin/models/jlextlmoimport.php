@@ -45,7 +45,7 @@ jimport('joomla.utilities.arrayhelper') ;
 jimport('joomla.filesystem.file');
 jimport( 'joomla.utilities.utility' );
 
-class JoomleagueModeljlextlmoimport extends JModel
+class jlextlmoimportModeljlextlmoimport extends JModel
 {
   var $_datas=array();
 	var $_league_id=0;
@@ -651,7 +651,7 @@ if ( $timestamp )
     foreach ($parse['Teams'] AS $key => $value)
 		{
 		
-// der clubname muss um die mannschaftsnummer verkürzt werden
+// der clubname muss um die mannschaftsnummer verkï¿½rzt werden
 if ( substr($value, -4, 4) == ' III')
 {
 $convert = array (
@@ -823,11 +823,11 @@ $countjoomleagueteams = $this->_db->loadResult();
 
 if (  $countlmoteams != $countjoomleagueteams  )
 {
-$mainframe->enqueueMessage(JText::_('Die Anzahl der Teams im Projekt '.$project.' stimmt nicht überein!'),'Error');
+$mainframe->enqueueMessage(JText::_('Die Anzahl der Teams im Projekt '.$project.' stimmt nicht ï¿½berein!'),'Error');
 }
 else
 {
-$mainframe->enqueueMessage(JText::_('Die Anzahl der Teams im Projekt '.$project.' stimmt überein!'),'Notice');
+$mainframe->enqueueMessage(JText::_('Die Anzahl der Teams im Projekt '.$project.' stimmt ï¿½berein!'),'Notice');
 }
     
     }
@@ -841,7 +841,7 @@ $mainframe->enqueueMessage(JText::_('Die Anzahl der Teams im Projekt '.$project.
 // echo '</pre><br>';
 
 /**
- * das ganze für den standardimport aufbereiten
+ * das ganze fï¿½r den standardimport aufbereiten
  */
 $output = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 // open the project
