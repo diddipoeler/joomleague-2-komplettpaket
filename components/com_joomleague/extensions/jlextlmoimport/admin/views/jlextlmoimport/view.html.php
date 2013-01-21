@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.view' );
  * @package		Joomleague
  * @since 0.1
  */
-class jlextlmoimportViewjlextlmoimport extends JLGView
+class joomleagueViewjlextlmoimport extends JLGView
 {
 
 
