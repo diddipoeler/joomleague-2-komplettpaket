@@ -14,7 +14,7 @@
 			echo " ";
 			echo JHTML::_('link', $link, $desc );
 		} else {
-			echo "no permission";
+			//echo "no permission";
 		}
 		?>
 	</div>
