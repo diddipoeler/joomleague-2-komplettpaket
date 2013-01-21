@@ -15,7 +15,7 @@
 					description="COM_JOOMLEAGUE_XML_SELECT_PROJECT_DESCR"
 					required="true">
 			</field>
-			<field	name="ptid" type="dependsql" depends="p" task="projectteamsoptions"
+			<field	name="ptid" type="dependsql" depends="p" task="projectteamsptidoptions"
 					label="COM_JOOMLEAGUE_XML_SELECT_TEAM_LABEL"
 					description="COM_JOOMLEAGUE_XML_SELECT_TEAM_DESCR"
 					required="true">

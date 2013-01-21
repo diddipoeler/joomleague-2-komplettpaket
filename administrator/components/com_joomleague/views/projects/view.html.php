@@ -127,7 +127,7 @@ class JoomleagueViewProjects extends JLGView
 		JLToolBarHelper::custom('project.import','upload','upload',Jtext::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
 		JLToolBarHelper::archiveList('project.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::custom('project.copy','copy.png','copy_f2.png',JText::_('COM_JOOMLEAGUE_GLOBAL_COPY'),false);
-		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_DELETE_WARNING'), 'project.remove');
+		JLToolBarHelper::deleteList('', 'project.remove');
 		JToolBarHelper::divider();
 		
 		JToolBarHelper::help('screen.joomleague',true);
