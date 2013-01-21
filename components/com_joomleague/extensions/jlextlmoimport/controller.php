@@ -48,7 +48,7 @@ echo "jlextlmoimport controller loaded";
 $document	=& JFactory::getDocument();
 		$mainframe	=& JFactory::getApplication();
 
-		$model		= $this->getModel ( 'modeljlextlmoimport' );
+		$model		= $this->getModel ();
 		
 		
 		$this->setMessage( JText::_( 'project selected' ) );
