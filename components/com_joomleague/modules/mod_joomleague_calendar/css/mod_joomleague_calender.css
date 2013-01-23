@@ -108,16 +108,16 @@ a.jlcCalendarDay {
 	/* style for a normal link in the calendar (that is not in the actual day) */
 	text-decoration: underline;
 	font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	color: #DF9496;
+	color: #444444;
 	text-decoration: none;
 	font-weight: bold;
 	display: block;
 }
 
 td.jlcCalendarToday { /* the style for Today day */
-	color: #F6F4DA;
+	color: #444444;
 	font-weight: bold;
-	background: #FAAFBE;
+	background: #cccccc;
 }
 
 a.jlcCalendarToday {
