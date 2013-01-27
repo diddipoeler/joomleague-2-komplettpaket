@@ -79,14 +79,19 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 			} break;
 			case 'edit'	:
 			{
-				JRequest::setVar( 'hidemainmenu',	0 );
+			$model=$this->getModel('predictiontemplate');
+			$viewType=$document->getType();
+			$view=$this->getView('predictiontemplate',$viewType);
+			$view->setModel($model,true);	// true is for the default model;
+                    
+				//JRequest::setVar( 'hidemainmenu',	0 );
 				JRequest::setVar( 'layout',			'form' );
 				JRequest::setVar( 'view',			'predictiontemplate');
 				JRequest::setVar( 'edit',			true );
 
-				// Checkout the project
-				$model = $this->getModel( 'predictiontemplate' );
-				//$model->checkout();
+				
+				//$model = $this->getModel( 'predictiontemplate' );
+				
 			} break;
 
 		}

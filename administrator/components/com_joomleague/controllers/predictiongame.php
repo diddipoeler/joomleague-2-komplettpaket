@@ -26,6 +26,8 @@ jimport('joomla.application.component.controller');
 class JoomleagueControllerPredictionGame extends JoomleagueController
 {
 
+protected $view_list = 'predictiongames';
+
 	function __construct()
 	{
 		parent::__construct();
