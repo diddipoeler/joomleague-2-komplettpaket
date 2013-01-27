@@ -142,7 +142,7 @@ if ( $lng )
 $kml[] = ' <Placemark id="placemark' . $id . '">';
 //$kml[] = ' <name>' . htmlentities($row->team_name) . '</name>';
 //$kml[] = ' <description>' . htmlentities($row->address_string) . '</description>';
-$kml[] = ' <name>' . $row->team_name . '</name>';
+$kml[] = ' <name>' . $name . '</name>';
 $kml[] = ' <description>' . $address_string . '</description>';
 $kml[] = ' <address>' . $address_string . '</address>';
 //$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
