@@ -33,6 +33,10 @@ class JoomleagueViewPlayground extends JLGView
 		$this->assignRef( 'gmap', $model->getGoogleMap( $this->mapconfig, $this->address_string ) );
 		// $gm = $this->getModel( 'googlemap' );
 		// $this->assignRef('gm', $gm->getGoogleMap( $model->getMapConfig(), $model->getAddressString() ) );
+        
+        // diddipoeler
+        $this->geo = new simpleGMapGeocoder();
+        $this->geo->genkml3file($this->playground->id,$this->address_string,'playground',$this->playground->picture,$this->playground->name);
 
 		$extended = $this->getExtended($this->playground->extended, 'playground');
 		$this->assignRef( 'extended', $extended );

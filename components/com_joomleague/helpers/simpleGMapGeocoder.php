@@ -83,6 +83,92 @@ $result = json_decode($file_content, true);
     return $result;
 }
 
+
+function genkml3file($id, $address_string, $type, $picture, $name)
+{
+$params		 	=	JComponentHelper::getParams('com_joomleague');
+$ph_logo_big	=	$params->get('ph_logo_big',0);
+    
+$lat = '';
+$lng = '';
+
+$coords = $this->JLgetGeoCoords($address_string);
+		if ( $coords["status"] == 'OK')
+		{
+    $lat = $coords["results"][0]["geometry"]["location"]["lat"];
+    $lng = $coords["results"][0]["geometry"]["location"]["lng"];
+    }
+	  else
+	  {
+	  $osm = $this->getOSMGeoCoords($address_string);
+    
+    if ( $osm )
+    {
+    $lat = $osm['lat'];
+    $lng = $osm['lng'];
+    }
+    else
+    {
+    $lat = '';
+    $lng = '';
+    }
+    
+    }
+
+// Creates an array of strings to hold the lines of the KML file.
+$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
+$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
+$kml[] = ' <Document>';
+$kml[] = ' <Style id="' . $id . 'Style">';
+$kml[] = ' <IconStyle id="' . $id . 'Icon">';
+$kml[] = ' <Icon>';
+
+//$picturepath = JURI::root().$row->logo_big;
+$picturepath = JPATH_SITE.DS.$picture;
+if ( !file_exists($picturepath) )
+{
+$kml[] = ' <href>' . JURI::root().$ph_logo_big . '</href>';    
+}
+else
+{
+$kml[] = ' <href>' . JURI::root().$picture . '</href>';    
+}
+
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';    
+if ( $lng )
+{
+$kml[] = ' <Placemark id="placemark' . $id . '">';
+//$kml[] = ' <name>' . htmlentities($row->team_name) . '</name>';
+//$kml[] = ' <description>' . htmlentities($row->address_string) . '</description>';
+$kml[] = ' <name>' . $row->team_name . '</name>';
+$kml[] = ' <description>' . $address_string . '</description>';
+$kml[] = ' <address>' . $address_string . '</address>';
+//$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
+$kml[] = ' <styleUrl>#' . ($id) .'Style</styleUrl>';
+$kml[] = ' <Point>';
+$kml[] = ' <coordinates>' . $lng . ','  . $lat . '</coordinates>';
+$kml[] = ' </Point>';
+$kml[] = ' </Placemark>';
+}
+
+// End XML file
+$kml[] = ' </Document>';
+$kml[] = '</kml>';
+$kmlOutput = join("\n", $kml);
+
+// mal als test
+$xmlfile = $kmlOutput;
+$file = JPATH_SITE.DS.'tmp'.DS.$id.'-'.$type.'.kml';
+JFile::write($file, $xmlfile);
+
+
+
+
+    
+}
+    
 function genkml3($project_id,$allteams)
 {
 $type = 'ranking';
