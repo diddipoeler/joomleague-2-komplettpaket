@@ -283,6 +283,8 @@ function writekml3($allteams,$project_id)
 $kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 $kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
 $kml[] = ' <Document>';
+
+/*
 $kml[] = ' <Style id="restaurantStyle">';
 $kml[] = ' <IconStyle id="restuarantIcon">';
 $kml[] = ' <Icon>';
@@ -297,7 +299,19 @@ $kml[] = ' <href>http://maps.google.com/mapfiles/kml/pal2/icon49.png</href>';
 $kml[] = ' </Icon>';
 $kml[] = ' </IconStyle>';
 $kml[] = ' </Style>';
+*/
 
+foreach ( $allteams as $row )
+{
+// logo_big    
+$kml[] = ' <Style id="' . $row->team_id . 'Style">';
+$kml[] = ' <IconStyle id="' . $row->team_id . 'Icon">';
+$kml[] = ' <Icon>';
+$kml[] = ' <href>' . JURI::root().$row->logo_big . '</href>';
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';    
+}    
 
 foreach ( $allteams as $row )
 {
@@ -309,7 +323,8 @@ $kml[] = ' <Placemark id="placemark' . $row->team_id . '">';
 $kml[] = ' <name>' . $row->team_name . '</name>';
 $kml[] = ' <description>' . $row->address_string . '</description>';
 $kml[] = ' <address>' . $row->address_string . '</address>';
-$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
+//$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
+$kml[] = ' <styleUrl>#' . ($row->team_id) .'Style</styleUrl>';
 $kml[] = ' <Point>';
 $kml[] = ' <coordinates>' . $row->lng . ','  . $row->lat . '</coordinates>';
 $kml[] = ' </Point>';
