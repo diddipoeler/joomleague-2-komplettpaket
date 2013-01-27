@@ -42,7 +42,7 @@ break;
 <?PHP
 
 
-if ( $this->person_positions )
+if ( isset($this->person_positions) )
 {
 
 if ( is_array($this->person_positions) )
