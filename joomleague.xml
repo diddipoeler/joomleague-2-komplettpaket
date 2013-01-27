@@ -40,6 +40,7 @@
 		<folder>flags</folder>
 		<folder>jl_images</folder>
 		<folder>treebracket</folder>
+		<folder>person_playground</folder>
 	</media>
 
 	<!-- Runs on install/uninstall/update -->
