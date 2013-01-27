@@ -2861,6 +2861,7 @@ $this->dump_variable("import_team", $import_team);
 			$p_teamplayer->set('away_detail',$this->_getDataFromObject($import_teamplayer,'away_detail'));
 			$p_teamplayer->set('away_date_start',$this->_getDataFromObject($import_teamplayer,'away_date_start'));
 			$p_teamplayer->set('away_date_end',$this->_getDataFromObject($import_teamplayer,'away_date_end'));
+            $p_teamplayer->set('published',1);
 
 			if ($p_teamplayer->store()===false)
 			{
@@ -2965,6 +2966,7 @@ $this->dump_variable("import_team", $import_team);
 			$p_teamstaff->set('away_date_end',$this->_getDataFromObject($import_teamstaff,'away_date_end'));
 			$p_teamstaff->set('picture',$this->_getDataFromObject($import_teamstaff,'picture'));
 			$p_teamstaff->set('extended',$this->_getDataFromObject($import_teamstaff,'extended'));
+            $p_teamstaff->set('published',1);
 
 			if ($p_teamstaff->store()===false)
 			{
