@@ -125,7 +125,7 @@ $kml[] = ' <Icon>';
 
 //$picturepath = JURI::root().$row->logo_big;
 $picturepath = JPATH_SITE.DS.$picture;
-if ( !file_exists($picturepath) )
+if ( !file_exists($picturepath) || !$picture  )
 {
 $kml[] = ' <href>' . JURI::root().$ph_logo_big . '</href>';    
 }

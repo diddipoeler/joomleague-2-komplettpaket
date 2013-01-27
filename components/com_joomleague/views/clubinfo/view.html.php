@@ -87,7 +87,11 @@ class JoomleagueViewClubInfo extends JLGView
   $document->addScriptDeclaration($this->map->JLshowMap(false));
   
 	}
-	  
+	
+            // diddipoeler
+        $this->geo = new simpleGMapGeocoder();
+        $this->geo->genkml3file($this->club->id,$this->address_string,'club',$this->club->logo_big,$this->club->name);  
+
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
     
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_CLUBINFO_PAGE_TITLE' );

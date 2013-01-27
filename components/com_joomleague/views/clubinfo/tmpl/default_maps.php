@@ -1,4 +1,8 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
+<?php 
+defined( '_JEXEC' ) or die( 'Restricted access' ); 
+
+$kmlpath = JURI::root().'tmp'.DS.$this->club->id.'-club.kml';
+?>
 <div style="width: 100%; float: left">
 	<div class="contentpaneopen">
 		<div class="contentheading">
@@ -43,6 +47,10 @@
 		$params  = '{mosmap ';
 		$params .= implode('|', $arrPluginParams);
 		$params .= "}";
+		//echo JHTML::_('content.prepare', $params);
+        
+$params  = "{mosmap mapType='HYBRID'|showEarthMaptype='1'|showNormalMaptype='1' |showSatelliteMaptype='1' |showTerrainMaptype='1' |showHybridMaptype='1'   |kml='".$kmlpath."'|kmlrenderer='geoxml'|controltype='user'|kmlsidebar=''|kmlsbwidth='200'|lightbox='1'|width='100%'|height='".$this->mapconfig['height']."' |overview='1'  }";    
 		echo JHTML::_('content.prepare', $params);
+                
 	?>
 </div>
