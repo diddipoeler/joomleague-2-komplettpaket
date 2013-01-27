@@ -36,10 +36,10 @@
 			$arrPluginParams[] = "text='<div style=width:250px;height=30px;>".$this->address_string."</div>'";
 		}
 		$icon = '';
-		if($this->club->logo_small != '')
+		if($this->playground->picture != '')
 		{
 			$arrPluginParams[] = "tooltip='". $this->playground->name . "'";
-			$icon= $this->club->logo_small;
+			$icon= $this->playground->picture;
 		}
 		if($icon!='') {
 			$arrPluginParams[] = "icon='".$icon."'";

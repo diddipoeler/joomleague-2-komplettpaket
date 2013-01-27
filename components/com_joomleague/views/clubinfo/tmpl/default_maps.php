@@ -32,10 +32,10 @@
 			$arrPluginParams[] = "text='<div style=width:250px;height=30px;>".$this->address_string."</div>'";
 		}
 		$icon = '';
-		if($this->club->logo_small != '')
+		if($this->club->logo_big != '')
 		{
 			$arrPluginParams[] = "tooltip='". $this->club->name . "'";
-			$icon= $this->club->logo_small;
+			$icon= $this->club->logo_big;
 		}
 		if($icon!='') {
 			$arrPluginParams[] = "icon='".$icon."'";
