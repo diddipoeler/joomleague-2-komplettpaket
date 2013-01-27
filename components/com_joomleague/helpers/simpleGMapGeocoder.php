@@ -279,6 +279,9 @@ function getOSMGeoCoords($address)
 
 function writekml3($allteams,$project_id)
 {
+$params		 	=	JComponentHelper::getParams('com_joomleague');
+$ph_logo_big	=	$params->get('ph_logo_big',0);
+    
 // Creates an array of strings to hold the lines of the KML file.
 $kml = array('<?xml version="1.0" encoding="UTF-8"?>');
 $kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
@@ -307,7 +310,17 @@ foreach ( $allteams as $row )
 $kml[] = ' <Style id="' . $row->team_id . 'Style">';
 $kml[] = ' <IconStyle id="' . $row->team_id . 'Icon">';
 $kml[] = ' <Icon>';
-$kml[] = ' <href>' . JURI::root().$row->logo_big . '</href>';
+
+$picturepath = JURI::root().$row->logo_big;
+if ( !file_exists($picturepath) )
+{
+$kml[] = ' <href>' . JURI::root().$ph_logo_big . '</href>';    
+}
+else
+{
+$kml[] = ' <href>' . JURI::root().$row->logo_big . '</href>';    
+}
+
 $kml[] = ' </Icon>';
 $kml[] = ' </IconStyle>';
 $kml[] = ' </Style>';    
