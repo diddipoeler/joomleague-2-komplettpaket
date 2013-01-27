@@ -2,6 +2,16 @@
 
 JHTML::_('behavior.tooltip');
 
+if ( $this->show_debug_info )
+{
+$visible = 'text';
+}
+else
+{
+$visible = 'hidden';
+}
+
+
 if (isset($this->xml) && is_array($this->xml))
 {
 	{
@@ -708,10 +718,16 @@ if (isset($this->xml) && is_array($this->xml))
 							{
 								foreach ($this->teams AS $team)
 								{
-									if ((strcasecmp($importTeam_Name,$team->name) == 0) &&
-									    (strcasecmp($importTeam_ShortName,$team->short_name)==0) &&
-									    (strcasecmp($importTeam_MiddleName,$team->middle_name)==0) &&
-									    (strcasecmp($importTeam_Info,$team->info)==0))
+// 									if ( (strcasecmp($importTeam_Name,$team->name) == 0) &&
+// 									    (strcasecmp($importTeam_ShortName,$team->short_name)==0) &&
+// 									    (strcasecmp($importTeam_MiddleName,$team->middle_name)==0) &&
+// 									    (strcasecmp($importTeam_Info,$team->info)==0) )
+									 
+                   if ( (strcasecmp($importTeam_Name,$team->name) == 0) &&
+									    (strcasecmp($importTeam_Info,$team->info)==0) )
+//                   if ( $importTeam_Name == $team->name &&
+// 									    $importTeam_Info == $team->info )
+   
 									{
 										$matchingTeam_ID = $team->id;
 										$matchingTeam_ClubID = $team->club_id;
@@ -881,16 +897,16 @@ if (isset($this->xml) && is_array($this->xml))
 											<tr style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>; border-style:none'>
 												<td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
 													<b><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CLUBNAME');?></b>
-													<input type='hidden' name='matching_ClubID_<?php echo $key;?>' value='<?php echo $matchingClub_ID;?>'/>
-													<input type='hidden' name='clubID_<?php echo $key;?>' value='<?php echo $importTeam_ClubID;?>' <?php echo $ic_disabled;?>/>
-													<input type='hidden' name='clubName_<?php echo $key; ?>' size='60' maxlength='100' 
+													<input type='<?php echo $visible; ?>' name='matching_ClubID_<?php echo $key;?>' value='<?php echo $matchingClub_ID;?>'/>
+													<input type='<?php echo $visible; ?>' name='clubID_<?php echo $key;?>' value='<?php echo $importTeam_ClubID;?>' <?php echo $ic_disabled;?>/>
+													<input type='<?php echo $visible; ?>' name='clubName_<?php echo $key; ?>' size='60' maxlength='100' 
 															value='<?php echo stripslashes(htmlspecialchars($importTeam_ClubName));?>' <?php echo $ic_disabled;?>/>
-													<input type='hidden' name='clubFileID_<?php echo $key;?>' value='<?php echo $importTeam_ClubID;?>'/>
-													<input type='hidden' name='clubCountry_<?php echo $key; ?>' size='60' maxlength='100' 
+													<input type='<?php echo $visible; ?>' name='clubFileID_<?php echo $key;?>' value='<?php echo $importTeam_ClubID;?>'/>
+													<input type='<?php echo $visible; ?>' name='clubCountry_<?php echo $key; ?>' size='60' maxlength='100' 
 															value='<?php echo stripslashes(htmlspecialchars($importTeam_ClubCountry));?>' <?php echo $ic_disabled;?>/>
 													
-													<input type='hidden' name='dbClubID_<?php echo $key;?>' value='<?php echo $matchingClub_ID;?>' <?php echo $dc_disabled;?>/>
-													<input type='hidden' name='dbClubPlaygroundID_<?php echo $key;?>' value='<?php echo $matchingClub_PlaygroundID;?>'/> 
+													<input type='<?php echo $visible; ?>' name='dbClubID_<?php echo $key;?>' value='<?php echo $matchingClub_ID;?>' <?php echo $dc_disabled;?>/>
+													<input type='<?php echo $visible; ?>' name='dbClubPlaygroundID_<?php echo $key;?>' value='<?php echo $matchingClub_PlaygroundID;?>'/> 
 												</td>
 												<td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
 													<input type='text' name='impClubName_<?php echo $key;?>' value='<?php echo $importTeam_ClubName;?>' size='30' maxlength='45' disabled='disabled'>

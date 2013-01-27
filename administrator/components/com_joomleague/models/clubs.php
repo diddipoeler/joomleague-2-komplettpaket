@@ -99,7 +99,8 @@ class JoomleagueModelClubs extends JoomleagueModelList
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	/*
+  function delete($cid=array())
 	{
 		return false;
 		$result=false;
@@ -117,6 +118,6 @@ class JoomleagueModelClubs extends JoomleagueModelList
 		}
 		return true;
 	}
-
+  */
 }
 ?>

@@ -55,6 +55,7 @@ class JoomleagueModelJLXMLImport extends JModel
 	var $storeFailedColor = 'red';
 	var $storeSuccessColor = 'green';
 	var $existingInDbColor = 'orange';
+    var $show_debug_info = false;
 
 	private function _getXml()
 	{
@@ -1780,7 +1781,15 @@ class JoomleagueModelJLXMLImport extends JModel
 
 	private function _importClubs()
 	{
-//$this->dump_header("function _importClubs");
+
+if ( $this->show_debug_info )
+{	   
+$this->dump_header("function _importClubs");
+$this->dump_variable("this->_datas club", $this->_datas['club']);
+$this->dump_variable("this->_dbclubsid", $this->_dbclubsid);
+$this->dump_variable("this->_newclubs", $this->_newclubs);
+}
+
 		$my_text='';
 		// $this->_datas['club'] : array of all clubs obtained from the xml import file
 		// $this->_newclubsid    : array of club ids (xml values) for the new clubs to be created in the database
@@ -1802,15 +1811,24 @@ class JoomleagueModelJLXMLImport extends JModel
 			{
 				if (empty($this->_newclubs[$key]))
 				{
-					$oldID=$this->_getDataFromObject($this->_datas['club'][$key],'id');
+					//$oldID = $this->_getDataFromObject($this->_datas['club'][$key],'id');
+                    $oldID = $this->_getDataFromObject($this->_datas['team'][$key],'club_id');
 					$this->_convertClubID[$oldID]=$id;
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_datas['club'] key", $key);
+$this->dump_variable("this->_dbclubsid id", $id);
+$this->dump_variable("this->_dbclubsid oldID", $oldID);
+}                    
+                    
 					$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
 					$my_text .= JText::sprintf(	'Using existing club data: %1$s - %2$s',
 												'</span><strong>'.$dbClubs[$id]->name.'</strong>',
 												''.$dbClubs[$id]->id.''
 												);
 					$my_text .= '<br />';
-                    
+                    /*
                     // diddipoeler
                     // update clubdata
                     $p_club =& $this->getTable('club');
@@ -1851,7 +1869,7 @@ class JoomleagueModelJLXMLImport extends JModel
 													);
 						$my_text .= '<br />';
 					}
-                    
+                    */
                     
 				}
 			}
@@ -1870,10 +1888,20 @@ class JoomleagueModelJLXMLImport extends JModel
 						break;
 					}
 				}
-//$this->dump_variable("import_club", $import_club);
+
+if ( $this->show_debug_info )
+{                
+$this->dump_variable("import_club", $import_club);
+}
+
 				$oldID=$this->_getDataFromObject($import_club,'id');
 				$alias=$this->_getDataFromObject($import_club,'alias');
-//$this->dump_variable("this->_newclubs", $this->_newclubs);
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_newclubs", $this->_newclubs);
+}
+
 				$p_club->set('name',$this->_newclubs[$key]);
 				$p_club->set('admin',$this->_joomleague_admin);
 				$p_club->set('address',$this->_getDataFromObject($import_club,'address'));
@@ -1951,10 +1979,20 @@ class JoomleagueModelJLXMLImport extends JModel
 						$my_text .= '<br />';
 					}
 				}
-//$this->dump_variable("p_club", $p_club);
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("p_club", $p_club);
+}
+
 			}
 		}
-//$this->dump_variable("this->_convertClubID", $this->_convertClubID);
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_convertClubID", $this->_convertClubID);
+}
+
 		$this->_success_text['Importing general club data:']=$my_text;
 		return true;
 	}
@@ -1993,15 +2031,24 @@ class JoomleagueModelJLXMLImport extends JModel
 
 	private function _importTeams()
 	{
-//$this->dump_header("Function _importTeams");
+
+if ( $this->show_debug_info )
+{
+$this->dump_header("Function _importTeams");
+}
+
 		$my_text='';
 		if (!isset($this->_datas['team']) || count($this->_datas['team'])==0){return true;}
 		if ((!isset($this->_newteams) || count($this->_newteams)==0) &&
 			(!isset($this->_dbteamsid) || count($this->_dbteamsid)==0)){return true;}
 
-//$this->dump_variable("this->_datas['team']", $this->_datas['team']);
-//$this->dump_variable("this->_newteams", $this->_newteams);
-//$this->dump_variable("this->_dbteamsid", $this->_dbteamsid);
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_datas['team']", $this->_datas['team']);
+$this->dump_variable("this->_newteams", $this->_newteams);
+$this->dump_variable("this->_dbteamsid", $this->_dbteamsid);
+}
+
 		if (!empty($this->_dbteamsid))
 		{
 			$query='SELECT id,name,club_id,short_name,middle_name,info FROM #__joomleague_team GROUP BY id';
@@ -2024,25 +2071,41 @@ class JoomleagueModelJLXMLImport extends JModel
 					$my_text .= '<br />';
 				}
 			}
-//$this->dump_variable("_convertTeamID", $this->_convertTeamID);
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("_convertTeamID", $this->_convertTeamID);
+}
 		}
 //To Be fixed: Falls Verein neu angelegt wird, muss auch das Team neu angelegt werden.
-/*
-echo '1<pre>'.print_r($this->_dbclubsid,true).'</pre>';
-echo '2<pre>'.print_r($this->_newclubs,true).'</pre>';
-echo '3<pre>'.print_r($this->_newclubsid,true).'</pre>';
-echo '4<pre>'.print_r($this->_dbteamsid,true).'</pre>';
-echo '5<pre>'.print_r($this->_newteams,true).'</pre>';
-echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
-*/
+if ( $this->show_debug_info )
+{
+echo '_dbclubsid<pre>'.print_r($this->_dbclubsid,true).'</pre>';
+echo '_newclubs<pre>'.print_r($this->_newclubs,true).'</pre>';
+echo '_newclubsid<pre>'.print_r($this->_newclubsid,true).'</pre>';
+echo '_dbteamsid<pre>'.print_r($this->_dbteamsid,true).'</pre>';
+echo '_newteams<pre>'.print_r($this->_newteams,true).'</pre>';
+echo '_convertClubID<pre>'.print_r($this->_convertClubID,true).'</pre>';
+}
+
 		if (!empty($this->_newteams))
 		{
-//$this->dump_variable("newteams", $this->_newteams);
+
+if ( $this->show_debug_info )
+{		  
+$this->dump_variable("newteams", $this->_newteams);
+}
+
 			foreach ($this->_newteams AS $key => $value)
 			{
 				$p_team =& $this->getTable('team');
 				$import_team=$this->_datas['team'][$key];
-//$this->dump_variable("import_team", $import_team);
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("import_team", $import_team);
+}
+
 				$oldID=$this->_getDataFromObject($import_team,'id');
 				$alias=$this->_getDataFromObject($import_team,'alias');
 				$oldClubID=$this->_getDataFromObject($import_team,'club_id');
@@ -2077,7 +2140,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 								name,
 								short_name,
 								middle_name,
-								info
+								info, club_id
 						FROM #__joomleague_team
 						WHERE	name='".addslashes(stripslashes($p_team->name))."' AND
 								middle_name='".addslashes(stripslashes($p_team->middle_name))."' AND
@@ -2107,7 +2170,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 						$insertID=$this->_db->insertid();
 						$this->_convertTeamID[$oldID]=$insertID;
 						$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
-						$my_text .= JText::sprintf(	'Created new team data: %1$s - %2$s - %3$s - %4$s - %5$s',
+						$my_text .= JText::sprintf(	'Created new team data: %1$s - %2$s - %3$s - %4$s - club_id [%5$s]',
 													"</span><strong>$p_team->name</strong>",
 													"<strong>$p_team->short_name</strong>",
 													"<strong>$p_team->middle_name</strong>",
@@ -2982,7 +3045,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 			{
 				$my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
 				$my_text .= JText::sprintf(	'Created new teamtraining data. Team: [%1$s]',
-								'</span><strong>'.$this-> _getTeamName($p_teamtraining->projectteam_id).'</strong>');
+								'</span><strong>'.$this-> _getTeamName($p_teamtraining->project_team_id).'</strong>');
 				$my_text .= '<br />';
 			}
 		}
@@ -3992,7 +4055,8 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 
 	public function importData($post)
 	{
-		$this->_datas=$this->getData();
+		$this->show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) ;
+        $this->_datas=$this->getData();
 
 		$this->_newteams=array();
 		$this->_newteamsshort=array();
@@ -4037,6 +4101,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		//tracking of old -> new ids
 		// The 0 entry is needed to translate an input with ID 0 to an output with ID 0;
 		// this can happen when the exported file contains a field with ID equal to 0
+
 		$standard_translation = array(0 => 0);
 		$this->_convertProjectTeamID=$standard_translation;
 		$this->_convertProjectRefereeID=$standard_translation;
@@ -4058,6 +4123,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		$this->_convertTreetoID=$standard_translation;
 		$this->_convertTreetonodeID=$standard_translation;
 		$this->_convertTreetomatchID=$standard_translation;
+
 
 		if (is_array($post) && count($post) > 0)
 		{

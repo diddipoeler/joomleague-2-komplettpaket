@@ -30,7 +30,8 @@ class JoomleagueModelPosition_eventtype extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete( $cid = array() )
+	/*
+  function delete( $cid = array() )
 	{
 		$result = false;
 
@@ -52,7 +53,7 @@ class JoomleagueModelPosition_eventtype extends JoomleagueModelItem
 		}
 		return true;
 	}
-
+  */
 
 	/**
 	 * Method to load  data

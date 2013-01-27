@@ -12,7 +12,8 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-jimport( 'joomla.application.component.view' );
+jimport('joomla.application.component.view' );
+jimport('joomla.html.parameter.element.timezones');
 
 /**
  * HTML View class for the Joomleague component
@@ -103,6 +104,8 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$this->assignRef('import_version',$model->import_version);
 		$this->assignRef('lists',$lists);
 		
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_2_3'),'generic.png');
 		//                       task    image  mouseover_img           alt_text_for_image              check_that_standard_list_item_is_checked

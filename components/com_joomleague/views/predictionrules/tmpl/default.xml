@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="JL_XML_TIPPRULES_LAYOUT_TITLE">
+		<message>
+			<![CDATA[JL_XML_TIPPRULES_LAYOUT_DESCR]]>
+		</message>
+	</layout>
+	<state>
+		<name>JL_XML_TIPPRULES_STATE_NAME</name>
+		<description>JL_XML_TIPPRULES_STATE_DESCR</description>
+		<url>
+			<param	type="sql" name="prediction_id"
+					label="JL_XML_RESULTS_SELECT_PREDICTIONGAME_LABEL" description="JL_XML_RESULTS_SELECT_PREDICTIONGAME_DESCR"
+					query="SELECT id AS value, name AS prediction_id FROM #__joomleague_prediction_game WHERE published='1' ORDER BY name" />
+		</url>
+	</state>
+</metadata>

@@ -78,6 +78,34 @@
 				<tr>
 					<td class="key"><?php echo $this->form->getLabel('standard_playground'); ?></td>
 					<td><?php echo $this->form->getInput('standard_playground'); ?></td>
-				</tr>					
+				</tr>
+        
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('dissolved_year'); ?></td>
+					<td><?php echo $this->form->getInput('dissolved_year'); ?></td>
+				</tr>	
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('founded_year'); ?></td>
+					<td><?php echo $this->form->getInput('founded_year'); ?></td>
+				</tr>	
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('unique_id'); ?></td>
+					<td><?php echo $this->form->getInput('unique_id'); ?></td>
+				</tr>	
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('new_club_id'); ?></td>
+					<td><?php echo $this->form->getInput('new_club_id'); ?></td>
+				</tr>	
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('enable_sb'); ?></td>
+					<td><?php echo $this->form->getInput('enable_sb'); ?></td>
+				</tr>	
+        <tr>
+					<td class="key"><?php echo $this->form->getLabel('sb_catid'); ?></td>
+					<td><?php echo $this->form->getInput('sb_catid'); ?></td>
+				</tr>	
+        
+        	
+        					
 			</table>
 		</fieldset>

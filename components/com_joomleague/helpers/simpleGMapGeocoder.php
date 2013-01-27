@@ -1,4 +1,6 @@
 <?php
+defined('_JEXEC') or die('Restricted access');
+jimport('joomla.filesystem.file');
 
 /**
 * simpleGMapGeocoder | simpleGMapGeocoder is part of simpleGMapAPI
@@ -79,6 +81,88 @@ $result = json_decode($file_content, true);
     */
     
     return $result;
+}
+
+function genkml3($project_id,$allteams)
+{
+/*
+echo 'genkml3 project_id<br><pre>';
+    print_r($project_id);
+    echo '</pre><br>';
+echo 'genkml3 allteams<br><pre>';
+    print_r($allteams);
+    echo '</pre><br>';
+*/
+
+foreach ( $allteams as $row )
+{
+$address_parts = array();
+		if (!empty($row->club_address))
+		{
+			$address_parts[] = $row->club_address;
+		}
+		if (!empty($row->club_state))
+		{
+			$address_parts[] = $row->club_state;
+		}
+		if (!empty($row->club_location))
+		{
+			if (!empty($row->club_zipcode))
+			{
+				$address_parts[] = $row->club_zipcode. ' ' .$row->club_location;
+			}
+			else
+			{
+				$address_parts[] = $row->club_location;
+			}
+		}
+		if (!empty($row->club_country))
+		{
+			$address_parts[] = Countries::getShortCountryName($row->club_country);
+		}
+		$row->address_string = implode(', ', $address_parts);
+		$row->type = 'bar';
+		$coords = $this->JLgetGeoCoords($row->address_string);
+		if ( $coords["status"] == 'OK')
+		{
+    $row->lat = $coords["results"][0]["geometry"]["location"]["lat"];
+    $row->lng = $coords["results"][0]["geometry"]["location"]["lng"];
+    }
+	  else
+	  {
+	  $osm = $this->getOSMGeoCoords($row->address_string);
+    
+    if ( $osm )
+    {
+    $row->lat = $osm['lat'];
+    $row->lng = $osm['lng'];
+    }
+    else
+    {
+    $row->lat = '';
+    $row->lng = '';
+    }
+    
+    
+    }
+
+/*
+echo 'genkml3 allteams<br><pre>';
+    print_r($coords);
+    echo '</pre><br>';		
+*/
+
+
+}
+
+/*
+echo 'genkml3 allteams<br><pre>';
+    print_r($allteams);
+    echo '</pre><br>';
+*/
+
+$this->writekml3($allteams,$project_id);
+    
 }
     
 /**
@@ -174,7 +258,7 @@ function getOSMGeoCoords($address)
 {
     $coords = array();
         
-    $address = utf8_encode($address);
+    //$address = utf8_encode($address);
     
     // call OSM geoencoding api
     // limit to one result (limit=1) without address details (addressdetails=0)
@@ -183,12 +267,69 @@ function getOSMGeoCoords($address)
                   urlencode($address);
     
     $result = json_decode(file_get_contents($geoCodeURL), true);
-    
+    if ( isset($result[0]) )
+    {        
     $coords['lat'] = $result[0]["lat"];
     $coords['lng'] = $result[0]["lon"];
+    }
+    
 
     return $coords;
 }
+
+function writekml3($allteams,$project_id)
+{
+// Creates an array of strings to hold the lines of the KML file.
+$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
+$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
+$kml[] = ' <Document>';
+$kml[] = ' <Style id="restaurantStyle">';
+$kml[] = ' <IconStyle id="restuarantIcon">';
+$kml[] = ' <Icon>';
+$kml[] = ' <href>http://maps.google.com/mapfiles/kml/pal2/icon49.png</href>';
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';
+$kml[] = ' <Style id="barStyle">';
+$kml[] = ' <IconStyle id="barIcon">';
+$kml[] = ' <Icon>';
+$kml[] = ' <href>http://maps.google.com/mapfiles/kml/pal2/icon49.png</href>';
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';
+
+
+foreach ( $allteams as $row )
+{
+if ( $row->lng )
+{
+$kml[] = ' <Placemark id="placemark' . $row->team_id . '">';
+//$kml[] = ' <name>' . htmlentities($row->team_name) . '</name>';
+//$kml[] = ' <description>' . htmlentities($row->address_string) . '</description>';
+$kml[] = ' <name>' . $row->team_name . '</name>';
+$kml[] = ' <description>' . $row->address_string . '</description>';
+$kml[] = ' <address>' . $row->address_string . '</address>';
+$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
+$kml[] = ' <Point>';
+$kml[] = ' <coordinates>' . $row->lng . ','  . $row->lat . '</coordinates>';
+$kml[] = ' </Point>';
+$kml[] = ' </Placemark>';
+}
+
+}
+
+// End XML file
+$kml[] = ' </Document>';
+$kml[] = '</kml>';
+$kmlOutput = join("\n", $kml);
+
+// mal als test
+$xmlfile = $kmlOutput;
+$file = JPATH_SITE.DS.'tmp'.DS.$project_id.'.kml';
+JFile::write($file, $xmlfile);
+
+}
+
 
 } // end of class
 

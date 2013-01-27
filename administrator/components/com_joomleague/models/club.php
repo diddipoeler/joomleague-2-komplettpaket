@@ -119,6 +119,17 @@ class JoomleagueModelClub extends JoomleagueModelItem
 			$club->alias				= null;
 			$club->modified				= null;
 			$club->modified_by			= null;
+      
+      $club->dissolved			= null;
+      $club->dissolved_year			= null;
+      $club->founded_year			= null;
+      $club->unique_id			= null;
+      $club->new_club_id			= null;
+      $club->enable_sb			= null;
+      $club->sb_catid			= null;
+      $club->trikot_home			= null;
+      $club->trikot_away			= null;
+      
 			$this->_data				= $club;
 			return (boolean) $this->_data;
 		}

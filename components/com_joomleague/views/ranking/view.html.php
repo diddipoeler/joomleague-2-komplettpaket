@@ -4,6 +4,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'pagination.php');
 
 jimport('joomla.application.component.view');
+jimport('joomla.filesystem.file');
 
 require_once (JLG_PATH_ADMIN .DS.'models'.DS.'divisions.php');
 
@@ -80,25 +81,30 @@ class JoomleagueViewRanking extends JLGView {
 		
 		if (($this->config['show_ranking_maps'])==1)
 	  {
-	  $this->map = new simpleGMapAPI();
-  $this->geo = new simpleGMapGeocoder();
-  $this->map->setWidth($this->mapconfig['width']);
-  $this->map->setHeight($this->mapconfig['height']);
-  $this->map->setZoomLevel($this->mapconfig['map_zoom']); 
-  $this->map->setMapType($this->mapconfig['default_map_type']);
-  $this->map->setBackgroundColor('#d0d0d0');
-  $this->map->setMapDraggable(true);
-  $this->map->setDoubleclickZoom(false);
-  $this->map->setScrollwheelZoom(true);
-  $this->map->showDefaultUI(false);
-  $this->map->showMapTypeControl(true, 'DROPDOWN_MENU');
-  $this->map->showNavigationControl(true, 'DEFAULT');
-  $this->map->showScaleControl(true);
-  $this->map->showStreetViewControl(true);
-  $this->map->setInfoWindowBehaviour('SINGLE_CLOSE_ON_MAPCLICK');
-  $this->map->setInfoWindowTrigger('CLICK');
+	  $this->geo = new simpleGMapGeocoder();
+	  $this->geo->genkml3($project->id,$this->allteams);
+	  
+// 	  $this->map = new simpleGMapAPI();
+//   $this->geo = new simpleGMapGeocoder();
+//   $this->map->setWidth($this->mapconfig['width']);
+//   $this->map->setHeight($this->mapconfig['height']);
+//   $this->map->setZoomLevel($this->mapconfig['map_zoom']); 
+//   $this->map->setMapType($this->mapconfig['default_map_type']);
+//   $this->map->setBackgroundColor('#d0d0d0');
+//   $this->map->setMapDraggable(true);
+//   $this->map->setDoubleclickZoom(false);
+//   $this->map->setScrollwheelZoom(true);
+//   $this->map->showDefaultUI(false);
+//   $this->map->showMapTypeControl(true, 'DROPDOWN_MENU');
+//   $this->map->showNavigationControl(true, 'DEFAULT');
+//   $this->map->showScaleControl(true);
+//   $this->map->showStreetViewControl(true);
+//   $this->map->setInfoWindowBehaviour('SINGLE_CLOSE_ON_MAPCLICK');
+//   $this->map->setInfoWindowTrigger('CLICK');
   
   //echo 'allteams <br><pre>'.print_r($this->allteams,true).'</pre><br>';
+
+  
   
   foreach ( $this->allteams as $row )
     {
@@ -127,7 +133,7 @@ class JoomleagueViewRanking extends JLGView {
 			$address_parts[] = Countries::getShortCountryName($row->club_country);
 		}
 		$row->address_string = implode(', ', $address_parts);
-    $this->map->addMarkerByAddress($row->address_string, $row->team_name, '"<a href="'.$row->club_www.'" target="_blank">'.$row->club_www.'</a>"', "http://maps.google.com/mapfiles/kml/pal2/icon49.png");		
+//    $this->map->addMarkerByAddress($row->address_string, $row->team_name, '"<a href="'.$row->club_www.'" target="_blank">'.$row->club_www.'</a>"', "http://maps.google.com/mapfiles/kml/pal2/icon49.png");		
     
     /*
     $paramsdata	= $row->club_extended;
@@ -163,8 +169,8 @@ class JoomleagueViewRanking extends JLGView {
     }
     
   
-  $document->addScript($this->map->JLprintGMapsJS());
-  $document->addScriptDeclaration($this->map->JLshowMap(false));
+//   $document->addScript($this->map->JLprintGMapsJS());
+//   $document->addScriptDeclaration($this->map->JLshowMap(false));
   
 	}
 	  $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );

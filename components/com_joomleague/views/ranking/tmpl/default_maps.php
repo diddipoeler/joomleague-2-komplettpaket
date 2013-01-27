@@ -1,48 +1,70 @@
-<?php 
-defined( '_JEXEC' ) or die( 'Restricted access' ); 
+<?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
+
+if ( $this->show_debug_info )
+{
+echo 'mapconfig<pre>',print_r($this->mapconfig,true),'</pre><br>';
+}
+
+//$kmlpath = JURI::root().'components'.DS.'com_joomleague'.DS.'views'.DS.'ranking'.DS.'tmpl'.DS.'default_genkml3.php';
+$kmlpath = JURI::root().'tmp'.DS.$this->project->id.'.kml';
+
+//echo $kmlpath.'<br>';
 
 ?>
-
-
-<script type="text/javascript">
-function initialize() 
-{
-  //if (GBrowserIsCompatible()) 
-  //{
-    map = document.getElementById("gmap_canvas");
-    
-    //map.setCenter(new GLatLng(52.521653, 13.41091), 14);
-    // Add resize control PResizeControl with default settings.
-    //map.addControl(new PResizeControl());
-    showmap();
-    google.maps.event.trigger(map, "resize");
-    //showmap();
-    //map.setUIToDefault();
-  //}
-}
-</script>
-<div class="contentpaneopen">
-<div class="contentheading">
-			<?php echo JText::_('JL_GMAP_DIRECTIONS'); ?>
+<div style="width: 100%; float: left">
+	<div class="contentpaneopen">
+		<div class="contentheading">
+			<?php echo JText::_('COM_JOOMLEAGUE_GMAP_DIRECTIONS'); ?>
 		</div>
-
-                
-                <?php
-// create div for the map canvas
-echo "\n<!-- DIV container for the map -->";
-echo "\n<div id=\"gmap_canvas\" style=\"width: ".$this->mapconfig['width']."px; height: ".$this->mapconfig['height']."px;\">\n</div>\n";                
-                //$map->printGMapsJS();
-                ?>
-                
-                <?PHP
-                // showMap with auto zoom enabled
-                //$map->showMap(true);
-                //$this->map->showMap(false);
-                ?>
-        
-            <script type="text/javascript">
-        showmap();
-        
-        </script>  
-          
+	</div>
+	<?php
+		$arrPluginParams = array();
+		
+		$arrPluginParams[] = "zoomWheel='1'";
+		
+		$param = 'default_map_type';
+		if($this->mapconfig[$param]) {
+			$arrPluginParams[] = "mapType='".$this->mapconfig[$param]."'";
+		}
+		$param = 'map_control';
+		if($this->mapconfig[$param]) {
+			$arrPluginParams[] = "zoomType='".$this->mapconfig[$param]."'";
+		}
+		$param = 'width';
+		if($this->mapconfig[$param]) {
+			$arrPluginParams[] = "$param='".$this->mapconfig[$param]."'";
+		}
+		$param = 'height';
+		if($this->mapconfig[$param]) {
+			$arrPluginParams[] = "$param='".$this->mapconfig[$param]."'";
+		}
+		
+    foreach ( $this->allteams as $row )
+    {
+		if($row->address_string != '') {
+			$arrPluginParams[] = "address='" .$row->address_string. "'";
+			$arrPluginParams[] = "text='<div style=width:250px;height=30px;>".$row->address_string."</div>'";
+		}
+		$icon = '';
+		if($row->logo_small != '')
+		{
+			$arrPluginParams[] = "tooltip='". $row->team_name . "'";
+			$icon= $row->logo_small;
+		}
+		if($icon!='') {
+			$arrPluginParams[] = "icon='".$icon."'";
+		}
+    
+    }
+    
+		$params  = '{mosmap ';
+		$params .= implode('|', $arrPluginParams);
+		$params .= "}";
+		//echo JHTML::_('content.prepare', $params);
+		
+    $params  = "{mosmap mapType='HYBRID'|showEarthMaptype='1'|showNormalMaptype='1' |showSatelliteMaptype='1' |showTerrainMaptype='1' |showHybridMaptype='1'   |kml='".$kmlpath."'|kmlrenderer='geoxml'|controltype='user'|kmlsidebar=''|kmlsbwidth='200'|lightbox='1'|width='100%'|height='".$this->mapconfig['height']."' |overview='1'  }";    
+		echo JHTML::_('content.prepare', $params);		
+		
+		
+	?>
 </div>

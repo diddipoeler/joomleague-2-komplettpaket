@@ -62,7 +62,8 @@ class JoomleagueModelTeam extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	/*
+  function delete($cid=array())
 	{
 		if (count($cid))
 		{
@@ -72,6 +73,7 @@ class JoomleagueModelTeam extends JoomleagueModelItem
 		}
 		return true;
 	}
+  */
 
 	/**
 	 * Method to load content team data

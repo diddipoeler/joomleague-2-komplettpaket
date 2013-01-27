@@ -411,6 +411,42 @@ class JoomleagueViewJoomleague extends JLGView
 		$label[]=$label3;
 		$limage[]=$limage3;
 
+    $link4=array();
+		$label4=array();
+		$limage4=array();
+		$pane=new stdClass();
+		$pane->title=JText::_('COM_JOOMLEAGUE_DIDDIPOELER');
+		$pane->name='MMenuDiddipoeler';
+		$pane->alert=false;
+		$tabs[]=$pane;
+		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextlmoimports&task=jlextlmoimports.display');
+		$label4[]=JText::_('COM_JOOMLEAGUE_LMO_IMPORT');
+		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_LMO_IMPORT'));
+		$link[]=$link4;
+		$label[]=$label4;
+		$limage[]=$limage4;
+
+  $link5=array();
+	$label5=array();
+	$limage5=array();
+  $pane=new stdClass();
+	$pane->title=JText::_('JL_T_MENU_PREDICTIONGAMES');
+	$pane->name='PREDICTIONGAMES';
+	$pane->alert=false;
+	$tabs[]=$pane;
+  $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongames&task=predictiongame.display');
+	$label5[]=JText::_('JL_T_MENU_PREDICTIONGAMES');
+	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('JL_T_MENU_PREDICTIONGAMES'));
+	$link5[]=JRoute::_('index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display');
+	$label5[]=JText::_('JL_T_MENU_PREDICTIONMEMBERS');
+	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('JL_T_MENU_PREDICTIONMEMBERS'));
+	$link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display');
+	$label5[]=JText::_('JL_T_MENU_PREDICTIONTEMPLATES');
+	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('JL_T_MENU_PREDICTIONTEMPLATES'));
+	$link[]=$link5;
+	$label[]=$label5;
+	$limage[]=$limage5;
+    		
 		// active pane selector
 		if ($project->id)
 		{
@@ -435,6 +471,16 @@ class JoomleagueViewJoomleague extends JLGView
 				case 'databasetools': 		$active=2;		
 				break;
 
+        case 'jlextlmoimport': 
+				 		$active=3;		
+				break;
+				
+				case 'predictiongames':
+        case 'predictionmembers':
+        case 'predictiontemplates':    
+				 		$active=4;		
+				break;
+				
 				break;
 
 				default:					$active=JRequest::getInt("active",1);
@@ -462,6 +508,16 @@ class JoomleagueViewJoomleague extends JLGView
 				case 'updates':
 				case 'jlxmlimports':
 				case 'databasetools':		$active=1;
+				break;
+				
+				case 'jlextlmoimport': 
+				 		$active=2;		
+				break;
+				
+				case 'predictiongames': 
+				case 'predictionmembers':
+				case 'predictiontemplates':
+				 		$active=3;		
 				break;
 
 				default:					$active=JRequest::getInt("active",0);

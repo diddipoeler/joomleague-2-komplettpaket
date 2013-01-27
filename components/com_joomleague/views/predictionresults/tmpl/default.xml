@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="JL_XML_PREDICTIONRESULTS_LAYOUT_TITLE">
+		<message>
+			<![CDATA[JL_XML_PREDICTIONRESULTS_LAYOUT_MESSAGE]]>
+		</message>
+	</layout>
+	<state>
+		<name>JL_XML_PREDICTIONRESULTS_STATE_NAME</name>
+	<description>JL_XML_PREDICTIONRESULTS_STATE_DESCRIPTION</description>
+		<url>
+			<param	type="sql" name="prediction_id"
+					label="JL_XML_PREDICTIONRESULTS_STATE_PARAM_LABEL"
+					description="JL_XML_PREDICTIONRESULTS_STATE_PARAM_DESCRIPTION"
+					query="SELECT id AS value, name AS prediction_id FROM #__joomleague_prediction_game WHERE published='1' ORDER BY name" />
+		</url>
+	</state>
+</metadata>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<templateconfig type="JL_template" version="1.0.0">
+	<name><![CDATA[JL_FES_PREDICTIONSRULES_NAME]]></name>
+	<description><![CDATA[JL_FES_PREDICTIONSRULES_DESCR]]></description>
+
+	<params	group="JL_FES_PARAMS_GROUP_OPTIONS"
+			description="JL_FES_PARAMS_DESCR_OPTIONS">
+
+		<param	name="show_points" type="radio" default="1"
+				label="JL_FES_PREDICTIONSRULES_PARAM_LABEL_SHOW_POINTS"
+				description="JL_FES_PREDICTIONSRULES_PARAM_DESCR_SHOW_POINTS">
+			<option value="0">JL_GLOBAL_NO</option>
+			<option value="1">JL_GLOBAL_YES</option>
+		</param>
+
+	</params>
+
+</templateconfig>
