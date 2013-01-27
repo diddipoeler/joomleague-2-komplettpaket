@@ -311,7 +311,8 @@ $kml[] = ' <Style id="' . $row->team_id . 'Style">';
 $kml[] = ' <IconStyle id="' . $row->team_id . 'Icon">';
 $kml[] = ' <Icon>';
 
-$picturepath = JURI::root().$row->logo_big;
+//$picturepath = JURI::root().$row->logo_big;
+$picturepath = JPATH_SITE.DS.$row->logo_big;
 if ( !file_exists($picturepath) )
 {
 $kml[] = ' <href>' . JURI::root().$ph_logo_big . '</href>';    
