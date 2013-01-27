@@ -415,11 +415,14 @@ $kml[] = ' </IconStyle>';
 $kml[] = ' </Style>';    
 }    
 
+$kml[] = ' <Folder>';
+$kml[] = ' <open>1</open>';
 foreach ( $allteams as $row )
 {
 if ( $row->lng )
 {
 $kml[] = ' <Placemark id="placemark' . $row->team_id . '">';
+$kml[] = ' <open>1</open>';
 //$kml[] = ' <name>' . htmlentities($row->team_name) . '</name>';
 //$kml[] = ' <description>' . htmlentities($row->address_string) . '</description>';
 $kml[] = ' <name>' . $row->team_name . '</name>';
@@ -434,6 +437,8 @@ $kml[] = ' </Placemark>';
 }
 
 }
+
+$kml[] = ' </Folder>';
 
 // End XML file
 $kml[] = ' </Document>';
