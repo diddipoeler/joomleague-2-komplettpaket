@@ -1,6 +1,6 @@
 <?php
 /**
-* @copyright	Copyright (C) 2007 Joomteam.de. All rights reserved.
+* @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL,see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License,and as distributed it includes or
@@ -24,6 +24,8 @@ jimport('joomla.filesystem.file');
 class JoomleagueControllerPosition extends JoomleagueController
 {
 
+	protected $view_list = 'positions';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -145,43 +147,6 @@ class JoomleagueControllerPosition extends JoomleagueController
 		$model=$this->getModel('position');
 		$model->checkin();
 		$this->setRedirect('index.php?option=com_joomleague&view=positions&task=position.display');
-	}
-
-	function orderup()
-	{
-		$model=$this->getModel('position');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=positions&task=position.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('position');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=positions&task=position.display');
-	}
-
-	function saveorder()
-	{
-		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('position');
-		$model->saveorder($cid,$order);
-		$msg=JText::_('COM_JOOMLEAGUE_ADMIN_POSITION_CTRL_SAVED_NEW_ORDERING');
-		$this->setRedirect('index.php?option=com_joomleague&view=positions',$msg);
-	}
-	
-	public function publish() {
-		$this->view_list = 'positions';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'positions';
-		parent::unpublish();
 	}
 
 	// save the checked rows inside the positions list

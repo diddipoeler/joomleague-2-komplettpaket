@@ -1,13 +1,13 @@
 <?php
 /**
-* @copyright	Copyright (C) 2005-2013 JoomLeague.net. All rights reserved.
-* @license		GNU/GPL,see LICENSE.php
-* Joomla! is free software. This version may have been modified pursuant
-* to the GNU General Public License,and as distributed it includes or
-* is derivative of works licensed under the GNU General Public License or
-* other free or open source software licenses.
-* See COPYRIGHT.php for copyright notices and details.
-*/
+ * @copyright	Copyright (C) 2005-2013 JoomLeague.net. All rights reserved.
+ * @license		GNU/GPL,see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License,and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ */
 
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
@@ -20,11 +20,13 @@ jimport('joomla.filesystem.file');
  *
  * @package	JoomLeague
  * @since	0.1
- */
+*/
 class JoomleagueControllerPlayground extends JoomleagueController
 {
 
-  function __construct()
+	protected $view_list = 'playgrounds';
+	
+	function __construct()
 	{
 		parent::__construct();
 
@@ -37,30 +39,30 @@ class JoomleagueControllerPlayground extends JoomleagueController
 	function display()
 	{
 
-	switch($this->getTask())
+		switch($this->getTask())
 		{
 			case 'add'     :
-			{
-				JRequest::setVar('hidemainmenu',0);
-				JRequest::setVar('layout','form');
-				JRequest::setVar('view','playground');
-				JRequest::setVar('edit',false);
+				{
+					JRequest::setVar('hidemainmenu',0);
+					JRequest::setVar('layout','form');
+					JRequest::setVar('view','playground');
+					JRequest::setVar('edit',false);
 
-				// Checkout the project
-				$model=$this->getModel('playground');
-				$model->checkout();
-			} break;
+					// Checkout the project
+					$model=$this->getModel('playground');
+					$model->checkout();
+				} break;
 			case 'edit'    :
-			{
-				JRequest::setVar('hidemainmenu',0);
-				JRequest::setVar('layout','form');
-				JRequest::setVar('view','playground');
-				JRequest::setVar('edit',true);
+				{
+					JRequest::setVar('hidemainmenu',0);
+					JRequest::setVar('layout','form');
+					JRequest::setVar('view','playground');
+					JRequest::setVar('edit',true);
 
-				// Checkout the project
-				$model=$this->getModel('playground');
-				$model->checkout();
-			} break;
+					// Checkout the project
+					$model=$this->getModel('playground');
+					$model->checkout();
+				} break;
 		}
 		parent::display();
 	}
@@ -101,7 +103,9 @@ class JoomleagueControllerPlayground extends JoomleagueController
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$cid=JRequest::getVar('cid',array(),'post','array');
 		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));}
+		if (count($cid) < 1){
+			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
+		}
 		$model=$this->getModel('playground');
 		if(!$model->delete($cid))
 		{
@@ -120,20 +124,6 @@ class JoomleagueControllerPlayground extends JoomleagueController
 		// Checkin the project
 		$model=$this->getModel('playground');
 		$model->checkin();
-		$this->setRedirect('index.php?option=com_joomleague&view=playgrounds&task=playground.display');
-	}
-
-	function orderup()
-	{
-		$model=$this->getModel('playground');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=playgrounds&task=playground.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('playground');
-		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=playgrounds&task=playground.display');
 	}
 
@@ -163,21 +153,13 @@ class JoomleagueControllerPlayground extends JoomleagueController
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(),'post','array');
 		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));}
+		if (count($cid) < 1){
+			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));
+		}
 		$model = $this->getModel("playground");
 		$model->export($cid, "playground", "Playground");
 	}
-	
-	public function publish() {
-		$this->view_list = 'playgrounds';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'playgrounds';
-		parent::unpublish();
-	}
-	
+
 	/**
 	 * Proxy for getModel
 	 *

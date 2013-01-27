@@ -1,6 +1,6 @@
 <?php
 /**
-* @copyright	Copyright (C) 2007 Joomteam.de. All rights reserved.
+* @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
@@ -23,6 +23,8 @@ jimport('joomla.filesystem.file');
  */
 class JoomleagueControllerTeam extends JoomleagueController
 {
+	proteced $view_list = 'teams';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -155,37 +157,6 @@ class JoomleagueControllerTeam extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=team.display');
 	}
 
-
-	function orderup()
-	{
-		$model = $this->getModel('team');
-		$model->move(-1);
-
-		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=team.display');
-	}
-
-	function orderdown()
-	{
-		$model = $this->getModel('team');
-		$model->move(1);
-
-		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=team.display');
-	}
-
-	function saveorder()
-	{
-		$cid = JRequest::getVar('cid',array(),'post','array');
-		$order = JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-
-		$model = $this->getModel('team');
-		$model->saveorder($cid, $order);
-
-		$msg = JText::_( 'COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED' );
-		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=team.display',$msg);
-	}
-
 	function import()
 	{
 		JRequest::setVar('view','import');
@@ -203,6 +174,20 @@ class JoomleagueControllerTeam extends JoomleagueController
 		$model = $this->getModel("team");
 		$model->export($cid, "team", "Team");
 	}
-	
+
+	/**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Team', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}	
 }
 ?>

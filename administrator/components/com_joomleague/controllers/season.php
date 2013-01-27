@@ -22,6 +22,8 @@ jimport('joomla.application.component.controller');
  */
 class JoomleagueControllerSeason extends JoomleagueController
 {
+	protected $view_list = 'seasons';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -116,32 +118,6 @@ class JoomleagueControllerSeason extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=seasons&task=season.display');
 	}
 
-	function orderup()
-	{
-		$model=$this->getModel('season');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=seasons&task=season.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('season');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=seasons&task=season.display');
-	}
-
-	function saveorder()
-	{
-		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('season');
-		$model->saveorder($cid,$order);
-		$this->setRedirect('index.php?option=com_joomleague&view=seasons&task=season.display',JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED'));
-	}
-
 	function import()
 	{
 		JRequest::setVar('view','import');
@@ -159,6 +135,20 @@ class JoomleagueControllerSeason extends JoomleagueController
 		$model = $this->getModel("season");
 		$model->export($cid, "season", "Season");
 	}
-	
+
+	/**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Season', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
 }
 ?>

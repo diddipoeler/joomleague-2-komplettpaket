@@ -23,7 +23,8 @@ jimport('joomla.filesystem.file');
  */
 class JoomleagueControllerEventtype extends JoomleagueController
 {
-
+	protected $view_list = 'eventtypes';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -126,42 +127,6 @@ class JoomleagueControllerEventtype extends JoomleagueController
 		$model=$this->getModel('eventtype');
 		$model->checkin();
 		$this->setRedirect('index.php?option=com_joomleague&view=eventtypes&task=eventtype.display');
-	}
-
-	function orderup()
-	{
-		$model=$this->getModel('eventtype');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=eventtypes&task=eventtype.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('eventtype');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=eventtypes&task=eventtype.display');
-	}
-
-	function saveorder()
-	{
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('eventtype');
-		$model->saveorder($cid,$order);
-		$msg=JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=eventtypes&task=eventtype.display',$msg);
-	}
-
-	public function publish() {
-		$this->view_list = 'eventtypes';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'eventtypes';
-		parent::unpublish();
 	}
 
 	function import()

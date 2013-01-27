@@ -22,7 +22,15 @@ jimport( 'joomla.application.component.model' );
  */
 class JoomleagueModelAjax extends JModel
 {
-	function getProjectsBySportsTypesOptions($sports_type_id)
+	public function addGlobalSelectElement($elements, $required=false) {
+		if(!$required)  {
+			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			return array_merge($mitems, $elements);
+		}
+		return $elements;
+	}
+	
+	function getProjectsBySportsTypesOptions($sports_type_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':', p.id, p.alias) ELSE p.id END AS value,
 									p.name AS text 
@@ -30,10 +38,10 @@ class JoomleagueModelAjax extends JModel
 									JOIN #__joomleague_sports_type AS st ON st.id = p.sports_type_id 
 									WHERE p.sports_type_id = " . $this->_db->Quote($sports_type_id) . "
 									ORDER BY p.name" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectDivisionsOptions($project_id)
+	function getProjectDivisionsOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(d.alias) THEN CONCAT_WS(':', d.id, d.alias) ELSE d.id END AS value,
 									d.name AS text
@@ -42,7 +50,7 @@ class JoomleagueModelAjax extends JModel
 									JOIN #__joomleague_project p ON p.id = pt.project_id
 									WHERE pt.project_id = " . $this->_db->Quote($project_id) . "
 									GROUP BY d.id ORDER BY d.name" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
 	function getProjectTeamsByDivisionOptions($project_id, $division_id=0, $required=false)
@@ -58,24 +66,14 @@ class JoomleagueModelAjax extends JModel
 		}
 		$query .= " ORDER BY t.name";
 		$this->_db->setQuery($query);
-		if(!$required) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
-			return array_merge($mitems, $this->_db->loadObjectList());
-		} else {
-			return $this->_db->loadObjectList();
-		}
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 	
 	function getProjectsByClubOptions($club_id, $required=false)
 	{
 		if($club_id == 0) {
 			$projects = (array) $this->getProjects();
-			if(!$required) {
-				$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
-				return array_merge($mitems, $projects);
-			} else {
-				return $projects;
-			}
+			return $this->addGlobalSelectElement($projects, $required);
 		} else {
 			$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':', p.id, p.alias) ELSE p.id END AS value,
 										p.name AS text
@@ -84,12 +82,7 @@ class JoomleagueModelAjax extends JModel
 										JOIN #__joomleague_project p ON p.id = pt.project_id
 										WHERE t.club_id = " . $this->_db->Quote($club_id) . "
 										ORDER BY p.name" );
-			if(!$required) {
-				$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
-				return array_merge($mitems, $this->_db->loadObjectList());
-			} else {
-				return $this->_db->loadObjectList();
-			}
+			return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 		}
 	}
 	
@@ -102,7 +95,7 @@ class JoomleagueModelAjax extends JModel
 		return $this->_db->loadObjectList();
 	}
 	
-	function getProjectTeamOptions($project_id)
+	function getProjectTeamOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(':', t.id, t.alias) ELSE tt.id END AS value,
 									t.name AS text
@@ -111,10 +104,10 @@ class JoomleagueModelAjax extends JModel
 									JOIN #__joomleague_project p ON p.id = tt.project_id
 									WHERE tt.project_id = " . $this->_db->Quote($project_id) . "
 									ORDER BY t.name" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectTeamPtidOptions($project_id)
+	function getProjectTeamPtidOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(':', tt.id, t.alias) ELSE tt.id END AS value,
 									t.name AS text
@@ -123,10 +116,10 @@ class JoomleagueModelAjax extends JModel
 									JOIN #__joomleague_project p ON p.id = tt.project_id
 									WHERE tt.project_id = " . $this->_db->Quote($project_id) . "
 									ORDER BY t.name" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectPlayerOptions($project_id)
+	function getProjectPlayerOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':', p.id, p.alias) ELSE p.id END AS value,
 									CONCAT(p.lastname, ', ', p.firstname, ' (', p.birthday, ')') AS text
@@ -137,10 +130,10 @@ class JoomleagueModelAjax extends JModel
 									  AND p.published = '1'
 									GROUP BY p.id
 									ORDER BY text" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectStaffOptions($project_id)
+	function getProjectStaffOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':', p.id, p.alias) ELSE p.id END AS value,
 									CONCAT(p.lastname, ', ', p.firstname, ' (', p.birthday, ')') AS text
@@ -151,10 +144,10 @@ class JoomleagueModelAjax extends JModel
 									  AND p.published = '1'
 									GROUP BY p.id
 									ORDER BY text" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectClubOptions($project_id)
+	function getProjectClubOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(':', c.id, c.alias) ELSE c.id END AS value,
 									c.name AS text
@@ -165,10 +158,10 @@ class JoomleagueModelAjax extends JModel
 									WHERE tt.project_id = " . $this->_db->Quote($project_id) . "
 									GROUP BY c.id
 									ORDER BY c.name" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectEventsOptions($project_id)
+	function getProjectEventsOptions($project_id, $required = false)
 	{
 		$query = " 	SELECT	CASE WHEN CHAR_LENGTH(et.alias) THEN CONCAT_WS(':', et.id, et.alias) ELSE et.id END AS value,
 							et.name AS text
@@ -180,7 +173,7 @@ class JoomleagueModelAjax extends JModel
 					GROUP BY et.id ORDER BY et.ordering";
 
 		$this->_db->setQuery( $query );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
 
@@ -195,12 +188,7 @@ class JoomleagueModelAjax extends JModel
 									WHERE ppos.project_id = " . $this->_db->Quote($project_id) . "
 									GROUP BY s.id
 									ORDER BY s.name" );
-		if(!$required) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
-			return array_merge($mitems, $this->_db->loadObjectList());
-		} else {
-			return $this->_db->loadObjectList();
-		}
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
 	function getMatchesOptions($project_id, $required=false)
@@ -216,15 +204,10 @@ class JoomleagueModelAjax extends JModel
 					ORDER BY m.match_date, t1.short_name"
 					;
 		$this->_db->setQuery($query);
-		if(!$required) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
-			return array_merge($mitems, $this->_db->loadObjectList());
-		} else {
-			return $this->_db->loadObjectList();
-		}
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getRefereesOptions($project_id)
+	function getRefereesOptions($project_id, $required = false)
 	{
 		$query = "	SELECT	p.id AS value,
 									CONCAT(p.firstname, ' ', p.lastname) AS text
@@ -235,10 +218,10 @@ class JoomleagueModelAjax extends JModel
 					ORDER BY text"
 					;
 		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
-	function getProjectTreenodeOptions($project_id)
+	function getProjectTreenodeOptions($project_id, $required = false)
 	{
 		$this->_db->setQuery(	"	SELECT tt.id AS value,
 									tt.id AS text
@@ -246,7 +229,7 @@ class JoomleagueModelAjax extends JModel
 									JOIN #__joomleague_project p ON p.id = tt.project_id
 									WHERE tt.project_id = " . $this->_db->Quote($project_id) . "
 									ORDER BY tt.id" );
-		return $this->_db->loadObjectList();
+		return $this->addGlobalSelectElement($this->_db->loadObjectList(), $required);
 	}
 
 

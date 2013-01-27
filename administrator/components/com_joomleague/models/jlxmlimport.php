@@ -2723,6 +2723,7 @@ $this->dump_variable("import_team", $import_team);
 			$p_projectreferee->set('notes',$this->_getDataFromObject($import_projectreferee,'notes'));
 			$p_projectreferee->set('picture',$this->_getDataFromObject($import_projectreferee,'picture'));
 			$p_projectreferee->set('extended',$this->_getDataFromObject($import_projectreferee,'extended'));
+            $p_projectreferee->set('published',1);
 
 			if ($p_projectreferee->store()===false)
 			{

@@ -1,6 +1,6 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); // Check to ensure this file is included in Joomla!
+<?php
 /**
-* @copyright	Copyright (C) 2007 Joomteam.de. All rights reserved.
+* @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
@@ -8,6 +8,9 @@
 * other free or open source software licenses.
 * See COPYRIGHT.php for copyright notices and details.
 */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.controller' );
 
@@ -21,6 +24,8 @@ jimport( 'joomla.application.component.controller' );
 class JoomleagueControllerProjectReferee extends JoomleagueController
 {
 
+	protected $view_list = 'projectreferees&task=projectreferee.display';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -222,17 +227,6 @@ class JoomleagueControllerProjectReferee extends JoomleagueController
 		$this->setRedirect( 'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display' );
 	}
 
-
-	public function publish() {
-		$this->view_list = 'projectreferees&task=projectreferee.display';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'projectreferees&task=projectreferee.display';
-		parent::unpublish();
-	}
-
 	function cancel()
 	{
 		// Checkin the project
@@ -240,36 +234,6 @@ class JoomleagueControllerProjectReferee extends JoomleagueController
 		$model->checkin();
 
 		$this->setRedirect( 'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display');
-	}
-
-	function orderup()
-	{
-		$model = $this->getModel( 'projectreferee' );
-		$model->move(-1);
-
-		$this->setRedirect( 'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display');
-	}
-
-	function orderdown()
-	{
-		$model = $this->getModel( 'projectreferee' );
-		$model->move(1);
-
-		$this->setRedirect( 'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display');
-	}
-
-	function saveorder()
-	{
-		$cid = JRequest::getVar( 'cid', array(), 'post', 'array' );
-		$order = JRequest::getVar( 'order', array(), 'post', 'array' );
-		JArrayHelper::toInteger( $cid );
-		JArrayHelper::toInteger( $order );
-
-		$model = $this->getModel( 'projectreferee' );
-		$model->saveorder( $cid, $order );
-
-		$msg =  JText::_( 'COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED' );
-		$this->setRedirect( 'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display', $msg );
 	}
 
 	function select()

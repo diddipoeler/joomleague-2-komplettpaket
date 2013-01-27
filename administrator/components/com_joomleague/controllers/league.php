@@ -22,6 +22,8 @@ jimport('joomla.application.component.controller');
  */
 class JoomleagueControllerLeague extends JoomleagueController
 {
+	protected $view_list = 'leagues';
+
 	function __construct()
 	{
 		parent::__construct();
@@ -116,33 +118,6 @@ class JoomleagueControllerLeague extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=leagues&task=league.display');
 	}
 
-	function orderup()
-	{
-		$model=$this->getModel('league');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=leagues&task=league.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('league');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=leagues&task=league.display');
-	}
-
-	function saveorder()
-	{
-		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('league');
-		$model->saveorder($cid,$order);
-		$msg=JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=leagues&task=league.display',$msg);
-	}
-
 	function import()
 	{
 		JRequest::setVar('view','import');
@@ -159,6 +134,21 @@ class JoomleagueControllerLeague extends JoomleagueController
 		if (count($cid) < 1){JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_EXPORT'));}
 		$model = $this->getModel("league");
 		$model->export($cid, "league", "League");
+	}
+	
+	/**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'League', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
 	}
 }
 ?>

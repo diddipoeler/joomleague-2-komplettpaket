@@ -24,6 +24,8 @@ jimport('joomla.filesystem.file');
 class JoomleagueControllerStatistic extends JoomleagueController
 {
 
+	protected $view_list = 'statistics';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -140,46 +142,6 @@ class JoomleagueControllerStatistic extends JoomleagueController
 		$model->checkin();
 
 		$this->setRedirect('index.php?option=com_joomleague&view=statistics&task=statistic.display');
-	}
-
-	function orderup()
-	{
-		$model = $this->getModel('statistic');
-		$model->move(-1);
-
-		$this->setRedirect('index.php?option=com_joomleague&view=statistics&task=statistic.display');
-	}
-
-	function orderdown()
-	{
-		$model = $this->getModel('statistic');
-		$model->move(1);
-
-		$this->setRedirect('index.php?option=com_joomleague&view=statistics&task=statistic.display');
-	}
-
-	function saveorder()
-	{
-		$cid = JRequest::getVar('cid', array(), 'post', 'array');
-		$order = JRequest::getVar('order', array(), 'post', 'array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-
-		$model = $this->getModel('statistic');
-		$model->saveorder($cid, $order);
-
-		$msg = JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=statistics&task=statistic.display', $msg);
-	}
-
-	public function publish() {
-		$this->view_list = 'statistics';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'statistics';
-		parent::unpublish();
 	}
 
 	function import()

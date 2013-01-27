@@ -20,6 +20,7 @@ jimport('joomla.filesystem.file');
  */
 class JoomleagueControllerPerson extends JoomleagueController
 {
+	protected $view_list = 'persons';
 
 	function __construct()
 	{
@@ -149,47 +150,12 @@ class JoomleagueControllerPerson extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=persons&task=person.display');
 	}
 
-	public function publish() {
-		$this->view_list = 'persons';
-		parent::publish();
-	}
-	
-	public function unpublish() {
-		$this->view_list = 'persons';
-		parent::unpublish();
-	}
-	
 	function cancel()
 	{
 		// Checkin the project
 		$model=$this->getModel('person');
 		$model->checkin();
 		$this->setRedirect('index.php?option=com_joomleague&view=persons&task=person.display');
-	}
-
-	function orderup()
-	{
-		$model=$this->getModel('person');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=persons&task=person.display');
-	}
-
-	function orderdown()
-	{
-		$model=$this->getModel('person');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=persons&task=person.display');
-	}
-
-	function saveorder()
-	{
-		$pid=JRequest::getInt('cid');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('person');
-		$model->saveorder($pid,$order);
-		$msg=JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=persons&task=person.display',$msg);
 	}
 
 	//FIXME can it be removed?

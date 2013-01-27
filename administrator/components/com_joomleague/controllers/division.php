@@ -1,6 +1,6 @@
 <?php
 /**
-* @copyright	Copyright (C) 2007 Joomteam.de. All rights reserved.
+* @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License, and as distributed it includes or
@@ -22,7 +22,8 @@ jimport( 'joomla.application.component.controller' );
  */
 class JoomleagueControllerDivision extends JoomleagueController
 {
-
+	protected $view_list = 'divisions';
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -171,35 +172,20 @@ class JoomleagueControllerDivision extends JoomleagueController
 
 		$this->setRedirect( 'index.php?option=com_joomleague&view=divisions&task=division.display' );
 	}
-
-	function orderup()
+	
+	/**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Division', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
 	{
-		$model = $this->getModel( 'division' );
-		$model->move(-1);
-
-		$this->setRedirect( 'index.php?option=com_joomleague&view=divisions&task=division.display' );
-	}
-
-	function orderdown()
-	{
-		$model = $this->getModel( 'division' );
-		$model->move(1);
-
-		$this->setRedirect( 'index.php?option=com_joomleague&view=divisions&task=division.display' );
-	}
-
-	function saveorder()
-	{
-		$cid	 = JRequest::getVar( 'cid', array(), 'post', 'array' );
-		$order	 = JRequest::getVar( 'order', array(), 'post', 'array' );
-		JArrayHelper::toInteger( $cid );
-		JArrayHelper::toInteger( $order );
-
-		$model = $this->getModel( 'division' );
-		$model->saveorder( $cid, $order );
-
-		$msg = JText::_( 'COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED' );
-		$this->setRedirect( 'index.php?option=com_joomleague&view=divisions&task=division.display', $msg );
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
 	}
 }
 ?>
