@@ -114,9 +114,24 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_extended" type="list" default="2"
+    <field name="show_order_playfield" type="list" default="2"
+			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_PLAYFIELD"
+			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_PLAYFIELD">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+		</field>
+		
+		<field name="show_order_extended" type="list" default="3"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_EXTENDED"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_EXTENDED">
 			<option value="1">1</option>
@@ -127,9 +142,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_plstatus" type="list" default="3"
+		<field name="show_order_plstatus" type="list" default="4"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_PLSTATUS"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_PLSTATUS">
 			<option value="1">1</option>
@@ -140,9 +156,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_description" type="list" default="4"
+		<field name="show_order_description" type="list" default="5"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_DESCRIPTION"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_DESCRIPTION">
 			<option value="1">1</option>
@@ -153,9 +170,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_gameshistory" type="list" default="5"
+		<field name="show_order_gameshistory" type="list" default="6"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_GAMEHISTORY"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_GAMEHISTORY">
 			<option value="1">1</option>
@@ -166,9 +184,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_plstats" type="list" default="6"
+		<field name="show_order_plstats" type="list" default="7"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_PLSTATS"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_PLSTATS">
 			<option value="1">1</option>
@@ -179,9 +198,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_plcareer" type="list" default="7"
+		<field name="show_order_plcareer" type="list" default="8"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_PLCAREER"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_PLCAREER">
 			<option value="1">1</option>
@@ -192,9 +212,10 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 
-		<field name="show_order_stcareer" type="list" default="8"
+		<field name="show_order_stcareer" type="list" default="9"
 			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_STCAREER"
 			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_STCAREER">
 			<option value="1">1</option>
@@ -205,6 +226,7 @@
 			<option value="6">6</option>
 			<option value="7">7</option>
 			<option value="8">8</option>
+			<option value="9">9</option>
 		</field>
 		
 	</fieldset>

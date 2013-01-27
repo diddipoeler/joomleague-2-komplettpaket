@@ -222,7 +222,7 @@ class com_joomleagueInstallerScript
 		echo JText::_('Creating new Image Folder structure');
 		$dest = JPATH_ROOT.'/images/com_joomleague';
 		$update = JFolder::exists($dest);
-		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'events',
+		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'events','leagues','person_playground',
 							'persons', 'placeholders', 'playgrounds', 'projects', 'sport_types', 'teams', 'statistics');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague');
 		JFile::copy(JPATH_ROOT.'/images/index.html', JPATH_ROOT.'/images/com_joomleague/index.html');
