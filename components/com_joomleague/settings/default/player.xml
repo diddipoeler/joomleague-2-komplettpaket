@@ -27,6 +27,13 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
+    <field 	name="show_playfield" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_PLAYFIELD"
+				description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_PLAYFIELD">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 		<field 	name="show_extended" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_EXTENDED"
 				description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_EXTENDED">

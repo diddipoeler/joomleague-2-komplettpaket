@@ -23,7 +23,14 @@ if (isset($this->person))
 	{
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}
-	if ($this->config['show_extended']==1)
+	
+    if ($this->config['show_playfield']==1)
+	{
+		$output[intval($this->config['show_order_playfield'])] = 'playfield';
+	}
+    
+    
+    if ($this->config['show_extended']==1)
 	{
 		$output[intval($this->config['show_order_extended'])] = 'extended';
 	}
