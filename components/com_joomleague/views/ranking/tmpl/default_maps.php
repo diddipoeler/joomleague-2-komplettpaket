@@ -6,7 +6,7 @@ echo 'mapconfig<pre>',print_r($this->mapconfig,true),'</pre><br>';
 }
 
 //$kmlpath = JURI::root().'components'.DS.'com_joomleague'.DS.'views'.DS.'ranking'.DS.'tmpl'.DS.'default_genkml3.php';
-$kmlpath = JURI::root().'tmp'.DS.$this->project->id.'.kml';
+$kmlpath = JURI::root().'tmp'.DS.$this->project->id.'-ranking.kml';
 
 //echo $kmlpath.'<br>';
 

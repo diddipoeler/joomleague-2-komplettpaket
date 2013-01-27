@@ -85,6 +85,8 @@ $result = json_decode($file_content, true);
 
 function genkml3($project_id,$allteams)
 {
+$type = 'ranking';
+    
 /*
 echo 'genkml3 project_id<br><pre>';
     print_r($project_id);
@@ -161,7 +163,7 @@ echo 'genkml3 allteams<br><pre>';
     echo '</pre><br>';
 */
 
-$this->writekml3($allteams,$project_id);
+$this->writekml3($allteams,$project_id,$type);
     
 }
     
@@ -277,7 +279,7 @@ function getOSMGeoCoords($address)
     return $coords;
 }
 
-function writekml3($allteams,$project_id)
+function writekml3($allteams,$project_id,$type)
 {
 $params		 	=	JComponentHelper::getParams('com_joomleague');
 $ph_logo_big	=	$params->get('ph_logo_big',0);
@@ -354,7 +356,7 @@ $kmlOutput = join("\n", $kml);
 
 // mal als test
 $xmlfile = $kmlOutput;
-$file = JPATH_SITE.DS.'tmp'.DS.$project_id.'.kml';
+$file = JPATH_SITE.DS.'tmp'.DS.$project_id.'-'.$type.'.kml';
 JFile::write($file, $xmlfile);
 
 }
