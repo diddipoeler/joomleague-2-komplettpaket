@@ -206,7 +206,11 @@ TRUNCATE TABLE `jos_joomleague_playground`;
   
   $lang = JFactory::getLanguage();
   $teile = explode("-",$lang->getTag());
-  $country = Countries::convertIso2to3($teile[1]);
+  
+  $post = JRequest::get('post');
+  $country = $post['country'];
+  //$country = Countries::convertIso2to3($teile[1]);
+  
   $mainframe->enqueueMessage(JText::_('land '.$country.''),'');
   
   $option='com_joomleague';
@@ -3785,6 +3789,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		return true;
 	}
 
+/*
 	private function _importProjectReferees()
 	{
 		$my_text='';
@@ -3829,7 +3834,9 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		$this->_success_text['Importing projectreferee data:']=$my_text;
 		return true;
 	}
+*/
 
+/*
 	private function _importProjectpositions()
 	{
 		$my_text='';
@@ -3876,6 +3883,8 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		$this->_success_text['Importing projectposition data:']=$my_text;
 		return true;
 	}
+*/    
+    
 /*
 	private function _importTeamPlayer()
 	{
