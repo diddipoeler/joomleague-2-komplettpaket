@@ -42,14 +42,18 @@ class JoomleagueViewPredictionTemplate extends JLGView
 
 	function _displayForm( $tpl )
 	{
-		$mainframe			=& JFactory::getApplication();
-		$option				= 'com_joomleague';
+		//$mainframe			=& JFactory::getApplication();
+		//$option				= 'com_joomleague';
+        $option = JRequest::getCmd('option');
+		$app = JFactory::getApplication();
 
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 		$lists				= array();
 		$db					=& JFactory::getDBO();
 		$uri				=& JFactory::getURI();
 		$user 				=& JFactory::getUser();
+        $model = $this->getModel();
+        
 		$predictionTemplate	=& $this->get( 'Data' );
 		$predictionGame		=& $this->getModel()->getPredictionGame( $prediction_id );
 		//$defaultpath		= JPATH_COMPONENT_SITE . DS . 'extensions'.DS.'predictiongame'.DS.'settings';
@@ -61,7 +65,7 @@ class JoomleagueViewPredictionTemplate extends JLGView
 		if ( $this->getModel()->isCheckedOut( $user->get( 'id' ) ) )
 		{
 			$msg = JText::sprintf( 'DESCBEINGEDITTED', JText::_( 'JL_ADMIN_PTMPL_THE_PTMPL' ), $predictionTemplate->name );
-			$mainframe->redirect( 'index.php?option=' . $option, $msg );
+			$app->redirect( 'index.php?option=' . $option, $msg );
 		}
 
 		// Edit or Create?
