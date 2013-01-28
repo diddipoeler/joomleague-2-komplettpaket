@@ -546,6 +546,19 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
         echo 'authorised<br /><pre>~' . print_r($authorised,true) . '~</pre><br />';
         $authorisedgroups = $user->getAuthorisedGroups();
         echo 'authorised groups<br /><pre>~' . print_r($authorisedgroups,true) . '~</pre><br />';
+        
+        foreach ($user->groups as $groupId => $value)
+        {
+        
+        $this->_db->setQuery(
+            'SELECT `title`' .
+            ' FROM `#__usergroups`' .
+            ' WHERE `id` = '. (int) $groupId
+        );
+        $groupNames .= $this->_db->loadResult();
+        $groupNames .= '<br/>';
+        }
+print $groupNames.'<br>';
 
 
     //echo '<br /><pre>~' . print_r($user,true) . '~</pre><br />';
