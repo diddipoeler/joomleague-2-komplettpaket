@@ -17,6 +17,7 @@ jimport('joomla.filesystem.file');
 jimport('joomla.utilities.array');
 jimport('joomla.utilities.arrayhelper') ;
 jimport( 'joomla.utilities.utility' );
+jimport( 'joomla.user.authorization' );
 
 require_once(JLG_PATH_ADMIN.DS.'models'.DS.'item.php');
 require_once(JLG_PATH_ADMIN.DS.'models'.DS.'rounds.php');
@@ -534,12 +535,19 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 	function getAllowed($pmUID=0)
 	{
 		$allowed=false;
-		$user =& JFactory::getUser();
+        // Application Instanz holen
+        $mainframe = JFactory::getApplication();
+        // ACL Instanz holen
+        $acl = JFactory::getACL();
+        // JUserobjekt holen
+        $user = JFactory::getUser();
+
+
     //echo '<br /><pre>~' . print_r($user,true) . '~</pre><br />';
 		if ($user->id > 0)
 		{
-			$auth= JFactory::getACL();
-			$aro_group = $auth->getAroGroup($user->id);
+			//$auth= JFactory::getACL();
+			$aro_group = $acl->getAroGroup($user->id);
 
 			if ((strtolower($aro_group->name) == 'super administrator') || (strtolower($aro_group->name) == 'administrator'))
 			{
