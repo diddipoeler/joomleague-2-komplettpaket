@@ -544,7 +544,7 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
         
         $authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
         echo 'authorised<br /><pre>~' . print_r($authorised,true) . '~</pre><br />';
-        $authorisedgroups = JAccess::getAuthorisedGroups(JFactory::getUser()->get('id'));
+        $authorisedgroups = $user->getAuthorisedGroups();
         echo 'authorised groups<br /><pre>~' . print_r($authorisedgroups,true) . '~</pre><br />';
 
 
