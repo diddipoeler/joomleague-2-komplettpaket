@@ -47,17 +47,20 @@ class JoomleagueViewPredictionMembers extends JLGView
 	{
 		$mainframe			=& JFactory::getApplication();
 		$option				= 'com_joomleague';
+		$component_text = 'COM_JOOMLEAGUE_';
     $db					=& JFactory::getDBO();
 		$uri				=& JFactory::getURI();
 		$document =& JFactory::getDocument();
 		//$model				=& $this->getModel();
 		
-		$document->addScript('/components/com_joomleague/extensions/predictiongame/admin/assets/js/Autocompleter.js');
-		$document->addScript('/components/com_joomleague/extensions/predictiongame/admin/assets/js/Autocompleter.Local.js');
-		$document->addScript('/components/com_joomleague/extensions/predictiongame/admin/assets/js/Autocompleter.Request.js');
-		$document->addScript('/components/com_joomleague/extensions/predictiongame/admin/assets/js/Observer.js');
+//     $baseurl    = JURI::root();
+// 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Autocompleter.js');
+// 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Autocompleter.Request.js');
+// 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Observer.js');
+// 		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/quickaddteam.js');
+// 		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
+		
 
- 		$document->addStylesheet('/components/com_joomleague/extensions/predictiongame/admin/assets/css/Autocompleter.css');
     		
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 		$prediction_name =& $this->getModel()->getPredictionProjectName($prediction_id);
@@ -99,9 +102,13 @@ class JoomleagueViewPredictionMembers extends JLGView
 
 	function _display( $tpl = null )
 	{
-		$mainframe			=& JFactory::getApplication();
-		$option				= 'com_joomleague';
-
+// 		$mainframe			=& JFactory::getApplication();
+// 		$option				= 'com_joomleague';
+		$document = JFactory::getDocument();
+		$option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+    $component_text = 'COM_JOOMLEAGUE_';
+    
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 //echo '#' . $prediction_id . '#<br />';
 		$lists				= array();
@@ -117,6 +124,13 @@ class JoomleagueViewPredictionMembers extends JLGView
 		$search				= $mainframe->getUserStateFromRequest( $option . 'tmb_search',				'search',			'',				'string' );
 		$search				= JString::strtolower( $search );
 
+    $baseurl    = JURI::root();
+		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Autocompleter.js');
+		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Autocompleter.Request.js');
+		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/Observer.js');
+		$document->addScript($baseurl.'administrator/components/com_joomleague/assets/js/autocompleter/1_4/quickaddteam.js');
+		$document->addStyleSheet($baseurl.'administrator/components/com_joomleague/assets/css/Autocompleter.css');
+		
 		// state filter
 		$lists['state']		= JHTML::_( 'grid.state',  $filter_state );
 
@@ -128,7 +142,7 @@ class JoomleagueViewPredictionMembers extends JLGView
 		$lists['search'] = $search;
 
 		//build the html select list for prediction games
-		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( 'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
+		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( $component_text.'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
 		if ( $res =& $this->getModel()->getPredictionGames() ) { $predictions = array_merge( $predictions, $res ); }
 		$lists['predictions'] = JHTML::_(	'select.genericlist',
 											$predictions,
@@ -141,25 +155,25 @@ class JoomleagueViewPredictionMembers extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
-		JToolBarHelper::title( JText::_( 'JL_ADMIN_PMEMBERS_TITLE' ), 'generic.png' );
+		JToolBarHelper::title( JText::_( $component_text.'JL_ADMIN_PMEMBERS_TITLE' ), 'generic.png' );
 
-		JToolBarHelper::custom( 'reminder', 'send.png', 'send_f2.png', JText::_( 'JL_ADMIN_PMEMBERS_SEND_REMINDER' ), true );
+		JToolBarHelper::custom( 'predictionmember.reminder', 'send.png', 'send_f2.png', JText::_( $component_text.'JL_ADMIN_PMEMBERS_SEND_REMINDER' ), true );
 		JToolBarHelper::divider();
 		
 		if ( $prediction_id )
 		{
-    JToolBarHelper::custom('editlist','upload.png','upload_f2.png',JText::_('JL_ADMIN_PMEMBERS_BUTTON_ASSIGN'),false);
+    JToolBarHelper::custom('predictionmember.editlist','upload.png','upload_f2.png',JText::_($component_text.'JL_ADMIN_PMEMBERS_BUTTON_ASSIGN'),false);
  		JToolBarHelper::divider();
  		}
-		JToolBarHelper::publishList( 'publish', JText::_( 'JL_ADMIN_PMEMBERS_APPROVE' ) );
-		JToolBarHelper::unpublishList( 'unpublish', JText::_( 'JL_ADMIN_PMEMBERS_REJECT' ) );
+		JToolBarHelper::publishList( 'predictionmember.publish', JText::_( $component_text.'JL_ADMIN_PMEMBERS_APPROVE' ) );
+		JToolBarHelper::unpublishList( 'predictionmember.unpublish', JText::_( $component_text.'JL_ADMIN_PMEMBERS_REJECT' ) );
 		JToolBarHelper::divider();
 
 		//JToolBarHelper::addNewX();
 		//JToolBarHelper::divider();
 
 		//JToolBarHelper::editListX();
-		JToolBarHelper::deleteList( JText::_( 'JL_ADMIN_PMEMBERS_DELETE' ) );
+		JToolBarHelper::deleteList( JText::_( $component_text.'JL_ADMIN_PMEMBERS_DELETE' ) );
 		JToolBarHelper::divider();
 
 		JToolBarHelper::help( 'screen.joomleague', true );

@@ -169,11 +169,11 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 		if ( $this->getTask() == 'save' )
 		{
 			$link = 'index.php?option=com_joomleague&view=predictiontemplates';
-			$link = 'index.php?option=com_joomleague&view=predictiontemplates';
+		
 		}
 		else
 		{
-			$link = 'index.php?option=com_joomleague&controller=predictiontemplate&task=edit&cid[]=' . $post['id'];
+			$link = 'index.php?option=com_joomleague&task=predictiontemplate.edit&cid[]=' . $post['id'];
 		}
 
 		//echo $link . '<br />';

@@ -535,11 +535,11 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 	{
 		$allowed=false;
 		$user =& JFactory::getUser();
-
+    //echo '<br /><pre>~' . print_r($user,true) . '~</pre><br />';
 		if ($user->id > 0)
 		{
-			$auth=& JFactory::getACL();
-			$aro_group=$auth->getAroGroup($user->id);
+			$auth= JFactory::getACL();
+			$aro_group = $auth->getAroGroup($user->id);
 
 			if ((strtolower($aro_group->name) == 'super administrator') || (strtolower($aro_group->name) == 'administrator'))
 			{

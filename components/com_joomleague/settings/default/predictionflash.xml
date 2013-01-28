@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<templateconfig type="JL_template" version="1.0.0">
-	<name><![CDATA[JL_FES_FLASH_NAME]]></name>
-	<description><![CDATA[JL_FES_FLASH_DESCR]]></description>
+<form>
 
-	<params group="JL_FES_FLASH_PARAMS_GROUP_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_SETTINGS"  
 			addpath="/administrator/components/com_joomleague/elements"
 			description="JL_FES_FLASH_PARAMS_DESCR_SETTINGS">
 
@@ -19,10 +18,10 @@
 			label="JL_FES_FLASH_PARAM_LABEL_BG_IMAGE_ALPHA"
 			description="JL_FES_FLASH_PARAM_DESCR_BG_IMAGE_ALPHA" />
 -->
-		<param 	name="bg_colour" type="colorpicker" default="#FFFFFF"
+		<field 	name="bg_colour" type="colorpicker" default="#FFFFFF"
 				label="JL_FES_FLASH_PARAM_LABEL_BG_COLOUR"
 				description="JL_FES_FLASH_PARAM_DESCR_BG_COLOUR">
-		</param>
+		</field>
 <!--
 		<param name="inner_bg_gradient_1" type="colorpicker" default="#FFFFFF"
 			label="JL_FES_FLASH_PARAM_LABEL_INNER_BG_GRADIENT1"
@@ -38,80 +37,83 @@
 -->
 	
 			
-		<param 	name="color_legend_line_width" type="text" default="0.4"
+		<field 	name="color_legend_line_width" type="text" default="0.4"
 				label="JL_FES_FLASH_PARAM_LABEL_COLOUR_LEGEND_LINE_WIDTH"
 				description="JL_FES_FLASH_PARAM_DESCR_COLOUR_LEGEND_LINE_WIDTH">
-		</param>
+		</field>
 	
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_X_AXIS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_X_AXIS"
+  name="JL_FES_FLASH_PARAMS_GROUP_X_AXIS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_X_AXIS">	
 
-		<param 	name="x_axis_label" type="list" default="1"
+		<field 	name="x_axis_label" type="list" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_X_AXIS"
 				description="JL_FES_FLASH_PARAM_DESCR_X_AXIS">
 			<option value="0">JL_FES_FLASH_PARAM_OPTION0_X_AXIS</option>
 			<option value="1">JL_FES_FLASH_PARAM_OPTION1_X_AXIS</option>
-		</param>			
+		</field>			
 			
-		<param 	name="x_axis_colour" type="colorpicker" default="#000000"
+		<field 	name="x_axis_colour" type="colorpicker" default="#000000"
 				label="JL_FES_FLASH_PARAM_LABEL_X_AXIS_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_X_AXIS_COLOUR">
-		</param>
+		</field>
 
-		<param 	name="x_axis_colour_inner" type="colorpicker" default="#778877"
+		<field 	name="x_axis_colour_inner" type="colorpicker" default="#778877"
 				label="JL_FES_FLASH_PARAM_LABEL_X_AXIS_COLOUR_INNER" 
 				description="JL_FES_FLASH_PARAM_DESCR_X_AXIS_COLOUR_INNER">
-		</param>
+		</field>
 
-		<param 	name="x_axis_legend" type="radio" default="1"
+		<field 	name="x_axis_legend" type="radio" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_X_AXIS_LEGEND"
 				description="JL_FES_FLASH_PARAM_DESCR_X_AXIS_LEGEND">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_Y_AXIS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_Y_AXIS"
+  name="JL_FES_FLASH_PARAMS_GROUP_Y_AXIS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_Y_AXIS">		
 			
-		<param 	name="y_axis_colour" type="colorpicker" default="#000000"
+		<field 	name="y_axis_colour" type="colorpicker" default="#000000"
 				label="JL_FES_FLASH_PARAM_LABEL_Y_AXIS_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_Y_AXIS_COLOUR">
-		</param>
+		</field>
 
-		<param 	name="y_axis_colour_inner" type="colorpicker" default="#778877"
+		<field 	name="y_axis_colour_inner" type="colorpicker" default="#778877"
 				label="JL_FES_FLASH_PARAM_LABEL_Y_AXIS_COLOUR_INNER" 
 				description="JL_FES_FLASH_PARAM_LABEL_Y_AXIS_COLOUR_INNER">
-		</param>
+		</field>
 
-		<param 	name="y_axis_legend" type="radio" default="1"
+		<field 	name="y_axis_legend" type="radio" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_Y_AXIS_LEGEND"
 				description="JL_FES_FLASH_PARAM_DESCR_Y_AXIS_LEGEND">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
-	</params>
+		</field>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_LINE1_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_LINE1_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_LINE1_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_LINE1_SETTINGS">				
 
-		<param 	name="line1" type="colorpicker" default="#FE0000"
+		<field 	name="line1" type="colorpicker" default="#FE0000"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE1_COLOUR">
-		</param>
+		</field>
 
 		<param 	name="line1_strength" type="text" default="3"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE1_STRENGTH">
-		</param>
+		</field>
 
 		<param 	name="line1_dot_strength" type="text" default="5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_DOT_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE1_DOT_STRENGTH">
-		</param>
+		</field>
 			
 		<param 	name="dotstyle_1" type="list" default="solid_dot"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_STYLE"
@@ -121,7 +123,7 @@
 			<option value="hollow_dot">JL_FES_FLASH_PARAM_OPTION2_LINE1_STYLE</option>
 			<option value="star">JL_FES_FLASH_PARAM_OPTION3_LINE1_STYLE</option>
 			<option value="bow">JL_FES_FLASH_PARAM_OPTION4_LINE1_STYLE</option>
-		</param>			
+		</field>			
 
 		<param 	name="l_animation_1" type="list" default="mid-slide"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_ANIMATION"
@@ -132,39 +134,40 @@
 			<option value="drop">JL_FES_FLASH_PARAM_OPTION3_LINE1_ANIMATION</option>
 			<option value="fade-in">JL_FES_FLASH_PARAM_OPTION4_LINE1_ANIMATION</option>
 			<option value="shrink-in">JL_FES_FLASH_PARAM_OPTION5_LINE1_ANIMATION</option>
-		</param>
+		</field>
 		
 		<param 	name="l_delay_1" type="text" default="0.5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_DELAY"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE1_DELAY">
-		</param>	
+		</field>	
 
 		<param 	name="l_cascade_1" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE1_CASCADE"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE1_CASCADE">
-		</param>
+		</field>
 			
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_LINE2_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_LINE2_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_LINE2_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_LINE2_SETTINGS">				
 
-		<param 	name="line2" type="colorpicker" default="#000000"
+		<field 	name="line2" type="colorpicker" default="#000000"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_COLOUR">
-		</param>
+		</field>
 
-		<param 	name="line2_strength" type="text" default="3"
+		<field 	name="line2_strength" type="text" default="3"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_STRENGTH">
-		</param>
+		</field>
 
-		<param 	name="line2_dot_strength" type="text" default="5"
+		<field 	name="line2_dot_strength" type="text" default="5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_DOT_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_DOT_STRENGTH">
-		</param>
+		</field>
 			
-		<param 	name="dotstyle_2" type="list" default="solid_dot"
+		<field 	name="dotstyle_2" type="list" default="solid_dot"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_STYLE"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_STYLE" >
 			<option value="dot">JL_FES_FLASH_PARAM_OPTION0_LINE2_STYLE</option>
@@ -172,9 +175,9 @@
 			<option value="hollow_dot">JL_FES_FLASH_PARAM_OPTION2_LINE2_STYLE</option>
 			<option value="star">JL_FES_FLASH_PARAM_OPTION3_LINE2_STYLE</option>
 			<option value="bow">JL_FES_FLASH_PARAM_OPTION4_LINE2_STYLE</option>
-		</param>			
+		</field>			
 
-		<param 	name="l_animation_2" type="list" default="mid-slide"
+		<field 	name="l_animation_2" type="list" default="mid-slide"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_ANIMATION"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_ANIMATION" >
 			<option value="pop-up">JL_FES_FLASH_PARAM_OPTION0_LINE2_ANIMATION</option>
@@ -183,39 +186,40 @@
 			<option value="drop">JL_FES_FLASH_PARAM_OPTION3_LINE2_ANIMATION</option>
 			<option value="fade-in">JL_FES_FLASH_PARAM_OPTION4_LINE2_ANIMATION</option>
 			<option value="shrink-in">JL_FES_FLASH_PARAM_OPTION5_LINE2_ANIMATION</option>
-		</param>
+		</field>
 		
-		<param 	name="l_delay_2" type="text" default="0.5"
+		<field 	name="l_delay_2" type="text" default="0.5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_DELAY"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_DELAY">
-		</param>	
+		</field>	
 
-		<param 	name="l_cascade_2" type="text" default="1"
+		<field 	name="l_cascade_2" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE2_CASCADE"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE2_CASCADE">
-		</param>
+		</field>
 			
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_LINE3_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_LINE3_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_LINE3_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_LINE3_SETTINGS">				
 
-		<param 	name="line3" type="colorpicker" default="#FFCC00"
+		<field 	name="line3" type="colorpicker" default="#FFCC00"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_COLOUR">
-		</param>
+		</field>
 
-		<param 	name="line3_strength" type="text" default="3"
+		<field 	name="line3_strength" type="text" default="3"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_STRENGTH">
-		</param>
+		</field>
 
-		<param 	name="line3_dot_strength" type="text" default="5"
+		<field 	name="line3_dot_strength" type="text" default="5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_DOT_STRENGTH" 
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_DOT_STRENGTH">
-		</param>
+		</field>
 			
-		<param 	name="dotstyle_3" type="list" default="solid_dot"
+		<field 	name="dotstyle_3" type="list" default="solid_dot"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_STYLE"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_STYLE" >
 			<option value="dot">JL_FES_FLASH_PARAM_OPTION0_LINE3_STYLE</option>
@@ -223,9 +227,9 @@
 			<option value="hollow_dot">JL_FES_FLASH_PARAM_OPTION2_LINE3_STYLE</option>
 			<option value="star">JL_FES_FLASH_PARAM_OPTION3_LINE3_STYLE</option>
 			<option value="bow">JL_FES_FLASH_PARAM_OPTION4_LINE3_STYLE</option>
-		</param>			
+		</field>			
 
-		<param 	name="l_animation_3" type="list" default="mid-slide"
+		<field 	name="l_animation_3" type="list" default="mid-slide"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_ANIMATION"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_ANIMATION" >
 			<option value="pop-up">JL_FES_FLASH_PARAM_OPTION0_LINE3_ANIMATION</option>
@@ -234,29 +238,30 @@
 			<option value="drop">JL_FES_FLASH_PARAM_OPTION3_LINE3_ANIMATION</option>
 			<option value="fade-in">JL_FES_FLASH_PARAM_OPTION4_LINE3_ANIMATION</option>
 			<option value="shrink-in">JL_FES_FLASH_PARAM_OPTION5_LINE3_ANIMATION</option>
-		</param>
+		</field>
 		
-		<param 	name="l_delay_3" type="text" default="0.5"
+		<field 	name="l_delay_3" type="text" default="0.5"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_DELAY"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_DELAY">
-		</param>	
+		</field>	
 
-		<param 	name="l_cascade_3" type="text" default="1"
+		<field 	name="l_cascade_3" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_LINE3_CASCADE"
 				description="JL_FES_FLASH_PARAM_DESCR_LINE3_CASCADE">
-		</param>
+		</field>
 			
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_BAR1_SETTINGS">	
 
-		<param 	name="bar1" type="colorpicker" default="#000000"
+		<field 	name="bar1" type="colorpicker" default="#000000"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR1_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_BAR1_COLOUR">
-		</param>
+		</field>
 
-		<param 	name="bartype_1" type="list" default="bar_glass"
+		<field 	name="bartype_1" type="list" default="bar_glass"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR1_TYPE"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR1_TYPE" >
 			<option value="bar">JL_FES_FLASH_PARAM_OPTION0_BAR1_TYPE</option>
@@ -267,9 +272,9 @@
 			<option value="bar_rounded_glass">JL_FES_FLASH_PARAM_OPTION5_BAR1_TYPE</option>
 			<option value="bar_round">JL_FES_FLASH_PARAM_OPTION6_BAR1_TYPE</option>
 			<option value="bar_dome">JL_FES_FLASH_PARAM_OPTION7_BAR1_TYPE</option>	
-		</param>
+		</field>
 			
-		<param 	name="animation_1" type="list" default="pop"
+		<field 	name="animation_1" type="list" default="pop"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR1_ANIMATION"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR1_ANIMATION" >
 			<option value="pop-up">JL_FES_FLASH_PARAM_OPTION0_BAR1_ANIMATION</option>
@@ -278,29 +283,30 @@
 			<option value="grow-up">JL_FES_FLASH_PARAM_OPTION3_BAR1_ANIMATION</option>
 			<option value="grow-down">JL_FES_FLASH_PARAM_OPTION4_BAR1_ANIMATION</option>
 			<option value="pop">JL_FES_FLASH_PARAM_OPTION5_BAR1_ANIMATION</option>
-		</param>
+		</field>
 
-		<param 	name="delay_1" type="text" default="0.5"
+		<field 	name="delay_1" type="text" default="0.5"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR1_DELAY"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR1_DELAY">
-		</param>
+		</field>
 
-		<param 	name="cascade_1" type="text" default="1"
+		<field 	name="cascade_1" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR1_CASCADE"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR1_CASCADE">
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 	
-	<params group="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS" 
+	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS"
+  name="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_BAR2_SETTINGS">	
 			
-		<param 	name="bar2" type="colorpicker" default="#FF0000"
+		<field 	name="bar2" type="colorpicker" default="#FF0000"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR2_COLOUR" 
 				description="JL_FES_FLASH_PARAM_DESCR_BAR2_COLOUR">
-		</param>
+		</field>
 			
-		<param 	name="bartype_2" type="list" default="bar_glass"
+		<field 	name="bartype_2" type="list" default="bar_glass"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR2_TYPE"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR2_TYPE" >
 			<option value="bar">JL_FES_FLASH_PARAM_OPTION0_BAR2_TYPE</option>
@@ -311,9 +317,9 @@
 			<option value="bar_rounded_glass">JL_FES_FLASH_PARAM_OPTION5_BAR2_TYPE</option>
 			<option value="bar_round">JL_FES_FLASH_PARAM_OPTION6_BAR2_TYPE</option>
 			<option value="bar_dome">JL_FES_FLASH_PARAM_OPTION7_BAR2_TYPE</option>	
-		</param>
+		</field>
 			
-		<param 	name="animation_2" type="list" default="pop"
+		<field 	name="animation_2" type="list" default="pop"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR2_ANIMATION"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR2_ANIMATION" >
 			<option value="pop-up">JL_FES_FLASH_PARAM_OPTION0_BAR2_ANIMATION</option>
@@ -322,18 +328,18 @@
 			<option value="grow-up">JL_FES_FLASH_PARAM_OPTION3_BAR2_ANIMATION</option>
 			<option value="grow-down">JL_FES_FLASH_PARAM_OPTION4_BAR2_ANIMATION</option>
 			<option value="pop">JL_FES_FLASH_PARAM_OPTION5_BAR2_ANIMATION</option>
-		</param>
+		</field>
 
-		<param 	name="delay_2" type="text" default="1"
+		<field 	name="delay_2" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR2_DELAY"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR2_DELAY">
-		</param>
+		</field>
 
-		<param 	name="cascade_2" type="text" default="1"
+		<field 	name="cascade_2" type="text" default="1"
 				label="JL_FES_FLASH_PARAM_LABEL_BAR2_CASCADE"
 				description="JL_FES_FLASH_PARAM_DESCR_BAR2_CASCADE">
-		</param>
+		</field>
 					
-	</params>
+	</fieldset>
 
-</templateconfig>
+</form>

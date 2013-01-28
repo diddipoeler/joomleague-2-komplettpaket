@@ -10,9 +10,10 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
+$component_text = 'COM_JOOMLEAGUE_';
 //echo '<br /><pre>~' . print_r($this->model->pjID,true) . '~</pre><br />';
 ?>
-<h2><?php echo JText::_('JL_PRED_USERS_PERS_DATA'); ?></h2>
+<h2><?php echo JText::_($component_text.'JL_PRED_USERS_PERS_DATA'); ?></h2>
 <?php
 if ($this->config['show_full_name']){$outputUserName=$this->predictionMember->name;}else{$outputUserName=$this->predictionMember->username;}
 if ($this->model->pjID > 0){$showProjectID=$this->model->pjID;}else{$showProjectID=null;}
@@ -70,7 +71,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 		<td class='info'>
 			<table class='plinfo'>
 				<tr>
-					<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_NAME'); ?></td>
+					<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_NAME'); ?></td>
 					<td class='data'>
 						<?php
 						$outputName = JText::sprintf('%1$s %2$s', $outputUserName, '');
@@ -103,7 +104,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 						//echo '<br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_MEMBERSHIP'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_MEMBERSHIP'); ?></td>
 							<td class='data'>
 								<?php
 								echo	($this->predictionMember->pmRegisterDate != '0000-00-00 00:00:00' ?
@@ -120,7 +121,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_SLOGAN'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_SLOGAN'); ?></td>
 							<td class='data'><?php
 								//echo strip_tags($this->predictionMember->slogan);
 								echo (!empty($this->predictionMember->slogan)) ? strip_tags($this->predictionMember->slogan) : JText::_('JL_PRED_USERS_INFO_NO_SLOGAN')
@@ -134,7 +135,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_LAST_PRED'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_LAST_PRED'); ?></td>
 							<td class='data'>
 								<?php
 								echo	(!empty($this->predictionMember->last_tipp)&&($this->predictionMember->last_tipp!='0000-00-00')) ?
@@ -151,7 +152,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 					$found=false;
 					?>
 					<tr>
-						<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_FAVTEAMS'); ?></td>
+						<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_FAVTEAMS'); ?></td>
 						<td class='data'><?php
 							foreach ($this->predictionProjectS AS $predictionProject)
 							{
@@ -170,7 +171,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 														$found=true;
 														?>
 														<span class='hasTip' title="<?php
-																echo JText::sprintf('JL_PRED_USERS_FAVTEAM_IN_PROJECT',$predictionProjectSettings->name);
+																echo JText::sprintf($component_text.'JL_PRED_USERS_FAVTEAM_IN_PROJECT',$predictionProjectSettings->name);
 																?>"><?php
 															echo $team->text . '<br />';
 															?></span>
@@ -183,7 +184,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 									}
 								}
 							}
-							if (!$found){echo JText::_('JL_PRED_USERS_INFO_NO_FAVTEAM');}
+							if (!$found){echo JText::_($component_text.'JL_PRED_USERS_INFO_NO_FAVTEAM');}
 							?></td>
 					</tr>
 					<?php
@@ -191,14 +192,14 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 				?>
 				
         <tr>
-					<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_CHAMPIONS'); /*Meistertipp*/ ?></td>
+					<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_CHAMPIONS'); /*Meistertipp*/ ?></td>
 					<td class='data'><?php
 						//echo '<br /><pre>~' . print_r($this->model->pjID,true) . '~</pre><br />';
 						$found=false;
 
 						if (!isset($this->predictionMember->champ_tipp))
 						{
-							$this->predictionMember->champ_tipp=JText::_('JL_PRED_USERS_INFO_NO_CHAMP');
+							$this->predictionMember->champ_tipp=JText::_($component_text.'JL_PRED_USERS_INFO_NO_CHAMP');
 						}
 
 						$champShown=false;
@@ -246,7 +247,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 														$champShown=true;
 														?>
 														<span class='hasTip' title="<?php
-																echo JText::sprintf('JL_PRED_USERS_CHAMPION_IN_PROJECT',$predictionProjectSettings->name);
+																echo JText::sprintf($component_text.'JL_PRED_USERS_CHAMPION_IN_PROJECT',$predictionProjectSettings->name);
 																?>"><?php
 															echo $team->text . '<br />';
 															?></span>
@@ -261,14 +262,14 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 									{
 										if (!$dummyOutputShown)
 										{
-											echo JText::_('JL_PRED_USERS_INFO_SHOW_AFTER_START') . '<br />';
+											echo JText::_($component_text.'JL_PRED_USERS_INFO_SHOW_AFTER_START') . '<br />';
 										}
 										$dummyOutputShown=true;
 									}
 								}
 							}
 						}
-						if ((!$found)&&($champShown)){echo JText::_('JL_PRED_USERS_INFO_NO_CHAMP');}
+						if ((!$found)&&($champShown)){echo JText::_($component_text.'JL_PRED_USERS_INFO_NO_CHAMP');}
 						?></td>
 				</tr>
 			</table>
@@ -306,8 +307,8 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_RANK'); ?></td>
-							<td class='data'><?php echo JText::sprintf('JL_PRED_USERS_INFO_RANK_OUTPUT',$this->memberData->rankingAll); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_RANK'); ?></td>
+							<td class='data'><?php echo JText::sprintf($component_text.'JL_PRED_USERS_INFO_RANK_OUTPUT',$this->memberData->rankingAll); ?></td>
 						</tr>
 						<?php
 					}
@@ -318,7 +319,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_TOTAL_POINTS'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_TOTAL_POINTS'); ?></td>
 							<td class='data'><?php
 								// Add Link to totalranking
 								echo $totalPoints;
@@ -334,7 +335,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 						?>
 						<tr>
 							<td class='label'><?php
-								echo JText::_('JL_PRED_USERS_INFO_LAST_ROUND');
+								echo JText::_($component_text.'JL_PRED_USERS_INFO_LAST_ROUND');
 								?></td>
 							<td class='data'><?php
 								//add link to last round ranking
@@ -350,7 +351,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_PRED_COUNT'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_PRED_COUNT'); ?></td>
 							<td class='data'><?php echo $predictionsCount; ?></td>
 						</tr>
 						<?php
@@ -361,7 +362,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_AVERAGE_POINTS'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_AVERAGE_POINTS'); ?></td>
 							<td class='data'><?php
 								if ($predictionsCount > 0)
 								{
@@ -381,7 +382,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_TOPS'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_TOPS'); ?></td>
 							<td class='data'><?php
 								if ($predictionsCount > 0)
 								{
@@ -402,7 +403,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_MARGINS'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_MARGINS'); ?></td>
 							<td class='data'><?php
 								if ($predictionsCount > 0)
 								{
@@ -423,7 +424,7 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 					{
 						?>
 						<tr>
-							<td class='label'><?php echo JText::_('JL_PRED_USERS_INFO_TENDENCIES'); ?></td>
+							<td class='label'><?php echo JText::_($component_text.'JL_PRED_USERS_INFO_TENDENCIES'); ?></td>
 							<td class='data'><?php
 								if ($predictionsCount > 0)
 								{
@@ -446,15 +447,15 @@ echo '<br />predictionuser info -> showChamp <pre>~' . print_r($showChamp,true) 
 						?>
 						<tr>
 							<td class='label'><?php
-								echo JText::_('JL_PRED_USERS_INFO_PRED_FORM');
+								echo JText::_($component_text.'JL_PRED_USERS_INFO_PRED_FORM');
 								?></td>
 							<td class='data'>
 								<?php
-								$imgTitle = JText::_('JL_PRED_USERS_INFO_UP'); $picture = 'media/com_joomleague/jl_images/up.png';
+								$imgTitle = JText::_($component_text.'JL_PRED_USERS_INFO_UP'); $picture = 'media/com_joomleague/jl_images/up.png';
 								echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
-								$imgTitle = JText::_('JL_PRED_USERS_INFO_SAME'); $picture = 'media/com_joomleague/jl_images/same.png';
+								$imgTitle = JText::_($component_text.'JL_PRED_USERS_INFO_SAME'); $picture = 'media/com_joomleague/jl_images/same.png';
 								echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
-								$imgTitle = JText::_('JL_PRED_USERS_INFO_DOWN'); $picture = 'media/com_joomleague/jl_images/down.png';
+								$imgTitle = JText::_($component_text.'JL_PRED_USERS_INFO_DOWN'); $picture = 'media/com_joomleague/jl_images/down.png';
 								echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
 								?>
 							</td>

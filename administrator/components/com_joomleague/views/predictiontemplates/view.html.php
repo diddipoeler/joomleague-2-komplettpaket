@@ -28,7 +28,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 	{
 		$mainframe			=& JFactory::getApplication();
 		$option				= 'com_joomleague';
-
+    $component_text = 'COM_JOOMLEAGUE_';
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 		$lists				= array();
 		$db					=& JFactory::getDBO();
@@ -46,7 +46,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		$lists['order']		= $filter_order;
 
 		//build the html select list for prediction games
-		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( 'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
+		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( $component_text.'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
 		if ( $res =& $this->getModel()->getPredictionGames() ) { $predictions = array_merge( $predictions, $res ); }
 		$lists['predictions'] = JHTML::_(	'select.genericlist',
 											$predictions,
@@ -59,7 +59,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
-		JToolBarHelper::title( JText::_( 'JL_ADMIN_PTMPLS_TITLE' ), 'generic.png' );
+		JToolBarHelper::title( JText::_( $component_text.'JL_ADMIN_PTMPLS_TITLE' ), 'generic.png' );
 		if ( $prediction_id > 0 )
 		{
 			JToolBarHelper::editListX('predictiontemplate.edit');

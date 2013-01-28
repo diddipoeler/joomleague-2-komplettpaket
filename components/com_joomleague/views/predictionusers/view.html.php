@@ -13,7 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
-require_once(JPATH_COMPONENT . DS . 'helpers' . DS . 'imageselect.php');
+//require_once(JPATH_COMPONENT . DS . 'helpers' . DS . 'imageselect.php');
 
 /**
  * Joomleague Component prediction View
@@ -186,7 +186,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 			}
 
 			$this->assignRef('lists',$lists);
-
+      $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
 			$pageTitle = JText::_('JL_PRED_USERS_TITLE');
 

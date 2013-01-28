@@ -14,5 +14,42 @@
 			label="COM_JOOMLEAGUE_EXT_CLUB_SECONDWWW" description="Second website"
 			backendonly="">
 		</field>
+		
+		
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME_DESC">
+		</field>
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_1_SHORT_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_1_SHORT_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_1_SHORT_NAME_DESC">
+		</field>
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_2_LONG_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_2_LONG_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_2_LONG_NAME_DESC">
+		</field>
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_2_SHORT_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_2_SHORT_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_2_SHORT_NAME_DESC">
+		</field>
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_3_LONG_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_3_LONG_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_3_LONG_NAME_DESC">
+		</field>
+		<field 	name="JL_ADMINISTRATIVE_AREA_LEVEL_3_SHORT_NAME" type="text" 
+				label="JL_ADMINISTRATIVE_AREA_LEVEL_3_SHORT_NAME_LABEL"
+				description="JL_ADMINISTRATIVE_AREA_LEVEL_3_SHORT_NAME_DESC">
+		</field>                        
+    
+    <field 	name="JL_LOCALITY_LONG_NAME" type="text" 
+				label="JL_LOCALITY_LONG_NAME_LABEL"
+				description="JL_LOCALITY_LONG_NAME_DESC">
+		</field>
+		<field 	name="JL_SUBLOCALITY_LONG_NAME" type="text" 
+				label="JL_SUBLOCALITY_LONG_NAME_LABEL"
+				description="JL_SUBLOCALITY_LONG_NAME_DESC">
+		</field>
+		
+		
 	</fieldset>
 </config>

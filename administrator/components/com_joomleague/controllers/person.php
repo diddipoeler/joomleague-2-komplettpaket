@@ -121,9 +121,10 @@ class JoomleagueControllerPerson extends JoomleagueController
 	function saveshort()
 	{
 		$post=JRequest::get('post');
-		$pid=JRequest::getInt('cid');
+		$ids = JRequest::getVar('cid', array(), 'post', 'array');
+		JArrayHelper::toInteger($cid);
 		$model=$this->getModel('person');
-		if ($model->storeshort($pid,$post))
+		if ($model->storeshort($ids,$post))
 		{
 			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_PERSON_UPDATE');
 		}

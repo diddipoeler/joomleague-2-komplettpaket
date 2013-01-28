@@ -5,12 +5,12 @@
 			<![CDATA[JL_XML_TIPUSERS_LAYOUT_DESCR]]>
 		</message>
 	</layout>
-	<state>
-		<name>JL_XML_PRED_USERS_STATE_NAME</name>
-		<description>JL_XML_PRED_USERS_STATE_DESCR</description>
-		<url addpath="/administrator/components/com_joomleague/elements">
+<fields name="request">
+		<fieldset	name="request"
+					label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
+					addfieldpath ="/administrator/components/com_joomleague/elements">
 
-			<param	type="sql" name="prediction_id" label="JL_XML_JL_PRED_USERS_SELECT_GAME"
+			<field	type="sql" name="prediction_id" label="JL_XML_JL_PRED_USERS_SELECT_GAME"
 					description="JL_XML_JL_PRED_USERS_SELECT_GAME_DESC"
 					query="	SELECT CASE WHEN CHAR_LENGTH(alias) THEN CONCAT_WS(':', id, alias) ELSE id END AS value,
 									name AS prediction_id
@@ -18,25 +18,12 @@
 						 	WHERE published=1
 						 	ORDER BY name"/>
 
-			<param	type="dependsql" name="uid" depends="prediction_id" task="predictionmembersoptions" label="JL_XML_JL_PRED_USERS_SELECT_MEMBERr"
+			<field	type="dependsql" name="uid" depends="prediction_id" task="predictionmembersoptions" label="JL_XML_JL_PRED_USERS_SELECT_MEMBERr"
 					description="JL_XML_JL_PRED_USERS_SELECT_MEMBER_DESC"
 					query="" />
 
-			<!--
-			<param	type="sql" name="p" label="JL_XML_SELECT_PROJECT_LABEL"
-					description="JL_XML_SELECT_PROJECT_DESCR"
-					query="	SELECT CASE WHEN CHAR_LENGTH(alias) THEN CONCAT_WS(':', id, alias) ELSE id END AS value,
-									name AS p
-						 	FROM #__joomleague_project
-						 	WHERE published=1
-						 	ORDER BY name"/>
+			
 
-			<param	type="dependsql" name="pid" depends="p" task="refereesoptions" label="JL_XML_SELECT_REFEREE_LABEL"
-					description="JL_XML_SELECT_REFEREE_DESCR"
-					query="" isrequired="1"/>
-
-			-->
-
-		</url>
-   </state>
+		</fieldset>
+	</fields>
 </metadata>

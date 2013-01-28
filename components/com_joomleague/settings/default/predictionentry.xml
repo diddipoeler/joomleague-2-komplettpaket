@@ -1,91 +1,91 @@
 <?xml version="1.0"?>
-<templateconfig type="JL_template" version="1.0.0">
-	<name><![CDATA[JL_FES_PREDICTIONENTRY_NAME]]></name>
-	<description><![CDATA[JL_FES_PREDICTIONENTRY_DESCR]]></description>
+<form>
 
-	<params	group="JL_FES_PARAMS_GROUP_OPTIONS"
+	<fieldset	group="JL_FES_PARAMS_GROUP_OPTIONS"
+	name="JL_FES_PARAMS_GROUP_OPTIONS"
 			addpath="/administrator/components/com_joomleague/elements"
 			description="JL_FES_PARAMS_DESCR_OPTIONS">
 
-		<param	name="show_points" type="radio" default="1"
+		<field	name="show_points" type="radio" default="1"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_POINTS"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_POINTS">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-		<param	name="use_tipp_admin" type="radio" default="0"
+		<field	name="use_tipp_admin" type="radio" default="0"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_USE_TIPP_ADMIN"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_USE_TIPP_ADMIN">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-		<param	name="show_tipp_tendence" type="radio" default="0"
+		<field	name="show_tipp_tendence" type="radio" default="0"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_TIPP_TENDENCE"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_TIPP_TENDENCE">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-		<param	name="show_logo_small" type="radio" default="1"
+		<field	name="show_logo_small" type="radio" default="1"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_LOGO_SMALL"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_LOGO_SMALL">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
 			<option value="2">JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
-		</param>
+		</field>
     
-    <param 	name="prediction_team_name" type="list" default="short_name" 
+    <field 	name="prediction_team_name" type="list" default="short_name" 
 				label="JL_XML_PREDICTIONENTRY_TEAM_NAME_LABEL"
 				description="JL_XML_PREDICTIONENTRY_TEAM_NAME_DESC">
 			<option value="short_name">TEAM NAME SHORT</option>
 			<option value="middle_name">TEAM NAME MEDIUM</option>
 			<option value="name">TEAM NAME FULL</option>
-		</param>
+		</field>
 
-		<param	name="show_help" type="list" default="3"
+		<field	name="show_help" type="list" default="3"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_HELP"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_HELP">
 			<option value="0">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION0_SHOW_HELP</option>
 			<option value="1">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION1_SHOW_HELP</option>
 			<option value="2">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION2_SHOW_HELP</option>
       <option value="3">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION3_SHOW_HELP</option>
-		</param>
+		</field>
 
-		<param	name="color_home_win" type="colorpicker" size="8" maxlength="8" default="#507FAF"
+		<field	name="color_home_win" type="colorpicker" size="8" maxlength="8" default="#507FAF"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_COLOR_HOME_WIN"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_COLOR_HOME_WIN" >
-		</param>
+		</field>
 
-		<param	name="color_draw" type="colorpicker" size="8" maxlength="8" default="#9F5770"
+		<field	name="color_draw" type="colorpicker" size="8" maxlength="8" default="#9F5770"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_COLOR_DRAW"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_COLOR_DRAW" >
-		</param>
+		</field>
 
-		<param	name="color_guest_win" type="colorpicker" size="8" maxlength="8" default="#6F7860"
+		<field	name="color_guest_win" type="colorpicker" size="8" maxlength="8" default="#6F7860"
 				label="JL_FES_PREDICTIONENTRY_PARAM_LABEL_COLOR_GUEST_WIN"
 				description="JL_FES_PREDICTIONENTRY_PARAM_DESCR_COLOR_GUEST_WIN" >
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 
-  <params	group="JL_FES_PARAMS_GROUP_OPTIONS_TIPRESULTS_MATCHES_EDIT"
+  <fieldset	group="JL_FES_PARAMS_GROUP_OPTIONS_TIPRESULTS_MATCHES_EDIT"
+  name="JL_FES_PARAMS_GROUP_OPTIONS_TIPRESULTS_MATCHES_EDIT"
   addpath="/components/com_joomleague/extensions/predictiongame/admin/elements"
 			description="JL_FES_PARAMS_DESCR_OPTIONS_TIPRESULTS_MATCHES_EDIT">
 	
-	<param	name="use_pred_select_matches" type="radio" default="0"
+	<field	name="use_pred_select_matches" type="radio" default="0"
 				label="JL_XML_PREDICTION_USE_SELECT_MATCH_LABEL"
 				description="JL_XML_PREDICTION_USE_SELECT_MATCH_DESCR">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 		
-	<param name="predictionmatchid" type="matchid" depends="preid" task="prematchoptions" 
+	<field name="predictionmatchid" type="matchid" depends="preid" task="prematchoptions" 
 				label="JL_XML_PREDICTION_SELECT_MATCH_LABEL"
 				description="JL_XML_PREDICTION_SELECT_MATCH_DESCR">
-	</param>
+	</field>
 			
-  </params>
+  </fieldset>
   		
-</templateconfig>
+</form>

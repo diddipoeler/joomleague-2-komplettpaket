@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 /**
 * @copyright	Copyright (C) 2007-2012 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
@@ -9,10 +9,18 @@
 * See COPYRIGHT.php for copyright notices and details.
 */
 
-defined('_JEXEC') or die(JText::_('Restricted access'));
-$component_text = 'COM_JOOMLEAGUE_';
-?><p><?php
-	echo JText::_($component_text.'JL_PRED_ENTRY_WELCOME_INFO_01');
-	?></p><p><?php
-		echo JText::sprintf($component_text.'JL_PRED_ENTRY_WELCOME_INFO_02',$this->config['ownername'],'<b>' . $this->websiteName . '</b>');
-	?></p><hr><br />
+defined('_JEXEC') or die( 'Restricted access' );
+
+jimport( 'joomla.application.component.controller' );
+
+require_once JLG_PATH_EXTENSION_PREDICTIONGAME . DS . 'helpers' . DS . 'route.php' ;
+
+class JoomleagueControllerPredictiongame extends JLGController
+{
+	function __construct()
+	{
+		//echo " - JoomleagueControllerPredictiongame construct";
+		parent::__construct();
+	}
+}
+?>

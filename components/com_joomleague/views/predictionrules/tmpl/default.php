@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-$this->_addPath( 'template', JLG_PATH_EXTENSION_PREDICTIONGAME . DS . 'views' . DS . 'predictionheading' . DS . 'tmpl' );
+$this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'predictionheading' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'backbutton' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS . 'tmpl' );
 

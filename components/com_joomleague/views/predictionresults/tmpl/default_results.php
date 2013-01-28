@@ -11,6 +11,8 @@
 
 defined('_JEXEC') or die(JText::_('Restricted access'));
 JHTML::_('behavior.tooltip');
+$component_text = 'COM_JOOMLEAGUE_';
+
 //echo '<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
 //echo '<br /><pre>~' . print_r($this->config['limit'],true) . '~</pre><br />';
 ?>
@@ -46,21 +48,21 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				<tr>
 					<td class='sectiontableheader'>
 						<?php
-						echo '<b>'.JText::sprintf('JL_PRED_RESULTS_SUBTITLE_01').'</b>';
+						echo '<b>'.JText::sprintf($component_text.'JL_PRED_RESULTS_SUBTITLE_01').'</b>';
 						?>
 					</td>
 					<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' ><?php
 						$rounds = JoomleagueHelper::getRoundsOptions($predictionProject->project_id);
 						//$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="document.forms[\'resultsRoundSelector\'].r.value=this.value;submit()"','value','text',$this->roundID);
 						$htmlRoundsOptions = JHTML::_('select.genericList',$rounds,'r','class="inputbox" onchange="this.form.submit(); "','value','text',$this->roundID);
-            echo JText::sprintf(	'JL_PRED_RESULTS_SUBTITLE_02',
+            echo JText::sprintf(	$component_text.'JL_PRED_RESULTS_SUBTITLE_02',
 						$htmlRoundsOptions,
 						$this->model->createProjectSelector($this->model->_predictionProjectS,$predictionProject->project_id));
 						
             echo '&nbsp;&nbsp;';
             
 						$link = JoomleagueHelperRoute::getResultsRoute($predictionProject->project_id,$this->roundID);
-						$imgTitle=JText::_('JL_PRED_ROUND_RESULTS_TITLE');
+						$imgTitle=JText::_($component_text.'JL_PRED_ROUND_RESULTS_TITLE');
 						$desc = JHTML::image('media/com_joomleague/jl_images/icon-16-Matchdays.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 						echo JHTML::link($link,$desc,array('target' => ''));
 						?></td>
@@ -70,16 +72,16 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 		<table width='100%' cellpadding='0' cellspacing='0'>
 			<tr>
 				<?php $tdClassStr="class='sectiontableheader' style='text-align:center; vertical-align:middle; '"; ?>
-				<td <?php echo $tdClassStr; ?> ><?php echo JText::_('JL_PRED_RANK'); ?></td>
+				<td <?php echo $tdClassStr; ?> ><?php echo JText::_($component_text.'JL_PRED_RANK'); ?></td>
 				<?php
 				
         if ($this->config['show_user_icon'])
 				{
-					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_('JL_PRED_AVATAR'); ?></td><?php
+					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_($component_text.'JL_PRED_AVATAR'); ?></td><?php
 				}
 				
 				?>
-				<td <?php echo $tdClassStr; ?> ><?php echo JText::_('JL_PRED_MEMBER'); ?></td>
+				<td <?php echo $tdClassStr; ?> ><?php echo JText::_($component_text.'JL_PRED_MEMBER'); ?></td>
 				<?php
 				// holen wir uns die spiele
 				$match_ids = '';
@@ -104,7 +106,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
             $outputStr = (isset($match->homeResult)) ? $match->homeResult : '-';
 						$outputStr .= '&nbsp;'.$this->config['seperator'].'&nbsp;';
 						$outputStr .= (isset($match->awayResult)) ? $match->awayResult : '-';
-						?><span class='hasTip' title="<?php echo JText::sprintf('JL_PRED_RESULTS_RESULT_HINT',$match->homeName,$match->awayName,$outputStr); ?>"><?php echo $outputStr; ?></span><?php
+						?><span class='hasTip' title="<?php echo JText::sprintf($component_text.'JL_PRED_RESULTS_RESULT_HINT',$match->homeName,$match->awayName,$outputStr); ?>"><?php echo $outputStr; ?></span><?php
 						if ( $this->config['show_logo_small_overview'] == 1 ){echo '<br />'.JoomleagueModelPredictionResults::showClubLogo($match->awayLogo,$match->awayName);}
 						if ( $this->config['show_logo_small_overview'] == 2 ){echo '<br />'.Countries::getCountryFlag($match->awayCountry);}
 						
@@ -116,13 +118,13 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				<?php
 				if ($this->config['show_points'])
 				{
-					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_('JL_PRED_POINTS'); ?></td><?php
+					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_($component_text.'JL_PRED_POINTS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_average_points'])
 				{
-					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_('JL_PRED_AVERAGE'); ?></td><?php
+					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_($component_text.'JL_PRED_AVERAGE'); ?></td><?php
 				}
 				?>
 			</tr>
@@ -224,7 +226,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
             echo '<br />memberPredictionPoint<pre>~' . print_r($memberPredictionPoint,true) . '~</pre><br />';
             }
 						
-						$memberPredictionOutput = JText::_('JL_PRED_RESULTS_NOT_AVAILABLE');
+						$memberPredictionOutput = JText::_($component_text.'JL_PRED_RESULTS_NOT_AVAILABLE');
 						$matchTimeDate = JoomleagueHelper::getTimestamp($memberPredictionPoint->match_date,1,$predictionProjectSettings->serveroffset);
 						$thisTimeDate = JoomleagueHelper::getTimestamp('',1,$predictionProjectSettings->serveroffset);
 						$showAllowed = (($thisTimeDate >= $matchTimeDate) ||
@@ -382,7 +384,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 							}
 							else
 							{
-								echo JText::_('JL_PRED_RESULTS_NOT_AVAILABLE');
+								echo JText::_($component_text.'JL_PRED_RESULTS_NOT_AVAILABLE');
 							}
 							echo '</td>';
 						}

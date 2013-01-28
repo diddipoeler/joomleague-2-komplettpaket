@@ -5,12 +5,13 @@ JHTML::_( 'behavior.tooltip' );
 // Set toolbar items for the page
 //$edit = JRequest::getVar('edit',true);
 
-JToolBarHelper::title( JText::_( 'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN' ) );
+$component_text = 'COM_JOOMLEAGUE_';
+JToolBarHelper::title( JText::_( $component_text.'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN' ) );
 #JToolBarHelper::title( $this->projectws->name . ' - ' . JText::_( 'Teams' ) . ' ' );
-JToolBarHelper::save( 'save_memberlist' );
+JToolBarHelper::save( 'predictionmember.save_memberlist' );
 
 // for existing items the button is renamed `close` and the apply button is showed
-JToolBarHelper::cancel( 'cancel', 'JL_GLOBAL_CLOSE' );
+JToolBarHelper::cancel( 'predictionmember.cancel', 'JL_GLOBAL_CLOSE' );
 
 JToolBarHelper::help( 'screen.joomleague', true );
 
@@ -84,24 +85,18 @@ window.addEvent('domready', function() {
 		<fieldset class="adminform">
 			<legend>
 				<?php
-				echo JText::sprintf( 'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_TITLE', '<i>' . $this->prediction_name . '</i>');
+				echo JText::sprintf( $component_text.'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_TITLE', '<i>' . $this->prediction_name . '</i>');
 				?>
 			</legend>
 			
-			<legend>
-				<input type="text" name="demo-remote" id="demo-remote"/>
-			</legend>
 			
-			<legend>
-				<input type="text" name="demo-remote" id="demo-local"/>
-			</legend>
 			
 			<table class="admintable" border="0">
 				<tr>
 					<td>
 						<b>
 							<?php
-							echo JText::_( 'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_AVAIL_MEMBERS' );
+							echo JText::_( $component_text.'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_AVAIL_MEMBERS' );
 							?>
 						</b><br />
 						<?php
@@ -111,18 +106,18 @@ window.addEvent('domready', function() {
 					<td style="text-align:center; ">
 						&nbsp;&nbsp;
 						<input	type="button" class="inputbox"
-								onclick="document.getElementById('teamschanges_check').value=1;move(document.getElementById('members'), document.getElementById('prediction_members'));selectAll(document.getElementById('prediction_members'));"
+								onclick="handleMoveLeftToRight()"
 								value="&gt;&gt;" />
 						&nbsp;&nbsp;<br />&nbsp;&nbsp;
 					 	<input	type="button" class="inputbox"
-					 			onclick="document.getElementById('teamschanges_check').value=1;move(document.getElementById('prediction_members'), document.getElementById('members'));selectAll(document.getElementById('prediction_members'));"
+					 			onclick="handleMoveRightToLeft()"
 								value="&lt;&lt;" />
 						&nbsp;&nbsp;
 					</td>
 					<td>
 						<b>
 							<?php
-							echo JText::_( 'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_PROJ_MEMBERS' );
+							echo JText::_( $component_text.'JL_ADMIN_PREDICTIONMEMBERS_ASSIGN_PROJ_MEMBERS' );
 							?>
 						</b><br />
 						<?php
@@ -136,8 +131,8 @@ window.addEvent('domready', function() {
 
 		<input type="hidden" name="teamschanges_check"	value="0"	id="teamschanges_check" />
 		<input type="hidden" name="option"				value="com_joomleague" />
-		<input type="hidden" name="controller"			value="predictionmember" />
+		<input type="hidden" name="task"				value="predictionmember.save_memberlist" />
 		<input type="hidden" name="cid[]"				value="<?php echo $this->prediction_id; ?>" />
-		<input type="hidden" name="task"				value="save_memberlist" />
+		
 	</div>
 </form>

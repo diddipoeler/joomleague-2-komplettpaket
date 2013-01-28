@@ -10,6 +10,7 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
+$component_text = 'COM_JOOMLEAGUE_';
 
 if ( $this->debuginfo )
 {
@@ -23,7 +24,7 @@ if (((JFactory::getUser()->id==0) || (!$this->model->checkPredictionMembership()
 {
 	if ($this->allowedAdmin)
 	{
-		echo JText::_('JL_PRED_ENTRY_SELECT_EXISTING_MEMBER');
+		echo JText::_($component_text.'JL_PRED_ENTRY_SELECT_EXISTING_MEMBER');
 
 if ( $this->debuginfo )
 {		
@@ -90,7 +91,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 
 				<table class='blog' cellpadding='0' cellspacing='0'>
 					<tr>
-						<td class='sectiontableheader'><b><?php echo JText::_('JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
+						<td class='sectiontableheader'><b><?php echo JText::_($component_text.'JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
 						<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
 							<?php
 							$rounds = JoomleagueHelper::getRoundsOptions($predictionProject->project_id);
@@ -130,7 +131,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 
 						if (parseInt(document.<?php echo $formName; ?>.jokerCount.value) > (document.<?php echo $formName; ?>.maxJokerCount.value))
 						{
-							message+="<?php echo JText::_('JL_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
+							message+="<?php echo JText::_($component_text.'JL_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
 						}
 						if (message==""){return true;}
 						else {
@@ -151,11 +152,11 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 							?><th class='sectiontableheader' style='text-align:center; '><?php
 							if ($predictionProject->joker_limit > 0)
 							{
-								echo JText::sprintf('JL_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
+								echo JText::sprintf($component_text.'JL_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
 							}
 							else
 							{
-								echo JText::_('JL_PRED_ENTRY_JOKER');
+								echo JText::_($component_text.'JL_PRED_ENTRY_JOKER');
 							}
 							?></th><?php
 						}
@@ -223,7 +224,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 						<tr class='<?php echo $class; ?>'>
 							<td class="td_c">
 								<?php
-								echo JHTML::date($result->match_date,JText::_('JL_GLOBAL_CALENDAR_DATE'));
+								echo JHTML::date($result->match_date,JText::_($component_text.'JL_GLOBAL_CALENDAR_DATE'));
 								echo ' - ';
 								echo JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$this->config['time_format']); 
 								?>
@@ -259,7 +260,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									{
 										$logo_home = 'media/com_joomleague/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf('JL_PRED_ENTRY_LOGO_OF', $homeName);
+									$imgTitle = JText::sprintf($component_text.'JL_PRED_ENTRY_LOGO_OF', $homeName);
 									echo JHTML::image($logo_home,$imgTitle,array(' title' => $imgTitle));
 									echo ' ';
 								}
@@ -285,7 +286,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									{
 										$logo_away = 'media/com_joomleague/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf('JL_PRED_ENTRY_LOGO_OF', $awayName);
+									$imgTitle = JText::sprintf($component_text.'JL_PRED_ENTRY_LOGO_OF', $awayName);
 									echo ' ';
 									echo JHTML::image($logo_away,$imgTitle,array(' title' => $imgTitle));
 								}
@@ -352,7 +353,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 																				document.<?php echo $formName; ?>.jokerCount.value++;
 																				if (document.<?php echo $formName; ?>.jokerCount.value > document.<?php echo $formName; ?>.maxJokerCount.value)
 																				{
-																					alert("<?php echo JText::_('JL_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
+																					alert("<?php echo JText::_($component_text.'JL_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
 																					this.checked=false;
 																					document.<?php echo $formName; ?>.jokerCount.value--;
 																				}
@@ -413,11 +414,11 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									}
 									?>
 									<span style='color:<?php echo $this->config['color_home_win']; ?>; ' >
-									<?php echo JText::sprintf('JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
+									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_draw']; ?>; '>
-									<?php echo JText::sprintf('JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
+									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_guest_win']; ?>; '>
-									<?php echo JText::sprintf('JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
+									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
 								</td>
 								<td colspan='8'>&nbsp;</td>
 							</tr>
@@ -438,7 +439,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 							$colspan=($predictionProject->joker) ? '6' : '5';
 							?>
 							<td colspan='<?php echo $colspan; ?>' class="td_c" >
-								<b><?php echo JText::_('JL_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
+								<b><?php echo JText::_($component_text.'JL_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
 							</td>
 							<?php
 						}
@@ -466,7 +467,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 								?>
 							</td>
 							<?php echo $colspan=($predictionProject->joker) ? '<td>&nbsp;</td>' : ''; ?>
-							<td class="td_c"><?php echo JText::sprintf('JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
+							<td class="td_c"><?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
 							<?php
 						}
 						?>

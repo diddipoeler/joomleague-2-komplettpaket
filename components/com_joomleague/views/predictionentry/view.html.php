@@ -70,7 +70,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 				$this->assignRef('lists',$lists);
 			}
 
-
+      $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
 			$pageTitle = JText::_('JL_PRED_ENTRY_TITLE');
 

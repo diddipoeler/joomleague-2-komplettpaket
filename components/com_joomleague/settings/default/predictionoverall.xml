@@ -1,24 +1,23 @@
 <?xml version="1.0"?>
-<templateconfig type="JL_template" version="1.0.0">
-	<name><![CDATA[JL_FES_PREDICTIONOVERALL_NAME]]></name>
-	<description><![CDATA[JL_FES_PREDICTIONOVERALL_DESCR]]></description>
+<form>
 
-	<params group="JL_FES_PARAMS_GROUP_PAGE_ELEMENTS"
+	<fieldset group="JL_FES_PARAMS_GROUP_PAGE_ELEMENTS"
+	name="JL_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 			description="JL_FES_PARAMS_DESCR_PAGE_ELEMENTS">
 
-		<param name="show_prediction_heading" type="radio" default="1"
+		<field name="show_prediction_heading" type="radio" default="1"
 			label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SHOW_PREDICTION_HEADING"
 			description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SHOW_PREDICTION_HEADING">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-		<param	name="show_predictiongame_dropdown" type="radio" default="1"
+		<field	name="show_predictiongame_dropdown" type="radio" default="1"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SHOW_PREDICTION_GAME_SELECTOR"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SHOW_PREDICTION_GAME_SELECTOR">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
 		<!--
 		<param	name="show_predictionproject_dropdown" type="radio" default="1"
@@ -50,68 +49,70 @@
 			<option value="1">JL_GLOBAL_YES</option>
 		</param>
 -->
-		<param name="show_back_button" type="list" default="0"
+		<field name="show_back_button" type="list" default="0"
 			label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SHOW_BACK_BUTTON"
 			description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SHOW_BACK_BUTTON">
 			<option value="0">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SHOW_BACK_BUTTON</option>
 			<option value="1">JL_FES_PREDICTIONOVERALL_PARAM_OPTION1_SHOW_BACK_BUTTON</option>
 			<option value="2">JL_FES_PREDICTIONOVERALL_PARAM_OPTION2_SHOW_BACK_BUTTON</option>
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 
-	<params	group="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS"
+	<fieldset	group="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS"
+	name="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS"
 			description="JL_FES_PARAMS_DESCR_PERSONAL_OPTIONS">
 
-		<param name="seperator" type="text" size="4" maxlength="4"
+		<field name="seperator" type="text" size="4" maxlength="4"
 				default=":"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SEPERATOR"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SEPERATOR" >
-		</param>
+		</field>
 
-		<param name="time_format" type="text" size="10" maxlength="15"
+		<field name="time_format" type="text" size="10" maxlength="15"
 				default="%H:%M"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_TIME_FORMAT"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_TIME_FORMAT" >
-		</param>
+		</field>
 
-		<param name="closing_time" type="text" size="10" maxlength="10" 
+		<field name="closing_time" type="text" size="10" maxlength="10" 
 				default="0"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_CLOSING_TIME"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_CLOSING_TIME" >
-		</param>
+		</field>
 		
-		<param name="ownername" type="text" size="100" maxlength="255"
+		<field name="ownername" type="text" size="100" maxlength="255"
 				default="Prediction Game Sponsor of this Prediction Game"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SPONSOR"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SPONSOR" >
-		</param>
+		</field>
 
-		<param name="ownerlogo" type="text" size="100" maxlength="255" default=""
+		<field name="ownerlogo" type="text" size="100" maxlength="255" default=""
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_LOGO_SPONSOR"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_LOGO_SPONSOR" >
-		</param>
+		</field>
 
-		<param	name="show_full_name" type="list" default="1"
+		<field	name="show_full_name" type="list" default="1"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SHOW_FULL_NAME"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SHOW_FULL_NAME">
 			<option value="0">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SHOW_FULL_NAME</option>
 			<option value="1">JL_FES_PREDICTIONOVERALL_PARAM_OPTION1_SHOW_FULL_NAME</option>
-		</param>
+		</field>
 
-		<param	name="allow_alias" type="radio" default="1"
+		<field	name="allow_alias" type="radio" default="1"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_ALLOW_ALIAS"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_ALLOW_ALIAS">
 			<option value="0">JL_GLOBAL_NO</option>
 			<option value="1">JL_GLOBAL_YES</option>
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 
-	<params	group= "JL_FES_PARAMS_GROUP_OPTIONS"
+	<fieldset	group= "JL_FES_PARAMS_GROUP_OPTIONS"
+	name= "JL_FES_PARAMS_GROUP_OPTIONS"
 			description="JL_FES_PARAMS_DESCR_OPTIONS">
 
-		<param	name="sort_order_1" default="points" type="list"
+		<field	name="sort_order_1" default="points" type="list"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SORT_ORDER_1"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SORT_ORDER_1">
 			<option value="points">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SORT_ORDER</option>
@@ -121,9 +122,9 @@
 			<option value="count_tips_p">JL_FES_PREDICTIONOVERALL_PARAM_OPTION4_SORT_ORDER</option>
 			<option value="count_tips_m">JL_FES_PREDICTIONOVERALL_PARAM_OPTION5_SORT_ORDER</option>
 			<option value="none">JL_FES_PREDICTIONOVERALL_PARAM_OPTION6_SORT_ORDER</option>
-		</param>
+		</field>
 
-		<param	name="sort_order_2" default="correct_tips" type="list"
+		<field	name="sort_order_2" default="correct_tips" type="list"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SORT_ORDER_2"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SORT_ORDER_2">
 			<option value="points">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SORT_ORDER</option>
@@ -133,9 +134,9 @@
 			<option value="count_tips_p">JL_FES_PREDICTIONOVERALL_PARAM_OPTION4_SORT_ORDER</option>
 			<option value="count_tips_m">JL_FES_PREDICTIONOVERALL_PARAM_OPTION5_SORT_ORDER</option>
 			<option value="none">JL_FES_PREDICTIONOVERALL_PARAM_OPTION6_SORT_ORDER</option>
-		</param>
+		</field>
 
-		<param	name="sort_order_3" default="correct_diffs" type="list"
+		<field	name="sort_order_3" default="correct_diffs" type="list"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SORT_ORDER_3"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SORT_ORDER_3">
 			<option value="points">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SORT_ORDER</option>
@@ -145,9 +146,9 @@
 			<option value="count_tips_p">JL_FES_PREDICTIONOVERALL_PARAM_OPTION4_SORT_ORDER</option>
 			<option value="count_tips_m">JL_FES_PREDICTIONOVERALL_PARAM_OPTION5_SORT_ORDER</option>
 			<option value="none">JL_FES_PREDICTIONOVERALL_PARAM_OPTION6_SORT_ORDER</option>
-		</param>
+		</field>
 
-		<param	name="sort_order_4" default="correct_tend" type="list"
+		<field	name="sort_order_4" default="correct_tend" type="list"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SORT_ORDER_4"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SORT_ORDER_4">
 			<option value="points">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SORT_ORDER</option>
@@ -157,9 +158,9 @@
 			<option value="count_tips_p">JL_FES_PREDICTIONOVERALL_PARAM_OPTION4_SORT_ORDER</option>
 			<option value="count_tips_m">JL_FES_PREDICTIONOVERALL_PARAM_OPTION5_SORT_ORDER</option>
 			<option value="none">JL_FES_PREDICTIONOVERALL_PARAM_OPTION6_SORT_ORDER</option>
-		</param>
+		</field>
 
-		<param	name="sort_order_5" default="count_tips_m" type="list"
+		<field	name="sort_order_5" default="count_tips_m" type="list"
 				label="JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SORT_ORDER_5"
 				description="JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SORT_ORDER_5">
 			<option value="points">JL_FES_PREDICTIONOVERALL_PARAM_OPTION0_SORT_ORDER</option>
@@ -169,8 +170,8 @@
 			<option value="count_tips_p">JL_FES_PREDICTIONOVERALL_PARAM_OPTION4_SORT_ORDER</option>
 			<option value="count_tips_m">JL_FES_PREDICTIONOVERALL_PARAM_OPTION5_SORT_ORDER</option>
 			<option value="none">JL_FES_PREDICTIONOVERALL_PARAM_OPTION6_SORT_ORDER</option>
-		</param>
+		</field>
 
-	</params>
+	</fieldset>
 
-</templateconfig>
+</form>

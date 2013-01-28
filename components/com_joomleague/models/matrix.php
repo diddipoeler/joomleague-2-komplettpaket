@@ -1,4 +1,16 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php
+/**
+ * @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
+ * @license		GNU/GPL,see LICENSE.php
+ * Joomla! is free software. This version may have been modified pursuant
+ * to the GNU General Public License,and as distributed it includes or
+ * is derivative of works licensed under the GNU General Public License or
+ * other free or open source software licenses.
+ * See COPYRIGHT.php for copyright notices and details.
+ */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.model' );
 
@@ -72,7 +84,8 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 												m.alt_decision as decision,
 												m.team1_result_decision AS v1,
 												m.team2_result_decision AS v2,
-												m.new_match_id, m.old_match_id";
+												m.new_match_id, m.old_match_id,
+												tt1.division_id AS division_id";
 		$query_FROM	= " FROM #__joomleague_match AS m
 						INNER JOIN #__joomleague_round AS r ON r.id=m.round_id
 						LEFT JOIN #__joomleague_project_team AS tt1 ON m.projectteam1_id = tt1.team_id

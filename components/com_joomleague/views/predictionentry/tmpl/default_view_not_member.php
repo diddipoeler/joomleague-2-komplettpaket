@@ -10,26 +10,28 @@
 */
 
 defined('_JEXEC') or die(JText::_('Restricted access'));
+$component_text = 'COM_JOOMLEAGUE_';
+
 ?><p><?php
-	echo JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_01');
+	echo JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_01');
 	?></p><p><?php
-	echo JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_02');
+	echo JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_02');
 	?></p><p><?php
-	echo JText::sprintf('JL_PRED_ENTRY_NOT_MEMBER_INFO_03',$this->config['ownername'],'<b>'.$this->websiteName.'</b>');
+	echo JText::sprintf($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_03',$this->config['ownername'],'<b>'.$this->websiteName.'</b>');
 	?></p><p>&nbsp;</p><p><?php
 	if ($this->isNotApprovedMember==1)
 	{
-		echo '<span class="button">'.JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_04').'</span>';
+		echo '<span class="button">'.JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_04').'</span>';
 		?></p><p><?php
-		echo JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_05');
+		echo JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_05');
 		?></p><?php
 	}
 	else
 	{
-		echo JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_06');
+		echo JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_06');
 		?></p><?php
 			?><form name='predictionRegisterForm' id='predictionRegisterForm' method='post' >
-			<input type='submit' name='register'		value='<?php echo JText::_('JL_PRED_ENTRY_NOT_MEMBER_INFO_07') ; ?>' class='button' />
+			<input type='submit' name='register'		value='<?php echo JText::_($component_text.'JL_PRED_ENTRY_NOT_MEMBER_INFO_07') ; ?>' class='button' />
 			<input type='hidden' name='prediction_id'	value='<?php echo $this->predictionGame->id; ?>' />
 			<input type='hidden' name='user_id'			value='<?php echo $this->actJoomlaUser->id; ?>' />
 			<input type='hidden' name='approved'		value='<?php echo ( $this->predictionGame->auto_approve ) ? '1' : '0'; ?>' />

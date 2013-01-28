@@ -6,7 +6,7 @@ defined('_JEXEC') or die('Restricted access');
 
 	#$this->config['highlight_fav_team'] = 1;
 	#$this->project->fav_team_text_color = "#FFFFFF";
-
+	$division_id = $this->divisionid;
 	$matrix = '<table class="matrix">';
 	$k = 1;
 	$crosstable_icons_horizontal = (isset ($this->config['crosstable_icons_horizontal'])) ? $this->config['crosstable_icons_horizontal'] : 0;
@@ -84,6 +84,7 @@ defined('_JEXEC') or die('Restricted access');
 			// find the corresponding game
 			$Allresults = '';
 			foreach ($this->results as $result) {
+				if($team_row->division_id != $division_id) continue;
 				if (($result->projectteam1_id == $team_row->projectteamid) && ($result->projectteam2_id == $team_col->projectteamid)) {
 					$ResultType = '';
 					if ($result->decision == 0) {

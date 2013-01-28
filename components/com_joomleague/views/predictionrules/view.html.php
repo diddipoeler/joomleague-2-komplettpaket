@@ -43,7 +43,7 @@ class JoomleagueViewPredictionRules extends JLGView
 			$this->assignRef('predictionProjectS',	$model->getPredictionProjectS());
 			$this->assignRef('actJoomlaUser',		JFactory::getUser());
 			//echo '<br /><pre>~'.print_r($this,true).'~</pre><br />';
-
+      $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
 			$pageTitle = JText::_('JL_PRED_USERS_TITLE'); // 'Tippspiel Regeln'
 

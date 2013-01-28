@@ -10,41 +10,42 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
+$component_text = 'COM_JOOMLEAGUE_';
 //echo '<br /><pre>~' . print_r($this->predictionMember->pmID,true) . '~</pre><br />';
 if (!isset($this->config['show_scoring'])){$this->config['show_scoring']=1;}
-$gameModeStr = ($this->model->predictionProject->mode==0) ? JText::_('JL_PRED_RESULTS_STANDARD_MODE') : JText::_('JL_PRED_RESULTS_TOTO_MODE');
-?><p style='font-weight: bold; '><?php echo JText::_('JL_PRED_NOTICE'); ?></p><p><ul><li><i><?php
-						echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_01');
+$gameModeStr = ($this->model->predictionProject->mode==0) ? JText::_($component_text.'JL_PRED_RESULTS_STANDARD_MODE') : JText::_('JL_PRED_RESULTS_TOTO_MODE');
+?><p style='font-weight: bold; '><?php echo JText::_($component_text.'JL_PRED_NOTICE'); ?></p><p><ul><li><i><?php
+						echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_01');
 						if (!$this->config['show_all_user'])
 						{
 							?></i></li><li><i><?php
-							echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_02');
+							echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_02');
 							?></i></li><li><i><?php
 						}
 						else
 						{
 							echo ' ';
 						}
-						echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_03');
+						echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_03');
 						?></i></li><li><i><?php
-						echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_04');
+						echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_04');
 						?></i></li><li><i><?php
-						echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_05');
+						echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_05');
 						?></i></li><li><i><?php
-						echo JText::sprintf('JL_PRED_RESULTS_NOTICE_INFO_06','<b>'.$gameModeStr.'</b>');
+						echo JText::sprintf($component_text.'JL_PRED_RESULTS_NOTICE_INFO_06','<b>'.$gameModeStr.'</b>');
 						?><?php
 						if (($this->config['show_scoring']) && ($this->predictionMember->pmID > 0))
 						{
-							?></i></li><li><i><?php echo JText::_('JL_PRED_RESULTS_NOTICE_INFO_07');
+							?></i></li><li><i><?php echo JText::_($component_text.'JL_PRED_RESULTS_NOTICE_INFO_07');
 							?><table class='blog' cellpadding='0' cellspacing='0'>
 								<tr>
-									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_RESULTS_RESULT'); ?></td>
-									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_RESULTS_YOUR_PREDICTION'); ?></td>
-									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_RESULTS_POINTS'); ?></td>
+									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_RESULTS_RESULT'); ?></td>
+									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_RESULTS_YOUR_PREDICTION'); ?></td>
+									<td class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_RESULTS_POINTS'); ?></td>
 									<?php
 									if (($this->model->predictionProject->joker) && ($this->model->predictionProject->mode==0))
 									{
-										?><td class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_RESULTS_JOKER_POINTS'); ?></td><?php
+										?><td class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_RESULTS_JOKER_POINTS'); ?></td><?php
 									}
 									?>
 								</tr>
@@ -143,6 +144,6 @@ $gameModeStr = ($this->model->predictionProject->mode==0) ? JText::_('JL_PRED_RE
 						else
 						{
 							?></i></li><li><i><?php
-							echo JText::_('JL_PRED_RESULTS_READ_RULES');
+							echo JText::_($component_text.'JL_PRED_RESULTS_READ_RULES');
 						}
 						?></i></li></ul></p>

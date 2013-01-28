@@ -27,6 +27,7 @@ require_once( JLG_PATH_SITE.DS.'assets'.DS.'classes'.DS.'jlgmodel.php'  );
 require_once( JLG_PATH_SITE.DS.'assets'.DS.'classes'.DS.'jlgview.php'  );
 
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'route.php' );
+require_once( JLG_PATH_SITE.DS.'helpers'.DS.'predictionroute.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'countries.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'extraparams.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'ranking.php' );
