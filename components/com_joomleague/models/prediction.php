@@ -545,9 +545,9 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
         $user = JFactory::getUser();
         
         $authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
-        echo 'authorised<br /><pre>~' . print_r($authorised,true) . '~</pre><br />';
+        //echo 'authorised<br /><pre>~' . print_r($authorised,true) . '~</pre><br />';
         $authorisedgroups = $user->getAuthorisedGroups();
-        echo 'authorised groups<br /><pre>~' . print_r($authorisedgroups,true) . '~</pre><br />';
+        //echo 'authorised groups<br /><pre>~' . print_r($authorisedgroups,true) . '~</pre><br />';
         
         foreach ($user->groups as $groupId => $value)
         {
@@ -560,17 +560,17 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
         $groupNames .= $this->_db->loadResult();
         $groupNames .= '<br/>';
         }
-        print $groupNames.'<br>';
+        //print $groupNames.'<br>';
         
         $groups = JAccess::getGroupsByUser($user->id, false);
-        echo 'user groups<br /><pre>~' . print_r($groups,true) . '~</pre><br />';
+        //echo 'user groups<br /><pre>~' . print_r($groups,true) . '~</pre><br />';
     
 		if ($user->id > 0)
 		{
 			//$auth= JFactory::getACL();
-			$aro_group = $acl->getAroGroup($user->id);
+			//$aro_group = $acl->getAroGroup($user->id);
 
-			if ((strtolower($aro_group->name) == 'super administrator') || (strtolower($aro_group->name) == 'administrator'))
+			if (($groups[0] == 7) || ($groups[0] == 8))
 			{
 				$allowed=true;
 			}
