@@ -10,4 +10,6 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-?><h1><?php echo JText::_('JL_PRED_ENTRY_SECTION_TITLE'); ?></h1>
+$component_text = 'COM_JOOMLEAGUE_';
+
+?><h1><?php echo JText::_($component_text.'JL_PRED_ENTRY_SECTION_TITLE'); ?></h1>
