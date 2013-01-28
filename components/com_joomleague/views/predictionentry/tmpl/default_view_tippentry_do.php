@@ -142,10 +142,10 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 				</script>
 				<table width='100%' cellpadding='0' cellspacing='0'>
 					<tr>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_ENTRY_DATE_TIME'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_('JL_PRED_ENTRY_MATCH'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_ENTRY_RESULT'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_ENTRY_YOURS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_DATE_TIME'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_($component_text.'JL_PRED_ENTRY_MATCH'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_RESULT'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_YOURS'); ?></th>
 						<?php
 						if (($predictionProject->joker) && ($predictionProject->mode==0))
 						{
@@ -161,7 +161,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 							?></th><?php
 						}
 						?>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('JL_PRED_ENTRY_POINTS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_POINTS'); ?></th>
 					</tr>
 					<?php
 					$k = 1;
