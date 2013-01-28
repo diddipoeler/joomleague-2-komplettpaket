@@ -541,6 +541,9 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
         $acl = JFactory::getACL();
         // JUserobjekt holen
         $user = JFactory::getUser();
+        
+        $authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
+        echo 'authorised<br /><pre>~' . print_r($authorised,true) . '~</pre><br />';
 
 
     //echo '<br /><pre>~' . print_r($user,true) . '~</pre><br />';
