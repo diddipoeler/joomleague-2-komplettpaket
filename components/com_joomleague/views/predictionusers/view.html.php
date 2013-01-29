@@ -178,10 +178,10 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 				}
 
 				// image selector
-				$default = 'media/com_joomleague/placeholders/placeholder_150_2.png';
+				$default = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
 				$this->predictionMember->picture = $model->getPredictionMemberAvatar($this->predictionMember->user_id, $this->configavatar['show_image_from'] );
 				if (empty($this->predictionMember->picture)){$this->predictionMember->picture = $default;}
-				$imageselect = ImageSelect::getSelector('picture','picture_preview','predictionusers',$this->predictionMember->picture,$default);
+				$imageselect = ImageSelect::getSelector('picture','picture_preview','predictionusers',$this->predictionMember->picture,$default,'');
 
 				$this->assignRef('imageselect',	$imageselect);
 			}

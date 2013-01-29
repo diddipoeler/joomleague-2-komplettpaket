@@ -234,9 +234,9 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		<tr>
 			<td>&nbsp;</td>
 			<td colspan='2'>
-				<input	type='submit' name='saveInfo' value='<?php echo JText::_('JL_GLOBAL_SAVE'); ?>'
+				<input	type='submit' name='saveInfo' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>'
 						onClick="javascript:submitbutton('save'); " />
-				<input	type='submit' name='cancel' value='<?php echo JText::_('JL_GLOBAL_BACK'); ?>'
+				<input	type='submit' name='cancel' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'); ?>'
 						onClick="javascript:submitbutton('cancel'); " />
 			</td>
 		</tr>
