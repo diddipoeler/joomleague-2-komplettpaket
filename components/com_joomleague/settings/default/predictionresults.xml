@@ -9,8 +9,8 @@
 		<field	name="show_matchday_pagenav" type="list" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_LABEL_SHOW_PAGE_NAV"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_DESCR_SHOW_PAGE_NAV">
-			<option value="0">JL_FES_PREDICTIONRESULTS_PARAM_OPTION0_SHOW_PAGE_NAV</option>
-			<option value="1">JL_FES_PREDICTIONRESULTS_PARAM_OPTION1_SHOW_PAGE_NAV</option>
+			<option value="0">COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_OPTION0_SHOW_PAGE_NAV</option>
+			<option value="1">COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_OPTION1_SHOW_PAGE_NAV</option>
 		</field>
 
 		<field	name="show_all_user" type="radio" default="0"
@@ -56,8 +56,8 @@
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_LABEL_SHOW_CLUB_ICON"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONRESULTS_PARAM_DESCR_SHOW_CLUB_ICON">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
-			<option value="2">JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
+			<option value="1">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
+			<option value="2">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
 		</field>
 
 		<field	name="show_help" type="radio" default="0"

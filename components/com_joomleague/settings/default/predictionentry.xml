@@ -31,8 +31,8 @@
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_LOGO_SMALL"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_LOGO_SMALL">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
-			<option value="2">JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
+			<option value="1">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
+			<option value="2">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
 		</field>
     
     <field 	name="prediction_team_name" type="list" default="short_name" 
@@ -46,10 +46,10 @@
 		<field	name="show_help" type="list" default="3"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_HELP"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_HELP">
-			<option value="0">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION0_SHOW_HELP</option>
-			<option value="1">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION1_SHOW_HELP</option>
-			<option value="2">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION2_SHOW_HELP</option>
-      <option value="3">JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION3_SHOW_HELP</option>
+			<option value="0">COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION0_SHOW_HELP</option>
+			<option value="1">COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION1_SHOW_HELP</option>
+			<option value="2">COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION2_SHOW_HELP</option>
+      <option value="3">COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_OPTION3_SHOW_HELP</option>
 		</field>
 
 		<field	name="color_home_win" type="colorpicker" size="8" maxlength="8" default="#507FAF"
