@@ -159,7 +159,11 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 	function addtipp()
 	{
 		JRequest::checkToken() or jexit(JText::_('JL_PRED_ENTRY_INVALID_TOKEN_PREDICTIONS_NOT_SAVED'));
-
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+		
 		$msg	= '';
 		$link	= '';
 
@@ -177,14 +181,14 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 		if ((($user->id!=$joomlaUserID) || ($user->id < 62)) && (!$allowedAdmin))
 		{
-			$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_1');
+			$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ((!$isMember) && (!$allowedAdmin))
 			{
-				$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_2');
+				$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_2');
 				$link = JFactory::getURI()->toString();
 			}
 			else
@@ -218,12 +222,12 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 				if ( !$model->savePredictions($allowedAdmin) )
 				{
-					$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_3');
+					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_3');
 					$link = JFactory::getURI()->toString();
 				}
 				else
 				{
-					$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_MSG_1');
+					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_MSG_1');
 					$link = JFactory::getURI()->toString();
 				}
 			}

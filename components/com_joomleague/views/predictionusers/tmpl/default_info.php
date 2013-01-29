@@ -224,7 +224,7 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 									$showChamp = ($thisTimeDate > $competitionStartTimeDate);
 									//if (($showChamp) || ($this->showediticon))
 									
-if ( $this->debuginfo )
+if ( $this->show_debug_info )
             {
 echo '<br />predictionuser info -> time <pre>~' . print_r($time,true) . '~</pre><br />';
 echo '<br />predictionuser info -> showDate <pre>~' . print_r($showDate,true) . '~</pre><br />';
