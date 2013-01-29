@@ -10,5 +10,5 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$component_text = 'COM_JOOMLEAGUE_';
-?><h1><?php echo JText::_($component_text.'JL_PRED_RULES_SECTION_TITLE'); ?></h1>
+
+?><h1><?php echo JText::_($this->optiontext.'JL_PRED_RULES_SECTION_TITLE'); ?></h1>

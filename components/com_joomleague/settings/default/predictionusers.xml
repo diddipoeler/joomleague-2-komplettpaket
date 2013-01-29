@@ -7,210 +7,210 @@
 			description="JL_FES_PARAMS_DESCR_OPTIONS">
 
 		<field	name="show_photo" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_image_from" type="list" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO_FROM"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO_FROM">
-			<option value="0">JL_FES_PREDICTIONUSERS_PARAM_OPTION0_SHOW_PHOTO_FROM</option>
-			<option value="com_joomleague">JL_FES_PREDICTIONUSERS_PARAM_OPTION1_SHOW_PHOTO_FROM</option>
-			<option value="com_cbe15">JL_FES_PREDICTIONUSERS_PARAM_OPTION5_SHOW_PHOTO_FROM</option>
-			<option value="com_cbe25">JL_FES_PREDICTIONUSERS_PARAM_OPTION2_SHOW_PHOTO_FROM</option>
-			<option value="com_kunena">JL_FES_PREDICTIONUSERS_PARAM_OPTION3_SHOW_PHOTO_FROM</option>
-			<option value="com_community">JL_FES_PREDICTIONUSERS_PARAM_OPTION4_SHOW_PHOTO_FROM</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO_FROM"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO_FROM">
+			<option value="0">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION0_SHOW_PHOTO_FROM</option>
+			<option value="com_joomleague">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION1_SHOW_PHOTO_FROM</option>
+			<option value="com_cbe15">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION5_SHOW_PHOTO_FROM</option>
+			<option value="com_cbe25">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION2_SHOW_PHOTO_FROM</option>
+			<option value="com_kunena">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION3_SHOW_PHOTO_FROM</option>
+			<option value="com_community">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION4_SHOW_PHOTO_FROM</option>
 		</field>
 
 		<field	name="show_register_date" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_REGISTER_DATE"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_REGISTER_DATE">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_REGISTER_DATE"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_REGISTER_DATE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_fav_team" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FAV_TEAM"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FAV_TEAM">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FAV_TEAM"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FAV_TEAM">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_slogan" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_SLOGAN"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_SLOGAN">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_SLOGAN"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_SLOGAN">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_lasttip" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LASTTIP"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LASTTIP">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LASTTIP"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LASTTIP">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_user_profile" type="list" default="0"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_USER_PROFILE"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_USER_PROFILE">
-			<option value="0">JL_FES_PREDICTIONUSERS_PARAM_OPTION0_SHOW_USER_PROFILE</option>
-			<option value="1">JL_FES_PREDICTIONUSERS_PARAM_OPTION1_SHOW_USER_PROFILE</option>
-			<option value="2">JL_FES_PREDICTIONUSERS_PARAM_OPTION2_SHOW_USER_PROFILE</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_USER_PROFILE"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_USER_PROFILE">
+			<option value="0">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION0_SHOW_USER_PROFILE</option>
+			<option value="1">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION1_SHOW_USER_PROFILE</option>
+			<option value="2">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION2_SHOW_USER_PROFILE</option>
 		</field>
 
 		<field	name="contact_cat_id" type="text" size="6" maxlength="6" default="0"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_CONTACT_CAT_ID"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_CONTACT_CAT_ID" />
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_CONTACT_CAT_ID"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_CONTACT_CAT_ID" />
 
 		<field	name="show_ranking" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_RANKING"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_RANKING">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_RANKING"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_RANKING">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_totalpoints" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOTAL_POINTS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOTAL_POINTS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOTAL_POINTS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOTAL_POINTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_lastpoints" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LAST_POINTS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LAST_POINTS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LAST_POINTS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LAST_POINTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_counttipps" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_COUNT_TIPS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_COUNT_TIPS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_COUNT_TIPS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_COUNT_TIPS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_averagepoints" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_AVERAGE_POINTS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_AVERAGE_POINTS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_AVERAGE_POINTS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_AVERAGE_POINTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_toptipps" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOP_TIPS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOP_TIPS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOP_TIPS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOP_TIPS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_difftipps" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_DIFF_TIPS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_DIFF_TIPS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_DIFF_TIPS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_DIFF_TIPS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_tendtipps" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TEND_TIPS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TEND_TIPS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TEND_TIPS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TEND_TIPS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_form" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FORM"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FORM">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FORM"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FORM">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_flash_statistic_points" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_POINTS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_POINTS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_POINTS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_POINTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="show_flash_statistic_ranks" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_RANKS"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_RANKS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_RANKS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_RANKS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 	</fieldset>
 
 	<fieldset	group="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS_EDIT"
 	name="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS_EDIT"
-			description="JL_FES_PARAMS_DESCR_PERSONAL_OPTIONS_EDIT">
+			description="COM_JOOMLEAGUE_JL_FES_PARAMS_DESCR_PERSONAL_OPTIONS_EDIT">
 
 		<field	name="edit_favteam" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_FAV_TEAM"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_FAV_TEAM">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_FAV_TEAM"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_FAV_TEAM">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="edit_slogan" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_SLOGAN"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_SLOGAN">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_SLOGAN"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_SLOGAN">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="edit_reminder" type="radio" default="0"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		
 		<field	name="edit_avatar_upload" type="radio" default="1"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_AVATAR_UPLOAD"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_AVATAR_UPLOAD">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_AVATAR_UPLOAD"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_AVATAR_UPLOAD">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		
 		<field	name="reminder_subject" type="text" size="100" maxlength="255"
-				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_SUBJECT"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_SUBJECT"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_SUBJECT" />
+				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_SUBJECT"
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_SUBJECT"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_SUBJECT" />
 
     		<field	name="reminder_intro" type="textarea"
-    				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_INTRO"
-    				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_INTRO"
-    				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_INTRO" rows="3" cols="50"/>
+    				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_INTRO"
+    				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_INTRO"
+    				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_INTRO" rows="3" cols="50"/>
 
     		<field	name="reminder_footer" type="textarea"
-    				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_FOOTER"
-    				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_FOOTER"
-    				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_FOOTER" rows="3" cols="50" />
+    				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_REMINDER_FOOTER"
+    				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER_FOOTER"
+    				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER_FOOTER" rows="3" cols="50" />
 
 		<field	name="edit_receipt" type="radio" default="0"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 		<field	name="receipt_subject" type="text" size="100" maxlength="255"
-				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_SUBJECT"
-				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_SUBJECT"
-				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_SUBJECT" />
+				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_SUBJECT"
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_SUBJECT"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_SUBJECT" />
 
     		<field	name="receipt_intro" type="textarea"
-    				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_INTRO"
-    				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_INTRO"
-    				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_INTRO" rows="3" cols="50"/>
+    				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_INTRO"
+    				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_INTRO"
+    				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_INTRO" rows="3" cols="50"/>
 
     		<field	name="receipt_footer" type="textarea"
-    				default="JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_FOOTER"
-    				label="JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_FOOTER"
-    				description="JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_FOOTER" rows="3" cols="50"/>
+    				default="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DEFAULT_EDIT_RECEIPT_FOOTER"
+    				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT_FOOTER"
+    				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT_FOOTER" rows="3" cols="50"/>
 
 	</fieldset>
 

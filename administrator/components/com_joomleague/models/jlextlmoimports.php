@@ -87,7 +87,7 @@ function checkStartExtension()
 $option='com_joomleague';
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'components'.DS.$option.DS.'extensions'.DS.'jlextlmoimport'.DS.'tmp'.DS.'lmoimport.txt';
+$fileextension = JPATH_SITE.DS.'tmp'.DS.'lmoimport.txt';
 $xmlfile = '';
 
 if( !JFile::exists($fileextension) )

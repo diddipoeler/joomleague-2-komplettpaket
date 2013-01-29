@@ -28,6 +28,11 @@ class JoomleagueViewPredictionRules extends JLGView
 		// Get a refrence of the page instance in joomla
 		$document	=& JFactory::getDocument();
 		$model		=& $this->getModel();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
+		$mainframe = JFactory::getApplication();
 
 		$this->assignRef('predictionGame',$model->getPredictionGame());
 
@@ -45,7 +50,7 @@ class JoomleagueViewPredictionRules extends JLGView
 			//echo '<br /><pre>~'.print_r($this,true).'~</pre><br />';
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('JL_PRED_USERS_TITLE'); // 'Tippspiel Regeln'
+			$pageTitle = JText::_($this->optiontext.'JL_PRED_USERS_TITLE'); // 'Tippspiel Regeln'
 
 			$document->setTitle($pageTitle);
 
@@ -53,7 +58,7 @@ class JoomleagueViewPredictionRules extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 

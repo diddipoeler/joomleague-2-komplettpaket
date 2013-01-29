@@ -56,22 +56,23 @@ class JoomleagueModelPredictionEntry extends JoomleagueModelPrediction
 
 	function createHelptText($gameMode=0)
 	{
-		$gameModeStr = ($gameMode==0) ? JText::_('JL_PRED_ENTRY_STANDARD_MODE') : JText::_('JL_PRED_ENTRY_TOTO_MODE');
+  $option = JRequest::getCmd('option').'_';
+		$gameModeStr = ($gameMode==0) ? JText::_($option.'JL_PRED_ENTRY_STANDARD_MODE') : JText::_($option.'JL_PRED_ENTRY_TOTO_MODE');
 
-		$helpText = '<hr><h3>'.JText::_('JL_PRED_ENTRY_HELP_TITLE').'</h3>';
+		$helpText = '<hr><h3>'.JText::_($option.'JL_PRED_ENTRY_HELP_TITLE').'</h3>';
 
 		$helpText .= '<ul>';
 			$helpText .= '<li>';
-				$helpText .= JText::sprintf('JL_PRED_ENTRY_HELP_01','<b>'.$gameModeStr.'</b>');
+				$helpText .= JText::sprintf($option.'JL_PRED_ENTRY_HELP_01','<b>'.$gameModeStr.'</b>');
 			$helpText .= '</li>';
 			$helpText .= '<li>';
-				$helpText .= JText::_('JL_PRED_ENTRY_HELP_02');
+				$helpText .= JText::_($option.'JL_PRED_ENTRY_HELP_02');
 			$helpText .= '</li>';
 			$helpText .= '<li>';
-				$helpText .= JText::_('JL_PRED_ENTRY_HELP_03');
+				$helpText .= JText::_($option.'JL_PRED_ENTRY_HELP_03');
 			$helpText .= '</li>';
 			$helpText .= '<li>';
-				$helpText .= JText::_('JL_PRED_ENTRY_HELP_04');
+				$helpText .= JText::_($option.'JL_PRED_ENTRY_HELP_04');
 			$helpText .= '</li>';
 		$helpText .= '</ul>';
 		$helpText .= '<hr>';
@@ -160,7 +161,7 @@ class JoomleagueModelPredictionEntry extends JoomleagueModelPrediction
 								m.match_date <> '0000-00-00 00:00:00'
 						AND (m.cancel IS NULL OR m.cancel = 0)";
 						
-		if ( $match_ids )
+		if ( $match_ids != '""' )
     {
     $convert = array (
       '|' => ','

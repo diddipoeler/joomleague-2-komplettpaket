@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 ?>
-<h2><?php echo JText::_('JL_PRED_USERS_SEASON_RANKS'); ?></h2>
+<h2><?php echo JText::_($this->optiontext.'JL_PRED_USERS_SEASON_RANKS'); ?></h2>
 
 <!-- Flash Statistik Start -->
 <script type="text/javascript">

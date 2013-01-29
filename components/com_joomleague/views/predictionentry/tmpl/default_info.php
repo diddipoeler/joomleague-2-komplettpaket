@@ -10,7 +10,7 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$component_text = 'COM_JOOMLEAGUE_';
+
 
 if ((!isset($this->actJoomlaUser)) || ($this->actJoomlaUser->id==0))
 {

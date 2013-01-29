@@ -31,6 +31,11 @@ class JoomleagueViewPredictionResults extends JLGView
 		// Get a refrence of the page instance in joomla
 		$document	=& JFactory::getDocument();
 		$model		=& $this->getModel();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
+		$mainframe = JFactory::getApplication();
 
 		$this->assignRef('predictionGame',$model->getPredictionGame());
 

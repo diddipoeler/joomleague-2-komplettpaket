@@ -33,12 +33,12 @@ $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS
 		}
 		else
 		{
-			echo JText::_('JL_PRED_USERS_MEMBER_NO_PROFILE_SHOW');
+			echo JText::_($this->optiontext.'JL_PRED_USERS_MEMBER_NO_PROFILE_SHOW');
 		}
 	}
 	else
 	{
-		?><h3><?php echo JText::_('JL_PRED_USERS_SELECT_EXISTING_MEMBER'); ?></h3><?php
+		?><h3><?php echo JText::_($this->optiontext.'JL_PRED_USERS_SELECT_EXISTING_MEMBER'); ?></h3><?php
 	}
 	echo '<div>';
 		//backbutton

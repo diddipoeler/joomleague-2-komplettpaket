@@ -34,19 +34,19 @@ $document->addScriptDeclaration($script);
 $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 ?>
 <form name='adminForm' id='adminForm' method='post' >
-	<table width='100%'><tr><td class='sectiontableheader'><?php echo JText::sprintf('JL_PRED_USERS_EDIT_TITLE',$this->predictionGame->name); ?></td></tr></table>
+	<table width='100%'><tr><td class='sectiontableheader'><?php echo JText::sprintf($this->optiontext.'JL_PRED_USERS_EDIT_TITLE',$this->predictionGame->name); ?></td></tr></table>
 	<br />
 	<?php /* approved show_profile fav_team champ_tipp slogan reminder receipt admintipp picture */ ?>
 	<table class='plinfo' cellpadding='4' cellspacing='1'>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_NAME','JL_PRED_USERS_EDIT_LABEL_HELP_NAME');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_NAME',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_NAME');
 			?>
 			<td colspan='2'><?php echo ($this->config['show_full_name']) ? $this->predictionMember->name : $this->predictionMember->username; ?></td>
 		</tr>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_REGDATE','JL_PRED_USERS_EDIT_LABEL_HELP_REGDATE');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_REGDATE',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_REGDATE');
 			?>
 			<td colspan='2'><?php
 				$regDate = substr($this->predictionMember->pmRegisterDate,0,10);
@@ -62,14 +62,14 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 					echo '<input type="hidden" name="registerDate" value="'.JoomleagueHelper::convertDate($regDate).'" />';
 					echo '<input type="hidden" name="registerTime" value="'.$regTime.'" />';
 					echo	$this->predictionMember->pmRegisterDate != '0000-00-00 00:00:00' ?
-							JHTML::date($this->predictionMember->pmRegisterDate,JText::_('JL_PRED_USERS_EDIT_LABEL_REGDATE_FORMAT')) :
-							JText::_('JL_PRED_USERS_UNKNOWN');
+							JHTML::date($this->predictionMember->pmRegisterDate,JText::_($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_REGDATE_FORMAT')) :
+							JText::_($this->optiontext.'JL_PRED_USERS_UNKNOWN');
 				}
 				?></td>
 		</tr>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_APPROVED','JL_PRED_USERS_EDIT_LABEL_HELP_APPROVED');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_APPROVED',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_APPROVED');
 			?>
 			<td colspan='2'><?php echo $this->lists['approvedForGame']; ?></td>
 		</tr>
@@ -79,7 +79,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<tr>
 				<?php
-				echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_ALIAS','JL_PRED_USERS_EDIT_LABEL_HELP_ALIAS');
+				echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_ALIAS',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_ALIAS');
 				?>
 				<td colspan='2'>
 					<input	class='inputbox' type='text' name='aliasName' size='60' maxlength='255'
@@ -95,7 +95,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<tr>
 				<?php
-				echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_SLOGAN','JL_PRED_USERS_EDIT_LABEL_HELP_SLOGAN');
+				echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_SLOGAN',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_SLOGAN');
 				?>
 				<td colspan='2'>
 					<input	class='inputbox' type='text' name='slogan' size='60' maxlength='255'
@@ -107,7 +107,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		?>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_SHOW_PROFILE','JL_PRED_USERS_EDIT_LABEL_HELP_SHOW_PROFILE');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_SHOW_PROFILE',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_SHOW_PROFILE');
 			?>
 			<td colspan='2'><?php echo $this->lists['show_profile']; ?></td>
 		</tr>
@@ -117,7 +117,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<tr>
 				<?php
-				echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_REMINDER','JL_PRED_USERS_EDIT_LABEL_HELP_REMINDER');
+				echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_REMINDER',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_REMINDER');
 				?>
 				<td colspan='2'><?php echo $this->lists['reminder']; ?></td>
 			</tr>
@@ -130,7 +130,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<tr>
 				<?php
-				echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_RECEIPT','JL_PRED_USERS_EDIT_LABEL_HELP_RECEIPT');
+				echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_RECEIPT',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_RECEIPT');
 				?>
 				<td colspan='2'><?php echo $this->lists['receipt']; ?></td>
 			</tr>
@@ -139,7 +139,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		?>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_ALLOW_ADMIN','JL_PRED_USERS_EDIT_LABEL_HELP_ALLOW_ADMIN');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_ALLOW_ADMIN',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_ALLOW_ADMIN');
 			?>
 			<td colspan='2'><?php echo $this->lists['admintipp']; ?></td>
 		</tr>
@@ -150,7 +150,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<tr>
 				<?php
-				echo $this->model->echoLabelTD('JL_PRED_USERS_EDIT_LABEL_FAVTEAM','JL_PRED_USERS_EDIT_LABEL_HELP_FAVTEAM',$rowspan);
+				echo $this->model->echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_FAVTEAM',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_FAVTEAM',$rowspan);
 
 				foreach ($this->predictionProjectS AS $predictionProject)
 				{
@@ -163,11 +163,11 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 						{
 							if ($predictionProjectSettings = $this->model->getPredictionProject($predictionProject->project_id))
 							{
-								echo JText::sprintf('JL_PRED_USERS_FAVTEAM_IN_PROJECT','<b>'.$predictionProjectSettings->name.'</b>');
+								echo JText::sprintf($this->optiontext.'JL_PRED_USERS_FAVTEAM_IN_PROJECT','<b>'.$predictionProjectSettings->name.'</b>');
 							}
 							else
 							{
-								echo JText::_('JL_PRED_USERS_EDIT_GETPROJECT_ERROR');
+								echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_GETPROJECT_ERROR');
 							}
 						}
 						else {echo '&nbsp;';}
@@ -183,7 +183,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			$rowspan = count($this->predictionProjectS);
 
 			
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_CHAMPION','JL_PRED_USERS_EDIT_LABEL_HELP_CHAMPION',$rowspan);
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_CHAMPION',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_CHAMPION',$rowspan);
 
 				foreach ($this->predictionProjectS AS $predictionProject)
 				{
@@ -201,11 +201,11 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 						{
 							if ($predictionProjectSettings = $this->model->getPredictionProject($predictionProject->project_id))
 							{
-								echo JText::sprintf('JL_PRED_USERS_CHAMPION_IN_PROJECT','<b>'.$predictionProjectSettings->name.'</b>');
+								echo JText::sprintf($this->optiontext.'JL_PRED_USERS_CHAMPION_IN_PROJECT','<b>'.$predictionProjectSettings->name.'</b>');
 							}
 							else
 							{
-								echo JText::_('JL_PRED_USERS_EDIT_GETPROJECT_ERROR');
+								echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_GETPROJECT_ERROR');
 							}
 						}
 						else {echo '&nbsp;';}
@@ -221,11 +221,11 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		?>
 		<tr>
 			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD('JL_PRED_USERS_EDIT_LABEL_AVATAR','JL_PRED_USERS_EDIT_LABEL_HELP_AVATAR');
+			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_AVATAR',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_AVATAR');
 			?>
 			<td colspan='2'>
 				<img	class='imagepreview' src='<?PHP echo $this->predictionMember->picture  ; ?>' name='picture_preview'
-						id='picture_preview' border='3' alt='<?php echo JText::_('JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' title='<?php echo JText::_('JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' /><br /><?php echo $this->imageselect; ?>
+						id='picture_preview' border='3' alt='<?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' title='<?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' /><br /><?php echo $this->imageselect; ?>
 			</td>
 		</tr>
 		<?php
@@ -246,7 +246,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 	<input type='hidden' name='user_id'			value='<?php echo $this->actJoomlaUser->id; ?>' />
 	<input type='hidden' name='member_id'		value='<?php echo $this->predictionMember->pmID; ?>' />
 	<input type='hidden' name='option'			value='com_joomleague' />
-	<input type='hidden' name='controller'		value='predictionusers' />
-	<input type='hidden' name='task' 			value='saveMemberData' />
+	
+	<input type='hidden' name='task' 			value='predictionusers.saveMemberData' />
 	<?php echo JHTML::_('form.token'); ?>
 </form><br />

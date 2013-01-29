@@ -10,9 +10,9 @@
 */
 
 defined('_JEXEC') or die(JText::_('Restricted access'));
-$component_text = 'COM_JOOMLEAGUE_';
+
 ?><p><?php
-	echo JText::_($component_text.'JL_PRED_ENTRY_WELCOME_INFO_01');
+	echo JText::_($this->optiontext.'JL_PRED_ENTRY_WELCOME_INFO_01');
 	?></p><p><?php
-		echo JText::sprintf($component_text.'JL_PRED_ENTRY_WELCOME_INFO_02',$this->config['ownername'],'<b>' . $this->websiteName . '</b>');
+		echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_WELCOME_INFO_02',$this->config['ownername'],'<b>' . $this->websiteName . '</b>');
 	?></p><hr><br />

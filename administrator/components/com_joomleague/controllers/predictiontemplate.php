@@ -45,7 +45,8 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
     $option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
-
+    $mainframe->enqueueMessage(JText::_('PredictionTemplate Task -> '.$this->getTask()),'');
+    
 	 	$model=$this->getModel('predictiontemplates');
 		$viewType=$document->getType();
 		$view=$this->getView('predictiontemplates',$viewType);
@@ -103,7 +104,12 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 	function save()
 	{
 		JRequest::checkToken() or die( '' );
-
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+    $mainframe->enqueueMessage(JText::_('PredictionTemplate Task -> '.$this->getTask()),'');
+    
 		$msg	= '';
 		$post	= JRequest::get( 'post' );
 		$cid	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
@@ -116,11 +122,11 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 			$model = $this->getModel( 'predictiontemplate' );
 			if ( $model->store( $post ) )
 			{
-				$msg .= JText::_( 'JL_ADMIN_PTMPL_CTRL_SAVED' );
+				$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_SAVED' );
 			}
 			else
 			{
-				$msg .= JText::_( 'JL_ADMIN_PTMPL_CTRL_SAVED_ERROR' ) . $index . ": " . $model->getError();
+				$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_SAVED_ERROR' ) . $index . ": " . $model->getError();
 			}
 			// Check the table in so it can be edited.... we are done with it anyway
 			$model->checkin();
@@ -184,25 +190,30 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 	function remove()
 	{
 		JRequest::checkToken() or die( 'JL_GLOBAL_INVALID_TOKEN' );
-
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+    $mainframe->enqueueMessage(JText::_('PredictionTemplate Task -> '.$this->getTask()),'');
+    
 		$msg = '';
 		$cid = JRequest::getVar( 'cid', array(), 'post', 'array' );
 		JArrayHelper::toInteger( $cid );
 
 		if ( count( $cid ) < 1 )
 		{
-			JError::raiseError(500, JText::_( 'JL_ADMIN_PTMPL_CTRL_DEL_ITEM' ) );
+			JError::raiseError(500, JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_DEL_ITEM' ) );
 		}
 
 		$model = $this->getModel( 'predictiontemplate' );
 
 		if ( $model->delete( $cid ) )
 		{
-			$msg .= JText::_( 'JL_ADMIN_PTMPL_CTRL_DEL_ITEM_MSG' );
+			$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_DEL_ITEM_MSG' );
 		}
 		else
 		{
-			$msg .= JText::_( 'JL_ADMIN_PTMPL_CTRL_DEL_ITEM_ERROR' ) . $model->getError();
+			$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_DEL_ITEM_ERROR' ) . $model->getError();
 		}
 
 		$link = 'index.php?option=com_joomleague&view=predictiontemplates';
@@ -213,7 +224,12 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 	function cancel()
 	{
 		JRequest::checkToken() or die( 'JL_GLOBAL_INVALID_TOKEN' );
-
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+    $mainframe->enqueueMessage(JText::_('PredictionTemplate Task -> '.$this->getTask()),'');
+    
 		$msg = '';
 		// Checkin the template
 		//$model = $this->getModel( 'predcitiontemplates' );

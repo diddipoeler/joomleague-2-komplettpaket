@@ -26,9 +26,12 @@ class JoomleagueViewPredictionRanking extends JLGView
 	function display($tpl=null)
 	{
 		// Get a refrence of the page instance in joomla
-        $mainframe = JFactory::getApplication();
+    $mainframe = JFactory::getApplication();
 		$document	=& JFactory::getDocument();
 		$model		=& $this->getModel();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
 
 		$this->assignRef('predictionGame',$model->getPredictionGame());
 

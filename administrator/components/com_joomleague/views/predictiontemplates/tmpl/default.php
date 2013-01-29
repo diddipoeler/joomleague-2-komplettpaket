@@ -10,10 +10,10 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$component_text = 'COM_JOOMLEAGUE_';
+
 JHTML::_( 'behavior.tooltip' );
 ?>
-<form method='post' name='adminForm'>
+<form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<table width='100%'>
 		<tr>
 			<td nowrap='nowrap' style='text-align: right; '>
@@ -29,13 +29,13 @@ JHTML::_( 'behavior.tooltip' );
 				<?php
 				if ( $this->pred_id > 0 )
 				{
-					$outputStr = JText::sprintf( 	$component_text.'JL_ADMIN_PTMPLS_TITLE2',
+					$outputStr = JText::sprintf( 	$this->optiontext.'JL_ADMIN_PTMPLS_TITLE2',
 													'<i>' . $this->predictiongame->name . '</i>',
 													' ' . $this->predictiongame->id . ' ' );
 				}
 				else
 				{
-					$outputStr = JText::_( $component_text.'JL_ADMIN_PTMPLS_DESCR' );
+					$outputStr = JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_DESCR' );
 				}
 				echo $outputStr;
 				?>
@@ -53,7 +53,7 @@ JHTML::_( 'behavior.tooltip' );
 						<tr>
 							<th class='title' width='5'>
 								<?php
-								echo JText::_( $component_text.'JL_GLOBAL_PG_NUM' );
+								echo JText::_( 'COM_JOOMLEAGUE_GLOBAL_NUM' );
 								?>
 							</th>
 							<th class='title' width='20'>
@@ -65,18 +65,18 @@ JHTML::_( 'behavior.tooltip' );
 							</th>
 							<th class='title' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( $component_text.'JL_ADMIN_PTMPLS_TMPL_FILE' ), 'tmpl.template', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TMPL_FILE' ), 'tmpl.template', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>							
 							<th class='title' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( $component_text.'JL_ADMIN_PTMPLS_TITLE3' ), 'tmpl.title', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE3' ), 'tmpl.title', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>
 
 							<th class='title' width='20' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( $component_text.'JL_GLOBAL_PG_ID' ), 'tmpl.id', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_GLOBAL_ID' ), 'tmpl.id', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>
 						</tr>
@@ -116,8 +116,8 @@ JHTML::_( 'behavior.tooltip' );
 										<?php
 										echo JHTML::_(	'image',
 														'administrator/components/com_joomleague/assets/images/edit.png',
-														JText::_( $component_text.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ),
-														'title= "' . JText::_( $component_text.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ) . '"' );
+														JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ),
+														'title= "' . JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ) . '"' );
 										?>
 									</a>
 								</td>
@@ -148,7 +148,7 @@ JHTML::_( 'behavior.tooltip' );
 			?>
 		</fieldset>
 	</div>
-
+  <input type="hidden" name="view"				value="predictiontemplates" />
 	<input type='hidden' name='task'				value='predictiontemplate.display' />
 	<input type='hidden' name='boxchecked'			value='0' />
 	<input type='hidden' name='filter_order_Dir'	value='' />

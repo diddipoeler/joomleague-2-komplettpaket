@@ -29,6 +29,11 @@ class JoomleagueViewPredictionUsers extends JLGView
 	{
 		// Get a refrence of the page instance in joomla
 		$document	=& JFactory::getDocument();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
+		$mainframe = JFactory::getApplication();
 		
 		$document->addScript(JURI::root().'components/com_joomleague/assets/js/json2.js');
 		$document->addScript(JURI::root().'components/com_joomleague/assets/js/swfobject.js');
@@ -48,7 +53,7 @@ class JoomleagueViewPredictionUsers extends JLGView
 						
 			//$rankingconfig	= $model->getPredictionTemplateConfig('ranking');
 
-      $this->assignRef('debuginfo',	$model->getDebugInfo());
+//      $this->assignRef('debuginfo',	$model->getDebugInfo());
       
 			$this->assignRef('model',				$model);
 			$this->assignRef('roundID',				$this->model->roundID);
@@ -188,7 +193,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 			$this->assignRef('lists',$lists);
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('JL_PRED_USERS_TITLE');
+			$pageTitle = JText::_($this->optiontext.'JL_PRED_USERS_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -196,7 +201,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 
 
@@ -230,7 +235,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 	{
 		$bar = new $config['bartype_1']();
 		$bar->set_values( $userpoints);	
-		$bar->set_tooltip( JText::_('JL_PRED_USER_POINTS'). ": #val#" );
+		$bar->set_tooltip( JText::_($this->optiontext.'JL_PRED_USER_POINTS'). ": #val#" );
 		$bar->set_colour( $config['bar1'] );
 		$bar->set_on_show(new bar_on_show($config['animation_1'], $config['cascade_1'], $config['delay_1']));
 
@@ -241,7 +246,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		$x->set_labels_from_array($round_labels);
 		$chart->set_x_axis( $x );
-		$x_legend = new x_legend( JText::_('JL_PRED_USER_ROUNDS') );
+		$x_legend = new x_legend( JText::_($this->optiontext.'JL_PRED_USER_ROUNDS') );
 		$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_x_legend( $x_legend );
 
@@ -251,7 +256,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$y->set_steps(round(@max($userpoints)/8));
 		$y->set_colours($config['y_axis_colour'], $config['y_axis_colour_inner']);
 		$chart->set_y_axis( $y );
-		$y_legend = new y_legend( JText::_('JL_PRED_USER_POINTS') );
+		$y_legend = new y_legend( JText::_($this->optiontext.'JL_PRED_USER_POINTS') );
 		$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_y_legend( $y_legend );
 		
@@ -317,7 +322,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		//$x->set_labels_from_array($round_labels);
 		$chart->set_x_axis( $x );
-		$x_legend = new x_legend( JText::_('JL_PRED_USER_ROUNDS') );
+		$x_legend = new x_legend( JText::_($this->optiontext.'JL_PRED_USER_ROUNDS') );
 		$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_x_legend( $x_legend );
 
@@ -327,7 +332,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$y->set_steps(round(@max($data_1)/8));
 		$y->set_colours($config['y_axis_colour'], $config['y_axis_colour_inner']);
 		$chart->set_y_axis( $y );
-		$y_legend = new y_legend( JText::_('JL_PRED_USER_POINTS') );
+		$y_legend = new y_legend( JText::_($this->optiontext.'JL_PRED_USER_POINTS') );
 		$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_y_legend( $y_legend );
 		

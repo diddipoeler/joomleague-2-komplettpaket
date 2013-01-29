@@ -165,6 +165,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `division_id` INT(11) NULL DEFAULT NULL ,
   PRIMARY KEY (`id`),
   KEY `round_id` (`round_id`),
   KEY `projectteam1_id` (`projectteam1_id`),

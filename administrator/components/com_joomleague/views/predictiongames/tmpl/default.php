@@ -10,6 +10,7 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
+
 //echo '<br />#<pre>'; print_r( $this->items ); echo '</pre>#<br />';
 
 //Ordering allowed ?
@@ -17,7 +18,7 @@ $ordering = ($this->lists['order']=='pre.ordering');
 
 JHTML::_('behavior.tooltip');
 ?>
-<form method="post" name="adminForm">
+<form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<table>
 		<tr>
 			<td align="left" width="100%">
@@ -71,7 +72,7 @@ JHTML::_('behavior.tooltip');
 			<fieldset class="adminform">
 				<legend>
 					<?php
-					echo JText::sprintf('JL_ADMIN_PGAMES_TITLE2','<i>'.$this->items[0]->name.'</i>');
+					echo JText::sprintf($this->optiontext.'JL_ADMIN_PGAMES_TITLE2','<i>'.$this->items[0]->name.'</i>');
 					?>
 				</legend>
 			<?php
@@ -80,18 +81,18 @@ JHTML::_('behavior.tooltip');
 		<table width='100%' class='adminlist'>
 			<thead>
 				<tr>
-					<th width='10'><?php echo JText::_('JL_GLOBAL_NUM'); ?></th>
+					<th width='10'><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_NUM'); ?></th>
 					<th width='20'>
 						<input	type='checkbox' name='toggle' value='' onclick="checkAll(<?php echo count( $this->items ); ?>);" />
 					</th>
 					<th width='20'>&nbsp;</th>
 					<th class='title' nowrap='nowrap'>
 						<?php
-						echo JHTML::_('grid.sort',JText::_('JL_ADMIN_PGAMES_NAME'),'pre.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort',JText::_($this->optiontext.'JL_ADMIN_PGAMES_NAME'),'pre.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
-					<th class='title' nowrap='nowrap' colspan='2'><?php echo JText::_('JL_ADMIN_PGAMES_PROJ_COUNT'); ?></th>
-					<th class='title' nowrap='nowrap' colspan='2'><?php echo JText::_('JL_ADMIN_PGAMES_ADMIN_COUNT'); ?></th>
+					<th class='title' nowrap='nowrap' colspan='2'><?php echo JText::_($this->optiontext.'JL_ADMIN_PGAMES_PROJ_COUNT'); ?></th>
+					<th class='title' nowrap='nowrap' colspan='2'><?php echo JText::_($this->optiontext.'JL_ADMIN_PGAMES_ADMIN_COUNT'); ?></th>
 					<th class='title' width='5%' nowrap='nowrap'>
 						<?php
 						echo JHTML::_('grid.sort',JText::_('JL_GLOBAL_PUBLISHED'),'pre.published',$this->lists['order_Dir'],$this->lists['order']);
@@ -99,7 +100,7 @@ JHTML::_('behavior.tooltip');
 					</th>
 					<th class='title' width='20' nowrap='nowrap'>
 						<?php
-						echo JHTML::_('grid.sort',JText::_('JL_GLOBAL_ID'),'pre.id',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort',JText::_('COM_JOOMLEAGUE_GLOBAL_ID'),'pre.id',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 				</tr>
@@ -137,8 +138,8 @@ JHTML::_('behavior.tooltip');
 							?><a href='<?php echo $link; ?>'>
 									<img	src='<?php echo JURI::root(); ?>administrator/components/com_joomleague/assets/images/edit.png'
 											border='0'
-											alt='<?php echo JText::_( 'JL_ADMIN_PGAMES_EDIT_DETAILS' ); ?>'
-											title='<?php echo JText::_( 'JL_ADMIN_PGAMES_EDIT_DETAILS' ); ?>'>
+											alt='<?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_EDIT_DETAILS' ); ?>'
+											title='<?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_EDIT_DETAILS' ); ?>'>
 								</a>
 							<?php
 						}
@@ -153,7 +154,7 @@ JHTML::_('behavior.tooltip');
 						{
 						?><a	href="#"
 								onclick="document.adminForm.prediction_id.value='<?php echo $row->id; ?>';document.adminForm.submit();"
-								title="<?php echo JText::sprintf(	'JL_ADMIN_PGAMES_SELECT_PGAME',
+								title="<?php echo JText::sprintf(	$this->optiontext.'JL_ADMIN_PGAMES_SELECT_PGAME',
 																	$row->name ); ?>">
 								<?php
 								echo $row->name;
@@ -182,11 +183,11 @@ JHTML::_('behavior.tooltip');
 						<th>&nbsp;</th>
 						<th><?php echo JText::_( 'NUM' ); ?></th>
 						<th>&nbsp;</th>
-						<th class='title'><?php echo JText::_( 'JL_ADMIN_PGAMES_PROJ_NAME' ); ?></th>
-						<th class='title'><?php echo JText::_( 'JL_ADMIN_PGAMES_MODE' ); ?></th>
-						<th class='title'><?php echo JText::_( 'JL_ADMIN_PGAMES_OVERVIEW' ); ?></th>
-						<th class='title'><?php echo JText::_( 'JL_ADMIN_PGAMES_JOKER' ); ?></th>
-						<th class='title'><?php echo JText::_( 'JL_ADMIN_PGAMES_CHAMP' ); ?></th>
+						<th class='title'><?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_PROJ_NAME' ); ?></th>
+						<th class='title'><?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_MODE' ); ?></th>
+						<th class='title'><?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_OVERVIEW' ); ?></th>
+						<th class='title'><?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_JOKER' ); ?></th>
+						<th class='title'><?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_CHAMP' ); ?></th>
 						<th class='title'><?php echo JText::_( 'JL_GLOBAL_PUBLISHED' ); ?></th>
 						<th class='title'><?php echo JText::_( 'JL_GLOBAL_ID' ); ?></th>
 					</tr>
@@ -209,40 +210,40 @@ JHTML::_('behavior.tooltip');
 							<td style='text-align:center; '>&nbsp;</td>
 							<td>
 								<a	href='<?php echo $link; ?>'
-									title='<?php echo JText::_( 'JL_ADMIN_PGAMES_EDIT_SETTINGS' ); ?>' />
+									title='<?php echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_EDIT_SETTINGS' ); ?>' />
 									<?php echo $pred_project['project_name']; ?>
 								</a>
 							</td>
 							<td style='text-align:center; '><?php
 								if ( $pred_project['mode'] == '0' )
 								{
-									echo JText::_( 'JL_ADMIN_PGAMES_STANDARD' );
+									echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_STANDARD' );
 								}
 								else
 								{
-									echo JText::_( 'JL_ADMIN_PGAMES_TOTO' );
+									echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_TOTO' );
 								}
 								?></td>
 							<td style='text-align:center; '><?php
 								if ( $pred_project['overview'] == '0' )
 								{
-									echo JText::_( 'JL_ADMIN_PGAMES_FULL_SEASON' );
+									echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_FULL_SEASON' );
 								}
 								else
 								{
-									echo JText::_( 'JL_ADMIN_PGAMES_HALF_SEASON' );
+									echo JText::_( $this->optiontext.'JL_ADMIN_PGAMES_HALF_SEASON' );
 								}
 								?></td>
 							<td style='text-align:center; '><?php
 								if ( $pred_project['joker'] == '1' )
 								{
 									if ($pred_project['joker_limit']==0){$maxJ=JText::_('UNLIMITED');}else{$maxJ=$pred_project['joker_limit'];}
-									$imageTitle = JText::sprintf( 'JL_ADMIN_PGAMES_MAX_JOKER', $maxJ );
+									$imageTitle = JText::sprintf( $this->optiontext.'JL_ADMIN_PGAMES_MAX_JOKER', $maxJ );
 									$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 								}
 								else
 								{
-									$imageTitle = JText::_( 'JL_ADMIN_PGAMES_NO_JOKER' );
+									$imageTitle = JText::_( $this->optiontext.'JL_ADMIN_PGAMES_NO_JOKER' );
 									$imageFile = 'administrator/components/com_joomleague/assets/images/delete.png';
 								}
 								echo JHTML::_(	'image', $imageFile, $imageTitle, 'title= "' . $imageTitle . '"' );
@@ -250,12 +251,12 @@ JHTML::_('behavior.tooltip');
 							<td style='text-align:center; '><?php
 								if ( $pred_project['champ'] == '1' )
 								{
-									$imageTitle = JText::_( 'JL_ADMIN_PGAMES_PICK_CHAMP' );
+									$imageTitle = JText::_( $this->optiontext.'JL_ADMIN_PGAMES_PICK_CHAMP' );
 									$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 								}
 								else
 								{
-									$imageTitle = JText::_( 'JL_ADMIN_PGAMES_NO_PICK_CHAMP' );
+									$imageTitle = JText::_( $this->optiontext.'JL_ADMIN_PGAMES_NO_PICK_CHAMP' );
 									$imageFile = 'administrator/components/com_joomleague/assets/images/delete.png';
 								}
 								echo JHTML::_(	'image', $imageFile, $imageTitle, 'title= "' . $imageTitle . '"' );
@@ -264,12 +265,12 @@ JHTML::_('behavior.tooltip');
 								<?php
 									if ( $pred_project['published'] == '1' )
 									{
-										$imageTitle = JText::_( 'JL_ADMIN_PGAMES_PUBLISHED' );
+										$imageTitle = JText::_( $this->optiontext.'JL_ADMIN_PGAMES_PUBLISHED' );
 										$imageFile = 'administrator/components/com_joomleague/assets/images/ok.png';
 									}
 									else
 									{
-										$imageTitle = JText::_( 'JL_ADMIN_PGAMES_UNPUBLISHED' );
+										$imageTitle = JText::_( $this->optiontext.'JL_ADMIN_PGAMES_UNPUBLISHED' );
 										$imageFile = 'administrator/components/com_joomleague/assets/images/delete.png';
 									}
 									echo JHTML::_(	'image', $imageFile, $imageTitle, 'title= "' . $imageTitle . '"' );
@@ -297,7 +298,8 @@ JHTML::_('behavior.tooltip');
 	</div>
 
 	
-	<input type='hidden' name='task'				value='' />
+	<input type="hidden" name="view"				value="predictiongames" />
+	<input type='hidden' name='task'				value='predictiongame.display' />
 	<input type='hidden' name='boxchecked'			value='0' />
 	<input type='hidden' name='filter_order'		value='<?php echo $this->lists['order']; ?>' />
 	<input type='hidden' name='filter_order_Dir'	value='' />

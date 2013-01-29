@@ -21,7 +21,7 @@ jimport( 'joomla.application.component.controller' );
  * @package	JoomLeague
  * @since	1.5.100628
  */
-class JoomleagueControllerPredictionEntry extends JLGController
+class JoomleagueControllerPredictionEntry extends JoomleagueController
 {
 	
 	function __construct()
@@ -54,8 +54,16 @@ class JoomleagueControllerPredictionEntry extends JLGController
 
 	function register()
 	{
-		JRequest::checkToken() or jexit(JText::_('JL_PRED_INVALID_TOKEN_REFUSED'));
-		$msg	= '';
+		$option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+    
+    $mainframe->enqueueMessage(JText::_('PredictionEntry Task -> '.$this->getTask()),'');
+    
+    JRequest::checkToken() or jexit(JText::_($optiontext.'JL_PRED_INVALID_TOKEN_REFUSED'));
+		
+    $msg	= '';
 		$link	= '';
 		$post	= JRequest::get('post');
 
@@ -70,14 +78,14 @@ class JoomleagueControllerPredictionEntry extends JLGController
 
 		if (($user->id != $joomlaUserID) || ($user->id < 62))
 		{
-			$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_1');
+			$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ($isMember)
 			{
-				$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_4');
+				$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_4');
 				$link = JFactory::getURI()->toString();
 			}
 			else
@@ -85,7 +93,7 @@ class JoomleagueControllerPredictionEntry extends JLGController
 				$post['registerDate'] = JHTML::date(time(),'%Y-%m-%d %H:%M:%S');
 				if (!$model->store($post,'PredictionEntry'))
 				{
-					$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_5');
+					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_5');
 					$link = JFactory::getURI()->toString();
 				}
 				else
@@ -94,16 +102,16 @@ class JoomleagueControllerPredictionEntry extends JLGController
 					$cids[] = $model->_db->insertid();
 					JArrayHelper::toInteger($cids);
 
-					$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_MSG_2');
+					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_MSG_2');
 					if ($model->sendMembershipConfirmation($cids))
 					{
 						$msg .= ' - ';
-						$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_MSG_3');
+						$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_MSG_3');
 					}
 					else
 					{
 						$msg .= ' - ';
-						$msg .= JText::_('JL_PRED_ENTRY_CONTROLLER_ERROR_6');
+						$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_6');
 					}
 					$params = array(	'option' => 'com_joomleague',
 										'view' => 'predictionentry',

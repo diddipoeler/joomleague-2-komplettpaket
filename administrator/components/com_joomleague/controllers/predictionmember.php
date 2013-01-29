@@ -44,7 +44,9 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
-
+    
+    $mainframe->enqueueMessage(JText::_('PredictionMember Task -> '.$this->getTask()),'');
+    
 	 	$model=$this->getModel('predictionmembers');
 		$viewType=$document->getType();
 		$view=$this->getView('predictionmembers',$viewType);
@@ -107,7 +109,10 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 	{
 		//$post		= JRequest::get( 'post' );
 		//echo '<pre>'; print_r($post); echo '</pre>';
-
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+    
 		$d		= ' - ';
 		$msg	= '';
 		$cid	= JRequest::getVar('cid',array(),'post','array');
@@ -117,25 +122,25 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 
 		if (count($cid) < 1)
 		{
-			JError::raiseError(500,JText::_('JL_ADMIN_PMEMBER_CTRL_DEL_ITEM'));
+			JError::raiseError(500,JText::_($optiontext.'JL_ADMIN_PMEMBER_CTRL_DEL_ITEM'));
 		}
 
 		$model =& $this->getModel('predictionmember');
 
 		if (!$model->deletePredictionResults($cid,$prediction_id))
 		{
-			$msg .= $d . JText::_('JL_ADMIN_PMEMBER_CTRL_DEL_MSG') . $model->getError();
+			$msg .= $d . JText::_($optiontext.'JL_ADMIN_PMEMBER_CTRL_DEL_MSG') . $model->getError();
 		}
-		$msg .= $d . JText::_('JL_ADMIN_PMEMBER_CTRL_DEL_PRESULTS');
+		$msg .= $d . JText::_($optiontext.'JL_ADMIN_PMEMBER_CTRL_DEL_PRESULTS');
 
 		if (!$model->deletePredictionMembers($cid))
 		{
-			$msg .= JText::_('JL_ADMIN_PMEMBER_CTRL_DEL_PMEMBERS_MSG') . $model->getError();
+			$msg .= JText::_($optiontext.'JL_ADMIN_PMEMBER_CTRL_DEL_PMEMBERS_MSG') . $model->getError();
 		}
 
-		$msg .= $d . JText::_('JL_ADMIN_PMEMBER_CTRL_DEL_PMEMBERS');
+		$msg .= $d . JText::_($optiontext.'JL_ADMIN_PMEMBER_CTRL_DEL_PMEMBERS');
 
-		$link = 'index.php?option=com_joomleague&view=predictionmembers';
+		$link = 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display';
 		//echo $msg;
 		$this->setRedirect($link,$msg);
 	}
@@ -157,7 +162,7 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 
 		if ( $post['predgameid'] == 0 )
 		{
-			JError::raiseWarning( 500, JText::_( 'JL_ADMIN_PMEMBER_CTRL_SELECT_ERROR' ) );
+			JError::raiseWarning( 500, JText::_( 'COM_JOOMLEAGUE_JL_ADMIN_PMEMBER_CTRL_SELECT_ERROR' ) );
 		}
 		$msg		= '';
 		$d			= ' - ';
@@ -167,7 +172,7 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
     
     
 
-		$link = 'index.php?option=com_joomleague&view=predictionmembers';
+		$link = 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display';
 		echo $msg;
 		//$this->setRedirect( $link, $msg );
 	}
@@ -189,7 +194,7 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 			echo "<script> alert( '" . $model->getError(true) . "' ); window.history.go(-1); </script>\n";
 		}
 
-		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers' );
+		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display' );
 	}
 
 	function unpublish()
@@ -209,7 +214,7 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 			echo "<script> alert( '" . $model->getError(true)  ."' ); window.history.go(-1); </script>\n";
 		}
 
-		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers' );
+		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display' );
 	}
 
   function save_memberlist()
@@ -218,10 +223,25 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
   $save_memberlist = $model->save_memberlist();
   
   $msg = JText::_('JL_ADMIN_PMEMBER_LIST_SAVED');
-  $link = 'index.php?option=com_joomleague&view=predictionmembers';
+  $link = 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display';
 	$this->setRedirect($link,$msg);
   
   }
+  
+  /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'PredictionMember', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
   
   
 }

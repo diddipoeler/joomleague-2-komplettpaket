@@ -27,8 +27,15 @@ class JoomleagueViewPredictionTemplates extends JLGView
 	function display( $tpl = null )
 	{
 		$mainframe			=& JFactory::getApplication();
-		$option				= 'com_joomleague';
-    $component_text = 'COM_JOOMLEAGUE_';
+// 		$option				= 'com_joomleague';
+//     $component_text = 'COM_JOOMLEAGUE_';
+    
+    // Get a refrence of the page instance in joomla
+		$document	=& JFactory::getDocument();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 		$lists				= array();
 		$db					=& JFactory::getDBO();
@@ -46,7 +53,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		$lists['order']		= $filter_order;
 
 		//build the html select list for prediction games
-		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( $component_text.'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
+		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( $this->optiontext.'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
 		if ( $res =& $this->getModel()->getPredictionGames() ) { $predictions = array_merge( $predictions, $res ); }
 		$lists['predictions'] = JHTML::_(	'select.genericlist',
 											$predictions,
@@ -59,7 +66,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
-		JToolBarHelper::title( JText::_( $component_text.'JL_ADMIN_PTMPLS_TITLE' ), 'generic.png' );
+		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE' ), 'generic.png' );
 		if ( $prediction_id > 0 )
 		{
 			JToolBarHelper::editListX('predictiontemplate.edit');
@@ -72,7 +79,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 			}
 			else
 			{
-				JToolBarHelper::custom( 'reset', 'restore', 'restore', JText::_( 'JL_GLOBAL_RESET' ), true );
+				JToolBarHelper::custom( 'predictiontemplate.reset', 'restore', 'restore', JText::_( 'COM_JOOMLEAGUE_GLOBAL_RESET' ), true );
 			}
 			JToolBarHelper::divider();
 		}
@@ -84,7 +91,8 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		$this->assignRef( 'items',			$items );
 		$this->assignRef( 'pagination',		$pagination );
 		$this->assignRef( 'predictiongame',	$predictiongame );
-		
+		$url=$uri->toString();
+		$this->assignRef('request_url',$url);
 		parent::display( $tpl );
 	}
 

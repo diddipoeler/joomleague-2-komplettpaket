@@ -6,10 +6,10 @@
 			description="JL_FES_PARAMS_DESCR_OPTIONS">
 
 		<field	name="show_points" type="radio" default="1"
-				label="JL_FES_PREDICTIONSRULES_PARAM_LABEL_SHOW_POINTS"
-				description="JL_FES_PREDICTIONSRULES_PARAM_DESCR_SHOW_POINTS">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONSRULES_PARAM_LABEL_SHOW_POINTS"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONSRULES_PARAM_DESCR_SHOW_POINTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 	</fieldset>

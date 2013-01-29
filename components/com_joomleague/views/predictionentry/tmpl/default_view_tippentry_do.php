@@ -10,10 +10,11 @@
 */
 
 defined('_JEXEC') or die('Restricted access');
-$component_text = 'COM_JOOMLEAGUE_';
 
-if ( $this->debuginfo )
+
+if ( $this->show_debug_info )
 {
+echo '<br />config<pre>~' . print_r($this->config,true) . '~</pre><br />';
 echo '<br />allowedAdmin<pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
 echo '<br />predictionMember<pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
 }
@@ -24,9 +25,9 @@ if (((JFactory::getUser()->id==0) || (!$this->model->checkPredictionMembership()
 {
 	if ($this->allowedAdmin)
 	{
-		echo JText::_($component_text.'JL_PRED_ENTRY_SELECT_EXISTING_MEMBER');
+		echo JText::_($this->optiontext.'JL_PRED_ENTRY_SELECT_EXISTING_MEMBER');
 
-if ( $this->debuginfo )
+if ( $this->show_debug_info )
 {		
 echo '<br />allowedAdmin<pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
 echo '<br />predictionMember<pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
@@ -67,8 +68,12 @@ else
 																			$this->predictionMember->user_id,$match_ids);
 
 			//$roundResults = null;
-if ( $this->debuginfo )
+if ( $this->show_debug_info )
 {		
+echo '<br />predictionGameID<pre>~' . print_r($this->model->predictionGameID,true) . '~</pre><br />';
+echo '<br />project_id<pre>~' . print_r($predictionProject->project_id,true) . '~</pre><br />';
+echo '<br />roundID<pre>~' . print_r($this->model->roundID,true) . '~</pre><br />';
+echo '<br />user_id<pre>~' . print_r($this->predictionMember->user_id,true) . '~</pre><br />';
 echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 }			
 			
@@ -80,8 +85,8 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 			<a name='jl_top' id='jl_top'></a>
 			<form name='resultsRoundSelector' method='post' onsubmit="alert(1)">
 				<input type='hidden' name='option' value='com_joomleague' />
-				<input type='hidden' name='controller' value='predictionentry' />
-				<input type='hidden' name='task' value='selectProjectRound' />
+				
+				<input type='hidden' name='task' value='predictionentry.selectProjectRound' />
 				<input type='hidden' name='prediction_id' value='<?php echo (int)$this->predictionGame->id; ?>' />
 				<input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 				<input type='hidden' name='r' value='<?php echo (int)$this->model->roundID; ?>' />
@@ -91,13 +96,13 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 
 				<table class='blog' cellpadding='0' cellspacing='0'>
 					<tr>
-						<td class='sectiontableheader'><b><?php echo JText::_($component_text.'JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
+						<td class='sectiontableheader'><b><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
 						<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
 							<?php
 							$rounds = JoomleagueHelper::getRoundsOptions($predictionProject->project_id);
 //							$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="document.forms[\'resultsRoundSelector\'].r.value=this.value;submit()"','value','text',$this->model->roundID);
 							$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'r','class="inputbox" size="1" onchange="this.form.submit();"','value','text',$this->model->roundID);
-							echo JText::sprintf(	'JL_PRED_ENTRY_SUBTITLE_02',
+							echo JText::sprintf(	$this->optiontext.'JL_PRED_ENTRY_SUBTITLE_02',
 													$htmlRoundsOptions,
 													$this->model->createProjectSelector($this->model->_predictionProjectS,$predictionProject->project_id));
 							?>
@@ -111,9 +116,9 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 					id='<?php echo $formName; ?>'
 					method='post' onsubmit='return chkFormular()' >
 
-				<input type='hidden' name='task'			value='addtipp' />
+				<input type='hidden' name='task'			value='predictionentry.addtipp' />
 				<input type='hidden' name='option'			value='com_joomleague' />
-				<input type='hidden' name='controller'		value='predictionentry' />
+				
 				<input type='hidden' name='prediction_id'	value='<?php echo (int)$this->model->predictionGameID; ?>' />
 				<input type='hidden' name='user_id'			value='<?php echo $this->predictionMember->user_id; ?>' />
 				<input type='hidden' name='memberID'		value='<?php echo $this->predictionMember->pmID; ?>' />
@@ -131,7 +136,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 
 						if (parseInt(document.<?php echo $formName; ?>.jokerCount.value) > (document.<?php echo $formName; ?>.maxJokerCount.value))
 						{
-							message+="<?php echo JText::_($component_text.'JL_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
+							message+="<?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
 						}
 						if (message==""){return true;}
 						else {
@@ -142,26 +147,26 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 				</script>
 				<table width='100%' cellpadding='0' cellspacing='0'>
 					<tr>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_DATE_TIME'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_($component_text.'JL_PRED_ENTRY_MATCH'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_RESULT'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_YOURS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_DATE_TIME'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_MATCH'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_RESULT'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_YOURS'); ?></th>
 						<?php
 						if (($predictionProject->joker) && ($predictionProject->mode==0))
 						{
 							?><th class='sectiontableheader' style='text-align:center; '><?php
 							if ($predictionProject->joker_limit > 0)
 							{
-								echo JText::sprintf($component_text.'JL_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
+								echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
 							}
 							else
 							{
-								echo JText::_($component_text.'JL_PRED_ENTRY_JOKER');
+								echo JText::_($this->optiontext.'JL_PRED_ENTRY_JOKER');
 							}
 							?></th><?php
 						}
 						?>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($component_text.'JL_PRED_ENTRY_POINTS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_POINTS'); ?></th>
 					</tr>
 					<?php
 					$k = 1;
@@ -195,24 +200,32 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 						$closingtime = $this->config['closing_time'] ;//3600=1 hour
 						$matchTimeDate = JoomleagueHelper::getTimestamp($result->match_date,1,$predictionProjectSettings->serveroffset);
 						$thisTimeDate = JoomleagueHelper::getTimestamp('',1,$predictionProjectSettings->serveroffset);
-						$matchTimeDate = $matchTimeDate - $closingtime;
+						
 
             // änderungen erlaubt ?   $this->config['show_help']
-if ( $this->debuginfo )
+if ( $this->show_debug_info )
             {
+echo '<br />this->closingtime<pre>~' . print_r($closingtime,true) . '~</pre><br />';
+echo '<br />this->matchTimeDate<pre>~' . print_r($matchTimeDate,true) . '~</pre><br />';
+echo '<br />this->thisTimeDate<pre>~' . print_r($thisTimeDate,true) . '~</pre><br />';
+            
+            
 echo '<br />this->allowedAdmin<pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
 echo '<br />this->predictionMember->admintipp<pre>~' . print_r($this->predictionMember->admintipp,true) . '~</pre><br />';
 echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'],true) . '~</pre><br />';
             }
-             
+            
+            $matchTimeDate = $matchTimeDate - $closingtime; 
 						$tippAllowed =	( ( $thisTimeDate < $matchTimeDate ) &&
 										 ($resultHome=='-') &&
-										 ($resultAway=='-')) || (($this->allowedAdmin)&&($this->predictionMember->admintipp));
+										 ($resultAway=='-') ) || (($this->allowedAdmin)&&($this->predictionMember->admintipp));
 						//$tippAllowed = true;
 						if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; $showSaveButton=true;}
 						
-						if ( $this->debuginfo )
+						if ( $this->show_debug_info )
             {
+            echo '<br />this->matchTimeDate nach berechnung<pre>~' . print_r($matchTimeDate,true) . '~</pre><br />';
+            echo '<br />this->thisTimeDate<pre>~' . print_r($thisTimeDate,true) . '~</pre><br />';
             echo '<br />resultHome<pre>~'.print_r($resultHome,true).'~</pre><br />';
 						echo '<br />resultAway<pre>~'.print_r($resultAway,true).'~</pre><br />';
 						echo '<br />tippAllowed<pre>~'.print_r($tippAllowed,true).'~</pre><br />';
@@ -224,9 +237,11 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 						<tr class='<?php echo $class; ?>'>
 							<td class="td_c">
 								<?php
-								echo JHTML::date($result->match_date,JText::_($component_text.'JL_GLOBAL_CALENDAR_DATE'));
-								echo ' - ';
-								echo JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$this->config['time_format']); 
+                // das datum des spiels
+// 								echo JHTML::date($result->match_date,JText::_($this->optiontext.'JL_GLOBAL_CALENDAR_DATE'));
+// 								echo ' - ';
+// 								echo JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$this->config['time_format']); 
+                echo $result->match_date;
 								?>
 							</td>
 								<?php
@@ -258,9 +273,9 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									$logo_home = $this->model->getMatchTeamClubLogo($result->projectteam1_id);
 									if	(($logo_home == '') || (!file_exists($logo_home)))
 									{
-										$logo_home = 'media/com_joomleague/placeholders/placeholder_small.gif';
+										$logo_home = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf($component_text.'JL_PRED_ENTRY_LOGO_OF', $homeName);
+									$imgTitle = JText::sprintf($this->optiontext.'JL_PRED_ENTRY_LOGO_OF', $homeName);
 									echo JHTML::image($logo_home,$imgTitle,array(' title' => $imgTitle));
 									echo ' ';
 								}
@@ -284,9 +299,9 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									$logo_away = $this->model->getMatchTeamClubLogo($result->projectteam2_id);
 									if (($logo_away=='') || (!file_exists($logo_away)))
 									{
-										$logo_away = 'media/com_joomleague/placeholders/placeholder_small.gif';
+										$logo_away = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf($component_text.'JL_PRED_ENTRY_LOGO_OF', $awayName);
+									$imgTitle = JText::sprintf($this->optiontext.'JL_PRED_ENTRY_LOGO_OF', $awayName);
 									echo ' ';
 									echo JHTML::image($logo_away,$imgTitle,array(' title' => $imgTitle));
 								}
@@ -353,7 +368,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 																				document.<?php echo $formName; ?>.jokerCount.value++;
 																				if (document.<?php echo $formName; ?>.jokerCount.value > document.<?php echo $formName; ?>.maxJokerCount.value)
 																				{
-																					alert("<?php echo JText::_($component_text.'JL_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
+																					alert("<?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
 																					this.checked=false;
 																					document.<?php echo $formName; ?>.jokerCount.value--;
 																				}
@@ -414,11 +429,11 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									}
 									?>
 									<span style='color:<?php echo $this->config['color_home_win']; ?>; ' >
-									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
+									<?php echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_draw']; ?>; '>
-									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
+									<?php echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_guest_win']; ?>; '>
-									<?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
+									<?php echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
 								</td>
 								<td colspan='8'>&nbsp;</td>
 							</tr>
@@ -439,7 +454,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 							$colspan=($predictionProject->joker) ? '6' : '5';
 							?>
 							<td colspan='<?php echo $colspan; ?>' class="td_c" >
-								<b><?php echo JText::_($component_text.'JL_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
+								<b><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
 							</td>
 							<?php
 						}
@@ -467,7 +482,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 								?>
 							</td>
 							<?php echo $colspan=($predictionProject->joker) ? '<td>&nbsp;</td>' : ''; ?>
-							<td class="td_c"><?php echo JText::sprintf($component_text.'JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
+							<td class="td_c"><?php echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
 							<?php
 						}
 						?>

@@ -14,6 +14,6 @@ defined('_JEXEC') or die('Restricted access');
 
 <h1>
 <?php
-echo JText::_('JL_PRED_USERS_SECTION_TITLE'); 
+echo JText::_($this->optiontext.'JL_PRED_USERS_SECTION_TITLE'); 
 ?>
 </h1>

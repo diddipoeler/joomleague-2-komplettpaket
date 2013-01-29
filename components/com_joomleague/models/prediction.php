@@ -316,9 +316,15 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 
 	function getPredictionTemplateConfig($template)
 	{
+    $option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    
 		$query =	"	SELECT t.params
 						FROM #__joomleague_prediction_template AS t
-						INNER JOIN #__joomleague_prediction_game AS p ON p.id=t.prediction_id
+						INNER JOIN #__joomleague_prediction_game AS p 
+            ON p.id=t.prediction_id
 						WHERE	t.template=".$this->_db->Quote($template)." AND
 								p.id =".$this->_db->Quote($this->predictionGameID);
 
@@ -329,23 +335,24 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 			{
 				$query="	SELECT t.params
 							FROM #__joomleague_Prediction_template AS t
-							INNER JOIN #__joomleague_prediction_game AS p ON p.id=t.prediction_id
+							INNER JOIN #__joomleague_prediction_game AS p 
+              ON p.id=t.prediction_id
 							WHERE	t.template=".$this->_db->Quote($template)." AND
 									p.id=".$this->_db->Quote($this->predictionGame->master_template);
 
 				$this->_db->setQuery($query);
 				if (!$result=$this->_db->loadResult())
 				{
-					JError::raiseNotice(500,JText::sprintf('JL_PRED_MISSING_MASTER_TEMPLATE',$template,$predictionGame->master_template));
-					JError::raiseNotice(500,JText::_('JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
+					JError::raiseNotice(500,JText::sprintf($optiontext.'JL_PRED_MISSING_MASTER_TEMPLATE',$template,$predictionGame->master_template));
+					JError::raiseNotice(500,JText::_($optiontext.'JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
 					echo '<br /><br />';
 					return false;
 				}
 			}
 			else
 			{
-				JError::raiseNotice(500,JText::sprintf('JL_PRED_MISSING_TEMPLATE',$template,$this->predictionGameID));
-				JError::raiseNotice(500,JText::_('JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
+				JError::raiseNotice(500,JText::sprintf($optiontext.'JL_PRED_MISSING_TEMPLATE',$template,$this->predictionGameID));
+				JError::raiseNotice(500,JText::_($optiontext.'JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
 				echo '<br /><br />';
 				return false;
 			}
@@ -426,7 +433,7 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 		if ($teamID==0){return '#Error1 teamID==0 in _getTeamName#';}
 
 		$query =	"
-					SELECT t.$teamName
+					SELECT t.name
 					FROM #__joomleague_team AS t
 					INNER JOIN #__joomleague_project_team AS pt on pt.id='$teamID'
 					WHERE t.id=pt.team_id";
@@ -434,7 +441,7 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 		$this->_db->query();
 		if ($object=$this->_db->loadObject())
 		{
-			return $object->$teamName;
+			return $object->name;
 		}
 		return '#Error2 teamname not found in _getTeamName#';
 
@@ -1671,7 +1678,7 @@ function checkStartExtension()
 $option='com_joomleague';
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'components'.DS.$option.DS.'extensions'.DS.'predictiongame'.DS.'tmp'.DS.'pregame.txt';
+$fileextension = JPATH_SITE.DS.'tmp'.DS.'pregame.txt';
 $xmlfile = '';
 
 if( !JFile::exists($fileextension) )

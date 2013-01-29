@@ -28,8 +28,15 @@ class JoomleagueViewPredictionGames extends JLGView
 	{
 // 		$mainframe			=& JFactory::getApplication();
 // 		$option				= 'com_joomleague';
-    $option = JRequest::getCmd('option');
+//     $option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
+    
+    // Get a refrence of the page instance in joomla
+		$document	=& JFactory::getDocument();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
 		$prediction_id		= (int) $mainframe->getUserState( $option . 'prediction_id' );
 		//echo '#' . $prediction_id . '#<br />';
     $model = $this->getModel();
@@ -114,6 +121,9 @@ class JoomleagueViewPredictionGames extends JLGView
 			//$this->assignRef( 'predictionAdmins',	$this->getModel()->getAdmins( $prediction_id ) );
 		}
 
+    $url=$uri->toString();
+		$this->assignRef('request_url',$url);
+    
 		parent::display( $tpl );
 	}
 

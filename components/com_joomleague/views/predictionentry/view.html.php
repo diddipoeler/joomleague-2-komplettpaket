@@ -28,6 +28,11 @@ class JoomleagueViewPredictionEntry extends JLGView
 	{
 		// Get a refrence of the page instance in joomla
 		$document	=& JFactory::getDocument();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
+    
+		$mainframe = JFactory::getApplication();
 		$model		=& $this->getModel();
     $model->checkStartExtension();
     
@@ -72,7 +77,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('JL_PRED_ENTRY_TITLE');
+			$pageTitle = JText::_($this->optiontext.'JL_PRED_ENTRY_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -80,7 +85,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 	
