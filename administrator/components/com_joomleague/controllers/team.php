@@ -23,7 +23,7 @@ jimport('joomla.filesystem.file');
  */
 class JoomleagueControllerTeam extends JoomleagueController
 {
-	proteced $view_list = 'teams';
+	protected $view_list = 'teams';
 	
 	function __construct()
 	{
