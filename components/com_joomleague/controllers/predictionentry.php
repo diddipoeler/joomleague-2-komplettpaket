@@ -179,7 +179,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 		$isMember	= $model->checkPredictionMembership();
 		$allowedAdmin = $model->getAllowed();
 
-		if ((($user->id!=$joomlaUserID) || ($user->id < 62)) && (!$allowedAdmin))
+		if ( ( ( $user->id != $joomlaUserID) || ($user->id < 62) ) && ( !$allowedAdmin ) )
 		{
 			$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();

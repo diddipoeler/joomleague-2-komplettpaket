@@ -14,9 +14,14 @@ defined('_JEXEC') or die('Restricted access');
 
 if ( $this->show_debug_info )
 {
+$visible = 'text';    
 echo '<br />config<pre>~' . print_r($this->config,true) . '~</pre><br />';
 echo '<br />allowedAdmin<pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
 echo '<br />predictionMember<pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
+}
+else
+{
+$visible = 'hidden';    
 }
 
 //$this->config['show_tipp_tendence']=1;
@@ -94,6 +99,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 				<input type='hidden' name='pjID' value='<?php echo (int)$this->model->pjID; ?>' />
 				<?php echo JHTML::_('form.token'); ?>
 
+
 				<table class='blog' cellpadding='0' cellspacing='0'>
 					<tr>
 						<td class='sectiontableheader'><b><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
@@ -129,6 +135,19 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 				<input type='hidden' name='jokerCount'		value='<?php echo $memberProjectJokersCount; ?>' />
 				<input type='hidden' name='maxJokerCount'	value='<?php echo $predictionProject->joker_limit; ?>' />
 				<?php echo JHTML::_('form.token'); ?>
+                
+<?php
+if ( $this->show_debug_info )
+{		
+echo '<br />predictionDoTipp<br />';
+echo '<br />prediction_id<pre>~' . print_r($this->model->predictionGameID,true) . '~</pre><br />';
+echo '<br />user_id<pre>~' . print_r($this->predictionMember->user_id,true) . '~</pre><br />';
+echo '<br />memberID<pre>~' . print_r($this->predictionMember->pmID,true) . '~</pre><br />';
+
+
+}
+?>
+                
 				<script type='text/javascript'>
 					function chkFormular()
 					{
