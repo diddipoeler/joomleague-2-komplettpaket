@@ -50,7 +50,11 @@ class JoomleagueControllerPredictionUsers extends JLGController
 	function saveMemberData()
 	{
 		JRequest::checkToken() or jexit(JText::_('JL_PRED_USERS_INVALID_TOKEN_MEMBER_NOT_SAVED'));
-
+        $option = JRequest::getCmd('option');
+        $optiontext = strtoupper(JRequest::getCmd('option').'_');
+		$mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+        
 		$msg	= '';
 		$link	= '';
 
@@ -64,28 +68,28 @@ class JoomleagueControllerPredictionUsers extends JLGController
 		$isMember		= $model->checkPredictionMembership();
 		$allowedAdmin	= $model->getAllowed();
 
-		if ((($user->id!=$joomlaUserID) || ($user->id < 62)) && (!$allowedAdmin))
+		if ( ( ( $user->id != $joomlaUserID ) ) && ( !$allowedAdmin ) )
 		{
-			$msg .= JText::_('JL_PRED_USERS_CONTROLLER_ERROR_1');
+			$msg .= JText::_($optiontext.'JL_PRED_USERS_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ((!$isMember) && (!$allowedAdmin))
 			{
-				$msg .= JText::_('JL_PRED_USERS_CONTROLLER_ERROR_2');
+				$msg .= JText::_($optiontext.'JL_PRED_USERS_CONTROLLER_ERROR_2');
 				$link = JFactory::getURI()->toString();
 			}
 			else
 			{
 				if (!$model->saveMemberData())
 				{
-					$msg .= JText::_('JL_PRED_USERS_CONTROLLER_ERROR_3');
+					$msg .= JText::_($optiontext.'JL_PRED_USERS_CONTROLLER_ERROR_3');
 					$link = JFactory::getURI()->toString();
 				}
 				else
 				{
-					$msg .= JText::_('JL_PRED_USERS_CONTROLLER_MSG_1');
+					$msg .= JText::_($optiontext.'JL_PRED_USERS_CONTROLLER_MSG_1');
 					$link = JFactory::getURI()->toString();
 				}
 			}

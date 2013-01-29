@@ -32,7 +32,8 @@ class JoomleagueViewPredictionUsers extends JLGView
     $option = JRequest::getCmd('option');
     $optiontext = strtoupper(JRequest::getCmd('option').'_');
     $this->assignRef( 'optiontext',			$optiontext );
-    
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+
 		$mainframe = JFactory::getApplication();
 		
 		$document->addScript(JURI::root().'components/com_joomleague/assets/js/json2.js');
@@ -85,7 +86,7 @@ class JoomleagueViewPredictionUsers extends JLGView
 
 			if ($this->predictionMember->pmID > 0){$dMemberID=$this->predictionMember->pmID;}else{$dMemberID=0;}
 			if (!$this->allowedAdmin){$userID=$this->actJoomlaUser->id;}else{$userID=null;}
-			$predictionMembers[] = JHTML::_('select.option','0',JText::_('JL_PRED_SELECT_MEMBER'),'value','text');
+			$predictionMembers[] = JHTML::_('select.option','0',JText::_($this->optiontext.'JL_PRED_SELECT_MEMBER'),'value','text');
 
 			if ($res=&$model->getPredictionMemberList($this->config,$userID)){$predictionMembers=array_merge($predictionMembers,$res);}
 			$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
@@ -105,8 +106,8 @@ class JoomleagueViewPredictionUsers extends JLGView
 
 			if ($this->getLayout()=='edit')
 			{
-				$dArray[] = JHTML::_('select.option',0,JText::_('JL_GLOBAL_NO'));
-				$dArray[] = JHTML::_('select.option',1,JText::_('JL_GLOBAL_YES'));
+				$dArray[] = JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
+				$dArray[] = JHTML::_('select.option',1,JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
 
 				$lists['show_profile']		= JHTML::_('select.radiolist',$dArray,'show_profile',	'class="inputbox" size="1"','value','text',$this->predictionMember->show_profile);
 				$lists['reminder']			= JHTML::_('select.radiolist',$dArray,'reminder',		'class="inputbox" size="1"','value','text',$this->predictionMember->reminder);
@@ -118,12 +119,12 @@ class JoomleagueViewPredictionUsers extends JLGView
 				foreach ($this->predictionProjectS AS $predictionProject)
 				{
 					
-          if ( $this->debuginfo )
+          if ( $this->show_debug_info )
           {
           echo 'predictionuser view.html -> predictionProject<br /><pre>~' . print_r($predictionProject,true) . '~</pre><br />';
           }
           
-					$projectteams[] = JHTML::_('select.option','0',JText::_('JL_PRED_USERS_SELECT_TEAM'),'value','text');
+					$projectteams[] = JHTML::_('select.option','0',JText::_($this->optiontext.'JL_PRED_USERS_SELECT_TEAM'),'value','text');
 					if ($res=&$model->getPredictionProjectTeams($predictionProject->project_id))
 					{
 						$projectteams = array_merge($projectteams,$res);
@@ -149,7 +150,7 @@ class JoomleagueViewPredictionUsers extends JLGView
           $tippAllowed =	( ( $thisTimeDate < $competitionStartTimeDate ) ) ;
 					if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
           
-          if ( $this->debuginfo )
+          if ( $this->show_debug_info )
             {
 echo '<br />predictionuser view.html edit -> time <pre>~' . print_r($time,true) . '~</pre><br />';
 echo '<br />predictionuser view.html edit -> showDate <pre>~' . print_r($showDate,true) . '~</pre><br />';
@@ -191,7 +192,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 			}
 
 			$this->assignRef('lists',$lists);
-      $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+      
 			// Set page title
 			$pageTitle = JText::_($this->optiontext.'JL_PRED_USERS_TITLE');
 
