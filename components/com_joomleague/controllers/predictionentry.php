@@ -169,6 +169,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 		$predictionGameID	= JRequest::getVar('prediction_id',	'','post','int');
 		$joomlaUserID		= JRequest::getVar('user_id',		'','post','int');
+        $memberID		= JRequest::getVar('memberID',		'','post','int');
 		$round_id			= JRequest::getVar('round_id',		'','post','int');
 		$pjID				= JRequest::getVar('pjID',			'','post','int');
 		$set_r				= JRequest::getVar('set_r',			'','post','int');
@@ -179,14 +180,14 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 		$isMember	= $model->checkPredictionMembership();
 		$allowedAdmin = $model->getAllowed();
 
-		if ( ( ( $user->id != $joomlaUserID) || ($user->id < 62) ) && ( !$allowedAdmin ) )
+		if ( ( ( $user->id != $joomlaUserID ) ) && ( !$allowedAdmin ) )
 		{
 			$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
-			if ((!$isMember) && (!$allowedAdmin))
+			if ( ( !$isMember ) && ( !$allowedAdmin ) )
 			{
 				$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_2');
 				$link = JFactory::getURI()->toString();
