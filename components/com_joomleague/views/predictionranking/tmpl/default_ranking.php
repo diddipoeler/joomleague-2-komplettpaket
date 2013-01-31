@@ -12,9 +12,17 @@
 defined('_JEXEC') or die(JText::_('Restricted access'));
 JHTML::_('behavior.tooltip');
 
-if ( $this->debuginfo )
+if ( $this->show_debug_info )
 {
 echo 'this->config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
+
+echo 'this->items<br /><pre>~' . print_r($this->items,true) . '~</pre><br />';
+echo 'this->pagination<br /><pre>~' . print_r($this->pagination,true) . '~</pre><br />';
+
+echo 'this->limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
+echo 'this->limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
+echo 'this->limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
+
 }
 
 //echo '<br /><pre>~' . print_r($this->config['limit'],true) . '~</pre><br />';
@@ -26,7 +34,30 @@ echo 'this->config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
 //echo 'limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
 //echo 'limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
 
+/*
+<style type="text/css">
+
+ul { 
+    list-style: none; 
+} 
+ul li { 
+    display: inline; 
+} 
+</style>
+
+*/
 ?>
+
+<style type="text/css">
+
+.pred_ranking ul { 
+    list-style: none; 
+} 
+.pred_ranking ul li { 
+    display: inline; 
+} 
+</style>
+
 <a name='jl_top' id='jl_top'></a>
 <?php
 foreach ($this->model->_predictionProjectS AS $predictionProject)
@@ -62,9 +93,9 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			<input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 			<input type='hidden' name='r' value='<?php echo (int)$this->roundID; ?>' />
 			<input type='hidden' name='pjID' value='<?php echo (int)$showProjectID; ?>' />
-			<input type='hidden' name='task' value='selectProjectRound' />
+			<input type='hidden' name='task' value='predictionranking.selectProjectRound' />
 			<input type='hidden' name='option' value='com_joomleague' />
-			<input type='hidden' name='controller' value='predictionranking' />
+			
 
 
 
@@ -72,7 +103,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				<tr>
 					<td class='sectiontableheader'>
 						<?php
-						echo '<b>'.JText::sprintf('JL_PRED_RANK_SUBTITLE_01').'</b>';
+						echo '<b>'.JText::sprintf($this->optiontext.'JL_PRED_RANK_SUBTITLE_01').'</b>';
 						?>
 					</td>
 					<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
@@ -85,7 +116,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 
 							echo '&nbsp;&nbsp;';
 							$link = JoomleagueHelperRoute::getResultsRoute($predictionProject->project_id,$this->roundID);
-							$imgTitle=JText::_('JL_PRED_ROUND_RESULTS_TITLE');
+							$imgTitle=JText::_($this->optiontext.'JL_PRED_ROUND_RESULTS_TITLE');
 							$desc = JHTML::image('media/com_joomleague/jl_images/icon-16-Matchdays.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 							echo JHTML::link($link,$desc,array('target' => '_blank'));
 						}
@@ -114,111 +145,127 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					</tr>
 
 <tfoot>
-<tr>
-<td colspan="4"><?php echo $this->pagination->getListFooter(); ?></td>
-</tr>
+<div class="pred_ranking">
+<?php 
+echo $this->pagination->getListFooter(); 
+?>
+</div>
 </tfoot>                    
                     
 				</table>
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form><br />
 			<?php
+/*			
+<tfoot>
+<tr>
+<td colspan="4"></td>
+</tr>
+</tfoot>			
+*/			
 		}
 		?>
 		<table width='100%' cellpadding='0' cellspacing='0'>
 			<tr>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK'); ?></td>
 				<?php
 				if ($this->config['show_user_icon'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_AVATAR'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_AVATAR'); ?></td><?php
 				}
 				?>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_MEMBER'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_MEMBER'); ?></td>
 				<?php
 
 
         if ($this->config['show_champion_tip'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_CHAMPION_TIP'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_CHAMPION_TIP'); ?></td><?php
 				}
 
 				if ($this->config['show_tip_details'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_DETAILS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_DETAILS'); ?></td><?php
 				}
 				?>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_POINTS'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_POINTS'); ?></td>
 				<?php
 				if ($this->config['show_average_points'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_AVERAGE'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_AVERAGE'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_tips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_PREDICTIONS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_PREDICTIONS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_joker'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_JOKERS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_JOKERS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_topptips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_TOPS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_TOPS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_difftips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_MARGINS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_MARGINS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_tendtipps'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('JL_PRED_RANK_TENDENCIES'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_($this->optiontext.'JL_PRED_RANK_TENDENCIES'); ?></td><?php
 				}
 				?>
 			</tr>
 			<?php
 
-        if ($this->config['show_debug_modus'])
+        if ($this->show_debug_info)
         {
 				echo 'default_ranking - this->predictionMember<br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
         }
         
 				$k = 0;
 				$memberList = $this->model->getPredictionMembersList($this->config,$this->configavatar);
+				//$memberList = $this->items;
 				
-        //echo '<br /><pre>~' . print_r($memberList,true) . '~</pre><br />';
+				if ($this->show_debug_info)
+        {
+        echo 'getPredictionMembersList<br /><pre>~' . print_r($memberList,true) . '~</pre><br />';
+				}
 				
 				$membersResultsArray = array();
 				$membersDataArray = array();
 
+        // anfang der tippmitglieder
 				foreach ($memberList AS $member)
 				{
 
-					if ( $this->debuginfo )
+					if ( $this->show_debug_info )
           {
           echo '<br />this->model->page<pre>~' . print_r($this->model->page,true) . '~</pre><br />';
           }
-          
+                              
 					$memberPredictionPoints = $this->model->getPredictionMembersResultsList(	$showProjectID,
 																								$this->model->from,
 																								$this->model->to,
 																								$member->user_id,
 																								$this->model->type);
 																								
-					if ( $this->debuginfo )
+					if ( $this->show_debug_info )
           {																			
 					echo '<br />memberPredictionPoints<pre>~' . print_r($memberPredictionPoints,true) . '~</pre><br />';
 					}
+					
+					
 					
 					$predictionsCount=0;
 					$totalPoints=0;
@@ -311,7 +358,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					}
 					$membersDataArray[$member->pmID]['name'] = $output;
 					
-					$imgTitle = JText::sprintf('JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
+					$imgTitle = JText::sprintf($this->optiontext.'JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
 					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
 					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID);
 					if (($member->show_profile)||($this->predictionMember->pmID==$member->pmID))
@@ -326,12 +373,15 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					$membersDataArray[$member->pmID]['show_tip_details']	= $output;
 					$membersDataArray[$member->pmID]['champ_tipp']		= $member->champ_tipp;
 				}
-
-        if ( $this->debuginfo )
+        // ende der tippmitglieder
+        
+        if ( $this->show_debug_info )
         {
 				echo '<br />membersResultsArray<pre>~' . print_r($membersResultsArray,true) . '~</pre><br />';
 				echo '<br />membersDataArray<pre>~' . print_r($membersDataArray,true) . '~</pre><br />';
 				}
+				
+				
 				
 				//$membersResultsArray2=$membersResultsArray;
 				//$membersResultsArray3=$membersResultsArray;
@@ -352,21 +402,33 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				$computedMembersRanking = $this->model->computeMembersRanking($membersResultsArray,$this->config);
 				$recordCount = count($computedMembersRanking);
 				
-				if ( $this->debuginfo )
-      {
+				if ( $this->show_debug_info )
+        {
 				echo '<br />computedMembersRanking<pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 				}
+				
+				
 
 				$i=1;
-				if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
-				$rlimit=ceil($recordCount / $this->config['limit']);
-				$this->model->page=($this->model->page > $rlimit) ? $rlimit : $this->model->page;
-				$skipMemberCount=($this->model->page > 0) ? (($this->model->page-1)*$this->config['limit']) : 0;
+				
+//         if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
+// 				$rlimit=ceil($recordCount / $this->config['limit']);
+// 				$this->model->page=($this->model->page > $rlimit) ? $rlimit : $this->model->page;
+// 				$skipMemberCount=($this->model->page > 0) ? (($this->model->page-1)*$this->config['limit']) : 0;
 
+        //foreach ( $this->items as $items )
 				foreach ($computedMembersRanking AS $key => $value)
 				{
+				
+				foreach ( $this->items as $items )
+				{
+				if ( $key == $items->pmID )
+				{
+// 				$key = $items->pmID;
+// 				$value = $computedMembersRanking[$key];
+				
 					//echo '<br /><pre>~' . print_r($value,true) . '~</pre><br />';
-					if ($i <= $skipMemberCount) { $i++; continue; }
+// 					if ($i <= $skipMemberCount) { $i++; continue; }
 
 					$class = ($k==0) ? 'sectiontableentry1' : 'sectiontableentry2';
 					$styleStr = ($this->predictionMember->pmID==$key) ? ' style="background-color:'.$this->config['background_color_ranking'].'; color:black; " ' : '';
@@ -374,28 +436,30 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					$tdStyleStr = " style='text-align:center; vertical-align:middle; ' ";
 
 					//$this->config['show_all_user']=1;
-					if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
-						($this->config['show_all_user']) ||
-						($this->predictionMember->pmID==$key))
-					{
+					
+// 					if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
+// 						($this->config['show_all_user']) ||
+// 						($this->predictionMember->pmID==$key))
+// 					{
+					
 					   // pagenavi
-                       if ( !$this->limitend )
-                       {
-                       $this->limitend = $recordCount;
-                       }
-                       if ( !$this->limit )
-                       {
-                       $this->limitend = $recordCount;
-                       $this->limitstart = 0;
-                       }
+//                        if ( !$this->limitend )
+//                        {
+//                        $this->limitend = $recordCount;
+//                        }
+//                        if ( !$this->limit )
+//                        {
+//                        $this->limitend = $recordCount;
+//                        $this->limitstart = 0;
+//                        }
 
 //echo 'recordCount<br /><pre>~' . print_r($recordCount,true) . '~</pre><br />';
 //echo 'limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
 //echo 'limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
 //echo 'limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
 
-						if(in_array($i, range($this->limitstart + 1, $this->limitend)))
-                        {
+// 						if(in_array($i, range($this->limitstart + 1, $this->limitend)))
+//                         {
                         ?>
                         
 						<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
@@ -416,7 +480,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 							{
 							if ( $membersDataArray[$key]['champ_tipp'] )
               {
-              $imgTitle = JText::_('JL_PRED_RANK_CHAMPION_TIP');
+              $imgTitle = JText::_($this->optiontext.'JL_PRED_RANK_CHAMPION_TIP');
 					    $imgFile = JHTML::image( "media/com_joomleague/event_icons/goal2.png", $imgTitle , array(' title' => $imgTitle));
               ?>
               <td <?php echo $tdStyleStr; ?> >
@@ -489,11 +553,13 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 							?>
 						</tr>
 						<?php
-                        }
+                        //}
 						$k = (1-$k);
 						$i++;
 						//if ($i > $skipMemberCount+$this->config['limit']){break;}
-					}
+					  }
+          }
+          
 				}
 			?>
             

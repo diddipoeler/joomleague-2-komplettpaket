@@ -12,6 +12,8 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
+require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'pagination.php');
+
 jimport('joomla.application.component.view');
 
 /**
@@ -28,6 +30,8 @@ class JoomleagueViewPredictionRanking extends JLGView
 		// Get a refrence of the page instance in joomla
     $mainframe = JFactory::getApplication();
 		$document	=& JFactory::getDocument();
+		$uri = JFactory :: getURI();
+		
 		$model		=& $this->getModel();
     $option = JRequest::getCmd('option');
     $optiontext = strtoupper(JRequest::getCmd('option').'_');
@@ -51,6 +55,11 @@ class JoomleagueViewPredictionRanking extends JLGView
     $this->assignRef('limitstart',$limitstart);
     $this->assignRef('limitend',$limitend);
     
+//     $mdlProject = JModel::getInstance("Project", "JoomleagueModel");
+//     $mdlProject->setProjectId($project->id);
+//     $map_config		= $mdlProject->getMapConfig();
+// 		$this->assignRef( 'mapconfig',		$map_config ); // Loads the project-template -settings for the GoogleMap
+		
 		if (isset($this->predictionGame))
 		{
 			$config			= $model->getPredictionTemplateConfig($this->getName());
@@ -71,24 +80,37 @@ class JoomleagueViewPredictionRanking extends JLGView
 			//echo '<br /><pre>~' . print_r( $this->config, true ) . '~</pre><br />';
 
 			$type_array = array();
-			$type_array[]=JHTML ::_('select.option','0',JText::_('JL_PRED_RANK_FULL_RANKING'));
-			$type_array[]=JHTML ::_('select.option','1',JText::_('JL_PRED_RANK_FIRST_HALF'));
-			$type_array[]=JHTML ::_('select.option','2',JText::_('JL_PRED_RANK_SECOND_HALF'));
+			$type_array[]=JHTML ::_('select.option','0',JText::_($optiontext.'JL_PRED_RANK_FULL_RANKING'));
+			$type_array[]=JHTML ::_('select.option','1',JText::_($optiontext.'JL_PRED_RANK_FIRST_HALF'));
+			$type_array[]=JHTML ::_('select.option','2',JText::_($optiontext.'JL_PRED_RANK_SECOND_HALF'));
 			$lists['type']=$type_array;
 			unset($type_array);
 
 			$this->assignRef('lists',$lists);
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('JL_PRED_RANK_TITLE');
-
+			$pageTitle = JText::_($optiontext.'JL_PRED_RANK_TITLE');
+			
+			$mdlProject = JModel::getInstance("Project", "JoomleagueModel");
+			foreach ( $this->predictionProjectS as $project )
+			{
+      $mdlProject->setProjectId($project->project_id);
+      }
+      
+      $map_config		= $mdlProject->getMapConfig();
+		  $this->assignRef( 'mapconfig',		$map_config ); // Loads the project-template -settings for the GoogleMap
+			
+      $this->assignRef('PredictionMembersList',	$model->getPredictionMembersList($this->config,$this->configavatar) );
+      $this->geo = new simpleGMapGeocoder();
+	    $this->geo->genkml3prediction($this->predictionGame->id,$this->PredictionMembersList);
+	  
 			$document->setTitle($pageTitle);
 
 			parent::display($tpl);
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_($optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 

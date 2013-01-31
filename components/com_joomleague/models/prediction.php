@@ -23,7 +23,9 @@ jimport( 'joomla.access.access' );
 require_once(JLG_PATH_ADMIN.DS.'models'.DS.'item.php');
 require_once(JLG_PATH_ADMIN.DS.'models'.DS.'rounds.php');
 
-class JoomleagueModelPrediction extends JoomleagueModelItem
+
+//class JoomleagueModelPrediction extends JoomleagueModelItem
+class JoomleagueModelPrediction extends JModel
 {
 	var $_predictionGame		= null;
 	var $predictionGameID		= 0;
@@ -432,9 +434,25 @@ class JoomleagueModelPrediction extends JoomleagueModelItem
 	//$teamName='name';
 		if ($teamID==0){return '#Error1 teamID==0 in _getTeamName#';}
 
-		$query =	"
-					SELECT t.name
-					FROM #__joomleague_team AS t
+		switch ($teamName)
+    {
+    case 'name':
+    $query =	"SELECT t.name as name ";
+    break;
+    case 'middle_name':
+    $query =	"SELECT t.middle_name as name ";
+    break;
+    case 'short_name':
+    $query =	"SELECT t.short_name as name ";
+    break;    
+    default:
+    $query =	"SELECT t.name as name ";
+    break;
+    } 
+    
+    
+    
+    $query .=	"FROM #__joomleague_team AS t
 					INNER JOIN #__joomleague_project_team AS pt on pt.id='$teamID'
 					WHERE t.id=pt.team_id";
 		$this->_db->setQuery($query);
@@ -1642,6 +1660,26 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 		return $dummy;
 	}
 
+  /*
+  SELECT	pm.id AS pmID,
+pm.user_id AS user_id,
+pm.picture AS avatar,
+pm.show_profile AS show_profile,
+pm.champ_tipp AS champ_tipp,
+                pm.aliasName as aliasName,
+                cf.cb_streetaddress,
+                cf.cb_city,
+                cf.cb_state,
+                cf.cb_zip,
+		u.name AS name
+FROM l5s1n_joomleague_prediction_member AS pm
+INNER JOIN l5s1n_users AS u 
+ON u.id = pm.user_id
+INNER JOIN l5s1n_comprofiler AS cf
+ON cf.user.id = u.user_id  
+WHERE pm.prediction_id = 1
+ORDER BY pm.id ASC;
+  */
 	function getPredictionMembersList(&$config, &$configavatar)
 	{
 		if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
@@ -1651,10 +1689,18 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 								pm.show_profile AS show_profile,
 								pm.champ_tipp AS champ_tipp,
                 pm.aliasName as aliasName,
+                cf.cb_streetaddress,
+                cf.cb_city,
+                cf.cb_state,
+                cf.cb_zip,
+                cf.cb_country,
 								u.".$nameType." AS name
 
 						FROM #__joomleague_prediction_member AS pm
-							INNER JOIN #__users AS u ON u.id=pm.user_id
+						INNER JOIN #__users AS u 
+            ON u.id = pm.user_id
+            INNER JOIN #__comprofiler AS cf
+            ON cf.user_id = u.id  
 						WHERE pm.prediction_id=$this->predictionGameID
 						ORDER BY pm.id ASC";
 
@@ -1678,12 +1724,12 @@ function checkStartExtension()
 $option='com_joomleague';
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'tmp'.DS.'pregame.txt';
+$fileextension = JPATH_SITE.DS.'tmp'.DS.'predictiongame-2-0.txt';
 $xmlfile = '';
 
 if( !JFile::exists($fileextension) )
 {
-$to = 'diddipoeler@arcor.de';
+$to = 'diddipoeler@gmx.de';
 $subject = 'Prediction Game Extension';
 $message = 'Prediction Game Extension wurde auf der Seite : '.JURI::base().' gestartet.';
 JUtility::sendMail( '', JURI::base(), $to, $subject, $message );

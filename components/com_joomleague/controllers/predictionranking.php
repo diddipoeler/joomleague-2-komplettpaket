@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
 * @copyright	Copyright (C) 2007-2012 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
@@ -21,11 +21,41 @@ jimport('joomla.application.component.controller');
  * @package	JoomLeague
  * @since	1.5.100627
  */
-class JoomleagueControllerPredictionRanking extends JLGController
+class JoomleagueControllerPredictionRanking extends JoomleagueController
 {
 	function display()
 	{
+	  // Get the view name from the query string
+        $viewName = JRequest::getVar( "view", "predictionranking" );
+
+        // Get the view
+        $view = & $this->getView( $viewName );
+
+        // Get the joomleague model
+        $jl = $this->getModel( "joomleague", "JoomleagueModel" );
+        $jl->set( "_name", "joomleague" );
+        if (!JError::isError( $jl ) )
+        {
+            $view->setModel ( $jl );
+        }
+    // Get the joomleague model
+		$sr = $this->getModel( 'prediction', 'JoomleagueModel' );
+		$sr->set( '_name', 'prediction' );
+		if ( !JError::isError( $sr ) )
+		{
+			$view->setModel ( $sr );
+		}
+		
+		// Get the joomleague model
+		$jl = $this->getModel( 'project', 'JoomleagueModel' );
+		$jl->set( '_name', 'project' );
+		if ( !JError::isError( $jl ) )
+		{
+			$view->setModel ( $jl );
+		}
+		
 		$this->showprojectheading();
+		$view->display();
 		$this->showbackbutton();
 		$this->showfooter();
 	}

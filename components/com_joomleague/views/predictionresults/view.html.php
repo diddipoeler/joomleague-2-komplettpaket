@@ -47,7 +47,7 @@ class JoomleagueViewPredictionResults extends JLGView
 			$config = array_merge($configentry,$config);
 			$overallConfig	= $model->getPredictionOverallConfig();
 
-      $this->assignRef('debuginfo',	$model->getDebugInfo());
+      //$this->assignRef('debuginfo',	$model->getDebugInfo());
       
 			$this->assignRef('model',				$model);
 			$this->assignRef('roundID',				$this->model->roundID);
@@ -61,7 +61,7 @@ class JoomleagueViewPredictionResults extends JLGView
 			//$this->assignRef('rounds',				$model->getRounds());
 			//echo '<br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
 
-      $predictionRounds[] = JHTML::_('select.option','0',JText::_('JL_PRED_SELECT_ROUNDS'),'value','text');
+      $predictionRounds[] = JHTML::_('select.option','0',JText::_($optiontext.'JL_PRED_SELECT_ROUNDS'),'value','text');
       if ( $res = &$model->getRoundNames($this->predictionGame->id) ){$predictionRounds = array_merge($predictionRounds,$res);}
 			$lists['predictionRounds']=JHTML::_('select.genericList',$predictionRounds,'r','class="inputbox" onchange="this.form.submit(); "','value','text',$this->model->roundID);
 			unset($res);
@@ -70,7 +70,7 @@ class JoomleagueViewPredictionResults extends JLGView
 			$this->assignRef('lists',$lists);
 			$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('JL_PRED_RESULTS_TITLE');
+			$pageTitle = JText::_($optiontext.'JL_PRED_RESULTS_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -78,7 +78,7 @@ class JoomleagueViewPredictionResults extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_($optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 

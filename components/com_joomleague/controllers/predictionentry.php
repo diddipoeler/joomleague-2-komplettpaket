@@ -76,7 +76,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 		$user		=& JFactory::getUser();
 		$isMember	= $model->checkPredictionMembership();
 
-		if (($user->id != $joomlaUserID) || ($user->id < 62))
+		if ( ( $user->id != $joomlaUserID )  )
 		{
 			$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
@@ -99,7 +99,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 				else
 				{
 					$cids = array();
-					$cids[] = $model->_db->insertid();
+					$cids[] = $model->getDbo()->insertid();
 					JArrayHelper::toInteger($cids);
 
 					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_MSG_2');

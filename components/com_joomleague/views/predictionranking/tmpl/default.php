@@ -11,6 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 ?>
+
 <?php
 $this->_addPath( 'template', JPATH_COMPONENT . DS .'views' . DS . 'predictionheading' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'backbutton' . DS . 'tmpl' );
@@ -24,10 +25,15 @@ echo $this->loadTemplate('predictionheading');
 echo $this->loadTemplate('sectionheader');
 
 echo $this->loadTemplate('ranking');
+echo $this->loadTemplate('maps');
 
 //if ($this->config['show_matchday_pagenav']){echo $this->loadTemplate('matchday_nav');}
 
 if ($this->config['show_help']){echo $this->loadTemplate('show_help');}
+
+// echo '<div>';
+// echo $this->pagination->getListFooter();
+// echo '</div>';
 
 echo '<div>';
 //backbutton

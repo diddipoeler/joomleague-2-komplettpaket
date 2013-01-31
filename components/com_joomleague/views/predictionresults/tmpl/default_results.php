@@ -40,8 +40,8 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
       <input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 			<input type='hidden' name='r' value='<?php echo (int)$this->roundID; ?>' />
 			<input type='hidden' name='pjID' value='<?php echo (int)$this->model->pjID; ?>' />
-			<input type='hidden' name='task' value='selectProjectRound' />
-			<input type='hidden' name='controller' value='predictionresults' />
+			<input type='hidden' name='task' value='predictionresults.selectProjectRound' />
+			
 			<?php echo JHTML::_('form.token'); ?>
 
 			<table class='blog' cellpadding='0' cellspacing='0' >
@@ -130,7 +130,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			</tr>
 			<?php
 			
-			if ( $this->debuginfo )
+			if ( $this->show_debug_info )
       {
 			echo '<br />predictionMember<pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
 			echo '<br />predictionProject<pre>~' . print_r($predictionProject,true) . '~</pre><br />';
@@ -146,7 +146,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			$membersDataArray = array();
 			$membersMatchesArray = array();
 
-      if ( $this->debuginfo )
+      if ( $this->show_debug_info )
         {
 				echo '<br />memberList<pre>~' . print_r($memberList,true) . '~</pre><br />';
 				}
@@ -154,7 +154,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			foreach ($memberList AS $member)
 			{
 			
-			  if ( $this->debuginfo )
+			  if ( $this->show_debug_info )
         {
 				echo '<br />member<pre>~' . print_r($member,true) . '~</pre><br />';
 				}
@@ -163,7 +163,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 																							$this->roundID,
 																							$this->roundID,
 																							$member->user_id);
-        if ( $this->debuginfo )
+        if ( $this->show_debug_info )
         {																							
 				echo '<br />memberPredictionPoints<pre>~' . print_r($memberPredictionPoints,true) . '~</pre><br />';
 				}
@@ -187,7 +187,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 							(!is_null($memberPredictionPoint->awayDecision)))
 						{
 						
-						if ( $this->debuginfo )
+						if ( $this->show_debug_info )
             {
 				    echo '<br />memberPredictionPoint<pre>~' . print_r($memberPredictionPoint,true) . '~</pre><br />';
 				    }
@@ -221,7 +221,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 							if (!is_null($memberPredictionPoint->prTend)){$totalTend=$totalTend+$memberPredictionPoint->prTend;}
 						}
 
-            if ( $this->debuginfo )
+            if ( $this->show_debug_info )
             {
             echo '<br />memberPredictionPoint<pre>~' . print_r($memberPredictionPoint,true) . '~</pre><br />';
             }
@@ -327,7 +327,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				}
 			}
 
-      if ( $this->debuginfo )
+      if ( $this->show_debug_info )
       {
 			echo '<br />membersResultsArray<pre>~' . print_r($membersResultsArray,true) . '~</pre><br />';
 			echo '<br />membersDataArray<pre>~' . print_r($membersDataArray,true) . '~</pre><br />';
@@ -336,7 +336,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			$computedMembersRanking = $this->model->computeMembersRanking($membersResultsArray,$this->config);
 			$recordCount = count($computedMembersRanking);
 			
-			if ( $this->debuginfo )
+			if ( $this->show_debug_info )
       {
 			echo '<br />computedMembersRanking<pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
       echo '<br />membersMatchesArray<pre>~' . print_r($membersMatchesArray,true) . '~</pre><br />';

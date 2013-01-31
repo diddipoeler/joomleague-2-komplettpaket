@@ -168,6 +168,74 @@ JFile::write($file, $xmlfile);
 
     
 }
+
+function genkml3prediction($project_id,$allmembers)
+{
+$type = 'prediction';
+
+/*
+echo 'genkml3prediction allmembers<br><pre>';
+    print_r($allmembers);
+    echo '</pre><br>';
+*/
+
+foreach ( $allmembers as $row )
+{
+$address_parts = array();
+		if (!empty($row->cb_streetaddress))
+		{
+			$address_parts[] = $row->cb_streetaddress;
+		}
+		if (!empty($row->cb_state))
+		{
+			$address_parts[] = $row->cb_state;
+		}
+		if (!empty($row->cb_city))
+		{
+			if (!empty($row->cb_zip))
+			{
+				$address_parts[] = $row->cb_zip. ' ' .$row->cb_city;
+			}
+			else
+			{
+				$address_parts[] = $row->cb_city;
+			}
+		}
+		if (!empty($row->cb_country))
+		{
+			$address_parts[] = Countries::getShortCountryName($row->cb_country);
+		}
+		$row->address_string = implode(', ', $address_parts);
+		$row->type = 'bar';
+		$coords = $this->JLgetGeoCoords($row->address_string);
+		if ( $coords["status"] == 'OK')
+		{
+    $row->lat = $coords["results"][0]["geometry"]["location"]["lat"];
+    $row->lng = $coords["results"][0]["geometry"]["location"]["lng"];
+    }
+	  else
+	  {
+	  $osm = $this->getOSMGeoCoords($row->address_string);
+    
+    if ( $osm )
+    {
+    $row->lat = $osm['lat'];
+    $row->lng = $osm['lng'];
+    }
+    else
+    {
+    $row->lat = '';
+    $row->lng = '';
+    }
+    
+    }
+
+}
+
+$this->writekml3prediction($allmembers,$project_id,$type);
+
+
+}
     
 function genkml3($project_id,$allteams)
 {
@@ -363,6 +431,108 @@ function getOSMGeoCoords($address)
     
 
     return $coords;
+}
+
+
+function writekml3prediction($allmembers,$project_id,$type)
+{
+$params		 	=	JComponentHelper::getParams('com_joomleague');
+$ph_logo_big	=	$params->get('ph_player',0);
+    
+// Creates an array of strings to hold the lines of the KML file.
+$kml = array('<?xml version="1.0" encoding="UTF-8"?>');
+$kml[] = '<kml xmlns="http://earth.google.com/kml/2.1">';
+$kml[] = ' <Document>';
+
+/*
+$kml[] = ' <Style id="restaurantStyle">';
+$kml[] = ' <IconStyle id="restuarantIcon">';
+$kml[] = ' <Icon>';
+$kml[] = ' <href>http://maps.google.com/mapfiles/kml/pal2/icon49.png</href>';
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';
+$kml[] = ' <Style id="barStyle">';
+$kml[] = ' <IconStyle id="barIcon">';
+$kml[] = ' <Icon>';
+$kml[] = ' <href>http://maps.google.com/mapfiles/kml/pal2/icon49.png</href>';
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';
+*/
+
+foreach ( $allmembers as $row )
+{
+if ( $row->lng )
+{    
+// logo_big    
+$kml[] = ' <Style id="' . $row->user_id . 'Style">';
+$kml[] = ' <IconStyle id="' . $row->user_id . 'Icon">';
+$kml[] = ' <Icon>';
+
+
+$picturepath = JPATH_SITE.DS.$row->avatar;
+
+/*
+echo 'writekml3prediction picturepath<br><pre>';
+    print_r($picturepath);
+    echo '</pre><br>';
+
+echo 'writekml3prediction avatar<br><pre>';
+    print_r($row->avatar);
+    echo '</pre><br>';
+*/
+
+if ( !file_exists($picturepath) || empty($row->avatar) )
+{
+$kml[] = ' <href>' . JURI::root().$ph_logo_big . '</href>';    
+}
+else
+{
+$kml[] = ' <href>' . JURI::root().$row->avatar . '</href>';    
+}
+
+$kml[] = ' </Icon>';
+$kml[] = ' </IconStyle>';
+$kml[] = ' </Style>';  
+}  
+}    
+
+$kml[] = ' <Folder>';
+$kml[] = ' <open>1</open>';
+foreach ( $allmembers as $row )
+{
+if ( $row->lng )
+{
+$kml[] = ' <Placemark id="placemark' . $row->user_id . '">';
+$kml[] = ' <open>1</open>';
+//$kml[] = ' <name>' . htmlentities($row->team_name) . '</name>';
+//$kml[] = ' <description>' . htmlentities($row->address_string) . '</description>';
+$kml[] = ' <name>' . $row->name . '</name>';
+$kml[] = ' <description>' . $row->address_string . '</description>';
+$kml[] = ' <address>' . $row->address_string . '</address>';
+//$kml[] = ' <styleUrl>#' . ($row->type) .'Style</styleUrl>';
+$kml[] = ' <styleUrl>#' . ($row->user_id) .'Style</styleUrl>';
+$kml[] = ' <Point>';
+$kml[] = ' <coordinates>' . $row->lng . ','  . $row->lat . '</coordinates>';
+$kml[] = ' </Point>';
+$kml[] = ' </Placemark>';
+}
+
+}
+
+$kml[] = ' </Folder>';
+
+// End XML file
+$kml[] = ' </Document>';
+$kml[] = '</kml>';
+$kmlOutput = join("\n", $kml);
+
+// mal als test
+$xmlfile = $kmlOutput;
+$file = JPATH_SITE.DS.'tmp'.DS.$project_id.'-'.$type.'.kml';
+JFile::write($file, $xmlfile);
+
 }
 
 function writekml3($allteams,$project_id,$type)

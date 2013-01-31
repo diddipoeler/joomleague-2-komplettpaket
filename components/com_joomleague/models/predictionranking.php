@@ -22,14 +22,15 @@ http://forum.joomleague.net/viewtopic.php?f=108&t=15281
 // Check to ensure this file is included in Joomla!
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-jimport( 'joomla.application.component.model' );
+//jimport( 'joomla.application.component.model' );
+jimport('joomla.application.component.modelitem');
 jimport('joomla.filesystem.file');
 jimport('joomla.utilities.array');
 jimport('joomla.utilities.arrayhelper') ;
 jimport( 'joomla.utilities.utility' );
 
 
-//require_once('project.php');
+require_once('project.php');
 //require_once('predictionusers.php');
 require_once('prediction.php');
 
@@ -41,6 +42,7 @@ require_once('prediction.php');
  * @since	1.5.100627
  */
 class JoomleagueModelPredictionRanking extends JoomleagueModelPrediction
+//class JoomleagueModelPredictionRanking extends JoomleagueModel
 {
 	var $_roundNames = null;
     var $predictionGameID = 0;
@@ -61,7 +63,8 @@ class JoomleagueModelPredictionRanking extends JoomleagueModelPrediction
 	function __construct()
 	{
 		parent::__construct();
-        
+  
+    $option = JRequest::getCmd('option');    
     $mainframe = JFactory::getApplication();
     $this->predictionGameID	= JRequest::getInt('prediction_id',0);
     
@@ -74,6 +77,7 @@ class JoomleagueModelPredictionRanking extends JoomleagueModelPrediction
  
 	$this->setState('limit', $limit);
 	$this->setState('limitstart', $limitstart);
+  
     
 	}
 
@@ -84,7 +88,7 @@ function _buildQuery()
 				pm.picture AS avatar,
 				pm.show_profile AS show_profile,
 				pm.champ_tipp AS champ_tipp,
-                pm.aliasName as aliasName,
+        pm.aliasName as aliasName,
 				u.name AS name
 				FROM #__joomleague_prediction_member AS pm
 				INNER JOIN #__users AS u ON u.id = pm.user_id
