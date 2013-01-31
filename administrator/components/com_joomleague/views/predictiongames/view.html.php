@@ -79,9 +79,11 @@ class JoomleagueViewPredictionGames extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
+        $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
+    $document->addCustomTag($stylelink);
 		if ($prediction_id==0)
 		{
-			JToolBarHelper::title(JText::_('JL_ADMIN_PGAMES_TITLE'),'generic.png');
+			JToolBarHelper::title(JText::_('JL_ADMIN_PGAMES_TITLE'),'pred-cpanel');
 
 			JToolBarHelper::publishList('predictiongame.publish');
 			JToolBarHelper::unpublishList('predictiongame.unpublish');
@@ -97,7 +99,9 @@ class JoomleagueViewPredictionGames extends JLGView
 		}
 		else
 		{
-			JToolBarHelper::title( JText::_( 'JL_ADMIN_PGAMES_PROJLIST_TITLE' ), 'generic.png' );
+			
+            
+            JToolBarHelper::title( JText::_( 'JL_ADMIN_PGAMES_PROJLIST_TITLE' ), 'pred-cpanel' );
 
 			//JToolBarHelper::publishList();
 			//JToolBarHelper::unpublishList();

@@ -49,7 +49,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
 // 		}
 
 		
-    $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextlmoimports.css'.'" type="text/css" />' ."\n";
+    $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
     $document->addCustomTag($stylelink);
     
     // Set toolbar items for the page

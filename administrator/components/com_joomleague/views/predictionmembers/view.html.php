@@ -166,7 +166,9 @@ class JoomleagueViewPredictionMembers extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
-		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_TITLE' ), 'generic.png' );
+        $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
+    $document->addCustomTag($stylelink);
+		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_TITLE' ), 'pred-cpanel' );
 
 		JToolBarHelper::custom( 'predictionmember.reminder', 'send.png', 'send_f2.png', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_SEND_REMINDER' ), true );
 		JToolBarHelper::divider();

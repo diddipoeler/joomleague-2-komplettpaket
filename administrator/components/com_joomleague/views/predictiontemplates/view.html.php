@@ -66,7 +66,10 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		unset( $res );
 
 		// Set toolbar items for the page
-		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE' ), 'generic.png' );
+        $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
+    $document->addCustomTag($stylelink);
+		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE' ), 'pred-cpanel' );
+        
 		if ( $prediction_id > 0 )
 		{
 			JToolBarHelper::editListX('predictiontemplate.edit');
