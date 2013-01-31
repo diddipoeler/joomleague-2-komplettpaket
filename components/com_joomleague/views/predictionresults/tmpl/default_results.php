@@ -359,10 +359,10 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				?>
 				<?php
 				//$this->config['show_all_user']=1;
-				if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
-					( $this->config['show_all_user'] ) ||
-					( $this->predictionMember->pmID == $key ) )
-				{
+				//if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
+//					( $this->config['show_all_user'] ) ||
+//					( $this->predictionMember->pmID == $key ) )
+//				{
 					?>
 					<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
 						<td<?php echo $tdStyleStr; ?>><?php echo $value['rank']; ?></td>
@@ -416,7 +416,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					$k = (1-$k);
 					$i++;
 					if ($i > $skipMemberCount+$this->config['limit']){break;}
-				}
+				//}
 			}
 			?>
 		</table>
