@@ -50,26 +50,6 @@
 	<tr  class="sectiontableentry1">
 		<td class="statlabel"><b><?php echo JText::_('COM_JOOMLEAGUE_STATS_MATCHES_HIGHEST_WON_AWAY');?>:</b>
 		<br />
-		<?php
-		if($this->totals->playedmatches>0 && $this->highest_away) {
-			$projectteamid = $this->highest_away->project_hometeam_id;
-			$homeTeaminfo = $this->model->getTeaminfo($projectteamid);
-			$this->config['team_picture_width'] = 40;
-			$this->config['team_picture_height'] = 0;
-			//dynamic object property string
-			$pic = $this->config['show_picture'];
-			if($pic!="") {
-				echo JoomleagueHelper::getPictureThumb($homeTeaminfo->$pic,
-														$homeTeaminfo->name,
-														$this->config['team_picture_width'],
-														$this->config['team_picture_height'],
-														1);
-				echo " ";
-			}
-			echo $homeTeaminfo->name ." - ".$this->highest_away->guestteam; 
-		}
-		
-		?>
 		</td>
 		<td class="statvalue"><br />
 		<?php
