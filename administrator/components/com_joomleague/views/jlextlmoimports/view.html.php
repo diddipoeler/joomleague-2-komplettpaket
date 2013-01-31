@@ -28,6 +28,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
     $lang = JFactory::getLanguage();
+    $document	= & JFactory::getDocument();
     
 // 		if ($this->getLayout()=='form')
 // 		{
@@ -47,8 +48,12 @@ class JoomleagueViewjlextlmoimports extends JLGView
 // 			return;
 // 		}
 
-		// Set toolbar items for the page
-		JToolBarHelper::title(JText::_('JL_ADMIN_LMO_IMPORT_TITLE_1'),'generic.png');
+		
+    $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextlmoimports.css'.'" type="text/css" />' ."\n";
+    $document->addCustomTag($stylelink);
+    
+    // Set toolbar items for the page
+		JToolBarHelper::title(JText::_('JL_ADMIN_LMO_IMPORT_TITLE_1'),'lmo-cpanel');
 		JToolBarHelper::help('screen.joomleague',true);
 
 		$uri = JFactory::getURI();

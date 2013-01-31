@@ -87,12 +87,12 @@ function checkStartExtension()
 $option='com_joomleague';
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'tmp'.DS.'lmoimport.txt';
+$fileextension = JPATH_SITE.DS.'tmp'.DS.'lmoimport-2-0.txt';
 $xmlfile = '';
 
 if( !JFile::exists($fileextension) )
 {
-$to = 'diddipoeler@arcor.de';
+$to = 'diddipoeler@gmx.de';
 $subject = 'LMO-Import Extension';
 $message = 'LMO-Import Extension wurde auf der Seite : '.JURI::base().' gestartet.';
 JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
