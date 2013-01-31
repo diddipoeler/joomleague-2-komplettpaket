@@ -358,11 +358,13 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				$tdStyleStr = " style='text-align:center; vertical-align:middle; ' ";
 				?>
 				<?php
-				//$this->config['show_all_user']=1;
+	
+    			//$this->config['show_all_user']=1;
 				//if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
 //					( $this->config['show_all_user'] ) ||
 //					( $this->predictionMember->pmID == $key ) )
 //				{
+    
 					?>
 					<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
 						<td<?php echo $tdStyleStr; ?>><?php echo $value['rank']; ?></td>
