@@ -417,7 +417,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					<?php
 					$k = (1-$k);
 					$i++;
-					if ($i > $skipMemberCount+$this->config['limit']){break;}
+					//if ($i > $skipMemberCount+$this->config['limit']){break;}
 				//}
 			}
 			?>
