@@ -96,6 +96,17 @@ class JoomleagueViewMatches extends JLGView
 
 		$lists['project_rounds2']=JHTML::_('select.genericList',$project_roundslist,'rid','class="inputbox" ','value','text',$roundws->id);
 
+  
+    // diddipoeler rounds for change in match
+    $project_change_roundslist = array();
+    if ( $ress =& JoomleagueHelper::getRoundsOptions($model->_id, 'ASC', true) )
+    {
+			$project_change_roundslist = array_merge($project_change_roundslist,$ress);
+		}
+		$lists['project_change_rounds'] = $project_change_roundslist;
+		unset($project_change_roundslist);
+	
+		
 		//build the html selectlist for matches
 		$overall_config=$model->getTemplateConfig('overall');
 		if ((isset($overall_config['use_jl_substitution']) && $overall_config['use_jl_substitution']) ||

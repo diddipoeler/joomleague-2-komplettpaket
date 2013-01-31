@@ -57,6 +57,7 @@ fieldset button {
 						<?php 
 							}
 						?>
+						<th class="title" nowrap="nowrap" ><?php echo JTEXT::_('JL_ADMIN_MATCHES_CHANGE_ROUNDLIST'); ?></th>
 						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
 						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
 						<th style="  "><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
@@ -159,14 +160,35 @@ fieldset button {
 										value="<?php echo $row->crowd; ?>" size="4" maxlength="5" tabindex="4" class="inputbox" />
 							</td>
 							<?php 
-								if($this->projectws->project_type=='DIVISIONS_LEAGUE') {
+								if($this->projectws->project_type=='DIVISIONS_LEAGUE') 
+                {
+                $append='';
+							  $append.=' onchange="document.getElementById(\'cb'.$i.'\').checked=true" ';
 							?>
 							<td class="center">
-								<?php echo $row->divhome; ?>
+								<?php
+							echo JHTML::_(	'select.genericlist',$this->lists['divisions'],'division_id'.$row->id,
+												'class="inputbox select-division_id" size="1"'.$append,'value','text',$row->division_id);
+							?>
+                <?php 
+                //echo $row->divhome; 
+                ?>
 							</td>
 							<?php 
 								} 
 							?>
+							 
+              <?php
+              $append='';
+							$append.=' onchange="document.getElementById(\'cb'.$i.'\').checked=true" ';
+              ?>
+              <td style="text-align:center; ">
+								<?php
+							echo JHTML::_(	'select.genericlist',$this->lists['project_change_rounds'],'round_id'.$row->id,
+												'class="inputbox select-round_id" size="1"'.$append,'value','text',$row->round_id);
+							?>
+							</td>
+              
 							<td class="right" >
 								<a	onclick="handleRosterIconClick(<?php echo $this->prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
