@@ -74,6 +74,7 @@ function _displayDefault( $tpl )
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
 		$model	=& $this->getModel();
+        $document	= & JFactory::getDocument();
     $dbblink = '';
 		
 		
@@ -82,7 +83,10 @@ function _displayDefault( $tpl )
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
 
-		JToolBarHelper::title( JText::_( 'JL_ADMIN_EXT_DBB_TITLE_2')  , 'extension.png' );
+$stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
+    $document->addCustomTag($stylelink);
+    
+		JToolBarHelper::title( JText::_( 'JL_ADMIN_EXT_DBB_TITLE_2')  , 'dbb-cpanel' );
 		
     $teamart = '';
     $teamarten['Herren'] = 'Herren';
