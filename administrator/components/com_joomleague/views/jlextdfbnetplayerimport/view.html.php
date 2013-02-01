@@ -94,6 +94,7 @@ function display( $tpl = null )
 		$mtime=$mtime[1] + $mtime[0];
 		$starttime=$mtime;
 		$mainframe =& JFactory::getApplication();
+        $uri =& JFactory::getURI();
 		$db =& JFactory::getDBO();
 		$post=JRequest::get('post');
 		
@@ -122,8 +123,8 @@ function display( $tpl = null )
 	
 function _displayDefault( $tpl )
 	{
-		global $mainframe, $option;
-
+		//global $mainframe, $option;
+$mainframe =& JFactory::getApplication();
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
@@ -151,8 +152,8 @@ function _displayDefault( $tpl )
 
 function _displayDefaultUpdate( $tpl )
 	{
-		global $mainframe, $option;
-        
+		//global $mainframe, $option;
+        $mainframe =& JFactory::getApplication();
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
@@ -179,9 +180,9 @@ function _displayDefaultUpdate( $tpl )
     
 function _displayDefaultEdit( $tpl )
 	{
-		global $mainframe, $option;
+		//global $mainframe, $option;
 
-    
+    $mainframe =& JFactory::getApplication();
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
