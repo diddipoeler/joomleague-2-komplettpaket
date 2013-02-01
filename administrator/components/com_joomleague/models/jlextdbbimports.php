@@ -357,7 +357,8 @@ if ( $spielplan)
 {
 $teile[0] = '';
 $teile[1] = '';
-$valueplayground = utf8_encode (trim(strip_tags($paarung[2][5])));
+//$valueplayground = utf8_encode (trim(strip_tags($paarung[2][5])));
+$valueplayground = trim(strip_tags($paarung[2][5]));
 
 if (  array_key_exists($valueplayground, $exportplaygroundtemp) ) 
 {
