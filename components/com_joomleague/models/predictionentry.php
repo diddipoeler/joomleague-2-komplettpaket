@@ -161,7 +161,7 @@ class JoomleagueModelPredictionEntry extends JoomleagueModelPrediction
 								m.match_date <> '0000-00-00 00:00:00'
 						AND (m.cancel IS NULL OR m.cancel = 0)";
 						
-		if ( $match_ids != '""' )
+		if ( $match_ids )
     {
     $convert = array (
       '|' => ','

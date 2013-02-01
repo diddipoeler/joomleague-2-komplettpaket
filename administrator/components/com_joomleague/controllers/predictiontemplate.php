@@ -174,7 +174,7 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 
 		if ( $this->getTask() == 'save' )
 		{
-			$link = 'index.php?option=com_joomleague&view=predictiontemplates';
+			$link = 'index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display';
 		
 		}
 		else
@@ -216,7 +216,7 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 			$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_DEL_ITEM_ERROR' ) . $model->getError();
 		}
 
-		$link = 'index.php?option=com_joomleague&view=predictiontemplates';
+		$link = 'index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display';
 		//echo $msg;
 		$this->setRedirect( $link, $msg );
 	}
@@ -236,7 +236,7 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 		$model = $this->getModel( 'predictiontemplate' );
 		$model->checkin();
 
-		$link = 'index.php?option=com_joomleague&view=predictiontemplates';
+		$link = 'index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display';
 		$this->setRedirect( $link, $msg );
 	}
 
@@ -261,7 +261,7 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 		}
 		//$this->setRedirect( 'index.php?option=com_joomleague&view=predictiontemplates', $msg );
 
-		$link = 'index.php?option=com_joomleague&view=predictiontemplates';
+		$link = 'index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display';
 		//echo $link . '<br />';
 		//echo $msg . '<br />';
 		$this->setRedirect( $link, $msg );

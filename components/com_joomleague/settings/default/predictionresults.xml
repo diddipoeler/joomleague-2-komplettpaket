@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <form>
 
-
 	<fieldset	group= "JL_FES_PARAMS_GROUP_OPTIONS"
 	name= "JL_FES_PARAMS_GROUP_OPTIONS"
 			description="JL_FES_PARAMS_DESCR_OPTIONS">

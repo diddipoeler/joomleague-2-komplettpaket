@@ -27,7 +27,7 @@ require_once ( JPATH_COMPONENT . DS . 'models' . DS . 'list.php' );
 class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 {
 
-	var $_identifier = "predtemplates";
+	var $_identifier = "predictiontemplates";
 	
 	var $_prediction_id	= null;
 
@@ -155,12 +155,14 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 	 */
 	function checklist()
 	{
+	  $mainframe		=& JFactory::getApplication();
 		$prediction_id	= $this->_prediction_id;
 		//$defaultpath	= JLG_PATH_EXTENSION_PREDICTIONGAME.DS.'settings';
 		$defaultpath	= JPATH_COMPONENT_SITE.DS.'settings';
-    $extensionspath	= JPATH_COMPONENT_SITE . DS . 'extensions' . DS;
+    //$extensionspath	= JPATH_COMPONENT_SITE . DS . 'extensions' . DS;
 		$templatePrefix	= 'prediction';
-
+//    $defaultvalues = array();
+    
 		if (!$prediction_id){return;}
 
 		// get info from prediction game
@@ -182,7 +184,7 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 		$this->_db->setQuery($query);
 		$records = $this->_db->loadResultArray();
 		if (empty($records)){$records=array();}
-
+    /*
 		// first check extension template folder if template is not default
 		if ((isset($params->extension)) && ($params->extension!=''))
 		{
@@ -191,7 +193,7 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 				$xmldirs[] = $extensionspath . $params->extension . DS . 'settings';
 			}
 		}
-
+    */
 		// add default folder
 		$xmldirs[] = $defaultpath . DS . 'default';
 
@@ -212,7 +214,51 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 
 						if ((empty($records)) || (!in_array($template,$records)))
 						{
-							//template not present, create a row with default values
+						  $jRegistry = new JRegistry();
+							$form = JForm::getInstance($file, $xmldir.DS.$file);
+							$fieldsets = $form->getFieldsets();
+							
+							//echo 'fieldsets<br /><pre>~' . print_r($fieldsets,true) . '~</pre><br />';
+							//echo 'form<br /><pre>~' . print_r($form,true) . '~</pre><br />';
+							
+							$defaultvalues = array();
+							foreach ($fieldsets as $fieldset) 
+              {
+								foreach($form->getFieldset($fieldset->name) as $field) 
+                {
+									//echo 'field<br /><pre>~' . print_r($field,true) . '~</pre><br />';
+                  $jRegistry->set($field->name, $field->value);
+                  $defaultvalues[] = $field->name.'='.$field->value;
+								}				
+							}
+							$defaultvalues = $jRegistry->toString('ini');
+							$defaultvalues = ereg_replace('"', '', $defaultvalues);
+							//$defaultvalues = implode('\n', $defaultvalues);
+							//echo 'defaultvalues<br /><pre>~' . print_r($defaultvalues,true) . '~</pre><br />';
+							
+							$tblTemplate_Config = JTable::getInstance('predictiontemplate', 'table');
+							$tblTemplate_Config->template = $template;
+							$tblTemplate_Config->title = $file;
+							$tblTemplate_Config->params = $defaultvalues;
+							$tblTemplate_Config->prediction_id = $prediction_id;
+							/*
+							// Make sure the item is valid
+							if (!$tblTemplate_Config->check())
+							{
+								$this->setError($this->_db->getErrorMsg());
+								return false;
+							}
+					    */
+							// Store the item to the database
+							if (!$tblTemplate_Config->store())
+							{
+								$this->setError($this->_db->getErrorMsg());
+								return false;
+							}
+							array_push($records,$template);
+							
+							/*
+              //template not present, create a row with default values
 							$params = new JLParameter(null, $xmldir . DS . $file);
 
 							//get the values
@@ -238,6 +284,7 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 								return false;
 							}
 							array_push($records,$template);
+							*/
 						}
 					}
 				}

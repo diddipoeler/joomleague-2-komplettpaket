@@ -422,6 +422,9 @@ class JoomleagueViewJoomleague extends JLGView
 		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextlmoimports&task=jlextlmoimports.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_LMO_IMPORT');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_LMO_IMPORT'));
+		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextdbbimports&task=jlextdbbimports.display');
+		$label4[]=JText::_('COM_JOOMLEAGUE_DBB_IMPORT');
+		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_DBB_IMPORT'));
 		$link[]=$link4;
 		$label[]=$label4;
 		$limage[]=$limage4;

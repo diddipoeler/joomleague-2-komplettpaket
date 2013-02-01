@@ -185,7 +185,7 @@ function getPagination()
 	function createFromMatchdayList($project_id)
 	{
 		$from_matchday=array();
-		$from_matchday[]= JHTML::_('select.option','0',JText::_('JL_RANKING_FROM_MATCHDAY'));
+		$from_matchday[]= JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_RANKING_FROM_MATCHDAY'));
 		$from_matchday=array_merge($from_matchday,$this->getRoundNames($project_id));
 		return $from_matchday;
 	}
@@ -193,7 +193,7 @@ function getPagination()
 	function createToMatchdayList($project_id)
 	{
 		$to_matchday=array();
-		$to_matchday[]=JHTML::_('select.option','0',JText::_('JL_RANKING_TO_MATCHDAY'));
+		$to_matchday[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_RANKING_TO_MATCHDAY'));
 		$to_matchday=array_merge($to_matchday,$this->getRoundNames($project_id));
 		return $to_matchday;
 	}

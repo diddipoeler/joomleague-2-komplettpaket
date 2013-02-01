@@ -30,7 +30,8 @@ class TablePredictionTemplate extends JLTable
 	 *
 	 * @var int
 	 */
-	var $id = null;
+	/*
+  var $id = null;
 
 	var $title;
 	var $prediction_id;
@@ -42,7 +43,8 @@ class TablePredictionTemplate extends JLTable
 	var $published;
 	var $checked_out;
 	var $checked_out_time;
-
+  */
+  
 	/**
 	 * Constructor
 	 *
@@ -69,6 +71,7 @@ class TablePredictionTemplate extends JLTable
 			$registry = new JRegistry();
 			$registry->loadArray($array['params']);
 			$array['params'] = $registry->toString('ini');
+			$array['params'] = ereg_replace('"', '', $array['params']);
 		}
 		return parent::bind($array, $ignore);
 	}

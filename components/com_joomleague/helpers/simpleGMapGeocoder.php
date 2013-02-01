@@ -173,6 +173,7 @@ function genkml3prediction($project_id,$allmembers)
 {
 $type = 'prediction';
 
+
 /*
 echo 'genkml3prediction allmembers<br><pre>';
     print_r($allmembers);
@@ -181,6 +182,23 @@ echo 'genkml3prediction allmembers<br><pre>';
 
 foreach ( $allmembers as $row )
 {
+if ( isset($row->latitude) )
+{
+if ( $row->latitude != 255 )
+{
+$row->lat = $row->latitude;
+$row->lng = $row->longitude;
+}
+else
+{
+$row->lat = '';
+$row->lng = '';    
+}
+ 
+$row->address_string = '';   
+}
+else
+{        
 $address_parts = array();
 		if (!empty($row->cb_streetaddress))
 		{
@@ -229,7 +247,7 @@ $address_parts = array();
     }
     
     }
-
+}
 }
 
 $this->writekml3prediction($allmembers,$project_id,$type);

@@ -201,6 +201,19 @@ class JoomleagueModelPrediction extends JModel
 	  
     break;
     
+    case 'com_cbe':
+    $picture = 'components/com_cbe/assets/user.png';
+    $query = 'SELECT avatar
+					FROM #__cbe_users
+					WHERE userid = ' . (int)$members ;
+		$this->_db->setQuery($query);
+		$results = $this->_db->loadResult();
+		if ( $results )
+    {
+    $picture = $results;
+    }
+    break;
+    
     case 'com_kunena':
     $query = 'SELECT avatar
 					FROM #__kunena_users
@@ -433,7 +446,7 @@ class JoomleagueModelPrediction extends JModel
 	{
 	//$teamName='name';
 		if ($teamID==0){return '#Error1 teamID==0 in _getTeamName#';}
-
+    /*
 		switch ($teamName)
     {
     case 'name':
@@ -449,8 +462,8 @@ class JoomleagueModelPrediction extends JModel
     $query =	"SELECT t.name as name ";
     break;
     } 
-    
-    
+    */
+    $query =	"SELECT t.$teamName as name ";
     
     $query .=	"FROM #__joomleague_team AS t
 					INNER JOIN #__joomleague_project_team AS pt on pt.id='$teamID'
@@ -1660,30 +1673,35 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 		return $dummy;
 	}
 
-  /*
-  SELECT	pm.id AS pmID,
-pm.user_id AS user_id,
-pm.picture AS avatar,
-pm.show_profile AS show_profile,
-pm.champ_tipp AS champ_tipp,
-                pm.aliasName as aliasName,
-                cf.cb_streetaddress,
-                cf.cb_city,
-                cf.cb_state,
-                cf.cb_zip,
-		u.name AS name
-FROM l5s1n_joomleague_prediction_member AS pm
-INNER JOIN l5s1n_users AS u 
-ON u.id = pm.user_id
-INNER JOIN l5s1n_comprofiler AS cf
-ON cf.user.id = u.user_id  
-WHERE pm.prediction_id = 1
-ORDER BY pm.id ASC;
-  */
 	function getPredictionMembersList(&$config, &$configavatar)
 	{
 		if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
-		$query=	"	SELECT	pm.id AS pmID,
+		
+		switch ( $configavatar['show_image_from'] )
+		{
+    case 'com_cbe':
+    $query=	"	SELECT	pm.id AS pmID,
+								pm.user_id AS user_id,
+								pm.picture AS avatar,
+								pm.show_profile AS show_profile,
+								pm.champ_tipp AS champ_tipp,
+                pm.aliasName as aliasName,
+                cbeu.latitude,
+                cbeu.longitude,
+                
+								u.".$nameType." AS name
+
+						FROM #__joomleague_prediction_member AS pm
+						INNER JOIN #__users AS u 
+            ON u.id = pm.user_id
+            INNER JOIN #__cbe_users AS cbeu
+            ON cbeu.userid = u.id  
+						WHERE pm.prediction_id=$this->predictionGameID
+						ORDER BY pm.id ASC";
+    break;
+    
+    default:
+    $query=	"	SELECT	pm.id AS pmID,
 								pm.user_id AS user_id,
 								pm.picture AS avatar,
 								pm.show_profile AS show_profile,
@@ -1703,6 +1721,9 @@ ORDER BY pm.id ASC;
             ON cf.user_id = u.id  
 						WHERE pm.prediction_id=$this->predictionGameID
 						ORDER BY pm.id ASC";
+    break;
+    }
+		
 
 		$this->_db->setQuery($query);
 		$results = $this->_db->loadObjectList();

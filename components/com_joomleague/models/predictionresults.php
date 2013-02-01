@@ -102,12 +102,18 @@ class JoomleagueModelPredictionResults extends JoomleagueModelPrediction
 
 	function showClubLogo($clubLogo,$teamName)
 	{
+	  $mainframe = JFactory::getApplication();
+		$document	=& JFactory::getDocument();
+		$uri = JFactory :: getURI();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    
 		$output = '';
 		if ((!isset($clubLogo)) || ($clubLogo=='') || (!file_exists($clubLogo)))
 		{
-			$clubLogo='media/com_joomleague/placeholders/placeholder_small.gif';
+			$clubLogo='images/com_joomleague/database/placeholders/placeholder_small.gif';
 		}
-		$imgTitle = JText::sprintf('JL_PRED_RESULTS_LOGO_OF',$teamName);
+		$imgTitle = JText::sprintf($optiontext.'JL_PRED_RESULTS_LOGO_OF',$teamName);
 		$output .= JHTML::image($clubLogo,$imgTitle,array(' height' => 17, ' title' => $imgTitle));
 		return $output;
 	}

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" ?>
 <form>
 
 	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_SETTINGS"
@@ -6,45 +6,19 @@
 			addpath="/administrator/components/com_joomleague/elements"
 			description="JL_FES_FLASH_PARAMS_DESCR_SETTINGS">
 
-<!--
-		<param name="which_bg" type="list" default="1"
-			label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_WHICH_BG"
-			description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_WHICH_BG" >
-			<option value="0"> JL_FES_FLASH_PARAM_OPTION0_WHICH_BG </option>
-			<option value="1"> JL_FES_FLASH_PARAM_OPTION1_WHICH_BG </option>
-		</param>
-
-		<param name="bg_image_alpha" type="text" default="30"
-			label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_BG_IMAGE_ALPHA"
-			description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_BG_IMAGE_ALPHA" />
--->
 		<field 	name="bg_colour" type="colorpicker" default="#FFFFFF"
 				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_BG_COLOUR"
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_BG_COLOUR">
 		</field>
-<!--
-		<param name="inner_bg_gradient_1" type="colorpicker" default="#FFFFFF"
-			label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_INNER_BG_GRADIENT1"
-			description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_INNER_BG_GRADIENT1" />
-
-		<param name="inner_bg_gradient_2" type="text" default=""
-			label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_INNER_BG_GRADIENT2"
-			description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_INNER_BG_GRADIENT2" />
-
-		<param name="inner_bg_gradient_orientation" type="text"
-			default="90" label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_INNER_BG_GRADIENT_ORIENTATION"
-			description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_INNER_BG_GRADIENT_ORIENTATION" />
--->
-	
 			
 		<field 	name="color_legend_line_width" type="text" default="0.4"
 				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_COLOUR_LEGEND_LINE_WIDTH"
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_COLOUR_LEGEND_LINE_WIDTH">
 		</field>
-	
+
 	</fieldset>
-	
-	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_X_AXIS"
+
+  <fieldset group="JL_FES_FLASH_PARAMS_GROUP_X_AXIS"
   name="JL_FES_FLASH_PARAMS_GROUP_X_AXIS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_X_AXIS">	
 
@@ -96,6 +70,7 @@
 		</field>
 	</fieldset>
 	
+	
 	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_LINE1_SETTINGS"
   name="JL_FES_FLASH_PARAMS_GROUP_LINE1_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_LINE1_SETTINGS">				
@@ -105,7 +80,7 @@
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE1_COLOUR">
 		</field>
 
-		<param 	name="line1_strength" type="text" default="3"
+		<field 	name="line1_strength" type="text" default="3"
 				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE1_STRENGTH" 
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE1_STRENGTH">
 		</field>
@@ -200,59 +175,7 @@
 			
 	</fieldset>
 	
-	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_LINE3_SETTINGS"
-  name="JL_FES_FLASH_PARAMS_GROUP_LINE3_SETTINGS"  
-			description="JL_FES_FLASH_PARAMS_DESCR_LINE3_SETTINGS">				
-
-		<field 	name="line3" type="colorpicker" default="#FFCC00"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_COLOUR" 
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_COLOUR">
-		</field>
-
-		<field 	name="line3_strength" type="text" default="3"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_STRENGTH" 
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_STRENGTH">
-		</field>
-
-		<field 	name="line3_dot_strength" type="text" default="5"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_DOT_STRENGTH" 
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_DOT_STRENGTH">
-		</field>
-			
-		<field 	name="dotstyle_3" type="list" default="solid_dot"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_STYLE"
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_STYLE" >
-			<option value="dot">JL_FES_FLASH_PARAM_OPTION0_LINE3_STYLE</option>
-			<option value="solid_dot">JL_FES_FLASH_PARAM_OPTION1_LINE3_STYLE</option>
-			<option value="hollow_dot">JL_FES_FLASH_PARAM_OPTION2_LINE3_STYLE</option>
-			<option value="star">JL_FES_FLASH_PARAM_OPTION3_LINE3_STYLE</option>
-			<option value="bow">JL_FES_FLASH_PARAM_OPTION4_LINE3_STYLE</option>
-		</field>			
-
-		<field 	name="l_animation_3" type="list" default="mid-slide"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_ANIMATION"
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_ANIMATION" >
-			<option value="pop-up">JL_FES_FLASH_PARAM_OPTION0_LINE3_ANIMATION</option>
-			<option value="explode">JL_FES_FLASH_PARAM_OPTION1_LINE3_ANIMATION</option>
-			<option value="mid-slide">JL_FES_FLASH_PARAM_OPTION2_LINE3_ANIMATION</option>
-			<option value="drop">JL_FES_FLASH_PARAM_OPTION3_LINE3_ANIMATION</option>
-			<option value="fade-in">JL_FES_FLASH_PARAM_OPTION4_LINE3_ANIMATION</option>
-			<option value="shrink-in">JL_FES_FLASH_PARAM_OPTION5_LINE3_ANIMATION</option>
-		</field>
-		
-		<field 	name="l_delay_3" type="text" default="0.5"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_DELAY"
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_DELAY">
-		</field>	
-
-		<field 	name="l_cascade_3" type="text" default="1"
-				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_LINE3_CASCADE"
-				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_LINE3_CASCADE">
-		</field>
-			
-	</fieldset>
-	
-	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS"
+<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS"
   name="JL_FES_FLASH_PARAMS_GROUP_BAR1_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_BAR1_SETTINGS">	
 
@@ -296,8 +219,8 @@
 		</field>
 
 	</fieldset>
-	
-	<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS"
+  
+<fieldset group="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS"
   name="JL_FES_FLASH_PARAMS_GROUP_BAR2_SETTINGS"  
 			description="JL_FES_FLASH_PARAMS_DESCR_BAR2_SETTINGS">	
 			
@@ -341,5 +264,5 @@
 		</field>
 					
 	</fieldset>
-
+    	
 </form>

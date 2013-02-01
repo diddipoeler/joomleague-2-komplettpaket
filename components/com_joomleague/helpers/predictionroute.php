@@ -21,7 +21,7 @@ jimport('joomla.application.component.helper');
 class PredictionHelperRoute extends JoomleagueHelperRoute 
 {
 
-public static function getPredictionResultsRoute($predictionID,$roundID=null,$projectID=null,$anchor='')
+public static function getPredictionResultsRoute($predictionID,$roundID=null,$projectID=null,$userID=null,$anchor='')
 	{
 		$params = array('option' => 'com_joomleague', 
 						'view' => 'predictionresults', 
@@ -32,6 +32,7 @@ public static function getPredictionResultsRoute($predictionID,$roundID=null,$pr
         
 		if (!is_null($projectID)){$params['pj']=$projectID;}
 		if (!is_null($roundID)){$params['r']=$roundID;}
+		if (!is_null($userID)){$params['uid']=$userID;}
 		$query = PredictionHelperRoute::buildQuery($params);
 		//echo $query; die();
 		$link = JRoute::_('index.php?' . $query . $anchor, false);

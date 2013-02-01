@@ -141,7 +141,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 						<td><?php echo JHTML::_('select.genericlist',$this->lists['type'],'type','class="inputbox" size="1"','value','text',$this->model->type); ?></td>
 						<td><?php echo JHTML::_('select.genericlist',$from_matchday,'from','class="inputbox" size="1"','value','text',$this->model->from); ?></td>
 						<td><?php echo JHTML::_('select.genericlist',$to_matchday,'to','class="inputbox" size="1"','value','text',$this->model->to); ?></td>
-						<td><input type='submit' class='button' name='reload View' value='<?php echo JText::_('JL_PRED_RANK_FILTER'); ?>' /></td>
+						<td><input type='submit' class='button' name='reload View' value='<?php echo JText::_('COM_JOOMLEAGUE_RANKING_FILTER'); ?>' /></td>
 					</tr>
 
 <tfoot>
@@ -360,7 +360,7 @@ echo $this->pagination->getListFooter();
 					
 					$imgTitle = JText::sprintf($this->optiontext.'JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
 					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
-					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID);
+					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID,$member->pmID);
 					if (($member->show_profile)||($this->predictionMember->pmID==$member->pmID))
 					{
 						$output = JHTML::link( $link, $imgFile);
