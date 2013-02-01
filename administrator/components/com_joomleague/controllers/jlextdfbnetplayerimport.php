@@ -255,7 +255,8 @@ function select()
     }
     else
     {
-    $link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&controller=jlextdfbnetplayerimport&task=edit';
+    $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+    //$link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&controller=jlextdfbnetplayerimport&task=edit';
     }
     
     }
