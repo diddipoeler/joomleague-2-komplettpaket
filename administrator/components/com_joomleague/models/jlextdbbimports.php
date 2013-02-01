@@ -312,7 +312,8 @@ $exportteamstemp[$valuegast] = $lfdnumberteam;
 $lfdnumberteam++;
 }
 
-  $valuematchday = trim(strip_tags($paarung[2][0]));
+  //$valuematchday = trim(strip_tags($paarung[2][0]));
+  $valuematchday = trim(strip_tags($paarung[2][1]));
   $mainframe->enqueueMessage(JText::_('spieltag '.$valuematchday.''),'');
   if ( empty($valuematchday) )
   {
@@ -337,7 +338,8 @@ $lfdnumberteam++;
 
 $tempmatch = new stdClass();
 $tempmatch->id = $lfdnumbermatch;
-$tempmatch->match_number = trim(strip_tags($paarung[2][1]));
+//$tempmatch->match_number = trim(strip_tags($paarung[2][1]));
+$tempmatch->match_number = trim(strip_tags($paarung[2][0]));
 $mainframe->enqueueMessage(JText::_('match_number '.$tempmatch->match_number.''),'');
 $tempmatch->published = 1;
 $tempmatch->count_result = 1;
