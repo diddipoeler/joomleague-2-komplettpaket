@@ -94,6 +94,7 @@ function display( $tpl = null )
 		$mtime=$mtime[1] + $mtime[0];
 		$starttime=$mtime;
 		$mainframe =& JFactory::getApplication();
+        $option = JRequest::getCmd('option');
         $uri =& JFactory::getURI();
 		$db =& JFactory::getDBO();
 		$post=JRequest::get('post');
@@ -125,6 +126,7 @@ function _displayDefault( $tpl )
 	{
 		//global $mainframe, $option;
 $mainframe =& JFactory::getApplication();
+$option = JRequest::getCmd('option');
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
@@ -154,11 +156,12 @@ function _displayDefaultUpdate( $tpl )
 	{
 		//global $mainframe, $option;
         $mainframe =& JFactory::getApplication();
+        $option = JRequest::getCmd('option');
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
 		$model	=& $this->getModel();
-		$option='com_joomleague';
+		//$option='com_joomleague';
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
@@ -183,11 +186,12 @@ function _displayDefaultEdit( $tpl )
 		//global $mainframe, $option;
 
     $mainframe =& JFactory::getApplication();
+    $option = JRequest::getCmd('option');
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
 		$model	=& $this->getModel();
-		$option='com_joomleague';
+		//$option='com_joomleague';
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
@@ -297,8 +301,9 @@ $this->insert_task = 'insertmatch';
 
 	private function _displaySelectpage($tpl)
 	{
-		$option='com_joomleague';
+		//$option='com_joomleague';
 		$mainframe =& JFactory::getApplication();
+        $option = JRequest::getCmd('option');
 		$document =& JFactory::getDocument();
 		$document->addScript('/administrator/components/com_joomleague/assets/js/JL_import.js');
 		$db =& JFactory::getDBO();
