@@ -3122,6 +3122,7 @@ private function _getObjectName($tableName,$id,$usedFieldName='')
 		return true;
 	}
 
+/*
 	private function _importTeams()
 	{
 		$my_text='';
@@ -3149,14 +3150,14 @@ private function _getObjectName($tableName,$id,$usedFieldName='')
 			}
 		}
 //To Be fixed: Falls Verein neu angelegt wird, muss auch das Team neu angelegt werden.
-/*
+
 echo '1<pre>'.print_r($this->_dbclubsid,true).'</pre>';
 echo '2<pre>'.print_r($this->_newclubs,true).'</pre>';
 echo '3<pre>'.print_r($this->_newclubsid,true).'</pre>';
 echo '4<pre>'.print_r($this->_dbteamsid,true).'</pre>';
 echo '5<pre>'.print_r($this->_newteams,true).'</pre>';
 echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
-*/
+
 		if (!empty($this->_newteams))
 		{
 			foreach ($this->_newteams AS $key => $value)
@@ -3257,6 +3258,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		$this->_success_text['Importing general team data:']=$my_text;
 		return true;
 	}  
+*/
  
  /* 
 	private function _importPersons()
@@ -3387,6 +3389,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 	}
 */
 
+/*
 	private function _importProject()
 	{
 		$my_text='';
@@ -3445,6 +3448,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 			return true;
 		}
 	}    
+*/
   
 	/**
 	 * check that all templates in default location have a corresponding record,except if project has a master template
@@ -3541,6 +3545,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		}
 	}
 
+/*
 	private function _importTemplate()
 	{
 		$my_text='';
@@ -3640,6 +3645,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		}
 		return true;
 	}
+*/
 
 /*
 	private function _importDivisions()
@@ -3691,6 +3697,8 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		}
 	}
 */
+
+/*
 	private function _importProjectTeam()
 	{
 		$my_text='';
@@ -3788,6 +3796,7 @@ echo '6<pre>'.print_r($this->_convertClubID,true).'</pre>';
 		$this->_success_text['Importing projectteam data:']=$my_text;
 		return true;
 	}
+*/
 
 /*
 	private function _importProjectReferees()

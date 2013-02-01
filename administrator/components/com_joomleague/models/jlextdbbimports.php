@@ -240,7 +240,12 @@ if ( empty($lfdnumber) )
   $temp->points_after_regular_time = '2,1,0';
   $temp->game_parts = 4;
   $temp->serveroffset = 0;
+  $temp->timezone = 'Europe/Amsterdam';
+  $temp->start_time = '15:30';
   $temp->project_type = 'SIMPLE_LEAGUE';
+  $temp->current_round_auto = 1;
+  $temp->auto_time = 1440;
+    
   $temp->extended = 'JL_EXT_DBB_XML_LINK='.$derlink;
   $this->_datas['project'] = $temp;
   }
