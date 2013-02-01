@@ -255,6 +255,7 @@ function select()
     }
     else
     {
+    $xml_file = $model->getData();    
     $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
     //$link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&controller=jlextdfbnetplayerimport&task=edit';
     }

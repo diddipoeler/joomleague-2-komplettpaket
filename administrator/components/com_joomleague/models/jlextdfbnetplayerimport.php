@@ -13,12 +13,7 @@
 
 */
 
-/* tabellen leer machen
-TRUNCATE TABLE `jos_joomleague_club`; 
-TRUNCATE TABLE `jos_joomleague_team`;
-TRUNCATE TABLE `jos_joomleague_person`;
-TRUNCATE TABLE `jos_joomleague_playground`;
-*/
+
 
 // Check to ensure this file is included in Joomla!
 defined( '_JEXEC' ) or die( 'Restricted access' );
