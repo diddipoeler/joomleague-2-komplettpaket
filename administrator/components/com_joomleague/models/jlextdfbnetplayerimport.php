@@ -41,10 +41,10 @@ if ((int)ini_get('memory_limit') < (int)$maxImportMemory){@ini_set('memory_limit
 jimport( 'joomla.application.component.model' );
 jimport('joomla.html.pane');
 
-require_once( JPATH_COMPONENT_SITE . DS. 'helpers' . DS . 'helper.php' );
-require_once( JPATH_COMPONENT_SITE . DS. 'helpers' . DS . 'ical.php' );
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'helper.php' );
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'ical.php' );
 //require_once( JPATH_COMPONENT_SITE . DS. 'extensions' . DS. 'jlextdfbnetplayerimport' . DS. 'admin' . DS. 'helpers' . DS . 'iCal2csv.php' );
-require_once ( JPATH_COMPONENT_SITE .DS . 'helpers' . DS . 'countries.php' );
+require_once ( JLG_PATH_SITE .DS . 'helpers' . DS . 'countries.php' );
 
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
