@@ -123,7 +123,9 @@ function select()
 	
 	function save()
 	{
-		// Check for request forgeries
+		$mainframe =& JFactory::getApplication();
+  $document	=& JFactory::getDocument();
+        // Check for request forgeries
 		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
 		$msg='';
 		JToolBarHelper::back(JText::_('JL_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
@@ -133,6 +135,9 @@ function select()
 
     $delimiter = JRequest::getVar('delimiter',null);
     $whichfile = JRequest::getVar('whichfile',null);
+    
+    $mainframe->enqueueMessage(JText::_('delimiter '.$delimiter.''),'');
+    $mainframe->enqueueMessage(JText::_('whichfile '.$whichfile.''),'');
     
     if ( $whichfile == 'playerfile' )
     {
