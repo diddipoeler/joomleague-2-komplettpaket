@@ -1223,7 +1223,7 @@ elseif ( $whichfile == 'matchfile' )
 	$csv->delimiter = "\t";
 	$csv->parse($file);
 
-$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+//$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
 
 //  echo 'csv->data<pre>';
 //  print_r($csv->data);
@@ -1296,6 +1296,11 @@ $lfdnumbermatchreferee = 1;
 
 // dfbnet heimmannschaft  
 $valueheim = $csv->data[$a]['Heim Mannschaft'];
+if ( empty($valueheim) )
+{
+$valueheim = $csv->data[$a]['Heimmannschaft'];    
+}
+
 if ( $valueheim != 'Spielfrei' )
 {
 if (in_array($valueheim, $exportteamstemp)) 
@@ -1395,6 +1400,11 @@ $lfdnumberteam++;
 
 // dfbnet gastmannschaft  
 $valuegast = $csv->data[$a]['Gast Mannschaft'];
+if ( empty($valuegast) )
+{
+$valuegast = $csv->data[$a]['Gastmannschaft'];    
+}
+
 if ( $valuegast != 'Spielfrei' )
 {
 if (in_array($valuegast, $exportteamstemp)) 
