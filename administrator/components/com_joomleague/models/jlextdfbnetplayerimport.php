@@ -500,13 +500,13 @@ $this->_project_id = $post['projects'];
 $file = JPATH_SITE.DS.'tmp'.DS.'joomleague_import.csv';
 $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
 
-
+/*
 $csv = & new csv_bv($file, ',', '"' , '\\'); 
 $csv->SkipEmptyRows(TRUE);
 $csv->TrimFields(TRUE);
 $_arr = $csv->csv2Array(); 
 $mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre>'   ),'');
-
+*/
 
     
 if ( $whichfile == 'playerfile' )
