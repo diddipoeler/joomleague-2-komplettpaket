@@ -77,7 +77,7 @@
 
 defined('_JEXEC') or die;
 
-class parseCSV {
+class JLparseCSV {
 	
 	/**
 	 * Configuration

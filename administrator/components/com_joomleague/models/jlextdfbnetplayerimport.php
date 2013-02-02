@@ -509,7 +509,7 @@ $mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre
 */
 
 # tab delimited, and encoding conversion
-$csv = new parseCSV();
+$csv = new JLparseCSV();
 //$csv->encoding('UTF-16', 'UTF-8');
 $csv->delimiter = $delimiter;
 $csv->parse($file);
