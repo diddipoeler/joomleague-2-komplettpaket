@@ -41,6 +41,8 @@ require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'ical.php' );
 //require_once( JPATH_COMPONENT_SITE . DS. 'extensions' . DS. 'jlextdfbnetplayerimport' . DS. 'admin' . DS. 'helpers' . DS . 'iCal2csv.php' );
 require_once ( JLG_PATH_SITE .DS . 'helpers' . DS . 'countries.php' );
 
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'jlextcsv.php' );
+
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
 jimport( 'joomla.utilities.arrayhelper' ) ;
@@ -497,6 +499,12 @@ $this->_project_id = $post['projects'];
 
 $file = JPATH_SITE.DS.'tmp'.DS.'joomleague_import.csv';
 $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
+
+$csv = & new csv_bv($file, $delimiter, '"' , '\\'); 
+$csv->SkipEmptyRows(TRUE);
+$csv->TrimFields(TRUE);
+$_arr = $csv->csv2Array(); 
+$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre>'   ),'');
     
 if ( $whichfile == 'playerfile' )
 {
@@ -558,6 +566,43 @@ elseif ( $whichfile == 'matchfile' )
 * Verlegt_Wochentag;28
 * Verlegt_Datum;29
 * Verlegt_Uhrzeit;30
+
+neu ab 2012/13
+Datum
+Uhrzeit
+Saison
+Verband
+MannschaftsartID
+Mannschaftsart
+SpielklasseID
+Spielklasse
+SpielgebietID
+Spielgebiet
+Rahmenspielplan
+Staffelnummer
+Staffel
+Staffelkennung
+Staffelleiter
+Spieldatum
+Uhrzeit
+Wochentag
+Spieltag
+Schlüsseltag
+Heimmannschaft
+Gastmannschaft
+freigegeben
+Spielstätte
+Spielleitung
+Assistent 1
+Assistent 2
+verlegtWochentag
+verlegtSpieldatum
+verlegtUhrzeit
+
+
+
+
+
 */
 $startline = 1 ;
 
@@ -1099,7 +1144,7 @@ Array
 
   
   
-  $teamid = 1;
+$teamid = 1;
   
 $this->fileName = JFile::read($file);
 $this->lines = file( $file );  
