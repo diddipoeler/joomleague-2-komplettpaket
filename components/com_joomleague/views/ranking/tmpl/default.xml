@@ -5,6 +5,7 @@
 			<![CDATA[COM_JOOMLEAGUE_XML_RANKING_LAYOUT_DESCR]]>
 		</message>
 	</layout>
+	
 	 <fields name="request">
 		<fieldset	name="request"
 					label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
