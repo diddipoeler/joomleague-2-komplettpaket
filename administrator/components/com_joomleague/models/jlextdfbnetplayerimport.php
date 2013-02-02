@@ -506,6 +506,7 @@ $csv->TrimFields(TRUE);
 $_arr = $csv->csv2Array(); 
 $mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre>'   ),'');
 
+
     
 if ( $whichfile == 'playerfile' )
 {
