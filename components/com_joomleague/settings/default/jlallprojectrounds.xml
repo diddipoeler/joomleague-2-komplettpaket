@@ -9,8 +9,8 @@
 		<field	name="show_sectionheader" type="radio" default="1" 
 				label="JL_FES_PARAM_LABEL_SHOW_SECTIONHEADER" 
 				description="JL_FES_PARAM_DESCR_SHOW_SECTIONHEADER">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
 	</fieldset>
