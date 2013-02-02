@@ -1223,6 +1223,8 @@ elseif ( $whichfile == 'matchfile' )
 	$csv->delimiter = "\t";
 	$csv->parse($file);
 
+$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+
 //  echo 'csv->data<pre>';
 //  print_r($csv->data);
 //  echo '</pre>';
