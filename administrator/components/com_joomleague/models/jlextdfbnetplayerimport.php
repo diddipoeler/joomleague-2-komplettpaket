@@ -41,7 +41,7 @@ require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'ical.php' );
 //require_once( JPATH_COMPONENT_SITE . DS. 'extensions' . DS. 'jlextdfbnetplayerimport' . DS. 'admin' . DS. 'helpers' . DS . 'iCal2csv.php' );
 require_once ( JLG_PATH_SITE .DS . 'helpers' . DS . 'countries.php' );
 
-require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
+//require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
 
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
@@ -508,12 +508,15 @@ $_arr = $csv->csv2Array();
 $mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre>'   ),'');
 */
 
+/*
 # tab delimited, and encoding conversion
 $csv = new JLparseCSV();
 //$csv->encoding('UTF-16', 'UTF-8');
 $csv->delimiter = $delimiter;
 $csv->parse($file);
 //print_r($csv->data);
+*/
+
 $mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
     
 if ( $whichfile == 'playerfile' )
