@@ -1,5 +1,5 @@
 <?PHP
-
+defined('_JEXEC') or die('Restricted access');
 
 class csv_bv 
 { 

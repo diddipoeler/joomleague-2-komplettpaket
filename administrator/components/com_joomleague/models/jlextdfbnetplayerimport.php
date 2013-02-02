@@ -41,7 +41,7 @@ require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'ical.php' );
 //require_once( JPATH_COMPONENT_SITE . DS. 'extensions' . DS. 'jlextdfbnetplayerimport' . DS. 'admin' . DS. 'helpers' . DS . 'iCal2csv.php' );
 require_once ( JLG_PATH_SITE .DS . 'helpers' . DS . 'countries.php' );
 
-//require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'jlextcsv.php' );
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'jlextcsv.php' );
 
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
