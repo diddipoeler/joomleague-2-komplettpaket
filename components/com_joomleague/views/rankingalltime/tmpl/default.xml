@@ -198,7 +198,14 @@
 			<option value="1">COM_JOOMLEAGUE_FES_PARAM_OPTION1_SHOW_INFO_LINK</option>
 			<option value="2">COM_JOOMLEAGUE_FES_PARAM_OPTION2_SHOW_INFO_LINK</option>
 		</field>
-
+    
+    <field name="show_info_link" type="list" default="1"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_INFO_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_INFO_LINK">
+			<option value="0">COM_JOOMLEAGUE_FES_PARAM_OPTION0_SHOW_INFO_LINK</option>
+			<option value="1">COM_JOOMLEAGUE_FES_PARAM_OPTION1_SHOW_INFO_LINK</option>
+			<option value="2">COM_JOOMLEAGUE_FES_PARAM_OPTION2_SHOW_INFO_LINK</option>
+		</field>
+		
 		<field 	name="show_club_link" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CLUBINFO_LINK" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CLUBINFO_LINK">
