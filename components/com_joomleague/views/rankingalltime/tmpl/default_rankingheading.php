@@ -36,63 +36,63 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 			case 'PLAYED':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';			
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "played", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "played", $this->config );
 				echo '</th>';
 				break;
 
 			case 'WINS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';						
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "won", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "won", $this->config );
 				echo '</th>';
 				break;
 
 			case 'TIES':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "draw", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "draw", $this->config );
 				echo '</th>';
 				break;
 
 			case 'LOSSES':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "loss", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "loss", $this->config );
 				echo '</th>';
 				break;
 
 			case 'WOT':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "wot", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "wot", $this->config );
 				echo '</th>';
 				break;
 
 			case 'WSO':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "wso", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "wso", $this->config );
 				echo '</th>';
 				break;
 
 			case 'LOT':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "lot", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "lot", $this->config );
 				echo '</th>';
 				break;
 
 			case 'LSO':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "lso", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "lso", $this->config );
 				echo '</th>';
 				break;
 				
 			case 'WINPCT':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "winpct", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "winpct", $this->config );
 				echo '</th>';
 				break;
 
@@ -113,28 +113,28 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 			case 'LEGS_DIFF':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "legsdiff", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "legsdiff", $this->config );
 				echo '</th>';
 				break;
 
 			case 'LEGS_RATIO':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "legsratio", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "legsratio", $this->config );
 				echo '</th>';
 				break;				
 				
 			case 'SCOREFOR':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "goalsfor", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "goalsfor", $this->config );
 				echo '</th>';
 				break;				
 				
 			case 'SCOREAGAINST':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "goalsagainst", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "goalsagainst", $this->config );
 				echo '</th>';
 				break;
 
@@ -148,63 +148,63 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 			case 'RESULTS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "goalsp", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "goalsp", $this->config );
 				echo '</th>';
 				break;
 
 			case 'DIFF':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "diff", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "diff", $this->config );
 				echo '</th>';
 				break;
 
 			case 'POINTS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "points", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "points", $this->config );
 				echo '</th>';
 				break;
 
 			case 'NEGPOINTS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "negpoints", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "negpoints", $this->config );
 				echo '</th>';
 				break;
 
 			case 'OLDNEGPOINTS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "negpoints", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "negpoints", $this->config );
 				echo '</th>';
 				break;
 				
 			case 'POINTS_RATIO':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "pointsratio", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "pointsratio", $this->config );
 				echo '</th>';
 				break;				
 
 			case 'BONUS':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "bonus", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "bonus", $this->config );
 				echo '</th>';
 				break;
 
 			case 'START':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "start", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "start", $this->config );
 				echo '</th>';
 				break;
 
 			case 'QUOT':
 				echo '<th class="headers">';
 				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
-				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "quot", $this->config );
+				JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( $column_names[$k], "quot", $this->config );
 				echo '</th>';
 				break;
 
