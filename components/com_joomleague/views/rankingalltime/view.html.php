@@ -16,16 +16,13 @@ class JoomleagueViewRankingAllTime extends JLGView
         $document = &JFactory::getDocument();
         $uri = &JFactory::getURI();
 
-//$menu =& JMenu::getInstance('site');
-//$item = $menu->getActive();
-//$params =& $menu->getParams($item->id);
 
         $modelallseasons = &$this->getModel();
         $leagueallseasons = $modelallseasons->getLeagueSeasons();
         $this->assignRef('allseasons', $leagueallseasons);
         $this->assignRef('leaguename', $modelallseasons->getLeagueName());
         
-/*        
+        
         $this->project->name = $this->leaguename;
         $this->assignRef('alltimepoints', $modelallseasons->getAllTimePoints());
         $this->assignRef('projectids', $modelallseasons->getAllProject());
@@ -63,7 +60,7 @@ class JoomleagueViewRankingAllTime extends JLGView
         }
         
         $this->assignRef('colors', $model->getColors($this->config['colors']));
-*/
+
 
         // Set page title
         $pageTitle = JText::_('JL_RANKING_PAGE_TITLE');

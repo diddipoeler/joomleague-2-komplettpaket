@@ -66,9 +66,9 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
 
     function __construct()
     {
-        $menu =& JMenu::getInstance('site');
-$item = $menu->getActive();
-$params =& $menu->getParams($item->id);
+        $menu = &JMenu::getInstance('site');
+        $item = $menu->getActive();
+        $params = &$menu->getParams($item->id);
 
         //$menu = &JSite::getMenu();
         $show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',
@@ -78,39 +78,47 @@ $params =& $menu->getParams($item->id);
         } else {
             $this->debug_info = false;
         }
-        
-        
+
+$registry = new JRegistry();
+$registry->loadArray($params);
+//$newparams = $registry->toString('ini');
+$newparams = $registry->toArray();
+//echo "<b>menue newparams</b><pre>" . print_r($newparams, true) . "</pre>";  
+foreach ($newparams['data'] as $key => $value ) {
+            
+            $this->_params[$key] = $value;
+        }
         
         //$this->menue_itemid = JRequest::getInt("Itemid", 0);
-/*        
+        /*
         if ($this->menue_itemid)
-{
-    $menu = JSite::getMenu();
-    $menuparams = $menu->getParams( $this->menue_itemid );
-    $params->merge( $menuparams );
-}
-    echo "<b>menue params</b><pre>" . print_r($params, true) . "</pre>";    
-*/        
-        
-        
-/*
+        {
+        $menu = JSite::getMenu();
+        $menuparams = $menu->getParams( $this->menue_itemid );
+        $params->merge( $menuparams );
+        }
+        echo "<b>menue params</b><pre>" . print_r($params, true) . "</pre>";    
+        */
+
+
+        /*
         $this->menue_itemid = JRequest::getInt("Itemid", 0);
         $item = $menu->getItem($this->menue_itemid);
         $this->_menu_params = new JParameter($item->params);
 
         $params = explode("\n", trim($this->_menu_params->_raw));
         foreach ($params as $param) {
-            list($name, $value) = explode("=", $param);
-            $this->_params[$name] = $value;
+        list($name, $value) = explode("=", $param);
+        $this->_params[$name] = $value;
         }
 
         if ($this->debug_info) {
-            $this->dump_header("models function __construct");
-            $this->dump_variable("path site", JLG_PATH_SITE);
-            $this->dump_header("models function __construct");
-            $this->dump_variable("this->_params", $this->_params);
+        $this->dump_header("models function __construct");
+        $this->dump_variable("path site", JLG_PATH_SITE);
+        $this->dump_header("models function __construct");
+        $this->dump_variable("this->_params", $this->_params);
         }
-*/
+        */
         parent::__construct();
 
     }
