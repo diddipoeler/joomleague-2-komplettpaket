@@ -5,14 +5,7 @@
     <tr>
         <td class="contentheading">
             <?php
-            echo $this->leaguename;;
-            ?>
-        </td>
-    </tr>
-    <tr>
-        <td class="contentheading">
-            <?php
-            echo JText::sprintf('JL_RANKINGALLTIME_PAGE_TITLE', $this->alltimepoints );
+            echo JText::_('COM_JOOMLEAGUE_RANKING_PAGE_TITLE' );
             ?>
         </td>
     </tr>
@@ -22,7 +15,7 @@
             /*
             if ( $this->tableconfig['show_ranking_dropdown'] == 1 )
             {
-                echo JoomleagueHTML::rankingnav(
+                echo JoomleagueHelperHtml::rankingnav(
                                                                                 $this->rounds,
                                                                                 $this->type,
                                                                                 $this->from,

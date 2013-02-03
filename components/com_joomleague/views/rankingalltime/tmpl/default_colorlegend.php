@@ -1,13 +1,4 @@
-<?php 
-defined( '_JEXEC' ) or die( 'Restricted access' );
-
-
-// echo 'tableconfig<pre>';
-// print_r($this->tableconfig);
-// echo '</pre>';
-
-// echo 'show_colors_legend -> '.$this->tableconfig['show_colors_legend'].'<br>';
-
+<?php defined( '_JEXEC' ) or die( 'Restricted access' );
 ?>
 <!-- colors legend START -->
 <?php

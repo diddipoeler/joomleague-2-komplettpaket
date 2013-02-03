@@ -9,12 +9,14 @@ $column_names	= explode( ',', $config['ordered_columns_names'] );
 <br />
 <table width="96%" align="center" border="0" cellpadding="0" cellspacing="0">
 	<tr class="explanation">
+		<td>
 		<?php
 		$d = 0;
 		foreach (  $columns as $k => $column)
 		{
 			if (empty($column_names[$k])){$column_names[$k]='???';}	
-			$c=trim( strtoupper($column));
+			$c=strtoupper(trim($column));
+			$c="COM_JOOMLEAGUE_".$c;
 			echo "<td class=\"col$d\">";
 			echo $column_names[$k] ." = ".JText::_($c) ;
 			echo "</td>";
