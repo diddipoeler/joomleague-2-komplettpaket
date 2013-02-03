@@ -135,7 +135,12 @@
 				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_TABLE_COLORS" 
 				rows="10" cols="50">
 		</field>
-    
+    <field 	name="use_background_row_color" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_USE_BACKGROUND_ROW_COLOR" 
+				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_USE_BACKGROUND_ROW_COLOR">
+			<option value="1">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION0_ROW</option>
+			<option value="0">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION1_POSITION</option>
+		</field>
 <field 	name="default_division_view" type="list" default="0" 
 				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_VIEW" 
 				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_VIEW">

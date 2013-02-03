@@ -66,7 +66,7 @@ function ImportTables()
 {
 	$db =& JFactory::getDBO();
 
-	$imports=file_get_contents(JLG_PATH_EXTENSION_PREDICTIONGAME.DS.'admin'.DS.'install'.DS.'prediction_db.sql');
+	$imports=file_get_contents(JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'prediction_db.sql');
 	$imports=preg_replace("%/\*(.*)\*/%Us",'',$imports);
 	$imports=preg_replace("%^--(.*)\n%mU",'',$imports);
 	$imports=preg_replace("%^$\n%mU",'',$imports);
