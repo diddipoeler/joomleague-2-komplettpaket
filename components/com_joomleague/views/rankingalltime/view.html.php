@@ -21,15 +21,14 @@ class JoomleagueViewRankingAllTime extends JLGView
         $leagueallseasons = $modelallseasons->getLeagueSeasons();
         $this->assignRef('allseasons', $leagueallseasons);
         $this->assignRef('leaguename', $modelallseasons->getLeagueName());
-        
-        
+
+
         $this->project->name = $this->leaguename;
         $this->assignRef('alltimepoints', $modelallseasons->getAllTimePoints());
         $this->assignRef('projectids', $modelallseasons->getAllProject());
         $project_ids = implode(",", $this->projectids);
         $this->assignRef('project_ids', $project_ids);
         $this->assignRef('teams', $modelallseasons->getAllTeamsIndexedByPtid($project_ids));
-        
 
 
         foreach ($leagueallseasons as $allseasons) {
@@ -54,11 +53,11 @@ class JoomleagueViewRankingAllTime extends JLGView
         $this->assignRef('currentRanking', $modelallseasons->getCurrentRanking());
         $this->assign('action', $uri->toString());
         $this->assignRef('lists', $lists);
-
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info', 0));
         if (!isset($config['colors'])) {
             $config['colors'] = "";
         }
-        
+
         $this->assignRef('colors', $model->getColors($this->config['colors']));
 
 
@@ -66,7 +65,7 @@ class JoomleagueViewRankingAllTime extends JLGView
         $pageTitle = JText::_('JL_RANKING_PAGE_TITLE');
         /*
         if (isset($this->project->name)) {
-            $pageTitle .= ': ' . $this->project->name;
+        $pageTitle .= ': ' . $this->project->name;
         }
         */
         $document->setTitle($pageTitle);
