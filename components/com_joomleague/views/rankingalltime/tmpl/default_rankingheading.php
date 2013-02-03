@@ -6,7 +6,7 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 <thead>
 	<tr class="sectiontableheader">
 		<th class="rankheader" colspan="3">
-			<?php JoomleagueHelperHtml::printColumnHeadingSort( JText::_( 'COM_JOOMLEAGUE_RANKING_POSITION' ), "rank", $this->config, "ASC" ); ?>
+			<?php JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( JText::_( 'COM_JOOMLEAGUE_RANKING_POSITION' ), "rank", $this->config, "ASC" ); ?>
 		</th>
 		
 		<?php
@@ -17,7 +17,7 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 		?>
 		
 		<th class="teamheader">	
-			<?php JoomleagueHelperHtml::printColumnHeadingSort( JText::_( 'COM_JOOMLEAGUE_RANKING_TEAM' ), "name", $this->config, "ASC" ); ?>
+			<?php JoomleagueHelperHtml::printColumnHeadingSortAllTimeRanking( JText::_( 'COM_JOOMLEAGUE_RANKING_TEAM' ), "name", $this->config, "ASC" ); ?>
 		</th>
 		
 <?php
