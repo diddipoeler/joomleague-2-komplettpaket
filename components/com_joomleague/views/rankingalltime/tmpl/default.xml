@@ -51,6 +51,11 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
+    <field	name="team_name_format" type="teamnameformat" default="2"
+				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_TYPE_NAME"
+				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_TYPE_NAME">
+		</field>
+		
 		<field 	name="show_explanation" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_SHOW_EXPL" 
 				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_SHOW_EXPL">
