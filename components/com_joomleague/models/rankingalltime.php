@@ -66,7 +66,11 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
 
     function __construct()
     {
-        $menu = &JSite::getMenu();
+        $menu =& JMenu::getInstance('site');
+$item = $menu->getActive();
+$params =& $menu->getParams($item->id);
+
+        //$menu = &JSite::getMenu();
         $show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',
             0);
         if ($show_debug_info) {
@@ -74,7 +78,22 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
         } else {
             $this->debug_info = false;
         }
-
+        
+        
+        
+        //$this->menue_itemid = JRequest::getInt("Itemid", 0);
+/*        
+        if ($this->menue_itemid)
+{
+    $menu = JSite::getMenu();
+    $menuparams = $menu->getParams( $this->menue_itemid );
+    $params->merge( $menuparams );
+}
+    echo "<b>menue params</b><pre>" . print_r($params, true) . "</pre>";    
+*/        
+        
+        
+/*
         $this->menue_itemid = JRequest::getInt("Itemid", 0);
         $item = $menu->getItem($this->menue_itemid);
         $this->_menu_params = new JParameter($item->params);
@@ -91,7 +110,7 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
             $this->dump_header("models function __construct");
             $this->dump_variable("this->_params", $this->_params);
         }
-
+*/
         parent::__construct();
 
     }

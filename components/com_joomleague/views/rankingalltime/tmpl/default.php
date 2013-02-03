@@ -13,6 +13,6 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 <div class="joomleague">
 	<?php
 echo $this->loadTemplate('projectheading');
-
+echo $this->loadTemplate('ranking');
 ?>
 </div>
