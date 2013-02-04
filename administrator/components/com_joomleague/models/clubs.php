@@ -92,32 +92,5 @@ class JoomleagueModelClubs extends JoomleagueModelList
 		return $where;
 	}
 
-	/**
-	 * Method to remove a club
-	 *
-	 * @access	public
-	 * @return	boolean	True on success
-	 * @since	0.1
-	 */
-	/*
-  function delete($cid=array())
-	{
-		return false;
-		$result=false;
-		if (count($cid))
-		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
-			$query="DELETE FROM #__joomleague_club WHERE id IN ($cids)";
-			$this->_db->setQuery($query);
-			if(!$this->_db->query())
-			{
-				$this->setError($this->_db->getErrorMsg());
-				return false;
-			}
-		}
-		return true;
-	}
-  */
 }
 ?>
