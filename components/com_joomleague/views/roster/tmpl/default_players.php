@@ -206,7 +206,7 @@ if (!empty($this->rows))
 		{
 			if ($this->config['player_numbers_pictures'])
 			{
-				$value = JHTML::image('images/com_joomleague/database/teamplayers/shirt.php?text='.$pnr,$pnr,array('title'=> $pnr));
+				$value = JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$pnr,$pnr,array('title'=> $pnr));
 			}
 			else
 			{

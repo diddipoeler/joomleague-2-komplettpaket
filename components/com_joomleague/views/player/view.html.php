@@ -70,7 +70,7 @@ class JoomleagueViewPlayer extends JLGView
 		$extended = $this->getExtended($person->extended, 'person');
 		$this->assignRef( 'extended', $extended );
 		
-        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
         
 		if (isset($person))
 		{

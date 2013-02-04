@@ -38,10 +38,15 @@
 	<media destination="com_joomleague" folder="media/com_joomleague">
 		<filename>index.html</filename>
 		<folder>flags</folder>
+		<folder>flags_associations</folder>
 		<folder>jl_images</folder>
+		<folder>events</folder>
+		<folder>teamplayers</folder>
 		<folder>treebracket</folder>
 		<folder>person_playground</folder>
 	</media>
+	
+	
 
 	<!-- Runs on install/uninstall/update -->
 	<scriptfile>installscript.php</scriptfile>

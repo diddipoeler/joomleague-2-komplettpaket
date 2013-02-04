@@ -223,7 +223,7 @@ class com_joomleagueInstallerScript
 		$dest = JPATH_ROOT.'/images/com_joomleague';
 		$update = JFolder::exists($dest);
 		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'events','leagues','person_playground',
-							'persons', 'placeholders', 'predictionusers','playgrounds', 'projects','projectreferees','projectteams',
+							'flags_associations','persons', 'placeholders', 'predictionusers','playgrounds', 'projects','projectreferees','projectteams',
                             'seasons','sport_types', 'teams','teamplayers','teamstaffs','venues', 'statistics');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague');
 		JFile::copy(JPATH_ROOT.'/images/index.html', JPATH_ROOT.'/images/com_joomleague/index.html');

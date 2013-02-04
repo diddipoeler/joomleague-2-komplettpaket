@@ -35,8 +35,8 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
   `new_club_id` INT(11) NOT NULL DEFAULT '0' ,
   `enable_sb` TINYINT(4) NOT NULL DEFAULT '0' ,
   `sb_catid` INT(11) NOT NULL DEFAULT '0' ,
-  `trikot_home` VARCHAR(255) NOT NULL DEFAULT 'media/com_joomleague/placeholders/placeholder_small.gif' ,
-  `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'media/com_joomleague/placeholders/placeholder_small.gif' ,
+  `trikot_home` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
+  `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )

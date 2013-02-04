@@ -14,8 +14,9 @@ class JoomleagueViewjlallprojectrounds extends JLGView
 		$uri = &JFactory::getURI();		
 				
 		$model = & $this->getModel();
-		$config	= $model->getTemplateConfig($this->getName());
-		$project = $model->getProject();
+		//$config	= $model->getTemplateConfig($this->getName());
+		$config	= $model->getAllRoundsParams();
+    $project = $model->getProject();
 		
 		$this->assignRef('project', $project);
 		
@@ -28,8 +29,9 @@ class JoomleagueViewjlallprojectrounds extends JLGView
     $this->assignRef('rounds',			$model->getRounds());
     
     $this->assignRef('overallconfig',	$model->getOverallConfig());
-		$this->assignRef('config',			array_merge($this->overallconfig, $config));
-			
+ 		$this->assignRef('config',			array_merge($this->overallconfig, $config));
+		//$this->assignRef('config', $model->getAllRoundsParams());
+    	
 //     echo '<br />getRounds<pre>~'.print_r($this->rounds,true).'~</pre><br />';
     
     $this->assignRef('favteams',		$model->getFavTeams($this->projectid));
@@ -37,9 +39,9 @@ class JoomleagueViewjlallprojectrounds extends JLGView
     
 		$this->assignRef('projectteamid',		$model->getProjectTeamID($this->favteams));
 		
-    $this->assignRef('content',			$model->getRoundsColumn($this->rounds));
+    $this->assignRef('content',			$model->getRoundsColumn($this->rounds,$this->config));
         
-		
+		$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info', 0));
 		    
     
 

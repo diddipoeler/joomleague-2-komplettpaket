@@ -1,4 +1,12 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
+<?php 
+defined( '_JEXEC' ) or die( 'Restricted access' ); 
+
+if ( $this->show_debug_info )
+{
+echo 'this->config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
+}
+
+?>
 
 <?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'projectheading' . DS . 'tmpl' ); ?>
 <?php $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS . 'tmpl' ); ?>
@@ -9,7 +17,14 @@
 
 <?php echo $this->loadTemplate('projectheading'); ?>
 
-<?php echo $this->loadTemplate('sectionheader'); ?>
+<?php 
+
+if ( $this->config['show_sectionheader'] )
+{
+echo $this->loadTemplate('sectionheader'); 
+}
+
+?>
 <?php echo $this->loadTemplate('results_all'); ?>
 <?PHP
 

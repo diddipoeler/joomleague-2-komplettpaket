@@ -118,7 +118,7 @@ JHTML::_( 'behavior.tooltip' );
 			</tfoot>
 			<tbody>
 			<?php
-      if ( $this->items )
+      if ( isset($this->items) )
       {
 			$k = 0;
 			for ( $i = 0, $n = count( $this->items ); $i < $n; $i++ )

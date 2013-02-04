@@ -1,4 +1,12 @@
-<?php defined('_JEXEC') or die('Restricted access'); ?>
+<?php 
+defined('_JEXEC') or die('Restricted access'); 
+
+if ( $this->show_debug_info )
+{
+echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true) . '~</pre><br />';
+}
+
+?>
 
 <!-- Player stats History START -->
 <h2><?php	echo JText::_('COM_JOOMLEAGUE_PERSON_PERSONAL_STATISTICS');	?></h2>

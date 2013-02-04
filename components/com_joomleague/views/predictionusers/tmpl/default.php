@@ -11,6 +11,11 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
+if ( $this->show_debug_info )
+{
+echo 'this->predictionMember<br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
+}
+
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'predictionheading' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'backbutton' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS . 'tmpl' );

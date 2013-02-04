@@ -5,6 +5,7 @@
             <![CDATA[JL_XML_ALL_PROJECT_ROUNDS_LAYOUT_DESCR]]>
         </message>
     </layout>
+    
     <fields name="request">
 		<fieldset	name="request"
 					label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
@@ -18,4 +19,65 @@
 			
 			</fieldset>
 	</fields>
+	
+<fields name="params">
+    <fieldset	name="basic"
+					label="JL_XML_ALL_PROJECT_ROUNDS_ADVANCED_NAME"
+					addfieldpath="/administrator/components/com_joomleague/elements">
+          	
+	  <field	name="show_sectionheader" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_SECTIONHEADER" 
+				description="JL_FES_PARAM_DESCR_SHOW_SECTIONHEADER">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
+		<field	name="show_columns" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_COLUMNS" 
+				description="JL_FES_PARAM_DESCR_SHOW_COLUMNS">
+			<option value="0">COM_JOOMLEAGUE_1_COLUMNS</option>
+			<option value="1">COM_JOOMLEAGUE_2_COLUMNS</option>
+		</field>
+		
+		<field	name="show_firstroster" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_HOMEROSTER" 
+				description="JL_FES_PARAM_DESCR_SHOW_HOMEEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field	name="show_firstsubst" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_HOMESUBST" 
+				description="JL_FES_PARAM_DESCR_SHOW_HOMEEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field	name="show_firstevents" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_HOMEEVENTS" 
+				description="JL_FES_PARAM_DESCR_SHOW_HOMEEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
+		<field	name="show_secondroster" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_AWAYROSTER" 
+				description="JL_FES_PARAM_DESCR_SHOW_AWAYEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field	name="show_secondsubst" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_AWAYSUBST" 
+				description="JL_FES_PARAM_DESCR_SHOW_AWAYEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field	name="show_secondevents" type="radio" default="1" 
+				label="JL_FES_PARAM_LABEL_SHOW_AWAYEVENTS" 
+				description="JL_FES_PARAM_DESCR_SHOW_AWAYEVENTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
+</fieldset>
+	</fields>  	
+	
 </metadata>

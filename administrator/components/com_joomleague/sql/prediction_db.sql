@@ -62,7 +62,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_prediction_member` (
   `receipt` TINYINT(4) NOT NULL DEFAULT '0' ,
   `admintipp` TINYINT(4) NOT NULL DEFAULT '0' ,
   `picture` VARCHAR(128) NULL DEFAULT NULL ,
-  `last_tipp` DATETIME NULL DEFAULT NULL ,
+  `last_tipp` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `checked_out` INT(11) NULL DEFAULT '0' ,
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,

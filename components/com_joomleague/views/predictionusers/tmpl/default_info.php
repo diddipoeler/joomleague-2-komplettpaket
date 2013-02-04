@@ -138,8 +138,8 @@ echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
 							<td class='label'><?php echo JText::_($this->optiontext.'JL_PRED_USERS_INFO_LAST_PRED'); ?></td>
 							<td class='data'>
 								<?php
-								echo	(!empty($this->predictionMember->last_tipp)&&($this->predictionMember->last_tipp!='0000-00-00')) ?
-										JHTML::date($this->predictionMember->last_tipp,JText::_($this->optiontext.'JL_GLOBAL_CALENDAR_DATE')) : JText::_($this->optiontext.'JL_PRED_USERS_INFO_NEVER');
+								echo	( !empty($this->predictionMember->last_tipp) && ( $this->predictionMember->last_tipp != '0000-00-00 00:00:00') ) ?
+										JHTML::date($this->predictionMember->last_tipp,JText::_($this->optiontext.'GLOBAL_CALENDAR_DATE')) : JText::_($this->optiontext.'JL_PRED_USERS_INFO_NEVER');
 								?>
 							</td>
 						</tr>

@@ -32,11 +32,30 @@ class JoomleagueModeljlallprojectrounds extends JoomleagueModelProject
  	var $matchid = 0;
  	
  	var $_playersevents = array();
-
+  /**
+     * parameters
+     * @var array
+     */
+    var $_params = null;
+    
 	function __construct( )
 	{
 		
     $this->projectid = JRequest::getInt( "p", 0 );
+
+    $menu = &JMenu::getInstance('site');
+        $item = $menu->getActive();
+        $params = &$menu->getParams($item->id);
+       $registry = new JRegistry();
+$registry->loadArray($params);
+//$newparams = $registry->toString('ini');
+$newparams = $registry->toArray();
+//echo "<b>menue newparams</b><pre>" . print_r($newparams, true) . "</pre>";  
+foreach ($newparams['data'] as $key => $value ) {
+            
+            $this->_params[$key] = $value;
+        }
+
 
 // 		$this->round = JRequest::getInt( "r", $this->current_round);
 // 		$this->part  = JRequest::getInt( "part", 0);
@@ -282,7 +301,12 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
 		
 	}
 	
-  function getRoundsColumn($rounds)
+	function getAllRoundsParams()
+    {
+        return $this->_params;
+    }
+    
+  function getRoundsColumn($rounds,$config)
   {
   
   //$countrows = count($rounds) %2;
@@ -299,33 +323,37 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
 //   echo 'wir haben '.$countrows.' spieltage pro spalte<br>';
   }
 
+  if ( $config['show_columns'] == 1 )
+  {
+  }
+  else
+  {
+  $countrows = count($rounds);
+  }
+  
   $lfdnumber = 0;
   $htmlcontent = array();
   $content = '<table width="100%" border="4" rules="none">';
   
   for($a=0; $a < $countrows;$a++)
   {
+  
+  if ( $config['show_columns'] == 1 )
+  {
+  // zwei spalten
   $secondcolumn = $a + $countrows;
-  //$content .= '<tr><td colspan="4" >'.$rounds[$a]->name.'</td><td colspan="4" >'.$rounds[$secondcolumn]->name.'</td></tr>';
-
+  
   $htmlcontent[$a]['header'] = '';
   $htmlcontent[$a]['first'] = '<table width="100%" border="0" rules="rows">';
-//   $htmlcontent[$a]['firstroster'] = '<tr><td>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').'</td>'; 
-//   $htmlcontent[$a]['secondroster'] = '<tr><td>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').'</td>';
   $htmlcontent[$a]['second'] = '<table width="100%" border="0" rules="rows">';
-  
-//   $htmlcontent[$a]['header'] = '<tr><td colspan="" >'.$rounds[$a]->name.'</td><td colspan="" >'.$rounds[$secondcolumn]->name.'</td></tr>';
   $htmlcontent[$a]['header'] = '<thead><tr><th colspan="" >'.$rounds[$a]->name.'</th><th colspan="" >'.$rounds[$secondcolumn]->name.'</th></tr></thead>';
+
   
   $roundcode = $a + 1;
   $secondroundcode = $a + 1 + $countrows;
-  
-//   echo 'roundcode-> '.$roundcode.'<br>';
-//   echo 'secondroundcode-> '.$secondroundcode.'<br>';
-  
+ 
   foreach ( $this->result as $match )
   {
-//   echo 'roundcode-> '.$match->roundcode.'<br>';
     
   if ( (int)$match->roundcode === (int)$roundcode )
   {
@@ -341,23 +369,30 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   if ( (int)$match->projectteam1_id === (int)$value || (int)$match->projectteam2_id === (int)$value )
   {
   
+  if ( $config['show_firstroster'] )
+  {
   $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstroster'] .= implode(",",$this->getMatchPlayers());
   $htmlcontent[$a]['firstroster'] .= '';
-  
+  }
+  if ( $config['show_firstsubst'] )
+  {
   $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstsubst'] .= implode(",",$this->getSubstitutes());
   $htmlcontent[$a]['firstsubst'] .= '';
-  
+  }
+  if ( $config['show_firstevents'] )
+  {
   $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstevents'] .= implode(",",$this->getPlayersEvents());
   $htmlcontent[$a]['firstevents'] .= '';
+  }
   
   }
   
@@ -378,37 +413,96 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   
   if ( (int)$match->projectteam1_id === (int)$value || (int)$match->projectteam2_id === (int)$value )
   {
-  
+  if ( $config['show_secondroster'] )
+  {
   $htmlcontent[$a]['secondroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondroster'] .= implode(",",$this->getMatchPlayers());
   $htmlcontent[$a]['secondroster'] .= '';
-  
+  }
+  if ( $config['show_secondsubst'] )
+  {
   $htmlcontent[$a]['secondsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondsubst'] .= implode(",",$this->getSubstitutes());
   $htmlcontent[$a]['secondsubst'] .= '';
-  
+  }
+  if ( $config['show_secondevents'] )
+  {
   $htmlcontent[$a]['secondevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondevents'] .= implode(",",$this->getPlayersEvents());
   $htmlcontent[$a]['secondevents'] .= '';
-  
+  }
   }
   
   }
     
   }
-
-  
       
   }
   
   $htmlcontent[$a]['first'] .= '</table>';
   $htmlcontent[$a]['second'] .= '</table>';
+  }
+  else
+  {
+  // nur eine spalte
+  $htmlcontent[$a]['header'] = '';
+  $htmlcontent[$a]['first'] = '<table width="100%" border="0" rules="rows">';
+  $htmlcontent[$a]['header'] = '<thead><tr><th colspan="" >'.$rounds[$a]->name.'</th></tr></thead>';
+  $roundcode = $a + 1;
+  
+  foreach ( $this->result as $match )
+  {
+    
+  if ( (int)$match->roundcode === (int)$roundcode )
+  {
+  
+  $htmlcontent[$a]['first'] .= '<tr><td width="45%">'.$match->home_name.'</td>';
+  $htmlcontent[$a]['first'] .= '<td width="5%">'.$match->team1_result.'</td>';
+  $htmlcontent[$a]['first'] .= '<td width="5%">'.$match->team2_result.'</td>';
+  $htmlcontent[$a]['first'] .= '<td width="45%">'.$match->away_name.'</td></tr>';
+  
+  foreach ( $this->ProjectTeams as $key => $value )
+  {
+  
+  if ( (int)$match->projectteam1_id === (int)$value || (int)$match->projectteam2_id === (int)$value )
+  {
+  
+  
+  $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
+  $this->matchid = $match->id;
+  $this->projectteam_id = $value;
+  $htmlcontent[$a]['firstroster'] .= implode(",",$this->getMatchPlayers());
+  $htmlcontent[$a]['firstroster'] .= '';
+  
+  $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
+  $this->matchid = $match->id;
+  $this->projectteam_id = $value;
+  $htmlcontent[$a]['firstsubst'] .= implode(",",$this->getSubstitutes());
+  $htmlcontent[$a]['firstsubst'] .= '';
+  
+  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
+  $this->matchid = $match->id;
+  $this->projectteam_id = $value;
+  $htmlcontent[$a]['firstevents'] .= implode(",",$this->getPlayersEvents());
+  $htmlcontent[$a]['firstevents'] .= '';
+  
+  
+  }
+  
+  }
+  
+  }
+  
+  }
+  
+  $htmlcontent[$a]['first'] .= '</table>';
+  }
     
   }
   
@@ -416,8 +510,9 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   {
   foreach ( $htmlcontent as $key => $value )
   {
-//   echo '<br />htmlarray<pre>~'.print_r($value,true).'~</pre><br />';
   
+  if ( $config['show_columns'] == 1 )
+  {
   $content .= $value['header'];
   $content .= '<tr><td>'.$value['first'].'</td>';
   $content .= '<td>'.$value['second'].'</td></tr>';
@@ -442,14 +537,31 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   }
   
   }
+  else
+  {
+  $content .= $value['header'];
+  $content .= '<tr><td>'.$value['first'].'</td></tr>';
+  
+  
+  if (array_key_exists('firstroster', $value)) {
+  $content .= '<tr><td>'.$value['firstroster'].'</td></tr>';
+  }
+  
+  if (array_key_exists('firstsubst', $value)) {
+  $content .= '<tr><td>'.$value['firstsubst'].'</td></tr>';
+  }
+  
+  if (array_key_exists('firstevents', $value)) {
+  $content .= '<tr><td>'.$value['firstevents'].'</td></tr>';
+  }
+  
+  }
+  
+  }
   
   }
    
   $content .= '</table>';
-  
-//   echo $content;
-  
-//   echo '<br />htmlarray<pre>~'.print_r($htmlcontent,true).'~</pre><br />';
   
   return $content;
   }

@@ -1,4 +1,12 @@
-<?php defined('_JEXEC') or die('Restricted access'); ?>
+<?php 
+defined('_JEXEC') or die('Restricted access'); 
+
+if ( $this->show_debug_info )
+{
+echo 'GAMES_HISTORY gamesstats<br /><pre>~' . print_r($this->gamesstats,true) . '~</pre><br />';
+}
+
+?>
 <!-- Player stats History START -->
 <?php
 if (count($this->games))
@@ -214,7 +222,7 @@ if (count($this->games))
 						{
 							//do not show statheader when there are no stats
 							if (!empty($stat)) { 
-							    if ($stat->showInPlayer()) {
+							    if ( $stat->showInPlayer() && isset($stat->gamesstats['totals']) ) {
 							?>
 							    
 					<td class="td_c hasTip" title="<?php echo $stat->name; ?>">

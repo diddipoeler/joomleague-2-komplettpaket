@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	
+
+	<fieldset 	name="picture">
+				
+		<field 	name="assocflag" 
+				type="media" 
+				directory="com_joomleague/database/flags_associations"
+				preview="show"				
+				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
+				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
+		</field>
+	</fieldset>			
+</form>
