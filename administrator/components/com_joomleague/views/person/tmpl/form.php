@@ -3,7 +3,7 @@
 ?>
 <form action="index.php" method="post" id="adminForm">
 	<fieldset class="adminform">
-	<legend><?php echo JText::_($person->name); ?></legend>
+	<legend><?php echo JText::_($this->person->name); ?></legend>
     <div class="col50">
 		<?php
 		echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
