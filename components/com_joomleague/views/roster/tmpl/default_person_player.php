@@ -178,7 +178,7 @@ if ($this->config['show_player_numbers'])
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_NATIONALITY");?>
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_NATIONALITY");?>
 						</span><!-- /.jl_roster_persondetails_label -->
 						<span class="jl_roster_persondetails_data">
 <?php
