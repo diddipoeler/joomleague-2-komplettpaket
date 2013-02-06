@@ -80,19 +80,19 @@ if ($this->config['show_player_numbers'])
 		if (!empty($this->playertool[0]->injury))
 		{
 			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_INJURED');
-			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'injured.gif',
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/injured.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 		if (!empty($this->playertool[0]->suspension))
 		{
 			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_SUSPENDED');
-			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'suspension.gif',
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/suspension.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 		if (!empty($this->playertool[0]->away))
 		{
 			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_AWAY');
-			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'away.gif',
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/away.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 ?>
