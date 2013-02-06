@@ -109,11 +109,24 @@ if (count($this->stafflist) > 0)
 					{
 						$picture = JoomleagueHelper::getDefaultPlaceholder("player");
 					} ?>
-				<td width="40" class="td_c" nowrap="nowrap"><?php
+				<td width="40" class="td_c" nowrap="nowrap">
+                <?php
+                if ( !$this->config['show_highslide'] )
+		{
 					echo JoomleagueHelper::getPictureThumb($picture, $playerName,
 															$this->config['staff_picture_width'],
 															$this->config['staff_picture_height']);
-					?>
+					
+                  }
+                  else
+			{
+      ?>
+<a href="<?php echo $picture;?>" alt="<?php echo $playerName;?>" title="<?php echo $playerName;?>" class="highslide" onclick="return hs.expand(this)">
+<img src="<?php echo $picture;?>" alt="<?php echo $playerName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['player_picture_width'];?>" height="<?php echo $this->config['player_picture_height'];?>"/></a>
+    <?php
+      }	
+                    
+                    ?>
 				</td>
 				<?php
 				}
