@@ -212,7 +212,7 @@ if ($this->config['show_player_numbers'])
 				}
 				if ($this->config['show_substitution_stats']) 
 				{
-					if ($this->InOutStat->started > 0)
+					if ( isset($this->InOutStat->started) )
 					{
 						$cnt++;
 						echo '<div title="'.$this->InOutStat->started.' '.JText::_('COM_JOOMLEAGUE_ROSTER_STARTING_LINEUP').'" class="jl_roster_in_out'.'2'.' jl_roster_in_out">
