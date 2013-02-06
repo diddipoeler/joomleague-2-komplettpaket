@@ -203,7 +203,7 @@ if ($this->config['show_player_numbers'])
 			$model =& $this->getModel();
 			$this->assignRef('InOutStat',$model->getInOutStats($this->row->pid));
 			$cnt=0;
-				if ($this->config['show_games_played'] AND $this->InOutStat->played > 0)
+				if ($this->config['show_games_played'] AND isset($this->InOutStat->played) )
 				{
 					$cnt++;
 					echo '<div title="'.$this->InOutStat->played.' '.JText::_('COM_JOOMLEAGUE_ROSTER_PLAYED').'" class="jl_roster_in_out'.'1'.' jl_roster_in_out">
@@ -219,14 +219,14 @@ if ($this->config['show_player_numbers'])
 						'.$this->InOutStat->started.'		</div>
 						';
 					}
-					if ($this->InOutStat->sub_in > 0)
+					if ( isset($this->InOutStat->sub_in) )
 					{
 						$cnt++;
 						echo '<div title="'.$this->InOutStat->sub_in.' '.JText::_('COM_JOOMLEAGUE_ROSTER_IN').'" class="jl_roster_in_out'.'3'.' jl_roster_in_out">
 						'.$this->InOutStat->sub_in.'		</div>
 						';
 					}
-					if ($this->InOutStat->sub_out > 0)
+					if ( isset($this->InOutStat->sub_out) )
 					{
 						$cnt++;
 						echo '<div title="'.$this->InOutStat->sub_out.' '.JText::_('COM_JOOMLEAGUE_ROSTER_OUT').'" class="jl_roster_in_out'.'4'.' jl_roster_in_out">
