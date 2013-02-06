@@ -2,7 +2,9 @@
 
 ?>
 <form action="index.php" method="post" id="adminForm">
-	<div class="col50">
+	<fieldset class="adminform">
+	<legend><?php echo JText::_($person->name); ?></legend>
+    <div class="col50">
 		<?php
 		echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
 		
@@ -32,6 +34,7 @@
 		echo JHTML::_('tabs.end');
 		?>
 	</div>
+    </fieldset>
 	<input type="hidden" name="assignperson" value="0" id="assignperson" />
 	<input type="hidden" name="option" value="com_joomleague" /> 
 	<input type="hidden" name="cid" value="<?php echo $this->person->id; ?>" /> 
