@@ -69,8 +69,8 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				       		RIGHT JOIN #__joomleague_project p on project_id=p.id 
 				       		WHERE team_id=t.id and p.published = 1) as pid,'
                        . '(SELECT pt.id 
-				       		FROM l5s1n_joomleague_project_team as pt 
-				       		RIGHT JOIN l5s1n_joomleague_project p on pt.project_id=p.id 
+				       		FROM #__joomleague_project_team as pt 
+				       		RIGHT JOIN #__joomleague_project p on pt.project_id=p.id 
 				       		WHERE team_id=t.id and p.published = 1 and pt.project_id=pid) as ptid'     
 				       . ' FROM #__joomleague_team t'
 				       . ' WHERE club_id = '.(int) $this->clubid;
