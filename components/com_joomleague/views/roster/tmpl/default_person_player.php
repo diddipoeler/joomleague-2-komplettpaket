@@ -41,7 +41,7 @@ if ($this->config['show_player_numbers'])
 				<span class="jl_rosterperson_position_number">
 				<?php
 				$playerNumber = ($this->config['player_numbers_pictures'] AND function_exists('imagecreatefrompng')) ? 
-					JHTML::image('media/com_joomleague/event_icons/shirt.php?text='.$pnr,$pnr,array('title'=> $pnr)) 
+					JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$pnr,$pnr,array('title'=> $pnr)) 
 					: $pnr;
 					echo $playerNumber;
 				
