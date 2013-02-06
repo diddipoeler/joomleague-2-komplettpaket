@@ -8,13 +8,13 @@ if ($this->config['show_player_icon'])
 {
 	$imgTitle = JText::sprintf( $personName );
 	$picture = $this->row->picture;
-	if ((empty($picture)) || ($picture == 'media/com_joomleague/placeholders/placeholder_150_2.png' ))
+	if ((empty($picture)) || ($picture == 'images/com_joomleague/database/laceholders/placeholder_150_2.png' ))
 	{
 		$picture = $this->row->ppic;
 	}
 	if ( !file_exists( $picture ) )
 	{
-		$picture = 'media/com_joomleague/placeholders/placeholder_150_2.png';
+		$picture = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
 	}
 	$thumbnail = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 		$this->config['player_picture_width'],

@@ -6,13 +6,13 @@ if ($this->config['show_staff_icon']==1)
 {
 	$imgTitle = JText::sprintf( $personName );
 	$picture = $this->row->picture;
-	if ((empty($picture)) || ($picture == 'media/com_joomleague/placeholders/placeholder_150_2.png' ))
+	if ((empty($picture)) || ($picture == 'images/com_joomleague/database/placeholders/placeholder_150_2.png' ))
 	{
 		$picture = $this->row->ppic;
 	}
 	if ( !file_exists( $picture ) )
 	{
-		$picture = 'media/com_joomleague/placeholders/placeholder_150_2.png';
+		$picture = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
 	}
 	$thumbnail = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 		$this->config['staff_picture_width'],
@@ -90,7 +90,7 @@ if ($this->config['show_staff_icon']==1)
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_AGE");?>
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_AGE");?>
 						</span>
 						<span class="jl_roster_persondetails_data">
 							<?php echo JoomleagueHelper::getAge($this->row->birthday,$this->row->deathday);?>
@@ -103,7 +103,7 @@ if ($this->config['show_staff_icon']==1)
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_BIRTHDAY");?>
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_BIRTHDAY");?>
 						</span>
 						<span class="jl_roster_persondetails_data">
 							<?php echo JHTML::date($this->row->birthday,$birthdayformat);?>
@@ -117,7 +117,7 @@ if ($this->config['show_staff_icon']==1)
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_DEATHDAY");?>[ &dagger; ]
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_DEATHDAY");?>[ &dagger; ]
 						</span>
 						<span class="jl_roster_persondetails_data">
 							<?php echo JHTML::date($this->row->deathday,JText::_('COM_JOOMLEAGUE_GLOBAL_DAYDATE'));?>
@@ -131,7 +131,7 @@ if ($this->config['show_staff_icon']==1)
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_NATIONALITY");?>
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_NATIONALITY");?>
 						</span><!-- /.jl_roster_persondetails_label -->
 						<span class="jl_roster_persondetails_data">
 <?php
