@@ -14,12 +14,12 @@
 		}
 		?>
 		</td>
-        <td>
-        <?php
-        echo $this->lists['type'];
         
+        <?php
+        
+        echo "<td>".JHTML::_('select.genericlist', $this->lists['type'], 'type' , 'class="inputbox" size="1"', 'value', 'text', $this->type )."</td>";
         ?>
-        </td>
+        
 	</tr>
 </table>
 <br />
