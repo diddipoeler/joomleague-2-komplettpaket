@@ -48,10 +48,10 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				        . ' t.info as team_description,'
                 . ' max(pt.project_id) as pid,' 
 				        . ' pt.id as ptid'
-				        . ' FROM l5s1n_joomleague_team as t'
-				        . ' RIGHT JOIN l5s1n_joomleague_project_team as pt'
+				        . ' FROM #__joomleague_team as t'
+				        . ' RIGHT JOIN #__joomleague_project_team as pt'
 				        . ' on pt.team_id = t.id'
-				        . ' RIGHT JOIN l5s1n_joomleague_project as p' 
+				        . ' RIGHT JOIN #__joomleague_project as p' 
                 . ' on pt.project_id = p.id' 
 				        . ' WHERE p.published = 1' 
                 . ' and t.club_id = '.(int) $this->clubid;

@@ -11,7 +11,8 @@
 		{
 			if ( $team->team_name )
 			{
-				$link = JoomleagueHelperRoute::getProjectTeamInfoRoute( $team->pid, $team->ptid );
+				//$link = JoomleagueHelperRoute::getProjectTeamInfoRoute( $team->pid, $team->ptid );
+                $link = JoomleagueHelperRoute::getTeamInfoRoute( $team->pid, $team->id );
 				?>
 				<span class="clubinfo_team_item">
 					<?php
