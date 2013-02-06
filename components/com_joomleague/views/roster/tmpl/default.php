@@ -42,6 +42,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 				echo $this->loadTemplate('players_card');
 			}
 			else if (($this->config['show_players_layout'])=='player_johncage') {
+			$document 	= JFactory::getDocument();
+			$option 	= JRequest::getCmd('option');
+			$version 	= urlencode(JoomleagueHelper::getVersion());
+			$document->addStyleSheet(  $this->baseurl . '/components/'.$option.'/assets/css/'.$this->getName().'_johncage.css?v=' . $version );
 			echo $this->loadTemplate('players_johncage');
 			}
 		}
@@ -59,6 +63,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 				echo $this->loadTemplate('staff_card');
 			}
 			else if (($this->config['show_staff_layout'])=='staff_johncage') {
+			$document 	= JFactory::getDocument();
+			$option 	= JRequest::getCmd('option');
+			$version 	= urlencode(JoomleagueHelper::getVersion());
+			$document->addStyleSheet(  $this->baseurl . '/components/'.$option.'/assets/css/'.$this->getName().'_johncage.css?v=' . $version );
 			echo $this->loadTemplate('staff_johncage');
 			}
 		}
