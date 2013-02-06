@@ -57,7 +57,6 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				        . ' WHERE p.published = 1' 
                 . ' and t.club_id = '.(int) $this->clubid . ' group by t.id';
 
-
 */
 			
 			$query = ' SELECT id, '
