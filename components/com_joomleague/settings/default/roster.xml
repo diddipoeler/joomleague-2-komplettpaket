@@ -37,6 +37,7 @@
 				description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_PLAYERS_LAYOUT">
 			<option value="player_standard">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_PLAYER_STANDARD</option>
 			<option value="player_card">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_PLAYER_CARD</option>
+			<option value="player_johncage">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_PLAYER_CARD</option>
 		</field>
 		
 		<field 	name="show_staff" type="radio" default="1" 
@@ -51,6 +52,7 @@
 				description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_STAFF_LAYOUT">
 			<option value="staff_standard">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_STAFF_STANDARD</option>
 			<option value="staff_card">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_STAFF_CARD</option>
+			<option value="staff_johncage">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_STAFF_CARD</option>
 		</field>
 
 		<field 	name="show_team_shortform" type="radio" default="1" 
