@@ -13,6 +13,9 @@ class JoomleagueViewRoster extends JLGView
 		$document = JFactory::getDocument();
 		$model = $this->getModel();
 		$config=$model->getTemplateConfig($this->getName());
+        
+        $type = '';
+        $this->assignRef('type',$type);
 
 		$this->assignRef('project',$model->getProject());
 		$this->assignRef('overallconfig',$model->getOverallConfig());
