@@ -14,6 +14,12 @@
 		}
 		?>
 		</td>
+        <td>
+        <?php
+        echo $this->lists['type'];
+        
+        ?>
+        </td>
 	</tr>
 </table>
 <br />

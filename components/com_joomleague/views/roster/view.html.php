@@ -83,6 +83,15 @@ class JoomleagueViewRoster extends JLGView
     \n";
     
     $document->addScriptDeclaration( $js );
+    
+    // select roster view
+    $opp_arr = array ();
+    $opp_arr[] = JHTML :: _('select.option', "player_standard", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_PLAYER_STANDARD'));
+	$opp_arr[] = JHTML :: _('select.option', "player_card", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_PLAYER_CARD'));
+	$opp_arr[] = JHTML :: _('select.option', "player_johncage", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_PLAYER_CARD'));
+
+	$lists['type'] = $opp_arr;
+	$this->assignRef('lists', $lists);
 
 $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
