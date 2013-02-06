@@ -1,7 +1,12 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
+if ( $this->show_debug_info )
+{
+echo 'project<br /><pre>~' . print_r($this->project,true) . '~</pre><br />';    
+}
+
 ?>
-		<div class="jl_rosterperson jl_rp<?php echo $this->k;?>">
+<div class="jl_rosterperson jl_rp<?php echo $this->k;?>">
 <?php 
 $personName = JoomleagueHelper::formatName(null ,$this->row->firstname, $this->row->nickname, $this->row->lastname, $this->config["name_format"]);
 if ($this->config['show_player_icon']) 
