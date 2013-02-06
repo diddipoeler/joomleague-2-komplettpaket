@@ -1,7 +1,16 @@
 <?php defined('_JEXEC')or die('Restricted access');
 ?>
 		<fieldset class="adminform">
-			<legend></legend>
+			<legend>
+            <?php
+                    echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_DETAILS',
+												'<i>' . $this->project_team->name . '</i>',
+												'<i>' . $this->projectws->name . '</i>');
+					
+					?>
+            
+            
+            </legend>
 			<table class="admintable">
 				<tr>
 					<td class="key"><?php echo $this->form->getLabel('admin'); ?></td>

@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 ?>	
-	
+
 			<fieldset class="adminform">
 				<legend>
 					<?php echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_DESCR',

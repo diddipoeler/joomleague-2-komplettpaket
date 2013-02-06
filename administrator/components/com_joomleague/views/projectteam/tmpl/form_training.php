@@ -3,7 +3,10 @@
 			<fieldset class="adminform">
 				<legend>
 					<?php
-					echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_TRAINING');
+                    echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_TRAINING',
+												'<i>' . $this->project_team->name . '</i>',
+												'<i>' . $this->projectws->name . '</i>');
+					
 					?>
 				</legend>
 				<table class='admintable'>

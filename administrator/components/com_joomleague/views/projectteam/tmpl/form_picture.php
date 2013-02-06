@@ -2,7 +2,10 @@
 ?>
 
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_PIC' );?>
+			<legend>
+            <?php echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_P_TEAM_TITLE_PIC',
+												'<i>' . $this->project_team->name . '</i>',
+												'<i>' . $this->projectws->name . '</i>'); ?>
 			</legend>
 			<table class="admintable">
 					<?php foreach ($this->form->getFieldset('picture') as $field): ?>
