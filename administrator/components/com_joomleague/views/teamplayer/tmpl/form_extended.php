@@ -1,4 +1,13 @@
 <?php defined('_JEXEC') or die('Restricted access');
+?>
+
+		<fieldset class="adminform">
+			<legend>
+            <?php echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_EXT_TITLE',
+												'<i>' . $this->project_team->name . '</i>',
+												'<i>' . $this->projectws->name . '</i>'); ?>
+			</legend>
+<?php            
 foreach ($this->extended->getFieldsets() as $fieldset)
 {
 	?>
@@ -21,3 +30,4 @@ foreach ($this->extended->getFieldsets() as $fieldset)
 	<?php
 }
 ?>
+</fieldset>
