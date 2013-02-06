@@ -41,12 +41,13 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		$teams = array( 0 );
 		if ( $this->clubid > 0 )
 		{
+/*
 			$query = 'SELECT t.id,' 
 	. ' CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS slug,' 
 				        . ' t.name as team_name,' 
 				        . ' t.short_name as team_shortcut,' 
 				        . ' t.info as team_description,'
-                . ' max(pt.project_id) as pid,' 
+                . ' pt.project_id as pid,' 
 				        . ' pt.id as ptid'
 				        . ' FROM #__joomleague_team as t'
 				        . ' RIGHT JOIN #__joomleague_project_team as pt'
@@ -54,8 +55,11 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				        . ' RIGHT JOIN #__joomleague_project as p' 
                 . ' on pt.project_id = p.id' 
 				        . ' WHERE p.published = 1' 
-                . ' and t.club_id = '.(int) $this->clubid;
-/*			
+                . ' and t.club_id = '.(int) $this->clubid . ' group by t.id';
+
+
+*/
+			
 			$query = ' SELECT id, '
 				     	. ' CASE WHEN CHAR_LENGTH( alias ) THEN CONCAT_WS( \':\', id, alias ) ELSE id END AS slug, '
 				       . ' name as team_name, '
@@ -64,10 +68,14 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				       . ' (SELECT MAX(project_id) 
 				       		FROM #__joomleague_project_team 
 				       		RIGHT JOIN #__joomleague_project p on project_id=p.id 
-				       		WHERE team_id=t.id and p.published = 1) as pid'
+				       		WHERE team_id=t.id and p.published = 1) as pid,'
+                       . '(SELECT pt.id 
+				       		FROM l5s1n_joomleague_project_team as pt 
+				       		RIGHT JOIN l5s1n_joomleague_project p on pt.project_id=p.id 
+				       		WHERE team_id=t.id and p.published = 1 and pt.project_id=pid) as ptid'     
 				       . ' FROM #__joomleague_team t'
 				       . ' WHERE club_id = '.(int) $this->clubid;
-*/
+
 			$this->_db->setQuery( $query );
 			$teams = $this->_db->loadObjectList();
 		}
