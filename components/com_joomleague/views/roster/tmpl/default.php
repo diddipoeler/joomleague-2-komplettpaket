@@ -46,8 +46,8 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$option 	= JRequest::getCmd('option');
 			$version 	= urlencode(JoomleagueHelper::getVersion());
 			$document->addStyleSheet(  $this->baseurl . '/components/'.$option.'/assets/css/'.$this->getName().'_johncage.css?v=' . $version );
-//			echo $this->loadTemplate('players_johncage');
-            echo $this->loadTemplate('person_player');
+			echo $this->loadTemplate('players_johncage');
+//            echo $this->loadTemplate('person_player');
 			}
 		}
 
@@ -68,8 +68,8 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$option 	= JRequest::getCmd('option');
 			$version 	= urlencode(JoomleagueHelper::getVersion());
 			$document->addStyleSheet(  $this->baseurl . '/components/'.$option.'/assets/css/'.$this->getName().'_johncage.css?v=' . $version );
-//			echo $this->loadTemplate('staff_johncage');
-            echo $this->loadTemplate('person_staff');
+			echo $this->loadTemplate('staff_johncage');
+//            echo $this->loadTemplate('person_staff');
             
 			}
 		}
