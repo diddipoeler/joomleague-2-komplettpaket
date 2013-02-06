@@ -74,20 +74,20 @@ if ($this->config['show_player_numbers'])
 		$this->assignRef('playertool',$model->getTeamPlayer($this->project->current_round,$this->row->playerid));
 		if (!empty($this->playertool[0]->injury))
 		{
-			$imageTitle=JText::_('JL_PERSON_INJURED');
-			echo JHTML::image(	'media/com_joomleague/event_icons/injured.gif',
+			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_INJURED');
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'injured.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 		if (!empty($this->playertool[0]->suspension))
 		{
-			$imageTitle=JText::_('JL_PERSON_SUSPENDED');
-			echo JHTML::image(	'media/com_joomleague/event_icons/suspension.gif',
+			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_SUSPENDED');
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'suspension.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 		if (!empty($this->playertool[0]->away))
 		{
-			$imageTitle=JText::_('JL_PERSON_AWAY');
-			echo JHTML::image(	'media/com_joomleague/event_icons/away.gif',
+			$imageTitle=JText::_('COM_JOOMLEAGUE_PERSON_AWAY');
+			echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'away.gif',
 			$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		}
 ?>
@@ -131,7 +131,7 @@ if ($this->config['show_player_numbers'])
 					<div>
 						<span class="jl_roster_persondetails_label">
 <?php
-			echo JText::_("COM_JOOMLEAGUE_ROSTER_AGE");
+			echo JText::_("COM_JOOMLEAGUE_PERSON_AGE");
 ?>
 						</span>
 						<span class="jl_roster_persondetails_data">
@@ -147,7 +147,7 @@ if ($this->config['show_player_numbers'])
 ?>
 					<div>
 						<span class="jl_roster_persondetails_label">
-							<?php echo JText::_("COM_JOOMLEAGUE_ROSTER_BIRTHDAY");?>
+							<?php echo JText::_("COM_JOOMLEAGUE_PERSON_BIRTHDAY");?>
 						</span>
 						<span class="jl_roster_persondetails_data">
 							<?php echo JHTML::date($this->row->birthday,$birthdayformat);?>
