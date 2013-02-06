@@ -31,7 +31,7 @@ class JoomleagueControllerPredictionResults extends JLGController
 		$this->showfooter();
 	}
 
-	function selectProjectRound()
+	function selectprojectround()
 	{
 		JRequest::checkToken() or jexit(JText::_('JL_PRED_INVALID_TOKEN_REFUSED'));
 		$post	= JRequest::get('post');

@@ -248,7 +248,7 @@ class JoomleagueModelPrediction extends JModel
   } 
 
 
-	function getPredictionMember()
+	function getPredictionMember($configavatar)
 	{
 		if (!$this->_predictionMember)
 		{
@@ -258,7 +258,8 @@ class JoomleagueModelPrediction extends JModel
 									pm.registerDate AS pmRegisterDate,
 									pm.*, u.name, u.username
 							FROM #__joomleague_prediction_member AS pm
-								LEFT JOIN #__users AS u ON u.id=pm.user_id
+								LEFT JOIN #__users AS u 
+                ON u.id = pm.user_id
 							WHERE	pm.prediction_id=".$this->_db->Quote($this->predictionGameID)." AND
 									pm.id=".$this->_db->Quote($this->predictionMemberID);
 				$this->_db->setQuery($query,0,1);
@@ -278,7 +279,8 @@ class JoomleagueModelPrediction extends JModel
 										pm.*,
 										u.*
 								FROM #__joomleague_prediction_member AS pm
-									LEFT JOIN #__users AS u ON u.id=pm.user_id
+									LEFT JOIN #__users AS u 
+                  ON u.id = pm.user_id
 								WHERE	pm.prediction_id=".$this->_db->Quote($this->predictionGameID)." AND
 										pm.user_id=".$this->_db->Quote($user->id);
 					$this->_db->setQuery($query,0,1);
@@ -302,7 +304,16 @@ class JoomleagueModelPrediction extends JModel
 				}
 			}
 		}
-		return $this->_predictionMember;
+
+    if ( isset($this->_predictionMember->user_id) )
+    {
+		$this->_predictionMember->picture = $this->getPredictionMemberAvatar($this->_predictionMember->user_id, $configavatar['show_image_from'] );
+		}
+		
+//     echo 'predictionMember <br /><pre>~' . print_r($this->_predictionMember,true) . '~</pre><br />';
+//     echo 'configavatar <br /><pre>~' . print_r($configavatar,true) . '~</pre><br />';
+    
+    return $this->_predictionMember;
 	}
 
 	function getPredictionProjectS()

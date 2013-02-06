@@ -43,9 +43,9 @@ if ((isset($this->config['show_prediction_heading'])) && ($this->config['show_pr
 				<td class='sectiontableheader' style='text-align:right; ' width='15%'  nowrap='nowrap'>
 					<form name='predictionMemberSelect' method='post' >
 					<input type='hidden' name='prediction_id' value='<?php echo intval($this->predictionGame->id); ?>' />
-					<input type='hidden' name='task' value='select' />
+					<input type='hidden' name='task' value='predictionusers.select' />
 					<input type='hidden' name='option' value='com_joomleague' />
-					<input type='hidden' name='controller' value='<?php echo $this->getName(); ?>' />
+					
 					<?php echo JHTML::_('form.token'); ?>
 						<?php 
             if ( $this->getName() == 'predictionresults' )

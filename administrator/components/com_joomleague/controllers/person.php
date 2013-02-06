@@ -77,6 +77,42 @@ class JoomleagueControllerPerson extends JoomleagueController
 
 		$model=$this->getModel('person');
 
+    if (!empty($post['address']))
+		{
+			$address_parts[] = $post['address'];
+		}
+		if (!empty($post['state']))
+		{
+			$address_parts[] = $post['state'];
+		}
+		if (!empty($post['location']))
+		{
+			if (!empty($post['zipcode']))
+			{
+				$address_parts[] = $post['zipcode']. ' ' .$post['location'];
+			}
+			else
+			{
+				$address_parts[] = $post['location'];
+			}
+		}
+		if (!empty($post['country']))
+		{
+			$address_parts[] = Countries::getShortCountryName($post['country']);
+		}
+		$address = implode(', ', $address_parts);
+		$coords = $model->resolveLocation($address);
+		
+		//$mainframe->enqueueMessage(JText::_('coords -> '.'<pre>'.print_r($coords,true).'</pre>' ),'');
+		
+		foreach( $coords as $key => $value )
+		{
+    $post['extended'][$key] = $value;
+    }
+		
+		$post['latitude'] = $coords['latitude'];
+		$post['longitude'] = $coords['longitude'];
+		
 		if ($model->store($post))
 		{
 			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_CTRL_SAVED');

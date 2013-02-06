@@ -89,9 +89,21 @@ public static function getPredictionTippEntryRoute($predictionID,$userID=null,$r
 
 public static function getPredictionMemberRoute($predictionID,$userID=null,$task=null,$projectID=null)
 	{
-		$params = array('option' => 'com_joomleague', 
+	
+	switch ($task)
+	{
+  case 'edit';
+  $params = array('option' => 'com_joomleague', 
+						'view' => 'predictionuser', 
+						'prediction_id' => $predictionID);
+	break;					
+  default:
+  $params = array('option' => 'com_joomleague', 
 						'view' => 'predictionusers', 
 						'prediction_id' => $predictionID);
+  break;
+  }
+		
         // diddipoeler
         if (!is_null($projectID)){$params['p']=$projectID;}
         

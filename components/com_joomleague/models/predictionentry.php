@@ -223,7 +223,8 @@ class JoomleagueModelPredictionEntry extends JoomleagueModelPrediction
     
     
     // _predictionMember
-    $predictionMemberInfo = $this->getPredictionMember();
+    $configavatar			= JoomleagueModelPrediction::getPredictionTemplateConfig('predictionusers');
+    $predictionMemberInfo = $this->getPredictionMember($configavatar);
     //$mainframe->enqueueMessage(JText::_('predictionMemberInfo -> <pre> '.print_r($predictionMemberInfo,true).'</pre><br>' ),'Notice');
     
     //$mainframe->enqueueMessage(JText::_('predictionMember reminder -> '.$predictionMemberInfo->reminder),'');

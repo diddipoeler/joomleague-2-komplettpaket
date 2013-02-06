@@ -78,5 +78,14 @@
 		<action name="projectteam.save" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_SAVE_DESC" />
 		<action name="projectteam.cancel" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_CANCEL" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_CANCEL_DESC" />
 
+    <!-- prediction-->
+		<action name="predictionentry.addtipp" title="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_ACCESS_ADDTIP" description="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_ACCESS_ADDTIP_DESC" />
+		<action name="predictionentry.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_SELECT_ROUNDS_DESC" />
+		<action name="predictionranking.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_RANKING_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_RANKING_SELECT_ROUNDS_DESC" />
+		<action name="predictionresults.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_RESULTS_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_RESULTS_SELECT_ROUNDS_DESC" />
+		<action name="predictionusers.selectprojectround" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_ROUNDS" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_ROUNDS_DESC" />
+		<action name="predictionusers.savememberdata" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SAVE_MEMBER_DATA" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SAVE_MEMBER_DATA_DESC" />		
+    <action name="predictionusers.select" title="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_MEMBER_DATA" description="COM_JOOMLEAGUE_SETTINGS_PRED_USERS_SELECT_MEMBER_DATA_DESC" />
+    
 	</section>
 </access>

@@ -47,8 +47,9 @@ class JoomleagueViewPredictionEntry extends JLGView
       
 			$this->assignRef('model',				$model);
 			$this->assignRef('config',				array_merge($overallConfig,$config));
-
-			$this->assignRef('predictionMember',	$model->getPredictionMember());
+      $configavatar			= $model->getPredictionTemplateConfig('predictionusers');
+      $this->assignRef('configavatar',				$configavatar );
+			$this->assignRef('predictionMember',	$model->getPredictionMember($configavatar));
 			$this->assignRef('predictionProjectS',	$model->getPredictionProjectS());
 			$this->assignRef('actJoomlaUser',		JFactory::getUser());
 			$this->assignRef('allowedAdmin',		$model->getAllowed());

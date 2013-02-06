@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
 //require_once(JPATH_COMPONENT . DS . 'helpers' . DS . 'imageselect.php');
+require_once( JLG_PATH_SITE . DS . 'models' . DS . 'predictionusers.php' );
 
 /**
  * Joomleague Component prediction View
@@ -22,7 +23,7 @@ jimport('joomla.application.component.view');
  * @package	JoomLeague
  * @since	1.5.100627
  */
-class JoomleagueViewPredictionUsers extends JLGView
+class JoomleagueViewPredictionUser extends JLGView
 {
 
 	function display($tpl=null)
@@ -40,42 +41,45 @@ class JoomleagueViewPredictionUsers extends JLGView
 		$document->addScript(JURI::root().'components/com_joomleague/assets/js/swfobject.js');
 		
 		$model		=& $this->getModel();
-
-		$this->assignRef('predictionGame',$model->getPredictionGame());
+    $mdlPredUsers = JModel::getInstance("predictionusers", "JoomleagueModel");
+    
+		$this->assignRef('predictionGame',$mdlPredUsers->getPredictionGame());
 
 		if (isset($this->predictionGame))
 		{
-			$config				= $model->getPredictionTemplateConfig($this->getName());
-			$overallConfig		= $model->getPredictionOverallConfig();
-			$tipprankingconfig	= $model->getPredictionTemplateConfig('predictionranking');
-			$flashconfig 		= $model->getPredictionTemplateConfig( "predictionflash" );
+			$config				= $mdlPredUsers->getPredictionTemplateConfig('predictionusers');
+			$overallConfig		= $mdlPredUsers->getPredictionOverallConfig();
+			$tipprankingconfig	= $mdlPredUsers->getPredictionTemplateConfig('predictionranking');
+			$flashconfig 		= $mdlPredUsers->getPredictionTemplateConfig( "predictionflash" );
 			
-			$configavatar			= $model->getPredictionTemplateConfig('predictionusers');
+			$configavatar			= $mdlPredUsers->getPredictionTemplateConfig('predictionusers');
 						
 			//$rankingconfig	= $model->getPredictionTemplateConfig('ranking');
 
 //      $this->assignRef('debuginfo',	$model->getDebugInfo());
       
-			$this->assignRef('model',				$model);
+			$this->assignRef('model',				$mdlPredUsers);
 			$this->assignRef('roundID',				$this->model->roundID);
 			$this->assignRef('config',				array_merge($overallConfig,$tipprankingconfig,$config));
 			$this->assignRef('configavatar',				$configavatar );
 			
-			$this->assignRef('predictionMember',	$model->getPredictionMember($configavatar));
-			if (!isset($this->predictionMember->id))
+			$this->assignRef('predictionMember',	$mdlPredUsers->getPredictionMember($configavatar));
+			
+      if (!isset($this->predictionMember->id))
 			{
 				$this->predictionMember->id=0;
 				$this->predictionMember->pmID=0;
 			}
-			$this->assignRef('predictionProjectS',	$model->getPredictionProjectS());
+			
+			$this->assignRef('predictionProjectS',	$mdlPredUsers->getPredictionProjectS());
 
 			$this->assignRef('actJoomlaUser',		JFactory::getUser());
-			$this->assignRef('isPredictionMember',	$model->checkPredictionMembership());
-			$this->assignRef('memberData',			$model->memberPredictionData());
-			$this->assignRef('allowedAdmin',		$model->getAllowed());
+			$this->assignRef('isPredictionMember',	$mdlPredUsers->checkPredictionMembership());
+			$this->assignRef('memberData',			$mdlPredUsers->memberPredictionData());
+			$this->assignRef('allowedAdmin',		$mdlPredUsers->getAllowed());
 			
 			if (!empty($this->predictionMember->user_id)) {
-				$this->assignRef('showediticon',$model->getAllowed($this->predictionMember->user_id));
+				$this->assignRef('showediticon',$mdlPredUsers->getAllowed($this->predictionMember->user_id));
 			}
 			
 			$this->_setPointsChartdata(array_merge($flashconfig, $config));
@@ -88,7 +92,7 @@ class JoomleagueViewPredictionUsers extends JLGView
 			if (!$this->allowedAdmin){$userID=$this->actJoomlaUser->id;}else{$userID=null;}
 			$predictionMembers[] = JHTML::_('select.option','0',JText::_($this->optiontext.'JL_PRED_SELECT_MEMBER'),'value','text');
 
-			if ($res=&$model->getPredictionMemberList($this->config,$userID)){$predictionMembers=array_merge($predictionMembers,$res);}
+			if ($res=&$mdlPredUsers->getPredictionMemberList($this->config,$userID)){$predictionMembers=array_merge($predictionMembers,$res);}
 			$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
 			unset($res);
 			unset($predictionMembers);
@@ -141,7 +145,7 @@ class JoomleagueViewPredictionUsers extends JLGView
           {
           $disabled='';
           // ist die saison beendet ?
-          $predictionProjectSettings = $model->getPredictionProject($predictionProject->project_id);
+          $predictionProjectSettings = $mdlPredUsers->getPredictionProject($predictionProject->project_id);
           $time=strtotime($predictionProject->start_date);
           $time += 86400; // Ein Tag in Sekunden
           $showDate=date("Y-m-d",$time);
@@ -185,7 +189,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 				$imageselect = ImageSelect::getSelector('picture','picture_preview','predictionusers',$this->predictionMember->picture,$default,'');
 				$this->assignRef('imageselect',	$imageselect);
 				*/
-				//$this->assignRef('form'      	, $this->get('form'));	
+				$this->assignRef('form'      	, $this->get('form'));	
 			}
 			else
 			{

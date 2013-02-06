@@ -91,7 +91,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 			<form name='resultsRoundSelector' method='post' onsubmit="alert(1)">
 				<input type='hidden' name='option' value='com_joomleague' />
 				
-				<input type='hidden' name='task' value='predictionentry.selectProjectRound' />
+				<input type='hidden' name='task' value='predictionentry.selectprojectround' />
 				<input type='hidden' name='prediction_id' value='<?php echo (int)$this->predictionGame->id; ?>' />
 				<input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 				<input type='hidden' name='r' value='<?php echo (int)$this->model->roundID; ?>' />

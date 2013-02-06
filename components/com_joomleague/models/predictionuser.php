@@ -14,14 +14,12 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
 
-/*
 // Include dependancy of the main model form
 jimport('joomla.application.component.modelform');
 // import Joomla modelitem library
 jimport('joomla.application.component.modelitem');
 // Include dependancy of the dispatcher
 jimport('joomla.event.dispatcher');
-*/
 
 //require_once(JPATH_COMPONENT.DS.'models'.DS.'item.php');
 require_once('prediction.php');
@@ -33,10 +31,12 @@ require_once('prediction.php');
  * @package	JoomLeague
  * @since	1.5.100625
  */
-class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
-//class JoomleagueModelPredictionUsers extends JModelForm
+//class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
+class JoomleagueModelPredictionUser extends JModelForm
 {
-
+  var $predictionGameID = 0;
+	var $predictionMemberID = 0;
+	
 	function __construct()
 	{
 		parent::__construct();
@@ -130,19 +130,6 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 		
     break;
     
-    case 'com_cbe':
-    $picture = 'components/com_cbe/assets/user.png';
-    $query = 'SELECT avatar
-					FROM #__cbe_users
-					WHERE userid = ' . (int)$user_id ;
-		$db->setQuery($query);
-		$results = $db->loadResult();
-		if ( $results )
-    {
-    $picture = $results;
-    }
-    break;
-    
     case 'com_comprofiler':
     break;
     
@@ -213,22 +200,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 		return $form;
 	}
 	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.7
-	 */
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_joomleague.edit.'.$this->name.'.data', array());
-		if (empty($data))
-		{
-			$data = $this->getData();
-		}
-		return $data;
-	}
+	
 	
 	function memberPredictionData()
 	{

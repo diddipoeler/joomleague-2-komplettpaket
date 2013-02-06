@@ -40,7 +40,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
       <input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 			<input type='hidden' name='r' value='<?php echo (int)$this->roundID; ?>' />
 			<input type='hidden' name='pjID' value='<?php echo (int)$this->model->pjID; ?>' />
-			<input type='hidden' name='task' value='predictionresults.selectProjectRound' />
+			<input type='hidden' name='task' value='predictionresults.selectprojectround' />
 			
 			<?php echo JHTML::_('form.token'); ?>
 

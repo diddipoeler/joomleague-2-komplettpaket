@@ -22,8 +22,8 @@ jimport('joomla.application.component.controllerform');
  * @package	JoomLeague
  * @since	1.5.100627
  */
-class JoomleagueControllerPredictionUsers extends JLGController
-//class JoomleagueControllerPredictionUsers extends JControllerForm
+//class JoomleagueControllerPredictionUsers extends JLGController
+class JoomleagueControllerPredictionUsers extends JControllerForm
 {
 
 	function display()

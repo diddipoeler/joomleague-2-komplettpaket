@@ -74,7 +74,7 @@ class JoomleagueViewPredictionRanking extends JLGView
       $this->assignRef('configavatar',				$configavatar );
       $this->assignRef('config',				array_merge($overallConfig,$config));
       
-			$this->assignRef('predictionMember',	$model->getPredictionMember());
+			$this->assignRef('predictionMember',	$model->getPredictionMember($configavatar));
 			$this->assignRef('predictionProjectS',	$model->getPredictionProjectS());
 			$this->assignRef('actJoomlaUser',		JFactory::getUser());
 			

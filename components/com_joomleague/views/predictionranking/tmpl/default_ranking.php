@@ -93,7 +93,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			<input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 			<input type='hidden' name='r' value='<?php echo (int)$this->roundID; ?>' />
 			<input type='hidden' name='pjID' value='<?php echo (int)$showProjectID; ?>' />
-			<input type='hidden' name='task' value='predictionranking.selectProjectRound' />
+			<input type='hidden' name='task' value='predictionranking.selectprojectround' />
 			<input type='hidden' name='option' value='com_joomleague' />
 			
 

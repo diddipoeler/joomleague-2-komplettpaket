@@ -12,8 +12,13 @@
 defined('_JEXEC') or die(JText::_('Restricted access'));
 JHTML::_('behavior.tooltip');
 
-//echo '<br /><pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
-//echo 'predictionMember <br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
+if ( $this->show_debug_info )
+{
+echo 'allowedAdmin<br /><pre>~' . print_r($this->allowedAdmin,true) . '~</pre><br />';
+echo 'predictionMember <br /><pre>~' . print_r($this->predictionMember,true) . '~</pre><br />';
+echo 'form<br /><pre>~' . print_r($this->form,true) . '~</pre><br />';
+}
+
 
 
 if (!$this->showediticon)
@@ -219,16 +224,11 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		// echo 'imageselect <pre>'.print_r($this->imageselect ,true).'</pre><br>';
 		// /media/com_joomleague/jl_images/spinner.gif 
 		?>
-		<tr>
-			<?php
-			echo JoomleagueModelPredictionUsers::echoLabelTD($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_AVATAR',$this->optiontext.'JL_PRED_USERS_EDIT_LABEL_HELP_AVATAR');
-			?>
-			<td colspan='2'>
-				<img	class='imagepreview' src='<?PHP echo $this->predictionMember->picture  ; ?>' name='picture_preview'
-						id='picture_preview' border='3' alt='<?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' title='<?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_AVATAR_PREVIEW'); ?>' /><br /><?php echo $this->imageselect; ?>
-
+		
+		    <tr>
+		    <td>
 <fieldset class="adminform">
-			<legend><?php echo JText::_('JL_PRED_USERS_EDIT_LABEL_AVATAR' );?>
+			<legend><?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_AVATAR' );?>
 			</legend>
 			<table class="admintable">
 					<?php foreach ($this->form->getFieldset('picture') as $field): ?>
@@ -242,6 +242,9 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 
 			</td>
 		</tr>
+		
+		
+		
 		<?php
 		}		
 		?>

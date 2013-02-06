@@ -37,6 +37,8 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
   `sb_catid` INT(11) NOT NULL DEFAULT '0' ,
   `trikot_home` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
+  `latitude` float NOT NULL DEFAULT '255',
+  `longitude` float NOT NULL DEFAULT '255',
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )
@@ -364,6 +366,8 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_person` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `latitude` float NOT NULL DEFAULT '255',
+  `longitude` float NOT NULL DEFAULT '255',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `position_id` (`position_id`)
@@ -395,6 +399,8 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_playground` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `latitude` float NOT NULL DEFAULT '255',
+  `longitude` float NOT NULL DEFAULT '255',
   PRIMARY KEY (`id`) ,
   KEY `club_id` (`club_id`),
   UNIQUE INDEX `name` (`name` ASC)
