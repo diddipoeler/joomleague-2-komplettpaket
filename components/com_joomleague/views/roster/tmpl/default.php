@@ -27,10 +27,10 @@ if (count($this->rows > 0))
 		";
 	}//if ($this->config['show_player_icon']) ends
 	$InOutStats = array();
-	$InOutStats[1] = array('icon' => 'media/com_joomleague/event_icons/shirt.png');
-	$InOutStats[2] = array('icon' => 'media/com_joomleague/event_icons/startroster.png');
-	$InOutStats[3] = array('icon' => 'media/com_joomleague/event_icons/in.png');
-	$InOutStats[4] = array('icon' => 'media/com_joomleague/event_icons/out.png');
+	$InOutStats[1] = array('icon' => 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/shirt.png');
+	$InOutStats[2] = array('icon' => 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/startroster.png');
+	$InOutStats[3] = array('icon' => 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/in.png');
+	$InOutStats[4] = array('icon' => 'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png');
 	for ($x=count($InOutStats);$x>=1;$x--)
 	{
 		$css .= ".jl_roster_in_out$x { 
