@@ -5,7 +5,7 @@
     <tr>
         <td class="contentheading">
             <?php
-            echo JText::_('JL_ALL_RESULTS_PAGE_TITLE' );
+            echo JText::_('COM_JOOMLEAGUE_ALL_RESULTS_PAGE_TITLE' );
 //             echo JText::sprintf('JL_ALL_RESULTS_PAGE_TITLE', '' );
             ?>
         </td>
