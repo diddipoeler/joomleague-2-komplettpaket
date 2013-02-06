@@ -3,9 +3,12 @@
 
 		<fieldset class="adminform">
 			<legend>
-            <?php echo JText::sprintf(	'COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_EXT_TITLE',
-												'<i>' . $this->project_team->name . '</i>',
-												'<i>' . $this->projectws->name . '</i>'); ?>
+            <?php  
+            echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_EXT_TITLE',
+										JoomleagueHelper::formatName(null, $this->project_player->firstname, $this->project_player->nickname, $this->project_player->lastname, 0),
+										'<i>' . $this->teamws->name . '</i>', '<i>' . $this->projectws->name . '</i>' );                                    
+                                                
+                                                ?>
 			</legend>
 <?php            
 foreach ($this->extended->getFieldsets() as $fieldset)
