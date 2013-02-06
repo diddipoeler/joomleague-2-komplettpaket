@@ -13,15 +13,20 @@ class JoomleagueViewRoster extends JLGView
 		$document = JFactory::getDocument();
 		$model = $this->getModel();
 		$config=$model->getTemplateConfig($this->getName());
-        
-        $type = JRequest::getVar("type", 0);
-        $this->assignRef('type',$type);
 
 		$this->assignRef('project',$model->getProject());
 		$this->assignRef('overallconfig',$model->getOverallConfig());
 		//$this->assignRef('staffconfig',$model->getTemplateConfig('teamstaff'));
 		$this->assignRef('config',$config);
 		$this->assignRef('projectteam',$model->getProjectTeam());
+        
+        $type = JRequest::getVar("type", 0);
+        if ( !$type )
+        {
+            $type = $this->config['show_players_layout'];
+        }
+        $this->assignRef('type',$type);
+        
         $this->config['show_players_layout'] = $type;
 		if ($this->projectteam)
 		{
