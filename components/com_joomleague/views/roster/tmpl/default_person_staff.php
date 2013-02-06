@@ -22,7 +22,18 @@ if ($this->config['show_staff_icon']==1)
 			<div class="jl_rosterperson_staffpicture_column">
 				<div class="jl_roster_staffperson_pic">
 <?php
+if ( !$this->config['show_highslide'] )
+		{
 	echo $thumbnail;
+    }
+    else
+			{
+      ?>
+<a href="<?php echo $picture;?>" alt="<?php echo $personName;?>" title="<?php echo $personName;?>" class="highslide" onclick="return hs.expand(this)">
+<img src="<?php echo $picture;?>" alt="<?php echo $personName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['staff_picture_width'];?>" height="<?php echo $this->config['staff_picture_height'];?>"/></a>
+    <?php
+      }	
+    
 ?>
 				</div><!-- /.jl_roster_staffperson_pic -->
 			</div><!-- /.jl_rosterperson_staffpicture_column -->
