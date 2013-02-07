@@ -6,6 +6,12 @@ $uri = JFactory::getURI();
 $version = urlencode(JoomleagueHelper::getVersion());
 echo JHTML::script('eventsediting.js?v='.$version,'administrator/components/com_joomleague/assets/js/'); ?>
 <form action="index.php" method="post" id="adminForm">
+<fieldset class="adminform">
+			<legend>
+      <?php 
+      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_POSITION_LEGEND_DESC','<i>'.$this->position->name.'</i>'); 
+      ?>
+      </legend>
 	<div class="col50">
 <?php
 echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
@@ -28,4 +34,5 @@ echo JHTML::_('tabs.end');
 		<input type="hidden" name="task" value="" />
 	</div>
 	<?php echo JHTML::_('form.token')."\n"; ?>
+	</fieldset>	
 </form>

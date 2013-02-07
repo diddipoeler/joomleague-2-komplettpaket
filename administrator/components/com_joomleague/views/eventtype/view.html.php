@@ -104,6 +104,7 @@ class JoomleagueViewEventtype extends JLGView
 		$this->assignRef('lists',$lists);
 */
 		$this->assignRef('event',$event);
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
 		//$extended = $this->getExtended($projectreferee->extended, 'eventtype');
 		//$this->assignRef( 'extended', $extended );
 		

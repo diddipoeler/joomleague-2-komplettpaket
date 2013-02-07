@@ -96,6 +96,7 @@ class JoomleagueViewjlextassociation extends JLGView
 		$this->assignRef('lists',$lists);
 		$this->assignRef('object',$object);
     $this->assignRef('form'      	, $this->get('form'));
+    $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
     
 		parent::display($tpl);
 	}

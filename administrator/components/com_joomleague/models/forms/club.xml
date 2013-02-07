@@ -189,4 +189,40 @@
 				directory="com_joomleague/database/clubs/large"/>				
 		
 	</fieldset>	
+	
+	<fieldset name="imageselect">
+		
+			<field
+				name="logo_small"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_small.gif"				
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="clubs/small"
+				directory="com_joomleague/database/clubs/small"/>	
+			<field
+				name="logo_middle"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="clubs/medium"
+				directory="com_joomleague/database/clubs/medium"/>				
+			<field
+				name="logo_big"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_150.png"
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="clubs/large"
+				directory="com_joomleague/database/clubs/large"/>				
+		
+	</fieldset>	
+	
 </form>

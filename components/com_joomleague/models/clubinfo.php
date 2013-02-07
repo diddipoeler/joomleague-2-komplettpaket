@@ -41,24 +41,9 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		$teams = array( 0 );
 		if ( $this->clubid > 0 )
 		{
-/*
-			$query = 'SELECT t.id,' 
-	. ' CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS slug,' 
-				        . ' t.name as team_name,' 
-				        . ' t.short_name as team_shortcut,' 
-				        . ' t.info as team_description,'
-                . ' pt.project_id as pid,' 
-				        . ' pt.id as ptid'
-				        . ' FROM #__joomleague_team as t'
-				        . ' RIGHT JOIN #__joomleague_project_team as pt'
-				        . ' on pt.team_id = t.id'
-				        . ' RIGHT JOIN #__joomleague_project as p' 
-                . ' on pt.project_id = p.id' 
-				        . ' WHERE p.published = 1' 
-                . ' and t.club_id = '.(int) $this->clubid . ' group by t.id';
 
-*/
-			
+			// diddipoeler
+			// query erweitert um die projektteamid
 			$query = ' SELECT id, '
 				     	. ' CASE WHEN CHAR_LENGTH( alias ) THEN CONCAT_WS( \':\', id, alias ) ELSE id END AS slug, '
 				       . ' name as team_name, '

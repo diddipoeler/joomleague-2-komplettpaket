@@ -37,6 +37,7 @@
 	<!-- Site Main Media File Copy Section -->
 	<media destination="com_joomleague" folder="media/com_joomleague">
 		<filename>index.html</filename>
+		<folder>clubs</folder>
 		<folder>flags</folder>
 		<folder>flags_associations</folder>
 		<folder>jl_images</folder>

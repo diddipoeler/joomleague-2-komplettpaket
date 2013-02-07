@@ -2,6 +2,8 @@
 
 ?>
 <form action="index.php" method="post" id="adminForm">
+<fieldset class="adminform">
+			<legend><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PROJECT_LEGEND_DESC','<i>'.$this->project->name.'</i>'); ?></legend>
 	<div class="col50">
 	<?php
 	echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
@@ -36,4 +38,5 @@
 	<input type="hidden" name="cid[]" value="<?php echo $this->project->id; ?>" />
 	<?php echo JHTML::_('form.token')."\n"; ?>
 	</div>
+	</fieldset>
 </form>

@@ -67,6 +67,20 @@
 				preview="show"
 				directory="com_joomleague/database/teams"/>			
 	</fieldset>	
+	
+	<fieldset name="imageselect">
+			<field
+				name="picture"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_450_2.png"					
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_PIC"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_PIC_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="teams"
+				directory="com_joomleague/database/teams"/>		
+	</fieldset>
+	
 	<fieldset name="description">		
 			<field
 				name="notes"

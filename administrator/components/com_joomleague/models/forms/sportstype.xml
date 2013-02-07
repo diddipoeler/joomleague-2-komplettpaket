@@ -26,5 +26,20 @@
 			preview="show"
 			>
 		</field>
-	</fieldset>		
+	</fieldset>
+  
+  <fieldset name="imageselect">			
+		<field 	
+			name="icon" 
+			type="imageselect" 
+			default="com_joomleague/database/placeholders/placeholder_21.png"				
+			label="COM_JOOMLEAGUE_GLOBAL_ICON" 
+			description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC"
+			class="inputbox"
+			directory="com_joomleague/database/sport_types"
+			targetfolder="sport_types"
+			preview="show"
+			>
+		</field>
+	</fieldset>			
 </form>

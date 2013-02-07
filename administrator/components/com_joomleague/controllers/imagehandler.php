@@ -58,14 +58,49 @@ class JoomLeagueControllerImagehandler extends JoomleagueController
 		$type	= JRequest::getVar( 'type' );
 		$folder	= ImageSelect::getfolder($type);
 		$field	= JRequest::getVar( 'field' );
+		$linkaddress	= JRequest::getVar( 'linkaddress' );
 		// Set FTP credentials, if given
 		jimport( 'joomla.client.helper' );
 		JClientHelper::setCredentialsFromRequest( 'ftp' );
 		//$ftp = JClientHelper::getCredentials( 'ftp' );
 
 		//set the target directory
-		$base_Dir = JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS;
+		//$base_Dir = JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS;
+		$base_Dir = JPATH_SITE . DS . 'images' . DS . 'com_joomleague' . DS .'database'.DS. $folder . DS;
 
+    //do we have an imagelink?
+    if ( !empty( $linkaddress ) )
+    {
+    $file['name'] = basename($linkaddress);
+    
+if (preg_match("/dfs_/i", $linkaddress)) 
+{
+$filename = $file['name'];
+}
+else
+{
+    //sanitize the image filename
+		$filename = ImageSelect::sanitize( $base_Dir, $file['name'] );
+}
+
+		
+		$filepath = $base_Dir . $filename;
+		
+if ( !copy($linkaddress,$filepath) )
+{
+echo "<script> alert('".JText::_( 'COPY FAILED' )."'); window.history.go(-1); </script>\n";
+$mainframe->close();
+}
+else
+{
+//echo "<script> alert('" . JText::_( 'COPY COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+echo "<script> alert('" . JText::_( 'COPY COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+$mainframe->close();
+}
+
+    
+    }
+    
 		//do we have an upload?
 		if ( empty( $file['name'] ) )
 		{
@@ -94,6 +129,7 @@ class JoomLeagueControllerImagehandler extends JoomleagueController
 		}
 		else
 		{
+//			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
 			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
 			$mainframe->close();
 		}
@@ -130,8 +166,10 @@ class JoomLeagueControllerImagehandler extends JoomleagueController
 					continue;
 				}
 
-				$fullPath = JPath::clean( JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS . $image );
-				$fullPaththumb = JPath::clean( JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS . 'small' . DS . $image );
+// 				$fullPath = JPath::clean( JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS . $image );
+// 				$fullPaththumb = JPath::clean( JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS . 'small' . DS . $image );
+				$fullPath = JPath::clean( JPATH_SITE . DS . 'images' . DS . 'com_joomleague' . DS .'database'.DS. $folder . DS . $image );
+				$fullPaththumb = JPath::clean( JPATH_SITE . DS . 'images' . DS . 'com_joomleague' . DS .'database'.DS. $folder . DS . 'small' . DS . $image );
 				if ( is_file( $fullPath ) )
 				{
 					JFile::delete( $fullPath );

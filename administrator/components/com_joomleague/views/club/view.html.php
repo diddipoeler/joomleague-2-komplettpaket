@@ -124,7 +124,7 @@ class JoomleagueViewClub extends JLGView
 		//$this->assignRef('logo_smallselect',$logo_smallselect);
 		$this->assignRef('lists',$lists);
 		$this->assignRef('club',$club);
-
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
 		$this->addToolbar();		
 		parent::display($tpl);	
 	}

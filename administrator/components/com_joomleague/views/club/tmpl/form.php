@@ -1,6 +1,12 @@
 <?php defined('_JEXEC') or die('Restricted access');
 ?>
 <form action="index.php" method="post" id="adminForm">
+<fieldset class="adminform">
+			<legend>
+      <?php 
+      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_CLUB_LEGEND_DESC','<i>'.$this->club->name.'</i>'); 
+      ?>
+      </legend>
 <div class="col50">
 <?php
 echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
@@ -21,4 +27,5 @@ echo JHTML::_('tabs.end');
     <input type="hidden" name="task" value="" />	
 </div>
 	<?php echo JHTML::_('form.token'); ?>
+</fieldset>	
 </form>

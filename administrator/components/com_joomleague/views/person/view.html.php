@@ -48,13 +48,16 @@ class JoomleagueViewPerson extends JLGView
 		$user = JFactory::getUser();
 		$model = $this->getModel();
 		$edit=JRequest::getVar('edit',true);
+		
+		$this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
+            
 		$lists=array();
 
 		//get the person
 		$person =& $this->get('data');
 		$isNew=($person->id < 1);
 
-		// fail if checked out not by 'me'
+    // fail if checked out not by 'me'
 		if ($model->isCheckedOut($user->get('id')))
 		{
 			$msg=JText::sprintf('DESCBEINGEDITTED',JText::_('COM_JOOMLEAGUE_ADMIN_PERSON_THEPERSON'),$person->name);

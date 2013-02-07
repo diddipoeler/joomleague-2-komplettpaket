@@ -7,6 +7,7 @@ $version = urlencode(JoomleagueHelper::getVersion());
 echo JHTML::script('JL_eventsediting.js?v='.$version,'administrator/components/com_joomleague/assets/js/');
 ?>
 <form action="index.php" method="post" id="adminForm">
+
 	<div class="col50">
 <?php
 echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
@@ -35,4 +36,5 @@ echo JHTML::_('tabs.end');
 		<input type="hidden" name="task"				value="" id='task'/>
 	</div>
 	<?php echo JHTML::_('form.token'); ?>
+
 </form>

@@ -209,22 +209,55 @@ class ImageSelect
 	{
 		switch( $type )
 		{
-			case	"events":
-				return "events";
-				break;
-
 			case	"clubs_small":
 				return "clubs/small";
 				break;
-
 			case	"clubs_medium":
 				return "clubs/medium";
 				break;
-
 			case	"clubs_large":
 				return "clubs/large";
 				break;
-
+			case	"events":
+				return "events";
+				break;	
+			case	"leagues":
+				return "leagues";
+				break;
+      case	"persons":
+				return "persons";
+				break;
+      case	"playgrounds":
+				return "playgrounds";
+				break;
+      case	"projects":
+				return "projects";
+				break;	
+      case	"projectteams":
+				return "projectteams";
+				break;
+		  case	"seasons":
+				return "seasons";
+				break;
+			case	"sport_types":
+				return "sport_types";
+				break;
+			case	"statistics":
+				return "statistics";
+				break;
+			case	"teamplayers":
+				return "teamplayers";
+				break;
+			case	"teams":
+				return "teams";
+				break;
+			case	"teamstaffs":
+				return "teamstaffs";
+				break;
+			case	"venues":
+				return "venues";
+				break;
+				
 			default:
 				return $type;
 		}

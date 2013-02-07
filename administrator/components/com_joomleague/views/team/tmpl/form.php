@@ -2,6 +2,12 @@
 
  ?>
 <form action="index.php" method="post" id="adminForm">
+<fieldset class="adminform">
+			<legend>
+      <?php 
+      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_TEAM_LEGEND_DESC','<i>'.$this->team->name.'</i>'); 
+      ?>
+      </legend>
 <div class="col50">
 
 <?php
@@ -27,4 +33,5 @@ echo JHTML::_('tabs.end');
 <input type="hidden" name="task" value="" />
 </div>
 <?php echo JHTML::_( 'form.token' ); ?>
+</fieldset>	
 </form>

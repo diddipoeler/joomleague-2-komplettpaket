@@ -70,11 +70,13 @@ class JoomLeagueViewImagehandler extends JLGView  {
 			$this->assignRef('pageNav', $pageNav);
 			$this->assignRef('field',   $field);
 			$this->assignRef('fieldid',   $fieldid);
+			$this->assignRef('form'      	, $this->get('form'));
 			parent::display($tpl);
 		} else {
 			//no images in the folder, redirect to uploadscreen and raise notice
 			JError::raiseNotice('SOME_ERROR_CODE', JText::_('COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_NO_IMAGES'));
 			$this->setLayout('upload');
+			$this->assignRef('form'      	, $this->get('form'));
 			$this->_displayupload($tpl);
 			return;
 		}

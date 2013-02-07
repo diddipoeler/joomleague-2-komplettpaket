@@ -163,6 +163,7 @@ class JoomleagueViewTeamStaff extends JLGView
 		$this->assignRef( 'teamws',				$teamws );
 		$this->assignRef( 'lists',				$lists );
 		$this->assignRef( 'project_teamstaff',	$project_teamstaff );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
 
 		parent::display( $tpl );
 	}

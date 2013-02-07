@@ -108,7 +108,19 @@
 			label="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_DG"
 			description="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_DG_DESC"
 			class="inputbox validate-numeric"/>					
-	</fieldset>	
+	</fieldset>
+  <fieldset name="imageselect">
+			<field
+				name="picture"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_450_2.png"					
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_PIC"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_PIC_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="projectteams"
+				directory="com_joomleague/database/projectteams"/>		
+	</fieldset>		
 	<fieldset name="picture">	
 			<field
 				name="picture"

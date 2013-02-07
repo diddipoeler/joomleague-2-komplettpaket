@@ -177,7 +177,6 @@
 			class="inputbox"/>		
 	</fieldset>			
 	<fieldset name="picture">
-		
 			<field
 				name="picture"
 				type="media"
@@ -186,6 +185,18 @@
 				description="COM_JOOMLEAGUE_ADMIN_PERSON_PICTURE_DESC"
 				class="inputbox"
 				preview="show"
+				directory="com_joomleague/database/persons"/>		
+	</fieldset>	
+	<fieldset name="imageselect">
+			<field
+				name="picture"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_150_2.png"					
+				label="COM_JOOMLEAGUE_ADMIN_PERSON_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_PERSON_PICTURE_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="persons"
 				directory="com_joomleague/database/persons"/>		
 	</fieldset>	
 	<fieldset name="description">		

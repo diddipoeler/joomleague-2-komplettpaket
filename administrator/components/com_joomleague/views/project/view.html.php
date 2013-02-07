@@ -85,6 +85,7 @@ class JoomleagueViewProject extends JLGView
 		$this->assignRef('form'      	, $this->get('form'));
 		$extended = $this->getExtended($project->extended, 'project');		
 		$this->assignRef( 'extended', $extended );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
 		$this->addToolbar();
 		parent::display($tpl);
 	}

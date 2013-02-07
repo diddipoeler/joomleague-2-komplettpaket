@@ -2,6 +2,12 @@
 
 ?>
 <form action="index.php" method="post" name="adminForm" id="match-form" class="form-validate">
+<fieldset class="adminform">
+			<legend>
+      <?php 
+      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_STAT_LEGEND_DESC','<i>'.$this->item->name.'</i>'); 
+      ?>
+      </legend>
 	<div class="col50">
 		<?php
 echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
@@ -32,4 +38,5 @@ echo JHTML::_('tabs.end');
 	<input type="hidden" name="cid[]" value="<?php echo $this->item->id; ?>" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_( 'form.token' ); ?>
+</fieldset>			
 </form>

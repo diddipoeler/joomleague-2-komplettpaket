@@ -11,5 +11,18 @@
 				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
 				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
 		</field>
-	</fieldset>			
+	</fieldset>
+  
+  <fieldset 	name="imageselect">
+				
+		<field 	name="assocflag" 
+				type="imageselect" 
+				directory="com_joomleague/database/flags_associations"
+				preview="show"	
+        targetfolder="flags_associations"			
+				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
+				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
+		</field>
+	</fieldset>
+  			
 </form>

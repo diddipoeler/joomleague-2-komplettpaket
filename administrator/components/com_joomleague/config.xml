@@ -14,12 +14,19 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
 		<field name="JoomLeague updates" type="list" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_UPDATES_TITLE" description="COM_JOOMLEAGUE_SETTINGS_UPDATES_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_ON</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_MANUAL</option>
 			<option value="2">COM_JOOMLEAGUE_GLOBAL_OFF</option>
+		</field>
+		<field name="cfg_which_media_tool" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_DESCR">
+			<option value="picture">COM_JOOMLEAGUE_JOOMLA_MEDIA_KOMPONENT</option>
+			<option value="imageselect">COM_JOOMLEAGUE_JOOMLEAGUE_IMAGEHANDLER</option>
 		</field>
 		<field name="cfg_drop_joomleague_tables_when_uninstalled" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_TITLE"
@@ -46,6 +53,7 @@
 			label="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT" description="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT_DESCR">
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
 		<field name="show_footer" type="radio" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_DESCR">
@@ -82,6 +90,7 @@
 			label="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_TITLE" description="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_DESCR">
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_BACKEND"
 		addfieldpath="/administrator/components/com_joomleague/elements">
 		<field name="defsportstype" type="sql" default="Soccer"
@@ -127,6 +136,7 @@
 			</option>
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
 		addfieldpath="/administrator/components/com_joomleague/models/fields">
 		
@@ -180,6 +190,7 @@
 			preview="show">			
 		</field>
 	</fieldset>
+	
 	<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"
 		description="JCONFIG_PERMISSIONS_DESC">
 		<field name="rules" type="rules" label="COM_JOOMLEAGUE_SETTINGS_ACCESS_COMPONENT"
