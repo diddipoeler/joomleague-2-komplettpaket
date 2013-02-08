@@ -31,7 +31,7 @@ class JoomleagueViewTeamInfo extends JLGView
 			
 		$extended = $this->getExtended($team->teamextended, 'team');
 		$this->assignRef( 'extended', $extended );
-
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_TEAMINFO_PAGE_TITLE' );
 		if ( isset( $this->team ) )

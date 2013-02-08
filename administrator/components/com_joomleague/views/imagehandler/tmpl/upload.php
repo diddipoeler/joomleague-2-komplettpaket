@@ -62,7 +62,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	          			<td>
  							<input class="inputbox" name="userfile" id="userfile" type="file" />
 							<br /><br />
-							
+							</td>
+							</tr>
+							<tr>
+	          			<td>
 							<legend><?php echo JText::_( 'SELECT IMAGE COPY' ); ?></legend>
               <input class="inputbox" type="text" id="linkaddress" name="linkaddress" size="50" maxlength="250" value="" />
               <br />

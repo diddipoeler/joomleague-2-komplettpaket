@@ -29,6 +29,12 @@ class JFormFieldImageSelect extends JFormField
 		$filename = array_pop($arrPathes);
 		//$targetfolder = array_pop($arrPathes);
 		$targetfolder = $this->element['targetfolder'];
+		
+// 		echo 'this->value -> '.$this->value.'<br>';
+// 		echo 'this->name -> '.$this->name.'<br>';
+// 		echo 'filename -> '.$filename.'<br>';
+// 		echo 'targetfolder -> '.$targetfolder.'<br>';
+		
 		$output  = ImageSelect::getSelector($this->name, $this->name.'_preview', $targetfolder, $this->value, $default, $this->name, $this->id);
 		$output .= '<img class="imagepreview" src="'.JURI::root(true).'/media/com_joomleague/jl_images/spinner.gif" '; 
 		$output .= ' name="'.$this->name.'_preview" id="'.$this->name.'_preview" border="3" alt="Preview" title="Preview" />';

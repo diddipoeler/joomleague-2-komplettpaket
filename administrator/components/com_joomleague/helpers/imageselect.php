@@ -259,7 +259,7 @@ class ImageSelect
 				break;
 				
 			default:
-				return $type;
+				return "events/".$type;
 		}
 	}
 

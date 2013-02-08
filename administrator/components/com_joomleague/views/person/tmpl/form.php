@@ -15,16 +15,8 @@
 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_DETAILS'), 'panel1');
 		echo $this->loadTemplate('details');
 
-//     if ( $this->cfg_which_media_tool )
-//     {
-//     echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PICTURE'), 'panel2');
-// 		echo $this->loadTemplate('picture_imagehandler');
-//     }
-//     else
-//     {
 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PICTURE'), 'panel2');
 		echo $this->loadTemplate('picture');
-//     }
     
 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_DESCRIPTION'), 'panel3');
 		echo $this->loadTemplate('description');

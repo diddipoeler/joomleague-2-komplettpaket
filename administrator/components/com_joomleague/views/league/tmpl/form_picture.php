@@ -1,8 +1,9 @@
 <?php defined('_JEXEC') or die('Restricted access');
+
 ?>
 
 		<fieldset class="adminform">
-			<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_PIC' );?>
+			<legend><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_PICTURE' );?>
 			</legend>
 			<table class="admintable">
 					<?php foreach ($this->form->getFieldset($this->cfg_which_media_tool) as $field): ?>

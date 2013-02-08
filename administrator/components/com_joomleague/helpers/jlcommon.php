@@ -645,8 +645,9 @@ class JoomleagueHelper
 
 		if ($config['show_teaminfo_link'])
 		{
-			$link =JoomleagueHelperRoute::getProjectTeamInfoRoute($projectSlug,$projectteamid);
-			$title=JText::_('COM_JOOMLEAGUE_TEAMICONS_TEAMINFO_LINK').'&nbsp;'.$teamname;
+// 			$link =JoomleagueHelperRoute::getProjectTeamInfoRoute($projectSlug,$projectteamid);
+			$link =JoomleagueHelperRoute::getTeamInfoRoute($projectSlug,$teamSlug);
+      $title=JText::_('COM_JOOMLEAGUE_TEAMICONS_TEAMINFO_LINK').'&nbsp;'.$teamname;
 			$picture = 'media/com_joomleague/jl_images/teaminfo_icon.png';
 			$desc = self::getPictureThumb($picture, $title, 0, 0, 4);
 			$output .= JHTML::link($link,$desc);

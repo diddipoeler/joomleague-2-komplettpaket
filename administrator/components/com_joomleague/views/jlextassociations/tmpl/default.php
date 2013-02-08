@@ -36,21 +36,21 @@ JHTML::_('behavior.tooltip');
 					<th width="20" style="vertical-align: top; ">&nbsp;</th>
 					<th class="title" nowrap="nowrap" style="vertical-align: top; ">
 						<?php
-						echo JHTML::_('grid.sort','JL_ADMIN_ASSOCIATIONS_NAME','objassoc.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_ASSOCIATIONS_NAME','objassoc.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class="title" nowrap="nowrap" style="vertical-align: top; ">
 						<?php
-						echo JHTML::_('grid.sort','JL_ADMIN_ASSOCIATIONS_SHORT_NAME','objassoc.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_ASSOCIATIONS_SHORT_NAME','objassoc.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>					
 					<th width="10%" class="title" style="vertical-align: top; ">
 						<?php
-						echo JHTML::_('grid.sort','JL_ADMIN_ASSOCIATIONS_COUNTRY','objassoc.country',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_ASSOCIATIONS_COUNTRY','objassoc.country',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
           
-          <th width="5" style="vertical-align: top; "><?php echo JText::_('JL_ADMIN_ASSOCIATION_FLAG'); ?></th>
+          <th width="5" style="vertical-align: top; "><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_FLAG'); ?></th>
           
 					<th width="85" nowrap="nowrap" style="vertical-align: top; ">
 						<?php

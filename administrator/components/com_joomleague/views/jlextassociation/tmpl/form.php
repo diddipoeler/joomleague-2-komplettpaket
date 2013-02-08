@@ -11,14 +11,14 @@ JToolBarHelper::save('jlextassociation.save');
 
 if (!$edit)
 {
-	JToolBarHelper::title(JText::_('JL_ADMIN_ASSOCIATION_ADD_NEW'));
+	JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_ADD_NEW'));
 	JToolBarHelper::divider();
 	JToolBarHelper::cancel('jlextassociation.cancel');
 }
 else
 {
 	// for existing items the button is renamed `close` and the apply button is showed
-	JToolBarHelper::title(JText::_('JL_ADMIN_ASSOCIATION_EDIT'));
+	JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_EDIT'));
 	JToolBarHelper::apply('jlextassociation.apply');
 	JToolBarHelper::divider();
 	JToolBarHelper::cancel('jlextassociation.cancel','JL_GLOBAL_CLOSE');
@@ -40,7 +40,7 @@ JToolBarHelper::help('screen.joomleague',true);
 		// do field validation
 		if (form.name.value == "")
 		{
-			alert("<?php echo JText::_('JL_ADMIN_ASSOCIATION_NO_NAME',true); ?>");
+			alert("<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_NO_NAME',true); ?>");
 		}
 		else
 		{
@@ -49,7 +49,7 @@ JToolBarHelper::help('screen.joomleague',true);
 		// do field validation
 		if (form.short_name.value == "")
 		{
-			alert("<?php echo JText::_('JL_ADMIN_ASSOCIATION_NO_SHORT_NAME',true); ?>");
+			alert("<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_NO_SHORT_NAME',true); ?>");
 		}
 		else
 		{

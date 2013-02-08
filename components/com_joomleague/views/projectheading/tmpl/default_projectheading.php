@@ -1,6 +1,13 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 
+if ( $this->show_debug_info )
+{
+echo 'this->overallconfig<br /><pre>~' . print_r($this->overallconfig,true) . '~</pre><br />';
+echo 'this->project<br /><pre>~' . print_r($this->project,true) . '~</pre><br />';
+}
+
 $nbcols = 2;
+if ( $this->overallconfig['show_project_sporttype_picture'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_picture'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 {
@@ -24,7 +31,21 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 			   	}
 				?>
 				<tr class="contentheading">
+					<?php
+          if ( $this->overallconfig['show_project_sporttype_picture'] == 1 )
+					{
+						?>
+						<td>
+						<?php
+						echo JoomleagueHelper::getPictureThumb($this->project->sport_type_picture,
+																$this->project->sport_type_name,
+																$this->overallconfig['picture_width'],
+																$this->overallconfig['picture_height'], 
+																2);
+						?>
+						</td>
 					<?php	
+			    	}	
 			    	if ( $this->overallconfig['show_project_picture'] == 1 )
 					{
 						?>

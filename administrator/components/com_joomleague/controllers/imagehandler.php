@@ -88,13 +88,13 @@ else
 		
 if ( !copy($linkaddress,$filepath) )
 {
-echo "<script> alert('".JText::_( 'COPY FAILED' )."'); window.history.go(-1); </script>\n";
+echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_FAILED' )."'); window.history.go(-1); </script>\n";
 $mainframe->close();
 }
 else
 {
 //echo "<script> alert('" . JText::_( 'COPY COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
-echo "<script> alert('" . JText::_( 'COPY COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+echo "<script>  alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_COMPLETE' ) . "');window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
 $mainframe->close();
 }
 
@@ -130,7 +130,8 @@ $mainframe->close();
 		else
 		{
 //			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
-			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+//			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+      echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
 			$mainframe->close();
 		}
 

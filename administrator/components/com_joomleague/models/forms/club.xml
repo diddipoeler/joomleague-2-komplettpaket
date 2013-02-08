@@ -200,7 +200,7 @@
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL_DESC"
 				class="inputbox"
 				preview="show"
-				targetfolder="clubs/small"
+				targetfolder="clubs_small"
 				directory="com_joomleague/database/clubs/small"/>	
 			<field
 				name="logo_middle"
@@ -210,7 +210,7 @@
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE_DESC"
 				class="inputbox"
 				preview="show"
-				targetfolder="clubs/medium"
+				targetfolder="clubs_medium"
 				directory="com_joomleague/database/clubs/medium"/>				
 			<field
 				name="logo_big"
@@ -220,7 +220,7 @@
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE_DESC"
 				class="inputbox"
 				preview="show"
-				targetfolder="clubs/large"
+				targetfolder="clubs_large"
 				directory="com_joomleague/database/clubs/large"/>				
 		
 	</fieldset>	

@@ -49,6 +49,9 @@ class JoomleagueViewTeamStats extends JLGView
 
 			$this->_setChartdata(array_merge($flashconfig, $config));
 		}
+		
+		$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+		
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_TEAMSTATS_PAGE_TITLE' );
 		if ( isset( $this->team ) )

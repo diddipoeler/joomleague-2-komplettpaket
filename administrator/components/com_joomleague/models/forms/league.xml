@@ -39,5 +39,30 @@
 	</field>	
 		
 	</fieldset>			
+
+<fieldset name="picture">
+			<field
+				name="picture"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_21.png"				
+				label="COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT_PICTURE"
+				class="inputbox"
+				preview="show"				
+				directory="com_joomleague/database/leagues"/>
+	</fieldset>
 	
+	<fieldset name="imageselect">
+			<field
+				name="picture"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_21.png"					
+				label="COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_LEAGUE_EDIT_PICTURE"
+				class="inputbox"
+				preview="show"
+				targetfolder="leagues"
+				directory="com_joomleague/database/leagues"/>		
+	</fieldset>	
+  	
 </form>

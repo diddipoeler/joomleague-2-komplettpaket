@@ -45,6 +45,8 @@ class JoomleagueViewClubPlan extends JLGView
 			$pageTitle .= ': '.$this->club->name;
 		}
 		$document->setTitle($pageTitle);
+		
+		$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		//build feed links
 		$project_id=(!empty($this->project->id)) ? '&p='.$this->project->id : '';

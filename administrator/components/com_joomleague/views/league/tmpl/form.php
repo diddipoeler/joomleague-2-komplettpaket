@@ -13,8 +13,9 @@
 echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
 echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_DETAILS'), 'panel1');
 echo $this->loadTemplate('details');
-
-echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel2');
+echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PICTURE'), 'panel2');
+echo $this->loadTemplate('picture');
+echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel3');
 echo $this->loadTemplate('extended');
 
 echo JHTML::_('tabs.end');

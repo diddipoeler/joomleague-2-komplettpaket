@@ -35,7 +35,7 @@ class JoomleagueViewTeamPlan extends JLGView
 			$this->assignRef('model',$model);
 
 		}
-
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 		// Set page title
 		if (empty($this->ptid))
 		{

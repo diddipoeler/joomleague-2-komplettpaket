@@ -33,6 +33,12 @@ require_once( JLG_PATH_SITE.DS.'helpers'.DS.'extraparams.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'ranking.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'html.php' );
 
+// Include neccesary file for operation JSON
+if(!defined('SERVICES_JSON_SLICE')) {
+require_once( JLG_PATH_SITE.DS.'helpers'.DS.'JSON.php' );
+}
+
+
 // google map
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapAPI.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapGeocoder.php' );
