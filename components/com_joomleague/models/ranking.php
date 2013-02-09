@@ -65,25 +65,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 			if (!$current) {
 			return false;
 		}
-		
-		/*
-		// test performance
-		SELECT m.*, r.roundcode, 
-		        CASE WHEN CHAR_LENGTH(t1.alias) AND CHAR_LENGTH(t2.alias) THEN CONCAT_WS(':',m.id,CONCAT_WS("_",t1.alias,t2.alias)) ELSE m.id END AS slug, 
-		        CASE WHEN CHAR_LENGTH(p.alias) THEN CONCAT_WS(':',p.id,p.alias) ELSE p.id END AS project_slug 
-		        FROM jos_joomleague_match AS m 
-		        INNER JOIN jos_joomleague_round AS r ON r.id = m.round_id 
-		        INNER JOIN jos_joomleague_project AS p ON p.id = r.project_id 
-		        INNER JOIN jos_joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id 
-		        INNER JOIN jos_joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id 
-		        INNER JOIN jos_joomleague_team AS t1 ON pt1.team_id = t1.id 
-		        INNER JOIN jos_joomleague_team AS t2 ON pt2.team_id = t2.id 
-		        WHERE r.project_id = 27489
-		        AND r.roundcode <= 34
-		        AND m.team1_result IS NOT NULL 
-		        ORDER BY r.roundcode ASC
-		
-		*/
+
 		// previous games of each team, until current round
 		$query = ' SELECT m.*, r.roundcode, '
 		       . ' CASE WHEN CHAR_LENGTH(t1.alias) AND CHAR_LENGTH(t2.alias) THEN CONCAT_WS(\':\',m.id,CONCAT_WS("_",t1.alias,t2.alias)) ELSE m.id END AS slug, '
