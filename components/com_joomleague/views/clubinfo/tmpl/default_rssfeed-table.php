@@ -1,11 +1,11 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-/*
-echo 'rssfeed <br><pre>';
-print_r( $this->rssfeedoutput );
-echo '</pre>';
-*/
+if ( $this->show_debug_info )
+{
+echo 'club rssfeedoutput<pre>',print_r($this->rssfeedoutput,true),'</pre><br>';
+}
+$mainframe	=& JFactory::getApplication();
 
 ?>
 
