@@ -19,7 +19,7 @@ $mainframe	=& JFactory::getApplication();
 	//<![CDATA[
 	document.write('\
 	<style type="text/css" media="all">\
-		@import "<?php echo $filePath; ?>/css/rssfeedstyle.css";\
+		@import "<?php echo JURI::root(); ?>components/com_joomleague/assets/css/rssfeedstyle.css";\
 	</style>\
 	');
 	//]]>

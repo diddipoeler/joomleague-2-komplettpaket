@@ -84,7 +84,7 @@ class JoomleagueViewClubInfo extends JLGView
     $srfrCacheTime								= $this->overallconfig['srfrCacheTime'];
     $cacheLocation								= 'cache'.DS.$mod_name;
     $this->assignRef( 'rssfeedoutput',SimpleRssFeedReaderHelper::getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth,$feedItemImageResampleQuality,$this->feedFavicon) );
-    $css = 'components/com_joomleague/assets/css/rssfeedstyle.css';
+    $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
 		$document->addStyleSheet($css); 
 		}
     }
