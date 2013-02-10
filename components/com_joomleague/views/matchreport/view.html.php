@@ -59,6 +59,7 @@ class JoomleagueViewMatchReport extends JLGView
 		$extended->bind($jRegistry);
 		
 		$this->assignRef( 'extended', $extended);
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PAGE_TITLE' );

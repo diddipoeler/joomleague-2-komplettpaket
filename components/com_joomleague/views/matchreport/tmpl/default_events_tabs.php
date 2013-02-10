@@ -1,7 +1,22 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
 <!-- START of match events -->
 
-<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); ?></h2>		
+<h2>
+<?php 
+echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS'); 
+
+if ( $this->show_debug_info )
+{
+$visible = 'text';    
+echo '<br />eventtypes<pre>~' . print_r($this->eventtypes,true) . '~</pre><br />';
+}
+else
+{
+$visible = 'hidden';
+}
+
+?>
+</h2>		
 
 <table class="matchreport" border="0">
     <tr>
@@ -14,7 +29,7 @@
 			echo $result->startPane('pane');
 			foreach ($this->eventtypes AS $event)
 			{
-				$pic_tab=$event->icon;
+				$pic_tab = $event->icon;
 				if ($pic_tab == '/events/event.gif')
 				{
 					$txt_tab = JText::_($event->name);

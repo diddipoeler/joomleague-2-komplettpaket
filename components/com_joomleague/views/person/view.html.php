@@ -50,6 +50,8 @@ class JoomleagueViewPerson extends JLGView
 			default:
 				break;
 		}
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		$document->setTitle( JText::sprintf( $titleStr, $this->person->firstname, $this->person->lastname ) );
 
