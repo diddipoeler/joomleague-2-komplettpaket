@@ -114,7 +114,7 @@
 			<option value="0">MOD_JW_SRFR_HIDE</option>
 			<option value="1">MOD_JW_SRFR_SHOW</option>
 		</field>
-		<field name="feedItemDateFormat" type="text" default="j M Y \| g:i a" label="MOD_JW_SRFR_DATE_TIME_FORMAT" description="" />
+		<field name="feedItemDateFormat" type="text" default="%b %e, %Y &#124; %H:%M %P" label="MOD_JW_SRFR_DATE_TIME_FORMAT" description="" />
 		<field name="feedTitle" type="radio" default="1" label="MOD_JW_SRFR_FEED_TITLE_SOURCE_SITE_NAME" description="">
 			<option value="0">MOD_JW_SRFR_HIDE</option>
 			<option value="1">MOD_JW_SRFR_SHOW</option>
