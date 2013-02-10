@@ -1,22 +1,18 @@
 <?php
 /**
- * @version		2.3
+ * @version		3.0
  * @package		Simple RSS Feed Reader (module)
- * @author    JoomlaWorks - http://www.joomlaworks.gr
- * @copyright	Copyright (c) 2006 - 2011 JoomlaWorks Ltd. All rights reserved.
+ * @author    JoomlaWorks - http://www.joomlaworks.net
+ * @copyright	Copyright (c) 2006 - 2013 JoomlaWorks Ltd. All rights reserved.
  * @license		GNU/GPL license: http://www.gnu.org/copyleft/gpl.html
  */
-
-//include_once JPATH_COMPONENT . DS . 'helpers' . DS . 'simplepie.php';
-include_once JLG_PATH_SITE . DS . 'helpers' . DS . 'simplepie.php';
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
 class SimpleRssFeedReaderHelper {
 
-	function getFeeds($feedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$dateFormat,$wordLimit,$cacheLocation,$cacheTime,$imageHandling,$riWidth,$riQuality,$feedFavicon)
-  {
+	function getFeeds($feedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$dateFormat,$wordLimit,$cacheLocation,$cacheTime,$imageHandling,$riWidth){
 
 		/*
 			Legend for '$imageHandling':
@@ -26,10 +22,9 @@ class SimpleRssFeedReaderHelper {
 		*/
 
 		// API
-		$mainframe = &JFactory::getApplication();
+		$mainframe = JFactory::getApplication();
 
-		// Includes
-//		require_once(dirname(__FILE__).DS.'includes'.DS.'simplepie.php');
+		$cacheTime = $cacheTime*60;
 
 		// Check if the cache folder exists
 		$cacheFolderPath = JPATH_SITE.DS.$cacheLocation;
@@ -39,43 +34,32 @@ class SimpleRssFeedReaderHelper {
 			mkdir($cacheFolderPath);
 		}
 
-		// Grab the feed contents
-		$sourceFeed = new SimplePie();
-		$sourceFeed->set_feed_url($feedsArray);
-		$sourceFeed->set_timeout($feedTimeout); // in seconds
-		$sourceFeed->set_item_limit(intval($perFeedItems));
-		$sourceFeed->set_useragent('Mozilla/5.0 '.SIMPLEPIE_USERAGENT);
-		$sourceFeed->enable_order_by_date(true);
-		$sourceFeed->set_cache_duration($cacheTime*60);
-		$sourceFeed->set_cache_location($cacheFolderPath);
-		$sourceFeed->init();
-
-		// Loop through all feed items and pass them to an array.
-
+		$feeds = self::multiRequest($feedsArray,$cacheTime);
+		$parsedFeeds = self::parseFeeds($feeds);
 		$feedItemsArray = array();
 
-		foreach($sourceFeed->get_items() as $key=>$item){
-			// Let's give ourselves a reference to the parent $sourceFeed object for this particular item.
-			$sourceFeed = $item->get_feed();
+		foreach($parsedFeeds as $feed){
+			foreach($feed->feedItems as $key=>$item){
+				// Create an object to store feed elements
+				$feedElements[$key] = new JObject;
 
-			// Create an object to store feed elements
-			$feedElements[$key] = new JObject;
+				$feedElements[$key]->itemTitle 				= $item->title;
+				$feedElements[$key]->itemLink 				= $item->link;
+				$feedElements[$key]->itemDate 				= strftime($dateFormat,strtotime($item->pubDate));
+				$feedElements[$key]->itemDateRSS 			= $item->pubDate;
+				$feedElements[$key]->itemDescription 	= $item->description;
+				$feedElements[$key]->feedImageSrc			= '';
 
-			$feedElements[$key]->itemTitle 				= $item->get_title();
-			$feedElements[$key]->itemLink 				= $item->get_permalink();
-			$feedElements[$key]->itemDate 				= $item->get_date($dateFormat);
-			$feedElements[$key]->feedTitle 				= $sourceFeed->get_title();
-			$feedElements[$key]->itemDescription 	= $item->get_content();
-			$feedElements[$key]->feedURL					= $item->get_feed()->subscribe_url();
-			$feedElements[$key]->feedImageSrc			= '';
-			if($feedFavicon) $feedElements[$key]->feedFaviconFile	= $item->get_feed()->get_favicon();
-			$feedElements[$key]->siteURL					= $item->get_feed()->get_link();
+				$feedElements[$key]->feedTitle 				= self::wordLimiter($feed->feedTitle,10);
+				$feedElements[$key]->feedURL					= $feed->feedSubscribeUrl;
+				$feedElements[$key]->siteURL					= $feed->feedLink;
 
-			// Give each feed an index based on date
-			$itemDateIndex = $item->get_date('YmdHi');
+				// Give each feed an index based on date
+				$itemDateIndex = strftime('%Y%m%d%H%M',strtotime($item->pubDate));
 
-			// Pass all feed objects to an array
-			$feedItemsArray[$itemDateIndex] = $feedElements[$key];
+				// Pass all feed objects to an array
+				$feedItemsArray[$itemDateIndex] = $feedElements[$key];
+			}
 		}
 
 		// Reverse sort by key (=feed date)
@@ -87,19 +71,22 @@ class SimpleRssFeedReaderHelper {
 		foreach($feedItemsArray as $feedItem){
 			if($counter>=$totalFeedItems) continue;
 
+			// Clean up the feed title
+			$feedItem->itemTitle = trim(htmlentities($feedItem->itemTitle, ENT_QUOTES, 'utf-8'));
+
 			// Determine if an image reference exists in the feed description
 			if($imageHandling==1 || $imageHandling==2){
-				$feedImage = SimpleRssFeedReaderHelper::getFirstImage($feedItem->itemDescription);
+				$feedImage = self::getFirstImage($feedItem->itemDescription);
 
 				// If it does, copy, resize and store it locally
-				if(isset($feedImage) && $feedImage['width']>10){
+				if(isset($feedImage) && $feedImage['ext']){
 
-					// first delete the img tag from the description
+					// first remove the img tag from the description
 					$feedItem->itemDescription = str_replace($feedImage['tag'],'',trim($feedItem->itemDescription));
 
-					// then process and store it
-					if($riWidth<$feedImage['width'] && $imageHandling==2){
-						$feedItem->feedImageSrc = SimpleRssFeedReaderHelper::generateResizedImage($feedImage['src'],$riWidth,$riQuality,'cache_img_',$cacheTime,$cacheLocation);
+					// then resize and/or assign to variable
+					if($imageHandling==2){
+						$feedItem->feedImageSrc = 'http://src'.rand(1,6).'.sencha.io/'.$riWidth.'/'.$feedImage['src'];
 					} else {
 						$feedItem->feedImageSrc = $feedImage['src'];
 					}
@@ -113,14 +100,8 @@ class SimpleRssFeedReaderHelper {
 
 			// Word limit
 			if($wordLimit){
-				$feedItem->itemDescription = SimpleRssFeedReaderHelper::wordLimiter(strip_tags($feedItem->itemDescription),$wordLimit);
+				$feedItem->itemDescription = self::wordLimiter($feedItem->itemDescription,$wordLimit);
 			}
-
-			// Favicon
-			if($feedFavicon) $feedItem->feedFavicon = SimpleRssFeedReaderHelper::writeFile($feedItem->feedFaviconFile,'mod_jw_srfr','favicons',$cacheTime);
-
-			// Feed URL: $feedItem->feedURL
-			// Site URL: $feedItem->siteURL
 
 			$outputArray[] = $feedItem;
 			$counter++;
@@ -129,119 +110,92 @@ class SimpleRssFeedReaderHelper {
 		return $outputArray;
 	}
 
+	// Get array of feeds
+	function multiRequest($data,$cacheTime) {
+		// Set max_execution_time to 120
+		ini_set('max_execution_time',120);
+
+		$cacheTime = $cacheTime*60;
+
+		$result = array();
+		foreach ($data as $id => $url) {
+			$feed = self::getFile($url,$cacheTime,$subFolderName='feeds');
+			$result[$id] = JFile::read($feed);
+		}
+		return $result;
+	}
+
+	// Parse array of feeds
+	function parseFeeds($feeds){
+		$feedContents = array();
+		foreach($feeds as $key=>$feed){
+			libxml_use_internal_errors(true);
+			$xml = simplexml_load_string($feed);
+			if(is_object($xml) && $items = $xml->xpath("/rss/channel/item")) {
+				$feedContents[$key]->feedSubscribeUrl = $feed;
+				$feedContents[$key]->feedTitle = $xml->channel->title;
+				$feedContents[$key]->feedLink = $xml->channel->link;
+				$feedContents[$key]->feedPubDate = $xml->channel->pubDate;
+				$feedContents[$key]->feedDescription = $xml->channel->description;
+				foreach($items as $item){
+					$feedContents[$key]->feedItems[] = $item;
+				}
+			} elseif(is_object($xml) && $items = $xml->xpath("/*[local-name()='feed' and namespace-uri()='http://www.w3.org/2005/Atom'] /*[local-name()='entry' and namespace-uri()='http://www.w3.org/2005/Atom']")) {
+				$feedContents[$key]->feedSubscribeUrl = $feed;
+				$feedContents[$key]->feedTitle = (string)$xml->title;
+				$feedContents[$key]->feedLink = (string)$xml->link->attributes()->href;
+				$feedContents[$key]->feedPubDate = (string)$xml->updated;
+				$feedContents[$key]->feedDescription = (string)$xml->subtitle;
+				foreach ($items as $item) {
+					$tmp = new stdClass();
+					$tmp->title = (string)$item->title;
+					$tmp->link = (string)$item->link->attributes()->href;
+					$tmp->pubDate = (string)$item->updated;
+					$tmp->description = (!empty($item->content)) ? $item->content:$item->summary;
+					$tmp->author = (string)$item->author->name;
+					$feedContents[$key]->feedItems[] = $tmp;
+				}
+			}
+		}
+		return $feedContents;
+	}
+
 	// Word Limiter
 	function wordLimiter($str,$limit=100,$end_char='[&#8230;]'){
 		if (trim($str) == '') return $str;
+		$str = strip_tags($str);
 		preg_match('/\s*(?:\S*\s*){'. (int) $limit .'}/', $str, $matches);
 		if (strlen($matches[0]) == strlen($str)) $end_char = '';
 		return rtrim($matches[0]).$end_char;
 	}
 
 	// Grab the first image in a string
-	function getFirstImage($string,$minDimension=80,$maxDimension=140){
+	function getFirstImage($string){
 		// find images
 		$regex = "#<img.+?>#s";
 		if (preg_match_all($regex, $string, $matches, PREG_PATTERN_ORDER) > 0){
 			$img = array();
+			// Entire <img> tag
 			$img['tag'] = $matches[0][0];
-			$srcPattern = "#src=\".+?\"#s";
-			// grab the src of the first image
-			if(preg_match($srcPattern,$matches[0][0],$match)){
-				$img['src'] = str_replace('src="','',$match[0]);
+			// Image src
+			if(preg_match("#src=\".+?\"#s",$img['tag'],$imgSrc)){
+				$img['src'] = str_replace('src="','',$imgSrc[0]);
 				$img['src'] = str_replace('"','',$img['src']);
-				list($img['width'], $img['height'], $img['type'], $img['attr']) = @ getimagesize($img['src']);
-				return $img;
+			} else {
+				$img['src'] = false;
 			}
+			// Is this a real content image?
+			if(preg_match("#\.(jpg|jpeg|png|gif|bmp)#s",strtolower($img['src']),$imgExt)){
+				$img['ext'] = true;
+			} else {
+				$img['ext'] = false;
+			}
+			return $img;
 		}
 	}
 
-	// Grab local or remote image and resize/resample it
-	function generateResizedImage($url,$riWidth,$riQuality,$riPrefix,$cacheTime,$cacheFolder){
-
-		/* legend:
-		si = source image
-		ri = resized image
-		*/
-
-		// TO DO: add GD check here
-		jimport('joomla.filesystem.file');
-
-		$site_absolutepath = JPATH_SITE;
-		$site_httppath = JURI::base();
-
-		// Define the directory separator
-		$ds = (strtoupper(substr(PHP_OS,0,3)=='WIN')) ? '\\' : '/';
-
-		// Cache
-		$cacheTime = $cacheTime*60;
-		$cacheFolderPath = $site_absolutepath.$ds.str_replace('/',$ds,$cacheFolder);
-		if(file_exists($cacheFolderPath) && is_dir($cacheFolderPath)){
-			// all OK
-		} else {
-			mkdir($cacheFolderPath);
-		}
-
-		// Get the remote filename
-		$grabUrl = parse_url($url);
-		$grabUrlPath = explode("/",$grabUrl['path']);
-		$grabUrlPath = array_reverse($grabUrlPath);
-
-		// Define source and target images
-		$siFilename = 'temp_'.$grabUrlPath[0];
-		$siPath = $cacheFolderPath.$ds.$siFilename;
-
-		$riFilename = $riPrefix.substr(md5($siFilename),0,10).'.jpg';
-		$riPath = $cacheFolderPath.$ds.$riFilename;
-		$riHttpPath = $site_httppath.$cacheFolder.'/'.$riFilename;
-
-		// Check if thumb image exists otherwise create it
-		if(file_exists($riPath) && is_readable($riPath) && (filemtime($riPath)+$cacheTime) > time()){
-			// do nothing
-		} else {
-			// Grab the local or remote image
-			//$siTemp = imagecreatefromstring(file_get_contents($url));
-			$siTemp = imagecreatefromstring(SimpleRssFeedReaderHelper::readFile($url));
-
-			if ($siTemp !== false){
-				// create source image locally
-				imagejpeg($siTemp,$siPath);
-
-				// grab local source image details
-				list($siWidth, $siHeight, $siType) = getimagesize($siPath);
-
-				// create an image resource for the original
-				$source = imagecreatefromjpeg($siPath);
-
-				// create an image resource for the resized image
-				if($riWidth>=$siWidth){
-					$riWidth = $siWidth;
-					$riHeight = $siHeight;
-				} else {
-					$riHeight = $riWidth*$siHeight/$siWidth;
-				}
-				$resized = imagecreatetruecolor($riWidth,$riHeight);
-
-				// create the resized copy
-				imagecopyresampled($resized, $siTemp, 0, 0, 0, 0, $riWidth, $riHeight, $siWidth, $siHeight);
-
-				// save the resized copy
-				imagejpeg($resized,$riPath,$riQuality);
-
-				// delete temp source
-				unlink($siPath);
-
-				// cleanup resources
-				imagedestroy($source);
-				imagedestroy($resized);
-			}
-		}
-
-		// output
-		return $riHttpPath;
-	}
-
-	// Read remote file
-	function readFile($url,$extensionName='mod_jw_srfr',$subFolderName=''){
+	// Get remote file
+	function getFile($url, $cacheTime=3600, $subFolderName='', $extensionName='mod_jw_srfr'){
 
 		jimport('joomla.filesystem.file');
 
@@ -258,110 +212,80 @@ class SimpleRssFeedReaderHelper {
 			mkdir($cacheFolderPath);
 		}
 
-		// Get file
+		$url = trim($url);
+
 		if(substr($url,0,4)=="http"){
-			// remote file
-			if(ini_get('allow_url_fopen')){
+			$turl = explode("?", $url);
+			$matchComponents = array("#(http|https)\:\/\/#s","#www\.#s");
+			$replaceComponents = array("","");
+			$turl = preg_replace($matchComponents,$replaceComponents,$turl[0]);
+			$turl = str_replace(array("/","-","."),array("_","_","_"),$turl);
+			$tmpFile = $cacheFolderPath.DS.urlencode($turl).'.cache';
+		} else {
+			$tmpFile = $cacheFolderPath.DS.'cached_'.md5($url);
+		}
 
-				// file_get_contents
-				$result = JFile::read($url);
+		// Check if a cached copy exists otherwise create it
+		if(file_exists($tmpFile) && is_readable($tmpFile) && (filemtime($tmpFile)+$cacheTime) > time()){
 
-			} elseif(in_array('curl',get_loaded_extensions())) {
+			$result = $tmpFile;
 
-				// cURL
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, $url);
-				curl_setopt($ch, CURLOPT_HEADER, false);
-				curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				$chOutput = curl_exec($ch);
-				curl_close($ch);
-				$tmpFile = $cacheFolderPath.DS.'curl_tmp_'.substr(md5($url),0,10);
-				JFile::write($tmpFile,$chOutput);
-				$result = JFile::read($tmpFile);
+		} else {
+			// Get file
+			if(substr($url,0,4)=="http"){
+				// remote file
+				if(ini_get('allow_url_fopen')){
+					// file_get_contents
+					$fgcOutput = JFile::read($url);
 
-			} else {
+					// cleanup the content received
+					$fgcOutput = preg_replace("#(\n|\r|\s\s+|<!--(.*?)-->)#s", "", $fgcOutput);
+					$fgcOutput = preg_replace("#(\t)#s", " ", $fgcOutput);
 
-				// fsockopen
-				$readURL = parse_url($url);
-				$relativePath = (isset($readURL['query'])) ? $readURL['path']."?".$readURL['query'] : $readURL['path'];
-
-				$fp = fsockopen($readURL['host'], 80, $errno, $errstr, 5);
-				if (!$fp) {
-					$result = "";
+					JFile::write($tmpFile,$fgcOutput);
+				} elseif(in_array('curl',get_loaded_extensions())) {
+					// cURL
+					$ch = curl_init();
+					curl_setopt($ch, CURLOPT_URL, $url);
+					curl_setopt($ch, CURLOPT_HEADER, false);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					$chOutput = curl_exec($ch);
+					curl_close($ch);
+					JFile::write($tmpFile,$chOutput);
 				} else {
-					$out = "GET ".$relativePath." HTTP/1.1\r\n";
-					$out .= "Host: ".$readURL['host']."\r\n";
-					$out .= "Connection: Close\r\n\r\n";
-					fwrite($fp, $out);
-					$header = '';
-					$body = '';
-					do { $header .= fgets($fp,128); } while (strpos($header,"\r\n\r\n")=== false); // get the header data
-					while (!feof($fp)) $body .= fgets($fp,128); // get the actual content
-					fclose($fp);
-					$tmpFile = $cacheFolderPath.DS.'fsockopen_tmp_'.substr(md5($url),0,10);
-					JFile::write($tmpFile,$body);
-					$result = JFile::read($tmpFile);
+					// fsockopen
+					$readURL = parse_url($url);
+					$relativePath = (isset($readURL['query'])) ? $readURL['path']."?".$readURL['query'] : $readURL['path'];
+					$fp = fsockopen($readURL['host'], 80, $errno, $errstr, 5);
+					if (!$fp) {
+						JFile::write($tmpFile,'');
+					} else {
+						$out = "GET ".$relativePath." HTTP/1.1\r\n";
+						$out .= "Host: ".$readURL['host']."\r\n";
+						$out .= "Connection: Close\r\n\r\n";
+						fwrite($fp, $out);
+						$header = '';
+						$body = '';
+						do { $header .= fgets($fp,128); } while (strpos($header,"\r\n\r\n")=== false); // get the header data
+						while (!feof($fp)) $body .= fgets($fp,128); // get the actual content
+						fclose($fp);
+						JFile::write($tmpFile,$body);
+					}
 				}
 
-			}
-		} else {
-			// local file
-			$result = JFile::read($url);
-		}
+				$result = $tmpFile;
 
-		return $result;
-	}
-
-	// Write remote file
-	function writeFile($url,$extensionName='mod_jw_srfr',$subFolderName='',$cacheTime=30){
-
-		jimport('joomla.filesystem.file');
-
-		$cacheTime = $cacheTime*60;
-
-		// Check cache folder
-		if($subFolderName){
-			$cacheFolderPath = JPATH_SITE.DS.'cache'.DS.$extensionName.DS.$subFolderName;
-			$cacheFolderUrl = JURI::base().'cache'.'/'.$extensionName.'/'.$subFolderName;
-		} else {
-			$cacheFolderPath = JPATH_SITE.DS.'cache'.DS.$extensionName;
-			$cacheFolderUrl = JURI::base().'cache'.'/'.$extensionName;
-		}
-
-		if(file_exists($cacheFolderPath) && is_dir($cacheFolderPath)){
-			// all OK
-		} else {
-			mkdir($cacheFolderPath);
-		}
-
-		// Get the file extension
-		$grabUrl = parse_url($url);
-		$grabUrlPath = explode("/",$grabUrl['path']);
-		$grabUrlPath = array_reverse($grabUrlPath);
-		$urlFileType = substr($grabUrlPath[0],-3);
-		$urlFileName = 'remote_'.substr(md5($url),0,10).'.'.$urlFileType;
-
-		$fileURL = $cacheFolderUrl.'/'.$urlFileName;
-		$tmpFile = $cacheFolderPath.DS.$urlFileName;
-
-		// Check if the file exists otherwise create it
-		if(file_exists($tmpFile) && is_readable($tmpFile) && (filemtime($tmpFile)+$cacheTime) > time()){
-			// do nothing
-		} else {
-			$getUrlHeaders = get_headers($url);
-			if(stristr($getUrlHeaders[0],'200')){
-				$readURL = SimpleRssFeedReaderHelper::readFile($url,$extensionName,$subFolderName);
-				if($readURL) JFile::write($tmpFile,$readURL);
 			} else {
-				// do nothing
+
+				// local file
+				$result = $url;
+
 			}
+
 		}
 
-		if(file_exists($tmpFile) && is_readable($tmpFile)) $result = $fileURL; else $result = '';
-
 		return $result;
-
 	}
 
 } // END CLASS
