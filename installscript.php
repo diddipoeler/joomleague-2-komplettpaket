@@ -120,7 +120,7 @@ class com_joomleagueInstallerScript
 	}
 
 	public function updateDatabase() {
-		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
+//		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
 	}
 	
 	/**
