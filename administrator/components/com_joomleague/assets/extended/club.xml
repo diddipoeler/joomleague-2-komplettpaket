@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<fieldset name="COM_JOOMLEAGUE_EXT_EXTENDED_PREFERENCES">
+	
+	<field name="rssfeed_club" type="text"
+			label="COM_JOOMLEAGUE_CLUB_RSS_FEED" description="COM_JOOMLEAGUE_CLUB_RSS_FEED_DESCR">
+		</field>
+		
 		<field name="COM_JOOMLEAGUE_EXT_CLUB_YOUTHMANAGER" type="text"
 			label="COM_JOOMLEAGUE_EXT_CLUB_YOUTHMANAGER" description="Youth Manager">
 		</field>
