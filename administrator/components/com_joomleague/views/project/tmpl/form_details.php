@@ -71,6 +71,10 @@
 					<td class="key"><?php echo $this->form->getLabel('master_template'); ?></td>
 					<td><?php echo $this->form->getInput('master_template'); ?></td>
 				</tr>
+                <tr>
+					<td class="key"><?php echo $this->form->getLabel('enable_sb'); ?></td>
+					<td><?php echo $this->form->getInput('enable_sb'); ?></td>
+				</tr>
 	 			<tr>
 					<td class="key"><?php echo $this->form->getLabel('extension'); ?></td>
 					<td><?php echo $this->form->getInput('extension'); ?></td>
