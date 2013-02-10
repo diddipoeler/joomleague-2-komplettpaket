@@ -35,6 +35,7 @@ class JoomleagueViewMatrix extends JLGView
 		if(!is_null($project)) {
 			$this->assignRef( 'favteams', $model->getFavTeams() );
 		}
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_MATRIX_PAGE_TITLE' );
 		if ( isset( $project->name ) )

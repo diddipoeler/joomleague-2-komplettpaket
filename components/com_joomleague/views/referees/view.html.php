@@ -30,6 +30,8 @@ class JoomleagueViewReferees extends JLGView
 		// Set page title
 		$pagetitle=JText::_( 'COM_JOOMLEAGUE_REFEREES_PAGE_TITLE' );
 		$document->setTitle( JText::sprintf( $pagetitle, $this->project->name ) );
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		parent::display( $tpl );
 	}

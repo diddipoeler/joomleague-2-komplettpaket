@@ -46,6 +46,8 @@ class JoomleagueViewReferee extends JLGView
 		}
 
 		$document->setTitle($titleStr);
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		parent::display($tpl);
 	}

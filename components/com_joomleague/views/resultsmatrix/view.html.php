@@ -80,6 +80,8 @@ class JoomleagueViewResultsmatrix extends JoomleagueViewResults  {
 		$this->assignRef('isAllowed',		$resultsmodel->isAllowed());
 
 		$this->assign('action', $uri->toString());
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		// Set page title
 		$pageTitle = ($this->params->get('what_to_show_first', 0) == 0)

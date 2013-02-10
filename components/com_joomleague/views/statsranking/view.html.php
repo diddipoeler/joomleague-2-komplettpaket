@@ -49,6 +49,8 @@ class JoomleagueViewStatsRanking extends JLGView
 			// Take the first result then.
 			$title = $this->stats[$sid[0]]->name;
 		}
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		// Set page title
 		$title = JText::sprintf('COM_JOOMLEAGUE_STATSRANKING_PAGE_TITLE', $title);

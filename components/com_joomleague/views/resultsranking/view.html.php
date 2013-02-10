@@ -92,6 +92,8 @@ class JoomleagueViewResultsranking extends JoomleagueViewResults {
 			$this->config['colors'] = "";
 		}
 		$this->assignRef('colors', $rankingmodel->getColors($this->config['colors']));
+        
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 
 		// Set page title
 		$pageTitle = ($this->params->get('what_to_show_first', 0) == 0)
