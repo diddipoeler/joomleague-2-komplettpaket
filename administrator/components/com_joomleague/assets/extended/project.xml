@@ -2,7 +2,8 @@
 <config>
 	<fieldset name="COM_JOOMLEAGUE_EXT_EXTENDED_PREFERENCES">
 	
-	<field name="rssfeed_project" type="text"
+	<field name="rssfeed_project" type="textarea"
+	rows="4" cols="100"
 			label="COM_JOOMLEAGUE_PROJECT_RSS_FEED" description="COM_JOOMLEAGUE_PROJECT_RSS_FEED_DESCR">
 		</field>
 		
