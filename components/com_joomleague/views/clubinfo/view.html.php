@@ -51,7 +51,7 @@ class JoomleagueViewClubInfo extends JLGView
 	  {
     $mod_name               = "mod_jw_srfr"; 
     $this->params =	$extended;
-    $rssfeedlink = $this->extended->get('rssfeed_club');
+    $rssfeedlink = $this->params->get('rssfeed_club');
     
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     
