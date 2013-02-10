@@ -612,6 +612,8 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 					  . '   AND (md.teamplayer_id IN '.$tpid_list.' OR md.in_for IN '.$tpid_list.')'
 					  . ' GROUP BY m.id';
 
+/*
+// blödsinn diddipoeler
 			$query_ms = ' SELECT m.id AS mid, tp.id AS tpid, tp.projectteam_id'
 					  . ' FROM #__joomleague_match_statistic AS md '
 					  . $common_query_part
@@ -642,6 +644,29 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 					. ' LEFT JOIN ('.$query_ms.') AS ms ON ms.mid = m.id '
 					. ' LEFT JOIN ('.$query_me.') AS me ON me.mid = m.id '
 					. ' WHERE (mp.tpid IN '.$tpid_list.'  OR ms.tpid IN '.$tpid_list.'  OR me.tpid IN '.$tpid_list.')'
+					. '   AND m.published = 1 '
+					. '   AND p.published = 1 '
+					. ' ORDER BY m.match_date';
+*/
+
+			$query 	= ' SELECT m.*,'
+					. ' t1.id AS team1,'
+					. ' t2.id AS team2, '
+					. ' r.roundcode, '
+					. ' r.project_id, '
+					. ' COALESCE(mp.started,0) as started,'
+					. ' COALESCE(mp.sub_in, 0) as sub_in,'
+					. ' COALESCE(mp.sub_out,0) as sub_out,'
+					. ' IF(mp.projectteam_id,mp.projectteam_id,IF(ms.projectteam_id,ms.projectteam_id, me.projectteam_id)) AS projectteam_id'
+					. ' FROM #__joomleague_match AS m '
+					. ' INNER JOIN #__joomleague_round r ON m.round_id=r.id '
+					. ' INNER JOIN #__joomleague_project AS p ON p.id=r.project_id '
+					. ' INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id '
+					. ' INNER JOIN #__joomleague_team AS t1 ON t1.id=pt1.team_id '
+					. ' INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id '
+					. ' INNER JOIN #__joomleague_team AS t2 ON t2.id=pt2.team_id' 
+					. ' LEFT JOIN ('.$query_mp.') AS mp ON mp.mid = m.id '
+					. ' WHERE (mp.tpid IN '.$tpid_list.' )'
 					. '   AND m.published = 1 '
 					. '   AND p.published = 1 '
 					. ' ORDER BY m.match_date';
