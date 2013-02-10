@@ -575,8 +575,8 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 
 	function getGames()
 	{
-		$teamplayers=$this->getTeamPlayers();
-		$games=array();
+		$teamplayers = $this->getTeamPlayers();
+		$games = array();
 		if (count($teamplayers))
 		{
 			$quoted_tpids=array();
