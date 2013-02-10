@@ -54,7 +54,7 @@ $mainframe	=& JFactory::getApplication();
 			<?php endif; ?>
 			
 			<?php if($this->feedTitle): ?>
-			<span class="srfrFeedSource"<?php if($this->feedFavicon && $feed->feedFavicon) echo ' style="display:block;padding:2px 0 2px 20px;background:url('.$feed->feedFavicon.') no-repeat 0 50%;"'; ?>>
+			<span class="srfrFeedSource">
 				<a target="_blank" href="<?php echo $feed->siteURL; ?>"><?php echo $feed->feedTitle; ?></a>
 			</span>
 			<?php endif; ?>
