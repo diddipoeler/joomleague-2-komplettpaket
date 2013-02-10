@@ -14,6 +14,14 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="show_club_rssfeed" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_RSSFEED"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_RSSFEED">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 		<field name="show_extended" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_EXTENDED"
 			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_EXTENDED">
