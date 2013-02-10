@@ -8,7 +8,12 @@ echo 'club rssfeedoutput<pre>',print_r($this->rssfeedoutput,true),'</pre><br>';
 $mainframe	=& JFactory::getApplication();
 
 ?>
-
+<div class="no-column">
+	<div class="contentpaneopen">
+		<div class="contentheading">
+			<?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_TEAMS'); ?>
+		</div>
+	</div>
 <?php if($mainframe->getCfg('caching')): ?>
 <script type="text/javascript">
 	//<![CDATA[
@@ -104,3 +109,4 @@ $mainframe	=& JFactory::getApplication();
 </div>
 
 <div class="clr"></div>
+</div>
