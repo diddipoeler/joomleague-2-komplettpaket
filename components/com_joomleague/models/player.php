@@ -344,6 +344,8 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 				  . ' AND (md.came_in = 0 || md.came_in = 1)'
 				  . ' GROUP BY m.id';
 
+/*
+// blödsinn diddipoeler
 		$query_ms = ' SELECT m.id AS mid, tp.person_id'
 				  . ' FROM #__joomleague_match_statistic AS md'
 				  . $common_query_part
@@ -353,15 +355,21 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 				  . ' FROM #__joomleague_match_event AS md'
 				  . $common_query_part
 				  . ' GROUP BY m.id';
-
-		$query 	  = ' SELECT COUNT(m.id)'
+                  
+        $query 	  = ' SELECT COUNT(m.id)'
 				  . ' FROM #__joomleague_match AS m'
 				  . ' LEFT JOIN ('.$query_mp.') AS mp ON mp.mid = m.id'
 				  . ' LEFT JOIN ('.$query_ms.') AS ms ON ms.mid = m.id'
 				  . ' LEFT JOIN ('.$query_me.') AS me ON me.mid = m.id'
 				  . ' WHERE mp.person_id = '.$this->_db->Quote($person_id)
 				  . '    OR ms.person_id = '.$this->_db->Quote($person_id)
-				  . '    OR me.person_id = '.$this->_db->Quote($person_id);
+				  . '    OR me.person_id = '.$this->_db->Quote($person_id);          
+*/
+
+		$query 	  = ' SELECT COUNT(m.id)'
+				  . ' FROM #__joomleague_match AS m'
+				  . ' LEFT JOIN ('.$query_mp.') AS mp ON mp.mid = m.id'
+				  . ' WHERE mp.person_id = '.$this->_db->Quote($person_id);
 
 		$this->_db->setQuery($query);
 		$played = $this->_db->loadResult();
