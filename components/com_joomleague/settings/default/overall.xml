@@ -100,7 +100,7 @@
 		</field>
 	</fieldset>
 	
-	<fieldset	group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_RSSFEED_DATA"
+	<fieldset	name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_RSSFEED_DATA"
 		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_RSSFEED_DATA">
 	
 	<field name="perFeedItems" type="text" default="5" size="4" label="MOD_JW_SRFR_MAXIMUM_ITEMS_TO_FETCH_PER_FEED" description="MOD_JW_SRFR_SET_THE_MAXIMUM_NUMBER_OF_ITEMS_THAT_WILL_BE_DISPLAYED_PER_RSS_FEED" />

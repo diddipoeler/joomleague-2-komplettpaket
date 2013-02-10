@@ -57,6 +57,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo "&nbsp;";
 		echo "</div>";
 	}
+    
+    if (($this->config['show_club_rssfeed']) == 1  && !empty($this->rssfeedoutput) )
+	{
+		echo $this->loadTemplate('rssfeed-table');
+	}
 
 
 	echo "<div>";
