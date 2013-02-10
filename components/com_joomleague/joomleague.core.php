@@ -42,7 +42,7 @@ require_once( JLG_PATH_SITE.DS.'helpers'.DS.'JSON.php' );
 // google map
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapAPI.php' );
 require_once( JLG_PATH_SITE.DS.'helpers'.DS.'simpleGMapGeocoder.php' );
-
+include_once( JLG_PATH_SITE . DS . 'helpers' . DS . 'feedreaderhelperr.php' );
 require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'jlcommon.php' );
 require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'imageselect.php' );
 require_once( JLG_PATH_ADMIN.DS.'tables'.DS.'jltable.php' );
