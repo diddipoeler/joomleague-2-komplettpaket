@@ -52,7 +52,7 @@ class JoomleagueViewClubInfo extends JLGView
     $mod_name               = "mod_jw_srfr";
     $paramsdata	= $club->extended;
     $paramsdefs	= JLG_PATH_ADMIN . DS . 'assets' . DS . 'extended' . DS . 'club.xml';
-	$extended	= new JLGExtraParams( $paramsdata, $paramsdefs ); 
+	$extended	= new JParameter( $paramsdata, $paramsdefs ); 
     $this->params =	$extended;
     $rssfeedlink = $this->params->get('rssfeed_club');
     

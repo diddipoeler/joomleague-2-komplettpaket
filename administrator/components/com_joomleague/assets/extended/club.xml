@@ -2,7 +2,7 @@
 <config>
 	<fieldset name="COM_JOOMLEAGUE_EXT_EXTENDED_PREFERENCES">
 	
-	<field name="rssfeed_club" type="textarea"
+	<field name="COM_JOOMLEAGUE_CLUB_RSS_FEED" type="textarea"
 	rows="4" cols="100"
 			label="COM_JOOMLEAGUE_CLUB_RSS_FEED" description="COM_JOOMLEAGUE_CLUB_RSS_FEED_DESCR">
 		</field>
