@@ -25,6 +25,12 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('pagnav');
 	}
+    
+    if (($this->config['show_project_rss_feed']) == 1  && !empty($this->rssfeedoutput) )
+	{
+		echo $this->loadTemplate('rssfeed-table');
+	}
+    
 	/*
 	 if ($this->config['show_results_ranking'])
 	 {
