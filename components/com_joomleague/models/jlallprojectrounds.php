@@ -486,7 +486,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   $htmlcontent[$a]['firstsubst'] .= implode(",",$this->getSubstitutes());
   $htmlcontent[$a]['firstsubst'] .= '';
   
-  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JCOM_JOOMLEAGUE_MATCHREPORT_EVENTS').' : </b>';
+  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstevents'] .= implode(",",$this->getPlayersEvents());
