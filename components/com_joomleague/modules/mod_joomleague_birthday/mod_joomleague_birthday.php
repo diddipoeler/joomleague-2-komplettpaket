@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 require_once(dirname(__FILE__).DS.'helper.php');
 require_once(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
 $document = JFactory::getDocument();
-$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+$show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) ;
 
 //add css file
 $document->addStyleSheet(JURI::base().'modules/mod_joomleague_birthday/css/mod_joomleague_birthday.css');
@@ -20,7 +20,7 @@ $document->addStyleSheet(JURI::base().'modules/mod_joomleague_birthday/css/mod_j
 $persons = array_merge((array)$players, (array)$crew);
 if(count($persons)>1)   $persons = jl_birthday_sort($persons, array("n+days_to_birthday", "n".$params->get('sort_order')."age"), false);
 
-if ( $this->show_debug_info )
+if ( $show_debug_info )
 {
 echo 'this->mod_joomleague_birthday persons<br /><pre>~' . print_r($persons,true) . '~</pre><br />';
 echo 'this->mod_joomleague_birthday params<br /><pre>~' . print_r($params,true) . '~</pre><br />';
