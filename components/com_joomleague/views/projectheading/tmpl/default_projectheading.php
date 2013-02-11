@@ -94,7 +94,7 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
                     {
                     $link = JoomleagueHelperRoute::getKunenaRoute( $this->project->sb_catid );
 						$imgTitle = JText::_('Kunena Forum');
-						$desc = JHTML::image('media/com_joomleague/jl_images/kunena.logo.png', $imgTitle, array(' title' => $imgTitle));
+						$desc = JHTML::image('media/com_joomleague/jl_images/kunena.logo.png', $imgTitle, array('title' => $imgTitle,'width' => '100' ));
 						echo '&nbsp;';
 						echo JHTML::link($link, $desc);    
                     }
