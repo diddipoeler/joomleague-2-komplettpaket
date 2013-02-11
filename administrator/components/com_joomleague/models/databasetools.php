@@ -49,7 +49,7 @@ function obj2Array($obj)
 		{
 			if (!is_scalar($value))
 			{
-				$arr[$key]=obj2Array($value);
+				$arr[$key]=$this->obj2Array($value);
 			}
 		}
 	}
