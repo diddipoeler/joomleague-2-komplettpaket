@@ -64,6 +64,24 @@ JHTML::_( 'behavior.tooltip' );
 						?>
 					</td>
 				</tr>
+                
+                <tr>
+					<td class="nowrap" valign="top">
+						<?php
+						$link = JRoute::_( 'index.php?option=com_joomleague&task=databasetool.picturepath' );
+						?>
+						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_PICTURE_PATH_MIGRATION2' ); ?>">
+							<?php
+							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_PICTURE_PATH_MIGRATION' );
+							?>
+						</a>
+					</td>
+					<td>
+						<?php
+						echo JText::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_PICTURE_PATH_MIGRATION_DESCR" );
+						?>
+					</td>
+				</tr>
 
 			</tbody>
 		</table>

@@ -30,6 +30,7 @@ class JoomleagueControllerDatabaseTool extends JoomleagueController
 
 		$this->registerTask('repair','repair');
 		$this->registerTask('optimize','optimize');
+        $this->registerTask('picturepath','picturepath');
 	}
 
 	function display()
@@ -62,6 +63,21 @@ class JoomleagueControllerDatabaseTool extends JoomleagueController
 		else
 		{
 			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_REPAIR').$model->getError();
+		}
+		$link='index.php?option=com_joomleague&view=databasetools';
+		$this->setRedirect($link,$msg);
+	}
+    
+    function picturepath()
+	{
+		$model=$this->getModel('databasetools');
+		if ($model->picturepath())
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_PICTURE_PATH_MIGRATION');
+		}
+		else
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_DBTOOL_CTRL_ERROR_PICTURE_PATH_MIGRATION').$model->getError();
 		}
 		$link='index.php?option=com_joomleague&view=databasetools';
 		$this->setRedirect($link,$msg);

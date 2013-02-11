@@ -59,6 +59,74 @@ class JoomleagueModelDatabaseTools extends JModel
 		}
 	return true;
 	}
+    
+    function picturepath()
+	{
+	$arrQueries = array();
+		
+		$query = "update #__joomleague_club set logo_big = replace(logo_big, 'media/com_joomleague/clubs/large', 'images/com_joomleague/database/clubs/large')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_club set logo_middle = replace(logo_middle, 'media/com_joomleague/clubs/medium', 'images/com_joomleague/database/clubs/medium')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_club set logo_small = replace(logo_small, 'media/com_joomleague/clubs/small', 'images/com_joomleague/database/clubs/small')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_eventtype set icon = replace(icon, 'media/com_joomleague/event_icons', 'images/com_joomleague/database/events')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_person set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_team_player set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_project set picture = replace(picture, 'media/com_joomleague/projects', 'images/com_joomleague/database/projects')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_playground set picture = replace(picture, 'media/com_joomleague/playgrounds', 'images/com_joomleague/database/playgrounds')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_sports_type set icon = replace(icon, 'media/com_joomleague/sportstypes', 'images/com_joomleague/database/sport_types')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_team set picture = replace(picture, 'media/com_joomleague/teams', 'images/com_joomleague/database/teams')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_project_team set picture = replace(picture, 'media/com_joomleague/teams', 'images/com_joomleague/database/teams')";
+		array_push($arrQueries, $query);
+		
+		$query = "update #__joomleague_statistic set icon = replace(icon, 'media/com_joomleague/statistics', 'images/com_joomleague/database/statistics')";
+		array_push($arrQueries, $query);
+        
+        $query="SHOW TABLES LIKE '%_joomleague%'";
+			
+		$this->_db->setQuery($query);
+		$results = $this->_db->loadColumn();
+		if(is_array($results)) {
+			echo JText::_('Database Tables Picture Path Migration');
+			foreach ($arrQueries as $key=>$value) {
+				$this->_db->setQuery($value);
+				if (!$this->_db->query())
+				{
+					echo '-> '.JText::_('Failed').'! <br>';
+					$this->setError($this->_db->getErrorMsg());
+					echo $this->_db->getErrorMsg();
+					//return false;
+				} else {
+					//echo "-> done !<br>";		
+				}
+				
+			}
+			echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+            return true;
+		} else {
+			echo JText::_('No Picture Path Migration neccessary!'); 
+            return false;
+		}	
+	//return true;
+	}
 
 }
 ?>
