@@ -165,7 +165,7 @@ function obj2Array($obj)
 					$template=substr($file,0,(strlen($file) - 4));
 					$out=simplexml_load_file($xmldir.DS.$file,'SimpleXMLElement',LIBXML_NOCDATA);
 					$temp='';
-					$arr=obj2Array($out);
+					$arr=$this->obj2Array($out);
 					$outName=JText::_($out->name[0]);
 					echo '<br />'.JText::sprintf('Template: [%1$s] - Name: [%2$s]',"<b>$template</b>","<b>$outName</b>").'<br />';
 					if (isset($arr["fieldset"]["field"]))
