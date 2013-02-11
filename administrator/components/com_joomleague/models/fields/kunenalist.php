@@ -38,44 +38,9 @@ class JFormFieldKunenalist extends JFormFieldList
 		// Initialize variables.
 		$options = array();
 
-		// Initialize some field attributes.
-		$filter = (string) $this->element['filter'];
-		$exclude = (string) $this->element['exclude'];
-		$hideNone = (string) $this->element['hide_none'];
-		$hideDefault = (string) $this->element['hide_default'];
-
-		// Get the path in which to search for file options.
-		$path = JPATH_ROOT.'/components/com_joomleague/extensions';
-		if (!is_dir($path))
-		{
-			$path = JPATH_ROOT . '/' . $path;
-		}
-
-		// Get a list of folders in the search path with the given filter.
-		$folders = JFolder::folders($path, $filter);
-
-		// Build the options list from the list of folders.
-		if (is_array($folders))
-		{
-			foreach ($folders as $folder)
-			{
-
-				// Check to see if the file is in the exclude mask.
-				if ($exclude)
-				{
-					if (preg_match(chr(1) . $exclude . chr(1), $folder))
-					{
-						continue;
-					}
-				}
-
-				$options[] = JHtml::_('select.option', $folder, $folder);
-			}
-		}
-
-		// Merge any additional options in the XML definition.
-		$options = array_merge(parent::getOptions(), $options);
-
+		$mdlKunena = JModel::getInstance("KunenaAdminModelCategories", "KunenaModel");
+        $Categories = $mdlKunena->getAdminCategories();
+echo 'getAdminCategories<br /><pre>~' . print_r($Categories,true) . '~</pre><br />';
 		return $options;
 	}
 }
