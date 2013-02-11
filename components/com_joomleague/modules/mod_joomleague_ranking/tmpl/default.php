@@ -33,6 +33,13 @@ if (count($columns) != count($column_names)) {
 
 $nametype = $params->get('nametype', 'short_name');
 $colors = $list['colors'];
+
+if ( $show_debug_info )
+{
+echo 'this->mod_joomleague_ranking colors <br /><pre>~' . print_r($colors ,true) . '~</pre><br />';
+echo 'this->mod_joomleague_ranking ranking<br /><pre>~' . print_r($list['ranking'],true) . '~</pre><br />';
+}
+
 ?>
 
 <div class="modjlgranking">
@@ -70,7 +77,7 @@ $colors = $list['colors'];
 			if ($params->get('show_rank_colors', 0))
 			{
 			  foreach ($colors as $colorItem) {
-			    if ($i >= $colorItem['from'] && $i <= $colorItem['to']) {
+			    if ($item->rank >= $colorItem['from'] && $item->rank <= $colorItem['to']) {
 						$color = $colorItem['color'];
 					}
 				}
