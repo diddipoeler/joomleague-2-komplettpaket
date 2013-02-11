@@ -371,7 +371,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   
   if ( $config['show_firstroster'] )
   {
-  $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
+  $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstroster'] .= implode(",",$this->getMatchPlayers());
@@ -379,7 +379,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   }
   if ( $config['show_firstsubst'] )
   {
-  $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
+  $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstsubst'] .= implode(",",$this->getSubstitutes());
@@ -387,7 +387,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   }
   if ( $config['show_firstevents'] )
   {
-  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
+  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstevents'] .= implode(",",$this->getPlayersEvents());
@@ -415,7 +415,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   {
   if ( $config['show_secondroster'] )
   {
-  $htmlcontent[$a]['secondroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
+  $htmlcontent[$a]['secondroster'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondroster'] .= implode(",",$this->getMatchPlayers());
@@ -423,7 +423,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   }
   if ( $config['show_secondsubst'] )
   {
-  $htmlcontent[$a]['secondsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
+  $htmlcontent[$a]['secondsubst'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondsubst'] .= implode(",",$this->getSubstitutes());
@@ -431,7 +431,7 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   }
   if ( $config['show_secondevents'] )
   {
-  $htmlcontent[$a]['secondevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
+  $htmlcontent[$a]['secondevents'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['secondevents'] .= implode(",",$this->getPlayersEvents());
@@ -474,19 +474,19 @@ $this->ProjectTeams[$value] = $this->_db->loadResult();
   {
   
   
-  $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('JL_MATCHREPORT_STARTING_LINE-UP').' : </b>';
+  $htmlcontent[$a]['firstroster'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstroster'] .= implode(",",$this->getMatchPlayers());
   $htmlcontent[$a]['firstroster'] .= '';
   
-  $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('JL_MATCHREPORT_SUBSTITUTES').' : </b>';
+  $htmlcontent[$a]['firstsubst'] = '<b>'.JText::_('COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstsubst'] .= implode(",",$this->getSubstitutes());
   $htmlcontent[$a]['firstsubst'] .= '';
   
-  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JL_MATCHREPORT_EVENTS').' : </b>';
+  $htmlcontent[$a]['firstevents'] = '<b>'.JText::_('JCOM_JOOMLEAGUE_MATCHREPORT_EVENTS').' : </b>';
   $this->matchid = $match->id;
   $this->projectteam_id = $value;
   $htmlcontent[$a]['firstevents'] .= implode(",",$this->getPlayersEvents());
