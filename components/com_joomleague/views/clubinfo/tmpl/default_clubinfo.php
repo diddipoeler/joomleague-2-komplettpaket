@@ -163,11 +163,20 @@ else
         
         if ( $this->config['show_club_kunena_link'] == 1 )
 		{
+		  ?>
+<span class="clubinfo_listing_item">
+</span>
+<?PHP
 $link = JoomleagueHelperRoute::getKunenaRoute( $this->club->sb_catid );
 $imgTitle = JText::_($this->club->name.' Forum');
 $desc = JHTML::image('media/com_joomleague/jl_images/kunena.logo.png', $imgTitle, array('title' => $imgTitle,'width' => '100' ));
-echo '&nbsp;';
+		?>
+<span class="clubinfo_listing_value">
+<?PHP
 echo JHTML::link($link, $desc);
+		?>
+</span>
+<?PHP
 		}
         
         
