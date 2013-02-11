@@ -60,6 +60,257 @@ class JoomleagueModelDatabaseTools extends JModel
 	return true;
 	}
     
+    function updatetemplatemasters()
+    {
+   	/**********************************
+	******** Update Script for xml template to store the non existing Variable
+	***********************************/
+
+	/*
+	 * developer: diddipoeler
+	* date: 13.01.2011
+	* Bugtracker Backend Bug #579
+	* change old textname in newtextname
+	*/
+	$convert = array (
+			'JL_AGAINST' => 'AGAINST',
+			'JL_AVG' => 'AVG',
+			'JL_BONUS' => 'BONUS',
+			'JL_DIFF' => 'DIFF',
+			'JL_FOR' => 'FOR',
+			'JL_GB' => 'GB',
+			'JL_H2H' => 'H2H',
+			'JL_H2H_AWAY' => 'H2H_AWAY',
+			'JL_H2H_DIFF' => 'H2H_DIFF',
+			'JL_H2H_FOR' => 'H2H_FOR',
+			'JL_LEGS' => 'LEGS',
+			'JL_LEGS_DIFF' => 'LEGS_DIFF',
+			'JL_LEGS_RATIO' => 'LEGS_RATIO',
+			'JL_LEGS_WIN' => 'LEGS_WIN',
+			'JL_LOSSES' => 'LOSSES',
+			'JL_NEGPOINTS' => 'NEGPOINTS',
+			'JL_OLDNEGPOINTS' => 'OLDNEGPOINTS',
+			'JL_PLAYED' => 'PLAYED',
+			'JL_POINTS' => 'POINTS',
+			'JL_POINTS_RATIO' => 'POINTS_RATIO',
+			'JL_QUOT' => 'QUOT',
+			'JL_RESULTS' => 'RESULTS',
+			'JL_SCOREAGAINST' => 'SCOREAGAINST',
+			'JL_SCOREFOR' => 'SCOREFOR',
+			'JL_SCOREPCT' => 'SCOREPCT',
+			'JL_START' => 'START',
+			'JL_TIES' => 'TIES',
+			'JL_WINPCT' => 'WINPCT',
+			'JL_WINS' => 'WINS'
+	);
+
+	 
+	echo '<b>'.JText::_('Updating new variables and templates for usage in the Master-Templates').'</b><br />';
+	//$db = JFactory::getDBO();
+
+	$query='SELECT id,name,master_template FROM #__joomleague_project';
+	$this->_db->setQuery($query);
+	if ($projects=$this->_db->loadObjectList()) // check that there are projects...
+	{
+		//echo '<br />';
+		$xmldir=JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'settings'.DS.'default';
+
+		if ($handle=JFolder::files($xmldir))
+		{
+			# check that each xml template has a corresponding record in the
+			# database for this project (except for projects using master templates).
+			# If not,create the rows with default values
+			# from the xml file
+
+			foreach ($handle as $file)
+			{
+				if ((strtolower(substr($file,-3))=='xml') &&
+						(substr($file,0,(strlen($file) - 4))!='table') &&
+						(substr($file,0,10)!='prediction')
+				)
+				{
+					$defaultconfig=array ();
+					$template=substr($file,0,(strlen($file) - 4));
+					$out=simplexml_load_file($xmldir.DS.$file,'SimpleXMLElement',LIBXML_NOCDATA);
+					$temp='';
+					$arr=obj2Array($out);
+					$outName=JText::_($out->name[0]);
+					echo '<br />'.JText::sprintf('Template: [%1$s] - Name: [%2$s]',"<b>$template</b>","<b>$outName</b>").'<br />';
+					if (isset($arr["fieldset"]["field"]))
+					{
+						foreach ($arr["fieldset"]["field"] as $param)
+						{
+							$temp .= $param["@attributes"]["name"]."=".$param["@attributes"]["default"]."\n";
+							$defaultconfig[$param["@attributes"]["name"]]=$param["@attributes"]["default"];
+						}
+					}
+					else
+					{
+						foreach ($arr["fieldset"] as $paramsgroup)
+						{
+							foreach ($paramsgroup["field"] as $param)
+							{
+									
+								if (!isset($param["@attributes"]))
+								{
+									if (isset($param["name"]))
+									{
+										$temp .= $param["name"]."=".$param["default"]."\n";
+										$defaultconfig[$param["name"]]=$param["default"];
+									}
+								}
+								else if (isset($param["name"]))
+								{
+									/*
+									 * developer: diddipoeler
+									* date: change on 13.01.2011
+									* Bugtracker Backend Bug #579
+									* error message string to object example template teamstats
+									*/
+									//$temp .= $param["@attributes"]["name"]."=".$param["@attributes"]["default"]."\n";
+									$temp .= $param["name"]."=".$param["default"]."\n";
+									//$defaultconfig[$param["@attributes"]["name"]]=$param["@attributes"]["default"];
+									$defaultconfig[$param["name"]]=$param["default"];
+								}
+							}
+						}
+					}
+					$changeNeeded=false;
+					foreach ($projects as $proj)
+					{
+						$count_diff=0;
+						$configvalues=array();
+						$query="SELECT params FROM #__joomleague_template_config WHERE project_id=$proj->id AND template='".$template."'";
+						$this->_db->setQuery($query);
+						if ($id=$this->_db->loadResult())
+						{
+							//template present in db for this project
+							$string='';
+							$templateTitle='';
+							$params=explode("\n",trim($id));
+							foreach($params AS $param)
+							{
+								$row = explode("=",$param);
+								if(isset($row[1])) {
+									list ($name,$value)= $row;
+									$configvalues[$name]=$value;
+								}
+							}
+
+							foreach($defaultconfig AS $key => $value)
+							{
+								if (!array_key_exists($key,$configvalues))
+								{
+									$count_diff++;
+									$configvalues[$key]=$value;
+								}
+							}
+								
+							if ($count_diff || $template == 'ranking' || $template=='overall')
+							{
+								foreach ($configvalues AS $key=>$value)
+								{
+									if (preg_match("/%H:%m/i", $value)) {
+										// change text
+										$value = 'H:i';
+									} else {
+										// text ok										
+									}
+									
+									/*
+									 * developer: diddipoeler
+									* date: change on 13.01.2011
+									* Bugtracker Backend Bug #579
+									* change old textname in newtextname
+									*/
+									if (preg_match("/JL_/i", $value))
+									{
+										// change text
+										$value = str_replace(array_keys($convert), array_values($convert), $value  );
+									}
+									else
+									{
+										// text ok
+									}
+
+									$value = trim($value);
+									$string .= "$key=$value\n";
+								}
+								echo JText::sprintf('Difference found for project [%1$s]','<b>'.$proj->name.'</b>').' - ';
+								$changeNeeded=true;
+								$query =" UPDATE #__joomleague_template_config ";
+								$query .= " SET ";
+								$query .= " title='".$out->name[0]."',";
+								$query .= " params='$string' ";
+								$query .= " WHERE template='$template' AND project_id=".$proj->id;
+
+								$this->_db->setQuery($query);
+								if (!$this->_db->query())
+								{
+									echo '<span style="color:red">';
+									echo JText::sprintf(	'Problems while saving config for [%1$s] with project-ID [%2$s]!',
+											'<b>'.$template.'</b>',
+											'<b>'.$proj->id.'</b>');
+									echo '</span>'.'<br />';
+									echo $this->_db->getErrorMsg().'<br />';
+								}
+								else
+								{
+									echo JText::sprintf(	'Updated template [%1$s] with project-ID [%2$s]',
+											'<span style="color:green;"><b>'.$template.'</b></span>',
+											'<span style="color:green"><b>'.$proj->id.'</b></span>').PrintStepResult(true).'<br />';
+								}
+							}
+						}
+						elseif ($proj->master_template ==0)
+						{	//check that project has own templates
+							//or if template not present,create a row with default values
+							echo '<br /><span style="color:orange;">'.JText::sprintf(	'Need to insert into project with project-ID [%1$s] - Project name is [%2$s]',
+									'<b>'.$proj->id.'</b>','<b>'.$proj->name.'</b>').'</span><br />';
+							$changeNeeded=true;
+							$temp=trim($temp);
+							$query="	INSERT
+							INTO #__joomleague_template_config
+							(template,title,params,project_id)
+							VALUES
+							('$template','".$out->name[0]."','$temp','$proj->id')";
+							$this->_db->setQuery($query);
+							//echo error,allows to check if there is a mistake in the template file
+
+							if (!$this->_db->query())
+							{
+								echo '<span style="color:red; font-weight:bold; ">'.JText::sprintf('Error with [%s]:',$template).'</span><br />';
+								echo $this->_db->getErrorMsg().'<br/>';
+							}
+							else
+							{
+								echo JText::sprintf(	'Inserted %1$s into project with ID %2$s',
+										'<b>'.$template.'</b>','<b>'.$proj->id.'</b>').PrintStepResult(true).'<br />';
+							}
+						}
+					}
+					if (!$changeNeeded)
+					{
+						echo '<span style="color:green">'.JText::_('No changes needed for this template').'</span>'.'<br />';
+					}
+				}
+			}
+		}
+		else
+		{
+			echo ' - <span style="color:red">'.JText::_('No templates found').'</span>';
+		}
+	}
+	else
+	{
+		echo ' - <span style="color:green">'.JText::_('No update was needed').'</span>';
+	}
+
+	return '';    
+        
+    }
+    
+    
     function picturepath()
 	{
 	$arrQueries = array();

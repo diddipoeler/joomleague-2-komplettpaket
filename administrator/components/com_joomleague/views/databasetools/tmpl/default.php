@@ -82,6 +82,24 @@ JHTML::_( 'behavior.tooltip' );
 						?>
 					</td>
 				</tr>
+                
+                <tr>
+					<td class="nowrap" valign="top">
+						<?php
+						$link = JRoute::_( 'index.php?option=com_joomleague&task=databasetool.updatetemplatemasters' );
+						?>
+						<a href="<?php echo $link; ?>" title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_UPDATE_TEMPLATE_MASTERS2' ); ?>">
+							<?php
+							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_UPDATE_TEMPLATE_MASTERS' );
+							?>
+						</a>
+					</td>
+					<td>
+						<?php
+						echo JText::_( "COM_JOOMLEAGUE_ADMIN_DBTOOLS_UPDATE_TEMPLATE_MASTERS_DESCR" );
+						?>
+					</td>
+				</tr>
 
 			</tbody>
 		</table>
