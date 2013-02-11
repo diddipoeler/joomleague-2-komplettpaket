@@ -27,7 +27,7 @@ jimport('joomla.filesystem.file');
 class JoomleagueModelDatabaseTools extends JModel
 {
 	
-    /**
+/**
  * obj2Array#
  * converts simpleXml object to array
  *
