@@ -11,7 +11,20 @@ jimport('joomla.application.component.helper');
  */
 class JoomleagueHelperRoute
 {
-	public static function getTeamInfoRoute( $projectid, $teamid )
+	
+  public static function getKunenaRoute( $sb_catid )
+	{
+		$params = array(	"option" => "com_kunena",
+				"view" => "topic",
+				"catid" => $sb_catid );
+	
+		$query = JoomleagueHelperRoute::buildQuery( $params );
+		$link = JRoute::_( 'index.php?' . $query, false );
+	
+		return $link;
+	}
+  
+  public static function getTeamInfoRoute( $projectid, $teamid )
 	{
 		$params = array(	"option" => "com_joomleague",
 				"view" => "teaminfo",

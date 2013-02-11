@@ -8,6 +8,7 @@ echo 'this->project<br /><pre>~' . print_r($this->project,true) . '~</pre><br />
 
 $nbcols = 2;
 if ( $this->overallconfig['show_project_sporttype_picture'] ) { $nbcols++; }
+if ( $this->overallconfig['show_project_kunena_link'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_picture'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 {
@@ -86,6 +87,21 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 					?>
 					&nbsp;
 					</td>
+                    
+                    <td class="buttonheading" align="right">
+					<?php
+					if ( $this->overallconfig['show_project_kunena_link'] == 1 )
+                    {
+                    $link = JoomleagueHelperRoute::getKunenaRoute( $this->project->sb_catid );
+						$imgTitle = JText::_('Kunena Forum');
+						$desc = JHTML::image('media/com_joomleague/jl_images/kunena.logo.png', $imgTitle, array(' title' => $imgTitle));
+						echo '&nbsp;';
+						echo JHTML::link($link, $desc);    
+                    }
+					?>
+					&nbsp;
+					</td>
+                    
 				</tr>
 			</tbody>
 		</table>
