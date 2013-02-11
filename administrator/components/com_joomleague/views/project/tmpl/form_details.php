@@ -75,6 +75,10 @@
 					<td class="key"><?php echo $this->form->getLabel('enable_sb'); ?></td>
 					<td><?php echo $this->form->getInput('enable_sb'); ?></td>
 				</tr>
+                <tr>
+					<td class="key"><?php echo $this->form->getLabel('sb_catid'); ?></td>
+					<td><?php echo $this->form->getInput('sb_catid'); ?></td>
+				</tr>
 	 			<tr>
 					<td class="key"><?php echo $this->form->getLabel('extension'); ?></td>
 					<td><?php echo $this->form->getInput('extension'); ?></td>

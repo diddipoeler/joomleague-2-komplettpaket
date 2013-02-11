@@ -158,6 +158,15 @@
 		</field>
 		
 		<field
+			name="sb_catid"
+			type="kunenalist"
+			class="inputbox"
+			size="5"
+			multiple="false"
+			label="COM_JOOMLEAGUE_ADMIN_PROJECT_KUNENA_FORUM"
+			description="COM_JOOMLEAGUE_ADMIN_PROJECT_KUNENA_FORUM_DESC"/>
+			
+		<field
 			name="extension"
 			type="extensionlist"
 			class="inputbox"
