@@ -13,6 +13,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
+jimport('joomla.filesystem.folder');
+jimport('joomla.filesystem.file');
 
 /**
  * Joomleague Component DatabaseTools Model
@@ -24,7 +26,37 @@ jimport('joomla.application.component.model');
 
 class JoomleagueModelDatabaseTools extends JModel
 {
-	function optimize()
+	
+    /**
+ * obj2Array#
+ * converts simpleXml object to array
+ *
+ * Variables: $o['obj']: simplexml object
+ *
+ * @return
+ *
+ */
+function obj2Array($obj)
+{
+	$arr=(array)$obj;
+	if (empty($arr))
+	{
+		$arr='';
+	}
+	else
+	{
+		foreach ($arr as $key=>$value)
+		{
+			if (!is_scalar($value))
+			{
+				$arr[$key]=obj2Array($value);
+			}
+		}
+	}
+	return $arr;
+}
+
+    function optimize()
 	{
 		$query="SHOW TABLES LIKE '%_joomleague%'";
 		$this->_db->setQuery($query);
