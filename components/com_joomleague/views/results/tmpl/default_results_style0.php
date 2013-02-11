@@ -185,12 +185,15 @@ if ($this->config['show_comments_count'] > 0){
         
         if ($this->config['show_match_summary'])
 		{
+		  $summary = JURI::root().'components/com_joomleague/views/matchreport/tmpl/default_summary.php';
 		  ?>
-		  <a href="default_summary.php" onclick="return hs.htmlExpand(this, { outlineType: 'rounded-white',
+          <td width="5" class="ko">
+		  <a href="<?php echo $summary; ?>" onclick="return hs.htmlExpand(this, { outlineType: 'rounded-white',
 			wrapperClassName: 'draggable-header', objectType: 'ajax' } )"
 			class="highslide">
 		AJAX content
 	</a>
+    </td>
     <?php
 		}  
 		?>
