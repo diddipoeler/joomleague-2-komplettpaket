@@ -20,8 +20,14 @@ defined('_JEXEC') or die('Restricted access');
 require_once (dirname(__FILE__).DS.'helper.php');
 
 require_once(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
+$show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) ;
 
 $list = modJLGRankingHelper::getData($params);
+
+if ( $show_debug_info )
+{
+echo 'this->mod_joomleague_ranking params<br /><pre>~' . print_r($params,true) . '~</pre><br />';
+}
 
 $document = JFactory::getDocument();
 //add css file
