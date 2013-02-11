@@ -7,6 +7,7 @@ $dates			= $this->sortByDate();
 if($this->config['show_division']){$nbcols++;}
 if($this->config['show_match_number']){$nbcols++;}
 if($this->config['show_events']){$nbcols++;}
+if($this->config['show_match_summary']){$nbcols++;}
 if($this->config['show_time']){$nbcols++;}
 if($this->config['show_playground'] || $this->config['show_playground_alert']){$nbcols = $nbcols+2;}
 if($this->config['show_referee']){$nbcols++;}
@@ -181,6 +182,17 @@ if ($this->config['show_comments_count'] > 0){
 		?></td>
 		<?php
 		}
+        
+        if ($this->config['show_match_summary'])
+		{
+		  ?>
+		  <a href="default_summary.php" onclick="return hs.htmlExpand(this, { outlineType: 'rounded-white',
+			wrapperClassName: 'draggable-header', objectType: 'ajax' } )"
+			class="highslide">
+		AJAX content
+	</a>
+    <?php
+		}  
 		?>
 		<!-- show divisions -->
 		<?php
