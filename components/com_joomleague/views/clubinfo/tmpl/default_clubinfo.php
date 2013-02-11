@@ -160,6 +160,17 @@ else
 			<!-- SHOW PLAYGROUNDS - END -->
 			<?php
 		}
+        
+        if ( $this->config['show_club_kunena_link'] == 1 )
+		{
+$link = JoomleagueHelperRoute::getKunenaRoute( $this->club->sb_catid );
+$imgTitle = JText::_('Kunena Forum');
+$desc = JHTML::image('media/com_joomleague/jl_images/kunena.logo.png', $imgTitle, array('title' => $imgTitle,'width' => '100' ));
+echo '&nbsp;';
+echo JHTML::link($link, $desc);
+		}
+        
+        
 		?>
 	</div>
 	<?php

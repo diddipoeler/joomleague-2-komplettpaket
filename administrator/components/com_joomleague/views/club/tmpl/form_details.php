@@ -79,6 +79,15 @@
 					<td class="key"><?php echo $this->form->getLabel('standard_playground'); ?></td>
 					<td><?php echo $this->form->getInput('standard_playground'); ?></td>
 				</tr>
+                
+                <tr>
+					<td class="key"><?php echo $this->form->getLabel('enable_sb'); ?></td>
+					<td><?php echo $this->form->getInput('enable_sb'); ?></td>
+				</tr>
+                <tr>
+					<td class="key"><?php echo $this->form->getLabel('sb_catid'); ?></td>
+					<td><?php echo $this->form->getInput('sb_catid'); ?></td>
+				</tr>
         
         <tr>
 					<td class="key"><?php echo $this->form->getLabel('dissolved_year'); ?></td>
