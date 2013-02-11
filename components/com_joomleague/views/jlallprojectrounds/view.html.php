@@ -14,8 +14,8 @@ class JoomleagueViewjlallprojectrounds extends JLGView
 		$uri = &JFactory::getURI();		
 				
 		$model = & $this->getModel();
-		//$config	= $model->getTemplateConfig($this->getName());
-		$config	= $model->getAllRoundsParams();
+		$config	= $model->getTemplateConfig($this->getName());
+		//$config	= $model->getAllRoundsParams();
     $project = $model->getProject();
 		
 		$this->assignRef('project', $project);
