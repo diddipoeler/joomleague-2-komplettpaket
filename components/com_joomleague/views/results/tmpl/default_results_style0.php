@@ -185,7 +185,7 @@ if ($this->config['show_comments_count'] > 0){
         
         if ($this->config['show_match_summary'])
 		{
-		  $summary = JURI::root().'components/com_joomleague/views/matchreport/tmpl/default_summary.php';
+		  $summary = JURI::root().'components/com_joomleague/views/results/tmpl/default_summary.php';
 		  ?>
           <td width="5" class="ko">
 		  <a href="<?php echo $summary; ?>" onclick="return hs.htmlExpand(this, { outlineType: 'rounded-white',
