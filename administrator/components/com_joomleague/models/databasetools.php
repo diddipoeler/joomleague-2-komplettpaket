@@ -56,6 +56,20 @@ function obj2Array($obj)
 	return $arr;
 }
 
+function PrintStepResult($result)
+{
+	if ($result)
+	{
+		$output=' - <span style="color:green">'.JText::_('SUCCESS').'</span>';
+	}
+	else
+	{
+		$output=' - <span style="color:red">'.JText::_('FAILED').'</span>';
+	}
+
+	return $output;
+}
+
     function optimize()
 	{
 		$query="SHOW TABLES LIKE '%_joomleague%'";
@@ -290,7 +304,7 @@ function obj2Array($obj)
 								{
 									echo JText::sprintf(	'Updated template [%1$s] with project-ID [%2$s]',
 											'<span style="color:green;"><b>'.$template.'</b></span>',
-											'<span style="color:green"><b>'.$proj->id.'</b></span>').PrintStepResult(true).'<br />';
+											'<span style="color:green"><b>'.$proj->id.'</b></span>').$this->PrintStepResult(true).'<br />';
 								}
 							}
 						}
@@ -317,7 +331,7 @@ function obj2Array($obj)
 							else
 							{
 								echo JText::sprintf(	'Inserted %1$s into project with ID %2$s',
-										'<b>'.$template.'</b>','<b>'.$proj->id.'</b>').PrintStepResult(true).'<br />';
+										'<b>'.$template.'</b>','<b>'.$proj->id.'</b>').$this->PrintStepResult(true).'<br />';
 							}
 						}
 					}
