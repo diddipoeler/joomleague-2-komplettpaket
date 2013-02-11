@@ -28,6 +28,9 @@ class JoomleagueViewRanking extends JLGView {
 		$this->assignRef( 'mapconfig',		$map_config ); // Loads the project-template -settings for the GoogleMap
 		
 		$this->assignRef('project', $project);
+        $extended = $this->getExtended($this->project->extended, 'project');
+        $this->assignRef( 'extended', $extended );
+        
 		$this->assignRef('overallconfig', $model->getOverallConfig());
 		$this->assignRef('tableconfig', $config);
 		$this->assignRef('config', $config);

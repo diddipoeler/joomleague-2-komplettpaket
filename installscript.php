@@ -120,6 +120,10 @@ class com_joomleagueInstallerScript
 	}
 
 	public function updateDatabase() {
+	$mainframe =& JFactory::getApplication();   
+	$mainframe->enqueueMessage(JText::_('Sie werden gleich zum Tabellenupdate weitergeleitet !'),'Notice');
+    $restart_link = JURI::base() . 'index.php?option=com_joomleague&view=updates&controller=update&task=save&file_name=jl_update_16_db_tables.php';
+    echo '<meta http-equiv="refresh" content="3; URL='.$restart_link.'">';   
 //		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
 	}
 	

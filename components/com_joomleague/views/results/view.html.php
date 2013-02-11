@@ -47,6 +47,8 @@ class JoomleagueViewResults extends JLGView
 			$this->assignRef('projectevents',	$model->getProjectEvents());
 			$this->assignRef('model',			$model);
 			$this->assignRef('isAllowed',		$model->isAllowed());
+            $extended = $this->getExtended($this->project->extended, 'project');
+            $this->assignRef( 'extended', $extended );
 
 			$lists['rounds'] = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="joomleague_changedoc(this);','value','text',$project->current_round);
 			$this->assignRef('lists',$lists);
