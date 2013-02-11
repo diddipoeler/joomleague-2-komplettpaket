@@ -159,7 +159,7 @@
 		
 		<field
 			name="sb_catid"
-			type="kunenalist"
+			type="kunenacategorylist"
 			class="inputbox"
 			size="5"
 			multiple="false"

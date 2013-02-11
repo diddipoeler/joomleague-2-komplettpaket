@@ -15,6 +15,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.filesystem.folder');
 JFormHelper::loadFieldClass('list');
 
+//require_once( KPATH_ADMIN . DS . 'models' . DS . 'categories.php' );
+require_once( KPATH_ADMIN . DS .'libraries' . DS .'forum' . DS . 'category' . DS . 'helper.php' );
+
 /**
  * Session form field class
  */
