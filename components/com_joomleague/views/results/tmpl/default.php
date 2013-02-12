@@ -28,10 +28,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     
     if (($this->overallconfig['show_project_rss_feed']) == 1   )
 	{
-		if ( !empty($this->rssfeedoutput) )
-       {
-       echo $this->loadTemplate('rssfeed-table'); 
-       }
+		//if ( !empty($this->rssfeedoutput) )
+//       {
+//       echo $this->loadTemplate('rssfeed-table'); 
+//       }
 		if ( $this->rssfeeditems )
         {
         echo $this->loadTemplate('rssfeed');    

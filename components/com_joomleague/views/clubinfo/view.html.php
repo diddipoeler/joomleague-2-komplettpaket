@@ -55,7 +55,7 @@ class JoomleagueViewClubInfo extends JLGView
     
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink) );
-    
+    /*
     if ( $rssfeedlink )
     {
     $srfrFeedsArray 							= explode(",",$rssfeedlink);
@@ -85,6 +85,7 @@ class JoomleagueViewClubInfo extends JLGView
     $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
 		$document->addStyleSheet($css); 
 		}
+        */
     
     }
     

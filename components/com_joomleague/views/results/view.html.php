@@ -57,6 +57,7 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
     $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink) );
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     
+    /*
     if ( $rssfeedlink )
     {
     $srfrFeedsArray 							= explode(",",$rssfeedlink);
@@ -85,8 +86,11 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
     $this->assignRef( 'rssfeedoutput',SimpleRssFeedReaderHelper::getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth,$feedItemImageResampleQuality,$this->feedFavicon) );
     $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
 		$document->addStyleSheet($css); 
-		} 
+		}
+        */ 
+       
        }
+       
        
 			$lists['rounds'] = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="joomleague_changedoc(this);','value','text',$project->current_round);
 			$this->assignRef('lists',$lists);
