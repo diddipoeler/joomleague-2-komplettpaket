@@ -37,6 +37,12 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="show_history_leagues" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_TEAMINFO_PARAM_LABEL_SHOW_HISTORY_LEAGUES" description="COM_JOOMLEAGUE_FES_TEAMINFO_PARAM_DESCR_SHOW_HISTORY_LEAGUES">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
 
 		<!-- <field name="show_team_season_calendar" type="radio" default="1" label="Show 
 			full season calendar" description="Shows all games for competitions belonging to 

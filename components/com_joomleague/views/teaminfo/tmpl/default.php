@@ -36,6 +36,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('history');
 	}
+    
+    if ($this->config['show_history_leagues']==1)
+	{
+		echo $this->loadTemplate('history_leagues');
+	}
 		
 	echo "<div>";
 		echo $this->loadTemplate('backbutton');

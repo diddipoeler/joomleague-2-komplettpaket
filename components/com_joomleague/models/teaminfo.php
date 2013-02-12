@@ -194,6 +194,60 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
     	$league = $this->_db->loadResult();
 		return $league;
 	}
+    
+    function getLeagueRankOverviewDetail( $seasonsranking )
+	{
+  $leaguesoverviewdetail = array();
+  
+  foreach ($seasonsranking as $season)
+	{
+	$temp = new stdClass();
+  $temp->match = 0;
+  $temp->won = 0;
+  $temp->draw = 0;
+  $temp->loss = 0;
+  $temp->goalsfor = 0;
+  $temp->goalsagain = 0;
+	$leaguesoverviewdetail[$season->league] = $temp;
+	}
+ 
+  foreach ($seasonsranking as $season)
+	{
+	$leaguesoverviewdetail[$season->league]->match += $season->games;
+	$teile = explode("/",$season->series);
+	$leaguesoverviewdetail[$season->league]->won += $teile[0];
+	$leaguesoverviewdetail[$season->league]->draw += $teile[1];
+	$leaguesoverviewdetail[$season->league]->loss += $teile[2];
+	$teile = explode(":",$season->goals);
+	$leaguesoverviewdetail[$season->league]->goalsfor += $teile[0];
+	$leaguesoverviewdetail[$season->league]->goalsagain += $teile[1];
+	
+	}
+ 
+  return $leaguesoverviewdetail;
+  
+  }
+  
+  function getLeagueRankOverview( $seasonsranking )
+	{
+  $leaguesoverview = array();
+  
+  foreach ($seasonsranking as $season)
+	{
+	$leaguesoverview[$season->league][(int) $season->rank] += 1;
+	}
+  
+  ksort($leaguesoverview);
+  
+  foreach ( $leaguesoverview as $key => $value)
+  {
+  ksort($leaguesoverview[$key]);
+  
+  }
+ 
+  return $leaguesoverview;
+  
+  }
 
 	/**
 	 * Get total number of players assigned to a team

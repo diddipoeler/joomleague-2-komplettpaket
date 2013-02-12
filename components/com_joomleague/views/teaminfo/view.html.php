@@ -27,6 +27,12 @@ class JoomleagueViewTeamInfo extends JLGView
 			$this->assignRef( 'seasons', $seasons );
 			$this->assignRef('showediticon', $isEditor);
 			$this->assignRef('projectteamid', $model->projectteamid);
+            
+            if ($this->config['show_history_leagues']==1)
+	{
+            $this->assignRef( 'leaguerankoverview', $model->getLeagueRankOverview( $this->seasons ) );
+			$this->assignRef( 'leaguerankoverviewdetail', $model->getLeagueRankOverviewDetail( $this->seasons ) );
+}
 		}
 			
 		$extended = $this->getExtended($team->teamextended, 'team');
