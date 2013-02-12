@@ -39,7 +39,7 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 	  {
 	  $mod_name               = "mod_jw_srfr";
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_PROJECT_RSS_FEED');
-    $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink) );
+    $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink,$this->overallconfig['rssitems']) );
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     /*
     if ( $rssfeedlink )

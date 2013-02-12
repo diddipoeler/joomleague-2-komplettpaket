@@ -39,7 +39,7 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		return $text;
 	}
     
-    function getRssFeeds($rssfeedlink)
+    function getRssFeeds($rssfeedlink,$rssitems)
     {
     $rssIds	= array();    
     $rssIds = explode(',',$rssfeedlink);    
@@ -68,7 +68,7 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				// items
 				$items = $rssDoc->get_items();
 				// feed elements
-				$feed->items = array_slice($items, 0, 5);
+				$feed->items = array_slice($items, 0, $rssitems);
 				$lists[] = $feed;
 			}
         
