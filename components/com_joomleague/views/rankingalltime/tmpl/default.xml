@@ -177,12 +177,14 @@
 			<option value="0">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION0_FAV_HIGHLIGHT</option>			
 		</field>
 
-		<field 	name="show_logo_small_table" type="list" default="1" 
+		<field 	name="show_logo_small_table" type="list" default="logo_small" 
 				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_SHOW_CLUB_LOGO" 
 				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_SHOW_CLUB_LOGO">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION1_SHOW_CLUB_LOGO</option>
-			<option value="2">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION2_SHOW_CLUB_LOGO</option>
+			<option value="no_logo">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_NO_LOGO</option>
+			<option value="logo_small">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_LOGO_SMALL</option>
+      <option value="country_flag">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_COUNTRY_FLAG</option>
+      <option value="logo_small_country_flag">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_LOGO_SMALL_COUNTRY_FLAG</option>
+      <option value="country_flag_logo_small">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_COUNTRY_FLAG_LOGO_SMALL</option>
 		</field>
 
 		<field 	name="names" type="list" default="name" 
