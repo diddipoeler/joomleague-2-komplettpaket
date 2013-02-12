@@ -116,9 +116,26 @@ foreach( $current as $ptid => $team )
 		}
 		echo ">";
 
-		if ( $config['show_logo_small_table'] == "country_flag" ) {
+		if ( $config['show_logo_small_table'] == "country_flag" ) 
+        {
 			JoomleagueHelper::showClubIcon($team->team, 2);
-		} else {
+		}
+        elseif ( $config['show_logo_small_table'] == "logo_small_country_flag" ) 
+        {
+            echo JoomleagueHelper::getPictureThumb($team->team->$pic,
+					$team->team->name,
+					$config['team_picture_width'],
+					$config['team_picture_height'],3).' '.JoomleagueHelper::showClubIcon($team->team, 2);
+        }
+        elseif ( $config['show_logo_small_table'] == "country_flag_logo_small" ) 
+        {
+            JoomleagueHelper::showClubIcon($team->team, 2).' '.JoomleagueHelper::getPictureThumb($team->team->$pic,
+					$team->team->name,
+					$config['team_picture_width'],
+					$config['team_picture_height'],3);
+        }    
+        else 
+        {
 			$pic = $config['show_logo_small_table'];
 			echo JoomleagueHelper::getPictureThumb($team->team->$pic,
 					$team->team->name,
