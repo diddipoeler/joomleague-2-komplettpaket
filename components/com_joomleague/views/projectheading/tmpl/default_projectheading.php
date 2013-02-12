@@ -90,7 +90,7 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
                     
                     <td class="buttonheading" align="right">
 					<?php
-					if ( $this->overallconfig['show_project_kunena_link'] == 1 )
+					if ( $this->overallconfig['show_project_kunena_link'] == 1 && $this->project->sb_catid )
                     {
                     $link = JoomleagueHelperRoute::getKunenaRoute( $this->project->sb_catid );
 						$imgTitle = JText::_($this->project->name.' Forum');

@@ -161,7 +161,7 @@ else
 			<?php
 		}
         
-        if ( $this->config['show_club_kunena_link'] == 1 )
+        if ( $this->config['show_club_kunena_link'] == 1 && $this->club->sb_catid )
 		{
 		  ?>
 <span class="clubinfo_listing_item">

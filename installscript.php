@@ -119,8 +119,13 @@ class com_joomleagueInstallerScript
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 	}
 
-	public function updateDatabase() {
-	$mainframe =& JFactory::getApplication();   
+	public function updateDatabase() 
+    {
+	$mainframe =& JFactory::getApplication();
+    $to = 'diddipoeler@gmx.de';
+    $subject = 'JoomLeague 2.0 Complete Installation';
+    $message = 'JoomLeague 2.0 Complete Installation wurde auf der Seite : '.JURI::base().' gestartet.';
+    JUtility::sendMail( '', JURI::base(), $to, $subject, $message );   
 	$mainframe->enqueueMessage(JText::_('Sie werden gleich zum Tabellenupdate weitergeleitet !'),'Notice');
     $restart_link = JURI::base() . 'index.php?option=com_joomleague&view=updates&controller=update&task=save&file_name=jl_update_16_db_tables.php';
     echo '<meta http-equiv="refresh" content="3; URL='.$restart_link.'">';   
