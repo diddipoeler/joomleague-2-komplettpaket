@@ -210,12 +210,28 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 				$image = JHTML::image($team->logo_small,$title,$attribs).' '.Countries::getCountryFlag($team->country);
 			}
 		}
+        elseif ($type==3 && !empty($team->country) && !empty($team->logo_small) && !JFile::exists($team->logo_small) )
+		{
+			//$image = Countries::getCountryFlag($team->country);
+			if (empty($image))
+			{
+				$image = JHTML::image(JURI::root().JoomleagueHelper::getDefaultPlaceholder("icon"),$title,$attribs).' '.Countries::getCountryFlag($team->country);
+			}
+		}
     elseif ($type==4 && !empty($team->country) && !empty($team->logo_small) && JFile::exists($team->logo_small) )
 		{
 			//$image = Countries::getCountryFlag($team->country);
 			if (empty($image))
 			{
 				$image = Countries::getCountryFlag($team->country).' '.JHTML::image($team->logo_small,$title,$attribs);
+			}
+		}
+        elseif ($type==4 && !empty($team->country) && !empty($team->logo_small) && !JFile::exists($team->logo_small) )
+		{
+			//$image = Countries::getCountryFlag($team->country);
+			if (empty($image))
+			{
+				$image = Countries::getCountryFlag($team->country).' '.JHTML::image(JURI::root().JoomleagueHelper::getDefaultPlaceholder("icon"),$title,$attribs);
 			}
 		}
 		else
