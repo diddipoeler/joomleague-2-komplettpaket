@@ -19,7 +19,47 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		$this->clubid = JRequest::getInt( "cid", 0 );
 	}
 
-	function getClub( )
+	
+    function getRssFeeds($rssfeedlink)
+    {
+    $rssIds	= array();    
+    $rssIds = explode(',',$rssfeedlink);    
+    //  get RSS parsed object
+		$options = array();
+        $options['cache_time'] = null;
+        
+        $lists = array();
+		foreach ($rssIds as $rssId)
+		{
+		$options['rssUrl'] 		= $rssId; 
+        
+        $rssDoc =& JFactory::getXMLparser('RSS', $options);
+		$feed = new stdclass();
+        if ($rssDoc != false)
+			{
+				// channel header and link
+				$feed->title = $rssDoc->get_title();
+				$feed->link = $rssDoc->get_link();
+				$feed->description = $rssDoc->get_description();
+	
+				// channel image if exists
+				$feed->image->url = $rssDoc->get_image_url();
+				$feed->image->title = $rssDoc->get_image_title();
+	
+				// items
+				$items = $rssDoc->get_items();
+				// feed elements
+				$feed->items = array_slice($items, 0, 5);
+				$lists[] = $feed;
+			}
+        
+         
+        }  
+    var_dump($lists);        
+    }
+    
+    
+    function getClub( )
 	{
 		if ( is_null( $this->club ) )
 		{

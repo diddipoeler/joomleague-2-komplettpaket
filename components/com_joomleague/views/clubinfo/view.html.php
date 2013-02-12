@@ -53,6 +53,7 @@ class JoomleagueViewClubInfo extends JLGView
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_CLUB_RSS_FEED');
     
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
+    $rssfeeditems = $model->getRssFeeds( $rssfeedlink );
     
     if ( $rssfeedlink )
     {
