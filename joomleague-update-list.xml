@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extensionset name="joomleague Packages Teste" description="joomleague Packages Teste">
-   <extension name="joomleague" element="com_joomleague" type="component" client_id="1" client="administrator" version="2.0.46" detailsurl="https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml"/>
+   <extension name="joomleague" element="com_joomleague" type="component" client_id="1" client="administrator" version="2.0.45" detailsurl="https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update.xml"/>
 </extensionset>
