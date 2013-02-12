@@ -66,7 +66,7 @@ class JoomleagueModelResults extends JoomleagueModelProject
 		if ( $count > $wordcount )
 		{
 			$texts = array_slice($texts,0, $wordcount ) ;
-			$text = implode(' ' , $tests);
+			$text = implode(' ' , $texts);
 			$text .= '...';
 		}
 
