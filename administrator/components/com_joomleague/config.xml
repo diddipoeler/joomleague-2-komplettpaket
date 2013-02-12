@@ -23,7 +23,7 @@
 			<option value="2">COM_JOOMLEAGUE_GLOBAL_OFF</option>
 		</field>
 		<field name="cfg_which_media_tool" type="radio"
-			default="0" label="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_TITLE"
+			default="imageselect" label="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_DESCR">
 			<option value="picture">COM_JOOMLEAGUE_JOOMLA_MEDIA_KOMPONENT</option>
 			<option value="imageselect">COM_JOOMLEAGUE_JOOMLEAGUE_IMAGEHANDLER</option>
