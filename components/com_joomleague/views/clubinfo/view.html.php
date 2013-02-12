@@ -36,6 +36,7 @@ class JoomleagueViewClubInfo extends JLGView
 
 		$extended = $this->getExtended($club->extended, 'club');
 		$this->assignRef( 'extended', $extended );
+        $this->assignRef('model',				$model);
 
 		$this->assignRef( 'teams',			$teams );
 		$this->assignRef( 'stadiums',		$stadiums );
@@ -57,7 +58,7 @@ class JoomleagueViewClubInfo extends JLGView
     
     if ( $rssfeedlink )
     {
-    $srfrFeedsArray 							= explode("\n",$rssfeedlink);
+    $srfrFeedsArray 							= explode(",",$rssfeedlink);
     $perFeedItems 								= $this->overallconfig['perFeedItems'];
     $totalFeedItems 							= $this->overallconfig['totalFeedItems'];
     $feedTimeout									= $this->overallconfig['feedTimeout'];
@@ -84,6 +85,7 @@ class JoomleagueViewClubInfo extends JLGView
     $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
 		$document->addStyleSheet($css); 
 		}
+    
     }
     
     

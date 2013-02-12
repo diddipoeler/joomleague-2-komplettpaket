@@ -19,7 +19,26 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 		$this->clubid = JRequest::getInt( "cid", 0 );
 	}
 
-	
+	// limit count word
+	function limitText($text, $wordcount)
+	{
+		if(!$wordcount) {
+			return $text;
+		}
+
+		$texts = explode( ' ', $text );
+		$count = count( $texts );
+
+		if ( $count > $wordcount )
+		{
+			$texts = array_slice($texts,0, $wordcount ) ;
+			$text = implode(' ' , $tests);
+			$text .= '...';
+		}
+
+		return $text;
+	}
+    
     function getRssFeeds($rssfeedlink)
     {
     $rssIds	= array();    

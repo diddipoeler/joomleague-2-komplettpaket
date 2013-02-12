@@ -54,12 +54,12 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 	  {
 	  $mod_name               = "mod_jw_srfr";
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_PROJECT_RSS_FEED_LIVE_RESULTS');
-    
+    $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink) );
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     
     if ( $rssfeedlink )
     {
-    $srfrFeedsArray 							= explode("\n",$rssfeedlink);
+    $srfrFeedsArray 							= explode(",",$rssfeedlink);
     $perFeedItems 								= $this->overallconfig['perFeedItems'];
     $totalFeedItems 							= $this->overallconfig['totalFeedItems'];
     $feedTimeout									= $this->overallconfig['feedTimeout'];
