@@ -55,7 +55,9 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
         
          
         }  
-    var_dump($lists);        
+    //var_dump($lists);
+    //echo 'getRssFeeds lists<pre>',print_r($lists,true),'</pre><br>';
+    return $lists;         
     }
     
     

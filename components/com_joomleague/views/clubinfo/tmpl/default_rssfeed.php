@@ -1,85 +1,120 @@
-<?php 
-defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php // no direct access
+defined('_JEXEC') or die('Restricted access'); ?>
 
-/*
-echo 'rssfeed <br><pre>';
-print_r( $this->rssfeedoutput );
-echo '</pre>';
-*/
+<div style="direction: <?php echo $rssrtl ? 'rtl' :'ltr'; ?>; text-align: <?php echo $rssrtl ? 'right' :'left'; ?>">
+<?php
+$rssitems_colums = $params->def('rssitems_colums', 1);
 
+foreach ($this->rssfeeditems as $feed) 
+{
+	if( $feed != false )
+	{
+		//image handling
+		$iUrl 	= isset($feed->image->url)   ? $feed->image->url   : null;
+		$iTitle = isset($feed->image->title) ? $feed->image->title : null;
+		?>
+		<table cellpadding="0" cellspacing="0" class="moduletable<?php echo $params->get('moduleclass_sfx'); ?>">
+		<?php
+		// feed description
+		if (!is_null( $feed->title ) && $params->get('rsstitle', 1)) {
+			?>
+			<tr>
+				<td>
+					<div class="jefeedpro_heading_title">
+					<?php if ($params->get('rsstitle_linkable', 1)) { ?>
+						<a href="<?php echo str_replace( '&', '&amp', $feed->link ); ?>" target="<?php echo $params->get('link_target', '_blank') ?>">
+						<?php echo $feed->title; ?></a>
+					<?php } else { 
+						echo $feed->title;
+					 } ?>	
+					</div>
+				</td>
+			</tr>
+			<?php
+		}
+	
+		// feed description
+		if ($params->get('rssdesc', 1)) {
+		?>
+			<tr>
+				<td class="jefeedpro_heading_desc"><div class="jefeedpro_heading_desc"><?php echo $feed->description; ?></div></td>
+				<?php if ($params->get('rssimage', 1) && $iUrl) {?>
+				<td align="center" class="jefeedpro_heading_image"><div class="jefeedpro_heading_image"><img src="<?php echo $iUrl; ?>" alt="<?php echo @$iTitle; ?>"/></div></td>
+				<?php } ?>
+			</tr>
+			<?php
+		}
+	
+		$actualItems = count( $feed->items );
+		$setItems    = $params->get('rssitems', 5);
+	
+		if ($setItems > $actualItems) {
+			$totalItems = $actualItems;
+		} else {
+			$totalItems = $setItems;
+		}
+		?>
+		<tr>
+			<td colspan="2">
+				<table class="jefeedpro<?php echo $params->get( 'moduleclass_sfx'); ?>">
+				<?php
+				$words = $params->def('word_count', 0);
+				$word_tooltip = $params->def('tooltip_wordcount_desc', 0);
+
+				for ($j = 0; $j < $totalItems; $j ++)
+				{
+					$currItem = & $feed->items[$j];
+					// item title
+					if (($j % $rssitems_colums) == 0 ) : 
+						if ($params->get('row_alternate', 1)) {
+							$row = 'row'.(floor($j / $rssitems_colums) % $rssitems_colums) ;
+						} else {
+							$row = 'row0';
+						}
+					?>
+					<tr class="<?php echo $row; ?>">
+					<?php endif; ?>
+					<td class="item" style="width:<?php echo floor(99/$rssitems_colums)."%";?>">
+					<?php
+					if ( !is_null( $currItem->get_link() ) ) {
+						// Get tooltip description
+						//$des_tooltip = ($word_tooltip == 0) ? $currItem->get_description() : modJeFeedHelper::limitText($currItem->get_description(),$word_tooltip); 		
+						$des_tooltip	= modJeFeedProHelper::limitText($currItem->get_description(),$word_tooltip);
+
+					?>
+					<?php 
+						if ($params->get('enable_tooltip', '1') && (!$params->get('rssitemdesc', 1))){
+							$tooltip_content =  ' class="editlinktip hasTip" title="' . $currItem->get_title() . '::' . addslashes(htmlspecialchars($des_tooltip)) . '"';
+						} else {
+							$tooltip_content = '';
+						}
+					?>
+						<span <?php echo $tooltip_content ?>><a href="<?php echo $currItem->get_link(); ?>" target="<?php echo $params->get('link_target', '_blank') ?>" rel="<?php echo $params->get('no_follow', '') ?>" ><?php echo $currItem->get_title(); ?></a></span>
+					<?php
+					}
+					// item description
+					if ($params->get('rssitemdesc', 1))
+					{
+						?>
+						<div style="text-align: <?php echo $params->get('rssrtl', 0) ? 'right': 'left'; ?> !important">
+							<?php echo  $des_tooltip ; ?>
+						</div>
+						<?php
+					}
+					?>
+					</td>
+					<?php if (($j % $rssitems_colums) == ($rssitems_colums-1) ) : ?>
+					</tr>
+					<?php endif; ?>
+					<?php
+				}
+				?>
+				</table>
+			</td>
+			</tr>
+		</table>
+	<?php 
+	} 
+} 
 ?>
-
-<?php if($mainframe->getCfg('caching')): ?>
-<script type="text/javascript">
-	//<![CDATA[
-	document.write('\
-	<style type="text/css" media="all">\
-		@import "<?php echo $filePath; ?>/css/rssfeedstyle.css";\
-	</style>\
-	');
-	//]]>
-</script>
-<?php else: ?>
-<?php 
- 
-?>
-<?php endif; ?>
-
-<div class="srfrContainer <?php echo $moduleclass_sfx; ?>">
-	
-	<?php if($this->feedsBlockPreText): ?>
-	<p class="srfrPreText"><?php echo $this->feedsBlockPreText; ?></p>
-	<?php endif; ?>
-	
-	<ul class="srfrList">
-		<?php foreach($this->rssfeedoutput as $key => $feed): ?>
-		<li class="srfrRow<?php echo $key%2; ?>">
-			<?php if($this->feedItemTitle): ?>
-			<h3><a target="_blank" href="<?php echo $feed->itemLink; ?>"><?php echo $feed->itemTitle; ?></a></h3>
-			<?php endif; ?>
-			
-			<?php if($this->feedTitle): ?>
-			<span class="srfrFeedSource"<?php if($this->feedFavicon && $feed->feedFavicon) echo ' style="display:block;padding:2px 0 2px 20px;background:url('.$feed->feedFavicon.') no-repeat 0 50%;"'; ?>>
-				<a target="_blank" href="<?php echo $feed->siteURL; ?>"><?php echo $feed->feedTitle; ?></a>
-			</span>
-			<?php endif; ?>
-
-			<?php if($this->feedItemDate): ?>
-			<span class="srfrFeedItemDate"><?php echo $feed->itemDate; ?></span>
-			<?php endif; ?>			
-
-			<?php if($this->feedItemDescription || $feed->feedImageSrc): ?>
-			<p>
-				<?php if($feed->feedImageSrc): ?>
-				<a target="_blank" href="<?php echo $feed->itemLink; ?>">
-					<img class="srfrImage" src="<?php echo $feed->feedImageSrc; ?>" alt="<?php echo $feed->itemTitle; ?>" />
-				</a>
-				<?php endif; ?>
-				
-				<?php if($this->feedItemDescription): ?>
-				<?php echo $feed->itemDescription; ?>
-				<?php endif; ?>
-			</p>
-			<?php endif; ?>
-			
-			<?php if($this->feedItemReadMore): ?>
-			<span class="srfrReadMore">
-				<a target="_blank" href="<?php echo $feed->itemLink; ?>"><?php echo JText::_('MOD_JW_SRFR_READ_MORE'); ?></a>
-			</span>
-			<?php endif; ?>
-			
-			<span class="clr"></span>
-		</li>
-		<?php endforeach; ?>	
-	</ul>
-	
-	<?php if($this->feedsBlockPostText): ?>
-	<p class="srfrPostText"><?php echo $this->feedsBlockPostText; ?></p>
-	<?php endif; ?>
-	
-	<?php if($this->feedsBlockPostLink): ?>
-	<p class="srfrPostTextLink"><a href="<?php echo $this->feedsBlockPostLinkURL; ?>"><?php echo $this->feedsBlockPostLinkTitle; ?></a></p>
-	<?php endif; ?>
 </div>
-
-<div class="clr"></div>
