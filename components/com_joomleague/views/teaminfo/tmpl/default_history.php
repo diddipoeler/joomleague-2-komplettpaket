@@ -7,6 +7,7 @@
 	</tr>
 </table>
 
+
 <table class="fixtures">
 	<tr class="sectiontableheader">
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_SEASON'); ?></td>

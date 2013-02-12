@@ -33,6 +33,7 @@ class JoomleagueViewTeamInfo extends JLGView
             $this->assignRef( 'leaguerankoverview', $model->getLeagueRankOverview( $this->seasons ) );
 			$this->assignRef( 'leaguerankoverviewdetail', $model->getLeagueRankOverviewDetail( $this->seasons ) );
 }
+
 		}
 			
 		$extended = $this->getExtended($team->teamextended, 'team');

@@ -59,7 +59,6 @@
 	}
 	?>
 
-
 </table>
 </fieldset>
 

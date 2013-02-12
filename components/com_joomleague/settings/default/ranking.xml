@@ -211,6 +211,7 @@
             <option value="country_flag_logo_small">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_COUNTRY_FLAG_LOGO_SMALL</option>
             <option value="no_logo">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_NO_LOGO</option>
 		</field>
+		
 
         <field name="team_picture_width" type="text" default="21"
                label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH"

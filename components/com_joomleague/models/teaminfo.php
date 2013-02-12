@@ -248,6 +248,7 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
   return $leaguesoverview;
   
   }
+  
 
 	/**
 	 * Get total number of players assigned to a team
