@@ -125,11 +125,13 @@ foreach( $current as $ptid => $team )
             echo JoomleagueHelper::getPictureThumb($team->team->logo_small,
 					$team->team->name,
 					$config['team_picture_width'],
-					$config['team_picture_height'],3).' '.JoomleagueHelper::showClubIcon($team->team, 2);
+					$config['team_picture_height'],3).' ';
+                    JoomleagueHelper::showClubIcon($team->team, 2);
         }
         elseif ( $config['show_logo_small_table'] == "country_flag_logo_small" ) 
         {
-            JoomleagueHelper::showClubIcon($team->team, 2).' '.JoomleagueHelper::getPictureThumb($team->team->logo_small,
+            JoomleagueHelper::showClubIcon($team->team, 2);
+            echo ' '.JoomleagueHelper::getPictureThumb($team->team->logo_small,
 					$team->team->name,
 					$config['team_picture_width'],
 					$config['team_picture_height'],3);
