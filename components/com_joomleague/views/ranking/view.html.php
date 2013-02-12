@@ -39,9 +39,9 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 	  {
 	  $mod_name               = "mod_jw_srfr";
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_PROJECT_RSS_FEED');
-    
+    $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink) );
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
-    
+    /*
     if ( $rssfeedlink )
     {
     $srfrFeedsArray 							= explode("\n",$rssfeedlink);
@@ -71,6 +71,7 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
     $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
 		$document->addStyleSheet($css); 
 		} 
+        */
        }
        
 		$model->computeRanking();
