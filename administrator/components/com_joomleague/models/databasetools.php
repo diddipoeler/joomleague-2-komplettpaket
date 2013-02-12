@@ -12,6 +12,20 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
+$maxImportTime=JComponentHelper::getParams('com_joomleague')->get('max_import_time',0);
+if (empty($maxImportTime))
+{
+	$maxImportTime=480;
+}
+if ((int)ini_get('max_execution_time') < $maxImportTime){@set_time_limit($maxImportTime);}
+
+$maxImportMemory=JComponentHelper::getParams('com_joomleague')->get('max_import_memory',0);
+if (empty($maxImportMemory))
+{
+	$maxImportMemory='150M';
+}
+if ((int)ini_get('memory_limit') < (int)$maxImportMemory){@ini_set('memory_limit',$maxImportMemory);}
+
 jimport('joomla.application.component.model');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
