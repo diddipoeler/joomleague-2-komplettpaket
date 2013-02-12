@@ -3,7 +3,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 
 <div style="direction: <?php echo $rssrtl ? 'rtl' :'ltr'; ?>; text-align: <?php echo $rssrtl ? 'right' :'left'; ?>">
 <?php
-$rssitems_colums = $params->def('rssitems_colums', 1);
+$rssitems_colums = $this->overallconfig['rssitems_colums'] ;
 
 foreach ($this->rssfeeditems as $feed) 
 {
@@ -13,16 +13,16 @@ foreach ($this->rssfeeditems as $feed)
 		$iUrl 	= isset($feed->image->url)   ? $feed->image->url   : null;
 		$iTitle = isset($feed->image->title) ? $feed->image->title : null;
 		?>
-		<table cellpadding="0" cellspacing="0" class="moduletable<?php echo $params->get('moduleclass_sfx'); ?>">
+		<table cellpadding="0" cellspacing="0" class="moduletable<?php //echo $params->get('moduleclass_sfx'); ?>">
 		<?php
 		// feed description
-		if (!is_null( $feed->title ) && $params->get('rsstitle', 1)) {
+		if (!is_null( $feed->title ) && $this->overallconfig['rsstitle'] ) {
 			?>
 			<tr>
 				<td>
 					<div class="jefeedpro_heading_title">
-					<?php if ($params->get('rsstitle_linkable', 1)) { ?>
-						<a href="<?php echo str_replace( '&', '&amp', $feed->link ); ?>" target="<?php echo $params->get('link_target', '_blank') ?>">
+					<?php if ( $this->overallconfig['rsstitle_linkable'] ) { ?>
+						<a href="<?php echo str_replace( '&', '&amp', $feed->link ); ?>" target="<?php echo $this->overallconfig['link_target'] ?>">
 						<?php echo $feed->title; ?></a>
 					<?php } else { 
 						echo $feed->title;
@@ -34,11 +34,12 @@ foreach ($this->rssfeeditems as $feed)
 		}
 	
 		// feed description
-		if ($params->get('rssdesc', 1)) {
+		if ( $this->overallconfig['rssdesc'] ) 
+        {
 		?>
 			<tr>
 				<td class="jefeedpro_heading_desc"><div class="jefeedpro_heading_desc"><?php echo $feed->description; ?></div></td>
-				<?php if ($params->get('rssimage', 1) && $iUrl) {?>
+				<?php if ( $this->overallconfig['rssimage'] && $iUrl) {?>
 				<td align="center" class="jefeedpro_heading_image"><div class="jefeedpro_heading_image"><img src="<?php echo $iUrl; ?>" alt="<?php echo @$iTitle; ?>"/></div></td>
 				<?php } ?>
 			</tr>
@@ -46,7 +47,7 @@ foreach ($this->rssfeeditems as $feed)
 		}
 	
 		$actualItems = count( $feed->items );
-		$setItems    = $params->get('rssitems', 5);
+		$setItems    = $this->overallconfig['rssitems'] ;
 	
 		if ($setItems > $actualItems) {
 			$totalItems = $actualItems;
@@ -56,17 +57,17 @@ foreach ($this->rssfeeditems as $feed)
 		?>
 		<tr>
 			<td colspan="2">
-				<table class="jefeedpro<?php echo $params->get( 'moduleclass_sfx'); ?>">
+				<table class="jefeedpro<?php //echo $params->get( 'moduleclass_sfx'); ?>">
 				<?php
-				$words = $params->def('word_count', 0);
-				$word_tooltip = $params->def('tooltip_wordcount_desc', 0);
+				$words = $this->overallconfig['word_count'] ;
+				$word_tooltip = $this->overallconfig['tooltip_wordcount_desc'] ;
 
 				for ($j = 0; $j < $totalItems; $j ++)
 				{
 					$currItem = & $feed->items[$j];
 					// item title
 					if (($j % $rssitems_colums) == 0 ) : 
-						if ($params->get('row_alternate', 1)) {
+						if ( $this->overallconfig['rssrow_alternate'] ) {
 							$row = 'row'.(floor($j / $rssitems_colums) % $rssitems_colums) ;
 						} else {
 							$row = 'row0';
@@ -83,20 +84,20 @@ foreach ($this->rssfeeditems as $feed)
 
 					?>
 					<?php 
-						if ($params->get('enable_tooltip', '1') && (!$params->get('rssitemdesc', 1))){
+						if ( $this->overallconfig['rss_enable_tooltip'] && (!$this->overallconfig['rssitemdesc'])){
 							$tooltip_content =  ' class="editlinktip hasTip" title="' . $currItem->get_title() . '::' . addslashes(htmlspecialchars($des_tooltip)) . '"';
 						} else {
 							$tooltip_content = '';
 						}
 					?>
-						<span <?php echo $tooltip_content ?>><a href="<?php echo $currItem->get_link(); ?>" target="<?php echo $params->get('link_target', '_blank') ?>" rel="<?php echo $params->get('no_follow', '') ?>" ><?php echo $currItem->get_title(); ?></a></span>
+						<span <?php echo $tooltip_content ?>><a href="<?php echo $currItem->get_link(); ?>" target="<?php echo $this->overallconfig['link_target']  ?>" rel="<?php echo $this->overallconfig['no_follow']  ?>" ><?php echo $currItem->get_title(); ?></a></span>
 					<?php
 					}
-					// item description
-					if ($params->get('rssitemdesc', 1))
+					// item description rssitemdesc
+					if ( $this->overallconfig['rssitemdesc'] )
 					{
 						?>
-						<div style="text-align: <?php echo $params->get('rssrtl', 0) ? 'right': 'left'; ?> !important">
+						<div style="text-align: <?php echo $this->overallconfig['rssrtl'] ? 'right': 'left'; ?> !important">
 							<?php echo  $des_tooltip ; ?>
 						</div>
 						<?php

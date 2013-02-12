@@ -171,4 +171,52 @@
 		
 	</fieldset>
 	
+	<fieldset	name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_RSSFEED_PRO_DATA"
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_RSSFEED_PRO_DATA">
+		
+	<param name="rsstitle" type="radio" default="1" label="Feed Title" description="Display news feed provider title">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="rsstitle_linkable" type="radio" default="1" label="Feed Title Linkable" description="Enable click link">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="rssdesc" type="radio" default="1" label="Feed Description" description="Show the provider's description text for the whole Feed">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="rssimage" type="radio" default="1" label="Feed Image" description="Show the provider's image associated with the whole Feed">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+	<param name="word_count" type="text" size="6" default="0" label="Description Word Count" description="PARAMWORDCOUNT" />	
+  <param name="rssitems" type="text" default="5" label="Items" description="Enter number of RSS items to display" />        
+  <param name="rssitems_colums" type="text" default="1" label="Items Colums" description="Colums to display" />
+  <param name="rssrow_alternate" type="radio" default="1" label="Alternate rows" description="Alternate rows format">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="rss_enable_tooltip" type="radio" default="1" label="Tooltip Enable" description="TOOLTIP">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+	<param name="rssitemdesc" type="radio" default="1" label="Item Description" description="PARAMITEMDESC">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="rssrtl" type="radio" default="0" label="RTL feed" description="Display feed in RTL direction">
+			<option value="1">Yes</option>
+			<option value="0">No</option>
+		</param>
+  <param name="link_target" type="radio" default="_blank" label="RSS Feed Link Target" description="Open RSS feed links in this window or a new window?">
+			<option value="_blank">New Window</option>
+			<option value="_self">Same Window</option>
+		</param>
+	<param name="no_follow" type="radio" default="0" label="Add rel='nofollow' to links" description="Add rel='nofollow' to links">
+			<option value="nofollow">Yes</option>
+			<option value="">No</option>
+		</param>    	
+        	
+	</fieldset>	
 </form>
