@@ -230,9 +230,24 @@ if ($this->config['show_comments_count'] > 0){
 		//$this->config['result_style']=2;
 		if ($this->config['result_style']==0)
 		{
+	
+    switch ($this->config['show_logo_small'])
+    {
+    case 0:
+    case 1:
+    case 2:
+    $width = '20';
+    break;
+    case 3:
+    case 4:
+    $width = '40';
+    break;
+    
+    }  
+          
 		?>
 			<!-- show team-icons and/or -names -->
-			<td width='20'>
+			<td width='<?PHP echo $width;?>'>
 				<?php echo $this->getTeamClubIcon($team1, $this->config['show_logo_small'], array('class' => 'teamlogo')); ?>
 			</td>
 			<td>
@@ -241,7 +256,7 @@ if ($this->config['show_comments_count'] > 0){
 					echo JoomleagueHelper::formatTeamName($team1,'g'.$game->id,$this->config,$isFavTeam );
 				?>
 			</td>
-			<td width='20'>
+			<td width='<?PHP echo $width;?>'>
 				<?php echo $this->getTeamClubIcon($team2, $this->config['show_logo_small'], array('class' => 'teamlogo')); ?>
 			</td>
 			<td>
