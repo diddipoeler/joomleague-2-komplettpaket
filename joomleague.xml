@@ -7,8 +7,8 @@
 	<authorUrl>http://www.joomleague.net</authorUrl>
 	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>2.0.46</version>
-	<description>League Management component for Joomla 2.5.x - Release 2.0.46 diddipoeler</description>
+	<version>2.0.47</version>
+	<description>League Management component for Joomla 2.5.x - Release 2.0.47 diddipoeler</description>
 
 	<!-- Site Main File Copy Section -->
 	<files folder="components/com_joomleague">
@@ -46,6 +46,7 @@
 		<folder>treebracket</folder>
 		<folder>person_playground</folder>
 		<folder>placeholders</folder>
+		<folder>rosterground</folder>
 	</media>
 	
 	
@@ -95,12 +96,7 @@
 		</files>
 	</administration>
 	
-	<!--
-  <updateservers>
-		<server type="collection">http://localhost/core/list.xml</server>
-		<server type="collection">http://localhost/ext/list.xml</server>
-	</updateservers>
-  -->
+	
   <updateservers>
   <server type="collection" priority="1" name="diddipoeler Joomleague Update">https://raw.github.com/diddipoeler/joomleague-2-komplettpaket/master/joomleague-update-list.xml</server>
 	</updateservers>
