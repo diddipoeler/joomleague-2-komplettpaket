@@ -95,7 +95,8 @@ class JoomleagueViewDivision extends JLGView
 		$this->assignRef( 'projectws',	$projectws );
 		$this->assignRef( 'lists',		$lists );
 		$this->assignRef( 'division',	$division );
-		$this->assignRef('form',  $this->get('form'));		
+		$this->assignRef('form',  $this->get('form'));
+    $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );		
 		//$extended = $this->getExtended($projectreferee->extended, 'division');
 		//$this->assignRef( 'extended', $extended );
 

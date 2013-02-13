@@ -32,4 +32,29 @@
 			description="COM_JOOMLEAGUE_ADMIN_DIVISION_DESCR_DESC"
 			class="inputbox"/>	
 	</fieldset>		
+	
+	<fieldset name="picture">
+			<field
+				name="picture"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_21.png"				
+				label="COM_JOOMLEAGUE_ADMIN_DIVISION_EDIT_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_DIVISION_EDIT_PICTURE"
+				class="inputbox"
+				preview="show"				
+				directory="com_joomleague/database/divisions"/>
+	</fieldset>
+	
+	<fieldset name="imageselect">
+			<field
+				name="picture"
+				type="imageselect"
+				default="com_joomleague/database/placeholders/placeholder_21.png"					
+				label="COM_JOOMLEAGUE_ADMIN_DIVISION_EDIT_PICTURE"
+				description="COM_JOOMLEAGUE_ADMIN_DIVISION_EDIT_PICTURE"
+				class="inputbox"
+				preview="show"
+				targetfolder="divisions"
+				directory="com_joomleague/database/divisions"/>		
+	</fieldset>	
 </form>

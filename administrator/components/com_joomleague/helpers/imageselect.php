@@ -224,6 +224,9 @@ class ImageSelect
 			case	"leagues":
 				return "leagues";
 				break;
+				case	"divisions":
+				return "divisions";
+				break;
       case	"persons":
 				return "persons";
 				break;
