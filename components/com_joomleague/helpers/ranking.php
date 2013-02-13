@@ -188,6 +188,10 @@ class JLGRanking
 		$this->_from     = $from;
 		$this->_to       = $to;
 		$this->_mode     = 0;
+		if ( $division == '' )
+		{
+    $division = 0;
+    }
 		$this->setDivisionId($division);
 
 		$teams = $this->_collect();
@@ -210,6 +214,10 @@ class JLGRanking
 		$this->_from     = $from;
 		$this->_to       = $to;
 		$this->_mode     = 1;
+		if ( $division == '' )
+		{
+    $division = 0;
+    }
 		$this->setDivisionId($division);
 
 		$teams = $this->_collect();
@@ -231,6 +239,10 @@ class JLGRanking
 		$this->_from     = $from;
 		$this->_to       = $to;
 		$this->_mode     = 2;
+		if ( $division == '' )
+		{
+    $division = 0;
+    }
 		$this->setDivisionId($division);
 
 		$teams = $this->_collect();
@@ -260,7 +272,7 @@ class JLGRanking
 			$cache->setCaching( 1 );
 		}
 
-		$data = $cache->call( array( get_class($this), '_cachedGetData' ), $this->_projectid );
+		$data = $cache->call( array( get_class($this), '_cachedGetData' ), $this->_projectid, $this->_division );
 			
 		return $data;
 	}
@@ -270,12 +282,12 @@ class JLGRanking
 	 *
 	 * @param int project id
 	 */
-	function _cachedGetData($pid)
+	function _cachedGetData($pid,$division)
 	{
 		$data = new stdclass();
 
-		$data->_teams   = self::_initTeams($pid);
-		$data->_matches = self::_getMatches($pid);
+		$data->_teams   = self::_initTeams($pid,$division);
+		$data->_matches = self::_getMatches($pid,$division);
 
 		return $data;
 	}
@@ -613,11 +625,31 @@ class JLGRanking
 	 *
 	 * @return array of JLGRankingTeam objects
 	 */
-	function _initTeams($pid)
+	function _initTeams($pid,$division)
 	{
 	
 		$db = Jfactory::getDBO();
-
+    
+    if ( $division )
+    {
+    		$query =' SELECT pt.id AS ptid, pt.is_in_score, pt.start_points, pt.division_id, '
+				. ' t.name, t.id as teamid, pt.neg_points_finally, '	
+				// new for use_finally
+				. ' pt.use_finally, pt.points_finally,pt.matches_finally,pt.won_finally,pt.draws_finally,pt.lost_finally, '
+				. ' pt.homegoals_finally, pt.guestgoals_finally,pt.diffgoals_finally '	
+				. ' FROM #__joomleague_project_team AS pt '
+				. ' INNER JOIN #__joomleague_team AS t ON t.id = pt.team_id '
+				
+        . ' INNER JOIN #__joomleague_match AS m 
+        ON ( m.projectteam1_id = pt.id OR m.projectteam2_id = pt.id )'
+        
+				. ' WHERE pt.project_id = ' . $db->Quote($pid)
+				//only show it in ranking when is_in_score=1
+				. ' AND pt.is_in_score = 1'
+				. ' AND m.division_id = '.$division;
+    }
+    else
+    {
 		$query =' SELECT pt.id AS ptid, pt.is_in_score, pt.start_points, pt.division_id, '
 				. ' t.name, t.id as teamid, pt.neg_points_finally, '	
 				// new for use_finally
@@ -629,6 +661,7 @@ class JLGRanking
 				. ' WHERE pt.project_id = ' . $db->Quote($pid)
 				//only show it in ranking when is_in_score=1
 				. ' AND pt.is_in_score=1';
+		}		
 		$db->setQuery($query);
 		$res = $db->loadObjectList();
 
@@ -638,7 +671,9 @@ class JLGRanking
 		{
 			$t = new JLGRankingTeam($r->ptid);
 			$t->setTeamid($r->teamid);
-			$t->setDivisionid($r->division_id);
+			// diddipoeler
+			$t->setDivisionid($division);
+			//$t->setDivisionid($r->division_id);
 			$t->setStartpoints($r->start_points);
 			$t->setNegpoints($r->neg_points_finally);
 			$t->setName($r->name);
@@ -695,7 +730,7 @@ class JLGRanking
 	 *
 	 * @return array
 	 */
-	function _getMatches($pid)
+	function _getMatches($pid,$division)
 	{
 		$db = Jfactory::getDBO();
 
@@ -725,6 +760,7 @@ class JLGRanking
 		. ' AND m.count_result '
 		. ' AND m.published = 1 '
 		. ' AND pt1.project_id = '.$db->Quote($pid)
+		. ' AND m.division_id = '.$division
 		. ' AND (m.cancel IS NULL OR m.cancel = 0) '
 		. ' AND m.projectteam1_id>0 AND m.projectteam2_id>0 ';
 		

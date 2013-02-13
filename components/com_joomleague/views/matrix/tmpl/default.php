@@ -11,20 +11,37 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 	if (($this->config['show_matrix'])==1)
 	{
-		if(isset($this->divisions) && count($this->divisions) > 1) {
-			foreach ($this->divisions as $division) {
-				$this->teams 		= $this->model->getTeamsIndexedByPtid($division->id);
-				$this->division 	= $division;
-				$this->divisionid 	= $division->id;
-				if (($this->config['show_sectionheader'])==1)
-				{
-					echo $this->loadTemplate('sectionheader');
-				}
-				echo $this->loadTemplate('matrix').'<br />';
-			}
-		} else {
-			echo $this->loadTemplate('matrix');
-		}
+	
+  if (($this->config['show_sectionheader'])==1)
+	{ 
+		echo $this->loadTemplate('sectionheader');
+	}
+  
+  if(isset($this->divisions) && count($this->divisions) > 1) 
+  {
+  echo $this->loadTemplate('matrix_division').'<br />';
+  }
+  else 
+  {
+ 			echo $this->loadTemplate('matrix');
+	}
+	
+//     if(isset($this->divisions) && count($this->divisions) > 1) {
+// 			foreach ($this->divisions as $division) {
+// 				$this->teams 		= $this->model->getTeamsIndexedByPtid($division->id);
+// 				$this->division 	= $division;
+// 				$this->divisionid 	= $division->id;
+// 				if (($this->config['show_sectionheader'])==1)
+// 				{
+// 					echo $this->loadTemplate('sectionheader');
+// 				}
+// 				//echo $this->loadTemplate('matrix').'<br />';
+// 				echo $this->loadTemplate('matrix_division').'<br />';
+// 			}
+// 		} else {
+// 			echo $this->loadTemplate('matrix');
+// 		}
+		
 	}
 
 	if ($this->config['show_help']==1)

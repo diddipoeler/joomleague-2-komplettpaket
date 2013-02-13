@@ -38,8 +38,16 @@ class JoomleagueViewRanking extends JLGView {
 if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 	  {
 	  $mod_name               = "mod_jw_srfr";
+	  $rssfeeditems = '';
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_PROJECT_RSS_FEED');
+    if ( $rssfeedlink )
+    {
     $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink,$this->overallconfig['rssitems']) );
+    }
+    else
+    {
+    $this->assignRef( 'rssfeeditems', $rssfeeditems );
+    }
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     /*
     if ( $rssfeedlink )
@@ -90,6 +98,45 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 		$this->assignRef('awayRank',      $model->awayRank);
 		$this->assignRef('current_round', $model->current_round);
 		$this->assignRef('teams',			    $model->getTeamsIndexedByPtid());
+		
+		
+		$no_ranking_reason = '';
+		if ($this->config['show_notes'] == 1 )
+	{
+	$ranking_reason = array();
+		foreach ( $this->teams as $teams ) 
+        {
+        
+        if ( $teams->start_points )
+        {
+        
+        if ( $teams->start_points < 0 )
+        {
+        $color = "red";
+        }
+        else
+        {
+        $color = "green";
+        }
+        
+        $ranking_reason[$teams->name] = '<font color="'.$color.'">'.$teams->name.': '.$teams->start_points.' Punkte Grund: '.$teams->reason.'</font>';
+        }
+        
+        }
+        }
+		
+		if ( sizeof($ranking_reason) > 0 )
+		{
+		$this->assign('ranking_notes', implode(", ",$ranking_reason) );
+		}
+		else
+		{
+    $this->assign('ranking_notes', $no_ranking_reason );
+    }
+		
+		
+		
+		
 		$this->assignRef('previousgames', $model->getPreviousGames());
 		$this->assign('action', $uri->toString());
 

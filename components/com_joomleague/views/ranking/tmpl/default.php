@@ -44,6 +44,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('pagnav');
 	}
 	
+	if ($this->config['show_notes'] == 1)
+	{
+		echo $this->loadTemplate('notes');
+	}
+	
 	if (($this->config['show_ranking_maps'])==1)
 	{ 
 		echo $this->loadTemplate('maps');

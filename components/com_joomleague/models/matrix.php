@@ -70,11 +70,13 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 	{
 		$query_WHERE = "";
 		$query_END	 = " ORDER BY roundcode";
-		$query_SELECT = "SELECT DISTINCT(m.id), r.name AS roundname,
+/*	
+  	$query_SELECT = "SELECT DISTINCT(m.id), r.name AS roundname,
 												r.id AS roundid,
 												r.roundcode,
 												m.show_report,
 												m.cancel,
+												m.division_id,
 												m.cancel_reason,
 												m.projectteam1_id,
 												m.projectteam2_id,
@@ -86,18 +88,41 @@ class JoomleagueModelMatrix extends JoomleagueModelProject
 												m.team2_result_decision AS v2,
 												m.new_match_id, m.old_match_id,
 												tt1.division_id AS division_id";
+*/
+$query_SELECT = "SELECT DISTINCT(m.id), r.name AS roundname,
+												r.id AS roundid,
+												r.roundcode,
+												m.show_report,
+												m.cancel,
+												m.division_id AS division_id,
+												m.cancel_reason,
+												m.projectteam1_id,
+												m.projectteam2_id,
+												m.team1_result as e1,
+												m.team2_result as e2,
+												m.match_result_type as rtype,
+												m.alt_decision as decision,
+												m.team1_result_decision AS v1,
+												m.team2_result_decision AS v2,
+												m.new_match_id, m.old_match_id";												
 		$query_FROM	= " FROM #__joomleague_match AS m
 						INNER JOIN #__joomleague_round AS r ON r.id=m.round_id
 						LEFT JOIN #__joomleague_project_team AS tt1 ON m.projectteam1_id = tt1.team_id
 						LEFT JOIN #__joomleague_project_team AS tt2 ON m.projectteam2_id = tt2.team_id ";
 		if ( $this->divisionid > 0 )
 		{
+		/*
 			$query_FROM.= "	LEFT JOIN #__joomleague_division AS d1 ON tt1.division_id = d1.id
 							LEFT JOIN #__joomleague_division AS d2 ON tt2.division_id = d2.id";
+							*/
+				$query_FROM.= "	LEFT JOIN #__joomleague_division AS d1 ON m.division_id = d1.id";			
 			if ( $this->divisionid > 0 )
 			{
+			/*
 				$query_FROM .= " AND (	d1.id = ".$this->_db->Quote($this->divisionid)." OR d1.parent_id = " . $this->_db->Quote($this->divisionid) . "
 									OR d2.id = " . $this->_db->Quote($this->divisionid) . " OR d2.parent_id = " . $this->_db->Quote($this->divisionid) . " )";
+									*/
+$query_FROM .= " AND (	d1.id = ".$this->_db->Quote($this->divisionid)." OR d1.parent_id = " . $this->_db->Quote($this->divisionid) . " )";									
 			}
 		}
 		$query_WHERE = " WHERE r.project_id = ".$project_id;

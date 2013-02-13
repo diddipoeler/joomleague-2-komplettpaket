@@ -53,8 +53,16 @@ class JoomleagueViewResults extends JLGView
 if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 	  {
 	  $mod_name               = "mod_jw_srfr";
+	  $rssfeeditems = '';
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_PROJECT_RSS_FEED_LIVE_RESULTS');
+    if ( $rssfeedlink )
+    {
     $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink,$this->overallconfig['rssitems']) );
+    }
+    else
+    {
+    $this->assignRef( 'rssfeeditems', $rssfeeditems );
+    }
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
     
     /*
