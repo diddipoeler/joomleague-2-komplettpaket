@@ -99,6 +99,39 @@ class JoomleagueModelItem extends JModelAdmin
 			return $this->_data->checked_out;
 		}
 	}
+	
+	
+	/**
+	 * Method to save item order
+	 *
+	 * @access	public
+	 * @return	boolean	True on success
+	 * @since	1.5
+	 */
+	function saveorder($cid=array(),$order)
+	{
+		$row =& $this->getTable();
+
+echo 'saveorder->cid<br /><pre>~' . print_r($cid,true) . '~</pre><br />';
+echo 'saveorder->order<br /><pre>~' . print_r($order,true) . '~</pre><br />';
+echo 'saveorder->row <br /><pre>~' . print_r($row ,true) . '~</pre><br />';	
+		
+		// update ordering values
+		for ($i=0; $i < count($cid); $i++)
+		{
+			$row->load((int) $cid[$i]);
+			if ($row->ordering != $order[$i])
+			{
+				$row->ordering=$order[$i];
+				if (!$row->store())
+				{
+					$this->setError($this->_db->getErrorMsg());
+					return false;
+				}
+			}
+		}
+		return true;
+	}
 
 	/**
 	 * Method to store the item
