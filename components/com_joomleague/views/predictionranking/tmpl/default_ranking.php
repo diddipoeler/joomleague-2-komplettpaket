@@ -15,14 +15,11 @@ JHTML::_('behavior.tooltip');
 if ( $this->show_debug_info )
 {
 echo 'this->config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
-
 echo 'this->items<br /><pre>~' . print_r($this->items,true) . '~</pre><br />';
 echo 'this->pagination<br /><pre>~' . print_r($this->pagination,true) . '~</pre><br />';
-
 echo 'this->limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
 echo 'this->limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
 echo 'this->limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
-
 }
 
 //echo '<br /><pre>~' . print_r($this->config['limit'],true) . '~</pre><br />';

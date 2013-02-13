@@ -231,7 +231,7 @@ class com_joomleagueInstallerScript
 		echo JText::_('Creating new Image Folder structure');
 		$dest = JPATH_ROOT.'/images/com_joomleague';
 		$update = JFolder::exists($dest);
-		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'events','leagues','person_playground',
+		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'events','leagues','divisions','person_playground',
 							'flags_associations','persons', 'placeholders', 'predictionusers','playgrounds', 'projects','projectreferees','projectteams',
                             'seasons','sport_types', 'teams','teamplayers','teamstaffs','venues', 'statistics');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague');
@@ -250,7 +250,7 @@ class com_joomleagueInstallerScript
 					$ret = JFolder::move($from, $to);
 				} else {
 					$ret = JFolder::copy($from, $to, '', true);
-					$ret = JFolder::delete($from);
+					//$ret = JFolder::delete($from);
 				}
 			}
 		}

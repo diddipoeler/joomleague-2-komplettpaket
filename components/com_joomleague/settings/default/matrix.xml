@@ -78,6 +78,20 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="show_division_picture" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_DIVISION_PICTURE"
+			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_DIVISION_PICTURE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		<field name="show_division_desc" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_MATRIX_PARAM_LABEL_DIVISION_DESC"
+			description="COM_JOOMLEAGUE_FES_MATRIX_PARAM_DESCR_DIVISION_DESC">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 	</fieldset>
 
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS"

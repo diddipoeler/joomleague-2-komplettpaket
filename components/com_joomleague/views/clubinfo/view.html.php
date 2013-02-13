@@ -51,10 +51,18 @@ class JoomleagueViewClubInfo extends JLGView
     if ( ($this->config['show_club_rssfeed']) == 1 )
 	  {
     $mod_name               = "mod_jw_srfr";
+    $rssfeeditems = '';
     $rssfeedlink = $this->extended->getValue('COM_JOOMLEAGUE_CLUB_RSS_FEED');
     
     //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
+    if ( $rssfeedlink )
+    {
     $this->assignRef( 'rssfeeditems', $model->getRssFeeds($rssfeedlink,$this->overallconfig['rssitems']) );
+    }
+    else
+    {
+    $this->assignRef( 'rssfeeditems', $rssfeeditems );
+    }
     /*
     if ( $rssfeedlink )
     {

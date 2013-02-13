@@ -95,7 +95,7 @@ JHTML::_('behavior.tooltip');
 					<th class='title' nowrap='nowrap' colspan='2'><?php echo JText::_($this->optiontext.'JL_ADMIN_PGAMES_ADMIN_COUNT'); ?></th>
 					<th class='title' width='5%' nowrap='nowrap'>
 						<?php
-						echo JHTML::_('grid.sort',JText::_('JL_GLOBAL_PUBLISHED'),'pre.published',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort',JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'),'pre.published',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class='title' width='20' nowrap='nowrap'>

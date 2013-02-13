@@ -39,6 +39,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
   `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   `latitude` float NOT NULL DEFAULT '255',
   `longitude` float NOT NULL DEFAULT '255',
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )
@@ -63,6 +64,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_division` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `picture` VARCHAR(128) NOT NULL DEFAULT '' ,
   PRIMARY KEY (`id`),
  KEY `project_id` (`project_id`),
  KEY `parent_id` (`parent_id`)
@@ -115,6 +117,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_league` (
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
   `picture` VARCHAR(128) NOT NULL DEFAULT '' ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )
@@ -168,7 +171,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
-  `division_id` INT(11) NULL DEFAULT NULL ,
+  `division_id` INT(11) NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `round_id` (`round_id`),
   KEY `projectteam1_id` (`projectteam1_id`),
@@ -369,6 +372,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_person` (
   `modified_by` INT NULL ,
   `latitude` float NOT NULL DEFAULT '255',
   `longitude` float NOT NULL DEFAULT '255',
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `position_id` (`position_id`)
@@ -402,6 +406,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_playground` (
   `modified_by` INT NULL ,
   `latitude` float NOT NULL DEFAULT '255',
   `longitude` float NOT NULL DEFAULT '255',
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `club_id` (`club_id`),
   UNIQUE INDEX `name` (`name` ASC)
@@ -524,6 +529,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `league_id` (`league_id`),
   KEY `season_id` (`season_id`),
@@ -570,6 +576,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project_referee` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `project_id` (`project_id`),
   KEY `person_id` (`person_id`),
@@ -610,6 +617,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project_team` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `project_id` (`project_id`),
   KEY `team_id` (`team_id`),
@@ -619,6 +627,27 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project_team` (
 ENGINE = MyISAM
 DEFAULT CHARSET = utf8;
 
+--
+-- Tabellenstruktur für Tabelle `jos_joomleague_rosterposition`
+--
+
+CREATE TABLE IF NOT EXISTS `#__joomleague_rosterposition` (
+  `id` int(11) NOT NULL auto_increment,
+  `name` varchar(200) NOT NULL default '',
+  `alias` enum('HOME_POS','AWAY_POS') NOT NULL default 'HOME_POS',
+  `country` varchar(3) default 'DEU',
+  `ordering` int(11) NOT NULL default '0',
+  `checked_out` int(11) NOT NULL default '0',
+  `checked_out_time` datetime NOT NULL default '0000-00-00 00:00:00',
+  `short_name` enum('HOME_POS','AWAY_POS') NOT NULL default 'HOME_POS',
+  `middle_name` varchar(25) NOT NULL default '',
+  `extended` text,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `name` (`name`,`short_name`),
+  KEY `country` (`country`)
+) 
+ENGINE=MyISAM  
+DEFAULT CHARSET = utf8;
 
 -- -----------------------------------------------------
 -- Table `#__joomleague_round`
@@ -727,6 +756,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_team` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `club_id` (`club_id`),
   INDEX `fk_club` (`club_id` ASC)
@@ -772,6 +802,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_team_player` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `projectteam_id` (`projectteam_id`),
   KEY `person_id` (`person_id`),
@@ -817,6 +848,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_team_staff` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `projectteam_id` (`projectteam_id`),
   KEY `person_id` (`person_id`),
