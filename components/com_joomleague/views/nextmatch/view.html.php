@@ -8,7 +8,10 @@ class JoomleagueViewNextMatch extends JLGView
 	{
 		// Get a reference of the page instance in joomla
 		$document= JFactory::getDocument();
-
+    $version = urlencode(JoomleagueHelper::getVersion());
+		$css='components/com_joomleague/assets/css/tabs.css?v='.$version;
+		$document->addStyleSheet($css);
+		
 		$model = $this->getModel();
 		$match = $model->getMatch();
 
