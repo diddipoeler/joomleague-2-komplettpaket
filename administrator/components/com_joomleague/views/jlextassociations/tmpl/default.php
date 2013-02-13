@@ -56,7 +56,8 @@ JHTML::_('behavior.tooltip');
 						<?php
 						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','objassoc.ordering',$this->lists['order_Dir'],$this->lists['order']);
 						echo '<br />';
-						echo JHTML::_('grid.order',$this->items);
+						//echo JHTML::_('grid.order',$this->items);
+						echo JHTML::_('grid.order',$this->items, 'filesave.png', 'jlextassociation.saveorder');
 						?>
 					</th>
 					<th width="20" style="vertical-align: top; ">
@@ -64,7 +65,7 @@ JHTML::_('behavior.tooltip');
 					</th>
 				</tr>
 			</thead>
-			<tfoot><tr><td colspan="8"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>
+			<tfoot><tr><td colspan="9"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>
 			<tbody>
 				<?php
 				$k=0;
@@ -113,10 +114,10 @@ JHTML::_('behavior.tooltip');
             </td>
             <td class="order">
 							<span>
-								<?php echo $this->pagination->orderUpIcon($i,$i > 0,'jlextassociations.orderup','COM_JOOMLEAGUE_GLOBAL_ORDER_UP',$ordering); ?>
+								<?php echo $this->pagination->orderUpIcon($i,$i > 0,'jlextassociation.orderup','COM_JOOMLEAGUE_GLOBAL_ORDER_UP',$ordering); ?>
 							</span>
 							<span>
-								<?php echo $this->pagination->orderDownIcon($i,$n,$i < $n,'jlextassociations.orderdown','COM_JOOMLEAGUE_GLOBAL_ORDER_DOWN',$ordering); ?>
+								<?php echo $this->pagination->orderDownIcon($i,$n,$i < $n,'jlextassociation.orderdown','COM_JOOMLEAGUE_GLOBAL_ORDER_DOWN',$ordering); ?>
 								<?php $disabled=true ?	'' : 'disabled="disabled"'; ?>
 							</span>
 							<input	type="text" name="order[]" size="5" value="<?php echo $row->ordering;?>" <?php echo $disabled; ?>
@@ -132,7 +133,9 @@ JHTML::_('behavior.tooltip');
 		</table>
 	</div>
 	
-	<input type="hidden" name="task" value="" />
+	<input type="hidden" name="view"				value="jlextassociations" />
+	<input type="hidden" name="task"				value="jlextassociation.display" />
+  
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />

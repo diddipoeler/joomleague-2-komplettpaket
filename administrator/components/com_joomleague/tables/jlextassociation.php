@@ -19,41 +19,9 @@ defined('_JEXEC') or die('Restricted access');
 * @package		Joomleague
 * @since 0.1
 */
-class Tablejlextassociation extends JLTable {
-	/**
-	 * Primary Key
-	 *
-	 * @var int
-	 */
-	var $id = null;
-
-	var $name;
-	var $short_name;
-	var $middle_name;
+class Tablejlextassociation extends JLTable 
+{
 	
-
-	/**
-	 * alias for nice sef urls
-	 * @var string
-	 */
-	var $alias;
-
-	var $country;
-	
-	/**
-	 * stores extended info
-	 *
-	 * @var string
-	 */
-	var $extended;	
-
-	var $ordering;
-
-	var $checked_out;
-	var $checked_out_time;
-  var $website;
-  var $assocflag;
-
 	/**
 	 * Constructor
 	 *

@@ -39,6 +39,11 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 
 	function display()
 	{
+	$option = JRequest::getCmd('option');
+
+		$mainframe	= JFactory::getApplication();
+		$document = JFactory::getDocument();
+		
 		switch ($this->getTask())
 		{
 			case 'add'	 :
@@ -68,18 +73,18 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 	function save()
 	{
 		// Check for request forgeries
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(0),'post','array');
 		$post['id']=(int) $cid[0];
 		$model=$this->getModel('jlextassociation');
 		if ($model->store($post))
 		{
-			$msg=JText::_('JL_ADMIN_ASSOCIATION_CTRL_SAVED');
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_CTRL_SAVED');
 		}
 		else
 		{
-			$msg=JText::_('JL_ADMIN_ASSOCIATION_CTRL_ERROR_SAVE').$model->getError();
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_CTRL_ERROR_SAVE').$model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -96,10 +101,10 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 
 	function remove()
 	{
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$cid=JRequest::getVar('cid',array(),'post','array');
 		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){JError::raiseError(500,JText::_('JL_GLOBAL_SELECT_TO_DELETE'));}
+		if (count($cid) < 1){JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));}
 		$model=$this->getModel('jlextassociation');
 		if (!$model->delete($cid))
 		{
@@ -108,7 +113,7 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 		}
 		else
 		{
-			$msg=JText::_('JL_ADMIN_ASSOCIATION_CTRL_DELETED');
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_CTRL_DELETED');
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations',$msg);
 	}
@@ -137,14 +142,14 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 
 	function saveorder()
 	{
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$cid=JRequest::getVar('cid',array(),'post','array');
 		$order=JRequest::getVar('order',array(),'post','array');
 		JArrayHelper::toInteger($cid);
 		JArrayHelper::toInteger($order);
 		$model=$this->getModel('jlextassociation');
 		$model->saveorder($cid,$order);
-		$msg=JText::_('JL_GLOBAL_NEW_ORDERING_SAVED');
+		$msg=JText::_('COM_JOOMLEAGUEGLOBAL_NEW_ORDERING_SAVED');
 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations',$msg);
 	}
 
@@ -157,7 +162,7 @@ class JoomleagueControllerJlextassociation extends JoomleagueController
 	
 	function export()
 	{
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(),'post','array');
 		JArrayHelper::toInteger($cid);

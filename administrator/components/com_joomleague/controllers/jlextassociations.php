@@ -110,40 +110,40 @@ class JoomleagueControllerJlextassociations extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations',$msg);
 	}
 
-	function cancel()
-	{
-		// Checkin the project
-		$model=$this->getModel('jlextassociation');
-		$model->checkin();
-		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
-	}
+// 	function cancel()
+// 	{
+// 		// Checkin the project
+// 		$model=$this->getModel('jlextassociation');
+// 		$model->checkin();
+// 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
+// 	}
 
-	function orderup()
-	{
-		$model=$this->getModel('jlextassociation');
-		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
-	}
+// 	function orderup()
+// 	{
+// 		$model=$this->getModel('jlextassociation');
+// 		$model->move(-1);
+// 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
+// 	}
 
-	function orderdown()
-	{
-		$model=$this->getModel('jlextassociation');
-		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
-	}
+// 	function orderdown()
+// 	{
+// 		$model=$this->getModel('jlextassociation');
+// 		$model->move(1);
+// 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations');
+// 	}
 
-	function saveorder()
-	{
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		$order=JRequest::getVar('order',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		JArrayHelper::toInteger($order);
-		$model=$this->getModel('jlextassociation');
-		$model->saveorder($cid,$order);
-		$msg=JText::_('JL_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations',$msg);
-	}
+// 	function saveorder()
+// 	{
+// 		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+// 		$cid=JRequest::getVar('cid',array(),'post','array');
+// 		$order=JRequest::getVar('order',array(),'post','array');
+// 		JArrayHelper::toInteger($cid);
+// 		JArrayHelper::toInteger($order);
+// 		$model=$this->getModel('jlextassociation');
+// 		$model->saveorder($cid,$order);
+// 		$msg=JText::_('JL_GLOBAL_NEW_ORDERING_SAVED');
+// 		$this->setRedirect('index.php?option=com_joomleague&view=jlextassociations',$msg);
+// 	}
 
 	function import()
 	{

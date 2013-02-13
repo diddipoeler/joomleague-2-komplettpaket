@@ -5,7 +5,7 @@ jimport('joomla.html.pane');
 
 // Set toolbar items for the page
 $edit=JRequest::getVar('edit',true);
-$text=!$edit ? JText::_('JL_GLOBAL_NEW') : JText::_('JL_GLOBAL_EDIT');
+$text=!$edit ? JText::_('COM_JOOMLEAGUE_GLOBAL_NEW') : JText::_('COM_JOOMLEAGUE_GLOBAL_EDIT');
 
 JToolBarHelper::save('jlextassociation.save');
 
@@ -21,7 +21,7 @@ else
 	JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_EDIT'));
 	JToolBarHelper::apply('jlextassociation.apply');
 	JToolBarHelper::divider();
-	JToolBarHelper::cancel('jlextassociation.cancel','JL_GLOBAL_CLOSE');
+	JToolBarHelper::cancel('jlextassociation.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 }
 JToolBarHelper::divider();
 JToolBarHelper::help('screen.joomleague',true);

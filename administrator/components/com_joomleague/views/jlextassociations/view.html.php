@@ -25,25 +25,29 @@ class JoomleagueViewjlextassociations extends JLGView
 {
 	function display($tpl=null)
 	{
-		$option='com_joomleague';
+		//$option='com_joomleague';
 		$mainframe =& JFactory::getApplication();
-
+    $db =& JFactory::getDBO();
+		$uri =& JFactory::getURI();
+		$document	=& JFactory::getDocument();
+    $option = JRequest::getCmd('option');
+    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    $this->assignRef( 'optiontext',			$optiontext );
 		// Set toolbar items for the page
-		JToolBarHelper::title(JText::_('JL_ADMIN_ASSOCIATIONS_TITLE'),'generic.png');
+		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATIONS_TITLE'),'generic.png');
 // 		JToolBarHelper::addNewX();
 // 		JToolBarHelper::editListX();
 		JLToolBarHelper::addNew('jlextassociation.add');
 		JLToolBarHelper::editList('jlextassociation.edit');
-		JToolBarHelper::custom('jlextassociation.import','upload','upload',JText::_('JL_GLOBAL_CSV_IMPORT'),false);
-		JToolBarHelper::archiveList('jlextassociation.export',JText::_('JL_GLOBAL_XML_EXPORT'));
+		JToolBarHelper::custom('jlextassociation.import','upload','upload',JText::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
+		JToolBarHelper::archiveList('jlextassociation.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		//JToolBarHelper::deleteList();
 		JLToolBarHelper::deleteList('', 'jlextassociation.remove');
 		JToolBarHelper::divider();
 
 		JToolBarHelper::help('screen.joomleague',true);
 
-		$db =& JFactory::getDBO();
-		$uri =& JFactory::getURI();
+		
 
 		$filter_order		= $mainframe->getUserStateFromRequest($option.'assoc_filter_order',		'filter_order',		'objassoc.ordering',	'cmd');
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'assoc_filter_order_Dir',	'filter_order_Dir',	'',				'word');

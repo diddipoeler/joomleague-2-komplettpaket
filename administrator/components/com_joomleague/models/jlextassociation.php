@@ -120,7 +120,7 @@ class JoomleagueModeljlextassociation extends JoomleagueModelItem
   $mainframe	=& JFactory::getApplication();
   //$baseFolder = JURI::root().'media/com_joomleague/flags_associations';
   $baseFolder = JPATH_SITE.'/images/com_joomleague/database/flags_associations';
-  $mainframe->enqueueMessage(JText::_(''.$baseFolder),'NOTICE');
+  //$mainframe->enqueueMessage(JText::_(''.$baseFolder),'NOTICE');
   
 //   $mainframe->enqueueMessage(JText::_(''.JPATH_BASE),'NOTICE');
 //   $mainframe->enqueueMessage(JText::_(''.JURI::root()),'NOTICE');
@@ -214,5 +214,9 @@ class JoomleagueModeljlextassociation extends JoomleagueModelItem
 		}
 		return $data;
 	}
+	
+	
+	
+	
 }
 ?>
