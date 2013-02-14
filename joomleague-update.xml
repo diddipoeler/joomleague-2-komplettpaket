@@ -5,7 +5,7 @@
       <description>Joomleague Component</description>
       <element>com_joomleague</element>
       <type>component</type>
-      <version>2.0.47</version>
+      <version>2.0.48</version>
       <infourl title="Joomleague update">http://fussballineuropa.de</infourl>
       <downloads>
          <downloadurl type="full" format="zip">https://github.com/diddipoeler/joomleague-2-komplettpaket/archive/master.zip</downloadurl>
