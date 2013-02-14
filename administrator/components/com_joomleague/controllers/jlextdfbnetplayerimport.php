@@ -126,9 +126,9 @@ function select()
 		$mainframe =& JFactory::getApplication();
   $document	=& JFactory::getDocument();
         // Check for request forgeries
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JToolBarHelper::back(JText::_('JL_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
+		JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
 		$mainframe =& JFactory::getApplication();
 		$model = $this->getModel('jlextdfbnetplayerimport');
 		$post = JRequest::get('post');
@@ -141,15 +141,15 @@ function select()
     
     if ( $whichfile == 'playerfile' )
     {
-    JError::raiseNotice(500,JText::_('JL_ADMIN_DFBNET_IMPORT_PLAYERFILE'));
+    JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_PLAYERFILE'));
     }
     elseif ( $whichfile == 'matchfile' )
     {
-    JError::raiseNotice(500,JText::_('JL_ADMIN_DFBNET_IMPORT_MATCHFILE'));
+    JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_MATCHFILE'));
     
     if (isset($post['dfbimportupdate']) )
 		{
-		JError::raiseNotice(500,JText::_('JL_ADMIN_DFBNET_IMPORT_MATCHFILE_UPDATE'));
+		JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_MATCHFILE_UPDATE'));
 		}
     
     }
@@ -186,7 +186,7 @@ function select()
 					}
 					if (!JFile::upload($tempFilePath,$dest))
 					{
-						JError::raiseWarning(500,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_CANT_UPLOAD'));
+						JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_CANT_UPLOAD'));
 						return;
 					}
 					else
@@ -196,14 +196,14 @@ function select()
 							$result=JArchive::extract($dest,$extractdir);
 							if ($result === false)
 							{
-								JError::raiseWarning(500,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_EXTRACT_ERROR'));
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_EXTRACT_ERROR'));
 								return false;
 							}
 							JFile::delete($dest);
 							$src=JFolder::files($extractdir,'l98',false,true);
 							if(!count($src))
 							{
-								JError::raiseWarning(500,'JL_ADMIN_DFBNET_IMPORT_CTRL_EXTRACT_NOJLG');
+								JError::raiseWarning(500,'COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_EXTRACT_NOJLG');
 								//todo: delete every extracted file / directory
 								return false;
 							}
@@ -211,13 +211,13 @@ function select()
 							{
 								if (!@ rename($src[0],$importFile))
 								{
-									JError::raiseWarning(21,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_ERROR_RENAME'));
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_ERROR_RENAME'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(500,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_TMP_DELETED'));
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_TMP_DELETED'));
 								return;
 							}
 						}
@@ -227,13 +227,13 @@ function select()
 							{
 								if (!@ rename($dest,$importFile))
 								{
-									JError::raiseWarning(21,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_RENAME_FAILED'));
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_RENAME_FAILED'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(21,JText::_('JL_ADMIN_DFBNET_IMPORT_CTRL_WRONG_EXTENSION'));
+								JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_CTRL_WRONG_EXTENSION'));
 								return false;
 							}
 						}

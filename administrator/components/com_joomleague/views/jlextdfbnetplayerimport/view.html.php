@@ -68,7 +68,7 @@ function display( $tpl = null )
 		
 		
 		// Set toolbar items for the page
-		JToolBarHelper::title(JText::_('JL_ADMIN_LMO_IMPORT_TITLE_1_3'),'generic.png');
+		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_TITLE_1_3'),'generic.png');
 		JToolBarHelper::help('screen.joomleague',true);
 
 		$uri =& JFactory::getURI();
@@ -102,7 +102,7 @@ function display( $tpl = null )
 		$model =& $this->getModel('jlextdfbnetplayerimport');
 
 		// Set toolbar items for the page
-		//JToolBarHelper::title(JText::_('JL_ADMIN_DFBNET_IMPORT_TITLE_3_3'),'generic.png');
+		//JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_TITLE_3_3'),'generic.png');
 		//JToolBarHelper::back();
 		//JToolBarHelper::help('screen.joomleague',true);
 
@@ -282,7 +282,7 @@ $this->insert_task = 'insertmatch';
 			JHTML::_('select.option', 13, JText::_('(UTC +13:00) Tonga')),
 			JHTML::_('select.option', 14, JText::_('(UTC +14:00) Kiribati')),);
 
-      JToolBarHelper::custom($this->insert_task,'upload','upload',Jtext::_('JL_ADMIN_XML_IMPORT_START_BUTTON'), false);
+      JToolBarHelper::custom($this->insert_task,'upload','upload',Jtext::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false);
       
       $conf =& JFactory::getConfig();
 			$value = $conf->getValue('config.offset');
@@ -305,7 +305,7 @@ $this->insert_task = 'insertmatch';
 		$mainframe =& JFactory::getApplication();
         $option = JRequest::getCmd('option');
 		$document =& JFactory::getDocument();
-		$document->addScript('/administrator/components/com_joomleague/assets/js/JL_import.js');
+		$document->addScript('/administrator/components/com_joomleague/assets/js/COM_JOOMLEAGUE_import.js');
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();
 		$model =& $this->getModel('jlextdfbnetplayerimport');
@@ -324,7 +324,7 @@ $this->insert_task = 'insertmatch';
 			case '8':	{ // Select Statistics
 						$this->assignRef('statistics',$model->getStatisticsListSelect());
 						$statisticlist=array();
-						$statisticlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_STATISTIC'));
+						$statisticlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_STATISTIC'));
 						$statisticlist=array_merge($statisticlist,$this->statistics);
 						$lists['statistics']=JHTML::_('select.genericlist',$statisticlist,'statisticID','class="inputbox select-statistic" onchange="javascript:insertStatistic()" ');
 						unset($statisticlist);
@@ -334,7 +334,7 @@ $this->insert_task = 'insertmatch';
 			case '7':	{ // Select ParentPosition
 						$this->assignRef('parentpositions',$model->getParentPositionListSelect());
 						$parentpositionlist=array();
-						$parentpositionlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_PARENT_POSITION'));
+						$parentpositionlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_PARENT_POSITION'));
 						$parentpositionlist=array_merge($parentpositionlist,$this->parentpositions);
 						$lists['parentpositions']=JHTML::_('select.genericlist',$parentpositionlist,'parentPositionID','class="inputbox select-parentposition" onchange="javascript:insertParentPosition()" ');
 						unset($parentpositionlist);
@@ -344,7 +344,7 @@ $this->insert_task = 'insertmatch';
 			case '6':	{ // Select Position
 						$this->assignRef('positions',$model->getPositionListSelect());
 						$positionlist=array();
-						$positionlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_POSITION'));
+						$positionlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_POSITION'));
 						$positionlist=array_merge($positionlist,$this->positions);
 						$lists['positions']=JHTML::_('select.genericlist',$positionlist,'positionID','class="inputbox select-position" onchange="javascript:insertPosition()" ');
 						unset($positionlist);
@@ -354,7 +354,7 @@ $this->insert_task = 'insertmatch';
 			case '5':	{ // Select Event
 						$this->assignRef('events',$model->getEventListSelect());
 						$eventlist=array();
-						$eventlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_EVENT'));
+						$eventlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_EVENT'));
 						$eventlist=array_merge($eventlist,$this->events);
 						$lists['events']=JHTML::_('select.genericlist',$eventlist,'eventID','class="inputbox select-event" onchange="javascript:insertEvent()" ');
 						unset($eventlist);
@@ -364,7 +364,7 @@ $this->insert_task = 'insertmatch';
 			case '4':	{ // Select Playground
 						$this->assignRef('playgrounds',$model->getPlaygroundListSelect());
 						$playgroundlist=array();
-						$playgroundlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_PLAYGROUND'));
+						$playgroundlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_PLAYGROUND'));
 						$playgroundlist=array_merge($playgroundlist,$this->playgrounds);
 						$lists['playgrounds']=JHTML::_('select.genericlist',$playgroundlist,'playgroundID','class="inputbox select-playground" onchange="javascript:insertPlayground()" ');
 						unset($playgroundlist);
@@ -374,7 +374,7 @@ $this->insert_task = 'insertmatch';
 			case '3':	{ // Select Person
 						$this->assignRef('persons',$model->getPersonListSelect());
 						$personlist=array();
-						$personlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_PERSON'));
+						$personlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_PERSON'));
 						$personlist=array_merge($personlist,$this->persons);
 						$lists['persons']=JHTML::_('select.genericlist',$personlist,'personID','class="inputbox select-person" onchange="javascript:insertPerson()" ');
 						unset($personlist);
@@ -384,7 +384,7 @@ $this->insert_task = 'insertmatch';
 			case '2':	{ // Select Club
 						$this->assignRef('clubs',$model->getClubListSelect());
 						$clublist=array();
-						$clublist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNET_IMPORT_SELECT_CLUB'));
+						$clublist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_CLUB'));
 						$clublist=array_merge($clublist,$this->clubs);
 						$lists['clubs']=JHTML::_('select.genericlist',$clublist,'clubID','class="inputbox select-club" onchange="javascript:insertClub()" ');
 						unset($clublist);
@@ -396,7 +396,7 @@ $this->insert_task = 'insertmatch';
 						$this->assignRef('teams',$model->getTeamListSelect());
 						$this->assignRef('clubs',$model->getClubListSelect());
 						$teamlist=array();
-						$teamlist[]=JHTML::_('select.option',0,JText::_('JL_ADMIN_DFBNETIMPORT_SELECT_TEAM'));
+						$teamlist[]=JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_ADMIN_DFBNETIMPORT_SELECT_TEAM'));
 						$teamlist=array_merge($teamlist,$this->teams);
 						$lists['teams']=JHTML::_('select.genericlist',$teamlist,'teamID','class="inputbox select-team" onchange="javascript:insertTeam()" ','value','text',0);
 						unset($teamlist);
@@ -406,7 +406,7 @@ $this->insert_task = 'insertmatch';
 
 		$this->assignRef('lists',$lists);
 		// Set page title
-		$pageTitle=JText::_('JL_ADMIN_DFBNET_IMPORT_ASSIGN_TITLE');
+		$pageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_ASSIGN_TITLE');
 		$document->setTitle($pageTitle);
 
 		parent::display($tpl);

@@ -118,6 +118,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_league` (
   `modified_by` INT NULL ,
   `picture` VARCHAR(128) NOT NULL DEFAULT '' ,
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `associations` INT(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )
