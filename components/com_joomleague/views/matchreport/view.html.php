@@ -59,8 +59,17 @@ class JoomleagueViewMatchReport extends JLGView
 		$extended->bind($jRegistry);
 		
 		$this->assignRef( 'extended', $extended);
-        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
-
+		
+    $extended2 = $this->getExtended($match->extended, 'match');
+    $this->assignRef( 'extended2', $extended2);
+		//$rssfeedlink = $this->extended2->getValue('formation1');
+    $this->assignRef( 'formation1', $this->extended2->getValue('formation1'));
+    $this->assignRef( 'formation2', $this->extended2->getValue('formation2'));
+    $schemahome = $this->assignRef('schemahome',$model->getSchemaHome($this->formation1));
+    $schemaaway = $this->assignRef('schemaaway',$model->getSchemaAway($this->formation2));
+    
+    $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PAGE_TITLE' );
 		if (( isset( $this->team1 ) ) AND (isset( $this->team1 )))

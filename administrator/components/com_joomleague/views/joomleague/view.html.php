@@ -431,6 +431,9 @@ class JoomleagueViewJoomleague extends JLGView
 		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextassociations&task=jlextassociation.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_ASSOCIATION');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_ASSOCIATION'));
+		$link4[]=JRoute::_('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
+		$label4[]=JText::_('COM_JOOMLEAGUE_ROSTER_POSITION');
+		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));
 		$link[]=$link4;
 		$label[]=$label4;
 		$limage[]=$limage4;

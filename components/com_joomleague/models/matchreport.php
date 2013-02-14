@@ -403,6 +403,77 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		$this->_db->setQuery($query);
 		return $this->_db->loadObject();
 	}
+	
+	function getSchemaHome($schemahome)
+  {
+  $db = &Jfactory::getDBO();
+  $bildpositionen = array();
+  $position = 1;
+  
+  if ( $schemahome )
+  {
+  $query =" SELECT extended"
+				. " FROM #__joomleague_rosterposition "
+				. " WHERE name LIKE '" . $schemahome ."'"
+				. " AND short_name = 'HOME_POS'";
+		$db->setQuery($query);
+		$res = $db->loadResult();
+		
+		$xmlfile=JPATH_COMPONENT_ADMINISTRATOR.DS.'assets'.DS.'extended'.DS.'rosterposition.xml';
+		$jRegistry = new JRegistry;
+		$jRegistry->loadString($res, 'ini');
+    
+    for($a=0; $a < 11; $a++)
+    {
+    $bildpositionen[$schemahome][$a]['heim']['oben'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_TOP');
+    $bildpositionen[$schemahome][$a]['heim']['links'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_LEFT');
+    $position++;
+    }
+		
+		return $bildpositionen;
+  }
+  else
+  {
+    return false;
+  }
+  
+  }
+  
+  function getSchemaAway($schemaaway)
+  {
+  $db = &Jfactory::getDBO();
+  $bildpositionen = array();
+  $position = 1;
+    
+  if ( $schemaaway )
+  {
+  $query =" SELECT extended"
+				. " FROM #__joomleague_rosterposition "
+				. " WHERE name LIKE '" . $schemaaway ."'"
+				. " AND short_name = 'AWAY_POS'";
+		$db->setQuery($query);
+		$res = $db->loadResult();
+
+		$xmlfile=JPATH_COMPONENT_ADMINISTRATOR.DS.'assets'.DS.'extended'.DS.'rosterposition.xml';
+		$jRegistry = new JRegistry;
+		$jRegistry->loadString($res, 'ini');
+    
+    for($a=0; $a < 11; $a++)
+    {
+    $bildpositionen[$schemaaway][$a]['gast']['oben'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_TOP');
+    $bildpositionen[$schemaaway][$a]['gast']['links'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_LEFT');
+    $position++;
+    }
+		
+		return $bildpositionen;
+  }
+  else
+  {
+    return false;
+  }		
+			
+  }
+  
 
 }
 ?>

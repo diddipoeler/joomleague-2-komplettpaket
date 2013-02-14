@@ -38,6 +38,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('roster');
 		echo $this->loadTemplate('staff');
 		echo $this->loadTemplate('subst');
+		echo $this->loadTemplate('rosterplayground');
 	}
 
 	if ( !empty( $this->matchevents ) )

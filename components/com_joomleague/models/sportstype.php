@@ -194,11 +194,38 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		return $this->_db->loadObject()->count;
 	}
 
-	/**
+	
+   /**
+	 * 
+	 * get count of related projectmatches for this sports_type
+	 */
+	public function getProjectMatchesEventsNameCount() 
+  {
+	$query = 'SELECT count( me.id ) as total, me.event_type_id,p.sports_type_id,et.name,et.icon
+FROM #__joomleague_match_event as me
+INNER JOIN #__joomleague_match AS m 
+ON me.match_id= m.id
+INNER JOIN #__joomleague_round AS r 
+ON m.round_id = r.id
+INNER JOIN #__joomleague_project AS p 
+ON r.project_id = p.id
+INNER JOIN #__joomleague_eventtype AS et 
+ON me.event_type_id = et.id
+WHERE p.sports_type_id = '.(int) $this->_id.' GROUP BY me.event_type_id';
+	$this->_db->setQuery($query);
+			if (!$result = $this->_db->loadObjectList())
+	    {
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $result;
+	}
+  /**
 	 * 
 	 * get count of related projectmatches for this sports_type
 	 */
 	public function getProjectMatchesEventsCount() {
+	  
 		$query = 'SELECT count(*) AS count FROM #__joomleague_sports_type AS st
 		 			INNER JOIN #__joomleague_project AS p ON p.sports_type_id = st.id
 					INNER JOIN #__joomleague_round AS r ON r.project_id = p.id

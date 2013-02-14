@@ -120,8 +120,9 @@ JHTML::_('behavior.tooltip');
 				$pred_projects	=& $this->getModel()->getChilds($row->id);
 				$pred_admins	=& $this->getModel()->getAdmins($row->id);
 				$checked		= JHTML::_('grid.checkedout',$row,$i);
-				$published		= JHTML::_('grid.published',$row,$i);
-
+				//$published		= JHTML::_('grid.published',$row,$i);
+        $published  = JHTML::_('grid.published',$row,$i,'tick.png','publish_x.png','predictiongame.');
+        
 				$link			= JRoute::_('index.php?option=com_joomleague&task=predictiongame.edit&cid[]=' . $row->id);
 				?>
 				<tr class='<?php echo "row$k"; ?>'>

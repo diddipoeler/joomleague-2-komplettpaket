@@ -57,7 +57,7 @@ fieldset button {
 						<?php 
 							}
 						?>
-						<th class="title" nowrap="nowrap" ><?php echo JTEXT::_('JL_ADMIN_MATCHES_CHANGE_ROUNDLIST'); ?></th>
+						<th class="title" nowrap="nowrap" ><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_CHANGE_ROUNDLIST'); ?></th>
 						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_HOME_TEAM'); ?></th>
 						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
 						<th style="  "><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
