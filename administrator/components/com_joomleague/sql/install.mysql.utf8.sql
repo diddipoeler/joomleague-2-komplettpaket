@@ -618,6 +618,8 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project_team` (
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `trikot_home` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
+  `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   PRIMARY KEY (`id`) ,
   KEY `project_id` (`project_id`),
   KEY `team_id` (`team_id`),
