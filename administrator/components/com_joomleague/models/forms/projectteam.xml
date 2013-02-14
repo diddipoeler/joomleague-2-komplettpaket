@@ -119,9 +119,30 @@
 				class="inputbox"
 				preview="show"
 				targetfolder="projectteams"
-				directory="com_joomleague/database/projectteams"/>		
+				directory="com_joomleague/database/projectteams"/>
+      <field
+				name="trikot_home"
+				type="imageselect"
+				targetfolder="projectteams_trikot_home"
+				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_HOME"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_HOME_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/projectteams/trikot_home"/>				
+			<field
+				name="trikot_away"
+				type="imageselect"
+				targetfolder="projectteams_trikot_away"
+				default="com_joomleague/database/placeholders/placeholder_150.png"
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_AWAY"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_LOGO_TRIKOT_AWAY_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/projectteams/trikot_away"/>  		
 	</fieldset>		
-	<fieldset name="picture">	
+	
+  <fieldset name="picture">	
 			<field
 				name="picture"
 				type="media"
@@ -130,6 +151,24 @@
 				description="COM_JOOMLEAGUE_ADMIN_TEAM_PIC_DESC"
 				class="inputbox"
 				preview="show"
-				directory="com_joomleague/database/projectteams"/>					
+				directory="com_joomleague/database/projectteams"/>
+      <field
+				name="trikot_home"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_HOME"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_HOME_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/projectteams/trikot_home"/>				
+			<field
+				name="trikot_away"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_150.png"
+				label="COM_JOOMLEAGUE_ADMIN_TEAM_TRIKOT_AWAY"
+				description="COM_JOOMLEAGUE_ADMIN_TEAM_LOGO_TRIKOT_AWAY_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/projectteams/trikot_away"/>	  					
 	</fieldset>		
 </form>

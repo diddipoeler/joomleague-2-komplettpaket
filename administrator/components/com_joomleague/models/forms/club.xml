@@ -207,7 +207,25 @@
 				class="inputbox"
 				preview="show"
 				directory="com_joomleague/database/clubs/large"/>				
-		
+		   
+       <field
+				name="trikot_home"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/clubs/trikot_home"/>				
+			<field
+				name="trikot_away"
+				type="media"
+				default="com_joomleague/database/placeholders/placeholder_150.png"
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_AWAY"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_TRIKOT_AWAY_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/clubs/trikot_away"/>	
 	</fieldset>	
 	
 	<fieldset name="imageselect">
@@ -242,7 +260,28 @@
 				preview="show"
 				targetfolder="clubs_large"
 				directory="com_joomleague/database/clubs/large"/>				
-		
+		  
+      <field
+				name="trikot_home"
+				type="imageselect"
+				targetfolder="clubs_trikot_home"
+				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/clubs/trikot_home"/>				
+			<field
+				name="trikot_away"
+				type="imageselect"
+				targetfolder="clubs_trikot_away"
+				default="com_joomleague/database/placeholders/placeholder_150.png"
+				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_AWAY"
+				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_TRIKOT_AWAY_DESC"
+				class="inputbox"
+				preview="show"
+				directory="com_joomleague/database/clubs/trikot_away"/>
+				
 	</fieldset>	
 	
 </form>

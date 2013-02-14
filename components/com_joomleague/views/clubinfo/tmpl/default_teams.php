@@ -7,6 +7,9 @@
 	</div>
 	<div class="left-column-teamlist">
 	<?php
+	$params=array();
+	$params['width']="30";
+	
 		foreach ( $this->teams as $team )
 		{
 			if ( $team->team_name )
@@ -16,7 +19,8 @@
 				?>
 				<span class="clubinfo_team_item">
 					<?php
-						echo JHTML::link( $link, $team->team_name );
+					//echo JHTML::link( $link, $team->team_name );
+						echo JHTML::image($team->trikot_home, $team->team_name, $params).JHTML::link( $link, $team->team_name );
 						echo "&nbsp;";
 						if ( $team->team_shortcut ) { echo "(" . $team->team_shortcut . ")"; }
 					?>

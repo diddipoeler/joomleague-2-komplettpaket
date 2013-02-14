@@ -105,11 +105,11 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 
 			// diddipoeler
 			// query erweitert um die projektteamid
-			$query = ' SELECT id, '
-				     	. ' CASE WHEN CHAR_LENGTH( alias ) THEN CONCAT_WS( \':\', id, alias ) ELSE id END AS slug, '
-				       . ' name as team_name, '
-				       . ' short_name as team_shortcut, '
-				       . ' info as team_description, '
+			$query = ' SELECT t.id,prot.trikot_home,prot.trikot_away, '
+				     	. ' CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS slug, '
+				       . ' t.name as team_name, '
+				       . ' t.short_name as team_shortcut, '
+				       . ' t.info as team_description, '
 				       . ' (SELECT MAX(project_id) 
 				       		FROM #__joomleague_project_team 
 				       		RIGHT JOIN #__joomleague_project p on project_id=p.id 
@@ -118,8 +118,10 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				       		FROM #__joomleague_project_team as pt 
 				       		RIGHT JOIN #__joomleague_project p on pt.project_id=p.id 
 				       		WHERE team_id=t.id and p.published = 1 and pt.project_id=pid) as ptid'     
-				       . ' FROM #__joomleague_team t'
-				       . ' WHERE club_id = '.(int) $this->clubid;
+				       . ' FROM #__joomleague_team as t 
+               left join #__joomleague_project_team as prot
+on prot.team_id=t.id'
+				       . ' WHERE club_id = '.(int) $this->clubid. ' group by t.id';
 
 			$this->_db->setQuery( $query );
 			$teams = $this->_db->loadObjectList();

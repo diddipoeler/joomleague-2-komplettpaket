@@ -218,6 +218,14 @@ class ImageSelect
 			case	"clubs_large":
 				return "clubs/large";
 				break;
+				
+			case	"clubs_trikot_home":
+				return "clubs/trikot_home";
+				break;
+			case	"clubs_trikot_away":
+				return "clubs/trikot_away";
+				break;
+        	
 			case	"events":
 				return "events";
 				break;	
@@ -239,6 +247,14 @@ class ImageSelect
       case	"projectteams":
 				return "projectteams";
 				break;
+			
+      case	"projectteams_trikot_home":
+				return "projectteams/trikot_home";
+				break;
+      case	"projectteams_trikot_away":
+				return "projectteams/trikot_away";
+				break;
+          	
 		  case	"seasons":
 				return "seasons";
 				break;
