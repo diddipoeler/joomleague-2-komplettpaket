@@ -26,7 +26,7 @@ jimport('joomla.application.component.controller');
 class JoomleagueControllerPredictionGame extends JoomleagueController
 {
 
-protected $view_list = 'predictiongames';
+//protected $view_list = 'predictiongames';
 
 	function __construct()
 	{
@@ -411,6 +411,21 @@ protected $view_list = 'predictiongames';
 		$this->setRedirect($link,$msg);
 	}
 
+  /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'predictiongame', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
+	
 /*
 
 	function copysave()
