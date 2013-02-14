@@ -10,28 +10,28 @@ div.modjlgsports .sportstypename {
 }
 
 div.modjlgsports ul {
-	float: left;
-	width: 100%;
+//	float: left;
+//	width: 100%;
 }
 
 div.modjlgsports ul li {
-	list-style: none;
-	float: left;
+//	list-style: none;
+//	float: left;
 }
 
 div.modjlgsports ul li.label {
-	list-style: none;
+//	list-style: none;
 	float: left;
-	width: 100px;;
+	width: 80%;
 }
 
 div.modjlgsports ul li.text {
 	list-style: none;
-	float: left;
+//	float: right;
 	text-align: right;
 }
 
 div.modjlgsports img {
 	boder: none;
-	height: 21px;
+	height: 16px;
 }

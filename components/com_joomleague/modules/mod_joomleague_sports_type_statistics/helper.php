@@ -36,7 +36,7 @@ class modJLGSportsHelper
 		if (!class_exists('JoomleagueModelSportsType')) {
 			require_once(JLG_PATH_SITE.DS.'models'.DS.'sportstype.php');
 		}
-		$model = &JLGModel::getInstance('sportstype', 'JoomleagueModel');
+		$model = JLGModel::getInstance('sportstype', 'JoomleagueModel');
 		$model->setId($params->get('sportstypes'));
 		
 		return array(
@@ -50,6 +50,7 @@ class modJLGSportsHelper
 			'projectroundscount' => $model->getProjectRoundsCount(),
 			'projectmatchescount' => $model->getProjectMatchesCount(),
 			'projectmatcheseventscount' => $model->getProjectMatchesEventsCount(),
+			'projectmatcheseventsnamecount' => $model->getProjectMatchesEventsNameCount(),
 			'projectmatchesstatscount' => $model->getProjectMatchesStatsCount(),
 		);
 	}
