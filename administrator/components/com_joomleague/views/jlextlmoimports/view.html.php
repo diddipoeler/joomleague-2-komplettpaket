@@ -53,7 +53,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
     $document->addCustomTag($stylelink);
     
     // Set toolbar items for the page
-		JToolBarHelper::title(JText::_('JL_ADMIN_LMO_IMPORT_TITLE_1'),'lmo-cpanel');
+		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_TITLE_1'),'lmo-cpanel');
 		JToolBarHelper::help('screen.joomleague',true);
 
 		$uri = JFactory::getURI();

@@ -9,13 +9,13 @@ JHTML::_('behavior.tooltip');
 <div id="editcell">
 	<form enctype='multipart/form-data' action='<?php echo $this->request_url; ?>' method='post' id='adminForm'>
 		<table class='adminlist'>
-			<thead><tr><th><?php echo JText::sprintf('JL_ADMIN_LMO_IMPORT_TABLE_TITLE_1', $this->config->get('upload_maxsize') ); ?></th></tr></thead>
+			<thead><tr><th><?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_TABLE_TITLE_1', $this->config->get('upload_maxsize') ); ?></th></tr></thead>
 			<tfoot><tr><td><?php
 				echo '<p>';
-				echo '<b>'.JText::_('JL_ADMIN_LMO_IMPORT_EXTENTION_INFO').'</b>';
+				echo '<b>'.JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_EXTENTION_INFO').'</b>';
 				echo '</p>';
 				echo '<p>';
-				echo JText::_('JL_ADMIN_LMO_IMPORT_HINT1').'<br>';
+				echo JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_HINT1').'<br>';
 				echo '</p>';
 				?></td></tr></tfoot>
 			<tbody>
@@ -23,7 +23,7 @@ JHTML::_('behavior.tooltip');
       <td>
       <fieldset style='text-align: center; '>
 				<input class='input_box' id='import_package' name='import_package' type='file' size='57' />
-				<input class='button' type='submit' value='<?php echo JText::_('JL_ADMIN_LMO_IMPORT_UPLOAD_BUTTON'); ?>' />
+				<input class='button' type='submit' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_UPLOAD_BUTTON'); ?>' />
 			</fieldset>
       </td>
       </tr>

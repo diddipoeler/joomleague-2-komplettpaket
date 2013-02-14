@@ -93,9 +93,9 @@ parent::display();
 	function save()
 	{
 		// Check for request forgeries
-		JRequest::checkToken() or die('JL_GLOBAL_INVALID_TOKEN');
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JToolBarHelper::back(JText::_('JL_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jllmoimport&controller=jllmoimport'));
+		JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jllmoimport&controller=jllmoimport'));
 		$mainframe =& JFactory::getApplication();
 		$post=JRequest::get('post');
     $model=$this->getModel('jlextlmoimports');
@@ -141,7 +141,7 @@ echo '</pre>';
 					}
 					if (!JFile::upload($tempFilePath,$dest))
 					{
-						JError::raiseWarning(500,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_CANT_UPLOAD'));
+						JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_CANT_UPLOAD'));
 						return;
 					}
 					else
@@ -151,14 +151,14 @@ echo '</pre>';
 							$result=JArchive::extract($dest,$extractdir);
 							if ($result === false)
 							{
-								JError::raiseWarning(500,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_EXTRACT_ERROR'));
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_EXTRACT_ERROR'));
 								return false;
 							}
 							JFile::delete($dest);
 							$src=JFolder::files($extractdir,'l98',false,true);
 							if(!count($src))
 							{
-								JError::raiseWarning(500,'JL_ADMIN_LMO_IMPORT_CTRL_EXTRACT_NOJLG');
+								JError::raiseWarning(500,'COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_EXTRACT_NOJLG');
 								//todo: delete every extracted file / directory
 								return false;
 							}
@@ -166,13 +166,13 @@ echo '</pre>';
 							{
 								if (!@ rename($src[0],$importFile))
 								{
-									JError::raiseWarning(21,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_ERROR_RENAME'));
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_ERROR_RENAME'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(500,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_TMP_DELETED'));
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_TMP_DELETED'));
 								return;
 							}
 						}
@@ -182,13 +182,13 @@ echo '</pre>';
 							{
 								if (!@ rename($dest,$importFile))
 								{
-									JError::raiseWarning(21,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_RENAME_FAILED'));
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_RENAME_FAILED'));
 									return false;
 								}
 							}
 							else
 							{
-								JError::raiseWarning(21,JText::_('JL_ADMIN_LMO_IMPORT_CTRL_WRONG_EXTENSION'));
+								JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_CTRL_WRONG_EXTENSION'));
 								return false;
 							}
 						}
