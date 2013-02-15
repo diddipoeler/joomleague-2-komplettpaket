@@ -104,7 +104,8 @@ class Countries
 		$country["ECU"]= Array("iso2" => "EC", "name" => "ECUADOR__REPUBLIC_OF");
 		$country["EGY"]= Array("iso2" => "EG", "name" => "EGYPT__ARAB_REPUBLIC_OF");
 		$country["SLV"]= Array("iso2" => "SV", "name" => "EL_SALVADOR__REPUBLIC_OF");
-		$country["ENG"]= Array("iso2" => "GB", "name" => "ENGLAND");
+		//$country["ENG"]= Array("iso2" => "GB", "name" => "ENGLAND");
+        $country["ENG"]= Array("iso2" => "EN", "name" => "ENGLAND");
 		$country["GNQ"]= Array("iso2" => "GQ", "name" => "EQUATORIAL_GUINEA__REPUBLIC_OF");
 		$country["ERI"]= Array("iso2" => "ER", "name" => "ERITREA__STATE_OF");
 		$country["EST"]= Array("iso2" => "EE", "name" => "ESTONIA__REPUBLIC_OF");
@@ -556,6 +557,7 @@ class Countries
 		$convert2to3["UA"]="UKR";
 		$convert2to3["AE"]="ARE";
 		$convert2to3["GB"]="GBR";
+        $convert2to3["EN"]="ENG";
 		$convert2to3["US"]="USA";
 		$convert2to3["UM"]="UMI";
 		$convert2to3["UY"]="URY";
@@ -819,6 +821,7 @@ class Countries
 		$convert3to2["UKR"]="UA";
 		$convert3to2["ARE"]="AE";
 		$convert3to2["GBR"]="GB";
+        $convert3to2["ENG"]="EN";
 		$convert3to2["USA"]="US";
 		$convert3to2["UMI"]="UM";
 		$convert3to2["URY"]="UY";
