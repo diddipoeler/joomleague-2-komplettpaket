@@ -40,6 +40,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('subst');
 		echo $this->loadTemplate('rosterplayground');
 	}
+  
+  if (($this->config['show_roster_playground'])==1)
+	{
+		echo $this->loadTemplate('rosterplayground');
+	}
 
 	if ( !empty( $this->matchevents ) )
 	{
@@ -108,6 +113,12 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('subst');
 	}
 
+  if (($this->config['show_roster_playground'])==1)
+	{
+  echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_STARTING_PLAYGROUND'), 'panel'.($idxTab++));
+		echo $this->loadTemplate('rosterplayground');
+	}
+  
 	if ( !empty( $this->matchevents ) )
 	{
 		if (($this->config['show_timeline'])==1)

@@ -39,12 +39,7 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
-		<field 	name="show_extended" type="radio" default="1" 
-				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EXTENDED"
-				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EXTENDED">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
-		</field>		
+		
 		
 		<field 	name="show_roster" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER"
@@ -53,6 +48,13 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
+    <field 	name="show_roster_playground" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER_PLAYGROUND"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER_PLAYGROUND">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>	
+    
 		<field 	name="show_events" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENTS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENTS">

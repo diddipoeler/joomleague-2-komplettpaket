@@ -37,18 +37,23 @@ if (!empty($this->matchplayerpositions ))
 	<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'); ?></h2>
 	
 		<?php
-		$pane =& JPane::getInstance('tabs',array('startOffset'=>0));
-		echo $pane->startPane('pane');
-		echo $pane->startPanel($this->team1->name,'panel1');
-		echo $this->loadTemplate('stats_home');
-		echo $pane->endPanel();
+    $idxTab = 1;
+    echo JHTML::_('tabs.start','tabs_matchreport_stats', array('useCookie'=>1));
+// 		$pane =& JPane::getInstance('tabs',array('startOffset'=>0));
+// 		echo $pane->startPane('pane');
+// 		echo $pane->startPanel($this->team1->name,'panel1');
+		echo JHTML::_('tabs.panel', $this->team1->name, 'panel'.($idxTab++));
+    echo $this->loadTemplate('stats_home');
+// 		echo $pane->endPanel();
 		
-		echo $pane->startPanel($this->team2->name,'panel2');
-		echo $this->loadTemplate('stats_away');
-		echo $pane->endPanel();
+// 		echo $pane->startPanel($this->team2->name,'panel2');
+		echo JHTML::_('tabs.panel', $this->team2->name, 'panel'.($idxTab++));
+    echo $this->loadTemplate('stats_away');
+// 		echo $pane->endPanel();
 		
-		echo $pane->endPane();
-
+// 		echo $pane->endPane();
+    echo JHTML::_('tabs.end');
+    
 	endif;
 }
 ?>
