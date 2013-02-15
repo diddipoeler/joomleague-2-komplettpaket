@@ -62,6 +62,22 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		return $this->_db->loadObject()->count;
 	}
 	
+  /**
+	*
+	* get count of related leagues for this sports_type
+	*/
+	public function getLeaguesOnlyCount() {
+		$query = 'SELECT count(*) AS count FROM #__joomleague_league AS l 
+							';
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $this->_db->loadObject()->count;
+	}
+  
 	/**
 	*
 	* get count of related leagues for this sports_type
@@ -80,6 +96,22 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		return $this->_db->loadObject()->count;
 	}
 	
+  /**
+	*
+	* get count of related seasons for this sports_type
+	*/
+	public function getSeasonsOnlyCount() {
+		$query = 'SELECT count(*) AS count FROM #__joomleague_season AS s 
+							';
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $this->_db->loadObject()->count;
+	}
+  
 	/**
 	*
 	* get count of related seasons for this sports_type

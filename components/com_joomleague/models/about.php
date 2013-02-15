@@ -79,6 +79,16 @@ class JoomleagueModelAbout extends JoomleagueModelProject
 		$about->phpthumb = '<a href="http://phpthumb.gxdlabs.com/" target="_blank">phpthumb.gxdlabs.com</a>';
 
 
+    //page
+    $about->github = 'https://github.com/diddipoeler/joomleague-2-komplettpaket';
+		$about->diddipoelerpage = 'http://www.fussballineuropa.de';
+
+		//e-mail
+		$about->diddipoeleremail = 'diddipoeler@gmx.de';
+
+		//forum
+		$about->diddipoelerforum = 'http://www.fussballineuropa.de/index.php?option=com_kunena&view=category&catid=247&Itemid=530';
+
 		$this->_about = $about;
 
 		return $this->_about;
