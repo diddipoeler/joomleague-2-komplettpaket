@@ -438,6 +438,27 @@ class JoomleagueViewJoomleague extends JLGView
 		$label[]=$label4;
 		$limage[]=$limage4;
 
+    $link6=array();
+		$label6=array();
+		$limage6=array();
+		$pane=new stdClass();
+		$pane->title=JText::_('COM_JOOMLEAGUE_DIDDIPOELER_RINGEN');
+		$pane->name='MMenuDiddipoelerRingen';
+		$pane->alert=false;
+		$tabs[]=$pane;
+		$link6[]=JRoute::_('index.php?option=com_joomleague&view=jlextindividualsportringen&task=jlextindividualsportringen.display');
+		$label6[]=JText::_('JL_T_MENU_RINGER_FILE_UPLOAD');
+		$limage6[]=JHTML::_('image',$imagePath.'update.png',JText::_('JL_T_MENU_RINGER_FILE_UPLOAD'));
+		$link6[]=JRoute::_('index.php?option=com_joomleague&view=jlextringerpositions&task=jlextringerpositions.display');
+		$label6[]=JText::_('JL_T_MENU_RINGER_POSITIONS');
+		$limage6[]=JHTML::_('image',$imagePath.'update.png',JText::_('JL_T_MENU_RINGER_POSITIONS'));
+    
+		
+		
+		$link[]=$link6;
+		$label[]=$label6;
+		$limage[]=$limage6;
+    
   $link5=array();
 	$label5=array();
 	$limage5=array();

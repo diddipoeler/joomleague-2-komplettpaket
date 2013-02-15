@@ -11,8 +11,8 @@
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.html.pane');
 
-$version			= '1.5.5-amber';
-$updateFileDate		= '2012-03-10';
+$version			= '2.0.0';
+$updateFileDate		= '2013-01-01';
 $updateFileTime		= '17:00';
 $updateDescription	='<span style="color:orange">Install/Update all tables for the Association Extension</span>';
 $excludeFile		='false';
