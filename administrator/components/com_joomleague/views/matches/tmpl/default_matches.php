@@ -31,6 +31,7 @@ fieldset button {
 							<input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
 						</th>
 						<th width="20" >&nbsp;</th>
+            <th width="20" >Einzelspiele</th>
 						<th width="20" >
 							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_MATCHES_MATCHNR','mc.match_number',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
@@ -122,6 +123,27 @@ fieldset button {
 									?>
 								</a>
 							</td>
+              <?php
+							// diddipoeler einzelsportart
+							?>
+              <td style="text-align:center; ">
+							<a	rel="{handler: 'iframe',size: {x: 800,y: 500}}"
+									href="index.php?option=com_joomleague&task=jlextindividualsport.show&tmpl=component&cid[]=<?php echo $row->id; ?>&team1=<?php echo $row->projectteam1_id; ?>&team2=<?php echo $row->projectteam2_id; ?>"
+									 class=""
+									 title="<?php echo JText::_('JL_ADMIN_MATCHES_EDIT_SINGLE_SPORT'); ?>">
+									 <?php
+									 
+								 	$image = 'players_add.png';
+								 	$title=  '';
+								 echo JHTML::_(	'image','administrator/components/com_joomleague/assets/images/'.$image,
+													 JText::_('JL_ADMIN_MATCHES_EDIT_SINGLE_SPORT'),
+													 'title= "' .$title. '"');
+													 
+										
+									 									 ?>
+								</a>
+							</td>
+              
 							<td class="center">
 								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" type="text" name="match_number<?php echo $row->id; ?>"
 										value="<?php echo $row->match_number; ?>" size="6" tabindex="1" class="inputbox" />

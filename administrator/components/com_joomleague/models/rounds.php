@@ -13,7 +13,8 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
-require_once (JLG_PATH_ADMIN.DS.'models'.DS.'list.php');
+require_once(JLG_PATH_ADMIN.DS.'models'.DS.'list.php');
+require_once(JLG_PATH_ADMIN.DS.'helpers'.DS.'class.roundrobin.php');
 
 /**
  * Joomleague Component Matchday Model
@@ -318,6 +319,31 @@ class JoomleagueModelRounds extends JoomleagueModelList
 			}
 		}
 		
+    // diddipoeler
+    $rrteams = array();
+    foreach ( $teams as $team )
+    {
+    $rrteams[] = $team;
+    }
+    $roundrobin = new roundrobin($rrteams);
+    $roundrobin->free_ticket = false; // free tickets off
+    $roundrobin->create_matches();
+    echo '<pre>',print_r($roundrobin->matches,true),'</pre><br>';
+    
+    if ($roundrobin->finished) 
+    {
+    $i = 1;
+    while ($roundrobin->next_matchday()) {
+        echo "-------Matchday ".$i."-------<br />";
+        while ($match = $roundrobin->next_match()) {
+            //echo $match[0]."  <b>vs</b>  ".$match[1]."<br />";
+        }
+        $i++;
+        echo"<br />";
+    }
+    }
+    
+    
 		if (!$teams || !count($teams)) {
 			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_ERROR_NO_TEAM'));
 			return false;
@@ -374,6 +400,7 @@ class JoomleagueModelRounds extends JoomleagueModelList
 				}
 				$game = JTable::getInstance('Match', 'Table');
 				$game->round_id = $round_id;
+        $game->division_id = 0;
 				$game->projectteam1_id = $g[0]->projectteam_id;
 				$game->projectteam2_id = $g[1]->projectteam_id;
 				$game->published = 1;
@@ -384,7 +411,8 @@ class JoomleagueModelRounds extends JoomleagueModelList
 				}
 			}
 		}
-		//echo '<pre>';print_r($schedule); echo '</pre>';exit;
+		//echo '<pre>';print_r($schedule); echo '</pre>';
+    //exit;
 		
 		return true;
 	}

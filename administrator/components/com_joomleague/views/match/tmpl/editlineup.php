@@ -52,6 +52,9 @@ if($close == 1) {
 		
 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_STAFF'), 'panel3');
 		echo $this->loadTemplate('staff');
+    
+    echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PLAYER_TRIKOT_NUMBERS'), 'panel4');
+		echo $this->loadTemplate('players_trikot_numbers');
 		
 		echo JHTML::_('tabs.end');
 		?>

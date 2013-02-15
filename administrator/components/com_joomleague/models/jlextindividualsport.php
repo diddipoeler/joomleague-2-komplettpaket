@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
+ * @copyright	Copyright (C) 2006-2012 JoomLeague.net. All rights reserved.
  * @license		GNU/GPL,see LICENSE.php
  * Joomla! is free software. This version may have been modified pursuant
  * to the GNU General Public License,and as distributed it includes or
@@ -23,13 +23,8 @@ require_once(JPATH_COMPONENT.DS.'models'.DS.'item.php');
  * @since	0.1
  */
 
-class JoomleagueModelMatch extends JoomleagueModelItem
+class JoomleagueModeljlextindividualsport extends JoomleagueModelItem
 {
-
-	const MATCH_ROSTER_STARTER			= 0;
-	const MATCH_ROSTER_SUBSTITUTE_IN	= 1;
-	const MATCH_ROSTER_SUBSTITUTE_OUT	= 2;
-	const MATCH_ROSTER_RESERVE			= 3;
 
 	/**
 	 * Method to load content matchday data
@@ -44,15 +39,15 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		if (empty($this->_data))
 		{
 			$query=' SELECT	m.*,
-							CASE m.time_present
+							CASE m.time_present 
 							when NULL then NULL
 							else DATE_FORMAT(m.time_present, "%H:%i")
 							END AS time_present,
-							t1.name AS hometeam, t1.id AS t1id,
+							t1.name AS hometeam, t1.id AS t1id, 
 							t2.name as awayteam, t2.id AS t2id,
 							pt1.project_id,
 							m.extended as matchextended
-						FROM #__joomleague_match AS m
+						FROM #__joomleague_match_single AS m
 						INNER JOIN #__joomleague_project_team AS pt1 ON pt1.id=m.projectteam1_id
 						INNER JOIN #__joomleague_team AS t1 ON t1.id=pt1.team_id
 						INNER JOIN #__joomleague_project_team AS pt2 ON pt2.id=m.projectteam2_id
@@ -84,6 +79,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			$match->projectteam1_id			= null;
 			$match->projectteam2_id			= null;
 			$match->playground_id			= null;
+			
+			$match->match_id			= null;
+			$match->teamplayer1_id			= null;
+			$match->teamplayer2_id			= null;
+			
+			
 			$match->match_date				= null;
 			$match->time_present			= null;
 			$match->team1_result			= null;
@@ -142,7 +143,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						  #__joomleague_match_1.id AS match_id
 						FROM
 						  #__joomleague_project_team
-						  INNER JOIN #__joomleague_match #__joomleague_match_1 ON #__joomleague_project_team.id=#__joomleague_match_1.projectteam2_id
+						  INNER JOIN #__joomleague_match_single #__joomleague_match_1 ON #__joomleague_project_team.id=#__joomleague_match_1.projectteam2_id
 						  INNER JOIN #__joomleague_project_team #__joomleague_project_team_1 ON #__joomleague_project_team_1.id=#__joomleague_match_1.projectteam1_id
 						WHERE
 						  #__joomleague_project_team.project_id='.(int) $project_id;
@@ -193,7 +194,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						$this->setError($this->_db->getErrorMsg());
 						return false;
 					}
-					$query='DELETE FROM #__joomleague_match WHERE id='.(int) $result['match_id'];
+					$query='DELETE FROM #__joomleague_match_single WHERE id='.(int) $result['match_id'];
 					$this->_db->setQuery($query);
 					if (!$this->_db->query())
 					{
@@ -220,6 +221,14 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		{
 			JArrayHelper::toInteger($cid);
 			$cids=implode(',',$cid);
+			$query="DELETE FROM #__joomleague_match_single WHERE id IN ($cids)";
+			$this->_db->setQuery($query);
+			if (!$this->_db->query())
+			{
+				$this->setError($this->_db->getErrorMsg());
+				return false;
+			}
+			/*
 			$query="DELETE FROM #__joomleague_match_statistic WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
@@ -262,19 +271,274 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-			return parent::delete($cids);
+			*/
 		}
 		return true;
 	}
+
+	function save_team_to($cid,$post)
+	{
+		$result=true;
+		$t1_r=$post['team1_result'.$cid];
+		$t2_r=$post['team2_result'.$cid];
+		$t1_rso=$post['team1_result_so'.$cid];
+		$t2_rso=$post['team2_result_so'.$cid];
+		//TODO leg, team_won, ...
+		if($t1_r == $t2_r)
+		{
+			if($t1_rso == $t2_rso)
+			{
+				$projectteam_id=0;
+			}
+			elseif($t1_rso > $t2_rso)
+			{
+				$projectteam_id=$post['projectteam1_id'.$cid];
+			}
+			elseif($t1_rso < $t2_rso)
+			{
+				$projectteam_id=$post['projectteam2_id'.$cid];
+			}
+		}
+		else if ($t1_r > $t2_r)
+		{
+			$projectteam_id=$post['projectteam1_id'.$cid];
+		}
+		else
+		{
+			$projectteam_id=$post['projectteam2_id'.$cid];
+		}
+		$query = ' UPDATE #__joomleague_treeto_node AS ttn ';
+		$query .=	' SET ttn.team_id = ' . $projectteam_id;
+		$query .=	' , ttn.is_lock = ' . 1;
+		$query .=	' WHERE ttn.id=(SELECT ttm.node_id FROM #__joomleague_treeto_match AS ttm ';
+		$query .=	' WHERE ttm.match_id = ' . $cid . ')';
+		$query .=	' AND (ttn.bestof = 1) '; //only for Bestof=1, if B>1 :: setNodeWinner
+	//	$query .=	' AND (tt.global_fake = 0) '; //
+		$query .=	';';
+
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			$result=false;
+		}
+
+		return $result;
+	}
+
+  /**
+* obj2Array#
+* converts simpleXml object to array
+*
+* Variables: $o['obj']: simplexml object
+*
+* @return
+*
+*/
+function obj2Array($obj)
+{
+	$arr=(array)$obj;
+	if (empty($arr))
+	{
+		$arr='';
+	}
+	else
+	{
+		foreach ($arr as $key=>$value)
+		{
+			if (!is_scalar($value))
+			{
+				$arr[$key]=$this->obj2Array($value);
+			}
+		}
+	}
+	return $arr;
+}
 
 	// function save_array changed for date per match and period results
 	// Gucky 2007/05/25
 	function save_array($cid=null,$post=null,$zusatz=false,$project_id)
 	{
 		$option='com_joomleague';
-		$mainframe	= JFactory::getApplication();
-		$datatable[0]='#__joomleague_match';
-		$fields=$this->_db->getTableFields($datatable);
+		$mainframe	=& JFactory::getApplication();
+		$datatable[0]='#__joomleague_match_single';
+		$fields = $this->_db->getTableFields($datatable);
+		
+    $sporttype = $mainframe->getUserState( $option . 'sporttype' );
+    $defaultvalues = array();
+    $game_parts = $mainframe->getUserState( $option . 'game_parts' );
+    //$game_parts = $game_parts - 1;
+     
+//     $mainframe->enqueueMessage(JText::_('save_array-resultsplit: '.print_r($post,true) ),'');
+//     $mainframe->enqueueMessage(JText::_('save_array-resultsplit team 1: '.print_r($post['team1_result_split'.$cid],true) ),'Notice');
+//     $mainframe->enqueueMessage(JText::_('save_array-resultsplit team 2: '.print_r($post['team2_result_split'.$cid],true) ),'Notice');
+
+// in abhängigkeit von der sportart wird das ergebnis gespeichert    
+switch(strtolower($sporttype))
+{
+case 'kegeln':
+
+$xmldir = JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'extensions'.DS.'jlextindividualsport'.DS.'admin'.DS.'assets'.DS.'extended';
+$file = 'kegelnresults.xml';
+$defaultconfig=array ();
+$out=simplexml_load_file($xmldir.DS.$file,'SimpleXMLElement',LIBXML_NOCDATA);
+$temp='';
+$arr = $this->obj2Array($out);
+$outName=JText::_($out->name[0]);
+
+if (isset($arr["params"]["param"]))
+					{
+						foreach ($arr["params"]["param"] as $param)
+						{
+							//$temp .= $param["@attributes"]["name"]."=".$param["@attributes"]["default"]."\n";
+							$defaultconfig[$param["@attributes"]["name"]]=$param["@attributes"]["default"];
+						}
+					}
+
+					
+$post['team1_result'.$cid] = 0;
+$post['team2_result'.$cid] = 0;
+
+
+// alles auf null setzen
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_VOLLE'] = 0;
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_VOLLE'] = 0;
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_ABR'] = 0;
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_ABR'] = 0;
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_FW'] = 0;
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_FW'] = 0;
+
+
+for ($a=0; $a < 2; $a++)
+{
+$post['team1_result'.$cid] = $post['team1_result'.$cid] + $post['team1_result_split'.$cid][$a];
+$post['team2_result'.$cid] = $post['team2_result'.$cid] + $post['team2_result_split'.$cid][$a];
+}
+
+
+for ($a=0; $a < $game_parts; $a++)
+{
+
+switch ($a)
+{
+case 0:
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_VOLLE'] = $post['team1_result_split'.$cid][$a];
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_VOLLE'] = $post['team2_result_split'.$cid][$a];
+break;
+case 1:
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_ABR'] = $post['team1_result_split'.$cid][$a];
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_ABR'] = $post['team2_result_split'.$cid][$a];
+break;
+case 2:
+$defaultconfig['JL_EXT_KEGELN_DATA_HOME_FW'] = $post['team1_result_split'.$cid][$a];
+$defaultconfig['JL_EXT_KEGELN_DATA_AWAY_FW'] = $post['team2_result_split'.$cid][$a];
+break;
+}
+
+}
+
+foreach ( $defaultconfig as $key => $value )
+{
+$defaultvalues[] = $key . '=' . $value;
+//$temp .= $key."=".$value."\n";
+}
+$temp = implode( "\n", $defaultvalues );
+
+$query="UPDATE #__joomleague_match_single SET `extended`='".$temp."' WHERE id=".$cid;
+$this->_db->setQuery($query);
+if (!$this->_db->query())
+		{
+$mainframe->enqueueMessage(JText::_('save_array - defaultconfig: '.print_r($this->_db->getErrorMsg(),true) ),'Error');			
+		}
+
+
+break;
+
+case 'tennis':
+$xmldir = JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'extensions'.DS.'jlextindividualsport'.DS.'admin'.DS.'assets'.DS.'extended';
+$file = 'tennisresults.xml';
+$defaultconfig=array ();
+$out=simplexml_load_file($xmldir.DS.$file,'SimpleXMLElement',LIBXML_NOCDATA);
+$temp='';
+$arr = $this->obj2Array($out);
+$outName=JText::_($out->name[0]);
+
+if (isset($arr["params"]["param"]))
+					{
+						foreach ($arr["params"]["param"] as $param)
+						{
+							$temp .= $param["@attributes"]["name"]."=".$param["@attributes"]["default"]."\n";
+							$defaultconfig[$param["@attributes"]["name"]]=$param["@attributes"]["default"];
+						}
+					}
+					
+//$mainframe->enqueueMessage(JText::_('save_array - temp: '.print_r($temp,true) ),'');					
+//$mainframe->enqueueMessage(JText::_('save_array - defaultconfig: '.print_r($defaultconfig,true) ),'');
+
+// alles auf null setzen
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_MATCHES'] = 0;
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_MATCHES'] = 0;
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_SETS'] = 0;
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_SETS'] = 0;
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_POINTS'] = 0;
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_POINTS'] = 0;
+
+for ($a=0; $a < $game_parts; $a++)
+{
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_MATCHES'] = $defaultconfig['JL_EXT_TENNIS_DATA_HOME_MATCHES'] + $post['team1_result_split'.$cid][$a];
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_MATCHES'] = $defaultconfig['JL_EXT_TENNIS_DATA_AWAY_MATCHES'] + $post['team2_result_split'.$cid][$a];
+
+// erst die sätze
+if ( $post['team1_result_split'.$cid][$a] > $post['team2_result_split'.$cid][$a] )
+{
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_SETS']++;
+}
+elseif ( $post['team1_result_split'.$cid][$a] < $post['team2_result_split'.$cid][$a] )
+{
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_SETS']++;
+}
+
+}
+// zum schluss die punkte
+if ( $defaultconfig['JL_EXT_TENNIS_DATA_HOME_SETS'] > $defaultconfig['JL_EXT_TENNIS_DATA_AWAY_SETS'] )
+{
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_POINTS']++;
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_POINTS'] = 0;
+}
+elseif ( $defaultconfig['JL_EXT_TENNIS_DATA_HOME_SETS'] < $defaultconfig['JL_EXT_TENNIS_DATA_AWAY_SETS'] )
+{
+$defaultconfig['JL_EXT_TENNIS_DATA_AWAY_POINTS']++;
+$defaultconfig['JL_EXT_TENNIS_DATA_HOME_POINTS'] = 0;
+}
+$post['team1_result'.$cid] = $defaultconfig['JL_EXT_TENNIS_DATA_HOME_POINTS'];
+$post['team2_result'.$cid] = $defaultconfig['JL_EXT_TENNIS_DATA_AWAY_POINTS'];
+
+//$mainframe->enqueueMessage(JText::_('save_array - defaultconfig: '.print_r($defaultconfig,true) ),'Notice');
+
+// $temp='';
+// foreach ( $defaultconfig as $key => $value )
+// {
+// $temp .= $key."=".$value."\n";
+// }
+
+foreach ( $defaultconfig as $key => $value )
+{
+$defaultvalues[] = $key . '=' . $value;
+//$temp .= $key."=".$value."\n";
+}
+$temp = implode( "\n", $defaultvalues );
+
+
+$query="UPDATE #__joomleague_match_single SET `extended`='".$temp."' WHERE id=".$cid;
+$this->_db->setQuery($query);
+if (!$this->_db->query())
+		{
+$mainframe->enqueueMessage(JText::_('save_array - defaultconfig: '.print_r($this->_db->getErrorMsg(),true) ),'Error');			
+		}
+		
+break;
+}
+		
 		foreach($fields as $field)
 		{
 			$query='';
@@ -287,15 +551,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 					$result=$post[$keys.$fieldzusatz];
 					if ($keys=='match_date')
 					{
-						if(strpos($post['match_time'.$fieldzusatz],":")!==false)
-						{
-							$result .= ' '.$post['match_time'.$fieldzusatz];
-						} 
-						// to support short time inputs
-						// for example 2158 is used instead of 21:58
-						else {
-							$result .= ' '.substr($post['match_time'.$fieldzusatz], 0, -2) . ':' . substr($post['match_time'.$fieldzusatz], -2);  
-						} 
+						$result .= ' '.$post['match_time'.$fieldzusatz];
 					}
 					if ($keys=='team1_result_split' || $keys=='team2_result_split' || $keys=='homeroster' || $keys=='awayroster')
 					{
@@ -340,13 +596,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						if ($query){$query .= ',';}
 						$query .= $keys.'='.$vorzeichen.$result.$vorzeichen;
 					}
-
+					
 					if ($result=='' && $keys=='time_present')
 					{
 						if ($query){$query .= ',';}
 						$query .= $keys.'=null';
 					}
-
+					
 					if ($result=='' && $keys=='match_number')
 					{
 						if ($query){$query .= ',';}
@@ -355,10 +611,19 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 				}
 			}
 		}
-		$user = JFactory::getUser();
-		$query='UPDATE #__joomleague_match SET '.$query.',`modified`=NOW(),`modified_by`='.$user->id.' WHERE id='.$cid;
+		$user =& JFactory::getUser();
+		$query='UPDATE #__joomleague_match_single SET '.$query.',`modified`=NOW(),`modified_by`='.$user->id.' WHERE id='.$cid;
 		$this->_db->setQuery($query);
 		$this->_db->query($query);
+		
+	
+		
+		// now for ko mode
+		$project=&$this->getProject();
+		if ($project->project_type == 'TOURNAMENT_MODE')
+		{
+			return $this->save_team_to($cid,$post);
+		}
 
 		return true;
 	}
@@ -370,7 +635,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		* @return	array
 		* @since 0.1
 		*/
-	function getPlaygrounds()
+	/*
+  function getPlaygrounds()
 	{
 		$query='SELECT id AS value, name AS text FROM #__joomleague_playground ORDER BY text ASC ';
 		$this->_db->setQuery($query);
@@ -381,7 +647,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		}
 		return $result;
 	}
-
+  */
+  
 	/**
 	 * Method to return teams and match data
 		*
@@ -395,7 +662,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		.' t1.name AS team1,'
 		.' t2.name AS team2,'
 		.' u.name AS editor '
-		.' FROM #__joomleague_match AS mc '
+		.' FROM #__joomleague_match_single AS mc '
 		.' INNER JOIN #__joomleague_project_team AS pt1 ON pt1.id=mc.projectteam1_id '
 		.' INNER JOIN #__joomleague_team AS t1 ON t1.id=pt1.team_id '
 		.' INNER JOIN #__joomleague_project_team AS pt2 ON pt2.id=mc.projectteam2_id '
@@ -413,23 +680,21 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @param int $project_position_id
 	 * @return array of player ids
 	 */
-	function getRoster($team_id, $project_position_id=0)
+	function getRoster($team_id,$project_position_id=0)
 	{
-		$query='SELECT	mp.teamplayer_id AS value,mp.trikot_number AS trikot_number,'
+		$query='SELECT	mp.teamplayer_id AS value,'
 		.' pl.firstname,'
 		.' pl.nickname,'
 		.' pl.lastname,'
-		.' tpl.jerseynumber'
+		.' tpl.jerseynumber'		
 		.' FROM #__joomleague_match_player AS mp '
 		.' INNER JOIN #__joomleague_team_player AS tpl ON tpl.id=mp.teamplayer_id '
 		.' INNER JOIN #__joomleague_person AS pl ON pl.id=tpl.person_id '
 		.' INNER JOIN #__joomleague_project_position as ppos ON ppos.id = tpl.project_position_id '
 		.' WHERE mp.match_id='.(int) $this->_id
 		.' AND tpl.projectteam_id='.$team_id
-		.' AND mp.came_in='.self::MATCH_ROSTER_STARTER
-		.' AND pl.published = 1 '
-		.' AND tpl.published = 1 '
-		.' AND tpl.published = 1 ';
+		.' AND mp.came_in=0 '
+		.' AND pl.published = 1 ';
 		if ($project_position_id > 0)
 		{
 			$query .= " AND mp.project_position_id='".$project_position_id."' ";
@@ -448,7 +713,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @param int $project_position_id
 	 * @return array of players
 	 */
-	function getMatchPlayers($projectteam_id, $project_position_id=0)
+	function getMatchPlayers($projectteam_id,$project_position_id=0)
 	{
 		$query='	SELECT	mp.teamplayer_id AS tpid,
 							pl.firstname,
@@ -462,10 +727,9 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 					INNER JOIN #__joomleague_team_player AS tpl ON tpl.id=mp.teamplayer_id
 					INNER JOIN #__joomleague_person AS pl ON pl.id=tpl.person_id
 					INNER JOIN #__joomleague_project_position as ppos ON ppos.id = mp.project_position_id
-					WHERE	mp.match_id='.(int) $this->_id.' 
-					AND pl.published = 1 
-					AND tpl.published = 1 
-					AND tpl.projectteam_id='.$projectteam_id;
+					WHERE	mp.match_id='.(int) $this->_id.' AND
+					pl.published = 1 AND
+					tpl.projectteam_id='.$projectteam_id;
 		if ($project_position_id > 0)
 		{
 			$query .= " AND mp.project_position_id='$position_id'";
@@ -497,9 +761,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 					INNER JOIN #__joomleague_team_staff AS tpl ON tpl.id=mp.team_staff_id
 					INNER JOIN #__joomleague_person AS pl ON pl.id=tpl.person_id
 					INNER JOIN #__joomleague_project_position as ppos ON ppos.id = mp.project_position_id
-					WHERE mp.match_id='.(int) $this->_id.'
-					AND pl.published = 1
-					AND tpl.published = 1
+					WHERE mp.match_id='.(int) $this->_id.' 
+					AND pl.published = 1 
 					AND tpl.projectteam_id='.$projectteam_id;
 		if ($project_position_id > 0)
 		{
@@ -586,15 +849,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 							pl.info,
 							pos.name AS positionname,
 							ppos.position_id,
-							ppos.id AS pposid,
-							tpl.ordering
+							ppos.id AS pposid
 					FROM #__joomleague_person AS pl
 					INNER JOIN #__joomleague_team_player AS tpl ON tpl.person_id=pl.id
 					INNER JOIN #__joomleague_project_position AS ppos ON ppos.id=tpl.project_position_id
 					INNER JOIN #__joomleague_position AS pos ON pos.id=ppos.position_id
-					WHERE tpl.projectteam_id='. $this->_db->Quote($projectteam_id).'
-					AND pl.published = 1
-					AND tpl.published = 1';
+					WHERE tpl.projectteam_id='. $this->_db->Quote($projectteam_id).
+					'AND pl.published = 1';
 		if (is_array($filter) && count($filter) > 0)
 		{
 			$query .= " AND tpl.id NOT IN (".implode(',',$filter).")";
@@ -611,20 +872,23 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @return	array
 	 * @since 0.1
 	 */
-	function getGhostPlayer()
+	/*
+  function getGhostPlayer()
 	{
 		$ghost=new JObject();
 		$ghost->set('value',0);
 		$ghost->set('tpid',0);
 		$ghost->set('firstname','');
 		$ghost->set('nickname','');
-		$ghost->set('lastname',JText::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
+		$ghost->set('lastname',JText::_('JL_GLOBAL_UNKNOWN'));
 		$ghost->set('info','');
 		$ghost->set('positionname','');
 		$ghost->set('project_position_id',0);
 		return array($ghost);
 	}
-
+  */
+  
+  /*
 	function getGhostPlayerbb($projectteam_id)
 	{
 		$ghost=new JObject();
@@ -632,14 +896,14 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		$ghost->set('tpid',0);
 		$ghost->set('firstname','');
 		$ghost->set('nickname','');
-		$ghost->set('lastname',JText::_('COM_JOOMLEAGUE_GLOBAL_UNKNOWN'));
+		$ghost->set('lastname',JText::_('JL_GLOBAL_UNKNOWN'));
 		$ghost->set('projectteam_id',$projectteam_id);
 		$ghost->set('info','');
 		$ghost->set('positionname','');
 		$ghost->set('project_position_id',0);
 		return array($ghost);
 	}
-
+  */
 
 	/**
 	 * Returns the team players
@@ -661,9 +925,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 					INNER JOIN #__joomleague_team_staff AS ts ON ts.person_id=pl.id
 					INNER JOIN #__joomleague_project_position AS ppos ON ppos.id=ts.project_position_id
 					INNER JOIN #__joomleague_position AS pos ON pos.id=ppos.position_id
-					WHERE ts.projectteam_id='.$this->_db->Quote($projectteam_id)
-					.' AND pl.published = 1'
-					.' AND ts.published = 1';
+					WHERE ts.projectteam_id='.$this->_db->Quote($projectteam_id).
+					' AND pl.published = 1';
 		if (is_array($filter) && count($filter) > 0)
 		{
 			$query .= " AND ts.id NOT IN (".implode(',',$filter).")";
@@ -683,7 +946,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getProjectPositions($id=0)
 	{
 		$option='com_joomleague';
-		$mainframe = JFactory::getApplication();
+		$mainframe =& JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	pos.id AS value,
 							pos.name AS text,
@@ -715,14 +978,14 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getProjectPositionsOptions($id=0, $person_type=1)
 	{
 		$option='com_joomleague';
-		$mainframe = JFactory::getApplication();
+		$mainframe =& JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	ppos.id AS value,
 							pos.name AS text,
 							pos.id AS posid
 					FROM #__joomleague_position AS pos
 					INNER JOIN #__joomleague_project_position AS ppos ON ppos.position_id=pos.id
-					WHERE ppos.project_id='.$project_id.'
+					WHERE ppos.project_id='.$project_id.' 
 					  AND pos.persontype='.$person_type;
 		if ($id > 0)
 		{
@@ -748,7 +1011,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getProjectStaffPositions($id=0)
 	{
 		$option='com_joomleague';
-		$mainframe = JFactory::getApplication();
+		$mainframe =& JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	pos.id AS value,
 							pos.name AS text,
@@ -780,14 +1043,14 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getProjectRefereePositions($id=0)
 	{
 		$option='com_joomleague';
-		$mainframe = JFactory::getApplication();
+		$mainframe =& JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	ppos.id AS value,
 							pos.name AS text,
 							ppos.id AS pposid
 					FROM #__joomleague_position AS pos
 					LEFT JOIN #__joomleague_project_position AS ppos ON ppos.position_id=pos.id
-					WHERE ppos.project_id='.$project_id.'
+					WHERE ppos.project_id='.$project_id.' 
 					  AND pos.persontype=3';
 		if ($id > 0)
 		{
@@ -812,15 +1075,23 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function updateRoster($data)
 	{
-		$result=true;
-		$positions=$data['positions'];
-		$mid=$data['mid'];
-		$team=$data['team'];
-		// we first remove the records of starter for this team and this game then add them again from updated data.
+	$mainframe	=& JFactory::getApplication();
+	//$mainframe->enqueueMessage(JText::_('updateRoster data: '.print_r($data,true) ),'');
+	
+		$result = true;
+		
+    if ( isset($data['positions']) && isset($data['mid']) && isset($data['mid']) )
+    {
+    $positions = $data['positions'];
+		$mid = $data['mid'];
+		$team = $data['mid'];
+		
+		/*
+    // we first remove the records of starter for this team and this game then add them again from updated data.
 		$query='	DELETE	mp
 					FROM #__joomleague_match_player AS mp
 					INNER JOIN #__joomleague_team_player AS tp ON tp.id=mp.teamplayer_id
-					WHERE	came_in='.self::MATCH_ROSTER_STARTER.' AND
+					WHERE	came_in=0 AND
 							mp.match_id='.$this->_db->Quote($mid).' AND
 							tp.projectteam_id='.$this->_db->Quote($team);
 		$this->_db->setQuery($query);
@@ -829,18 +1100,50 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			$this->setError($this->_db->getErrorMsg());
 			$result=false;
 		}
+		*/
+		
+		//$mainframe->enqueueMessage(JText::_('updateRoster positions: '.print_r($positions,true) ),'');
+		
 		foreach ($positions AS $project_position_id => $pos)
 		{
-			if (isset($data['position'.$project_position_id]))
+		
+    //$mainframe->enqueueMessage(JText::_('updateRoster pos: '.print_r($pos,true) ),'');
+		//$mainframe->enqueueMessage(JText::_('updateRoster project_position_id: '.$project_position_id ),'');
+		//$mainframe->enqueueMessage(JText::_('updateRoster data position: '.print_r($data['position'.$project_position_id],true) ),'');
+		
+			if ( isset($data['position'.$project_position_id]) )
 			{
+			
+      //$mainframe->enqueueMessage(JText::_('updateRoster position_id: '.$project_position_id ),'');
+			
 				foreach ($data['position'.$project_position_id] AS $ordering => $player_id)
 				{
+				
+				// we first remove the records of starter for this team and this game then add them again from updated data.
+		$query='	DELETE	mp
+					FROM #__joomleague_match_player AS mp
+					INNER JOIN #__joomleague_team_player AS tp ON tp.id=mp.teamplayer_id
+					WHERE	came_in=0 AND
+							mp.match_id='.$this->_db->Quote($mid).' AND
+							tp.projectteam_id='.$this->_db->Quote($team).' AND
+							tp.teamplayer_id='.$this->_db->Quote($player_id);
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			$result=false;
+		}
+				
+				
+        //$mainframe->enqueueMessage(JText::_('updateRoster ordering: '.$ordering ),'');
+				//$mainframe->enqueueMessage(JText::_('updateRoster player_id: '.$player_id ),'');
+				
 					$record =& JTable::getInstance('Matchplayer','Table');
-					$record->match_id			= $mid;
-					$record->teamplayer_id		= $player_id;
-					$record->project_position_id= $pos->pposid;
-					$record->came_in			= self::MATCH_ROSTER_STARTER;
-					$record->ordering			= $ordering;
+					$record->match_id=$mid;
+					$record->teamplayer_id=$player_id;
+					$record->project_position_id=$pos->pposid;
+					$record->came_in=0;
+					$record->ordering=$ordering;
 					if (!$record->check())
 					{
 						$this->setError($record->getError());
@@ -853,8 +1156,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 					}
 				}
 			}
+			
+      
 		}
-		return $result;
+		
+		}
+		return true;
 	}
 
 	/**
@@ -864,6 +1171,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 *
 	 */
+	/* 
 	function updateStaff($data)
 	{
 		$result=true;
@@ -909,6 +1217,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		//die();
 		return true;
 	}
+  */
 
 	/**
 	 * Method to update starting lineup list
@@ -917,6 +1226,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 *
 	 */
+	 
+	 /*
 	function updateReferees($post)
 	{
 		$mid=$post['mid'];
@@ -976,7 +1287,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		}
 		return true;
 	}
-
+  */
+  
 	/**
 	 * Method to return substitutions made by a team during a match
 	 * if no team id is passed,all substitutions should be returned (to be done!!)
@@ -987,10 +1299,10 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getSubstitutions($tid=0)
 	{
 		$option='com_joomleague';
-		$mainframe = JFactory::getApplication();
+		$mainframe =& JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$in_out=array();
-		$query='SELECT mp.*,'
+		$query='SELECT	mp.*,'
 		.' p1.firstname AS firstname, p1.nickname AS nickname, p1.lastname AS lastname,'
 		.' p2.firstname AS out_firstname,p2.nickname AS out_nickname, p2.lastname AS out_lastname,'
 		.' pos.name AS in_position, came_in'
@@ -1022,36 +1334,36 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	{
 		if (!$data['id'])
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_MATCH_ID_IS_NULL'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_MATCH_ID_IS_NULL'));
 			return false;
 		}
 		$table =& $this->getTable();
 		if (!$table->load($data['id']))
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_GAME_NOT_FOUND'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_GAME_NOT_FOUND'));
 			return false;
 		}
 		// Bind the form fields to the table row
 		if (!$table->bind($data))
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 			return false;
 		}
 		if (!$table->check())
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 			return false;
 		}
 		if (!$table->store(true))
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_STORE_FAILED'));
 			return false;
 		}
 		if($data["new_match_id"] >0) {
 			$table =& $this->getTable();
 			if (!$table->load($data['new_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -1059,17 +1371,17 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -1077,7 +1389,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			$table =& $this->getTable();
 			if (!$table->load($data['old_match_id']))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_OLD_GAME_NOT_FOUND'));
 				return false;
 			}
 			$newdata=array();
@@ -1085,17 +1397,17 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			// Bind the form fields to the table row
 			if (!$table->bind($newdata))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_BINDING_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_BINDING_FAILED'));
 				return false;
 			}
 			if (!$table->check())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 				return false;
 			}
 			if (!$table->store(true))
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_STORE_FAILED'));
+				$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_STORE_FAILED'));
 				return false;
 			}
 		}
@@ -1124,7 +1436,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		$in_out_time			= $data['in_out_time'];
 		$project_position_id 	= $data['project_position_id'];
 
-		if ($project_position_id == 0 && $player_in>0)
+		if ($data['project_position_id'] == 0 && $player_in>0)
 		{
 			// retrieve normal position of player getting in
 			$query='	SELECT project_position_id '
@@ -1137,7 +1449,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		if($player_in>0) {
 			$in_player_record =& JTable::getInstance('Matchplayer','Table');
 			$in_player_record->match_id				= $match_id;
-			$in_player_record->came_in				= self::MATCH_ROSTER_SUBSTITUTE_IN; //1 //1=came in, 2=went out
+			$in_player_record->came_in				= 1; //1=came in, 2=went out
 			$in_player_record->teamplayer_id		= $player_in;
 			$in_player_record->in_for				= ($player_out>0) ? $player_out : 0;
 			$in_player_record->in_out_time			= $in_out_time;
@@ -1150,7 +1462,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		if($player_out>0 && $player_in==0) {
 			$out_player_record =& JTable::getInstance('Matchplayer','Table');
 			$out_player_record->match_id			= $match_id;
-			$out_player_record->came_in				= self::MATCH_ROSTER_SUBSTITUTE_OUT; //2; //0=starting lineup
+			$out_player_record->came_in				= 2; //0=starting lineup
 			$out_player_record->teamplayer_id		= $player_out;
 			$out_player_record->in_out_time			= $in_out_time;
 			$out_player_record->project_position_id	= $project_position_id;
@@ -1169,7 +1481,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @param int $substitution_id
 	 * @return boolean
 	 */
-	function removeSubstitution($substitution_id)
+	/*
+  function removeSubstitution($substitution_id)
 	{
 		// the subsitute isn't getting in so we delete the substitution
 		$query="	DELETE
@@ -1179,19 +1492,20 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		$this->_db->setQuery($query);
 		if (!$this->_db->query())
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_ERROR_DELETING_SUBST'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_ERROR_DELETING_SUBST'));
 			return false;
 		}
 		return true;
 	}
-
-	function saveevent($data, $project_id)
+  */
+  
+	function saveevent($data,$project_id)
 	{
 		$object =& JTable::getInstance('MatchEvent','Table');
 		$object->bind($data);
 		if (!$object->check())
 		{
-			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			$this->setError(JText::_('JL_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 			return false;
 		}
 		if (!$object->store())
@@ -1286,10 +1600,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						$stat->value          = ($value=="") ? null : $value;
 						if (!$stat->check())
 						{
+							//var_dump($stat);
 							echo "stat check failed!"; die();
 						}
 						if (!$stat->store())
 						{
+							//var_dump($stat);
 							echo "stat store failed!"; die();
 						}
 					}
@@ -1323,10 +1639,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						$stat->value= ($value=="") ? null : $value;
 						if (!$stat->check())
 						{
+							//var_dump($stat);
 							echo "stat check failed!"; die();
 						}
 						if (!$stat->store())
 						{
+							//var_dump($stat);
 							echo "stat store failed!"; die();
 						}
 					}
@@ -1341,12 +1659,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		$object =& JTable::getInstance('MatchEvent','Table');
 		if (!$object->canDelete($event_id))
 		{
-			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_ERROR_DELETE');
+			$this->setError('JL_ADMIN_MATCH_MODEL_ERROR_DELETE');
 			return false;
 		}
 		if (!$object->delete($event_id))
 		{
-			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_DELETE_FAILED');
+			$this->setError('JL_ADMIN_MATCH_MODEL_DELETE_FAILED');
 			return false;
 		}
 		return true;
@@ -1447,7 +1765,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		$query='	SELECT DISTINCT	et.id AS value,
 									et.name AS text,
 									et.icon AS icon
-					FROM #__joomleague_match AS m
+					FROM #__joomleague_match_single AS m
 					INNER JOIN #__joomleague_project_position AS ppos ON ppos.project_id='.$project_id.'
 					INNER JOIN #__joomleague_position_eventtype AS pet ON pet.position_id=ppos.position_id
 					INNER JOIN #__joomleague_eventtype AS et ON et.id=pet.eventtype_id
@@ -1470,13 +1788,9 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return true;
 	}
 
-	/**
-	 *
-	 * @param int $round_id
-	 */
 	function getRoundMatches($round_id)
 	{
-		$query="SELECT * FROM #__joomleague_match WHERE round_id=$round_id ORDER by match_number";
+		$query="SELECT * FROM #__joomleague_match_single WHERE round_id=$round_id ORDER by match_number";
 		$this->_db->setQuery($query);
 		return ($this->_db->loadObjectList());
 	}
@@ -1505,16 +1819,11 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $stats;
 	}
 
-	/**
-	 *
-	 * @param int $project_id
-	 * @param int $exclududeMatchId
-	 */
 	function getMatchRelationsOptions($project_id,$exclududeMatchId=0)
 	{
 		$query="SELECT	m.id AS value,
 							CONCAT('(',m.match_date,') - ',t1.name,' - ',t2.name) AS text
-							FROM #__joomleague_match AS m
+							FROM #__joomleague_match_single AS m
 							INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id=pt1.id
 							INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id=pt2.id
 							INNER JOIN #__joomleague_team AS t1 ON pt1.team_id=t1.id
@@ -1530,204 +1839,404 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	function getProjectRoundCodes($project_id)
 	{
 		$query="SELECT id,roundcode,round_date_first FROM #__joomleague_round
-				WHERE project_id=".$project_id."
+				WHERE project_id=".$project_id." 
 				ORDER by roundcode,round_date_first ASC";
 		$this->_db->setQuery($query);
 		return $this->_db->loadObjectList();
 	}
-
-	/**
-	 *
-	 * prefill the roster with the project team players
-	 *
-	 * @param int $projecteam_id
-	 * @param int $bDeleteCurrrentRoster
-	 * @since 1.5.4
-	 * @author And_One <andone@mfga.at>
-	 * @return boolean
-	 */
-	function prefillMatchPlayersWithProjectteamPlayers($projectteam_id, $bDeleteCurrrentRoster) {
-		$result = false;
-		if($bDeleteCurrrentRoster) {
-			$query='DELETE FROM #__joomleague_match_player
-					WHERE match_id='.$this->_id.'
-					AND came_in = '.self::MATCH_ROSTER_STARTER.'
-					AND teamplayer_id in (SELECT id from #__joomleague_team_player where projectteam_id = '.$projectteam_id.')
-					';
-			$this->_db->setQuery($query);
-			if (!$this->_db->query())
-			{
-				$this->setError($this->_db->getErrorMsg());
-				$result=false;
-			}
-		}
-		$roster = $this->getMatchPlayers($projectteam_id);
-		if (count($roster)==0)
-		{
-			$team_players = $this->getTeamPlayers($projectteam_id);
-			if(count($team_players == 0)) {
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
-			}
-			foreach ($team_players AS $player)
-			{
-				$record =& JTable::getInstance('Matchplayer','Table');
-				$record->match_id			= $this->_id;
-				$record->teamplayer_id		= $player->value;
-				$record->project_position_id= $player->pposid;
-				$record->came_in			= self::MATCH_ROSTER_STARTER;
-				$record->ordering			= $player->ordering;
-				if (!$record->check())
-				{
-					$this->setError($record->getError());
-					$result = false;
-				}
-				if (!$record->store())
-				{
-					$this->setError($record->getError());
-					$result = false;
-				} else {
-					$result = true;
-				}
-			}
-		} else {
-			$result = false;
-		}
-		return $result;
+	
+	
+	function save_roster_match()
+	{
+  $option='com_joomleague';
+  
+  $datahome = array();
+  $dataaway = array();
+  $exporthome = array();
+  $exportaway = array();
+  
+	$mainframe	=& JFactory::getApplication();
+	$post=JRequest::get('post');
+  $cid=JRequest::getVar('cid',array(),'post','array');
+	JArrayHelper::toInteger($cid);
+		
+  $sporttype = $mainframe->getUserState( $option . 'sporttype' );
+  
+  //$mainframe->enqueueMessage(JText::_('save_roster_match-post: '.print_r($post,true) ),'');
+  //$mainframe->enqueueMessage(JText::_('save_roster_match-cid: '.print_r($cid,true) ),'');
+  
+  $project_positions = $this->getProjectPositions(0);
+  
+  //$mainframe->enqueueMessage(JText::_('getProjectPositions: '.print_r($project_positions,true) ),'');
+  
+  foreach ( $project_positions as $key => $value )
+  {
+  //$project_position_id = $value->pposid;
+  $project_position_id = $value->value;
+  //$mainframe->enqueueMessage(JText::_('getProjectPositions project_position_id: '.$project_position_id ),'');
+  }
+      
+  $match_id = $post['match_id'];
+  
+  for ($x=0; $x < count($cid); $x++)
+	{
+	$homeplayer = $post['teamplayer1_id'.$cid[$x]];	
+	$awayplayer = $post['teamplayer2_id'.$cid[$x]];
+	$hometeam = $post['projectteam1_id'];	
+	$awayteam = $post['projectteam2_id'];
+	
+  $query = ' SELECT id
+  FROM #__joomleague_match_player
+  WHERE match_id='. $match_id .' AND teamplayer_id = '. $homeplayer;
+  $this->_db->setQuery($query);	
+  //$matchplayer_id = $this->_db->loadResult();
+  if ( !$matchplayer_id = $this->_db->loadResult() )
+  {
+  $mainframe->enqueueMessage(JText::_('heimspieler: '.$homeplayer.' nicht vorhanden' ),'Error');
+  
+  $datahome['mid'] = $match_id;
+	$datahome['team'] = $hometeam;        
+  $datahome['positions'] = $project_positions;        
+	//$temp = new stdClass();
+	$temp = $homeplayer;
+  $exporthome[] = $temp;
+  //$datahome['position'.$project_position_id] = array_merge($export);
+  //unset($export);				
+  }
+  
+  $query = ' SELECT id
+  FROM #__joomleague_match_player
+  WHERE match_id='. $match_id .' AND teamplayer_id = '. $awayplayer;
+  $this->_db->setQuery($query);	
+  //$matchplayer_id = $this->_db->loadResult();
+  if ( !$matchplayer_id = $this->_db->loadResult() )
+  {
+  $mainframe->enqueueMessage(JText::_('gastspieler: '.$awayplayer.' nicht vorhanden' ),'Error');
+  
+  $dataaway['mid'] = $match_id;
+	$dataaway['team'] = $awayteam;
+	$dataaway['positions'] = $project_positions;
+  //$temp = new stdClass();
+	$temp = $awayplayer;
+  $exportaway[] = $temp;
+  //$dataaway['position'.$project_position_id] = array_merge($export);        
+  //unset($export);          
+  }
+  	
 	}
-
-	/**
-	*
-	* prefill the roster with the last known match players
-	*
-	* @param int $projecteam_id
-	* @param int $bDeleteCurrrentRoster
-	* @since 1.5.4
-	* @author And_One <andone@mfga.at>
-	* @return boolean
-	*/
-	function prefillMatchPlayersWithLastMatch($projectteam_id, $bDeleteCurrrentRoster) {
-		$result = true;
-		if($bDeleteCurrrentRoster) {
-			$query='DELETE FROM #__joomleague_match_player
-					WHERE match_id='.$this->_id.'
-					AND came_in = '.self::MATCH_ROSTER_STARTER.'
-					AND teamplayer_id in (SELECT id from #__joomleague_team_player where projectteam_id = '.$projectteam_id.')
-					';
-			$this->_db->setQuery($query);
-			if (!$this->_db->query())
+	
+	$datahome['position'.$project_position_id] = array_merge($exporthome);
+  $dataaway['position'.$project_position_id] = array_merge($exportaway);
+  unset($exporthome);
+  unset($exportaway);
+	// nur wenn auch nichts da ist
+	if ( isset($datahome['position'.$project_position_id]) )
 			{
-				$this->setError($this->_db->getErrorMsg());
-				$result=false;
+			$this->updateRoster($datahome);
 			}
-		}
-		$roster = $this->getMatchPlayers($projectteam_id);
-		if (count($roster)==0)
-		{
-			$team_players = $this->getTeamPlayers($projectteam_id);
-			if(count($team_players == 0)) {
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYERS_MATCH'));
+	if ( isset($dataaway['position'.$project_position_id]) )
+			{
+			$this->updateRoster($dataaway);
 			}
-			$matchid = 0;
-			$query='	SELECT	distinct(mp.match_id) AS match_id
-						FROM #__joomleague_match_player AS mp
-						INNER JOIN #__joomleague_match AS m ON m.id = mp.match_id
-						INNER JOIN #__joomleague_round AS r ON r.id = m.round_id
-						INNER JOIN #__joomleague_team_player AS tpl ON tpl.id=mp.teamplayer_id
-						INNER JOIN #__joomleague_person AS pl ON pl.id=tpl.person_id
-						INNER JOIN #__joomleague_project_position as ppos ON ppos.id = mp.project_position_id
-						WHERE pl.published = 1 AND
-						tpl.projectteam_id='.$projectteam_id;
-			$query .= " ORDER BY mp.id desc LIMIT 1";
-			$this->_db->setQuery($query);
-			$matchid = $this->_db->loadObject()->match_id;
+	
+	
+  
+  
+  
+  }
+  
+	
+	function save_round_match_tennis()
+	{
+  $option='com_joomleague';
+	$mainframe	=& JFactory::getApplication();
+	$post=JRequest::get('post');
+  $cid=JRequest::getVar('cid',array(),'post','array');
+	JArrayHelper::toInteger($cid);
+		
+  $sporttype = $mainframe->getUserState( $option . 'sporttype' );
+  $defaultvalues = array();
+  
+//   $mainframe->enqueueMessage(JText::_('save_round_match-post: '.print_r($post,true) ),'');
+//   $mainframe->enqueueMessage(JText::_('save_round_match-cid: '.print_r($cid,true) ),'');
+    
+  $match_id = $post['match_id'];
+  
+  $query = ' SELECT m.team1_result, 
+  m.team2_result,
+  team1_result_split,
+  team2_result_split,
+  extended
+  FROM #__joomleague_match_single AS m
+	WHERE m.match_id='.(int) $match_id .' AND m.published = 1';
+	$this->_db->setQuery($query);		
+	$singlerows = $this->_db->loadObjectList();
+    
+  foreach ( $singlerows as $row )
+  {
+  $update['resulthome'] += $row->team1_result;
+  $update['resultaway'] += $row->team2_result;
+  
+  $params=explode("\n",$row->extended);
+  foreach($params AS $param)
+	{
+		list ($name,$value) = explode("=",$param);
+		$configvalues[$name] += $value;
+	}
+    
+  }
+  
+  //$mainframe->enqueueMessage(JText::_('save_array - configvalues: '.print_r($configvalues,true) ),'Notice');
 
-			if($matchid>0) {
-				$query='SELECT mp.match_id, mp.teamplayer_id, mp.project_position_id, mp.ordering
-						FROM #__joomleague_match_player AS mp
-						WHERE	mp.match_id='.$matchid.'
-						AND came_in = '.self::MATCH_ROSTER_STARTER.'
-						';
+  //$temp='';
+foreach ( $configvalues as $key => $value )
+{
+$defaultvalues[] = $key . '=' . $value;
+//$temp .= $key."=".$value."\n";
+}
+$temp = implode( "\n", $defaultvalues );
+
+  $rowupdate =& JTable::getInstance('match', 'Table');
+  $rowupdate->load( $match_id );
+  $rowupdate->team1_result = $update['resulthome'];
+  $rowupdate->team2_result = $update['resultaway'];
+  $rowupdate->extended = $temp;
+  if (!$rowupdate->store()) 
+  {
+	JError::raiseError(500, $rowupdate->getError() );
+  }  
+    
+  }
+  
+  
+  function save_round_match_kegeln()
+	{
+  $option = 'com_joomleague';
+	$mainframe	=& JFactory::getApplication();
+	$post = JRequest::get('post');
+  $cid = JRequest::getVar('cid',array(),'post','array');
+	JArrayHelper::toInteger($cid);
+		
+  $sporttype = $mainframe->getUserState( $option . 'sporttype' );
+  $defaultvalues = array();
+  
+  //$mainframe->enqueueMessage(JText::_('save_round_match-post: '.print_r($post,true) ),'');
+  //$mainframe->enqueueMessage(JText::_('save_round_match-cid: '.print_r($cid,true) ),'');
+    
+  $match_id = $post['match_id'];	
+
+	$query = ' SELECT SUM(m.team1_result) AS resulthome, 
+  SUM(m.team2_result) AS resultaway,
+  team1_result_split,
+  team2_result_split
+  FROM #__joomleague_match_single AS m
+	WHERE m.match_id='.(int) $match_id .' AND m.published = 1';
+	$this->_db->setQuery($query);		
+	$row = $this->_db->loadAssoc();
+
+$row['team1_result_split'] = array();
+$row['team2_result_split'] = array();
+
+for ($x=0; $x < count($cid); $x++)
+{
+
+$tempteam1 = $post['team1_result_split'.$cid[$x]]; 
+$tempteam2 = $post['team2_result_split'.$cid[$x]];
+
+for ($a=0; $a < 3; $a++)
+{
+$row['team1_result_split'][$a] = $row['team1_result_split'][$a] + $tempteam1[$a];
+$row['team2_result_split'][$a] = $row['team2_result_split'][$a] + $tempteam2[$a];
+}
+
+}
+$row['team1_result_split'] = implode(";",$row['team1_result_split']);
+$row['team2_result_split'] = implode(";",$row['team2_result_split']);
+
+
+$query = ' SELECT 
+  extended
+  FROM #__joomleague_match_single AS m
+	WHERE m.match_id='.(int) $match_id .' AND m.published = 1';
+	$this->_db->setQuery($query);		
+	$singlerows = $this->_db->loadObjectList();
+  
+  foreach ( $singlerows as $singlerow )
+  {
+  
+  $params=explode("\n",$singlerow->extended);
+  foreach($params AS $param)
+	{
+		list ($name,$value) = explode("=",$param);
+		$configvalues[$name] += $value;
+	}
+    
+  }
+
+  //$mainframe->enqueueMessage(JText::_('save_round_match -configvalues: '.print_r($configvalues,true) ),'');
+  
+
+foreach ( $configvalues as $key => $value )
+{
+$defaultvalues[] = $key . '=' . $value;
+}
+$temp = implode( "\n", $defaultvalues );
+
+
+  $rowupdate =& JTable::getInstance('match', 'Table');
+  $rowupdate->load( $match_id );
+  $rowupdate->team1_result = $row['resulthome'];
+  $rowupdate->team2_result = $row['resultaway'];
+  $rowupdate->team1_result_split = $row['team1_result_split'];
+  $rowupdate->team2_result_split = $row['team2_result_split'];
+  $rowupdate->extended = $temp;
+  if (!$rowupdate->store()) 
+  {
+	JError::raiseError(500, $rowupdate->getError() );
+  }  
+		
+// 	$mainframe->enqueueMessage(JText::_('save_round_match -> '.$match_id ),'Notice');
+// 	$mainframe->enqueueMessage(JText::_('save_round_match -> '.$row['resulthome'] ),'Notice');
+// 	$mainframe->enqueueMessage(JText::_('save_round_match -> '.$row['resultaway'] ),'Notice');
+
+  }
+
+  function save_events_match($event_config)
+	{
+  $option='com_joomleague';
+	$mainframe	=& JFactory::getApplication();
+	$lfdnummer =0 ;
+	$post=JRequest::get('post');
+  $cid=JRequest::getVar('cid',array(),'post','array');
+	JArrayHelper::toInteger($cid);
+		
+  $sporttype = $mainframe->getUserState( $option . 'sporttype' );
+  $project_id = $mainframe->getUserState($option.'project');
+
+  //$mainframe->enqueueMessage(JText::_('save_events_match-post: '.print_r($post,true) ),'');
+  //$mainframe->enqueueMessage(JText::_('save_events_match-cid: '.print_r($cid,true) ),'');
+  //$mainframe->enqueueMessage(JText::_('save_events_match-post: '.print_r($event_config,true) ),'');
+  
+  $match_id = $post['match_id'];
+  
+  for ($a=1; $a <= sizeof($event_config); $a++ )
+  {
+  $event_id = $event_config['event'.$a];
+  //$mainframe->enqueueMessage(JText::_('save_events_match - event_id: '.$event_id),'');
+  
+for ($x=0; $x < count($cid); $x++)
+{
+$tempteam1 = $post['team1_result_split'.$cid[$x]]; 
+$tempteam2 = $post['team2_result_split'.$cid[$x]];
+
+//$mainframe->enqueueMessage(JText::_('save_events_match - event result home: '.$tempteam1[$lfdnummer]),'');
+//$mainframe->enqueueMessage(JText::_('save_events_match - event result teamplayer1: '.$post['teamplayer1_id'.$cid[$x]]),'');
+
+$query = ' SELECT id
+  FROM #__joomleague_match_event
+  WHERE match_id='. $this->_db->Quote($match_id) 
+  .' AND teamplayer_id = '. $this->_db->Quote($post['teamplayer1_id'.$cid[$x]])
+  .' AND event_type_id = '. $this->_db->Quote($event_id);
+  $this->_db->setQuery($query);	
+//  $matchplayer_id = $this->_db->loadResult();
+
+if ($matchplayer_id = $this->_db->loadResult())
+{
+//$mainframe->enqueueMessage(JText::_('save_events_match - teamplayer1 gefunden: '.$post['teamplayer1_id'.$cid[$x]]),'Notice');
+$data['id'] = $matchplayer_id;
+}  
+$data['match_id'] = $match_id;
+$data['projectteam_id'] = $post['projectteam1_id'];
+$data['teamplayer_id'] = $post['teamplayer1_id'.$cid[$x]];
+$data['event_type_id'] = $event_id;
+$data['event_sum'] = $tempteam1[$lfdnummer];
+
+$this->saveevent($data,$project_id);
+
+//$mainframe->enqueueMessage(JText::_('save_events_match - event result away: '.$tempteam2[$lfdnummer]),'');
+//$mainframe->enqueueMessage(JText::_('save_events_match - event result teamplayer2: '.$post['teamplayer2_id'.$cid[$x]]),'');
+
+$query = ' SELECT id
+  FROM #__joomleague_match_event
+  WHERE match_id='. $this->_db->Quote($match_id) 
+  .' AND teamplayer_id = '. $this->_db->Quote($post['teamplayer2_id'.$cid[$x]])
+  .' AND event_type_id = '. $this->_db->Quote($event_id);
+  $this->_db->setQuery($query);	
+  //$matchplayer_id = $this->_db->loadResult();
+
+if ($matchplayer_id = $this->_db->loadResult())
+{
+//$mainframe->enqueueMessage(JText::_('save_events_match - teamplayer2 gefunden: '.$post['teamplayer2_id'.$cid[$x]]),'Notice');
+$data['id'] = $matchplayer_id;
+}  
+
+$data['match_id'] = $post['match_id'];
+$data['projectteam_id'] = $post['projectteam2_id'];
+$data['teamplayer_id'] = $post['teamplayer2_id'.$cid[$x]];
+$data['event_type_id'] = $event_id;
+$data['event_sum'] = $tempteam2[$lfdnummer];
+
+$this->saveevent($data,$project_id);
+
+}
+  $lfdnummer++;
+  }
+
+  
+
+  
+  }
+  
+  function getTemplateConfig ($template)
+	{
+	$option='com_joomleague';
+	$mainframe	=& JFactory::getApplication();
+		$result = '';
+		$configvalues = array();
+		$project = $mainframe->getUserState($option.'project',0);;
+
+		// load template param associated to project, or to master template if none find.
+		$query =	"	SELECT params
+						FROM #__joomleague_template_config
+						WHERE template = " . $this->_db->Quote($template) .
+					"	AND project_id =" . (int) $project;
+		$this->_db->setQuery($query);
+		
+    if (!$result=$this->_db->loadResult())
+		{
+			if ($project->master_template)
+			{
+				$query = '	SELECT	params
+							FROM #__joomleague_template_config
+							WHERE template = ' . $this->_db->Quote($template) . '
+							AND project_id = ' . (int) $project;
 				$this->_db->setQuery($query);
-				$res=$this->_db->loadObjectList();
-				foreach ($res as $k => $player)
+				if (!$result = $this->_db->loadResult())
 				{
-					$record =& JTable::getInstance('Matchplayer','Table');
-					$record->match_id			= $this->_id;
-					$record->teamplayer_id		= $player->teamplayer_id;
-					$record->project_position_id= $player->project_position_id;
-					//$record->came_in			= self::MATCH_ROSTER_STARTER;
-					$record->ordering			= $player->ordering;
-					if (!$record->check())
-					{
-						$this->setError($record->getError());
-						$result = false;
-					}
-					if (!$record->store())
-					{
-						$this->setError($record->getError());
-						$result = false;
-					} else {
-						$result = true;
-					}
+					JError::raiseWarning(	500,
+											sprintf(JText::_('JL_ADMIN_PROJECT_MODEL_MISSING_MASTER_TEMPLATE'),
+											$template));
+					return array();
 				}
-			} else {
-				$this->setError(COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_LAST_MATCH_ROSTER);
-				$result = false;
 			}
-		} else {
-			$result = false;
+			else
+			{
+				JError::raiseWarning(	500,
+										sprintf(JText::_('JL_ADMIN_PROJECT_MODEL_MISSING_TEMPLATE'),
+										$template));
+				return array();
+			}
 		}
-		return $result;
-	}
-	/**
-	 * Returns a Table object, always creating it
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	 */
-	public function getTable($type = 'match', $prefix = 'table', $config = array())
-	{
-		return JTable::getInstance($type, $prefix, $config);
-	}
-	
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param	array	$data		Data for the form.
-	 * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
-	 * @return	mixed	A JForm object on success, false on failure
-	 * @since	1.7
-	 */
-	public function getForm($data = array(), $loadData = true)
-	{
-		// Get the form.
-		$form = $this->loadForm('com_joomleague.'.$this->name, $this->name,
-				array('load_data' => $loadData) );
-		if (empty($form))
+		$params = explode("\n", trim($result));
+		foreach ($params AS $param)
 		{
-			return false;
+			list($name, $value) = explode("=", $param);
+			$configvalues[$name]=$value;
 		}
-		return $form;
+		
+		
+		return $configvalues;
 	}
-	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.7
-	 */
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_joomleague.edit.'.$this->name.'.data', array());
-		if (empty($data))
-		{
-			$data = $this->getData();
-		}
-		return $data;
-	}
+  
 }
 ?>

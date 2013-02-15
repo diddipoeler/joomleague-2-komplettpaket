@@ -504,7 +504,9 @@ class JoomleagueViewMatch extends JLGView
 		$this->assignRef('playersoptions',	$playersoptions);
 		$this->assignRef('lists',			$lists);
 		$this->assignRef('preFillSuccess',	$preFillSuccess);
-
+    
+    $this->assignRef('starters',			$starters);
+    
 		parent::display($tpl);
 	}
 

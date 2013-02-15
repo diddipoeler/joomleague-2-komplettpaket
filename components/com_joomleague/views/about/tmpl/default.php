@@ -38,6 +38,51 @@
 	</tr>
 </table>
 <br />
+
+<div class="componentheading">
+	<?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DIDDIPOELER'); ?>
+</div>
+<table class="about">
+<tr>
+		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_TEXT_DIDDIPOELER'); ?></b></td>
+    <td><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_TEXT_DESC_DIDDIPOELER'); ?></td>
+	</tr>
+<tr>
+		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_WEBSITE_DIDDIPOELER'); ?></b></td>
+		<td>
+			<a href="<?php echo $this->about->diddipoelerpage; ?>" target="_blank">
+				<?php echo $this->about->diddipoelerpage; ?>
+			</a>
+		</td>
+	</tr>
+<tr>
+		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_SUPPORT_FORUM_DIDDIPOELER'); ?></b></td>
+		<td>
+			<a href="<?php echo $this->about->diddipoelerforum; ?>" target="_blank">
+				<?php echo "Fussballineuropa Joomleague 2.0 Forum"; ?></a>
+		</td>
+	</tr> 
+  
+<tr>
+		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_GITHUB_DIDDIPOELER'); ?></b></td>
+		<td>
+			<a href="<?php echo $this->about->github; ?>" target="_blank">
+				<?php echo 'Github joomleague diddipoeler'; ?>
+			</a>
+		</td>
+	</tr>
+     
+<tr>
+		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_SUPPORT_EMAIL_DIDDIPOELER'); ?></b></td>
+		<td>
+			<a href="mailto:<?php echo $this->about->diddipoeleremail; ?>" target="_blank">
+				<?php echo $this->about->diddipoeleremail; ?></a>
+		</td>
+	</tr>
+</table>
+
+
+
 <div class="componentheading">
 	<?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DETAILS'); ?>
 </div>

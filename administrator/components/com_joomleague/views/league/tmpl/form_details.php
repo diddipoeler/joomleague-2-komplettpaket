@@ -24,5 +24,9 @@
 			<td class="key"><?php echo $this->form->getLabel('country'); ?></td>
 			<td><?php echo $this->form->getInput('country'); ?>&nbsp;<?php echo Countries::getCountryFlag($this->object->country); ?>&nbsp;(<?php echo $this->object->country; ?>)</td>
 		</tr>
+        <tr>
+			<td class="key"><?php echo $this->form->getLabel('associations'); ?></td>
+			<td><?php echo $this->form->getInput('associations'); ?></td>
+		</tr>
 	</table>
 </fieldset>

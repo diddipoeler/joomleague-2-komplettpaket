@@ -333,5 +333,12 @@ class JoomleagueControllerRound extends JoomleagueController
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds&task=round.display', $msg, $msgType);
 	}
+  
+  function roundrobin()
+  {
+  $project_id = JRequest::getInt('project_id');
+  
+  }
+  
 }
 ?>

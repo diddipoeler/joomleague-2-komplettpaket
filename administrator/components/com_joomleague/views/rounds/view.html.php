@@ -90,7 +90,8 @@ class JoomleagueViewRounds extends JLGView
 		$lists = array();
 		
 		$options = array( JHTML::_('select.option', 0, Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_SINGLE_ROUND_ROBIN')),
-		                  JHTML::_('select.option', 1, Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN')) 
+		                  JHTML::_('select.option', 1, Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_DOUBLE_ROUND_ROBIN')),
+                      JHTML::_('select.option', 2, Jtext::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_TYPE_TOURNAMENT_ROUND_ROBIN')) 
 		                  );
 		$lists['scheduling'] = JHTML::_('select.genericlist', $options, 'scheduling', '', 'value', 'text');
 
@@ -122,10 +123,14 @@ class JoomleagueViewRounds extends JLGView
 
 		if (!$this->massadd)
 		{
-			JLToolBarHelper::apply('round.saveshort');
+
+      //JLToolBarHelper::custom('round.roundrobin','purge.png','purge_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUND_ROBIN_MASSADD_BUTTON'),false);
+      JLToolBarHelper::custom('round.populate','purge.png','purge_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'),false);
+      JToolBarHelper::divider();
+      JLToolBarHelper::apply('round.saveshort');
 			JToolBarHelper::divider();
 			JLToolBarHelper::custom('round.massadd','new.png','new_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_BUTTON'),false);
-			JLToolBarHelper::addNew('round.populate', JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'), false);
+			//JLToolBarHelper::addNew('round.populate','purge.png','purge_f2.png', JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'), false);
 			JLToolBarHelper::addNew('round.save');
 			JToolBarHelper::divider();
 			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_DELETE_WARNING'),'round.deletematches',JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSDEL_BUTTON'));

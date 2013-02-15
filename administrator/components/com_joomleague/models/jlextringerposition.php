@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
+ * @copyright	Copyright (C) 2006-2009 JoomLeague.net. All rights reserved.
  * @license		GNU/GPL,see LICENSE.php
  * Joomla! is free software. This version may have been modified pursuant
  * to the GNU General Public License,and as distributed it includes or
@@ -22,7 +22,7 @@ require_once (JPATH_COMPONENT.DS.'models'.DS.'item.php');
  * @package	Joomleague
  * @since	0.1
  */
-class JoomleagueModelLeague extends JoomleagueModelItem
+class JoomleagueModeljlextringerposition extends JoomleagueModelItem
 {
 	/**
 	 * Method to remove a league
@@ -38,14 +38,21 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 		{
 			JArrayHelper::toInteger($cid);
 			$cids=implode(',',$cid);
-			$query="SELECT id FROM #__joomleague_project WHERE league_id IN ($cids)";
+			$query="SELECT id FROM #__joomleague_project WHERE sports_type_id IN ($cids)";
+			//echo '<pre>'.print_r($query,true).'</pre>';
 			$this->_db->setQuery($query);
 			if ($this->_db->loadResult())
 			{
-				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_MODEL_ERROR_PROJECT_EXISTS'));
+				$this->setError(JText::_('JL_ADMIN_LEAGUE_MODEL_ERROR_PROJECT_EXISTS'));
 				return false;
 			}
-			return parent::delete($cids);
+			$query="DELETE FROM #__joomleague_position_ringen WHERE id IN ($cids)";
+			$this->_db->setQuery($query);
+			if (!$this->_db->query())
+			{
+				$this->setError($this->_db->getErrorMsg());
+				return false;
+			}
 		}
 		return true;
 	}
@@ -62,7 +69,7 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 		// Lets load the content if it doesn't already exist
 		if (empty($this->_data))
 		{
-			$query='SELECT * FROM #__joomleague_league WHERE id='.(int) $this->_id;
+			$query='SELECT * FROM #__joomleague_position_ringen WHERE id='.(int) $this->_id;
 			$this->_db->setQuery($query);
 			$this->_data=$this->_db->loadObject();
 			return (boolean) $this->_data;
@@ -82,27 +89,24 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 		// Lets load the content if it doesn't already exist
 		if (empty($this->_data))
 		{
-			$league						= new stdClass();
-			$league->id					= 0;
-			$league->name				= null;
-			$league->middle_name		= null;
-			$league->short_name			= null;			
-			$league->alias				= null;
-			$league->country			= null;
-			$league->checked_out		= 0;
-            $league->associations		= 0;
-			$league->checked_out_time	= 0;
-			$league->extended			= null;
-			$league->ordering			= 0;
-			$league->modified			= null;
-			$league->modified_by		= null;
-			$this->_data				= $league;
+			$object						= new stdClass();
+			$object->id					= 0;
+			$object->name				= null;
+			$object->middle_name		= null;
+			$object->short_name			= null;			
+			$object->alias				= null;
+			$object->country			= null;
+			$object->checked_out		= 0;
+			$object->checked_out_time	= 0;
+			$object->extended			= null;
+			$object->ordering			= 0;
+			$this->_data				= $object;
 
 			return (boolean) $this->_data;
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Method to add a league if not already exists
 	 *
@@ -113,7 +117,7 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 	function addLeague($newLeague)
 	{
 		//check if league exists. If not add a new league to table
-		$query="SELECT name FROM #__joomleague_league WHERE name='$newLeague'";
+		$query="SELECT name FROM #__joomleague_position_ringen WHERE name='$newLeague'";
 		$this->_db->setQuery($query);
 		if ($leagueObject=$this->_db->loadObject())
 		{
@@ -133,55 +137,6 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 		}
 		return $leagueObject->id;
 	}
-	/**
-	 * Returns a Table object, always creating it
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	 */
-	public function getTable($type = 'league', $prefix = 'table', $config = array())
-	{
-		return JTable::getInstance($type, $prefix, $config);
-	}
-	
-	/**
-	 * Method to get the record form.
-	 *
-	 * @param	array	$data		Data for the form.
-	 * @param	boolean	$loadData	True if the form is to load its own data (default case), false if not.
-	 * @return	mixed	A JForm object on success, false on failure
-	 * @since	1.7
-	 */
-	public function getForm($data = array(), $loadData = true)
-	{
-		// Get the form.
-		$form = $this->loadForm('com_joomleague.'.$this->name, $this->name,
-				array('load_data' => $loadData) );
-		if (empty($form))
-		{
-			return false;
-		}
-		return $form;
-	}
-	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.7
-	 */
-	protected function loadFormData()
-	{
-		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_joomleague.edit.'.$this->name.'.data', array());
-		if (empty($data))
-		{
-			$data = $this->getData();
-		}
-		return $data;
-	}
+
 }
 ?>
