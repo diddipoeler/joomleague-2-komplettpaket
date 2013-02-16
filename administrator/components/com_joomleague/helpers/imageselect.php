@@ -225,7 +225,9 @@ class ImageSelect
 			case	"clubs_trikot_away":
 				return "clubs/trikot_away";
 				break;
-        	
+        	case	"flags":
+				return "flags";
+				break;	
 			case	"events":
 				return "events";
 				break;	
