@@ -91,7 +91,8 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 			else
 			{
 				$post['registerDate'] = JHTML::date(time(),'%Y-%m-%d %H:%M:%S');
-				if (!$model->store($post,'PredictionEntry'))
+				//if (!$model->store($post,'PredictionEntry'))
+				if (!$model->store($post))
 				{
 					$msg .= JText::_($optiontext.'JL_PRED_ENTRY_CONTROLLER_ERROR_5');
 					$link = JFactory::getURI()->toString();
@@ -156,6 +157,21 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 		$this->setRedirect($link);
 	}
 
+  /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'predictionentry', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
+	
 	function addtipp()
 	{
 		JRequest::checkToken() or jexit(JText::_('JL_PRED_ENTRY_INVALID_TOKEN_PREDICTIONS_NOT_SAVED'));
