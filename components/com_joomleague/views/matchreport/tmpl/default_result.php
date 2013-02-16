@@ -12,20 +12,26 @@
                 <?php 
                 //dynamic object property string
                 $pic = $this->config['show_picture'];
+                /*
                 echo JoomleagueHelper::getPictureThumb($this->team1->$pic, 
                                             $this->team1->name,
                                             $this->config['team_picture_width'],
                                             $this->config['team_picture_height'],1);
+                */
+                echo JHTML::image($this->team1->$pic, $this->team1->name, array('title' => $this->team1->name,'width' => $this->config['team_picture_width'] ))                            
                 ?>
 		</td>
 		<td>
 		</td>
 		<td class="teamlogo">
 			<?php 
+			/*
 			echo JoomleagueHelper::getPictureThumb($this->team2->$pic, 
 										$this->team2->name,
 										$this->config['team_picture_width'],
 										$this->config['team_picture_height'],1);
+			*/
+      echo JHTML::image($this->team2->$pic, $this->team2->name, array('title' => $this->team2->name,'width' => $this->config['team_picture_width'] ))							
 		?>
 		</td>
 	</tr>

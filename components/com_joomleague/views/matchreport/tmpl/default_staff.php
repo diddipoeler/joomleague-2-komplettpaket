@@ -31,11 +31,14 @@ if (!empty($this->matchstaffpositions))
 										$picture=$player->picture;
 										if (!file_exists($picture)){$picture = JoomleagueHelper::getDefaultPlaceholder("player");}
 										echo '&nbsp;';
+                                        /*
 										echo JoomleagueHelper::getPictureThumb($picture, 
 												$imgTitle,
 												$this->config['staff_picture_width'],
 												$this->config['staff_picture_height']);
-										?>
+										*/
+                                        echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['staff_picture_width'] ));
+                                        ?>
 									</li>
 									<?php
 								}
@@ -60,11 +63,14 @@ if (!empty($this->matchstaffpositions))
 										$imgTitle=JText::sprintf('Picture of %1$s',$match_player);
 										$picture=$player->picture;
 										if (!file_exists($picture)){$picture = JoomleagueHelper::getDefaultPlaceholder("player");}
-										echo JoomleagueHelper::getPictureThumb($picture, 
+										/*
+                                        echo JoomleagueHelper::getPictureThumb($picture, 
 												$imgTitle,
 												$this->config['staff_picture_width'],
 												$this->config['staff_picture_height']);
-										echo '&nbsp;';
+										*/
+                                        echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['staff_picture_width'] ));
+                                        echo '&nbsp;';
 										$player_link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$player->team_slug,$player->person_slug);
 										echo JHTML::link($player_link,$match_player);
 										?>

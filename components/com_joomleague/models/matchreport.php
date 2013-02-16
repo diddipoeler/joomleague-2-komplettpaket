@@ -135,6 +135,7 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		      .' p.nickname,'
 		      .' p.lastname,'
 		      .' tp.jerseynumber,'
+              .' mp.trikot_number,'
 		      .' ppos.position_id,'
 		      .' ppos.id AS pposid,'
 		      .' pt.team_id,'

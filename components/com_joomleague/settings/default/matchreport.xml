@@ -257,11 +257,13 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
 		</field>
-		
+<!-- wird automatisch berechnet		
 		<field 	name="team_picture_height" type="text" default="150"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
 		</field>
+-->
+		
 	</fieldset>		
 
 	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONOPTIONS" 
@@ -291,21 +293,26 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PLAYER_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PLAYER_PICTURE_WIDTH">
 		</field>
-		
+
+<!-- wird automatisch berechnet		
 		<field 	name="player_picture_height" type="text" default="40"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PLAYER_PICTURE_HEIGHT" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PLAYER_PICTURE_HEIGHT">
 		</field>
+-->
 
 		<field 	name="staff_picture_width" type="text" default="40"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_STAFF_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_STAFF_PICTURE_WIDTH">
 		</field>
-		
+
+<!-- wird automatisch berechnet		
 		<field 	name="staff_picture_height" type="text" default="40"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_STAFF_PICTURE_HEIGHT" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_STAFF_PICTURE_HEIGHT">
 		</field>			
+-->
+		
 	</fieldset>
 	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 

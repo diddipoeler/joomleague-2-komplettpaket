@@ -38,9 +38,9 @@ if (!empty($this->matchplayerpositions))
 										?>
 										<li <?php echo ($this->config['show_player_picture'] == 2 ? 'class="list_pictureonly_left"' : 'class="list"') ?>>
 											<?php
-											$player_link=JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$player->team_slug,$player->person_slug);
+											$player_link = JoomleagueHelperRoute::getPlayerRoute($this->project->slug,$player->team_slug,$player->person_slug);
 											$prefix = $player->jerseynumber ? $player->jerseynumber."." : null;
-											$match_player=JoomleagueHelper::formatName($prefix,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
+											$match_player = JoomleagueHelper::formatName($prefix,$player->firstname,$player->nickname,$player->lastname, $this->config["name_format"]);
 											$isFavTeam = in_array( $player->team_id, explode(",",$this->project->fav_team));
 
                                             if ( ($this->config['show_player_profile_link'] == 1) || (($this->config['show_player_profile_link'] == 2) && ($isFavTeam)) )
@@ -48,7 +48,8 @@ if (!empty($this->matchplayerpositions))
 												if ($this->config['show_player_picture'] == 2) {
 													echo '';
 												} else {
-													echo JHTML::link($player_link,$match_player);
+													//echo JHTML::link($player_link,$match_player);
+                                                    echo JHTML::link($player_link,$match_player.JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$player->jerseynumber,$player->jerseynumber,array('title'=> $player->jerseynumber)));
 												}
                                             } else {
 												if ($this->config['show_player_picture'] == 2) {
@@ -71,16 +72,23 @@ if (!empty($this->matchplayerpositions))
                                                     $picture = JoomleagueHelper::getDefaultPlaceholder("player");
                                                 }
                                                 if ( ($this->config['show_player_picture'] == 2) && ($this->config['show_player_profile_link'] == 1) ){
-													echo JHTML::link($player_link,JoomleagueHelper::getPictureThumb($picture,
+												/*
+                                                	echo JHTML::link($player_link,JoomleagueHelper::getPictureThumb($picture,
 																													$imgTitle,
 																													$this->config['player_picture_width'],
 																													$this->config['player_picture_height']));
-												} else {
-													echo JoomleagueHelper::getPictureThumb($picture,
+												*/
+                                                echo JHTML::link($player_link,JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] )));
+                                                } else {
+													/*
+                                                    echo JoomleagueHelper::getPictureThumb($picture,
 																							$imgTitle,
 																							$this->config['player_picture_width'],
 																							$this->config['player_picture_height']);
-													echo '&nbsp;';
+													
+                                                    */
+                                                    echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] ));
+                                                    echo '&nbsp;';
                                                 }
                                             }
 											?>
@@ -122,16 +130,23 @@ if (!empty($this->matchplayerpositions))
                                                     $picture = JoomleagueHelper::getDefaultPlaceholder("player");
                                                 }
                                                  if ( ($this->config['show_player_picture'] == 2) && ($this->config['show_player_profile_link'] == 1) ){
-													echo JHTML::link($player_link,JoomleagueHelper::getPictureThumb($picture,
+													/*
+                                                    echo JHTML::link($player_link,JoomleagueHelper::getPictureThumb($picture,
 																													$imgTitle,
 																													$this->config['player_picture_width'],
 																													$this->config['player_picture_height']));
-												} else {
-													echo JoomleagueHelper::getPictureThumb($picture,
+                                                    */
+                                                    echo JHTML::link($player_link,JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] )));                                                                
+												
+                                                } else {
+													/*
+                                                    echo JoomleagueHelper::getPictureThumb($picture,
 																							$imgTitle,
 																							$this->config['player_picture_width'],
 																							$this->config['player_picture_height']);
-													echo '&nbsp;';
+													*/
+                                                    echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] ));
+                                                    echo '&nbsp;';
                                                 }
                                             }
 
@@ -140,13 +155,15 @@ if (!empty($this->matchplayerpositions))
 												if ($this->config['show_player_picture'] == 2) {
 													echo '';
 												} else {
-													echo JHTML::link($player_link,$match_player);
+													//echo JHTML::link($player_link,$match_player);
+                                                    echo JHTML::link($player_link,JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$player->jerseynumber,$player->jerseynumber,array('title'=> $player->jerseynumber)).$match_player);
 												}
                                             } else {
 												if ($this->config['show_player_picture'] == 2) {
 													echo '';
 												} else {
-													echo $match_player;
+													//echo JHTML::link($player_link,JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$player->jerseynumber,$player->jerseynumber,array('title'=> $player->jerseynumber)).$match_player);
+                                                    echo $match_player;
 												}
                                             }
 											?>
