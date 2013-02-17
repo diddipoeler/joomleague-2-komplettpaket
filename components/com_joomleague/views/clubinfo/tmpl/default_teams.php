@@ -43,7 +43,7 @@
 				<td>
 				<span class="clubinfo_team_value">
 				<?php
-				if ( $team->team_description )
+				if ( $team->team_description && $this->config['show_teams_description_of_club'] )
 				{
 					echo $team->team_description;
 				}
