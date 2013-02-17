@@ -42,11 +42,17 @@ class JoomleagueControllerMatch extends JoomleagueController
 
 		// check if pid was specified in request
 		$pids = JRequest::getVar('pid', null, 'request', 'array');
+		    
+		$cid = JRequest::getVar('cid',array(0),'','array');
+		$match_id = $cid[0];
+		
 		if ($pids && $pids[0]) {
 			$mainframe->setUserState($option.'project', $pids[0]);
 		}
 
 		$model=$this->getModel('matches');
+		$is_path = $model->checkMatchPicturePath($match_id);
+		
 		$viewType=$document->getType();
 		$view=$this->getView('matches',$viewType);
 		$view->setModel($model,true); // true is for the default model;
@@ -506,7 +512,27 @@ class JoomleagueControllerMatch extends JoomleagueController
 		$this->setRedirect($link,$msg);
 	}
 
-	//	add a match to round
+	// bilder pro spiel
+	function picture()
+  {
+  $cid = JRequest::getVar('cid',array(0),'','array');
+	$match_id = $cid[0];
+  $dest = JPATH_ROOT.'/images/com_joomleague/database/matchreport/'.$match_id;
+  $folder = 'matchreport/'.$match_id;
+  //$this->setState('folder', $folder);
+  if(JFolder::exists($dest)) {
+  }
+  else
+  {
+  JFolder::create($dest);
+  }
+  // http://joomla25.diddipoeler.de/administrator/index.php?option=com_media&view=images&tmpl=component&asset=com_joomleague&author=&fieldid=logo_big&folder=com_joomleague/database/clubs/large
+  $msg=JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_MATCHPICTURE');
+  $link='index.php?option=com_media&view=images&tmpl=component&asset=com_joomleague&author=&folder=com_joomleague/database/'.$folder;
+	$this->setRedirect($link,$msg);
+  
+  }
+  //	add a match to round
 	function addmatch()
 	{
 		$option = JRequest::getCmd('option');

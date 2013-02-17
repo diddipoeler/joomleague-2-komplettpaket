@@ -85,6 +85,51 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		return $round;
 	}
 
+  function getMatchPictures($folder)
+  {
+  $basePath = JPATH_SITE.DS.'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
+  $sitePath = 'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
+  $images 	= array ();
+  // Get the list of files and folders from the given folder
+	$fileList 	= JFolder::files($basePath);
+  
+  // Iterate over the files if they exist
+		if ($fileList !== false) {
+			foreach ($fileList as $file)
+			{
+				if (is_file($basePath.DS.$file) && substr($file, 0, 1) != '.'
+					&& strtolower($file) !== 'index.html'
+					&& strtolower($file) !== 'thumbs.db'
+					&& strtolower($file) !== 'readme.txt'
+					)
+
+					{
+
+					if ( $search == '') {
+						$tmp = new JObject();
+						$tmp->name = $file;
+						$tmp->sitepath = $sitePath;
+						$tmp->path = JPath::clean($basePath.DS.$file);
+
+						$images[] = $tmp;
+
+					} elseif(stristr( $file, $search)) {
+						$tmp = new JObject();
+						$tmp->name = $file;
+						$tmp->sitepath = $sitePath;
+						$tmp->path = JPath::clean($basePath.DS.$file);
+
+						$images[] = $tmp;
+
+					}
+				}
+			}
+		}
+		
+	$list = $images;
+  return $list;	
+  }
+  
 	function getMatchPlayerPositions()
 	{
 		$query='	SELECT	pos.id, pos.name, 

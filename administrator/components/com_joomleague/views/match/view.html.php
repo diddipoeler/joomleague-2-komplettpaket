@@ -517,7 +517,12 @@ class JoomleagueViewMatch extends JLGView
 		$user = JFactory::getUser();
 		$model = $this->getModel();
 		$lists=array();
-
+		
+		$cid = JRequest::getVar('cid',array(0),'','array');
+		$match_id = $cid[0];
+		$dest = 'matchreport/'.$match_id;
+    JRequest::setVar( 'folder', $dest );
+    
 		//get the match
 		$match =& $this->get('data');
 		$isNew = ($match->id < 1);
@@ -608,13 +613,18 @@ class JoomleagueViewMatch extends JLGView
 										'class="inputbox" size="1"',
 										'value',
 										'text',$match->new_match_id);
-
+    // diddipoeler
+		$mdlImages = JModel::getInstance("Imagehandler", "JoomleagueModel");
+		$images 	= $mdlImages->get('Images');
+		$this->assignRef('images', 	$images);
+		
 		$this->assignRef('overall_config',$overall_config);
 		$this->assignRef('table_config',$table_config);
 		$this->assignRef('projectws',$projectws);
 		$this->assignRef('lists',$lists);
 		$this->assignRef('match',$match);
 		$this->assignRef('extended',$extended);
+		$this->assignRef('folder',$dest);
 		
 		$this->assignRef('form',  $this->get('form'));		
 

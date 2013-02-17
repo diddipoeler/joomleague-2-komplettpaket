@@ -70,6 +70,15 @@ class JoomleagueViewMatchReport extends JLGView
     
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
     
+    if ( $this->config['show_pictures'] == 1 )
+	  {
+		// die bilder zum spiel
+		$dest = JPATH_ROOT.'/images/com_joomleague/database/matchreport/'.$this->match->id;
+		$folder = 'matchreport/'.$this->match->id;
+		$images = $model->getMatchPictures($folder);
+		$this->assignRef( 'matchimages', $images);
+	  }
+	  
 		// Set page title
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_MATCHREPORT_PAGE_TITLE' );
 		if (( isset( $this->team1 ) ) AND (isset( $this->team1 )))

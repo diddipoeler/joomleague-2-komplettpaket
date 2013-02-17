@@ -86,6 +86,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('summary');
 	}
+	
+	if (($this->config['show_pictures'])==1)
+	{
+		echo $this->loadTemplate('pictures');
+	}
 
   }
   else if ( ($this->config['show_result_tabs']) == "show_tabs" )
@@ -166,7 +171,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('summary');
 	}
   
-  
+  if (($this->config['show_pictures'])==1)
+	{
+	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_PICTURES'), 'panel'.($idxTab++));
+  echo $this->loadTemplate('pictures');
+  }
   
   echo JHTML::_('tabs.end');
   }

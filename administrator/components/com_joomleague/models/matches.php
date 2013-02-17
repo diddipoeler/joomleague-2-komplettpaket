@@ -13,6 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
+jimport('joomla.filesystem.folder');
 require_once(JPATH_COMPONENT.DS.'models'.DS.'list.php');
 
 /**
@@ -143,6 +144,20 @@ class JoomleagueModelMatches extends JoomleagueModelList
 		return $where;
 	}
 
+  function checkMatchPicturePath($match_id)
+  {
+  $dest = JPATH_ROOT.'/images/com_joomleague/database/matchreport/'.$match_id;
+  $folder = 'matchreport/'.$match_id;
+  $this->setState('folder', $folder);
+  if(JFolder::exists($dest)) {
+  }
+  else
+  {
+  JFolder::create($dest);
+  }
+  
+  }
+  
 	/**
 	 * Method to return the project teams array (id, name)
 	 *

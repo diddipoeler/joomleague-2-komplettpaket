@@ -122,6 +122,15 @@ fieldset button {
 													JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_DETAILS').'"');
 									?>
 								</a>
+								<a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
+									href="index.php?option=com_joomleague&tmpl=component&task=match.picture&cid[]=<?php echo $row->id; ?>"
+									 class="modal">
+									<?php
+									echo JHTML::_(	'image','administrator/components/com_joomleague/assets/images/link.png',
+													JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_MATCHPICTURE'),'title= "' .
+													JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_MATCHPICTURE').'"');
+									?>
+								</a>
 							</td>
               <?php
 							// diddipoeler einzelsportart

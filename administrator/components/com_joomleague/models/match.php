@@ -1679,7 +1679,10 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		}
 		return $result;
 	}
-	/**
+	
+ 
+  
+  /**
 	 * Returns a Table object, always creating it
 	 *
 	 * @param	type	The table type to instantiate

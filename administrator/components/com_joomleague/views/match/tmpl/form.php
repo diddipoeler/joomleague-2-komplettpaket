@@ -75,6 +75,9 @@ defined('_JEXEC') or die('Restricted access');
 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel7');
 		echo $this->loadTemplate('matchextended');
 		
+// 		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_MATCHPICTURE'), 'panel8');
+// 		echo $this->loadTemplate('matchpicture');
+		
 		echo JHTML::_('tabs.end');
 		
 		?>
