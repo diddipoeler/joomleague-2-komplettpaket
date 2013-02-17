@@ -5,6 +5,7 @@
 			<?php echo JText::_('COM_JOOMLEAGUE_CLUBINFO_TEAMS'); ?>
 		</div>
 	</div>
+	<table>
 	<div class="left-column-teamlist">
 	<?php
 	$params=array();
@@ -17,14 +18,29 @@
 				//$link = JoomleagueHelperRoute::getProjectTeamInfoRoute( $team->pid, $team->ptid );
                 $link = JoomleagueHelperRoute::getTeamInfoRoute( $team->pid, $team->id );
 				?>
-				<span class="clubinfo_team_item">
+				<tr>
+				<td>
+				<span class="">
 					<?php
 					//echo JHTML::link( $link, $team->team_name );
-						echo JHTML::image($team->trikot_home, $team->team_name, $params).JHTML::link( $link, $team->team_name );
-						echo "&nbsp;";
-						if ( $team->team_shortcut ) { echo "(" . $team->team_shortcut . ")"; }
+						//echo JHTML::image($team->trikot_home, $team->team_name, $params).JHTML::link( $link, $team->team_name );
+						
+//            echo JHTML::link( $link, $team->team_name.JHTML::image($team->trikot_home, $team->team_name, $params) );
+						
+						if ( $team->team_shortcut ) 
+            { 
+            //echo "(" . $team->team_shortcut . ")";
+            echo JHTML::link( $link, JHTML::image($team->trikot_home, $team->team_name, $params).$team->team_name."(" . $team->team_shortcut . ")" ); 
+            }
+            else
+            {
+            echo JHTML::link( $link, JHTML::image($team->trikot_home, $team->team_name, $params).$team->team_name );
+            }
+            echo "&nbsp;";
 					?>
 				</span>
+				</td>
+				<td>
 				<span class="clubinfo_team_value">
 				<?php
 				if ( $team->team_description )
@@ -37,9 +53,12 @@
 				}
 				?>
 				</span>
+				</td>
+				</tr>
 				<?php
 			}
 		}
 	?>
 	</div>
+	</table>
 </div>
