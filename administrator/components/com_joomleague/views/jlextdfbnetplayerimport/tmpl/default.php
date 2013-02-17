@@ -1,6 +1,7 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 
 JHTML::_( 'behavior.tooltip' );
+JHTML::_( 'behavior.modal' );
 
 $url = 'components/com_joomleague/extensions/jlextdfbnetplayerimport/admin/assets/images/dfbnet-logo.gif';
 $url16 = 'components/com_joomleague/extensions/jlextdfbnetplayerimport/admin/assets/images/dfbnet-logo-16.gif';
@@ -38,10 +39,13 @@ echo '</pre>';
 */
 
 
-// enctype='multipart/form-data'													
+// enctype='multipart/form-data'
+
+$pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.pdf';													
 ?>
 
 <div id="editcell">
+<a href="<?php echo $pfad; ?>" title="pdf" class="modal" rel="{handler: 'iframe', size: {x: 800, y: 700}}">pdf</a>
 	<form enctype='multipart/form-data' action='<?php echo $this->request_url; ?>' method='post' name='adminForm'>
 		<table class='adminlist'>
 			<thead><tr><th>
