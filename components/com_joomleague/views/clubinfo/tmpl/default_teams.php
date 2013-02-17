@@ -30,11 +30,27 @@
 						if ( $team->team_shortcut ) 
             { 
             //echo "(" . $team->team_shortcut . ")";
-            echo JHTML::link( $link, JHTML::image($team->trikot_home, $team->team_name, $params).$team->team_name."(" . $team->team_shortcut . ")" ); 
+            if ( $this->config['show_teams_trikot_of_club'] )
+            {
+            echo JHTML::link( $link, JHTML::image($team->trikot_home, $team->team_name, $params).$team->team_name."(" . $team->team_shortcut . ")" );
             }
             else
             {
+            echo JHTML::link( $link, $team->team_name."(" . $team->team_shortcut . ")" );
+            }
+                         
+            }
+            else
+            {
+            if ( $this->config['show_teams_trikot_of_club'] )
+            {
             echo JHTML::link( $link, JHTML::image($team->trikot_home, $team->team_name, $params).$team->team_name );
+            }
+            else
+            {
+            echo JHTML::link( $link, $team->team_name );
+            }
+            
             }
             echo "&nbsp;";
 					?>

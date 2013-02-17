@@ -54,6 +54,12 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		<field name="show_teams_trikot_of_club" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_TEAMS_TRIKOT_CLUB"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_TEAMS_TRIKOT_CLUB">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
 		
 	</fieldset>
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
