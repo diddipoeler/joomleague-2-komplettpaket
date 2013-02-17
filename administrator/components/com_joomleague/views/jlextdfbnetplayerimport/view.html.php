@@ -140,7 +140,7 @@ $option = JRequest::getCmd('option');
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
-
+    JLToolBarHelper::custom('jlextdfbnetplayerimport.description','featured.png','featured._f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_DESCRIPTION'),false);
 		
 		$this->assignRef( 'request_url',	$uri->toString() );
 		$this->assignRef( 'config',		$config);
