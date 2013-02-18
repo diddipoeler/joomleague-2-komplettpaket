@@ -140,7 +140,7 @@ $option = JRequest::getCmd('option');
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
-    JLToolBarHelper::custom('jlextdfbnetplayerimport.description','featured.png','featured._f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_DESCRIPTION'),false);
+    //JLToolBarHelper::custom('jlextdfbnetplayerimport.description','featured.png','featured._f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_DESCRIPTION'),false);
 		
 		$this->assignRef( 'request_url',	$uri->toString() );
 		$this->assignRef( 'config',		$config);
@@ -148,6 +148,15 @@ $option = JRequest::getCmd('option');
 		$this->assignRef('revisionDate',$revisionDate);
 		$import_version='NEW';
 		$this->assignRef('import_version',$import_version);
+		
+// Special HTML workaround to get send popup working
+$pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.pdf';
+      $send='<a class="toolbar button validate modal" rel="{handler: \'iframe\', size: {x: 800, y: 600}}" onclick="return mySelect();"'.
+         ' href="'.$pfad.'"><span title="send" class="icon-32-featured"></span>'.JText::_('Onlinehilfe').'</a>';
+      
+      $bar=& JToolBar::getInstance( 'toolbar' );
+      $bar->appendButton('Custom',$send);		
+		
 		parent::display( $tpl );
 		
 }

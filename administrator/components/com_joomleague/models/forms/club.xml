@@ -123,8 +123,8 @@
 			name="enable_sb" 
 			type="radio" 
 			default="0"
-			label="COM_JOOMLEAGUE_ADMIN_PROJECT_USE_KUNENA_FORUM" 
-			description="COM_JOOMLEAGUE_ADMIN_PROJECT_USE_KUNENA_FORUM_DESC">
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA" 
+			description="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_DESC">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
@@ -135,8 +135,8 @@
 			class="inputbox"
 			size="5"
 			multiple="false"
-			label="COM_JOOMLEAGUE_ADMIN_PROJECT_KUNENA_FORUM"
-			description="COM_JOOMLEAGUE_ADMIN_PROJECT_KUNENA_FORUM_DESC"/>
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_FORUM_ID"
+			description="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_FORUM_ID_DESC"/>
 
     
     <field
@@ -164,18 +164,7 @@
 			label="COM_JOOMLEAGUE_ADMIN_CLUB_NEW_CLIB_ID"
 			description="COM_JOOMLEAGUE_ADMIN_CLUB_NEW_CLIB_ID_DESC"
 			class="inputbox"/>        
-<field
-			name="enable_sb"
-			type="text"
-			label="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA"
-			description="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_DESC"
-			class="inputbox"/>
-<field
-			name="sb_catid"
-			type="text"
-			label="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_FORUM_ID"
-			description="COM_JOOMLEAGUE_ADMIN_CLUB_KUNENA_FORUM_ID_DESC"
-			class="inputbox"/>
+
                   	
 	</fieldset>			
 	<fieldset name="picture">

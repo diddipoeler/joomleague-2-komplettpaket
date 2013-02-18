@@ -45,7 +45,7 @@ $pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.
 ?>
 
 <div id="editcell">
-<a href="<?php echo $pfad; ?>" title="pdf" class="modal" rel="{handler: 'iframe', size: {x: 800, y: 700}}">pdf</a>
+
 	<form enctype='multipart/form-data' action='<?php echo $this->request_url; ?>' method='post' name='adminForm'>
 		<table class='adminlist'>
 			<thead><tr><th>
