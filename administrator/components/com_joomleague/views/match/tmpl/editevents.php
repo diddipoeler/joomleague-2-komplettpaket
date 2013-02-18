@@ -55,7 +55,7 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 	<fieldset>
 		<div class="fltrt">
 			<button id="cancel" type="button" onclick="<?php echo JRequest::getBool('refresh', 0) ? 'window.parent.location.href=window.parent.location.href;' : '';?>  window.parent.SqueezeBox.close();">
-				<?php echo JText::_('JCANCEL');?></button>
+				<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE');?></button>
 		</div>
 		<div class="configuration" >
 			<?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TITLE', $this->teams->team1, $this->teams->team2); ?>
