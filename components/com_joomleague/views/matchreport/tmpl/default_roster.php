@@ -172,6 +172,11 @@ if (!empty($this->matchplayerpositions))
 																							$this->config['player_picture_height']);
 													*/
                                                     echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] ));
+                                                    if ( $this->config['show_player_profile_link_alignment'] == 1 )
+												                            {
+                                                    echo '<br>';
+                                                    echo JHTML::link($player_link,JHTML::image(JURI::root().'images/com_joomleague/database/teamplayers/shirt.php?text='.$player->jerseynumber,$player->jerseynumber,array('title'=> $player->jerseynumber)).$match_player);
+                                                    }
                                                     echo '&nbsp;';
                                                 }
                                             }
