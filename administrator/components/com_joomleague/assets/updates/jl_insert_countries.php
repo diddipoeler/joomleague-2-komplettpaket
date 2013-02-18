@@ -14,10 +14,10 @@ jimport('joomla.installer.installer');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
 
-$version			= '1.6.0-nathalie';
-$updateFileDate		= '2012-08-07';
+$version			= '2.0.0';
+$updateFileDate		= '2013-01-01';
 $updateFileTime		= '23:10';
-$updateDescription	='<span style="color:orange">Insert the rosterpositions for rosterplayground JoomLeague v1.6.0</span>';
+$updateDescription	='<span style="color:orange">Insert the countries JoomLeague v 2.0.0</span>';
 $excludeFile		='false';
 
 require_once( JPATH_ADMINISTRATOR.'/components/com_joomleague/'. 'helpers' . DS . 'jinstallationhelper.php' );
@@ -38,7 +38,7 @@ if ((int)ini_get('memory_limit') < (int)$maxImportMemory){ini_set('memory_limit'
 
 
 $db =& JFactory::getDBO();
-$db_table = JPATH_ADMINISTRATOR.'/components/com_joomleague/sql/rosterposition.sql';
+$db_table = JPATH_ADMINISTRATOR.'/components/com_joomleague/sql/countries.sql';
 // echo '<br>'.$db_table.'<br>';
 // $fileContent = JFile::read($db_table);
 // $sql_teil = explode(";",$fileContent);
