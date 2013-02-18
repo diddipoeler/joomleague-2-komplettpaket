@@ -415,7 +415,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getRoster($team_id, $project_position_id=0)
 	{
-		$query='SELECT	mp.teamplayer_id AS value,mp.trikot_number AS trikot_number,'
+		$query='SELECT	mp.id AS table_id,mp.teamplayer_id AS value,mp.trikot_number AS trikot_number,'
 		.' pl.firstname,'
 		.' pl.nickname,'
 		.' pl.lastname,'
@@ -803,6 +803,33 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $result;
 	}
 
+  function updateTrikotNumber($data)
+	{
+	$mainframe = JFactory::getApplication();
+	//$mainframe->enqueueMessage(JText::_('post -> '.'<pre>'.print_r($data['trikot_number'],true).'</pre>' ),'');
+	$mid = $data['mid'];
+	
+  foreach ($data['trikot_number'] AS $player_id => $number)
+		{
+		$query="	SELECT id
+								FROM #__joomleague_match_player
+								WHERE match_id=$mid AND teamplayer_id=$player_id";
+
+					$this->_db->setQuery($query);
+					$result = $this->_db->loadResult();
+		$query = "";
+		$record =& JTable::getInstance('Matchplayer','Table');
+		$record->load($result);
+		$record->trikot_number = $number;
+		if (!$record->store())
+					{
+						$this->setError($record->getError());
+						$result=false;
+					}
+		}
+	
+  }
+	
 	/**
 	 * Method to update starting lineup list
 	 *

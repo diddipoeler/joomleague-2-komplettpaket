@@ -310,6 +310,10 @@ class JoomleagueViewJoomleague extends JLGView
 		$link1[]=JRoute::_('index.php?option=com_joomleague&view=playgrounds&task=playground.display');
 		$label1[]=JText::_('COM_JOOMLEAGUE_D_MENU_VENUES');
 		$limage1[]=JHTML::_('image',$imagePath.'playground.png',JText::_('COM_JOOMLEAGUE_D_MENU_VENUES'));
+		
+		$link1[]=JRoute::_('index.php?option=com_joomleague&view=jlextcountries&task=jlextcountry.display');
+		$label1[]=JText::_('COM_JOOMLEAGUE_D_MENU_COUNTRY');
+		$limage1[]=JHTML::_('image',$imagePath.'countries.png',JText::_('COM_JOOMLEAGUE_D_MENU_COUNTRY'));
 
 		$link[]=$link1;
 		$label[]=$label1;

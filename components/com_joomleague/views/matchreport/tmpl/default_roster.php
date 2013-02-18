@@ -33,6 +33,11 @@ if (!empty($this->matchplayerpositions))
 								<?php
 								foreach ($this->matchplayers as $player)
 								{
+								  if ( $player->trikot_number != 0 )
+								  {
+                  $player->jerseynumber = $player->trikot_number;
+                  }
+                  
 									if ($player->pposid==$pos->pposid && $player->ptid==$this->match->projectteam1_id)
 									{
 										?>
@@ -107,6 +112,12 @@ if (!empty($this->matchplayerpositions))
 								<?php
 								foreach ($this->matchplayers as $player)
 								{
+								
+								  if ( $player->trikot_number != 0 )
+								  {
+                  $player->jerseynumber = $player->trikot_number;
+                  }
+                  
 									if ($player->pposid==$pos->pposid && $player->ptid==$this->match->projectteam2_id)
 									{
 										?>

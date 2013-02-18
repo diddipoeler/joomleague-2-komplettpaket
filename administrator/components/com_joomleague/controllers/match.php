@@ -300,7 +300,8 @@ class JoomleagueControllerMatch extends JoomleagueController
 
 		$model->updateRoster($post);
 		$model->updateStaff($post);
-
+    $model->updateTrikotNumber($post);
+    
 		$viewType=$document->getType();
 		$view=$this->getView('match',$viewType);
 		$view->setModel($model,true);	// true is for the default model;
