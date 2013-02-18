@@ -295,6 +295,13 @@
 			<option value="2">COM_JOOMLEAGUE_FES_MATCHREPORT_FAVTEAM_ONLY</option>
 		</field>
 
+    <field 	name="show_player_profile_link_alignment" type="list" default="0"
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PLAYER_PROFILE_LINK_ALIGNMENT"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PLAYER_PROFILE_LINK_ALIGNMENT">
+			<option value="0">COM_JOOMLEAGUE_FES_MATCHREPORT_LINK_ALIGNMENT_BESIDE</option>
+			<option value="1">COM_JOOMLEAGUE_FES_MATCHREPORT_LINK_ALIGNMENT_UNDER</option>
+		</field>
+
 		<field 	name="show_player_picture" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PLAYER_PICTURE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PLAYER_PICTURE">
