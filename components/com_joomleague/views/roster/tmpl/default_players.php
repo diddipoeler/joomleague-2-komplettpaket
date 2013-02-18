@@ -234,15 +234,18 @@ if (!empty($this->rows))
         <?php
 		if ( !$this->config['show_highslide'] )
 		{
-        	echo JoomleagueHelper::getPictureThumb($picture, $playerName,
+        	/*
+          echo JoomleagueHelper::getPictureThumb($picture, $playerName,
 													$this->config['player_picture_width'],
 													$this->config['player_picture_height']);
+        */
+        echo JHTML::image($picture, $playerName, array('title' => $playerName,'width' => $this->config['player_picture_width'] ));
         }
         else
 			{
       ?>
 <a href="<?php echo $picture;?>" alt="<?php echo $playerName;?>" title="<?php echo $playerName;?>" class="highslide" onclick="return hs.expand(this)">
-<img src="<?php echo $picture;?>" alt="<?php echo $playerName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['player_picture_width'];?>" height="<?php echo $this->config['player_picture_height'];?>"/></a>
+<img src="<?php echo $picture;?>" alt="<?php echo $playerName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['player_picture_width'];?>" /></a>
     <?php
       }	
         	?>

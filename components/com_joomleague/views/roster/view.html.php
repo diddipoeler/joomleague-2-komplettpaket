@@ -28,6 +28,7 @@ class JoomleagueViewRoster extends JLGView
         $this->assignRef('type',$type);
         
         $this->config['show_players_layout'] = $type;
+        
 		if ($this->projectteam)
 		{
 			$this->assignRef('team',$model->getTeam());

@@ -14,23 +14,26 @@ if ($this->config['show_staff_icon']==1)
 	{
 		$picture = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
 	}
-	$thumbnail = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
+	/*
+  $thumbnail = JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 		$this->config['staff_picture_width'],
 		$this->config['staff_picture_height']
 	);
+	*/
 ?>
 			<div class="jl_rosterperson_staffpicture_column">
 				<div class="jl_roster_staffperson_pic">
 <?php
 if ( !$this->config['show_highslide'] )
 		{
-	echo $thumbnail;
+	//echo $thumbnail;
+	echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['staff_picture_width'] ));
     }
     else
 			{
       ?>
 <a href="<?php echo $picture;?>" alt="<?php echo $personName;?>" title="<?php echo $personName;?>" class="highslide" onclick="return hs.expand(this)">
-<img src="<?php echo $picture;?>" alt="<?php echo $personName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['staff_picture_width'];?>" height="<?php echo $this->config['staff_picture_height'];?>"/></a>
+<img src="<?php echo $picture;?>" alt="<?php echo $personName;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['staff_picture_width'];?>" /></a>
     <?php
       }	
     

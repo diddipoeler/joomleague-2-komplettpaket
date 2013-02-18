@@ -22,15 +22,18 @@
 					$imgTitle = JText::sprintf( 'COM_JOOMLEAGUE_ROSTER_PICTURE_TEAM', $this->team->name );
                     if ( !$this->config['show_highslide'] )
 		{
-					echo JoomleagueHelper::getPictureThumb($picture, $imgTitle,
+					/*
+          echo JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 															$this->config['team_picture_width'],
 															$this->config['team_picture_height']);
-					}
+					*/
+          echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['team_picture_width'] ));
+          }
                     else
 			{
       ?>
 <a href="<?php echo $picture;?>" alt="<?php echo $this->team->name;?>" title="<?php echo $this->team->name;?>" class="highslide" onclick="return hs.expand(this)">
-<img src="<?php echo $picture;?>" alt="<?php echo $this->team->name;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['team_picture_width'];?>" height="<?php echo $this->config['team_picture_height'];?>"/></a>
+<img src="<?php echo $picture;?>" alt="<?php echo $this->team->name;?>" title="zum Zoomen anklicken" width="<?php echo $this->config['team_picture_width'];?>" /></a>
     <?php
       }	
                     ?>
