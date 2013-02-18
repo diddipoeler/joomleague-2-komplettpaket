@@ -92,6 +92,8 @@
     
     <!-- association-->
 		<action name="association.saveorder" title="COM_JOOMLEAGUE_SETTINGS_ASSOC_ACCESS_SAVEORDER" description="COM_JOOMLEAGUE_SETTINGS_PRED_ASSOC_ACCESS_SAVEORDER_DESC" />
-        
+		<action name="jlextcountry.saveorder" title="COM_JOOMLEAGUE_SETTINGS_COUNTRY_ACCESS_SAVEORDER" description="COM_JOOMLEAGUE_SETTINGS_PRED_COUNTRY_ACCESS_SAVEORDER_DESC" />
+    <action name="jlextcountry.orderdown" title="COM_JOOMLEAGUE_SETTINGS_COUNTRY_ACCESS_ORDERDOWN" description="COM_JOOMLEAGUE_SETTINGS_COUNTRY_ACCESS_ORDERDOWN_DESC" />
+		<action name="jlextcountry.orderup" title="COM_JOOMLEAGUE_SETTINGS_COUNTRY_ACCESS_ORDERUP" description="COM_JOOMLEAGUE_SETTINGS_COUNTRY_ACCESS_ORDERUP_DESC" />    
 	</section>
 </access>

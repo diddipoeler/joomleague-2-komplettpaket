@@ -46,6 +46,28 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
 ENGINE = MyISAM
 DEFAULT CHARSET = utf8;
 
+--
+-- Tabellenstruktur für Tabelle `#__joomleague_countries`
+--
+
+CREATE TABLE IF NOT EXISTS `#__joomleague_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(75) NOT NULL DEFAULT '',
+  `alpha2` varchar(2) DEFAULT NULL,
+  `alpha3` varchar(3) DEFAULT NULL,
+  `ordering` int(11) NOT NULL DEFAULT '0',
+  `checked_out` int(11) NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `itu` varchar(3) DEFAULT NULL,
+  `fips` varchar(2) DEFAULT NULL,
+  `ioc` varchar(3) DEFAULT NULL,
+  `picture` varchar(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_flags.png',
+  `fifa` varchar(3) DEFAULT NULL,
+  `ds` varchar(3) DEFAULT NULL,
+  `wmo` varchar(3) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`,`alpha3`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
 -- -----------------------------------------------------
 -- Table `#__joomleague_division`

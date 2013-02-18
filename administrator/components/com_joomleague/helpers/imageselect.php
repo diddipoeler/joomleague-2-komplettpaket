@@ -18,15 +18,21 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 class ImageSelect
 {
+
+var $_foldertype = '';
+
 	function __construct()
 	{
-
+  $type	= JRequest::getVar( 'type' );
+  $this->_foldertype = $type;
 	}
 
 	function getSelector( $fieldname, $fieldpreview_name, $type, $value, $default = '', $control_name='', $fieldid)
 	{
 		$document = JFactory::getDocument();
-
+    
+    $this->_foldertype = $type;
+    
 		JHTML::_( 'behavior.modal' );
 
 		$baseFolder = JURI::root();//.'images/com_joomleague/database/'.ImageSelect::getfolder($type);
@@ -174,7 +180,8 @@ class ImageSelect
 	function sanitize( $base_Dir, $filename )
 	{
 		jimport( 'joomla.filesystem.file' );
-
+    
+    
 		//check for any leading/trailing dots and remove them (trailing shouldn't be possible cause of the getEXT check)
 		$filename = preg_replace( "/^[.]*/", '', $filename );
 		$filename = preg_replace( "/[.]*$/", '', $filename ); //shouldn't be necessary, see above
@@ -200,8 +207,15 @@ class ImageSelect
 		}
 
 		//create out of the seperated parts the new filename
+		if ( $this->_foldertype == 'flags' )
+		{
+    $filename = $beforedot . '.' . $afterdot;
+    }
+    else
+    {
 		$filename = $beforedot . '_' . $now . '.' . $afterdot;
-
+    }
+    
 		return $filename;
 	}
 
