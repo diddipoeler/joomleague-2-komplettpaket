@@ -3,7 +3,7 @@
 <table>
 <tr>
 <td width="50%">
-<h2><?php echo '&nbsp;' . JText::_( 'JL_PERSON_PLAYFIELD' ); ?></h2>
+<h2><?php echo '&nbsp;' . JText::_( 'COM_JOOMLEAGUE_PERSON_PLAYFIELD' ); ?></h2>
 
 <?php
 					
