@@ -21,13 +21,20 @@ class JoomleagueViewRoster extends JLGView
 		$this->assignRef('projectteam',$model->getProjectTeam());
         
         $type = JRequest::getVar("type", 0);
+        $typestaff = JRequest::getVar("typestaff", 0);
         if ( !$type )
         {
             $type = $this->config['show_players_layout'];
         }
+        if ( !$typestaff )
+        {
+            $typestaff = $this->config['show_staff_layout'];
+        }
         $this->assignRef('type',$type);
+        $this->assignRef('typestaff',$typestaff);
         
         $this->config['show_players_layout'] = $type;
+        $this->config['show_staff_layout'] = $typestaff;
         
 		if ($this->projectteam)
 		{
@@ -101,6 +108,13 @@ class JoomleagueViewRoster extends JLGView
 	$opp_arr[] = JHTML :: _('select.option', "player_johncage", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_PLAYER_CARD'));
 
 	$lists['type'] = $opp_arr;
+  // select staff view
+    $opp_arr = array ();
+    $opp_arr[] = JHTML :: _('select.option', "staff_standard", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION1_STAFF_STANDARD'));
+	$opp_arr[] = JHTML :: _('select.option', "staff_card", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION2_STAFF_CARD'));
+	$opp_arr[] = JHTML :: _('select.option', "staff_johncage", JText :: _('COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_STAFF_CARD'));
+
+	$lists['typestaff'] = $opp_arr;
 	$this->assignRef('lists', $lists);
 
 $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
