@@ -447,7 +447,7 @@ fieldset button {
 			<input type='hidden' name='rid[]' value='<?php echo $this->roundws->id; ?>' />
 			<input type='hidden' name='project_id' value='<?php echo $this->roundws->project_id; ?>' />
 			<input type='hidden' name='act' value='' />
-			<input type='hidden' name='task' value='' id='task' />
+			<input type='hidden' name='task' value='match.display' id='task' />
 			<?php echo JHTML::_('form.token')."\n"; ?>
 		</form>
 	</fieldset>
