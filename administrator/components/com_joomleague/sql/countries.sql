@@ -3,8 +3,8 @@
 --
 
 INSERT INTO `#__joomleague_countries` (`id`, `name`, `alpha2`, `alpha3`, `ordering`, `checked_out`, `checked_out_time`, `itu`, `fips`, `ioc`, `picture`, `fifa`, `ds`, `wmo`) VALUES
-(1, 'AFGHANISTAN__ISLAMIC_REPUBLIC', 'AF', 'AFG', 0, 0, '0000-00-00 00:00:00', 'AFG', 'AF', 'AFG', 'images/com_joomleague/database/flags/af.png', 'AFG', 'AFG', 'AF'),
-(2, 'ALAND_ISLANDS', 'AX', 'ALA', 0, 0, '0000-00-00 00:00:00', '', '', '', 'images/com_joomleague/database/flags/ax.png', 'ALD', 'FIN', ''),
+(NULL, 'AFGHANISTAN__ISLAMIC_REPUBLIC', 'AF', 'AFG', 0, 0, '0000-00-00 00:00:00', 'AFG', 'AF', 'AFG', 'images/com_joomleague/database/flags/af.png', 'AFG', 'AFG', 'AF'),
+(NULL, 'ALAND_ISLANDS', 'AX', 'ALA', 0, 0, '0000-00-00 00:00:00', '', '', '', 'images/com_joomleague/database/flags/ax.png', 'ALD', 'FIN', ''),
 (3, 'ALBANIA__REPUBLIC OF', 'AL', 'ALB', 0, 0, '0000-00-00 00:00:00', 'ALB', 'AL', 'ALB', 'images/com_joomleague/database/flags/al.png', 'ALB', 'AL', 'AB'),
 (4, 'ALGERIA__PEOPLE_S_DEMOCRATIC_REPUBLIC', 'DZ', 'DZA', 0, 0, '0000-00-00 00:00:00', 'ALG', 'AG', 'ALG', 'images/com_joomleague/database/flags/dz.png', 'ALG', 'DZ', 'AL'),
 (5, 'AMERICAN_SAMOA', 'AS', 'ASM', 0, 0, '0000-00-00 00:00:00', 'SMA', 'AQ', 'ASA', 'images/com_joomleague/database/flags/as.png', 'ASA', 'USA', ''),

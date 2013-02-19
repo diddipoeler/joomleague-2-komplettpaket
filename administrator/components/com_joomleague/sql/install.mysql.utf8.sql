@@ -40,6 +40,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
   `latitude` float NOT NULL DEFAULT '255',
   `longitude` float NOT NULL DEFAULT '255',
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `associations` INT(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name` (`name` ASC)
   )
@@ -397,6 +398,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_person` (
   `latitude` float NOT NULL DEFAULT '255',
   `longitude` float NOT NULL DEFAULT '255',
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `associations` INT(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `position_id` (`position_id`)

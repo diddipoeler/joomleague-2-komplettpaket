@@ -37,22 +37,23 @@ class JFormFieldcountryassociation extends JFormFieldList
 	{
 		// Initialize variables.
 		$options = array();
-
+    //echo 'this->element<br /><pre>~' . print_r($this->element,true) . '~</pre><br />';
 		$varname = (string) $this->element['varname'];
-		$league_id = JRequest::getVar($varname);
- 		if (is_array($league_id)) {
- 			$league_id = $league_id[0];
+    $vartable = (string) $this->element['targettable'];
+		$select_id = JRequest::getVar($varname);
+ 		if (is_array($select_id)) {
+ 			$select_id = $select_id[0];
  		}
 		
-		if ($league_id)
+		if ($select_id)
 		{		
 			$db = &JFactory::getDbo();
 			$query = $db->getQuery(true);
 			
 			$query->select('t.id AS value, t.name AS text');
 			$query->from('#__joomleague_associations AS t');
- 			$query->join('inner', '#__joomleague_league AS pt ON pt.country = t.country ');
-			$query->where('pt.id = '.$league_id);
+ 			$query->join('inner', '#__joomleague_'.$vartable.' AS wt ON wt.country = t.country ');
+			$query->where('wt.id = '.$select_id);
 			$query->order('t.name');
 			$db->setQuery($query);
 			$options = $db->loadObjectList();
