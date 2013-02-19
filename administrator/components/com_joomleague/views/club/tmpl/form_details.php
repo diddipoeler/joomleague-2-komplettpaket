@@ -35,6 +35,10 @@
 					<td class="key"><?php echo $this->form->getLabel('location'); ?></td>
 					<td><?php echo $this->form->getInput('location'); ?></td>
 				</tr>
+        <tr>
+			<td class="key"><?php echo $this->form->getLabel('associations'); ?></td>
+			<td><?php echo $this->form->getInput('associations'); ?></td>
+		</tr>
 				<tr>
 					<td class="key"><?php echo $this->form->getLabel('state'); ?></td>
 					<td><?php echo $this->form->getInput('state'); ?></td>

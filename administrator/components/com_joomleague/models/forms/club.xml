@@ -56,7 +56,19 @@
 			description="COM_JOOMLEAGUE_ADMIN_CLUB_COUNTRY_DESC"
 			class="inputbox">
 		<option value="">COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY</option>
-	</field>	
+	</field>
+  
+  <field
+			name="associations"
+			type="countryassociation" 
+      size="10"
+			default="0"
+      varname="cid"
+      targettable="club"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_ASSOCIATION"
+			description="COM_JOOMLEAGUE_ADMIN_CLUB_ASSOCIATION_DESC"
+			class="inputbox"/>
+      	
 	<field
 			name="phone"
 			type="text"
