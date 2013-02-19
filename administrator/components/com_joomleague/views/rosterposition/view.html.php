@@ -41,6 +41,7 @@ class JoomleagueViewrosterposition extends JLGView
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
+    $document = JFactory::getDocument();
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();
 		$user =& JFactory::getUser();
@@ -84,6 +85,8 @@ class JoomleagueViewrosterposition extends JLGView
 		$lists['project_type']=JHTMLSelect::genericlist($project_type,'short_name','class="inputbox" size="1"','id','name',$object->short_name);
 		unset($project_type);
 		
+    $document->addScript( JURI::base(true).'/components/com_joomleague/assets/js/dragpull.js');
+    
     /*
     * extended data
     */

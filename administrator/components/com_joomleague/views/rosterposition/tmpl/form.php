@@ -85,6 +85,10 @@ JToolBarHelper::help('screen.joomleague',true);
 		echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS'),'panel2');
     echo $this->loadTemplate('extended');
     echo $pane->endPanel();
+    
+    echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS_PLAYGROUND'),'panel3');
+    echo $this->loadTemplate('playground');
+    echo $pane->endPanel();
 
 		echo $pane->endPane();
 		?>
