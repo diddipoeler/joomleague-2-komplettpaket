@@ -37,8 +37,12 @@ if (!empty($this->matchstaffpositions))
 												$this->config['staff_picture_width'],
 												$this->config['staff_picture_height']);
 										*/
+                                        ?>
+                                        <a href="<?php echo $picture;?>" alt="<?php echo $imgTitle;?>" title="<?php echo $imgTitle;?>" class="highslide" onclick="return hs.expand(this)">
+                                        <?php
                                         echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['staff_picture_width'] ));
                                         ?>
+                                        </a>
 									</li>
 									<?php
 								}
@@ -69,7 +73,13 @@ if (!empty($this->matchstaffpositions))
 												$this->config['staff_picture_width'],
 												$this->config['staff_picture_height']);
 										*/
+                                        ?>
+                                        <a href="<?php echo $picture;?>" alt="<?php echo $imgTitle;?>" title="<?php echo $imgTitle;?>" class="highslide" onclick="return hs.expand(this)">
+                                        <?PHP
                                         echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['staff_picture_width'] ));
+                                        ?>
+                                        </a>
+                                        <?php
                                         echo '&nbsp;';
 										$player_link=JoomleagueHelperRoute::getStaffRoute($this->project->slug,$player->team_slug,$player->person_slug);
 										echo JHTML::link($player_link,$match_player);

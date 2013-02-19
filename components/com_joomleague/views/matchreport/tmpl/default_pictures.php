@@ -38,10 +38,11 @@ if (($j % $rssitems_colums) == 0 ) :
 					<tr class="<?php echo $row; ?>">
 					<?php endif; ?>
 					<td class="item" style="width:<?php echo floor(99/$rssitems_colums)."%";?>">
+          <a href="<?php echo $images->sitepath.DS.$images->name;?>" alt="<?php echo $images->name;?>" title="<?php echo $images->name;?>" class="highslide" onclick="return hs.expand(this)">
 					<?php
 echo JHTML::image($images->sitepath.DS.$images->name, $images->name , array('title' => $images->name ,'width' => $pictures_width ));					
-					
 					?>
+          </a>
 					</td>
 					<?php if (($j % $rssitems_colums) == ($rssitems_colums-1) ) : ?>
 					</tr>

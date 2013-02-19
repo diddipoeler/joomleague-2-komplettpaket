@@ -88,7 +88,13 @@ if (!empty($this->matchplayerpositions))
 																													$this->config['player_picture_width'],
 																													$this->config['player_picture_height']));
 												*/
+                                                ?>
+                                                <a href="<?php echo $picture;?>" alt="<?php echo $imgTitle;?>" title="<?php echo $imgTitle;?>" class="highslide" onclick="return hs.expand(this)">
+                                                <?PHP
                                                 echo JHTML::link($player_link,JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] )));
+                                                ?>
+                                                </a>
+                                                <?PHP
                                                 } else {
 													/*
                                                     echo JoomleagueHelper::getPictureThumb($picture,
@@ -97,7 +103,13 @@ if (!empty($this->matchplayerpositions))
 																							$this->config['player_picture_height']);
 													
                                                     */
+                                                    ?>
+                                                <a href="<?php echo $picture;?>" alt="<?php echo $imgTitle;?>" title="<?php echo $imgTitle;?>" class="highslide" onclick="return hs.expand(this)">
+                                                <?PHP
                                                     echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] ));
+                        ?>
+                                                </a>
+                                                <?PHP
                         if ( $this->config['show_player_profile_link_alignment'] == 1 )
 												{
 												echo '<br>';
@@ -170,8 +182,15 @@ if (!empty($this->matchplayerpositions))
 																							$imgTitle,
 																							$this->config['player_picture_width'],
 																							$this->config['player_picture_height']);
-													*/
+													*/                         ?>
+                                                <a href="<?php echo $picture;?>" alt="<?php echo $imgTitle;?>" title="<?php echo $imgTitle;?>" class="highslide" onclick="return hs.expand(this)">
+                                                <?PHP
+                                                    
                                                     echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['player_picture_width'] ));
+                                                    
+                                                     ?>
+                                                     </a>
+                                                     <?PHP
                                                     if ( $this->config['show_player_profile_link_alignment'] == 1 )
 												                            {
                                                     echo '<br>';

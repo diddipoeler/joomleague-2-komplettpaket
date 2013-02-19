@@ -87,6 +87,45 @@ class JoomleagueViewMatchReport extends JLGView
 		}
 		$document->setTitle( $pageTitle );
 
+    $document->addScript( JURI::base(true).'/components/com_joomleague/assets/js/highslide.js');
+		$document->addStyleSheet( JURI::base(true) . '/components/com_joomleague/assets/css/highslide/highslide.css' );
+    
+    $js = "hs.graphicsDir = '".JURI::base(true) . "/components/com_joomleague/assets/css/highslide/graphics/"."';\n";
+    $js .= "hs.outlineType = 'rounded-white';\n";
+    $js .= "
+    hs.lang = {
+   cssDirection:     'ltr',
+   loadingText :     'Lade...',
+   loadingTitle :    'Klick zum Abbrechen',
+   focusTitle :      'Klick um nach vorn zu bringen',
+   fullExpandTitle : 'Zur Originalgr&ouml;&szlig;e erweitern',
+   fullExpandText :  'Vollbild',
+   creditsText :     '',
+   creditsTitle :    '',
+   previousText :    'Voriges',
+   previousTitle :   'Voriges (Pfeiltaste links)',
+   nextText :        'N&auml;chstes',
+   nextTitle :       'N&auml;chstes (Pfeiltaste rechts)',
+   moveTitle :       'Verschieben',
+   moveText :        'Verschieben',
+   closeText :       'Schlie&szlig;en',
+   closeTitle :      'Schlie&szlig;en (Esc)',
+   resizeTitle :     'Gr&ouml;&szlig;e wiederherstellen',
+   playText :        'Abspielen',
+   playTitle :       'Slideshow abspielen (Leertaste)',
+   pauseText :       'Pause',
+   pauseTitle :      'Pausiere Slideshow (Leertaste)',
+   number :          'Bild %1/%2',
+   restoreTitle :    'Klick um das Bild zu schlie&szlig;en, klick und ziehe um zu verschieben. Benutze Pfeiltasten für vor und zurück.'
+};
+
+    
+    \n";
+    
+    $document->addScriptDeclaration( $js );
+
+
+
 		parent::display($tpl);
 
 	}

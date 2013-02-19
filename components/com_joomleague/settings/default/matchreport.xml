@@ -238,6 +238,71 @@
 		</field>	
 	</fieldset>		
 	
+  <fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ROSTER_PLAYGROUND"
+			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ROSTER_PLAYGROUND">
+  
+  <field 	name="show_roster_playground" type="list" default="1" 
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER_PLAYGROUND"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER_PLAYGROUND">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+  <field 	name="roster_playground_calculation" type="list" default="0" 
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_CALCULATION_ROSTER_PLAYGROUND"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_CALCULATION_ROSTER_PLAYGROUND">
+			<option value="0">COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_CALCULATION_ROSTER</option>
+			<option value="1">COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_CALCULATION_AUTO</option>
+		</field>
+  
+  <field 	name="roster_playground_team_picture_width" type="text" default="60"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_TEAM_PICTURE_WIDTH" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_TEAM_PICTURE_WIDTH">
+		</field>
+  <field 	name="roster_playground_player_picture_width" type="text" default="40"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_PICTURE_WIDTH" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_WIDTH">
+		</field>
+<field 	name="roster_playground_player_picture_spacing" type="text" default="80"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING">
+		</field>
+
+<field 	name="roster_playground_start_position_home_goalkeeper" type="text" default="5"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_HOME_GOALKEEPER" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_HOME_GOALKEEPER">
+		</field>
+<field 	name="roster_playground_start_position_home_defender" type="text" default="154"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_HOME_DEFENDER" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_HOME_DEFENDER">
+		</field>
+<field 	name="roster_playground_start_position_home_midfield" type="text" default="300"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_HOME_MIDFIELD" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_HOME_MIDFIELD">
+		</field>    
+<field 	name="roster_playground_start_position_home_forward" type="text" default="400"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_HOME_FORWARD" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_HOME_FORWARD">
+		</field>
+
+<field 	name="roster_playground_start_position_away_goalkeeper" type="text" default="970"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_AWAY_GOALKEEPER" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_AWAY_GOALKEEPER">
+		</field>
+<field 	name="roster_playground_start_position_away_defender" type="text" default="828"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_AWAY_DEFENDER" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_AWAY_DEFENDER">
+		</field>
+<field 	name="roster_playground_start_position_away_midfield" type="text" default="700"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_AWAY_MIDFIELD" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_AWAY_MIDFIELD">
+		</field>    
+<field 	name="roster_playground_start_position_away_forward" type="text" default="587"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_AWAY_FORWARD" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_AWAY_FORWARD">
+		</field>
+                  
+  </fieldset>
+      
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS"
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_TEAMOPTIONS">	
 			
