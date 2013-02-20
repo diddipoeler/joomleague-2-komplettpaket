@@ -262,6 +262,17 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_WIDTH">
 		</field>
+
+<field name="roster_playground_select" 
+type="imagelist" default="spielfeld_578x1050.png" 
+label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_SELECT" 
+description="COM_JOOMLEAGUE_FES_DESC_PARAM_LABEL_ROSTER_PLAYGROUND_SELECT" 
+directory="images/com_joomleague/database/rosterground" 
+filter="" 
+exclude="" 
+stripext="" />
+		
+<!--		
 <field 	name="roster_playground_player_picture_spacing" type="text" default="80"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING">
@@ -300,7 +311,7 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_START_POSITION_AWAY_FORWARD" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_START_POSITION_AWAY_FORWARD">
 		</field>
-                  
+-->                  
   </fieldset>
       
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS"

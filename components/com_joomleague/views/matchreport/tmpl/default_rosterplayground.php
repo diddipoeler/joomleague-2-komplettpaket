@@ -42,7 +42,8 @@ $favteams[$favteams1[$a]] = $favteams1[$a];
 $schemahome = $this->formation1;
 $schemaguest = $this->formation2;
 
-$backgroundimage = 'media/com_joomleague/rosterground/spielfeld_578x1050.png';
+//$backgroundimage = 'media/com_joomleague/rosterground/spielfeld_578x1050.png';
+$backgroundimage = 'media/com_joomleague/rosterground/'.$this->config['roster_playground_select'];
 
 list($width, $height, $type, $attr) = getimagesize($backgroundimage);
 

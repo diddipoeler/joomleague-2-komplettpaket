@@ -233,7 +233,7 @@ class com_joomleagueInstallerScript
 		$update = JFolder::exists($dest);
 		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'clubs/trikot_home', 'clubs/trikot_away','events','leagues','divisions','person_playground',
 							'flags_associations','persons', 'placeholders', 'predictionusers','playgrounds', 'projects','projectreferees','projectteams','projectteams/trikot_home', 'projectteams/trikot_away',
-                            'matchreport','seasons','sport_types', 'teams','flags','teamplayers','teamstaffs','venues', 'statistics');
+                            'rosterground','matchreport','seasons','sport_types', 'teams','flags','teamplayers','teamstaffs','venues', 'statistics');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague');
 		JFile::copy(JPATH_ROOT.'/images/index.html', JPATH_ROOT.'/images/com_joomleague/index.html');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague/database');
