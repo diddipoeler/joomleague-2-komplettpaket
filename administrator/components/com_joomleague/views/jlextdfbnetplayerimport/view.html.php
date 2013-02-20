@@ -130,6 +130,8 @@ $option = JRequest::getCmd('option');
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
+    // Get the view name from the query string
+		$viewName = JRequest::getVar( "view");
 		
 // 		$model =& $this->getModel('project') ;
 // 		$projectdata =& $this->get('Data');
@@ -150,7 +152,7 @@ $option = JRequest::getCmd('option');
 		$this->assignRef('import_version',$import_version);
 		
 // Special HTML workaround to get send popup working
-$pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.pdf';
+$pfad = JURI::root().'media/com_joomleague/description/'.$viewName.'.pdf';
       $send='<a class="toolbar button validate modal" rel="{handler: \'iframe\', size: {x: 800, y: 600}}" onclick="return mySelect();"'.
          ' href="'.$pfad.'"><span title="send" class="icon-32-featured"></span>'.JText::_('Onlinehilfe').'</a>';
       
