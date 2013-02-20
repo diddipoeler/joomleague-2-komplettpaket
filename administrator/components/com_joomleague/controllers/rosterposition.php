@@ -31,7 +31,8 @@ protected $view_list = 'rosterpositions';
 		parent::__construct();
 
 		// Register Extra tasks
-		$this->registerTask('add','display');
+		$this->registerTask('addhome','display');
+    $this->registerTask('addaway','display');
 		$this->registerTask('edit','display');
 		$this->registerTask('apply','save');
 	}
@@ -45,12 +46,24 @@ protected $view_list = 'rosterpositions';
 		
 		switch ($this->getTask())
 		{
-			case 'add'	 :
+			case 'addhome'	 :
 			{
 				JRequest::setVar('hidemainmenu',0);
 				JRequest::setVar('layout','form');
 				JRequest::setVar('view','rosterposition');
 				JRequest::setVar('edit',false);
+        JRequest::setVar('addposition','HOME_POS');
+				// Checkout the project
+				$model=$this->getModel('rosterposition');
+				$model->checkout();
+			} break;
+      case 'addaway'	 :
+			{
+				JRequest::setVar('hidemainmenu',0);
+				JRequest::setVar('layout','form');
+				JRequest::setVar('view','rosterposition');
+				JRequest::setVar('edit',false);
+        JRequest::setVar('addposition','AWAY_POS');
 				// Checkout the project
 				$model=$this->getModel('rosterposition');
 				$model->checkout();

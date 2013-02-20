@@ -46,10 +46,60 @@ class JoomleagueViewrosterposition extends JLGView
 		$uri =& JFactory::getURI();
 		$user =& JFactory::getUser();
 		$model =& $this->getModel();
+    $edit	= JRequest::getVar('edit',true);
+    $addposition	= JRequest::getVar('addposition');
+    $this->assignRef('edit',$edit);
 		$lists=array();
 		//get the project
 		$object =& $this->get('data');
 		$isNew=($object->id < 1);
+
+$bildpositionenhome = array();
+$bildpositionenhome[HOME_POS][0][heim][oben] = 5;
+$bildpositionenhome[HOME_POS][0][heim][links] = 233;
+$bildpositionenhome[HOME_POS][1][heim][oben] = 113;
+$bildpositionenhome[HOME_POS][1][heim][links] = 69;
+$bildpositionenhome[HOME_POS][2][heim][oben] = 113;
+$bildpositionenhome[HOME_POS][2][heim][links] = 179;
+$bildpositionenhome[HOME_POS][3][heim][oben] = 113;
+$bildpositionenhome[HOME_POS][3][heim][links] = 288;
+$bildpositionenhome[HOME_POS][4][heim][oben] = 113;
+$bildpositionenhome[HOME_POS][4][heim][links] = 397;
+$bildpositionenhome[HOME_POS][5][heim][oben] = 236;
+$bildpositionenhome[HOME_POS][5][heim][links] = 179;
+$bildpositionenhome[HOME_POS][6][heim][oben] = 236;
+$bildpositionenhome[HOME_POS][6][heim][links] = 288;
+$bildpositionenhome[HOME_POS][7][heim][oben] = 318;
+$bildpositionenhome[HOME_POS][7][heim][links] = 69;
+$bildpositionenhome[HOME_POS][8][heim][oben] = 318;
+$bildpositionenhome[HOME_POS][8][heim][links] = 233;
+$bildpositionenhome[HOME_POS][9][heim][oben] = 318;
+$bildpositionenhome[HOME_POS][9][heim][links] = 397;
+$bildpositionenhome[HOME_POS][10][heim][oben] = 400;
+$bildpositionenhome[HOME_POS][10][heim][links] = 233;
+$bildpositionenaway = array();
+$bildpositionenaway[AWAY_POS][0][heim][oben] = 970;
+$bildpositionenaway[AWAY_POS][0][heim][links] = 233;
+$bildpositionenaway[AWAY_POS][1][heim][oben] = 828;
+$bildpositionenaway[AWAY_POS][1][heim][links] = 69;
+$bildpositionenaway[AWAY_POS][2][heim][oben] = 828;
+$bildpositionenaway[AWAY_POS][2][heim][links] = 179;
+$bildpositionenaway[AWAY_POS][3][heim][oben] = 828;
+$bildpositionenaway[AWAY_POS][3][heim][links] = 288;
+$bildpositionenaway[AWAY_POS][4][heim][oben] = 828;
+$bildpositionenaway[AWAY_POS][4][heim][links] = 397;
+$bildpositionenaway[AWAY_POS][5][heim][oben] = 746;
+$bildpositionenaway[AWAY_POS][5][heim][links] = 179;
+$bildpositionenaway[AWAY_POS][6][heim][oben] = 746;
+$bildpositionenaway[AWAY_POS][6][heim][links] = 288;
+$bildpositionenaway[AWAY_POS][7][heim][oben] = 664;
+$bildpositionenaway[AWAY_POS][7][heim][links] = 69;
+$bildpositionenaway[AWAY_POS][8][heim][oben] = 664;
+$bildpositionenaway[AWAY_POS][8][heim][links] = 397;
+$bildpositionenaway[AWAY_POS][9][heim][oben] = 587;
+$bildpositionenaway[AWAY_POS][9][heim][links] = 179;
+$bildpositionenaway[AWAY_POS][10][heim][oben] = 587;
+$bildpositionenaway[AWAY_POS][10][heim][links] = 288;
 
 		// fail if checked out not by 'me'
 		if ($model->isCheckedOut($user->get('id')))
@@ -79,13 +129,9 @@ class JoomleagueViewrosterposition extends JLGView
 		$query='SELECT ordering AS value,name AS text FROM	#__joomleague_rosterposition ORDER BY ordering ';
 		$lists['ordering']=JHTML::_('list.specificordering',$object,$object->id,$query,1);
 
-    $project_type=array (	JHTMLSelect::option('HOME_POS',JText::_('HOME_POS'),'id','name'),
-								JHTMLSelect::option('AWAY_POS',JText::_('AWAY_POS'),'id','name')
-							);
-		$lists['project_type']=JHTMLSelect::genericlist($project_type,'short_name','class="inputbox" size="1"','id','name',$object->short_name);
-		unset($project_type);
+    
 		
-    $document->addScript( JURI::base(true).'/components/com_joomleague/assets/js/dragpull.js');
+//     $document->addScript( JURI::base(true).'/components/com_joomleague/assets/js/dragpull.js');
     
     /*
     * extended data
@@ -102,7 +148,164 @@ class JoomleagueViewrosterposition extends JLGView
     $this->assignRef('extended',$extended);
 
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
-		$this->assignRef('lists',$lists);
+    $this->assign('jquery_version', JComponentHelper::getParams('com_joomleague')->get('jqueryversionfrontend',0) );
+    $this->assign('jquery_sub_version', JComponentHelper::getParams('com_joomleague')->get('jquerysubversionfrontend',0) );
+    $this->assign('jquery_ui_version', JComponentHelper::getParams('com_joomleague')->get('jqueryuiversionfrontend',0) );
+    $this->assign('jquery_ui_sub_version', JComponentHelper::getParams('com_joomleague')->get('jqueryuisubversionfrontend',0) );
+		
+    if (!$this->edit)
+		{
+    // neu
+    $position = 1;
+    $object->name = $addposition;
+    $object->short_name = $addposition;
+    $xmlfile=JPATH_COMPONENT_ADMINISTRATOR.DS.'assets'.DS.'extended'.DS.'rosterposition.xml';
+    $extended = JForm::getInstance('extended', $xmlfile,array('control'=> 'extended'),
+				false, '/config');
+    $jRegistry = new JRegistry;
+$jRegistry->loadString('' , 'ini');
+$extended->bind($jRegistry);
+
+
+    
+    
+    
+    switch ($addposition)
+    {
+    case 'HOME_POS':
+    for($a=0; $a < 11; $a++)
+    {
+    $extended->setValue('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_TOP', null,$bildpositionenhome[$object->name][$a]['heim']['oben']);
+    $extended->setValue('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_LEFT', null,$bildpositionenhome[$object->name][$a]['heim']['links']);
+    $position++;
+    }
+    $this->assignRef('bildpositionen',$bildpositionenhome);
+    break;
+    case 'AWAY_POS':
+    for($a=0; $a < 11; $a++)
+    {
+    $extended->setValue('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_TOP', null,$bildpositionenaway[$object->name][$a]['heim']['oben']);
+    $extended->setValue('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_LEFT', null,$bildpositionenaway[$object->name][$a]['heim']['links']);
+    $position++;
+    }
+    $this->assignRef('bildpositionen',$bildpositionenaway);
+    break;
+    }
+    $object->extended = $extended;
+    }
+    else
+    {
+    // bearbeiten positionen übergeben
+    $position = 1;
+    //$xmlfile=JPATH_COMPONENT_ADMINISTRATOR.DS.'assets'.DS.'extended'.DS.'rosterposition.xml';
+		$jRegistry = new JRegistry;
+		$jRegistry->loadString($object->extended, 'ini');
+    
+    for($a=0; $a < 11; $a++)
+    {
+    $bildpositionen[$object->name][$a]['heim']['oben'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_TOP');
+    $bildpositionen[$object->name][$a]['heim']['links'] = $jRegistry->get('COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$position.'_LEFT');
+    $position++;
+    }
+    $this->assignRef('bildpositionen',$bildpositionen);
+    }
+    
+    $project_type=array (	JHTMLSelect::option('HOME_POS',JText::_('HOME_POS'),'id','name'),
+								JHTMLSelect::option('AWAY_POS',JText::_('AWAY_POS'),'id','name')
+							);
+		$lists['project_type']=JHTMLSelect::genericlist($project_type,'short_name','class="inputbox" size="1"','id','name',$object->short_name);
+		unset($project_type);
+    
+    // Add Script
+//$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.$this->jquery_version.'/jquery.min.js');
+$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$this->jquery_ui_version.'.'.$this->jquery_ui_sub_version.'/jquery-ui.min.js');
+
+
+
+$javascript .= "\n".'var $JoLe2 = jQuery.noConflict();' . "\n";
+$javascript .= '$JoLe2(document).ready(function() {' . "\n";
+$javascript .= '    $JoLe2("#draggable_1").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_2").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_3").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_3_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_4").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_5").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_6").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_7").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_8").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_9").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_10").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '    $JoLe2("#draggable_11").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = $JoLe2(this).position();
+    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_TOP").val(Stoppos.top);
+      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_LEFT").val(Stoppos.left);
+    }});' . "\n";
+$javascript .= '  });' . "\n";
+    
+    $document->addScriptDeclaration( $javascript );
+    
+    $this->assignRef('lists',$lists);
 		$this->assignRef('object',$object);
 
 		parent::display($tpl);

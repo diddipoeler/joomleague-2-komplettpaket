@@ -43,7 +43,9 @@ class JoomleagueViewrosterpositions extends JLGView
 		JToolBarHelper::deleteList();
 		JToolBarHelper::divider();
 		*/
-    JLToolBarHelper::addNew('rosterposition.add');
+//    JLToolBarHelper::addNew('rosterposition.add');
+    JToolBarHelper::custom('rosterposition.addhome','new','new',JText::_('COM_JOOMLEAGUE_ADMIN_ROSTERPOSITIONS_HOME'),false);
+    JToolBarHelper::custom('rosterposition.addaway','new','new',JText::_('COM_JOOMLEAGUE_ADMIN_ROSTERPOSITIONS_AWAY'),false);
 		JLToolBarHelper::editList('rosterposition.edit');
 		JToolBarHelper::custom('rosterposition.import','upload','upload',JText::_('COM_JOOMLEAGUE_GLOBAL_CSV_IMPORT'),false);
 		JToolBarHelper::archiveList('rosterposition.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));

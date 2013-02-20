@@ -82,13 +82,20 @@ JToolBarHelper::help('screen.joomleague',true);
 		echo $this->loadTemplate('details');
 		echo $pane->endPanel();
 		
-		echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS'),'panel2');
+		echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS_PLAYGROUND'),'panel2');
+    echo $this->loadTemplate('playground_jquery');
+    echo $pane->endPanel();
+    
+    
+    echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS'),'panel3');
     echo $this->loadTemplate('extended');
     echo $pane->endPanel();
     
-    echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS_PLAYGROUND'),'panel3');
-    echo $this->loadTemplate('playground');
-    echo $pane->endPanel();
+//     echo $pane->startPanel(JText::_('COM_JOOMLEAGUE_TABS_ROSTERPOSITIONS_PLAYGROUND'),'panel3');
+//     echo $this->loadTemplate('playground');
+//     echo $pane->endPanel();
+    
+    
 
 		echo $pane->endPane();
 		?>
