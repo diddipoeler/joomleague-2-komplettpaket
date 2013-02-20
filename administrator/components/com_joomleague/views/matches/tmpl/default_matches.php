@@ -136,9 +136,9 @@ fieldset button {
 							// diddipoeler einzelsportart
 							?>
               <td style="text-align:center; ">
-							<a	rel="{handler: 'iframe',size: {x: 800,y: 500}}"
-									href="index.php?option=com_joomleague&task=jlextindividualsport.show&tmpl=component&cid[]=<?php echo $row->id; ?>&team1=<?php echo $row->projectteam1_id; ?>&team2=<?php echo $row->projectteam2_id; ?>"
-									 class=""
+							<a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
+									href="index.php?option=com_joomleague&task=jlextindividualsport.jlexteditsinglematches&tmpl=component&cid[]=<?php echo $row->id; ?>&team1=<?php echo $row->projectteam1_id; ?>&team2=<?php echo $row->projectteam2_id; ?>"
+									 class="modal"
 									 title="<?php echo JText::_('JL_ADMIN_MATCHES_EDIT_SINGLE_SPORT'); ?>">
 									 <?php
 									 
