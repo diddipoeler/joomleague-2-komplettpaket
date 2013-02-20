@@ -200,43 +200,45 @@
 
 
   <fieldset  
-  name="JL_SETTINGS_GROUP_JQUERY" label="JL_SETTINGS_GROUP_JQUERY_LABEL"
-		description="JL_SETTINGS_GROUP_JQUERY_DESC">
-  
-  <field name="jl_use_jquery_version" type="radio"
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY" label="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_LABEL"
+		description="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_DESC">
+
+<!--  
+  <field name="COM_JOOMLEAGUE_use_jquery_version" type="radio"
 			default="0" 
-      label="JL_SETTINGS_USE_JQUERY_VERSION_TITLE" 
-      description="JL_SETTINGS_USE_JQUERY_VERSION_DESCR">
-			<option value="0">JL_GLOBAL_NO</option>
-			<option value="1">JL_GLOBAL_YES</option>
+      label="COM_JOOMLEAGUE_SETTINGS_USE_JQUERY_VERSION_TITLE" 
+      description="COM_JOOMLEAGUE_SETTINGS_USE_JQUERY_VERSION_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+-->
 		
   <field name="jqueryversionfrontend" type="list" default="1.8" 
-	            	label="JL_SYSTEM_JQUERY_FIELD_JQUERYVERSION_LABEL" 
-	            	description="JL_SYSTEM_JQUERY_FIELD_JQUERYVERSION_DESC">
-                <option value="1.8">JL_SYSTEM_JQUERY_VALUE_LATEST18</option>
-	                <option value="1.7">JL_SYSTEM_JQUERY_VALUE_LATEST17</option>
-	                <option value="1.6">JL_SYSTEM_JQUERY_VALUE_LATEST16</option>
-	                <option value="1.5">JL_SYSTEM_JQUERY_VALUE_LATEST15</option>
-	                <option value="1.4">JL_SYSTEM_JQUERY_VALUE_LATEST14</option>
-	                <option value="1.3">JL_SYSTEM_JQUERY_VALUE_LATEST13</option>
+	            	label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYVERSION_LABEL" 
+	            	description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYVERSION_DESC">
+                <option value="1.8">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST18</option>
+	                <option value="1.7">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST17</option>
+	                <option value="1.6">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST16</option>
+	                <option value="1.5">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST15</option>
+	                <option value="1.4">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST14</option>
+	                <option value="1.3">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATEST13</option>
 
 	            </field>
 	            <field name="jquerysubversionfrontend" type="text" default="" size="2" 
-					label="JL_SYSTEM_JQUERY_FIELD_JQUERYSUBVERSION_LABEL" 
-					description="JL_SYSTEM_JQUERY_FIELD_JQUERYSUBVERSION_DESC" />
+					label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYSUBVERSION_LABEL" 
+					description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYSUBVERSION_DESC" />
 					
 <field name="jqueryuiversionfrontend" type="list" default="1.8" 
-	            	label="JL_SYSTEM_JQUERY_FIELD_JQUERYUIVERSION_LABEL" 
-	            	description="JL_SYSTEM_JQUERY_FIELD_JQUERYUIVERSION_DESC">
-	                <option value="1.8">JL_SYSTEM_JQUERY_VALUE_LATESTUI18</option>
-	                <option value="1.7">JL_SYSTEM_JQUERY_VALUE_LATESTUI17</option>
+	            	label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUIVERSION_LABEL" 
+	            	description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUIVERSION_DESC">
+	                <option value="1.8">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATESTUI18</option>
+	                <option value="1.7">COM_JOOMLEAGUE_SYSTEM_JQUERY_VALUE_LATESTUI17</option>
 
 	            </field>
 	            
-              <field name="jqueryuisubversionfrontend" type="text" default="" size="2" 
-					label="JL_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_LABEL" 
-					description="JL_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_DESC" />					
+              <field name="jqueryuisubversionfrontend" type="text" default="18" size="2" 
+					label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_LABEL" 
+					description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_DESC" />					
   </fieldset>
 
 </config>
