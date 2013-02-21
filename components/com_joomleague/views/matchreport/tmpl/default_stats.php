@@ -1,7 +1,7 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 
+//jimport('joomla.html.pane');
 
-jimport('joomla.html.pane');
 ?>
 
 <!-- START: game stats -->
@@ -37,7 +37,7 @@ if (!empty($this->matchplayerpositions ))
 	<h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'); ?></h2>
 	
 		<?php
-    $idxTab = 1;
+    $idxTab = 100;
     echo JHTML::_('tabs.start','tabs_matchreport_stats', array('useCookie'=>1));
 // 		$pane =& JPane::getInstance('tabs',array('startOffset'=>0));
 // 		echo $pane->startPane('pane');

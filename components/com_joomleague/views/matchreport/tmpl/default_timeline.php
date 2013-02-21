@@ -13,6 +13,26 @@
 <h2><?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'); ?></h2>
 <table id="timeline">
 	<tr>
+  <?php
+		if ($this->team1->logo_small == '')
+		{
+			echo '<td width="140">';
+		}
+		else
+		{
+			echo '<td width="40">';
+		}
+		?>
+		</td>
+    <td id="timeline-top">
+    <div id="timelinetop">
+    1.halbzeit
+    
+    2.halbzeit
+    </div>
+  </td>
+  </tr>
+	<tr>
 		<?php
 		if ($this->team1->logo_small == '')
 		{

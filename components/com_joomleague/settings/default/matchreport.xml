@@ -247,13 +247,22 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+    
+<!--    
   <field 	name="roster_playground_calculation" type="list" default="0" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_CALCULATION_ROSTER_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_CALCULATION_ROSTER_PLAYGROUND">
 			<option value="0">COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_CALCULATION_ROSTER</option>
 			<option value="1">COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_CALCULATION_AUTO</option>
 		</field>
-  
+-->  
+<field 	name="roster_playground_use_fav_teams" type="list" default="0" 
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_USE_FAV_TEAMS"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_USE_FAV_TEAMS">
+			  <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+    
   <field 	name="roster_playground_team_picture_width" type="text" default="60"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_TEAM_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_TEAM_PICTURE_WIDTH">
@@ -268,11 +277,12 @@ type="imagelist" default="spielfeld_578x1050.png"
 label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_SELECT" 
 description="COM_JOOMLEAGUE_FES_DESC_PARAM_LABEL_ROSTER_PLAYGROUND_SELECT" 
 directory="images/com_joomleague/database/rosterground" 
+/>
+		
+<!--
 filter="" 
 exclude="" 
-stripext="" />
-		
-<!--		
+stripext="" 		
 <field 	name="roster_playground_player_picture_spacing" type="text" default="80"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_SPACING">

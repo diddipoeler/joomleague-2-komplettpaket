@@ -95,6 +95,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
   }
   else if ( ($this->config['show_result_tabs']) == "show_tabs" )
   {
+  // tabs anzeigen
   $idxTab = 1;
   echo JHTML::_('tabs.start','tabs_matchreport', array('useCookie'=>1));
   
@@ -181,6 +182,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
   }
   else if ( ($this->config['show_result_tabs']) == "show_slider" )
   {
+  // slider anzeigen
   $idxTab = 1;
   echo JHTML::_('sliders.start','slider_matchreport', array('useCookie'=>1));
   
