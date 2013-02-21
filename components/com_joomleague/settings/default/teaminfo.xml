@@ -80,9 +80,12 @@
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
 		</field>
 
+<!--
 		<field name="team_picture_height" type="text" default="150"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
 		</field>
+-->
+		
 	</fieldset>
 
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_HISTORY_OPTIONS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_HISTORY_OPTIONS">

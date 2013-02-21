@@ -17,12 +17,15 @@ else
 	}
 	//dynamic object property string
 	$pic = $this->config['show_picture'];
-	echo JoomleagueHelper::getPictureThumb($this->team->$pic,
+	/*
+  echo JoomleagueHelper::getPictureThumb($this->team->$pic,
 											$this->team->name,
 											$this->config['team_picture_width'],
 											$this->config['team_picture_height'],
 											1);
-	?>
+	*/
+  echo JHTML::image($this->team->$pic, $this->team->name, array('title' => $this->team->name,'width' => $this->config['team_picture_width'] ));
+  ?>
 </div>
 	<?php
 	if($this->config['show_club_info'] || $this->config['show_team_info'])
