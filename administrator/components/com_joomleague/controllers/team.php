@@ -90,6 +90,23 @@ class JoomleagueControllerTeam extends JoomleagueController
 		$post['notes'] = JRequest:: getVar('notes','none','post','STRING',JREQUEST_ALLOWHTML);
 		$model = $this->getModel('team');
 
+    if (isset($post['merge_clubs']))
+		{
+			if (count($post['merge_clubs']) > 0)
+			{
+				$temp=implode(",",$post['merge_clubs']);
+			}
+			else
+			{
+				$temp='';
+			}
+			$post['merge_clubs']=$temp;
+		}
+		else
+		{
+			$post['merge_clubs']='';
+		}
+    
 		if ($model->store($post))
 		{
 			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_TEAM_CTRL_SAVED');

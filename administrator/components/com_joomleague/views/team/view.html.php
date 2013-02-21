@@ -49,6 +49,8 @@ class JoomleagueViewTeam extends JLGView
 		$team	=& $this->get('data');
 		$isNew	= ($team->id < 1);
 
+    $team->merge_clubs = explode(",", $team->merge_clubs);
+    
 		// fail if checked out not by 'me'
 		if ($model->isCheckedOut( $user->get('id') ))
 		{

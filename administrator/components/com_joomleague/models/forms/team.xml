@@ -54,8 +54,20 @@
 			<option
 				value="0">
 				COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB</option>
-		</field>		
-	</fieldset>			
+		</field>	
+    
+    <field
+			name="merge_clubs"
+			type="clublist"
+			label="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB_MERGE"
+			description="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB_MERGE_DESC"
+			multiple="true"
+			size="15"
+      
+			class="inputbox"/>	
+	</fieldset>	
+  
+  		
 	<fieldset name="picture">
 			<field
 				name="picture"

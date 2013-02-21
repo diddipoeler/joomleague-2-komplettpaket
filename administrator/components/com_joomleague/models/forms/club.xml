@@ -67,7 +67,11 @@
       targettable="club"
 			label="COM_JOOMLEAGUE_ADMIN_CLUB_ASSOCIATION"
 			description="COM_JOOMLEAGUE_ADMIN_CLUB_ASSOCIATION_DESC"
-			class="inputbox"/>
+			class="inputbox">
+      <option
+				value="0">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE</option>
+		</field>
       	
 	<field
 			name="phone"
