@@ -24,7 +24,13 @@ else
 											$this->config['team_picture_height'],
 											1);
 	*/
+	?>
+<a href="<?php echo $this->team->$pic;?>" alt="<?php echo $this->team->name;?>" title="<?php echo $this->team->name;?>" class="highslide" onclick="return hs.expand(this)">
+<?PHP
   echo JHTML::image($this->team->$pic, $this->team->name, array('title' => $this->team->name,'width' => $this->config['team_picture_width'] ));
+?>
+</a>
+<?PHP  
   ?>
 </div>
 	<?php
