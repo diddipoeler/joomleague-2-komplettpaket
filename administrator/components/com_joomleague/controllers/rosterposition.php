@@ -102,11 +102,11 @@ protected $view_list = 'rosterpositions';
 		$model->checkin();
 		if ($this->getTask()=='save')
 		{
-			$link='index.php?option=com_joomleague&view=rosterpositions';
+			$link='index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display';
 		}
 		else
 		{
-			$link='index.php?option=com_joomleague&rosterposition.task=edit&cid[]='.$post['id'];
+			$link='index.php?option=com_joomleague&task=rosterposition.edit&cid[]='.$post['id'];
 		}
 		$this->setRedirect($link,$msg);
 	}
@@ -127,7 +127,7 @@ protected $view_list = 'rosterpositions';
 		{
 			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_ROSTERPOSITIONS_CTRL_DELETED');
 		}
-		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions',$msg);
+		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display',$msg);
 	}
 
 	function cancel()
@@ -135,21 +135,21 @@ protected $view_list = 'rosterpositions';
 		// Checkin the project
 		$model=$this->getModel('rosterposition');
 		$model->checkin();
-		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions');
+		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
 	}
 
 	function orderup()
 	{
 		$model=$this->getModel('rosterposition');
 		$model->move(-1);
-		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions');
+		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
 	}
 
 	function orderdown()
 	{
 		$model=$this->getModel('rosterposition');
 		$model->move(1);
-		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions');
+		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
 	}
 
 	function saveorder()
@@ -162,7 +162,7 @@ protected $view_list = 'rosterpositions';
 		$model=$this->getModel('rosterposition');
 		$model->saveorder($cid,$order);
 		$msg=JText::_('COM_JOOMLEAGUE_GLOBAL_NEW_ORDERING_SAVED');
-		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions',$msg);
+		$this->setRedirect('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display',$msg);
 	}
 
 	function import()

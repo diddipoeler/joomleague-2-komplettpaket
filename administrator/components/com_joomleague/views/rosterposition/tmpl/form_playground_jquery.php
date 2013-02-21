@@ -1,6 +1,6 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$backgroundimage = JURI::root().'media/com_joomleague/rosterground/spielfeld_578x1050.png';
+$backgroundimage = JURI::root().'media/com_joomleague/rosterground/'.$this->object->picture;
 list($width, $height, $type, $attr) = getimagesize($backgroundimage);
 $picture = JURI::root().'images/com_joomleague/database/placeholders/placeholder_150_2.png';
 
@@ -45,7 +45,7 @@ spieler verschieben
 </div>
 
 <?php
-echo "<div style=\"background-image:url('".$backgroundimage."');background-position:left;position:relative;height:".$height."px;width:".$width."px;\">";
+echo "<div id=\"roster\"   style=\"background-image:url('".$backgroundimage."');background-position:left;position:relative;height:".$height."px;width:".$width."px;\">";
 $schemahome = $this->bildpositionen[$this->object->name];
 $testlauf = 1;
 foreach ( $schemahome as $key => $value )

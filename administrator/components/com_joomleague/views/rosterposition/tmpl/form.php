@@ -1,5 +1,9 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
+?>
+
+
+<?PHP
 if ( $this->show_debug_info )
 {
 echo 'this->object<br /><pre>~' . print_r($this->object,true) . '~</pre><br />';

@@ -302,9 +302,32 @@ $javascript .= '    $JoLe2("#draggable_11").draggable({stop: function(event, ui)
       $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_LEFT").val(Stoppos.left);
     }});' . "\n";
 $javascript .= '  });' . "\n";
+
+$javascript .= "\n";
+
+$javascript .= '$JoLe2(document).ready(function(){' . "\n"; 
+$javascript .= '  // bind it' . "\n"; 
+$javascript .= '  $JoLe2("#picture").change(function(){' . "\n"; 
+$javascript .= " var background = \$JoLe2(this).find('option:selected').text();" . "\n";
+//$javascript .= ' alert(background);' . "\n";
+$javascript .= " \$JoLe2('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/ + background)\");" . "\n";
+//$javascript .= '    showDiv();' . "\n"; 
+$javascript .= '  });' . "\n"; 
+$javascript .= '  // run it automagically' . "\n"; 
+//$javascript .= '  showDiv();' . "\n"; 
+$javascript .= '});' . "\n"; 
+
+$javascript .= 'function showDiv(){' . "\n";
+$javascript .= ' alert("hallo freunde");' . "\n";
+$javascript .= " $('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/myimage.jpg)\");" . "\n"; 
+$javascript .= '}' . "\n";
+
+$javascript .= 'function div_bg(team){' . "\n";
+$javascript .= "	document.getElementById('roster').style.backgroundImage=\"url(".JURI::root()."media/com_joomleague/rosterground/ + team )\";" . "\n";	
+$javascript .= '}' . "\n";
     
     $document->addScriptDeclaration( $javascript );
-    
+    $this->assignRef('form'      	, $this->get('form'));
     $this->assignRef('lists',$lists);
 		$this->assignRef('object',$object);
 

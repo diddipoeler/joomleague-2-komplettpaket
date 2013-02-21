@@ -670,6 +670,7 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_rosterposition` (
   `short_name` enum('HOME_POS','AWAY_POS') NOT NULL default 'HOME_POS',
   `middle_name` varchar(25) NOT NULL default '',
   `extended` text,
+  `picture` varchar(255) NOT NULL DEFAULT 'spielfeld_578x1050.png',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`,`short_name`),
   KEY `country` (`country`)
@@ -785,6 +786,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_team` (
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `merge_clubs` VARCHAR(64) NOT NULL DEFAULT '' ,
   PRIMARY KEY (`id`) ,
   KEY `club_id` (`club_id`),
   INDEX `fk_club` (`club_id` ASC)
