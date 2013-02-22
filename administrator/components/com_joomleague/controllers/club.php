@@ -116,6 +116,23 @@ class JoomleagueControllerClub extends JoomleagueController
 		$post['latitude'] = $coords['latitude'];
 		$post['longitude'] = $coords['longitude'];
 
+    if (isset($post['merge_teams']))
+		{
+			if (count($post['merge_teams']) > 0)
+			{
+				$temp=implode(",",$post['merge_teams']);
+			}
+			else
+			{
+				$temp='';
+			}
+			$post['merge_teams']=$temp;
+		}
+		else
+		{
+			$post['merge_teams']='';
+		}
+		
     //$mainframe->enqueueMessage(JText::_('post -> '.'<pre>'.print_r($post,true).'</pre>' ),'');
 		
 		if ($model->store($post))

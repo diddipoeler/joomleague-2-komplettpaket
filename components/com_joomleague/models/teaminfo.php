@@ -182,6 +182,19 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		return $rank;
 	}
 
+
+  function getMergeClubs( $merge_clubs )
+  {
+  
+  $query = ' SELECT *, '
+				       . ' CASE WHEN CHAR_LENGTH( alias ) THEN CONCAT_WS( \':\', id, alias ) ELSE id END AS slug '
+				       . ' FROM #__joomleague_club WHERE id IN ('. $merge_clubs .')';
+				$this->_db->setQuery($query);
+				$result  = $this->_db->loadObjectList();
+			
+		return $result;
+  }
+  
 	/**
 	 * gets name of league associated to project
 	 * @param int $projectid

@@ -1,5 +1,13 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' ); 
 
+
+if ( $this->show_debug_info )
+{
+echo 'this->team<br /><pre>~' . print_r($this->team,true) . '~</pre><br />';
+echo 'this->merge_clubs<br /><pre>~' . print_r($this->merge_clubs,true) . '~</pre><br />';
+}
+
+
 // Make sure that in case extensions are written for mentioned (common) views,
 // that they are loaded i.s.o. of the template of this view
 $templatesToLoad = array('projectheading', 'backbutton', 'footer');

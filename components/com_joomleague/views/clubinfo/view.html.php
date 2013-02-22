@@ -13,6 +13,7 @@ class JoomleagueViewClubInfo extends JLGView
 		$document		= JFactory::getDocument();
 		$model			= $this->getModel();
 		$club			= $model->getClub() ;
+		
 		$config			= $model->getTemplateConfig( $this->getName() );	
 		$project 		= $model->getProject();
 		$overallconfig	= $model->getOverallConfig();
@@ -33,6 +34,8 @@ class JoomleagueViewClubInfo extends JLGView
 
 		$this->assignRef( 'showclubconfig',	$showclubconfig );
 		$this->assignRef( 'club',			$club);
+		$clubassoc			= $model->getClubAssociation($this->club->associations) ;
+		$this->assignRef( 'clubassoc',			$clubassoc);
 
 		$extended = $this->getExtended($club->extended, 'club');
 		$this->assignRef( 'extended', $extended );

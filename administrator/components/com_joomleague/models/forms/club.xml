@@ -135,6 +135,19 @@
 				COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYGROUND</option>
 		</field>	
 
+    <field
+			name="merge_teams"
+			type="teamlist"
+			label="COM_JOOMLEAGUE_ADMIN_CLUB_TEAM_MERGE"
+			description="COM_JOOMLEAGUE_ADMIN_CLUB_TEAM_MERGE_DESC"
+			multiple="true"
+			size="15"
+			class="inputbox">
+      <option
+				value="">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE</option>
+		</field>	
+		
     <field 
 			name="enable_sb" 
 			type="radio" 

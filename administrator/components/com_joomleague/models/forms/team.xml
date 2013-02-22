@@ -63,8 +63,11 @@
 			description="COM_JOOMLEAGUE_ADMIN_TEAM_CLUB_MERGE_DESC"
 			multiple="true"
 			size="15"
-      
-			class="inputbox"/>	
+			class="inputbox">
+      <option
+				value="">
+				COM_JOOMLEAGUE_GLOBAL_SELECT_DO_NOT_USE</option>
+		</field>	
 	</fieldset>	
   
   		

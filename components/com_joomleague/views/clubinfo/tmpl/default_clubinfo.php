@@ -64,7 +64,13 @@ else
 				$dummyStr = explode('<br />', $addressString);
 				for ($i = 0; $i < count($dummyStr); $i++) { echo '<br />'; }
 				?></span>
-			<span class="clubinfo_listing_value"><?php echo $addressString; ?></span>
+			<span class="clubinfo_listing_value"><?php echo $addressString; ?>
+			
+			<?php echo JHTML::image(JURI::root().$this->clubassoc->asocflag, $this->clubassoc->name, array('title' => $this->clubassoc->name ) ).$this->clubassoc->name; ?>
+      <br />
+      </span>
+			
+			
 			<?php
 		}
 

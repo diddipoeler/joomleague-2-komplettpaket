@@ -79,14 +79,26 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
     return $lists;         
     }
     
-    
+    function getClubAssociation($associations)
+	{
+	$query = ' SELECT asoc.*'
+				       . ' FROM #__joomleague_associations AS asoc '
+				       //. ' inner join #__joomleague_club AS c on asoc.id = c.associations '
+				       . ' WHERE asoc.id = '. $this->_db->Quote($associations)
+				            ;
+				$this->_db->setQuery($query);
+				$result = $this->_db->loadObject();
+	
+		return $result;
+	}
+	
     function getClub( )
 	{
 		if ( is_null( $this->club ) )
 		{
 			if ( $this->clubid > 0 )
 			{
-				$query = ' SELECT c.* '
+				$query = ' SELECT c.*'
 				       . ' FROM #__joomleague_club AS c '
 				       . ' WHERE c.id = '. $this->_db->Quote($this->clubid)
 				            ;

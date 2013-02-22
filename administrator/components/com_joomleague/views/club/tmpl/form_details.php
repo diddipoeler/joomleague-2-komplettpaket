@@ -83,6 +83,11 @@
 					<td class="key"><?php echo $this->form->getLabel('standard_playground'); ?></td>
 					<td><?php echo $this->form->getInput('standard_playground'); ?></td>
 				</tr>
+				
+				<tr>
+					<td class="key"><?php echo $this->form->getLabel('merge_teams'); ?></td>
+					<td><?php echo $this->form->getInput('merge_teams'); ?></td>
+				</tr>
                 
                 <tr>
 					<td class="key"><?php echo $this->form->getLabel('enable_sb'); ?></td>

@@ -130,7 +130,36 @@ else
 	</div>
 			<?php
 			}
+			
+			if ($this->merge_clubs)
+			{
+			?>
+	<div class="jl_parentContainer">
+	    <fieldset class="adminform">
+			<legend>
+      <?php 
+      echo JText::_('COM_JOOMLEAGUE_TEAMINFO_MERGE_CLUBS'); 
+      ?>
+      </legend>
+      <?PHP
+      foreach ( $this->merge_clubs as $merge_clubs)
+      {
+      ?>
+      <span class="clubinfo_listing_item"> <?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_CLUB_NAME'); ?></span>
+		<span class="clubinfo_listing_value"> <?php
+		$link = JoomleagueHelperRoute::getClubInfoRoute($this->project->slug, $merge_clubs->slug);
+		echo JHTML::link($link, $merge_clubs->name);
+		?>
+		</span>
+      <?PHP
+      }
+      ?>
+      </fieldset>	
+	    </div>
+				<?php
+			}
 		}
+		
 		if ($this->config['show_team_info'])
 		{
 			?>

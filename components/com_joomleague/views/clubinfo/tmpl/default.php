@@ -5,7 +5,8 @@ if ( $this->show_debug_info )
 echo 'club address_string<pre>',print_r($this->address_string,true),'</pre><br>';
 echo 'club teams<pre>',print_r($this->teams,true),'</pre><br>';
 echo 'club extended<pre>',print_r($this->extended,true),'</pre><br>';
-
+echo 'club <pre>',print_r($this->club,true),'</pre><br>';
+echo 'club clubassoc<pre>',print_r($this->clubassoc,true),'</pre><br>';
 }
 
 // Make sure that in case extensions are written for mentioned (common) views,
