@@ -6,6 +6,7 @@ class JoomleagueViewFooter extends JLGView
 {
 	function display( $tpl = null )
 	{
+	
 		parent::display( $tpl );
 	}
 

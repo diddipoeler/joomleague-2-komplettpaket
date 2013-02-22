@@ -111,6 +111,15 @@ class JoomleagueModelUpdates extends JModel
 		return strcasecmp($a['last_version'],$b['last_version']);
 	}
 
+
+  function getVersionHistory()
+  {
+  $query='SELECT * FROM #__joomleague_version_history order by date DESC';
+		$this->_db->setQuery($query);		
+		$result = $this->_db->loadObjectList();
+  return $result;
+  }
+  
 	function loadUpdateFiles()
 	{
 		$option = JRequest::getCmd('option');

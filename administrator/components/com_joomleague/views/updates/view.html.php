@@ -37,6 +37,7 @@ class JoomleagueViewUpdates extends JLGView
 		$uri = JFactory::getURI();
 		$model = $this->getModel();
 		$versions=$model->getVersions();
+		$versionhistory=$model->getVersionHistory();
 		$updateFiles = array();
 		$lists=array();
 		if($updateFiles=$model->loadUpdateFiles()) {
@@ -59,6 +60,7 @@ class JoomleagueViewUpdates extends JLGView
 		// table ordering
 		$lists['order_Dir']=$filter_order_Dir;
 		$lists['order']=$filter_order;
+		$this->assignRef('versionhistory',$versionhistory);
 		$this->assignRef('updateFiles',$updateFiles);
 		$this->assignRef('request_url',$uri->toString());
 		$this->assignRef('lists',$lists);

@@ -10,6 +10,9 @@ $excludeFile		='true';
 
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
+jimport('joomla.installer.installer');
+
+require_once( JPATH_ADMINISTRATOR.'/components/com_joomleague/'. 'helpers' . DS . 'jinstallationhelper.php' );
 
 function PrintStepResult($status)
 {
@@ -124,7 +127,14 @@ function updateVersion($versionData)
 	}
 	$status=1;
 	echo $versionData->major . "." . $versionData->minor . "." . $versionData->build . "." . $versionData->revision . "-" . $versionData->version . "' ";
-	return $status;
+	
+  
+  $db =& JFactory::getDBO();
+$db_table = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'version_history.sql';
+$result = JInstallationHelper::populateDatabase($db, $db_table, $errors);
+  
+  
+  return $status;
 }
 
 function addGhostPlayer()

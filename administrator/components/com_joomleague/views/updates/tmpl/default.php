@@ -3,7 +3,15 @@
 JHTML::_('behavior.tooltip');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
-	<table class="adminlist">
+	
+  
+  <?php
+  // tabs anzeigen
+  $idxTab = 1;
+  echo JHTML::_('tabs.start','tabs_updates', array('useCookie'=>1)); 
+  echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_LIST'), 'panel'.($idxTab++)); 
+  ?>
+  <table class="adminlist">
 		<thead>
 			<tr>
 				<th width="5" style="vertical-align: top; "><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_NUM'); ?></th>
@@ -50,6 +58,26 @@ JHTML::_('behavior.tooltip');
 		}
 		?></tbody>
 	</table>
+	
+	<?PHP
+	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_HISTORY'), 'panel'.($idxTab++));
+	foreach ( $this->versionhistory as $history )
+	{
+  ?>
+	<fieldset>
+	<legend>
+<strong>
+<?php echo $history->date; ?>
+</strong>
+</legend>
+<?php echo $history->text; ?>
+	</fieldset>
+	<?PHP
+	}
+  echo JHTML::_('tabs.end');
+  ?>
+	
+	
 	<input type="hidden" name="view" value="updates" />
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="boxchecked" value="0" />
