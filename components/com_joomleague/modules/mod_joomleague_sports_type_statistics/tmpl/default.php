@@ -65,14 +65,31 @@ if ($data['projectscount'] == 0) {
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['seasonscount']?></li>
 	</ul>
 	<?php } ?>
+	
+	
+	<?php if($params->get('show_clubs',1) == 1) { ?>
+	<ul>
+		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
+		if($params->get('show_icon',1)==1) {
+			echo '<img alt="'.JText::_($params->get( 'text_clubs' )).'" src="administrator/components/com_joomleague/assets/images/clubs.png">';
+			echo ' '.JText::_($params->get( 'text_clubs' )); 
+		} else {
+			echo JText::_($params->get( 'text_clubs' ));
+		}
+		?></li>
+		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['clubscount']?></li>
+	</ul>
+	<?php } ?>
+	
+	
 	<?php if($params->get('show_teams',1) == 1) { ?>
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS").'" src="administrator/components/com_joomleague/assets/images/teams.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS"); 
+			echo '<img alt="'.JText::_($params->get( 'text_teams' )).'" src="administrator/components/com_joomleague/assets/images/teams.png">';
+			echo ' '.JText::_($params->get( 'text_teams' )); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_TEAMS");
+			echo JText::_($params->get( 'text_teams' ));
 		}
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectteamscount']?></li>
@@ -82,10 +99,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS").'" src="administrator/components/com_joomleague/assets/images/players.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS"); 
+			echo '<img alt="'.JText::_($params->get( 'text_players' )).'" src="administrator/components/com_joomleague/assets/images/players.png">';
+			echo ' '.JText::_($params->get( 'text_players' )); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYERS");
+			echo JText::_($params->get( 'text_players' ));
 		}
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectteamsplayerscount']?></li>
@@ -95,10 +112,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS").'" src="administrator/components/com_joomleague/assets/images/division.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
+			echo '<img alt="'.JText::_($params->get( 'text_divisions' )).'" src="administrator/components/com_joomleague/assets/images/division.png">';
+			echo ' '.JText::_($params->get( 'text_divisions' ));
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_DIVISIONS");
+			echo JText::_($params->get( 'text_divisions' ));
 		} 
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectdivisionscount']?></li>
@@ -108,10 +125,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS").'" src="administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS"); 
+			echo '<img alt="'.JText::_($params->get( 'text_rounds' )).'" src="administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png">';
+			echo ' '.JText::_($params->get( 'text_rounds' )); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_ROUNDS");
+			echo JText::_($params->get( 'text_rounds' ));
 		}
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectroundscount']?></li>
@@ -121,10 +138,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES").'" src="administrator/components/com_joomleague/assets/images/matches.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
+			echo '<img alt="'.JText::_($params->get( 'text_matches' )).'" src="administrator/components/com_joomleague/assets/images/matches.png">';
+			echo ' '.JText::_($params->get( 'text_matches' ));
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_MATCHES");
+			echo JText::_($params->get( 'text_matches' ));
 		} 
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectmatchescount']?></li>
@@ -134,10 +151,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS").'" src="administrator/components/com_joomleague/assets/images/events.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS"); 
+			echo '<img alt="'.JText::_($params->get( 'text_player_events' )).'" src="administrator/components/com_joomleague/assets/images/events.png">';
+			echo ' '.JText::_($params->get( 'text_player_events' )); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_EVENTS");
+			echo JText::_($params->get( 'text_player_events' ));
 		}	
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectmatcheseventscount']?></li>
@@ -167,10 +184,10 @@ if ($data['projectscount'] == 0) {
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
 		if($params->get('show_icon',1)==1) {
-			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS").'" src="administrator/components/com_joomleague/assets/images/icon-48-statistics.png">';
-			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS"); 
+			echo '<img alt="'.JText::_($params->get( 'text_player_stats' )).'" src="administrator/components/com_joomleague/assets/images/icon-48-statistics.png">';
+			echo ' '.JText::_($params->get( 'text_player_stats' )); 
 		} else {
-			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYER_STATS");
+			echo JText::_($params->get( 'text_player_stats' ));
 		} 
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectmatchesstatscount']?></li>

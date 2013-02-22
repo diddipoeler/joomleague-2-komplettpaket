@@ -45,59 +45,119 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="textproject" type="text" default="Projekte"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PROJECTS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PROJECTS_DESC_TEXT">
+				</field>
+				
 				<field name="show_leagues" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_leagues" type="text" default="Ligen"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_LEAGUES_DESC_TEXT">
+				</field>
+				
 				<field name="show_seasons" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="textseasons" type="text" default="Saisons"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_DESC_TEXT">
+				</field>
+				
+				<field name="show_clubs" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="text_clubs" type="text" default="Vereine"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS_DESC_TEXT">
+				</field>
+				
 				<field name="show_teams" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_teams" type="text" default="Mannschaften"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_TEAMS_DESC_TEXT">
+				</field>
+				
 				<field name="show_players" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_players" type="text" default="Spieler"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYERS_DESC_TEXT">
+				</field>
+				
 				<field name="show_divisions" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_divisions" type="text" default="Gruppen"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_DIVISIONS_DESC_TEXT">
+				</field>
+				
 				<field name="show_rounds" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_rounds" type="text" default="Spieltage"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_ROUNDS_DESC_TEXT">
+				</field>
+				
 				<field name="show_matches" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_matches" type="text" default="Spiele"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_MATCHES_DESC_TEXT">
+				</field>
+				
 				<field name="show_player_events" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+				<field name="text_player_events" type="text" default="Ereignisse"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_EVENTS_DESC_TEXT">
+				</field>
+				
 				<field name="show_player_stats" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
+				</field>
+				<field name="text_player_stats" type="text" default="Statistiken"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYER_STATS_DESC_TEXT">
 				</field>
 			</fieldset>
 
