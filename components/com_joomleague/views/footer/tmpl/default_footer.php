@@ -20,9 +20,9 @@ if (JComponentHelper::getParams('com_joomleague')->get('show_footer',0))
 			echo ' :: ';
 			echo ' :: Hilfeseite ';
 			
-			$send = '<a class="toolbar button validate modal" rel="{handler: \'iframe\', size: {x: '.$modal_popup_width.', y: '.$modal_popup_height.'}}" '.
+			$send = '<a class="modal" rel="{handler: \'iframe\', size: {x: '.$modal_popup_width.', y: '.$modal_popup_height.'}}" '.
          ' href="'.$cfg_help_server.'Frontend:'.$view.'">'.JText::_('Onlinehilfe').'</a>';
-$send="<a href=\"".$cfg_help_server."Frontend:".$view."\" target=\"_blank\" onclick=\"window.open(this.href,this.target,'width=".$modal_popup_width.",height=".$modal_popup_height."'); return false;\">Popup öffnen</a>";             
+//$send="<a href=\"".$cfg_help_server."Frontend:".$view."\" target=\"_blank\" onclick=\"window.open(this.href,this.target,'width=".$modal_popup_width.",height=".$modal_popup_height."'); return false;\">Popup öffnen</a>";             
       echo $send;   
 			?>
 		</div>
