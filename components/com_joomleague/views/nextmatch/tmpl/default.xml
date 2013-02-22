@@ -24,12 +24,6 @@
 					label="COM_JOOMLEAGUE_XML_NEXTMATCH_SELECT_MATCH_LABEL"
 					description="COM_JOOMLEAGUE_XML_NEXTMATCH_SELECT_MATCH_DESCR"
 					required="false"
-					query="SELECT	m.id AS value,
-									CONCAT('(', m.match_date, ') - ', t1.middle_name, ' - ', t2.middle_name) AS mid
-							FROM #__joomleague_match m
-							JOIN #__joomleague_team AS t1 ON m.projectteam1_id=t1.id
-							JOIN #__joomleague_team AS t2 ON m.projectteam2_id=t2.id
-							ORDER BY m.match_date, t1.short_name"
 					>
 			</field>
 
