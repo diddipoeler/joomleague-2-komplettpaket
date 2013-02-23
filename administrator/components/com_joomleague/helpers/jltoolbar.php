@@ -221,8 +221,20 @@ class JLToolBarHelper extends JToolBarHelper {
 	
   public static function onlinehelp()
 	{
-		$view = JRequest::getVar( "view") ;
+		$option = JRequest::getCmd('option');
+		$mainframe =& JFactory::getApplication();
+    $view = JRequest::getVar( "view") ;
     $view = ucfirst(strtolower($view));
+    
+    switch ($view)
+    {
+    case 'Template':
+    $template_help = $mainframe->getUserState($option.'template_help');
+    $view = $view.'_'.$template_help;
+    break;
+    default:
+    break;
+    }
     $cfg_help_server = JComponentHelper::getParams('com_joomleague')->get('cfg_help_server','') ;
     $modal_popup_width = JComponentHelper::getParams('com_joomleague')->get('modal_popup_width',0) ;
     $modal_popup_height = JComponentHelper::getParams('com_joomleague')->get('modal_popup_height',0) ;

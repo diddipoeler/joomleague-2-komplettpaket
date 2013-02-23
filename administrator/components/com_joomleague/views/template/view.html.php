@@ -30,6 +30,7 @@ class JoomleagueViewTemplate extends JLGView
 		$app = JFactory::getApplication();
 		$uri = JFactory::getURI();
 		$user = JFactory::getUser();
+		$mainframe =& JFactory::getApplication();
 		$model = $this->getModel();
 		$lists=array();
 
@@ -47,6 +48,8 @@ class JoomleagueViewTemplate extends JLGView
 		$projectws =& $this->get('Data','projectws');
 		$templatepath=JPATH_COMPONENT_SITE.DS.'settings';
 		$xmlfile=$templatepath.DS.'default'.DS.$template->template.'.xml';
+		
+		$mainframe->setUserState($option.'template_help',$template->template);
 		
 		$extensions = JoomleagueHelper::getExtensions(JRequest::getInt('p'));
 		foreach ($extensions as $e => $extension) {
