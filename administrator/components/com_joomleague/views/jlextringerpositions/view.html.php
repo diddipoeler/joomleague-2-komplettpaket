@@ -37,7 +37,7 @@ class JoomleagueViewjlextringerpositions extends JLGView
 		JToolBarHelper::deleteList();
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();

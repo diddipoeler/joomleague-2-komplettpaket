@@ -103,7 +103,7 @@ class JoomleagueViewPlayground extends JLGView
 			JLToolBarHelper::cancel('playground.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);	
+		JLToolBarHelper::onlinehelp();	
 	}
 }
 ?>

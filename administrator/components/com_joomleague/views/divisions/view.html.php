@@ -79,7 +79,7 @@ class JoomleagueViewDivisions extends JLGView
 		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_DIVISIONS_DELETE_WARNING'), 'division.remove');
 		JToolBarHelper::divider();
 		
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

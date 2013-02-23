@@ -127,7 +127,8 @@ class JoomleagueViewDivision extends JLGView
 			JLToolBarHelper::apply('division.apply');
 			JLToolBarHelper::cancel( 'division.cancel', 'Close' );
 		}
-		JToolBarHelper::help( 'screen.joomleague', true );
+		//JLToolBarHelper::onlinehelp();
+		JLToolBarHelper::onlinehelp();
 	}		
 
 }

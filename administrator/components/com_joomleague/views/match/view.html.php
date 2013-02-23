@@ -264,7 +264,7 @@ class JoomleagueViewMatch extends JLGView
 		JLToolBarHelper::apply( 'match.saveeventbb' );
 		JToolBarHelper::divider();
 		JToolBarHelper::back( 'back', 'index.php?option=com_joomleague&view=matches&task=match.display' );
-		JToolBarHelper::help( 'screen.joomleague', true );	
+		JLToolBarHelper::onlinehelp();	
 	}
 	
 	function _displayEditstats($tpl)

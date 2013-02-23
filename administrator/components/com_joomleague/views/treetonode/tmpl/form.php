@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 jimport('joomla.html.pane');
 
 JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODE_TITLE'));
@@ -10,7 +10,7 @@ JLToolBarHelper::apply('treetonode.apply');
 JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
 JLToolBarHelper::custom('treetonode.unpublishnode', 'delete.png','delete_f2.png', JText::_( 'COM_JOOMLEAGUE_ADMIN_TREETONODES_UNPUBLISH' ), false);
 
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 ?>
 
 <script>

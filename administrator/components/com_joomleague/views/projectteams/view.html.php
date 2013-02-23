@@ -342,7 +342,7 @@ class JoomleagueViewProjectteams extends JLGView
 		JLToolBarHelper::custom('projectteam.copy','copy','copy', JText::_('COM_JOOMLEAGUE_GLOBAL_COPY'), true);
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);	
+		JLToolBarHelper::onlinehelp();	
 	}
 	
 	/**
@@ -359,7 +359,7 @@ class JoomleagueViewProjectteams extends JLGView
 		// for existing items the button is renamed `close` and the apply button is showed
 		JLToolBarHelper::cancel( 'projectteam.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 		
-		JToolBarHelper::help( 'screen.joomleague', true );	
+		JLToolBarHelper::onlinehelp();	
 	}
 }
 ?>

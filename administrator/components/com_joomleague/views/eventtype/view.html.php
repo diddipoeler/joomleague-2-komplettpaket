@@ -138,7 +138,7 @@ class JoomleagueViewEventtype extends JLGView
 			JToolBarHelper::divider();
 			JLToolBarHelper::cancel('eventtype.cancel',JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

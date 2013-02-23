@@ -69,7 +69,7 @@ function display( $tpl = null )
 		
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_TITLE_1_3'),'generic.png');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		$uri =& JFactory::getURI();
 		$config =& JComponentHelper::getParams('com_media');
@@ -104,7 +104,7 @@ function display( $tpl = null )
 		// Set toolbar items for the page
 		//JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_TITLE_3_3'),'generic.png');
 		//JToolBarHelper::back();
-		//JToolBarHelper::help('screen.joomleague',true);
+		//JLToolBarHelper::onlinehelp();
 
 		$this->assignRef('starttime',$starttime);
 		$this->assignRef('importData',$model->importData($post));

@@ -189,7 +189,7 @@ class JoomleagueViewPredictionMembers extends JLGView
 		JToolBarHelper::deleteList( '', 'predictionmember.remove' );
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 
 		$this->assignRef( 'user',			JFactory::getUser() );
 		$this->assignRef( 'lists',			$lists );

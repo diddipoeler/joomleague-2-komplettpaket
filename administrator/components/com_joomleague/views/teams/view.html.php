@@ -81,7 +81,7 @@ class JoomleagueViewTeams extends JLGView
 		JLToolBarHelper::archiveList('team.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::deleteList('', 'team.remove');
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

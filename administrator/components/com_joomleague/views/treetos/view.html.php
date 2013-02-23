@@ -86,7 +86,7 @@ class JoomleagueViewTreetos extends JLGView
 		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOS_WARNING'), 'treeto.remove');
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 
 }

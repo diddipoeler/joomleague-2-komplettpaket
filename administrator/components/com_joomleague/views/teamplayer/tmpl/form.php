@@ -17,7 +17,7 @@ else
 	JLToolBarHelper::apply('teamplayer.apply');
 	JLToolBarHelper::cancel( 'teamplayer.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 }
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 
 ?>
 <!-- import the functions to move the events between selection lists	-->

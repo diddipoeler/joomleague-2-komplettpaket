@@ -35,7 +35,7 @@ else
 	JToolBarHelper::cancel( 'cancel', 'JL_GLOBAL_CLOSE' );
 }
 JToolBarHelper::divider();
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 $pane =& JPane::getInstance('tabs'); 
 $i = 1;
 ?>

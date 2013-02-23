@@ -185,7 +185,7 @@ class JoomleagueViewPerson extends JLGView
 		}
 		JToolBarHelper::divider();
 		JToolBarHelper::back();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}		
 
 }

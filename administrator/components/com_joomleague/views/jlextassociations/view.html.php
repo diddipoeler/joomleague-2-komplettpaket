@@ -45,7 +45,7 @@ class JoomleagueViewjlextassociations extends JLGView
 		JLToolBarHelper::deleteList('', 'jlextassociation.remove');
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		
 

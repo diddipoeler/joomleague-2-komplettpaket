@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 jimport('joomla.html.pane');
 
 JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
@@ -9,7 +9,7 @@ JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_TITLE'));
 JLToolBarHelper::custom('treetomatch.editlist','upload.png','upload_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_TREETOMATCH_BUTTON_ASSIGN'),false);
 JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes&task=treetonode.display');
 
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 ?>
 
 	<fieldset class="adminform">

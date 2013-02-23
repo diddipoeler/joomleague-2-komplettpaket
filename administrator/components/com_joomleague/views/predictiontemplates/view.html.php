@@ -86,7 +86,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 			}
 			JToolBarHelper::divider();
 		}
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 
 		$this->assignRef( 'user',			JFactory::getUser() );
 		$this->assignRef( 'pred_id',		$prediction_id );

@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 //$version = urlencode(JoomleagueHelper::getVersion());
 //JHTML::script('JL_matchdetailsediting.js?v='.$version,'administrator/components/com_joomleague/assets/js/');
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 ?>
 <div id="editcell">
 	<fieldset class="adminform">

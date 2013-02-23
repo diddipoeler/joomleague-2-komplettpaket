@@ -106,6 +106,6 @@ class JoomleagueViewStatistic extends JLGView
 			JToolBarHelper::divider();
 			JLToolBarHelper::cancel('statistic.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 		}
-		JToolBarHelper::help( 'screen.joomleague', true );	
+		JLToolBarHelper::onlinehelp();	
 	}
 }

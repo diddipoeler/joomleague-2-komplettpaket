@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 jimport('joomla.html.pane');
 
 // Set toolbar items for the page
@@ -24,7 +24,7 @@ else
 	JToolBarHelper::cancel('cancel','JL_GLOBAL_CLOSE');
 }
 JToolBarHelper::divider();
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 ?>
 
 <script language="javascript" type="text/javascript">

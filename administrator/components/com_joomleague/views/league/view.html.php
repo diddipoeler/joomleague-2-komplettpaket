@@ -103,7 +103,7 @@ class JoomleagueViewLeague extends JLGView
 			JLToolBarHelper::cancel('league.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}	
 }
 ?>

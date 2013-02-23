@@ -219,7 +219,7 @@ class JoomleagueViewMatches extends JLGView
 		{
 			JLToolBarHelper::custom('match.cancelmassadd','cancel.png','cancel_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_CANCEL_MATCHADD'),false);
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

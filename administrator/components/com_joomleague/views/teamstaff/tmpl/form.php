@@ -17,7 +17,7 @@ else
 	JLToolBarHelper::apply('teamstaff.apply');
 	JLToolBarHelper::cancel( 'teamstaff.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 }
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 
 $uri = JFactory::getURI();
 ?>

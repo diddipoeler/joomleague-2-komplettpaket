@@ -105,7 +105,7 @@ class JoomleagueViewPositions extends JLGView
 		JLToolBarHelper::deleteList('','position.remove');
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

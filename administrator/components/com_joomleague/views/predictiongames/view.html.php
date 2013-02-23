@@ -111,7 +111,7 @@ class JoomleagueViewPredictionGames extends JLGView
 		}
 
 		JToolBarHelper::divider();
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 
 		$this->assignRef( 'user',			JFactory::getUser() );
 		$this->assignRef( 'lists',			$lists );

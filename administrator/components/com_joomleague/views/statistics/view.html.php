@@ -96,7 +96,7 @@ class JoomleagueViewStatistics extends JLGView
 		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_DELETE_WARNING'),'statistic.fulldelete',JTEXT::_('COM_JOOMLEAGUE_ADMIN_STATISTICS_FULL_DELETE'));
 		JToolBarHelper::divider();
 		
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

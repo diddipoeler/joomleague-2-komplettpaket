@@ -145,7 +145,7 @@ class JoomleagueViewPredictionTemplate extends JLGView
 			// for existing items the button is renamed `close`
 			JLToolBarHelper::cancel('predictiontemplate.cancel',JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}		
 	
 }

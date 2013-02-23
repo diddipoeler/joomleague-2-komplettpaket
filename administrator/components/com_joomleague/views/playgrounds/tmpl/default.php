@@ -3,7 +3,7 @@
 //Ordering allowed ?
 $ordering=($this->lists['order'] == 'v.ordering');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 ?>
 <script>
 

@@ -53,7 +53,7 @@ class JoomleagueViewSettings extends JLGView
 		JLToolBarHelper::save('settings.save');
 		JLToolBarHelper::cancel('settings.cancel');
 		JToolBarHelper::spacer();
-		JToolBarHelper::help('screen.joomleague',true);		
+		JLToolBarHelper::onlinehelp();		
 	}
 }
 ?>

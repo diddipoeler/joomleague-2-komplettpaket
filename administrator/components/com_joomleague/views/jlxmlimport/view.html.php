@@ -30,7 +30,7 @@ class JoomleagueViewJLXMLImport extends JLGView
 		JToolBarHelper::title( JText::_( 'JoomLeague XML Import' ), 'generic.png' );
 		JToolBarHelper::back();
 		#JLToolBarHelper::save( 'save', 'Import' );
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 
 		$db		= JFactory::getDBO();
 		$uri	= JFactory::getURI();

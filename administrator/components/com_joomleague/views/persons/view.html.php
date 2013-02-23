@@ -127,7 +127,7 @@ class JoomleagueViewPersons extends JLGView
                     $items = $mdlQuickAdd->getNotAssignedReferees(JString::strtolower($search),$project_id);
 		}
 
-		JToolBarHelper::help('screen.joomleague',true);		
+		JLToolBarHelper::onlinehelp();		
 		
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit','limit',$mainframe->getCfg('list_limit'),'int');
 
@@ -207,7 +207,7 @@ class JoomleagueViewPersons extends JLGView
 		JLToolBarHelper::archiveList('person.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DELETE_WARNING'),'person.remove');
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

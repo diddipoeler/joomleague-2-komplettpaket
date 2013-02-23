@@ -99,7 +99,7 @@ class JoomleagueViewTemplates extends JLGView
 			JLToolBarHelper::custom('template.reset','restore','restore',JText::_('COM_JOOMLEAGUE_GLOBAL_RESET'));
 		}
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}	
 }
 ?>

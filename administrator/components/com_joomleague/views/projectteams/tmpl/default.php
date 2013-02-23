@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 jimport('joomla.filesystem.file');
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 $mainframe = JFactory::getApplication();
 
 //Ordering allowed ?

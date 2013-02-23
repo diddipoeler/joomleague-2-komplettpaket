@@ -33,7 +33,7 @@ else
 	JToolBarHelper::divider();
 	JToolBarHelper::cancel('predictiongame.cancel',JText::_('JL_GLOBAL_CLOSE'));
 }
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 
 ?>
 <script type="text/javascript">

@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 JHTMLBehavior::formvalidation();
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 
 $i    = 1;
 ?>

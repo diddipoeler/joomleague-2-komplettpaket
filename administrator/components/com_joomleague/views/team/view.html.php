@@ -128,7 +128,8 @@ class JoomleagueViewTeam extends JLGView
 			JLToolBarHelper::cancel( 'team.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 		}
 	
-		JToolBarHelper::help( 'screen.joomleague.edit' );
+		//JToolBarHelper::help( 'screen.joomleague.edit' );
+		JLToolBarHelper::onlinehelp();
 	}	
 	
 }

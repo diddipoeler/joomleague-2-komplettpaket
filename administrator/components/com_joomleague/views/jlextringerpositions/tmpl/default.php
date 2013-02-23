@@ -5,7 +5,7 @@ $user =& JFactory::getUser();
 //Ordering allowed ?
 $ordering=($this->lists['order'] == 'obj.ordering');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" name="adminForm">
 	<table>

@@ -32,7 +32,7 @@ class JoomleagueViewUpdates extends JLGView
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'updates_filter_order_Dir',	'filter_order_Dir',	'',			'word');
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_TITLE'),'generic.png');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 		$db = JFactory::getDBO();
 		$uri = JFactory::getURI();
 		$model = $this->getModel();

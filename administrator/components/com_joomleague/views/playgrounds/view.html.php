@@ -74,7 +74,7 @@ class JoomleagueViewPlaygrounds extends JLGView
 		JLToolBarHelper::deleteList('','playground.remove');
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

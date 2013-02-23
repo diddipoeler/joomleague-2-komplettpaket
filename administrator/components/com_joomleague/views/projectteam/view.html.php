@@ -117,7 +117,7 @@ class JoomleagueViewProjectteam extends JLGView
 		JLToolBarHelper::apply('projectteam.apply');
 		JLToolBarHelper::cancel('projectteam.cancel',JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

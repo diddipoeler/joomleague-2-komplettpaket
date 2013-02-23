@@ -175,7 +175,7 @@ class JoomleagueViewProjectposition extends JLGView
 
 		JLToolBarHelper::custom('projectposition.assign','upload.png','upload_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_BUTTON_UN_ASSIGN'),false);
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 	}
 	/**
@@ -188,7 +188,7 @@ class JoomleagueViewProjectposition extends JLGView
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_P_POSITION_EDIT_TITLE'),'Positions');
 		JLToolBarHelper::save('projectposition.save_positionslist');
 		JLToolBarHelper::cancel('projectposition.cancel',JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE'));
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}	
 }
 ?>

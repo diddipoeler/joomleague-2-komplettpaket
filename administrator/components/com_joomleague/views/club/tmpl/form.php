@@ -1,4 +1,5 @@
 <?php defined('_JEXEC') or die('Restricted access');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 ?>
 <form action="index.php" method="post" id="adminForm">
 <fieldset class="adminform">

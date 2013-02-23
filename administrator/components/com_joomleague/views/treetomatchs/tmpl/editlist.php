@@ -13,7 +13,7 @@ JLToolBarHelper::save( 'treetomatch.save_matcheslist' );
 //JLToolBarHelper::cancel( 'cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 JToolBarHelper::back('Back','index.php?option=com_joomleague&view=treetonodes');
 
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 $uri = JFactory::getURI();
 ?>
 <!-- import the functions to move the events between selection lists  -->

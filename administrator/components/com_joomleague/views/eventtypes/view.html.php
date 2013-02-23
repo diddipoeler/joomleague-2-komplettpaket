@@ -94,7 +94,7 @@ class JoomleagueViewEventtypes extends JLGView
 		JLToolBarHelper::archiveList('eventtype.export',JText::_('COM_JOOMLEAGUE_GLOBAL_XML_EXPORT'));
 		JLToolBarHelper::deleteList('', 'eventtype.remove');
 		JToolBarHelper::divider();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

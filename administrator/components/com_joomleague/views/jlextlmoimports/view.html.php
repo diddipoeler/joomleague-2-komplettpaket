@@ -54,7 +54,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
     
     // Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_LMO_IMPORT_TITLE_1'),'lmo-cpanel');
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		$uri = JFactory::getURI();
 		$config =& JComponentHelper::getParams('com_media');
@@ -124,7 +124,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
 		//                       task    image  mouseover_img           alt_text_for_image              check_that_standard_list_item_is_checked
 		JLToolBarHelper::custom('jlextlmoimport.insert','upload','upload',Jtext::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_START_BUTTON'), false); // --> bij clicken op import wordt de insert view geactiveerd
 		JToolBarHelper::back();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		parent::display($tpl);
 	}
@@ -143,7 +143,7 @@ class JoomleagueViewjlextlmoimports extends JLGView
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_3_3'),'generic.png');
 		//JToolBarHelper::back();
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 
 		$this->assignRef('starttime',$starttime);
 		$this->assignRef('importData',$model->importData($post));

@@ -31,7 +31,7 @@ else
 	JToolBarHelper::divider();
 	JToolBarHelper::cancel( 'cancel', 'JL_GLOBAL_CLOSE' );
 }
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 
 $uri =& JFactory::getURI();
 ?>

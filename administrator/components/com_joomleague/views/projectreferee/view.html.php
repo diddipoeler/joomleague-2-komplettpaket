@@ -103,7 +103,7 @@ class JoomleagueViewProjectReferee extends JLGView
 			JLToolBarHelper::apply('projectreferee.apply');
 			JLToolBarHelper::cancel('projectreferee.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');
 		}
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}	
 	
 }

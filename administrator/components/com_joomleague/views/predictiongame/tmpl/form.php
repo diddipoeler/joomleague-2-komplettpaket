@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 
 // Set toolbar items for the page
 $edit=JRequest::getVar('edit',true);
@@ -33,7 +33,7 @@ else
 	JToolBarHelper::cancel('predictiongame.cancel',JText::_('JL_GLOBAL_CLOSE'));
 }
 JToolBarHelper::divider();
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 
 ?>
 <form method="post" name="adminForm" id="adminForm">

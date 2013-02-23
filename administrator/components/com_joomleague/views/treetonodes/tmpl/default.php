@@ -1,5 +1,5 @@
 <?php defined('_JEXEC') or die('Restricted access');
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 
 $istree=$this->treetows->tree_i;
 $isleafed=$this->treetows->leafed;
@@ -23,7 +23,7 @@ JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_TREETONODES_TITLE'));
 	}
 	JLToolBarHelper::custom( 'treetonode.removenode', 'delete.png', 'delete_f2.png', JText::_( 'COM_JOOMLEAGUE_ADMIN_TREETONODES_DELETE' ), false );
 	}
-JToolBarHelper::help('screen.joomleague',true);
+JLToolBarHelper::onlinehelp();
 ?>
 
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">

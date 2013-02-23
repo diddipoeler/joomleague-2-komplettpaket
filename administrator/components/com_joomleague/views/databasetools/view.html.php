@@ -43,7 +43,7 @@ class JoomleagueViewDatabaseTools extends JLGView
 		// Set toolbar items for the page
 		JToolBarHelper::title( JText::_( 'COM_JOOMLEAGUE_ADMIN_DBTOOLS_TITLE' ), 'config.png' );
 		JToolBarHelper::back();
-		JToolBarHelper::help( 'screen.joomleague', true );
+		JLToolBarHelper::onlinehelp();
 	}	
 	
 }

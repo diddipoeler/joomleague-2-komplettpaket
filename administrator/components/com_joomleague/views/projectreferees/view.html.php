@@ -207,7 +207,7 @@ class JoomleagueViewProjectReferees extends JLGView
 		JLToolBarHelper::custom('projectreferee.unassign','cancel.png','cancel_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_PREF_UNASSIGN'),false);
 		JToolBarHelper::divider();
 		
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

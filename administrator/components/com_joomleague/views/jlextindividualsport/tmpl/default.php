@@ -6,7 +6,7 @@ JToolBarHelper::deleteList(JText::_('JL_ADMIN_MATCHES_MASSADD_WARNING'));
 JToolBarHelper::divider();
 JToolBarHelper::back('Back','index.php?option=com_joomleague&view=matches&controller=match');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 JHTML::_('behavior.modal');
 
 ?>

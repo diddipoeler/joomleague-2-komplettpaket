@@ -13,7 +13,7 @@ JToolBarHelper::save( 'predictionmember.save_memberlist' );
 // for existing items the button is renamed `close` and the apply button is showed
 JToolBarHelper::cancel( 'predictionmember.cancel', 'JL_GLOBAL_CLOSE' );
 
-JToolBarHelper::help( 'screen.joomleague', true );
+JLToolBarHelper::onlinehelp();
 
 $uri =& JFactory::getURI();
 ?>

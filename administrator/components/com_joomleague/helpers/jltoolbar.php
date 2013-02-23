@@ -219,4 +219,18 @@ class JLToolBarHelper extends JToolBarHelper {
 		}
 	}
 	
+  public static function onlinehelp()
+	{
+		$view = JRequest::getVar( "view") ;
+    $view = ucfirst(strtolower($view));
+    $cfg_help_server = JComponentHelper::getParams('com_joomleague')->get('cfg_help_server','') ;
+    $modal_popup_width = JComponentHelper::getParams('com_joomleague')->get('modal_popup_width',0) ;
+    $modal_popup_height = JComponentHelper::getParams('com_joomleague')->get('modal_popup_height',0) ;
+    $bar = JToolBar::getInstance('toolbar');
+    $send = '<a class="modal" rel="{handler: \'iframe\', size: {x: '.$modal_popup_width.', y: '.$modal_popup_height.'}}" '.
+         ' href="'.$cfg_help_server.'Backend:'.$view.'"><span title="send" class="icon-32-help"></span>'.JText::_('Onlinehilfe').'</a>';
+		// Add a help button.
+		$bar->appendButton('Custom',$send);	
+		//$bar->appendButton('Help', $ref, $com, $override, $component);
+	}
 }

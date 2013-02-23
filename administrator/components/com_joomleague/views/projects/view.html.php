@@ -130,7 +130,7 @@ class JoomleagueViewProjects extends JLGView
 		JLToolBarHelper::deleteList('', 'project.remove');
 		JToolBarHelper::divider();
 		
-		JToolBarHelper::help('screen.joomleague',true);
+		JLToolBarHelper::onlinehelp();
 	}
 }
 ?>

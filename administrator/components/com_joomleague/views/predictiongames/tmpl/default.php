@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 //Ordering allowed ?
 $ordering = ($this->lists['order']=='pre.ordering');
 
-JHTML::_('behavior.tooltip');
+JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<table>
