@@ -83,7 +83,8 @@ class JoomleagueViewProjectteams extends JLGView
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_ASSIGNED_NEW_TEAMS'),'install');
 			
 		JLToolBarHelper::custom('projectteam.storechangeteams','move.png','move_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_STORE_CHANGE_TEAMS'),false);
-		JToolBarHelper::back('projectteam.back');	
+		//JToolBarHelper::back('projectteam.back');	
+		JLToolBarHelper::cancel( 'projectteam.cancel', 'COM_JOOMLEAGUE_GLOBAL_CLOSE' );
 		
 		$this->assignRef('projectteam',$projectteam);
 		$this->assignRef('lists',$lists);
