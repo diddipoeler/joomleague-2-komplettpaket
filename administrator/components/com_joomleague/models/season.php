@@ -36,7 +36,7 @@ class JoomleagueModelSeason extends JoomleagueModelItem
 		$result=false;
 		if (count($cid))
 		{
-			JArrayHelper::toInteger($cid);
+			//JArrayHelper::toInteger($cid);
 			$cids=implode(',',$cid);
 			$query="SELECT id FROM #__joomleague_project WHERE season_id IN ($cids)";
 			$this->_db->setQuery($query);
