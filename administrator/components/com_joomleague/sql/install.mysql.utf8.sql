@@ -1024,3 +1024,16 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_version` (
   )
 ENGINE = MyISAM
 DEFAULT CHARSET = utf8;
+
+--
+-- Tabellenstruktur für Tabelle `#__joomleague_version_history`
+--
+
+CREATE TABLE IF NOT EXISTS `#__joomleague_version_history` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date NOT NULL DEFAULT '0000-00-00',
+  `text` text,
+  `version` VARCHAR(255) NOT NULL DEFAULT '' ,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

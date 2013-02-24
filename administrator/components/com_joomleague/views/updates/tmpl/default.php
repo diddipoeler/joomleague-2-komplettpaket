@@ -67,10 +67,16 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 	<fieldset>
 	<legend>
 <strong>
-<?php echo $history->date; ?>
+<?php 
+//echo $history->date; 
+echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_UPDATES_VERSIONEN',$history->version,$history->date);
+?>
 </strong>
 </legend>
-<?php echo $history->text; ?>
+<?php 
+//echo $history->text; 
+echo JText::_($history->text);
+?>
 	</fieldset>
 	<?PHP
 	}
