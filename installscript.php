@@ -154,6 +154,7 @@ class com_joomleagueInstallerScript
 	 */
 	public function update($parent)
 	{
+	$db = JFactory::getDBO();
 		?>
 		<hr>
 		<h1>JoomLeague Update</h1>
