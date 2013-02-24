@@ -122,16 +122,18 @@ class JoomleagueModelPerson extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	function delete($pks=array())
 	{
-		$result=false;
+		$mainframe	=& JFactory::getApplication();
+    $result=false;
 
-		if (count($cid))
+		if (count($pks))
 		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
+			//JArrayHelper::toInteger($cid);
+			$cids=implode(',',$pks);
 
 			//First select all subpersons of the selected ids
+			$mainframe->enqueueMessage(JText::_('JoomleagueModelPerson-delete id->'.$cids),'Notice');
 			$query="SELECT * FROM #__joomleague_person WHERE id IN ($cids)";
 			$this->_db->setQuery($query);
 			if($results=$this->_db->loadObjectList())
@@ -228,7 +230,7 @@ class JoomleagueModelPerson extends JoomleagueModelItem
 					}
 				}
 			}
-			return parent::delete($cids);
+			return parent::delete($pks);
 		}
 		return true;
 	}
