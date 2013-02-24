@@ -313,7 +313,7 @@ class JoomleagueModelProjectteams extends JoomleagueModelList
 
       if ( $country )
       {
-      $query="SELECT t.id as value, t.name as text
+      $query="SELECT t.id as value, concat(t.name,' [',t.info,']' ) as text
 					FROM #__joomleague_team as t
 					INNER JOIN #__joomleague_club as c
 					ON c.id = t.club_id
@@ -325,7 +325,7 @@ class JoomleagueModelProjectteams extends JoomleagueModelList
       {
       $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_NO_LEAGUE_COUNTRY'),'Error');
       $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_SELECT_ALL_TEAMS'),'Notice');
-      $query="SELECT t.id as value, t.name as text
+      $query="SELECT t.id as value, concat(t.name,' [',t.info,']' ) as text
 					FROM #__joomleague_team as t
 					INNER JOIN #__joomleague_club as c
 					ON c.id = t.club_id
@@ -339,9 +339,9 @@ class JoomleagueModelProjectteams extends JoomleagueModelList
 		}
 		else
 		{
-			$query='SELECT id as value, name as text 
-					FROM #__joomleague_team 
-					ORDER BY name ASC ';
+			$query="SELECT t.id as value, concat(t.name,' [',t.info,']' ) as text 
+					FROM #__joomleague_team as t 
+					ORDER BY name ASC ";
 		}
 
 		$db->setQuery($query);
