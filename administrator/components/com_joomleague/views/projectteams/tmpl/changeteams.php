@@ -1,7 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 ?>
-<form method="post" id="adminForm">
+<form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<fieldset class="adminform">
 		<legend>
 		<?php
@@ -61,5 +61,6 @@
 		</table>
 	</fieldset>
 	<input type="hidden" name="task" value="" />
+	<input type="hidden" name="option"				value="com_joomleague" />
 	<?php echo JHTML::_('form.token')."\n"; ?>
 </form>

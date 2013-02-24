@@ -87,6 +87,7 @@ class JoomleagueViewProjectteams extends JLGView
 		
 		$this->assignRef('projectteam',$projectteam);
 		$this->assignRef('lists',$lists);
+		$this->assignRef('request_url',$uri->toString());
 		
 		parent::display($tpl);
 	}
