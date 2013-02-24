@@ -266,7 +266,8 @@ class com_joomleagueInstallerScript
 		$results = $db->loadColumn();
 		foreach ($results as $result)
 		{
-			$query='DROP TABLE IF EXISTS `'.$result.'`';
+			echo JText::_('removing database tables of JoomLeague -> '.$result).'<br>';
+      $query='DROP TABLE IF EXISTS `'.$result.'`';
 			$db->setQuery($query);
 		}
 
