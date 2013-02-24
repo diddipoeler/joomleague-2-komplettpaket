@@ -31,13 +31,15 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	function delete($pks=array())
 	{
-		$result=false;
-		if (count($cid))
+		$mainframe	=& JFactory::getApplication();
+    $result=false;
+		if (count($pks))
 		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
+			//JArrayHelper::toInteger($pks);
+			$cids=implode(',',$pks);
+			$mainframe->enqueueMessage(JText::_('JoomleagueModelSportsType-delete id->'.$cids),'Notice');
 			$query="SELECT COUNT(id) FROM #__joomleague_sports_type";
 			$this->_db->setQuery($query);
 			if ($this->_db->loadResult()==count($cid))
@@ -66,7 +68,7 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_SPORTTYPE_MODEL_ERROR_PROJECT_EXISTS'));
 				return false;
 			}
-			return parent::delete($cids);
+			return parent::delete($pks);
 		}
 		return true;
 	}
