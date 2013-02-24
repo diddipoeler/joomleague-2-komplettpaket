@@ -66,7 +66,7 @@ else
 				?></span>
 			<span class="clubinfo_listing_value"><?php echo $addressString; ?>
 			
-			<?php echo JHTML::image(JURI::root().$this->clubassoc->asocflag, $this->clubassoc->name, array('title' => $this->clubassoc->name ) ).$this->clubassoc->name; ?>
+			<?php echo JHTML::image(JURI::root().$this->clubassoc->assocflag, $this->clubassoc->name, array('title' => $this->clubassoc->name ) ).$this->clubassoc->name; ?>
       <br />
       </span>
 			
