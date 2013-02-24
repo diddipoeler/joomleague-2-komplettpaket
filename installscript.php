@@ -157,7 +157,32 @@ class com_joomleagueInstallerScript
 		?>
 		<hr>
 		<h1>JoomLeague Update</h1>
-		<?php 
+		<?php
+    
+    // eine tabelle mit allen spalten
+    $query = "SELECT ordinal_position
+  FROM INFORMATION_SCHEMA.COLUMNS
+  WHERE table_name = '#__joomleague_version_history'
+  and column_name = 'version' ";
+  $db->setQuery($query);  
+  $table_field = $db->loadResult();
+  
+  if ( !$table_field )
+  {
+  $query2 = "ALTER TABLE `#__joomleague_version_history` ADD `version` VARCHAR(255) NOT NULL DEFAULT '' AFTER `text`;";
+  $db->setQuery($query2); 
+  if (!$db->query())
+				{
+// 					echo '-> '.JText::_('Failed').'! <br>';
+// 					$this->setError($db->getErrorMsg());
+// 					echo $db->getErrorMsg();
+					//return false;
+				} else {
+					//echo "-> done !<br>";		
+				}
+  
+  }
+    
 		self::_install(true);
 	}
 
@@ -233,7 +258,7 @@ class com_joomleagueInstallerScript
 		$update = JFolder::exists($dest);
 		$folders = array('clubs', 'clubs/large', 'clubs/medium', 'clubs/small', 'clubs/trikot_home', 'clubs/trikot_away','events','leagues','divisions','person_playground',
 							'flags_associations','persons', 'placeholders', 'predictionusers','playgrounds', 'projects','projectreferees','projectteams','projectteams/trikot_home', 'projectteams/trikot_away',
-                            'rosterground','matchreport','seasons','sport_types', 'teams','flags','teamplayers','teamstaffs','venues', 'statistics');
+              'associations','rosterground','matchreport','seasons','sport_types', 'teams','flags','teamplayers','teamstaffs','venues', 'statistics');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague');
 		JFile::copy(JPATH_ROOT.'/images/index.html', JPATH_ROOT.'/images/com_joomleague/index.html');
 		JFolder::create(JPATH_ROOT.'/images/com_joomleague/database');
