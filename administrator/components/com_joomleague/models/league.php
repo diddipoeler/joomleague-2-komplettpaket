@@ -31,13 +31,15 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	function delete($pks=array())
 	{
-		$result=false;
-		if (count($cid))
+		$mainframe	=& JFactory::getApplication();
+    $result=false;
+		if (count($pks))
 		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
+			//JArrayHelper::toInteger($cid);
+			$cids=implode(',',$pks);
+			$mainframe->enqueueMessage(JText::_('JoomleagueModelLeague-delete id->'.$cids),'Notice');
 			$query="SELECT id FROM #__joomleague_project WHERE league_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if ($this->_db->loadResult())
@@ -45,7 +47,7 @@ class JoomleagueModelLeague extends JoomleagueModelItem
 				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_LEAGUE_MODEL_ERROR_PROJECT_EXISTS'));
 				return false;
 			}
-			return parent::delete($cids);
+			return parent::delete($pks);
 		}
 		return true;
 	}
