@@ -269,13 +269,22 @@ class com_joomleagueInstallerScript
 			echo JText::_('removing database tables of JoomLeague -> '.$result).'<br>';
       $query='DROP TABLE IF EXISTS `'.$result.'`';
 			$db->setQuery($query);
-		}
+		  if (!$db->query())
+		  {
+			$this->setError($db->getErrorMsg());
+			return false;
+		  }
+		
+    }
 
+    /*
+    // leider falscher zeitpunkt
 		if (!$db->query())
 		{
 			$this->setError($db->getErrorMsg());
 			return false;
 		}
+		*/
 		return true;
 	}
 	
