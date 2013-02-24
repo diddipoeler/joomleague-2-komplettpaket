@@ -245,6 +245,9 @@ var $_foldertype = '';
         case	"flags_associations":
 				return "flags_associations";
 				break;
+			case	"associations":
+				return "associations";
+				break;	
         
 			case	"events":
 				return "events";

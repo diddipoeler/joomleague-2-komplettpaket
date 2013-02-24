@@ -8,6 +8,13 @@
 				type="media" 
 				directory="com_joomleague/database/flags_associations"
 				preview="show"				
+				label="COM_JOOMLEAGUE_GLOBAL_FLAG" 
+				description="COM_JOOMLEAGUE_GLOBAL_FLAG">
+		</field>
+		<field 	name="picture" 
+				type="media" 
+				directory="com_joomleague/database/associations"
+				preview="show"				
 				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
 				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
 		</field>
@@ -20,6 +27,14 @@
 				directory="com_joomleague/database/flags_associations"
 				preview="show"	
         targetfolder="flags_associations"			
+				label="COM_JOOMLEAGUE_GLOBAL_FLAG" 
+				description="COM_JOOMLEAGUE_GLOBAL_FLAG">
+		</field>
+		<field 	name="picture" 
+				type="imageselect" 
+				directory="com_joomleague/database/associations"
+				preview="show"	
+        targetfolder="associations"			
 				label="COM_JOOMLEAGUE_GLOBAL_ICON" 
 				description="COM_JOOMLEAGUE_GLOBAL_ICON_DESC">
 		</field>

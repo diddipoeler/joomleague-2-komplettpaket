@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_associations` (
   `middle_name` varchar(75) DEFAULT NULL,
   `website` varchar(250) DEFAULT NULL,
   `assocflag` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_flags.png' ,
+  `picture` VARCHAR(128) NOT NULL DEFAULT '' ,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`,`country`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
