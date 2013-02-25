@@ -155,6 +155,8 @@ class com_joomleagueInstallerScript
 	public function update($parent)
 	{
 	$db = JFactory::getDBO();
+    $result = $db->getTableFields( '#__joomleague_version_history' );
+    echo '<pre>'.print_r( $result, true ).'</pre><br>';
 		?>
 		<hr>
 		<h1>JoomLeague Update</h1>
@@ -183,6 +185,7 @@ class com_joomleagueInstallerScript
 				}
   
   }
+  
     
 		self::_install(true);
 	}
