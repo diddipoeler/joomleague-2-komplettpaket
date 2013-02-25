@@ -80,6 +80,8 @@ class JoomleagueViewJLXMLImports extends JLGView
 		$value  		= isset($data['project']->timezone) ? $data['project']->timezone: null;
 		$lists['timezone']= JHTML::_('select.genericlist', array(), 'timezone', ' class="inputbox"', 'value', 'text', $value);
 		
+    $whichfile = $mainframe->getUserState($option.'whichfile');
+		$this->assignRef('whichfile',$whichfile);
 		$countries=new Countries();
 		$this->assignRef('uploadArray',$uploadArray);
 		$this->assignRef('starttime',$starttime);

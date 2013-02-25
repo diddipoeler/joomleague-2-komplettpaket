@@ -2326,6 +2326,7 @@ $this->dump_variable("import_team", $import_team);
 		$p_project->set('editor',$this->_joomleague_editor);
 		$p_project->set('master_template',$this->_template_id);
 		$p_project->set('sub_template_id',0);
+		$p_project->set('staffel_id',$this->_getDataFromObject($this->_datas['project'],'staffel_id'));
 		$p_project->set('extension',$this->_getDataFromObject($this->_datas['project'],'extension'));
 		$p_project->set('timezone',$this->_getDataFromObject($this->_datas['project'],'timezone'));
 		$p_project->set('project_type',$this->_getDataFromObject($this->_datas['project'],'project_type'));

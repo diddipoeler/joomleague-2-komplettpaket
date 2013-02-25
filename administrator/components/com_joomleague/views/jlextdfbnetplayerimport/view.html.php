@@ -150,15 +150,16 @@ $option = JRequest::getCmd('option');
 		$this->assignRef('revisionDate',$revisionDate);
 		$import_version='NEW';
 		$this->assignRef('import_version',$import_version);
-		
+		/*
 // Special HTML workaround to get send popup working
 $pfad = JURI::root().'media/com_joomleague/description/'.$viewName.'.pdf';
       $send='<a class="toolbar button validate modal" rel="{handler: \'iframe\', size: {x: 800, y: 600}}" onclick="return mySelect();"'.
          ' href="'.$pfad.'"><span title="send" class="icon-32-featured"></span>'.JText::_('Onlinehilfe').'</a>';
       
       $bar=& JToolBar::getInstance( 'toolbar' );
-      $bar->appendButton('Custom',$send);		
-		
+      $bar->appendButton('Custom',$send);
+      */		
+		  JLToolBarHelper::onlinehelp();
 		parent::display( $tpl );
 		
 }

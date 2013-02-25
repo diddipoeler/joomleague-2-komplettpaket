@@ -36,12 +36,12 @@ if ((int)ini_get('memory_limit') < (int)$maxImportMemory){@ini_set('memory_limit
 jimport( 'joomla.application.component.model' );
 jimport('joomla.html.pane');
 
-require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'helper.php' );
+//require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'helper.php' );
 require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'ical.php' );
 //require_once( JPATH_COMPONENT_SITE . DS. 'extensions' . DS. 'jlextdfbnetplayerimport' . DS. 'admin' . DS. 'helpers' . DS . 'iCal2csv.php' );
 require_once ( JLG_PATH_SITE .DS . 'helpers' . DS . 'countries.php' );
 
-//require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
 
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
@@ -517,7 +517,16 @@ $csv->parse($file);
 //print_r($csv->data);
 */
 
-$mainframe->enqueueMessage(JText::_('csv result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+//$csv->delimiter = $delimiter;
+//$csvdata = parseCSV::parse($file);
+
+/*
+$csvdata = new parseCSV();
+$csvdata->delimiter = $delimiter;
+$csvdata->parse($file);
+*/
+
+//$mainframe->enqueueMessage(JText::_('csv result<br><pre>'.print_r($csvdata->data,true).'</pre>'   ),'');
     
 if ( $whichfile == 'playerfile' )
 {
@@ -1072,7 +1081,7 @@ $file = JPATH_SITE.DS.'tmp'.DS.'joomleague_import.jlg';
 JFile::write($file, $xmlfile);
 
 
-
+/*
 if ( $this->debug_info )
 {
 echo $this->pane->startPanel('getdata club','getdata club');  
@@ -1106,53 +1115,14 @@ $this->dump_variable("this->_datas['match']", $this->_datas['match']);
 echo $this->pane->endPanel();
 
 }     
+*/
    
 }    
 // kalender file vom bfv ende  
 
 
 
-/*
-csv->data
 
-Array
-(
-    [0] => Array
-        (
-            [Datum] => 27.07.2010
-            [Zeit] => 00:43:12
-            [Saison] => 10/11
-            [Verband] => Schleswig-Holsteinischer Fußballverband
-            [Mannschaftsart_Key] => 013
-            [Mannschaftsart] => Herren
-            [Spielklasse_Key] => 058
-            [Spielklasse] => Kreisklasse C
-            [Spielgebiet_Key] => 032
-            [Spielgebiet] => Kreis Nordfriesland
-            [Rahmenspielplan] => 3
-            [Staffel_Nr] => 2
-            [Staffel] => Kreisklasse C-Süd
-            [Staffelkennung] => 040423
-            [Staffelleiter] => Bölter, Dirk
-            [Spieldatum] => 28.08.2010
-            [Anstoss] => 16:00
-            [Wochentag] => Samstag
-            [Spieltag] => 1
-            [Schluesseltag] => 2
-            [Spielkennung] => 040423 001
-            [Heim Mannschaft] => TSV Drelsdorf III
-            [Gast Mannschaft] => 1.FC Wittbek
-            [freigegeben] => Nein
-            [Spielstaette] => A-Platz Drelsdorf
-            [Spielleitung] => ,
-            [1. Assistent] => ,
-            [2. Assistent] => ,
-            [Verlegt_Wochentag] => 
-            [Verlegt_Datum] => 
-            [Verlegt_Uhrzeit] => 
-        )
-	
-*/
 
 
   
@@ -1207,8 +1177,9 @@ $row++;
 
 if ( $whichfile == 'playerfile' )
 {
+// spielerdatei    
 $temp = new stdClass();
-//$temp->name = $csv->data[$a]['Verband'];
+$temp->name = 'playerfile';
 $temp->exportRoutine = '2010-09-19 23:00:00';  
 $this->_datas['exportversion'] = $temp;
 
@@ -1223,11 +1194,18 @@ elseif ( $whichfile == 'matchfile' )
 	$csv->delimiter = "\t";
 	$csv->parse($file);
 
+if ( sizeof($csv->data) == 0 )
+{
+$mainframe->enqueueMessage(JText::_('falsches Dateiformat'),'Error');
+$importcsv = false;    
+}
+else
+{
+//$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data[0],true).'</pre>'   ),'');    
 //$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+$importcsv = true;
+}
 
-//  echo 'csv->data<pre>';
-//  print_r($csv->data);
-//  echo '</pre>';
 	
 $lfdnumber = 0;
 $lfdnumberteam = 1;
@@ -1235,7 +1213,8 @@ $lfdnumbermatch = 1;
 $lfdnumberplayground = 1;
 $lfdnumberperson = 1;
 $lfdnumbermatchreferee = 1;
-  
+
+// anfang schleife csv file  
   for($a=0; $a < sizeof($csv->data); $a++  )
   {
   
@@ -1243,41 +1222,76 @@ $lfdnumbermatchreferee = 1;
   {
   
 /*
-[Saison] => 10/11
-            [Verband] => Schleswig-Holsteinischer Fußballverband
-            [Mannschaftsart_Key] => 013
-            [Mannschaftsart] => Herren
-            [Spielklasse_Key] => 058
-            [Spielklasse] => Kreisklasse C
-            [Spielgebiet_Key] => 032
-            [Spielgebiet] => Kreis Nordfriesland
-            [Rahmenspielplan] => 3
-            [Staffel_Nr] => 2
-            [Staffel] => Kreisklasse C-Süd  
+[0] => Array
+        (
+1            [Datum] => 20.02.2013
+2            [Uhrzeit] => 11:00
+3            [Saison] => 12/13
+4            [Verband] => Schleswig-Holsteinischer Fußballverband
+5            [MannschaftsartID] => 016
+6            [Mannschaftsart] => C-Junioren
+7            [SpielklasseID] => 054
+8            [Spielklasse] => Kreisklasse A
+9            [SpielgebietID] => 032
+10            [Spielgebiet] => Kreis Nordfriesland
+11            [Rahmenspielplan] => 6
+12            [Staffelnummer] => 001
+13            [Staffel] => C - Junioren KKA 11er II
+14            [Staffelkennung] => 040718
+15            [Staffelleiter] => Stöhrmann, Wolfgang
+16            [Spieldatum] => 10.03.2013
+17            [Wochentag] => Sonntag
+18            [Spieltag] => 1
+19            [Schlüsseltag] => 1
+20            [Heimmannschaft] => FSV Wyk-Föhr II
+21            [Gastmannschaft] => TSV Amrum
+22            [freigegeben] => Nein
+23            [Spielstätte] => verlegt auf So, 24.03.2013
+24            [Spielleitung] => 
+25            [Assistent 1] => 
+26            [Assistent 2] => 
+27            [verlegtWochentag] => Sonntag
+28            [verlegtSpieldatum] => 24.03.2013
+29            [verlegtUhrzeit] => 14:00
+        )  
 */  
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Verband'];
+  $temp->name = $csv->data[$a]['Spalte4'];
   $temp->exportRoutine = '2010-09-19 23:00:00';  
   $this->_datas['exportversion'] = $temp;
   
+
+  
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Saison'];
+  $temp->name = $csv->data[$a]['Spalte3'];
   $this->_datas['season'] = $temp;
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Staffel'].' '.$csv->data[$a]['Staffel_Nr'];
+  $temp->name = $csv->data[$a]['Spalte13'].' '.$csv->data[$a]['Spalte12'];
   $temp->country = $country;
   $this->_datas['league'] = $temp;
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Staffel'].' '.$csv->data[$a]['Saison'];
+  $temp->id = 1;
+  $temp->name = 'COM_JOOMLEAGUE_ST_SOCCER';
+  $this->_datas['sportstype'] = $temp;
+  
+  $temp = new stdClass();
+  $temp->name = $csv->data[$a]['Spalte13'].' '.$csv->data[$a]['Spalte3'];
   $temp->serveroffset = 0;
+  $temp->start_time = '15:30';
+  $temp->start_date = '0000-00-00';
+  $temp->sports_type_id = 1;
   $temp->project_type = 'SIMPLE_LEAGUE';
+  $temp->staffel_id = $csv->data[$a]['Spalte14'];
   $this->_datas['project'] = $temp;
   }
+  
+  if ( empty($csv->data[$a]['Spalte28']) )
+  { 
     
-  $valuematchday = $csv->data[$a]['Spieltag'];
+  $valuematchday = $csv->data[$a]['Spalte19'];
   
   if ( isset($exportround[$valuematchday]) )
   {
@@ -1295,23 +1309,20 @@ $lfdnumbermatchreferee = 1;
   }
 
 // dfbnet heimmannschaft  
-$valueheim = $csv->data[$a]['Heim Mannschaft'];
-if ( empty($valueheim) )
-{
-$valueheim = $csv->data[$a]['Heimmannschaft'];    
-}
+$valueheim = $csv->data[$a]['Spalte21'];
+
 
 if ( $valueheim != 'Spielfrei' )
 {
 if (in_array($valueheim, $exportteamstemp)) 
 {
 // echo $valueheim." <- enthalten<br>";
-$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spielstaette'];
+$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spalte24'];
 }
 else
 {
 // echo $valueheim." <- nicht enthalten<br>";
-$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spielstaette'];
+$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spalte24'];
 
 $exportteamstemp[] = $valueheim;
 $temp = new stdClass();
@@ -1320,7 +1331,7 @@ $temp->club_id = $lfdnumberteam;
 $temp->name = $valueheim;
 $temp->middle_name = $valueheim;
 $temp->short_name = $valueheim;
-$temp->info = $csv->data[$a]['Mannschaftsart'];
+$temp->info = $csv->data[$a]['Spalte6'];
 $temp->extended = '';
 $exportteams[] = $temp;
 
@@ -1399,11 +1410,8 @@ $lfdnumberteam++;
 }
 
 // dfbnet gastmannschaft  
-$valuegast = $csv->data[$a]['Gast Mannschaft'];
-if ( empty($valuegast) )
-{
-$valuegast = $csv->data[$a]['Gastmannschaft'];    
-}
+$valuegast = $csv->data[$a]['Spalte22'];
+
 
 if ( $valuegast != 'Spielfrei' )
 {
@@ -1421,7 +1429,7 @@ $temp->club_id = $lfdnumberteam;
 $temp->name = $valuegast;
 $temp->middle_name = $valuegast;
 $temp->short_name = $valuegast;
-$temp->info = $csv->data[$a]['Mannschaftsart'];
+$temp->info = $csv->data[$a]['Spalte6'];
 $temp->extended = '';
 $exportteams[] = $temp;
 
@@ -1497,7 +1505,7 @@ $lfdnumberteam++;
 }  
  
 // dfbnet spielstaette 
-$valueplayground = $csv->data[$a]['Spielstaette'];
+$valueplayground = $csv->data[$a]['Spalte24'];
 if ( $valueplayground )
 {
 if (  array_key_exists($valueplayground, $exportplaygroundtemp) ) 
@@ -1515,20 +1523,24 @@ $temp->name = $valueplayground;
 $temp->short_name = $valueplayground;
 $temp->country = $country;
 $temp->max_visitors = 0;
+//if ( empty($csv->data[$a]['Spalte28']) )
+//{	
 $exportplayground[] = $temp;
+//}
 $lfdnumberplayground++;
 }
 }
   
-$valueperson = $csv->data[$a]['Spielleitung'];
-$valueperson1 = $csv->data[$a]['1. Assistent'];
-$valueperson2 = $csv->data[$a]['2. Assistent'];
+$valueperson = $csv->data[$a]['Spalte25'];
+$valueperson1 = $csv->data[$a]['Spalte26'];
+$valueperson2 = $csv->data[$a]['Spalte27'];
 
 //if (in_array($valueperson, $exportpersonstemp)) 
 if (array_key_exists($valueperson, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei' )
   {
   // nichts machen
   }
@@ -1574,7 +1586,8 @@ $temp->position_id = 1000;
 $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1597,7 +1610,8 @@ $lfdnumberperson++;
 if (array_key_exists($valueperson1, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1643,7 +1657,8 @@ $temp->position_id = 1001;
 $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1666,7 +1681,8 @@ $lfdnumberperson++;
 if (array_key_exists($valueperson2, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1713,7 +1729,8 @@ $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
 
-if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1735,23 +1752,24 @@ $lfdnumberperson++;
 
   
 //   echo 'paarung -> '.$csv->data[$a]['Heim Mannschaft']." <-> ".$csv->data[$a]['Gast Mannschaft'].'<br>';
-  if ( $csv->data[$a]['Heim Mannschaft'] == 'Spielfrei' || $csv->data[$a]['Gast Mannschaft'] == 'Spielfrei' )
+  if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
+  || $csv->data[$a]['Spalte22'] == 'Spielfrei')
   {
   // nichts machen
   }
   else
   {
-  $round_id = $csv->data[$a]['Spieltag'];
+  $round_id = $csv->data[$a]['Spalte19'];
   $tempmatch = new stdClass();
   $tempmatch->id = $lfdnumbermatch;
   $tempmatch->round_id = $round_id;
-  $datetime = strtotime($csv->data[$a]['Spieldatum']);
-  $tempmatch->match_date = date('Y-m-d', $datetime)." ".$csv->data[$a]['Anstoss'];
+  $datetime = strtotime($csv->data[$a]['Spalte16']);
+  $tempmatch->match_date = date('Y-m-d', $datetime)." ".$csv->data[$a]['Spalte17'];
   
-  if ( $csv->data[$a]['Verlegt_Datum'] )
+  if ( $csv->data[$a]['Spalte29'] )
   {
-  $datetime = strtotime($csv->data[$a]['Verlegt_Datum']);
-  $tempmatch->match_date_verlegt = date('Y-m-d', $datetime)." ".$csv->data[$a]['Verlegt_Uhrzeit'];
+  $datetime = strtotime($csv->data[$a]['Spalte29']);
+  $tempmatch->match_date_verlegt = date('Y-m-d', $datetime)." ".$csv->data[$a]['Spalte30'];
   }
   else
   {
@@ -1768,10 +1786,7 @@ $lfdnumberperson++;
   {
     $datetime_first = strtotime($exportround[$round_id]->round_date_first);
     $datetime_last = strtotime($exportround[$round_id]->round_date_last);
-    
-//    echo 'round_id -> '.$round_id.' datetime -> '.$datetime.' datetime_first -> '.$datetime_first.' datetime_last -> '.$datetime_last.'<br>';
-//    echo 'round_id -> '.$round_id.' date -> '.date('Y-m-d', $datetime).' date_first -> '.$exportround[$round_id]->round_date_first.' date_last -> '.$exportround[$round_id]->round_date_last.'<br>';
-        
+     
     if ( $datetime_first > $datetime )
     {
         $exportround[$round_id]->round_date_first = date('Y-m-d', $datetime);
@@ -1784,14 +1799,21 @@ $lfdnumberperson++;
     
   }
   
-	$tempmatch->match_number = $csv->data[$a]['Spielkennung'];
+	//$tempmatch->match_number = $csv->data[$a]['Spielkennung'];
+    $tempmatch->match_number = $lfdnumbermatch;
 	$tempmatch->published = 1;
 	$tempmatch->count_result = 1;
 	$tempmatch->show_report = 1;
 	$tempmatch->projectteam1_id = 0;
 	$tempmatch->projectteam2_id = 0;
-	$tempmatch->projectteam1_dfbnet = $csv->data[$a]['Heim Mannschaft'];
-	$tempmatch->projectteam2_dfbnet = $csv->data[$a]['Gast Mannschaft'];
+    
+    $tempmatch->projectteam1_dfbnet = $csv->data[$a]['Spalte21'];    
+    
+    
+	
+    $tempmatch->projectteam2_dfbnet = $csv->data[$a]['Spalte22'];    
+    
+	
 	$tempmatch->team1_result = '';
 	$tempmatch->team2_result = '';
 	$tempmatch->summary = '';
@@ -1800,9 +1822,11 @@ $lfdnumberperson++;
   {
   $tempmatch->playground_id = $exportplaygroundtemp[$valueplayground];
   }
-	
-	if ( array_key_exists($tempmatch->match_number,$temp_match_number) )
-	{
+
+//if ( empty($csv->data[$a]['Spalte28']) )
+//  {	
+if ( array_key_exists($tempmatch->match_number,$temp_match_number) )
+{
   $exportmatch[] = $tempmatch;
   }
   else
@@ -1810,19 +1834,17 @@ $lfdnumberperson++;
   $temp_match_number[$tempmatch->match_number] = $tempmatch->match_number;
   $exportmatch[] = $tempmatch;
   }
+//}
   
   $lfdnumbermatch++; 
   $lfdnumber++;
   }
   
+  }
+  
   }	
+// ende schleife csv file
 
-/* tabellen leer machen
-TRUNCATE TABLE `jos_joomleague_club`; 
-TRUNCATE TABLE `jos_joomleague_team`;
-TRUNCATE TABLE `jos_joomleague_person`;
-TRUNCATE TABLE `jos_joomleague_playground`;
-*/
   
 foreach( $exportmatch as $rowmatch )
 {
@@ -1842,6 +1864,8 @@ $rowmatch->projectteam2_id = $rowteam->id;
 
 } 	
 
+if ( $importcsv )
+{
 $temp = new stdClass();
 $temp->id = 1;
 $temp->name = 'Schiedsrichter';
@@ -1888,6 +1912,7 @@ $temp = new stdClass();
 $temp->id = 1002;
 $temp->position_id = 1002;
 $exportprojectposition[] = $temp;
+}
 
 foreach ( $exportteams as $rowteam )
 {
@@ -1921,81 +1946,10 @@ $rowclubs->standard_playground = $play_ground_id;
 
 
 
-if ( $this->debug_info )
-{
-    
-echo $this->pane->startPanel('exportclubsstandardplayground','exportclubsstandardplayground');  
-$this->dump_header("exportclubsstandardplayground");
-$this->dump_variable("exportclubsstandardplayground", $exportclubsstandardplayground);
-echo $this->pane->endPanel();
-
-
-echo $this->pane->startPanel('exportclubs','exportclubs');  
-$this->dump_header("exportclubs");
-$this->dump_variable("exportclubs", $exportclubs);
-echo $this->pane->endPanel();
-
-echo $this->pane->startPanel('exportteams','exportteams');  
-$this->dump_header("exportteams");
-$this->dump_variable("exportteams", $exportteams);
-echo $this->pane->endPanel();
-
-echo $this->pane->startPanel('exportplayground','exportplayground');  
-$this->dump_header("exportplayground");
-$this->dump_variable("exportplayground", $exportplayground);
-echo $this->pane->endPanel();
-
-echo $this->pane->startPanel('exportround','exportround');  
-$this->dump_header("exportround");
-$this->dump_variable("exportround", $exportround);
-echo $this->pane->endPanel();
-
-echo $this->pane->startPanel('exportmatch','exportmatch');  
-$this->dump_header("exportmatch");
-$this->dump_variable("exportmatch", $exportmatch);
-echo $this->pane->endPanel();
-
-/*    
-echo 'exportclubsstandardplayground<br><pre>';
-print_r($exportclubsstandardplayground);
-echo '</pre>';
-
-echo 'exportclubs<br><pre>';
-print_r($exportclubs);
-echo '</pre>';
-
-echo 'exportteams<br><pre>';
-print_r($exportteams);
-echo '</pre>';
-
-echo 'exportplayground<br><pre>';
-print_r($exportplayground);
-echo '</pre>';
-*/
-
-} 
-
 
 
    
-// echo 'exportteams<br><pre>';
-// print_r($exportteams);
-// echo '</pre>';
 
-// echo 'exportround<br><pre>';
-// print_r($exportround);
-// echo '</pre>';
-
-// spielplan ende
-
-// $temp = new stdClass();
-// $temp->name = 'DFBNet Spielplan';
-// $exportversion[] = $temp;
-// $this->_datas['exportversion'] = array_merge($exportversion);
-
-// $this->_datas['project'] = array_merge($exportproject);
-// $this->_datas['league'] = array_merge($exportleague);
-// $this->_datas['season'] = array_merge($exportseason);
 
 $this->_datas['position'] = array_merge($exportposition);
 $this->_datas['projectposition'] = array_merge($exportprojectposition);
@@ -2019,37 +1973,7 @@ $this->_datas['matchreferee'] = array_merge($exportmatchreferee);
 
 
 
-//   echo 'match<br><pre>';
-//   print_r($this->_datas['match']);
-//   echo '</pre>';
-  
-//   echo 'projectreferee<br><pre>';
-//   print_r($this->_datas['projectreferee']);
-//   echo '</pre>';
-  
-//   echo 'projectteam<br><pre>';
-//   print_r($this->_datas['projectteam']);
-//   echo '</pre>';
-  
-//   echo 'person<br><pre>';
-//   print_r($this->_datas['person']);
-//   echo '</pre>';
-  
-//   echo 'team<br><pre>';
-//   print_r($this->_datas['team']);
-//   echo '</pre>';
-  
-//   echo 'club<br><pre>';
-//   print_r($this->_datas['club']);
-//   echo '</pre>';
-  
-//   echo 'round<br><pre>';
-//   print_r($this->_datas['round']);
-//   echo '</pre>';
-    
-//   echo 'playground<br><pre>';
-//   print_r($this->_datas['playground']);
-//   echo '</pre>';  
+
 
 }
 
@@ -2063,6 +1987,27 @@ $this->_datas['matchreferee'] = array_merge($exportmatchreferee);
 
 if ( $whichfile == 'playerfile' )
 {
+/**
+ * das ganze für den standardimport aufbereiten
+ */
+$output = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
+// open the project
+$output .= "<project>\n";
+// set the version of JoomLeague
+$output .= $this->_addToXml($this->_setJoomLeagueVersion());
+// set the person data
+if ( isset($this->_datas['person']) )
+{
+$mainframe->enqueueMessage(JText::_('personen daten '.'generiert'),'');  
+$output .= $this->_addToXml($this->_setXMLData($this->_datas['person'], 'Person'));
+}    
+// close the project
+$output .= '</project>';
+// mal als test
+$xmlfile = $output;
+$file = JPATH_SITE.DS.'tmp'.DS.'joomleague_import.jlg';
+JFile::write($file, $xmlfile);    
+$this->import_version='NEW';
 }
 else
 {    
@@ -2077,36 +2022,51 @@ $output .= $this->_addToXml($this->_setJoomLeagueVersion());
 // set the project datas
 if ( isset($this->_datas['project']) )
 {
+$mainframe->enqueueMessage(JText::_('project daten '.'generiert'),'');    
 $output .= $this->_addToXml($this->_setProjectData($this->_datas['project']));
 }
+
+// set the rounds sportstype
+if ( isset($this->_datas['sportstype']) )
+{
+$mainframe->enqueueMessage(JText::_('sportstype daten '.'generiert'),'');      
+$output .= $this->_addToXml($this->_setSportsType($this->_datas['sportstype']));    
+}
+
 // set league data of project
 if ( isset($this->_datas['league']) )
 {
+$mainframe->enqueueMessage(JText::_('league daten '.'generiert'),'');    
 $output .= $this->_addToXml($this->_setLeagueData($this->_datas['league']));
 }
 // set season data of project
 if ( isset($this->_datas['season']) )
 {
+$mainframe->enqueueMessage(JText::_('season daten '.'generiert'),'');    
 $output .= $this->_addToXml($this->_setSeasonData($this->_datas['season']));
 }
 // set the rounds data
 if ( isset($this->_datas['round']) )
 {
+$mainframe->enqueueMessage(JText::_('round daten '.'generiert'),'');    
 $output .= $this->_addToXml($this->_setXMLData($this->_datas['round'], 'Round') );
 }
 // set the teams data
 if ( isset($this->_datas['team']) )
 {
+    $mainframe->enqueueMessage(JText::_('team daten '.'generiert'),''); 
 $output .= $this->_addToXml($this->_setXMLData($this->_datas['team'], 'JL_Team'));
 }
 // set the clubs data
 if ( isset($this->_datas['club']) )
 {
+    $mainframe->enqueueMessage(JText::_('club daten '.'generiert'),'');  
 $output .= $this->_addToXml($this->_setXMLData($this->_datas['club'], 'Club'));
 }
 // set the matches data
 if ( isset($this->_datas['match']) )
 {
+    $mainframe->enqueueMessage(JText::_('match daten '.'generiert'),'');  
 $output .= $this->_addToXml($this->_setXMLData($this->_datas['match'], 'Match'));
 }
 // set the positions data
@@ -2284,7 +2244,30 @@ return $this->_datas;
 		}
 		return false;
 	}
-    
+
+/**
+	 * _setSportsType
+	 *
+	 * set the SportsType
+	 *
+	 * @access private
+	 * @since  1.5.5241
+	 *
+	 * @return array
+	 */
+	private function _setSportsType($sportstype)
+	{
+		
+        if ( $sportstype )
+        {
+            $result[] = JArrayHelper::fromObject($sportstype);
+			$result[0]['object'] = 'SportsType';
+			return $result;
+		}
+		return false;
+        		
+	}
+        
 /**
 	 * _setLeagueData
 	 *
@@ -2363,1035 +2346,48 @@ return $this->_datas;
     
     
     
-	public function getTeamList()
-	{
-	global $mainframe, $option;
-  $mainframe =& JFactory::getApplication();
-  $document	=& JFactory::getDocument();
-  
-  $option='com_joomleague';
-	$project = $mainframe->getUserState( $option . 'project', 0 );
-	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
 	
 	
-// jetzt brauchen wir noch das land der liga !
-$query = "SELECT l.country
-from #__joomleague_league as l
-inner join #__joomleague_project as p
-on p.league_id = l.id
-where p.id = '$project'
-";
-
-$this->_db->setQuery( $query );
-$country = $this->_db->loadResult();
-//$mainframe->enqueueMessage(JText::_('Das Land der Liga '.$country.' !'),'Notice');
-
-	  if ( $lmoimportuseteams )
-	  {
-//     $query='SELECT jt.id,jt.name,jt.club_id,jt.short_name,jt.middle_name,jt.info 
-//     FROM #__joomleague_team as jt
-//     INNER JOIN #__joomleague_club as cl
-//     ON cl.id = jt.club_id    
-//     INNER JOIN #__joomleague_project_team as pt 
-//     ON pt.team_id = jt.id
-//     WHERE cl.country = "' . $country . '"
-//     AND pt.project_id = ' . (int) $project . ' GROUP BY jt.name ORDER BY jt.name';
-// 		$this->_db->setQuery($query);
-// 		return $this->_db->loadObjectList(); 
-    
-    $query='SELECT jt.id,jt.name,jt.club_id,jt.short_name,jt.middle_name,jt.info 
-    FROM #__joomleague_team as jt
-    INNER JOIN #__joomleague_club as cl
-    ON cl.id = jt.club_id    
-    INNER JOIN #__joomleague_project_team as pt 
-    ON pt.team_id = jt.id
-    WHERE pt.project_id = ' . (int) $project . ' GROUP BY jt.name ORDER BY jt.name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-        
-    }
-    else
-    {
-    $query='SELECT id,name,club_id,short_name,middle_name,info 
-    FROM #__joomleague_team 
-    ORDER BY name
-    ';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-    }
-
-		
-	}
 	
 	
-	public function getTeamListSelect()
-	{
-	global $mainframe, $option;
-  $mainframe =& JFactory::getApplication();
-  $document	=& JFactory::getDocument();
-  
-  $option='com_joomleague';
-	$project = $mainframe->getUserState( $option . 'project', 0 );
 	
-	$teaminfo = $mainframe->getUserState( $option . 'teamart', '' );
-	
-	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
-	
-	
-// jetzt brauchen wir noch das land der liga !
-$query = "SELECT l.country
-from #__joomleague_league as l
-inner join #__joomleague_project as p
-on p.league_id = l.id
-where p.id = '$project'
-";
-
-$this->_db->setQuery( $query );
-$country = $this->_db->loadResult();
 
 
-		//$query="SELECT id AS value,name,info,club_id FROM #__joomleague_team ORDER BY name";
-		if ( $lmoimportuseteams )
-	  {
-//     $query='SELECT jt.id as value,jt.name,jt.club_id,jt.info 
-//     FROM #__joomleague_team as jt
-//     INNER JOIN #__joomleague_club as cl
-//     ON cl.id = jt.club_id    
-//     INNER JOIN #__joomleague_project_team as pt 
-//     ON pt.team_id = jt.id
-//     WHERE cl.country = "' . $country . '"
-//     AND pt.project_id = ' . (int) $project . ' GROUP BY jt.name ORDER BY jt.name';
-// 		$this->_db->setQuery($query);
-    
-    $query='SELECT jt.id as value,jt.name,jt.club_id,jt.info 
-    FROM #__joomleague_team as jt
-    INNER JOIN #__joomleague_club as cl
-    ON cl.id = jt.club_id    
-    INNER JOIN #__joomleague_project_team as pt 
-    ON pt.team_id = jt.id
-    WHERE pt.project_id = ' . (int) $project . ' GROUP BY jt.name ORDER BY jt.name';
-		$this->_db->setQuery($query);
-    		
-    }
-    else
-    {
-    
-    if ( $teaminfo )
-    {
-    $query="SELECT id AS value,name,info,club_id 
-    FROM #__joomleague_team
-    where info like '".$teaminfo."' 
-    ORDER BY name
-    ";
-    }
-    else
-    {
-    $query="SELECT id AS value,name,info,club_id 
-    FROM #__joomleague_team
-    ORDER BY name
-    ";
-    }
-   
-		$this->_db->setQuery($query);
-		//return $this->_db->loadObjectList();
-    }
-		
-		
-		
-		if ($results=$this->_db->loadObjectList())
-		{
-			foreach ($results AS $team)
-			{
-				$team->text=$team->name.' - ('.$team->info.')';
-			}
-			return $results;
-		}
-		return false;
-	}
-	
-	public function getClubList()
-	{
-	global $mainframe, $option;
-  $mainframe =& JFactory::getApplication();
-  $document	=& JFactory::getDocument();
-  
-  $option='com_joomleague';
-	$project = $mainframe->getUserState( $option . 'project', 0 );
-	
-	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
 
-// jetzt brauchen wir noch das land der liga !
-$query = "SELECT l.country
-from #__joomleague_league as l
-inner join #__joomleague_project as p
-on p.league_id = l.id
-where p.id = '$project'
-";
-
-$this->_db->setQuery( $query );
-$country = $this->_db->loadResult();
 
 	
-	  if ( $lmoimportuseteams )
-	  {
-// 		$query='SELECT cl.id,cl.name,cl.standard_playground,cl.country 
-//     FROM #__joomleague_club as cl
-//     INNER JOIN #__joomleague_team as jt
-//     ON jt.club_id = cl.id
-//     INNER JOIN #__joomleague_project_team as pt 
-//     ON pt.team_id = jt.id
-//     WHERE cl.country = "' . $country . '"
-//     AND pt.project_id = ' . (int) $project . ' 
-//     ORDER BY cl.name ASC
-//     ';
-    
-    $query='SELECT cl.id,cl.name,cl.standard_playground,cl.country 
-    FROM #__joomleague_club as cl
-    INNER JOIN #__joomleague_team as jt
-    ON jt.club_id = cl.id
-    INNER JOIN #__joomleague_project_team as pt 
-    ON pt.team_id = jt.id
-    WHERE pt.project_id = ' . (int) $project . ' 
-    ORDER BY cl.name ASC
-    ';
-    
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();    
-    }
-    else
-    {
-		$query='SELECT cl.id,cl.name,cl.standard_playground,cl.country 
-    FROM #__joomleague_club as cl 
-    ORDER BY cl.name ASC
-    ';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-		}
-		
-		
-	}	
-
-
-public function getPositionList()
-	{
-		$query='SELECT * FROM #__joomleague_position WHERE parent_id > 0 ORDER BY name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-
-	public function getPositionListSelect()
-	{
-		$query='SELECT id AS value,name AS text FROM #__joomleague_position WHERE parent_id > 0 ORDER BY name';
-		$this->_db->setQuery($query);
-		$result=$this->_db->loadObjectList();
-		foreach ($result as $position){$position->text=JText::_($position->text);}
-		return $result;
-	}
-
-	public function getParentPositionList()
-	{
-		$query='SELECT * FROM #__joomleague_position WHERE parent_id=0 ORDER BY name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-
-	public function getParentPositionListSelect()
-	{
-		$query='SELECT id AS value,name AS text FROM #__joomleague_position WHERE parent_id=0 ORDER BY name';
-		$this->_db->setQuery($query);
-		$result=$this->_db->loadObjectList();
-		foreach ($result as $position){$position->text=JText::_($position->text);}
-		return $result;
-	}
 
 
 
-public function getPersonList()
-	{
-//		$query="	SELECT *,
-//					LOWER(lastname) AS low_lastname,
-//					LOWER(firstname) AS low_firstname,
-//					LOWER(nickname) AS low_nickname
-//					FROM #__joomleague_person WHERE firstname<>'!Unknown' AND lastname<>'!Player' AND nickname<>'!Ghost' ORDER BY lastname";
-		$query="	SELECT *,
-					LOWER(lastname) AS lastname,
-					LOWER(firstname) AS firstname,
-					LOWER(nickname) AS nickname
-					FROM #__joomleague_person WHERE firstname<>'!Unknown' AND lastname<>'!Player' AND nickname<>'!Ghost' ORDER BY lastname";                    
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
 
 
-public function getPersonListSelect()
-	{
-		$query ="	SELECT id AS value,firstname,lastname,nickname,birthday
-						FROM #__joomleague_person
-						WHERE firstname<>'!Unknown' AND lastname<>'!Player' AND nickname<>'!Ghost'
-						ORDER BY lastname,firstname";
-		$this->_db->setQuery($query);
-		if ($results=$this->_db->loadObjectList())
-		{
-			foreach ($results AS $person)
-			{
-				$textString=$person->lastname.','.$person->firstname;
-				if (!empty($person->nickname))
-				{
-					$textString .= " '".$person->nickname."'";
-				}
-				if ($person->birthday!='0000-00-00')
-				{
-					$textString .= " (".$person->birthday.")";
-				}
-				$person->text=$textString;
-			}
-			return $results;
-		}
-		return false;
-	}
+
+
+
   	
 	
-	public function getClubListSelect()
-	{
 	
-global $mainframe, $option;
-  $mainframe =& JFactory::getApplication();
-  $document	=& JFactory::getDocument();
-  
-  $option='com_joomleague';
-	$project = $mainframe->getUserState( $option . 'project', 0 );
-	
-	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
 
-// jetzt brauchen wir noch das land der liga !
-$query = "SELECT l.country
-from #__joomleague_league as l
-inner join #__joomleague_project as p
-on p.league_id = l.id
-where p.id = '$project'
-";
 
-$this->_db->setQuery( $query );
-$country = $this->_db->loadResult();
 
-	
-//$query='SELECT id AS value,name AS text,country,standard_playground FROM #__joomleague_club ORDER BY name';
-//$this->_db->setQuery($query);
+
 	
   
-    if ( $lmoimportuseteams )
-	  {
-// 		$query='SELECT cl.id AS value,cl.name AS text,cl.standard_playground,cl.country 
-//     FROM #__joomleague_club as cl
-//     INNER JOIN #__joomleague_team as jt
-//     ON jt.club_id = cl.id
-//     INNER JOIN #__joomleague_project_team as pt 
-//     ON pt.team_id = jt.id
-//     WHERE cl.country = "' . $country . '"
-//     AND pt.project_id = ' . (int) $project . ' 
-//     ORDER BY cl.name ASC
-//     ';
-
-		$query='SELECT cl.id AS value,cl.name AS text,cl.standard_playground,cl.country 
-    FROM #__joomleague_club as cl
-    INNER JOIN #__joomleague_team as jt
-    ON jt.club_id = cl.id
-    INNER JOIN #__joomleague_project_team as pt 
-    ON pt.team_id = jt.id
-    WHERE pt.project_id = ' . (int) $project . ' 
-    ORDER BY cl.name ASC
-    ';
-    
-		$this->_db->setQuery($query);
-		//return $this->_db->loadObjectList();    
-    }
-    else
-    {
-		$query='SELECT cl.id AS value,cl.name AS text,cl.standard_playground,cl.country 
-    FROM #__joomleague_club as cl 
-    ORDER BY cl.name ASC
-    ';
-		$this->_db->setQuery($query);
-		//return $this->_db->loadObjectList();
-		}  
   
-  
-  	if ($results=$this->_db->loadObjectList())
-		{
-			return $results;
-		}
-		return false;
-	}
-
-
-
-
-	public function getLeagueList()
-	{
-		$query='SELECT id,name 
-    FROM #__joomleague_league 
-    ORDER BY name ASC';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-  
-  public function getSeasonList()
-	{
-		$query='SELECT id,name 
-    FROM #__joomleague_season 
-    ORDER BY name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
 	
-	public function getProjectList()
-	{
-		$query='SELECT id,name 
-    FROM #__joomleague_project 
-    ORDER BY name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-
-	public function getUserList($is_admin=false)
-	{
-		$query='SELECT id,username 
-    FROM #__users';
-		if ($is_admin==true)
-		{
-			$query .= " WHERE usertype='Super Administrator' OR usertype='Administrator'";
-		}
-		$query .= ' ORDER BY username ASC';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-
-	public function getTemplateList()
-	{
-		$query='SELECT id,name 
-    FROM #__joomleague_project 
-    WHERE master_template=0 
-    ORDER BY name ASC';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
-
-  public function getSportsTypeList()
-	{
-		$query='SELECT id,name,name AS text 
-    FROM #__joomleague_sports_type 
-    ORDER BY name ASC';
-		$this->_db->setQuery($query);
-		$result=$this->_db->loadObjectList();
-		foreach ($result as $sportstype){$sportstype->name=JText::_($sportstype->name);}
-		return $result;
-	}	
-
-  public function getPlaygroundList()
-	{
-		$query='SELECT id,name,short_name,club_id FROM #__joomleague_playground ORDER BY name';
-		$this->_db->setQuery($query);
-		return $this->_db->loadObjectList();
-	}
 	
-	public function getPlaygroundListSelect()
-	{
-		$query='SELECT id AS value,name AS text,short_name,club_id FROM #__joomleague_playground ORDER BY name';
-		$this->_db->setQuery($query);
-		if ($results=$this->_db->loadObjectList())
-		{
-			return $results;
-		}
-		return false;
-	}
+
+	
+
+	
+
+  
+
+  
+	
+	
   	
-public function importData($post)
-	{
-	global $mainframe, $option;
-	$mainframe =& JFactory::getApplication();
-  $document	=& JFactory::getDocument();
-  
-  $option='com_joomleague';
-  $project =  $mainframe->getUserState( $option . 'project', 0 );
-  $lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams');
-  
-  $whichfile=$mainframe->getUserState($option.'whichfile');
-  $delimiter=$mainframe->getUserState($option.'delimiter');
-  
-  //$lmoimportxml=$mainframe->getUserState($option.'lmoimportxml', 'lmoimportxml' );
 
-//$lmoimportxml = JRequest::getVar( 'lmoimportxml', array(), 'post', 'array' );
-  	
-  	if ( $whichfile == 'matchfile' )
-{
-//   	echo 'importData post<br>';
-//     echo '<pre>';
-//     print_r($post);
-//     echo '</pre>';
-}   
-else
-{
-//   	echo 'importData post<br>';
-//     echo '<pre>';
-//     print_r($post);
-//     echo '</pre>';
-
-}    
-    /*
-    echo 'importData lmoimportxml<br>';
-    echo '<pre>';
-    print_r($lmoimportxml);
-    echo '</pre>';
-    */
-    
-    
-    $this->_datas=$this->getData();
-    
-    
-//     echo 'importData this->_datas<br>';
-//     echo '<pre>';
-//     print_r($this->_datas);
-//     echo '</pre>';
-    
-    
-    $this->_newteams=array();
-		$this->_newteamsshort=array();
-		$this->_dbteamsid=array();
-		$this->_newteamsmiddle=array();
-		$this->_newteamsinfo=array();
-
-		$this->_newclubs=array();
-		$this->_newclubsid=array();
-		$this->_newclubscountry=array();
-		$this->_dbclubsid=array();
-		$this->_createclubsid=array();
-
-		$this->_newplaygroundid=array();
-		$this->_newplaygroundname=array();
-		$this->_newplaygroundshort=array();
-		$this->_dbplaygroundsid=array();
-
-		$this->_newpersonsid=array();
-		$this->_newperson_lastname=array();
-		$this->_newperson_firstname=array();
-		$this->_newperson_nickname=array();
-		$this->_newperson_birthday=array();
-		$this->_dbpersonsid=array();
-
-		$this->_neweventsname=array();
-		$this->_neweventsid=array();
-		$this->_dbeventsid=array();
-
-		$this->_newpositionsname=array();
-		$this->_newpositionsid=array();
-		$this->_dbpositionsid=array();
-
-		$this->_newparentpositionsname=array();
-		$this->_newparentpositionsid=array();
-		$this->_dbparentpositionsid=array();
-
-		$this->_newstatisticsname=array();
-		$this->_newstatisticsid=array();
-		$this->_dbstatisticsid=array();
-
-		//tracking of old -> new ids
-		$this->_convertProjectTeamID=array();
-		$this->_convertProjectRefereeID=array();
-		$this->_convertTeamPlayerID=array();
-		$this->_convertTeamStaffID=array();
-		$this->_convertProjectPositionID=array();
-		$this->_convertProjectTeamForMatchID=array();
-		$this->_convertClubID=array();
-		$this->_convertPersonID=array();
-		$this->_convertTeamID=array();
-		$this->_convertRoundID=array();
-		$this->_convertDivisionID=array();
-		$this->_convertCountryID=array();
-		$this->_convertPlaygroundID=array();
-		$this->_convertEventID=array();
-		$this->_convertPositionID=array();
-		$this->_convertParentPositionID=array();
-		$this->_convertMatchID=array();
-		$this->_convertStatisticID=array();    
-    
-    
-    
-    if (is_array($post) && count($post) > 0)
-		{
-			foreach($post as $key => $element)
-			{
-			  if (substr($key,0,14)=='personLastname')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_lastname[$temppersons[1]]=$element;
-				}
-				elseif (substr($key,0,15)=='personFirstname')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_firstname[$temppersons[1]]=$element;
-				}
-				elseif (substr($key,0,14)=='personNickname')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_nickname[$temppersons[1]]=$element;
-				}
-				elseif (substr($key,0,14)=='personBirthday')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_birthday[$temppersons[1]]=$element;
-				}
-				
-				elseif (substr($key,0,12)=='personKNVBNR')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_knvbnr[$temppersons[1]]=$element;
-				}
-				elseif (substr($key,0,10)=='personINFO')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newperson_info[$temppersons[1]]=$element;
-				}
-				
-				elseif (substr($key,0,8)=='personID')
-				{
-					$temppersons=explode("_",$key);
-					$this->_newpersonsid[$temppersons[1]]=$element;
-				}
-				elseif (substr($key,0,10)=='dbPersonID')
-				{
-					$temppersons=explode("_",$key);
-					$this->_dbpersonsid[$temppersons[1]]=$element;
-				}
-			}
-		}
-    
-if ( $whichfile == 'matchfile' || $whichfile == 'icsfile' )
-{
-
-if (is_array($post) && count($post) > 0)
-		{
-			
-      foreach($post as $key => $element)
-			{
-			  
-        if (substr($key,0,14)=='playgroundName')
-				{
-					$tempplayground=explode("_",$key);
-					$this->_newplaygroundname[$tempplayground[1]]=$element;
-				}
-				elseif (substr($key,0,19)=='playgroundShortname')
-				{
-					$tempplayground=explode("_",$key);
-					$this->_newplaygroundshort[$tempplayground[1]]=$element;
-				}
-				elseif (substr($key,0,12)=='playgroundID')
-				{
-					$tempplayground=explode("_",$key);
-					$this->_newplaygroundid[$tempplayground[1]]=$element;
-				}
-				elseif (substr($key,0,14)=='dbPlaygroundID')
-				{
-					$tempplayground=explode("_",$key);
-					$this->_dbplaygroundsid[$tempplayground[1]]=$element;
-				}
-			
-            elseif (substr($key,0,12)=='positionName')
-				{
-					$tempposition=explode("_",$key);
-					$this->_newpositionsname[$tempposition[1]]=$element;
-				}
-				elseif (substr($key,0,10)=='positionID')
-				{
-					$tempposition=explode("_",$key);
-					$this->_newpositionsid[$tempposition[1]]=$element;
-				}
-				elseif (substr($key,0,12)=='dbPositionID')
-				{
-					$tempposition=explode("_",$key);
-					$this->_dbpositionsid[$tempposition[1]]=$element;
-				}
-				elseif (substr($key,0,18)=='parentPositionName')
-				{
-					$tempposition=explode("_",$key);
-					$this->_newparentpositionsname[$tempposition[1]]=$element;
-				}
-				elseif (substr($key,0,16) =="parentPositionID")
-				{
-					$tempposition=explode("_",$key);
-					$this->_newparentpositionsid[$tempposition[1]]=$element;
-				}
-				elseif (substr($key,0,18)=='dbParentPositionID')
-				{
-					$tempposition=explode("_",$key);
-					$this->_dbparentpositionsid[$tempposition[1]]=$element;
-				}
-                
-                elseif (substr($key,0,8)=='teamName')
-				{
-					$tempteams=explode("_",$key);
-					$this->_newteams[$tempteams[1]]=$element;
-				}
-				elseif (substr($key,0,13)=='teamShortname')
-				{
-					$tempteams=explode("_",$key);
-					$this->_newteamsshort[$tempteams[1]]=$element;
-				}
-				elseif (substr($key,0,8)=='teamInfo')
-				{
-					$tempteams=explode("_",$key);
-					$this->_newteamsinfo[$tempteams[1]]=$element;
-				}
-				elseif (substr($key,0,14)=='teamMiddleName')
-				{
-					$tempteams=explode("_",$key);
-					$this->_newteamsmiddle[$tempteams[1]]=$element;
-				}
-				elseif (substr($key,0,6)=='teamID')
-				{
-					$tempteams=explode("_",$key);
-					$this->_newteamsid[$tempteams[1]]=$element;
-				}
-				elseif (substr($key,0,8)=='dbTeamID')
-				{
-					$tempteams=explode("_",$key);
-					$this->_dbteamsid[$tempteams[1]]=$element;
-				}
-                elseif (substr($key,0,8)=='clubName')
-				{
-					$tempclubs=explode("_",$key);
-					$this->_newclubs[$tempclubs[1]]=$element;
-				}
-				elseif (substr($key,0,11)=='clubCountry')
-				{
-					$tempclubs=explode("_",$key);
-					$this->_newclubscountry[$tempclubs[1]]=$element;
-				}
-				/**/
-				elseif (substr($key,0,6)=='clubID')
-				{
-					$tempclubs=explode("_",$key);
-					$this->_newclubsid[$tempclubs[1]]=$element;
-				}
-				/**/
-				elseif (substr($key,0,10)=='createClub')
-				{
-					$tempclubs=explode("_",$key);
-					$this->_createclubsid[$tempclubs[1]]=$element;
-				}
-				elseif (substr($key,0,8)=='dbClubID')
-				{
-					$tempclubs=explode("_",$key);
-					$this->_dbclubsid[$tempclubs[1]]=$element;
-				}
-      
-      
-      	
-			}
-			
-		}
-
-// echo 'importData this->_newteamsid<br>';
-// echo '<pre>';
-// print_r($this->_newteamsid);
-// echo '</pre>';
-// echo 'importData this->_dbteamsid<br>';
-// echo '<pre>';
-// print_r($this->_dbteamsid);
-// echo '</pre>';
-
-        
-}
-    
-    $this->_success_text='';
-
-		//set $this->_importType
-		$this->_importType=$post['importType'];
-		
-		if ( $whichfile == 'matchfile' || $whichfile == 'icsfile' )
-{
-
-    if (isset($post['admin']))
-			{
-				$this->_joomleague_admin=(int)$post['admin'];
-			}
-			else
-			{
-				$this->_joomleague_admin=62;
-			}
-
-      //check project name
-			if ($post['importProject'])
-			{
-				if (isset($post['name'])) // Project Name
-				{
-					$this->_name=substr($post['name'],0,100);
-				}
-				else
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','projectname'));
-					echo "<script> alert('".JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','projectname')."'); window.history.go(-1); </script>\n";
-				}
-
-				if (empty($this->_datas['project']))
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR','Project object is missing inside import file!!!'));
-					echo "<script> alert('".JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR','Project object is missing inside import file!!!')."'); window.history.go(-1); </script>\n";
-					return false;
-				}
-
-				if ($this->_checkProject()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR','Projectname already exists'));
-					echo "<script> alert('".JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR','Projectname already exists')."'); window.history.go(-1); </script>\n";
-					return false;
-				}
-			}
-
-      //check sportstype
-			if ($post['importProject'] || $post['importType']=='events' || $post['importType']=='positions')
-			{
-				if ((isset($post['sportstype'])) && ($post['sportstype'] > 0))
-				{
-					$this->_sportstype_id=(int)$post['sportstype'];
-				}
-				elseif (isset($post['sportstypeNew']))
-					{
-						$this->_sportstype_new=substr($post['sportstypeNew'],0,25);
-					}
-					else
-					{
-						JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_MISSING','sportstype'));
-						echo "<script> alert('".JText::sprintf('JL_ADMIN_XML_ERROR_MISSING','sportstype')."'); window.history.go(-1); </script>\n";
-						return false;
-					}
-			}
-			
- 			//check league/season/admin/editor/publish/template
-			if ($post['importProject'])
-			{
-				if (isset($post['league']))
-				{
-					$this->_league_id=(int)$post['league'];
-				}
-				elseif (isset($post['leagueNew']))
-					{
-						$this->_league_new=substr($post['leagueNew'],0,75);
-					}
-					else
-					{
-						JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','league'));
-						echo "<script> alert('".JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','league')."'); window.history.go(-1); </script>\n";
-						return false;
-					}
-
-				if (isset($post['season']))
-				{
-					$this->_season_id=(int)$post['season'];
-				}
-				elseif (isset($post['seasonNew']))
-					{
-						$this->_season_new=substr($post['seasonNew'],0,75);
-					}
-					else
-					{
-						JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','season'));
-						echo "<script> alert('".JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_MISSING','season')."'); window.history.go(-1); </script>\n";
-						return false;
-					}
-
-				if (isset($post['editor']))
-				{
-					$this->_joomleague_editor=(int)$post['editor'];
-				}
-				else
-				{
-					$this->_joomleague_editor=62;
-				}
-
-				if (isset($post['publish']))
-				{
-					$this->_publish=(int)$post['publish'];
-				}
-				else
-				{
-					$this->_publish=0;
-				}
-
-				if (isset($post['copyTemplate'])) // if new template set this value is 0
-				{
-					$this->_template_id=(int)$post['copyTemplate'];
-				}
-				else
-				{
-					$this->_template_id=0;
-				}
-			}
-			
-			if ($post['importProject'] || $post['importType']=='events' || $post['importType']=='positions')
-			{
-				// import sportstype
-				if ($this->_importSportsType()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_DURING','sports-type'));
-					return $this->_success_text;
-				}
-			}
-			
-			if ($post['importProject'])
-			{
-				// import league
-				if ($this->_importLeague()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_DURING','league'));
-					return $this->_success_text;
-				}
-
-				// import season
-				if ($this->_importSeason()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_EXT_DFBNET_IMPORT_ERROR_DURING','season'));
-					return $this->_success_text;
-				}
-			}
-			
-			
-// import persons
-		if ($this->_importPersons()===false)
-		{
-			JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','person'));
-			return $this->_success_text;
-		}
-        
-// import parent positions
-			if ($this->_importParentPositions()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','parent-position'));
-				return $this->_success_text;
-			}
-// import positions
-			if ($this->_importPositions()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','position'));
-				return $this->_success_text;
-			}                    	
-		
-// import playgrounds
-			if ($this->_importPlayground()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','playground'));
-				return $this->_success_text;
-			}
-			
-      // import clubs
-			if ($this->_importClubs()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','club'));
-				return $this->_success_text;
-			}
-
-			if ($this->_importType!='playgrounds')	// don't convert club_id if only playgrounds are imported
-			{
-				// convert playground Club-IDs
-				if ($this->_convertNewPlaygroundIDs()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','conversion of playground club-id'));
-					return $this->_success_text;
-				}
-			}
-
-      if ($post['importProject'])
-			{
-				// import project
-				if ($this->_importProject()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','project'));
-					return $this->_success_text;
-				}
-
-				// import template
-				if ($this->_importTemplate()===false)
-				{
-					JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','template'));
-					return $this->_success_text;
-				}
-			}
-			
-			
-			// import teams
-			if ($this->_importTeams()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','team'));
-				return $this->_success_text;
-			}
-      			
-// import rounds
-			if ($this->_importRounds()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','round'));
-				return $this->_success_text;
-			}
-			
-// import projectteam
- 			if ($this->_importProjectTeam()===false)
- 			{
- 				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','projectteam'));
- 				return $this->_success_text;
- 			}
-
-// import project positions
-			if ($this->_importProjectPositions()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','projectpositions'));
-				return $this->_success_text;
-			}
-            
-// import project referees
-			if ($this->_importProjectReferees()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','projectreferees'));
-				return $this->_success_text;
-			}
-			
-			// imported matches
-			if ($this->_importMatches()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','match'));
-				return $this->_success_text;
-			}
-// import MatchReferee
-			if ($this->_importMatchReferee()===false)
-			{
-				JError::raiseWarning(500,JText::sprintf('JL_ADMIN_XML_ERROR_DURING','matchreferee'));
-				return $this->_success_text;
-			}
-            			
-      			
-}
-else
-{
-    // import persons
-		if ($this->_importPersons()===false)
-		{
-			JError::raiseWarning(500,JText::sprintf('JL_ADMIN_DFBNET_IMPORT_ERROR_DURING','person'));
-			return $this->_success_text;
-		}	
-}	
-		
-		/*	
-    echo 'importData this->_success_text<br>';
-    echo '<pre>';
-    print_r($this->_success_text);
-    echo '</pre>';
-    */
-  
-  if ( $this->_project_id )
-  {
-    $this->_SetRoundDates($this->_project_id);
-  }
-      
-    return $this->_success_text;
-    
-    }
   
   
 	/**

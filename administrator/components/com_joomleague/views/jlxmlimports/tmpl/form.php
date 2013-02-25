@@ -332,6 +332,7 @@ if (isset($this->xml) && is_array($this->xml))
 		<form id='adminForm' action='<?php echo $this->request_url; ?>' method='post' onsubmit='return chkFormular();' >
 			<input type='hidden' name='importProject' value="<?php echo $xmlProjectImport; ?>" />
 			<input type='hidden' name='importType' value="<?php echo $xmlImportType; ?>" />
+			<input type='hidden' name='whichfile' value="<?php echo $this->whichfile; ?>" />
 			<input type='hidden' name='sent' value="2" id='sent' />
 			<input type='hidden' name='task' value="jlxmlimport.insert" />
 			<?php echo JHTML::_('form.token')."\n"; ?>

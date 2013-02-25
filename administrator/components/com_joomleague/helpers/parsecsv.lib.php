@@ -77,7 +77,7 @@
 
 defined('_JEXEC') or die;
 
-class JLparseCSV {
+class parseCSV {
 	
 	/**
 	 * Configuration
@@ -363,6 +363,7 @@ class JLparseCSV {
 	 * @return  2D array with CSV data, or false on failure
 	 */
 	function parse_string ($data = null) {
+	$mainframe	=& JFactory::getApplication();
 		if ( empty($data) ) {
 			if ( $this->_check_data() ) {
 				$data = &$this->file_data;
@@ -380,6 +381,8 @@ class JLparseCSV {
 		$enclosed = false;
 		$was_enclosed = false;
 		$strlen = strlen($data);
+		
+    //$mainframe->enqueueMessage(JText::_('head<br><pre>'.print_r($head,true).'</pre>'   ),'');
 		
 		// walk through each character
 		for ( $i=0; $i < $strlen; $i++ ) {
@@ -454,6 +457,11 @@ class JLparseCSV {
 					if ( $this->_validate_offset($row_count) && $this->_validate_row_conditions($row, $this->conditions) ) {
 						if ( $this->heading && empty($head) ) {
 							$head = $row;
+							foreach ( $head as $key => $value )
+							{
+              $head[$key] = 'Spalte'. ( $key + 1 );
+              }
+//$mainframe->enqueueMessage(JText::_('head2<br><pre>'.print_r($head,true).'</pre>'   ),'');							
 						} elseif ( empty($this->fields) || (!empty($this->fields) && (($this->heading && $row_count > 0) || !$this->heading)) ) {
 							if ( !empty($this->sort_by) && !empty($row[$this->sort_by]) ) {
 								if ( isset($rows[$row[$this->sort_by]]) ) {
@@ -472,7 +480,10 @@ class JLparseCSV {
 						$i = $strlen;
 					}
 					if ( $ch == "\r" && $nch == "\n" ) $i++;
-				}
+				
+        }
+
+
 				
 			// append character to current field
 			} else {
