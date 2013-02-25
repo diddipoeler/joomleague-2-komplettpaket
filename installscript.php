@@ -157,6 +157,15 @@ class com_joomleagueInstallerScript
 	$db = JFactory::getDBO();
     $result = $db->getTableFields( '#__joomleague_version_history' );
     echo '<pre>'.print_r( $result, true ).'</pre><br>';
+    
+    if ( array_key_exists('version', $result['#__joomleague_version_history'] ) )
+    {
+        echo 'vorhanden<br>';
+    }
+    else
+    {
+        echo 'nicht vorhanden<br>';
+    }
 		?>
 		<hr>
 		<h1>JoomLeague Update</h1>
