@@ -145,6 +145,20 @@ else
 			<span class="clubinfo_listing_value"><?php echo $this->club->founded; ?></span>
 			<?php
 		}
+        
+            ?>
+			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_FOUNDED_YEAR' ); ?></span>
+			<span class="clubinfo_listing_value"><?php echo $this->club->founded_year; ?></span>
+			<?php
+            ?>
+			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_DISSOLVED_YEAR' ); ?></span>
+			<span class="clubinfo_listing_value"><?php echo $this->club->dissolved_year; ?></span>
+			<?php
+            ?>
+			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_UNIQUE_ID' ); ?></span>
+			<span class="clubinfo_listing_value"><?php echo $this->club->unique_id; ?></span>
+			<?php
+            
 
 		if ( ( $this->config['show_playgrounds_of_club'] == 1 ) && ( isset( $this->stadiums ) ) && ( count( $this->stadiums ) > 0 ) )
 		{
