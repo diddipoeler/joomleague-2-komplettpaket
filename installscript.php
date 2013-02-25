@@ -165,12 +165,21 @@ class com_joomleagueInstallerScript
     else
     {
         echo 'nicht vorhanden<br>';
+        $query2 = "ALTER TABLE `#__joomleague_version_history` ADD `version` VARCHAR(255) NOT NULL DEFAULT '' AFTER `text`;";
+  $db->setQuery($query2); 
+  if (!$db->query())
+				{
+				} else {
+					//echo "-> done !<br>";		
+				}
+        
     }
 		?>
 		<hr>
 		<h1>JoomLeague Update</h1>
 		<?php
     
+    /*
     // eine tabelle mit allen spalten
     $query = "SELECT ordinal_position
   FROM INFORMATION_SCHEMA.COLUMNS
@@ -194,7 +203,7 @@ class com_joomleagueInstallerScript
 				}
   
   }
-  
+  */
     
 		self::_install(true);
 	}
