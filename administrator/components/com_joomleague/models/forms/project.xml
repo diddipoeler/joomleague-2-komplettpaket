@@ -22,6 +22,15 @@
 			size="68"
 			maxlength="100"
 			class="text_area"/>
+		
+    <field
+			name="staffel_id"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_PROJECT_STAFFEL_ID"
+			description="COM_JOOMLEAGUE_ADMIN_PROJECT_STAFFEL_ID"
+			size="68"
+			maxlength="100"
+			class="text_area"/>	
 			
 		<field
 			name="published"

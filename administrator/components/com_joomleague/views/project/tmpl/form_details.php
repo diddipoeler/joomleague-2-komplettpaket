@@ -12,6 +12,10 @@
 					<td><?php echo $this->form->getInput('alias'); ?></td>
 				</tr>
 				<tr>
+					<td class="key"><?php echo $this->form->getLabel('staffel_id'); ?></td>
+					<td><?php echo $this->form->getInput('staffel_id'); ?></td>
+				</tr>
+				<tr>
 					<td class="key"><?php echo $this->form->getLabel('published'); ?></td>
 					<td><?php echo $this->form->getInput('published'); ?></td>
 				</tr>

@@ -557,6 +557,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project` (
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
+  `staffel_id` VARCHAR(100) NOT NULL DEFAULT '' ,
   PRIMARY KEY (`id`) ,
   KEY `league_id` (`league_id`),
   KEY `season_id` (`season_id`),
