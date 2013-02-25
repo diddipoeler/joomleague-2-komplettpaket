@@ -320,7 +320,7 @@ $mainframe->enqueueMessage(JText::_('sportstype '.$temp->name.''),'');
   
   $temp = new stdClass();
   $temp->id = 1;
-  $temp->name = 'Soccer';
+  $temp->name = 'COM_JOOMLEAGUE_ST_SOCCER';
   $this->_datas['sportstype'] = $temp;
     
 	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams');
