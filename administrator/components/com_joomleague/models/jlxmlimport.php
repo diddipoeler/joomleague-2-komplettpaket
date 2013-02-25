@@ -2016,10 +2016,24 @@ $this->dump_variable("this->_convertClubID", $this->_convertClubID);
 		{
 			foreach ($this->_convertPlaygroundID AS $key => $new_pg_id)
 			{
+			 
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_convertPlaygroundID -> key", $key);
+$this->dump_variable("this->_convertPlaygroundID -> new_club_id", $new_pg_id);
+}
+             
 				$p_playground = $this->_getPlaygroundRecord($new_pg_id);
 				foreach ($this->_convertClubID AS $key => $new_club_id)
 				{
-					if (isset($p_playground->club_id) && ($p_playground->club_id ==$key))
+
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_convertClubID -> key", $key);
+$this->dump_variable("this->_convertClubID -> new_club_id", $new_club_id);
+}
+                    
+					if (isset($p_playground->club_id) && ($p_playground->club_id == $key))
 					{
 						if ($this->_updatePlaygroundRecord($new_club_id,$new_pg_id))
 						{
