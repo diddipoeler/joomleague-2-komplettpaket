@@ -35,13 +35,13 @@ class JoomleagueModelPlayground extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	function delete($pks=array())
 	{
 		$result=false;
-		if (count($cid))
+		if (count($pks))
 		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
+			//JArrayHelper::toInteger($cid);
+			$cids=implode(',',$pks);
 			/*
 			$query="SELECT id FROM #__joomleague_club WHERE standard_playground IN ($cids)";
 			//echo '<pre>'.print_r($query,true).'</pre>';
@@ -66,7 +66,7 @@ class JoomleagueModelPlayground extends JoomleagueModelItem
 				$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_VENUE_MODEL_ERROR_MATCH_EXISTS'));
 				return false;
 			}
-			return parent::delete($cids);
+			return parent::delete($pks);
 		}
 		return true;
 	}
