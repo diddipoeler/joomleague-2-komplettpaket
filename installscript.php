@@ -156,15 +156,15 @@ class com_joomleagueInstallerScript
 	{
 	$db = JFactory::getDBO();
     $result = $db->getTableFields( '#__joomleague_version_history' );
-    echo '<pre>'.print_r( $result, true ).'</pre><br>';
+    //echo '<pre>'.print_r( $result, true ).'</pre><br>';
     
     if ( array_key_exists('version', $result['#__joomleague_version_history'] ) )
     {
-        echo 'vorhanden<br>';
+        //echo 'vorhanden<br>';
     }
     else
     {
-        echo 'nicht vorhanden<br>';
+        //echo 'nicht vorhanden<br>';
         $query2 = "ALTER TABLE `#__joomleague_version_history` ADD `version` VARCHAR(255) NOT NULL DEFAULT '' AFTER `text`;";
   $db->setQuery($query2); 
   if (!$db->query())
