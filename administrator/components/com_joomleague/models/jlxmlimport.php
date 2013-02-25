@@ -1999,13 +1999,24 @@ $this->dump_variable("this->_convertClubID", $this->_convertClubID);
 
 	private function _convertNewPlaygroundIDs()
 	{
-		$my_text='';
+
+if ( $this->show_debug_info )
+{
+$this->dump_header("Function _convertNewPlaygroundIDs");
+}
+if ( $this->show_debug_info )
+{
+$this->dump_variable("this->_convertPlaygroundID", $this->_convertPlaygroundID);
+$this->dump_variable("this->_convertClubID", $this->_convertClubID);
+}
+		
+        $my_text='';
 		$converted=false;
 		if (isset($this->_convertPlaygroundID) && !empty($this->_convertPlaygroundID))
 		{
 			foreach ($this->_convertPlaygroundID AS $key => $new_pg_id)
 			{
-				$p_playground=$this->_getPlaygroundRecord($new_pg_id);
+				$p_playground = $this->_getPlaygroundRecord($new_pg_id);
 				foreach ($this->_convertClubID AS $key => $new_club_id)
 				{
 					if (isset($p_playground->club_id) && ($p_playground->club_id ==$key))
