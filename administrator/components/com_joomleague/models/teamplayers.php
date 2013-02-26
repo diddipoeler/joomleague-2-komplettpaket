@@ -124,6 +124,7 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 			$query="	UPDATE #__joomleague_team_player
 						SET project_position_id='" .		$data['project_position_id'.$cid[$x]] .	"',
 							jerseynumber='" .		$data['jerseynumber'.$cid[$x]] .	"',
+              market_value='" .		$data['market_value'.$cid[$x]] .	"',
 							checked_out=0,
 							checked_out_time=0
 							WHERE id=" .			$cid[$x];

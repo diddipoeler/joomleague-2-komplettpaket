@@ -69,7 +69,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 <strong>
 <?php 
 //echo $history->date; 
-echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_UPDATES_VERSIONEN',$history->version,JHTML::date($history->date, JText::_('COM_JOOMLEAGUE_GLOBAL_CALENDAR_DATE')));
+echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_UPDATES_VERSIONEN',$history->version,JHTML::date($history->date, JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_DAYDATE')));
 ?>
 </strong>
 </legend>

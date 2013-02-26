@@ -134,6 +134,11 @@ JHTML::_('behavior.mootools');
 							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_TPLAYERS_IMAGE' );
 							?>
 						</th>
+            <th width="20">
+							<?php
+							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_TPLAYERS_MARKET_VALUE' );
+							?>
+						</th>
 						<th width="20">
 							<?php
 							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_TPLAYERS_SHIRTNR' );
@@ -257,6 +262,12 @@ JHTML::_('behavior.mootools');
 									echo JoomleagueHelper::getPictureThumb($row->picture, $playerName, 0, 21, 4);
 								}
 								?>
+							</td>
+              <td class="center">
+								<input<?php echo $inputappend; ?>	type="text" size="4" class="inputbox"
+																	name="market_value<?php echo $row->id; ?>"
+																	value="<?php echo $row->market_value; ?>"
+																	onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" />
 							</td>
 							<td class="center">
 								<input<?php echo $inputappend; ?>	type="text" size="4" class="inputbox"
