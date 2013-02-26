@@ -69,6 +69,11 @@ class JoomleagueViewRoster extends JLGView
     
     $js = "hs.graphicsDir = '".JURI::base(true) . "/components/com_joomleague/assets/css/highslide/graphics/"."';\n";
     $js .= "hs.outlineType = 'rounded-white';\n";
+    
+    $js .= "hs.Expander.prototype.onMouseOut = function () {\n";
+   $js .= "this.close();\n";
+$js .= "}\n";
+    
     $js .= "
     hs.lang = {
    cssDirection:     'ltr',

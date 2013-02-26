@@ -125,6 +125,7 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		    	$seasons[$k]->series     = $ranking['series'];
 		    	$seasons[$k]->goals      = $ranking['goals'];
 		    	$seasons[$k]->playercnt  = $this->getPlayerCount($season->projectid, $season->ptid);
+          $seasons[$k]->playermeanage  = $this->getPlayerMeanAge($season->projectid, $season->ptid);
 	    	} else {
 	    		$seasons[$k]->rank       = 0;
 	    		$seasons[$k]->leaguename = '';
@@ -262,7 +263,41 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
   
   }
   
-
+  /**
+	 * Get total number of players assigned to a team
+	 * @param int projectid
+	 * @param int projectteamid
+	 * @return int
+	 */
+	function getPlayerMeanAge($projectid, $projectteamid)
+	{
+		//$player = array();
+    $meanage = 0;
+    $countplayer = 0;
+    $age = 0;
+		$query = " SELECT ps.*"
+		       . " FROM #__joomleague_person AS ps "
+		       . " INNER JOIN #__joomleague_team_player AS tp ON tp.person_id = ps.id "
+		       . " INNER JOIN #__joomleague_project_team AS pt ON tp.projectteam_id = pt.id "
+		       . " WHERE pt.project_id=" . $projectid
+		       . " AND pt.id=" . $projectteamid
+		       . " AND tp.published = 1 " 
+		       . " AND ps.published = 1 ";
+		       $this->_db->setQuery($query);
+		$players = $this->_db->loadObjectList();
+    foreach ( $players as $player )
+    {
+    if ( $player->birthday != '0000-00-00' )
+    {
+    $age += JoomleagueHelper::getAge( $player->birthday,$player->deathday );
+    $countplayer++;
+    }
+    
+    }
+    $meanage = round( $age / $countplayer , 2);
+		return $meanage;
+	}
+  
 	/**
 	 * Get total number of players assigned to a team
 	 * @param int projectid

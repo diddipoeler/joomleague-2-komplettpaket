@@ -63,7 +63,10 @@ if (!empty($this->rows))
 	<?php
 	foreach ($this->rows as $position_id => $players)
 	{
-		// position header
+		$meanage = 0;
+    $countplayer = 0;
+    $age = 0;
+    // position header
 		$row=current($players);
 		$position=$row->position;
 		$k=0;
@@ -329,6 +332,10 @@ if (!empty($this->rows))
 						$birthdateStr = "";
 						break;
 				}
+        
+        $age += JoomleagueHelper::getAge( $row->birthday,$row->deathday );
+        $countplayer++;
+        
 			}
 			else
 			{
@@ -471,9 +478,13 @@ if (!empty($this->rows))
 	<?php
 	if ($this->config['show_totals'] && ($this->config['show_stats'] || $this->config['show_events_stats']))
 	{
+  
+  $meanage = round( $age / $countplayer , 2);
+  
 		?>
 	<tr class='<?php echo ($k==0? 'sectiontableentry1' : 'sectiontableentry2').' totals'; ?>'>
-		<td class="td_r" colspan="<?php echo $totalcolspan; ?>"><b><?php echo JText::_('COM_JOOMLEAGUE_ROSTER_TOTAL'); ?></b></td>
+    <td class="td_r" colspan="3"><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS_MEAN_AGE').' '.$meanage; ?></td>
+		<td class="td_r" colspan="<?php echo $totalcolspan - 3; ?>"><b><?php echo JText::_('COM_JOOMLEAGUE_ROSTER_TOTAL'); ?></b></td>
 		<?php
 		if ($this->config['show_events_stats'])
 		{

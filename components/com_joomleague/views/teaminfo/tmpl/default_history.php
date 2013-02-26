@@ -21,6 +21,7 @@
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_WDL'); ?></td>
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GOALS'); ?></td>
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS'); ?></td>
+    <td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS_MEAN_AGE'); ?></td>
 	</tr>
 	<?php
 	$k=0;
@@ -64,6 +65,13 @@
 		<?php else: ?>
 		<td><?php echo $season->playercnt; ?></td>
 		<?php endif; ?>
+    
+    <?php if($this->config['show_teams_roster_mean_age'] == 1): ?>
+		<td><?php echo JHTML::link($players_link, $season->playermeanage); ?></td>
+		<?php else: ?>
+		<td><?php echo $season->playermeanage; ?></td>
+		<?php endif; ?>
+    
 	</tr>
 	<?php
 	$k = 1 - $k;
