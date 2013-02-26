@@ -1685,6 +1685,11 @@ class JoomleagueModelJLXMLImport extends JModel
 
 	private function _importPlayground()
 	{
+if ( $this->show_debug_info )
+{	   
+$this->dump_header("function _importPlayground");
+$this->dump_variable("this->_datas playground", $this->_datas['playground']);
+}	   
 		$my_text='';
 		if (!isset($this->_datas['playground']) || count($this->_datas['playground'])==0){return true;}
 		if ((!isset($this->_newplaygroundid) || count($this->_newplaygroundid)==0) &&
@@ -1697,8 +1702,10 @@ class JoomleagueModelJLXMLImport extends JModel
 				$oldID=$this->_getDataFromObject($this->_datas['playground'][$key],'id');
 				$this->_convertPlaygroundID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
-				$my_text .= JText::sprintf(	'Using existing playground data: %1$s',
-											'</span><strong>'.$this->_getObjectName('playground',$id).'</strong>');
+				$my_text .= JText::sprintf(	'Using existing playground data: %1$s - %2$s',
+											'</span><strong>'.$this->_getObjectName('playground',$id).'</strong>',
+                                            ''.$id.''
+                                            );
 				$my_text .= '<br />';
 			}
 		}
@@ -1919,6 +1926,12 @@ $this->dump_variable("this->_newclubs", $this->_newclubs);
 				$p_club->set('logo_big',$this->_getDataFromObject($import_club,'logo_big'));
 				$p_club->set('logo_middle',$this->_getDataFromObject($import_club,'logo_middle'));
 				$p_club->set('logo_small',$this->_getDataFromObject($import_club,'logo_small'));
+                
+                $p_club->set('dissolved_year',$this->_getDataFromObject($import_club,'dissolved_year'));
+                $p_club->set('founded_year',$this->_getDataFromObject($import_club,'founded_year'));
+                $p_club->set('unique_id',$this->_getDataFromObject($import_club,'unique_id'));
+                $p_club->set('new_club_id',$this->_getDataFromObject($import_club,'new_club_id'));
+                
 				if ((isset($alias)) && (trim($alias)!=''))
 				{
 					$p_club->set('alias',$alias);
@@ -1947,7 +1960,8 @@ $this->dump_variable("this->_newclubs", $this->_newclubs);
 					FROM #__joomleague_club
 					WHERE	name='".addslashes(stripslashes($p_club->name))."' AND
 						country='$p_club->country'";
-				$this->_db->setQuery($query); $this->_db->query();
+				$this->_db->setQuery($query); 
+                $this->_db->query();
 				if ($object=$this->_db->loadObject())
 				{
 					$this->_convertClubID[$oldID]=$object->id;
@@ -1999,6 +2013,7 @@ $this->dump_variable("this->_convertClubID", $this->_convertClubID);
 
 	private function _convertNewPlaygroundIDs()
 	{
+    $mainframe =& JFactory::getApplication();   
 
 if ( $this->show_debug_info )
 {
@@ -2012,9 +2027,43 @@ $this->dump_variable("this->_convertClubID", $this->_convertClubID);
 		
         $my_text='';
 		$converted=false;
-		if (isset($this->_convertPlaygroundID) && !empty($this->_convertPlaygroundID))
+		if ( isset($this->_convertPlaygroundID) && !empty($this->_convertPlaygroundID) )
 		{
-			foreach ($this->_convertPlaygroundID AS $key => $new_pg_id)
+			
+            foreach ( $this->_datas['playground'] as $key => $value  )
+            {
+                
+                $import_playground = $this->_datas['playground'][$key];
+				$oldID = $this->_getDataFromObject($import_playground,'id');
+				$club_id = $this->_getDataFromObject($import_playground,'club_id');
+                
+                //$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($key,true).'</pre>'   ),'');
+                
+                $new_pg_id = $this->_convertPlaygroundID[$oldID];
+                $new_club_id = $this->_convertClubID[$club_id];
+                $p_playground = $this->_getPlaygroundRecord($new_pg_id);
+                if ( $p_playground->club_id != $new_club_id )
+                {
+                    if ( $this->_updatePlaygroundRecord($new_club_id,$new_pg_id) )
+						{
+							$converted=true;
+							$my_text .= '<span style="color:green">';
+							$my_text .= JText::sprintf(	'Converted club-info %1$s in imported playground %2$s - [club_id: %3$s] [playground-id: %4$s]',
+														'</span><strong>'.$this->_getClubName($new_club_id).'</strong><span style="color:green">',
+														"</span><strong>$p_playground->name</strong>",
+                                                        "".$new_club_id."",
+                                                        "".$new_pg_id."");
+							$my_text .= '<br />';
+						}
+						
+                }
+                
+            }
+            
+            
+            
+            /*
+            foreach ($this->_convertPlaygroundID AS $key => $new_pg_id)
 			{
 			 
 if ( $this->show_debug_info )
@@ -2024,18 +2073,18 @@ $this->dump_variable("this->_convertPlaygroundID -> new_club_id", $new_pg_id);
 }
              
 				$p_playground = $this->_getPlaygroundRecord($new_pg_id);
-				foreach ($this->_convertClubID AS $key => $new_club_id)
+				foreach ($this->_convertClubID AS $key2 => $new_club_id)
 				{
 
 if ( $this->show_debug_info )
 {
-$this->dump_variable("this->_convertClubID -> key", $key);
+$this->dump_variable("this->_convertClubID -> key", $key2);
 $this->dump_variable("this->_convertClubID -> new_club_id", $new_club_id);
 }
                     
-					if (isset($p_playground->club_id) && ($p_playground->club_id == $key))
-					{
-						if ($this->_updatePlaygroundRecord($new_club_id,$new_pg_id))
+					//if (isset($p_playground->club_id) && ($p_playground->club_id == $key2))
+					//{
+						if ( $this->_updatePlaygroundRecord($new_club_id,$new_pg_id) )
 						{
 							$converted=true;
 							$my_text .= '<span style="color:green">';
@@ -2045,9 +2094,10 @@ $this->dump_variable("this->_convertClubID -> new_club_id", $new_club_id);
 							$my_text .= '<br />';
 						}
 						break;
-					}
+					//}
 				}
 			}
+            */
 			if (!$converted){$my_text .= '<span style="color:green">'.JText::_('Nothing needed to be converted').'<br />';}
 			$this->_success_text['Converting new playground club-IDs of new playground data:']=$my_text;
 		}
@@ -3253,6 +3303,9 @@ $this->dump_variable("import_team", $import_team);
 				$p_match->set('old_match_id',$this->_getDataFromObject($match,'old_match_id'));
 				$p_match->set('extended',$this->_getDataFromObject($match,'extended'));
 				$p_match->set('published',$this->_getDataFromObject($match,'published'));
+                
+                $p_match->set('division_id',$this->_getDataFromObject($match,'division_id'));
+                
 			}
 			else // ($this->import_version=='OLD')
 			{

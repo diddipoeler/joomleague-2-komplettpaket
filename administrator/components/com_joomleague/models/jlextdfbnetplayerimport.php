@@ -424,11 +424,29 @@ $this->pane =& JPane::getInstance('sliders');
 echo $this->pane->startPane('pane');    
 }
 
+// die einstellungen der user holen
+$option = JRequest::getCmd('option');
+$params = JComponentHelper::getParams($option);
+
+$jlxmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.$option.DS.'config.xml';
+$jRegistry = new JRegistry;
+$jRegistry->loadString($params->toString('ini'), 'ini');
+        
+//$mainframe->enqueueMessage(JText::_('params<br><pre>'.print_r($params,true).'</pre>'   ),'');
+//$mainframe->enqueueMessage(JText::_('jRegistry<br><pre>'.print_r($jRegistry,true).'</pre>'   ),'');
+
+/*
+$jRegistry = new JRegistry;
+$jRegistry->loadString($params->toString('ini'), 'ini');
+$form =& JForm::getInstance($option, $xmlfile, array('control'=> 'params'), false, "/config");
+$form->bind($jRegistry);
+$fieldSets = $form->getFieldsets('COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS');
+$mainframe->enqueueMessage(JText::_('fieldSets<br><pre>'.print_r($fieldSets,true).'</pre>'   ),'');
+*/
+
+
   
-// echo 'lang <br>';  
-// echo '<pre>';
-// print_r($lang);
-// echo '</pre>'; 
+
 
 //   echo 'Die aktuelle Sprache lautet: ' . $lang->getName() . '<br>';
   $teile = explode("-",$lang->getTag());
@@ -454,6 +472,7 @@ $exportpersons = array();
 $exportpersonstemp = array();
 $exportclubs = array();
 $exportclubsstandardplayground = array();
+$exportplaygroundclubib = array();
 $exportteams = array();
 $exportteamstemp = array();
 $exportteamplayer = array();
@@ -1257,18 +1276,16 @@ $lfdnumbermatchreferee = 1;
 */  
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Spalte4'];
+  $temp->name = $csv->data[$a][$jRegistry->get('cfg_dfbnet_verband_name')];
   $temp->exportRoutine = '2010-09-19 23:00:00';  
   $this->_datas['exportversion'] = $temp;
-  
-
-  
+ 
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Spalte3'];
+  $temp->name = $csv->data[$a][$jRegistry->get('cfg_dfbnet_season_name')];
   $this->_datas['season'] = $temp;
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Spalte13'].' '.$csv->data[$a]['Spalte12'];
+  $temp->name = $csv->data[$a][$jRegistry->get('cfg_dfbnet_league_name')].' '.$csv->data[$a][$jRegistry->get('cfg_dfbnet_staffel_number')];
   $temp->country = $country;
   $this->_datas['league'] = $temp;
   
@@ -1278,20 +1295,20 @@ $lfdnumbermatchreferee = 1;
   $this->_datas['sportstype'] = $temp;
   
   $temp = new stdClass();
-  $temp->name = $csv->data[$a]['Spalte13'].' '.$csv->data[$a]['Spalte3'];
+  $temp->name = $csv->data[$a][$jRegistry->get('cfg_dfbnet_league_name')].' '.$csv->data[$a][$jRegistry->get('cfg_dfbnet_season_name')];
   $temp->serveroffset = 0;
   $temp->start_time = '15:30';
   $temp->start_date = '0000-00-00';
   $temp->sports_type_id = 1;
   $temp->project_type = 'SIMPLE_LEAGUE';
-  $temp->staffel_id = $csv->data[$a]['Spalte14'];
+  $temp->staffel_id = $csv->data[$a][$jRegistry->get('cfg_dfbnet_staffel_name')];
   $this->_datas['project'] = $temp;
   }
   
-  if ( empty($csv->data[$a]['Spalte28']) )
+  if ( empty($csv->data[$a][$jRegistry->get('cfg_dfbnet_weekday_changed')]) )
   { 
     
-  $valuematchday = $csv->data[$a]['Spalte19'];
+  $valuematchday = $csv->data[$a][$jRegistry->get('cfg_dfbnet_round_name')];
   
   if ( isset($exportround[$valuematchday]) )
   {
@@ -1309,20 +1326,21 @@ $lfdnumbermatchreferee = 1;
   }
 
 // dfbnet heimmannschaft  
-$valueheim = $csv->data[$a]['Spalte21'];
-
+$valueheim = $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')];
 
 if ( $valueheim != 'Spielfrei' )
 {
 if (in_array($valueheim, $exportteamstemp)) 
 {
 // echo $valueheim." <- enthalten<br>";
-$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spalte24'];
+$exportclubsstandardplayground[$valueheim] = $csv->data[$a][$jRegistry->get('cfg_dfbnet_playground_name')];
+$exportplaygroundclubib[$csv->data[$a][$jRegistry->get('cfg_dfbnet_playground_name')]] = $valueheim;
 }
 else
 {
 // echo $valueheim." <- nicht enthalten<br>";
-$exportclubsstandardplayground[$valueheim] = $csv->data[$a]['Spalte24'];
+$exportclubsstandardplayground[$valueheim] = $csv->data[$a][$jRegistry->get('cfg_dfbnet_playground_name')];
+$exportplaygroundclubib[$csv->data[$a][$jRegistry->get('cfg_dfbnet_playground_name')]] = $valueheim;
 
 $exportteamstemp[] = $valueheim;
 $temp = new stdClass();
@@ -1331,7 +1349,7 @@ $temp->club_id = $lfdnumberteam;
 $temp->name = $valueheim;
 $temp->middle_name = $valueheim;
 $temp->short_name = $valueheim;
-$temp->info = $csv->data[$a]['Spalte6'];
+$temp->info = $csv->data[$a][$jRegistry->get('cfg_dfbnet_teamart_name')];
 $temp->extended = '';
 $exportteams[] = $temp;
 
@@ -1378,18 +1396,20 @@ $valueheim = str_replace(array_keys($convert), array_values($convert), $valuehei
 
 $temp = new stdClass();
 $temp->id = $lfdnumberteam;
+$club_id = $lfdnumberteam;
 $temp->name = $valueheim;
 $temp->country = $country;
 $temp->extended = '';
 $temp->standard_playground = $lfdnumberplayground;
 $exportclubs[] = $temp;
 
+//$mainframe->enqueueMessage(JText::_('heim verein -> '.$valueheim ),'Notice');
+
 $temp = new stdClass();
 $temp->id = $lfdnumberteam;
 $temp->team_id = $lfdnumberteam;
 $temp->project_team_id = $lfdnumberteam;
 $temp->is_in_score = 1;
-
 $temp->division_id = 0;
 $temp->start_points = 0;
 $temp->points_finally = 0;
@@ -1401,7 +1421,6 @@ $temp->lost_finally = 0;
 $temp->homegoals_finally = 0;
 $temp->guestgoals_finally = 0;
 $temp->diffgoals_finally = 0;
-
 $temp->standard_playground = $lfdnumberplayground;
 $exportprojectteams[] = $temp;
      
@@ -1410,7 +1429,7 @@ $lfdnumberteam++;
 }
 
 // dfbnet gastmannschaft  
-$valuegast = $csv->data[$a]['Spalte22'];
+$valuegast = $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')];
 
 
 if ( $valuegast != 'Spielfrei' )
@@ -1429,7 +1448,7 @@ $temp->club_id = $lfdnumberteam;
 $temp->name = $valuegast;
 $temp->middle_name = $valuegast;
 $temp->short_name = $valuegast;
-$temp->info = $csv->data[$a]['Spalte6'];
+$temp->info = $csv->data[$a][$jRegistry->get('cfg_dfbnet_teamart_name')];
 $temp->extended = '';
 $exportteams[] = $temp;
 
@@ -1484,7 +1503,6 @@ $temp->id = $lfdnumberteam;
 $temp->team_id = $lfdnumberteam;
 $temp->project_team_id = $lfdnumberteam;
 $temp->is_in_score = 1;
-
 $temp->division_id = 0;
 $temp->start_points = 0;
 $temp->points_finally = 0;
@@ -1496,7 +1514,6 @@ $temp->lost_finally = 0;
 $temp->homegoals_finally = 0;
 $temp->guestgoals_finally = 0;
 $temp->diffgoals_finally = 0;
-
 $temp->standard_playground = 0;
 $exportprojectteams[] = $temp;
      
@@ -1505,7 +1522,7 @@ $lfdnumberteam++;
 }  
  
 // dfbnet spielstaette 
-$valueplayground = $csv->data[$a]['Spalte24'];
+$valueplayground = $csv->data[$a][$jRegistry->get('cfg_dfbnet_playground_name')];
 if ( $valueplayground )
 {
 if (  array_key_exists($valueplayground, $exportplaygroundtemp) ) 
@@ -1523,24 +1540,38 @@ $temp->name = $valueplayground;
 $temp->short_name = $valueplayground;
 $temp->country = $country;
 $temp->max_visitors = 0;
-//if ( empty($csv->data[$a]['Spalte28']) )
-//{	
+
+$valueheimsuchen = $exportplaygroundclubib[$valueplayground];
+foreach ( $exportteamstemp as $key => $value )
+{
+    if ( $value == $valueheimsuchen )
+    {
+        $club_id = $key + 1;
+    }
+}
+
+$temp->club_id = $club_id;
 $exportplayground[] = $temp;
-//}
+
+//$mainframe->enqueueMessage(JText::_('playground -> '.$valueplayground ),'Notice');
+//$mainframe->enqueueMessage(JText::_('heimmannschaft suchen -> '.$valueheimsuchen ),'Notice');
+//$mainframe->enqueueMessage(JText::_('heimmannschaft club-id -> '.$club_id ),'Notice');
+
+
 $lfdnumberplayground++;
 }
 }
   
-$valueperson = $csv->data[$a]['Spalte25'];
-$valueperson1 = $csv->data[$a]['Spalte26'];
-$valueperson2 = $csv->data[$a]['Spalte27'];
+$valueperson = $csv->data[$a][$jRegistry->get('cfg_dfbnet_spielleitung_name')];
+$valueperson1 = $csv->data[$a][$jRegistry->get('cfg_dfbnet_assistent1_name')];
+$valueperson2 = $csv->data[$a][$jRegistry->get('cfg_dfbnet_assistent2_name')];
 
 //if (in_array($valueperson, $exportpersonstemp)) 
 if (array_key_exists($valueperson, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei' )
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei' )
   {
   // nichts machen
   }
@@ -1586,8 +1617,8 @@ $temp->position_id = 1000;
 $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1610,8 +1641,8 @@ $lfdnumberperson++;
 if (array_key_exists($valueperson1, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1657,8 +1688,8 @@ $temp->position_id = 1001;
 $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1681,8 +1712,8 @@ $lfdnumberperson++;
 if (array_key_exists($valueperson2, $exportpersonstemp))
 {
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1729,8 +1760,8 @@ $temp->info = 'Schiri';
 $exportpersons[] = $temp; 
 
 
-if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-|| $csv->data[$a]['Spalte22'] == 'Spielfrei')
+if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+|| $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
@@ -1752,24 +1783,24 @@ $lfdnumberperson++;
 
   
 //   echo 'paarung -> '.$csv->data[$a]['Heim Mannschaft']." <-> ".$csv->data[$a]['Gast Mannschaft'].'<br>';
-  if ( $csv->data[$a]['Spalte21'] == 'Spielfrei' 
-  || $csv->data[$a]['Spalte22'] == 'Spielfrei')
+  if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')] == 'Spielfrei' 
+  || $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')] == 'Spielfrei')
   {
   // nichts machen
   }
   else
   {
-  $round_id = $csv->data[$a]['Spalte19'];
+  $round_id = $csv->data[$a][$jRegistry->get('cfg_dfbnet_round_name')];
   $tempmatch = new stdClass();
   $tempmatch->id = $lfdnumbermatch;
   $tempmatch->round_id = $round_id;
-  $datetime = strtotime($csv->data[$a]['Spalte16']);
-  $tempmatch->match_date = date('Y-m-d', $datetime)." ".$csv->data[$a]['Spalte17'];
+  $datetime = strtotime($csv->data[$a][$jRegistry->get('cfg_dfbnet_date')]);
+  $tempmatch->match_date = date('Y-m-d', $datetime)." ".$csv->data[$a][$jRegistry->get('cfg_dfbnet_time')];
   
-  if ( $csv->data[$a]['Spalte29'] )
+  if ( $csv->data[$a][$jRegistry->get('cfg_dfbnet_date_changed')] )
   {
-  $datetime = strtotime($csv->data[$a]['Spalte29']);
-  $tempmatch->match_date_verlegt = date('Y-m-d', $datetime)." ".$csv->data[$a]['Spalte30'];
+  $datetime = strtotime($csv->data[$a][$jRegistry->get('cfg_dfbnet_date_changed')]);
+  $tempmatch->match_date_verlegt = date('Y-m-d', $datetime)." ".$csv->data[$a][$jRegistry->get('cfg_dfbnet_time_changed')];
   }
   else
   {
@@ -1807,12 +1838,8 @@ $lfdnumberperson++;
 	$tempmatch->projectteam1_id = 0;
 	$tempmatch->projectteam2_id = 0;
     
-    $tempmatch->projectteam1_dfbnet = $csv->data[$a]['Spalte21'];    
-    
-    
-	
-    $tempmatch->projectteam2_dfbnet = $csv->data[$a]['Spalte22'];    
-    
+    $tempmatch->projectteam1_dfbnet = $csv->data[$a][$jRegistry->get('cfg_dfbnet_home_name')];    
+    $tempmatch->projectteam2_dfbnet = $csv->data[$a][$jRegistry->get('cfg_dfbnet_away_name')];    
 	
 	$tempmatch->team1_result = '';
 	$tempmatch->team2_result = '';

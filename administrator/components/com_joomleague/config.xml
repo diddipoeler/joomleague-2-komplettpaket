@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
+	
+  <fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
 		<field name="cfg_edit_club_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_DESCR">
@@ -13,14 +14,12 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
-		
 		<field name="cfg_help_server" type="text" default="http://joomleaguewiki.grammatikas-grill.de/index.php/"
-		label="COM_JOOMLEAGUE_SETTINGS_HELPSERVER"
+		size="100"
+    label="COM_JOOMLEAGUE_SETTINGS_HELPSERVER"
 		description="COM_JOOMLEAGUE_SETTINGS_HELPSERVER_DESC">
 		</field>
-		
-		
-	</fieldset>
+</fieldset>
 	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
 		<field name="JoomLeague updates" type="list" default="1"
@@ -248,4 +247,108 @@
 					description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_DESC" />					
   </fieldset>
 
+  <fieldset  
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_LABEL"
+		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_DESC">
+
+    <field name="cfg_dfbnet_season_name" type="text" default="C"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_SEASON_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_SEASON_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_verband_name" type="text" default="D"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_VERBAND_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_VERBAND_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_league_name" type="text" default="M"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_LEAGUE_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_LEAGUE_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_staffel_number" type="text" default="L"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_STAFFEL_NUMBER_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_STAFFEL_NUMBER_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_staffel_name" type="text" default="N"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_STAFFEL_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_STAFFEL_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_teamart_name" type="text" default="F"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_TEAMART_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_TEAMART_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_round_name" type="text" default="S"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_ROUND_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_ROUND_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_date" type="text" default="P"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_DATE_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_DATE_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_time" type="text" default="Q"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_TIME_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_TIME_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_weekday_changed" type="text" default="AB"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_WEEKDAY_CHANGED_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_WEEKDAY_CHANGED_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_date_changed" type="text" default="AC"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_DATE_CHANGED_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_DATE_CHANGED_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_time_changed" type="text" default="AD"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_TIME_CHANGED_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_TIME_CHANGED_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_home_name" type="text" default="U"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_HOME_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_HOME_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_away_name" type="text" default="V"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_AWAY_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_AWAY_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_playground_name" type="text" default="X"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_PLAYGROUND_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_PLAYGROUND_CCOLUMN">
+		</field>
+    
+    <field name="cfg_dfbnet_spielleitung_name" type="text" default="Y"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_REFEREE_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_REFEREE_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_assistent1_name" type="text" default="Z"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_REFEREE1_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_REFEREE1_CCOLUMN">
+		</field>
+    <field name="cfg_dfbnet_assistent2_name" type="text" default="AA"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_REFEREE2_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_REFEREE2_CCOLUMN">
+		</field>
+    
+    
+  </fieldset>  
 </config>

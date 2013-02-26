@@ -373,6 +373,7 @@ class parseCSV {
 		$white_spaces = str_replace($this->delimiter, '', " \t\x0B\0");
 		
 		$rows = array();
+    $letters = array();
 		$row = array();
 		$row_count = 0;
 		$current = '';
@@ -382,6 +383,14 @@ class parseCSV {
 		$was_enclosed = false;
 		$strlen = strlen($data);
 		
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = $buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'A'.$buchstabe;
+    }
     //$mainframe->enqueueMessage(JText::_('head<br><pre>'.print_r($head,true).'</pre>'   ),'');
 		
 		// walk through each character
@@ -459,7 +468,8 @@ class parseCSV {
 							$head = $row;
 							foreach ( $head as $key => $value )
 							{
-              $head[$key] = 'Spalte'. ( $key + 1 );
+              //$head[$key] = 'Spalte'. ( $key + 1 );
+              $head[$key] = $letters[$key];
               }
 //$mainframe->enqueueMessage(JText::_('head2<br><pre>'.print_r($head,true).'</pre>'   ),'');							
 						} elseif ( empty($this->fields) || (!empty($this->fields) && (($this->heading && $row_count > 0) || !$this->heading)) ) {

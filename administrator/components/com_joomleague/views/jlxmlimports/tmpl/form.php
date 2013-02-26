@@ -731,6 +731,7 @@ if (isset($this->xml) && is_array($this->xml))
    
 									{
 										$matchingTeam_ID = $team->id;
+                    $matchingTeam_INFO = $team->info;
 										$matchingTeam_ClubID = $team->club_id;
 										break;
 									}
@@ -960,6 +961,21 @@ if (isset($this->xml) && is_array($this->xml))
 													<input type='text' name='dbTeamName_<?php echo $key;?>' value='<?php echo $importTeam_Name; ?>' size='30' maxlength='45' disabled='disabled'/>
 												</td>
 											</tr>
+                      
+                      <tr style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>; border-style:none'>
+                      <td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
+                      </td>
+                      <td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
+													<input type='text' name='impTeamInfo_<?php echo $key;?>' value='<?php echo $importTeam_Info;?>' size='30' maxlength='45' disabled='disabled'/>
+												</td>
+												<td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
+													&nbsp;
+												</td>
+												<td style='background-color:<?php echo $color; ?>; border-color:<?php echo $color; ?>'>
+													<input type='text' name='dbTeamInfo_<?php echo $key;?>' value='<?php echo $matchingTeam_INFO; ?>' size='30' maxlength='45' disabled='disabled'/>
+												</td>
+                      </tr>
+                      
 										</tbody>
 									</table>
 								</td>
