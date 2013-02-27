@@ -13,4 +13,4 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_version_history` (
 TRUNCATE TABLE  `#__joomleague_version_history`;
 
 INSERT INTO `#__joomleague_version_history` (`id`, `date`, `text`, `version`) VALUES
-(NULL, '2013-02-13', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_20', '2.0.47');
+(NULL, '2013-02-13', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_13', '2.0.47');
