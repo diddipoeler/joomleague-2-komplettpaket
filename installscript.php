@@ -126,10 +126,29 @@ class com_joomleagueInstallerScript
     $subject = 'JoomLeague 2.0 Complete Installation';
     $message = 'JoomLeague 2.0 Complete Installation wurde auf der Seite : '.JURI::base().' gestartet.';
     JUtility::sendMail( '', JURI::base(), $to, $subject, $message );   
+
+  $db =& JFactory::getDBO();
+  $db_table = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'updates'.DS.$this->release.'.sql';
+  $result = JInstallationHelper::populateDatabase($db, $db_table, $errors);
+
+//   $params = JComponentHelper::getParams('com_joomleague');
+//   $xmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'config.xml';
+//   $jRegistry = new JRegistry;
+// 	$jRegistry->loadString($params->toString('ini'), 'ini');
+// 	$form =& JForm::getInstance('com_joomleague', $xmlfile, array('control'=> 'params'), false, "/config");
+// 	$form->bind($jRegistry);
+	
+                                	
+// diddipoeler
+  
+   
 	$mainframe->enqueueMessage(JText::_('Sie werden gleich zum Tabellenupdate weitergeleitet !'),'Notice');
     $restart_link = JURI::base() . 'index.php?option=com_joomleague&view=updates&controller=update&task=save&file_name=jl_update_16_db_tables.php';
-    echo '<meta http-equiv="refresh" content="3; URL='.$restart_link.'">';   
+    echo '<meta http-equiv="refresh" content="3; URL='.$restart_link.'">';
+  
+      
 //		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
+
 	}
 	
 	/**
@@ -335,10 +354,119 @@ class com_joomleagueInstallerScript
 		return true;
 	}
 	
-	public function postflight($route, $adapter) {
+	
+  
+  
+  public function preflight($route, $adapter) 
+  {
+  $mainframe =& JFactory::getApplication();
+//   echo '<br>route -> '.$route.'<br>';
+//   echo 'adapter -> '.$adapter.'<br>';
+  
 		//-----------------------------------------------------
 		//Table `#__extensions` Bugfix needed due a wrong client_id for the update system
 		//-----------------------------------------------------
+		
+		// diddipoeler
+		$jversion = new JVersion();
+ 
+    // Installing component manifest file version
+    $this->release = $adapter->get( "manifest" )->version;
+
+    // Manifest file minimum Joomla version
+    $this->minimum_joomla_release = $adapter->get( "manifest" )->attributes()->version;   
+
+    $mainframe->enqueueMessage('<p>Installing component manifest file version = ' . $this->release,'Notice');
+    $mainframe->enqueueMessage('Current manifest cache commponent version = ' . $this->getParam('version'),'Notice');
+    $mainframe->enqueueMessage('Installing component manifest file minimum Joomla version = ' . $this->minimum_joomla_release,'Notice');
+    $mainframe->enqueueMessage('Current Joomla version = ' . $jversion->getShortVersion(),'Notice');
+//     $mainframe->enqueueMessage(,'Notice');
+//     $mainframe->enqueueMessage(,'Notice');
+    
+    // Show the essential information at the install/update back-end
+    //echo '<p>Installing component manifest file version = ' . $this->release;
+    //echo '<br />Current manifest cache commponent version = ' . $this->getParam('version');
+    //echo '<br />Installing component manifest file minimum Joomla version = ' . $this->minimum_joomla_release;
+    //echo '<br />Current Joomla version = ' . $jversion->getShortVersion();
+    
+    // abort if the current Joomla release is older
+        if( version_compare( $jversion->getShortVersion(), $this->minimum_joomla_release, 'lt' ) ) {
+                Jerror::raiseWarning(null, 'Cannot install com_democompupdate in a Joomla release prior to '.$this->minimum_joomla_release);
+                return false;
+        }
+ 
+        // abort if the component being installed is not newer than the currently installed version
+        if ( $type == 'update' ) {
+                $oldRelease = $this->getParam('version');
+                $rel = $oldRelease . ' to ' . $this->release;
+                if ( version_compare( $this->release, $oldRelease, 'le' ) ) {
+                        Jerror::raiseWarning(null, 'Incorrect version sequence. Cannot upgrade ' . $rel);
+                        return false;
+                }
+        }
+        else { $rel = $this->release; }
+ 
+        //echo '<p>' . JText::_('COM_DEMOCOMPUPDATE_PREFLIGHT_' . $type . ' ' . $rel) . '</p>';
+        $mainframe->enqueueMessage(JText::_('Joomleague Preflight : ' . $route . ' ' . $rel. '</p>'),'Notice');
+        
+        
+                    
+		
+	}
+  
+  public function postflight($route, $adapter) 
+  {
+  $mainframe =& JFactory::getApplication();
+  $db = JFactory::getDbo();
+//   echo '<br>route -> '.$route.'<br>';
+//   echo 'adapter -> '.$adapter.'<br>';
+  
+  /*
+	// always create or modify these parameters
+        $params['my_param0'] = 'Component version ' . $this->release;
+        $params['my_param1'] = 'Another value';
+ 
+        // define the following parameters only if it is an original install
+        if ( $type == 'install' ) {
+                $params['my_param2'] = '4';
+                $params['my_param3'] = 'Star';
+        }
+  */
+  
+  /*
+  $params = JComponentHelper::getParams('com_joomleague');
+  $xmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'config.xml';
+  $jRegistry = new JRegistry;
+	$jRegistry->loadString($params->toString('ini'), 'ini');
+	$form =& JForm::getInstance('com_joomleague', $xmlfile, array('control'=> 'params'), false, "/config");
+	$form->bind($jRegistry);
+	*/
+	
+	$paramsdata = JComponentHelper::getParams('com_joomleague');
+	$paramsdefs = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'config.xml';
+	$params = new JParameter( $paramsdata, $paramsdefs );
+	
+	$jRegistry = new JRegistry();
+  //$jRegistry->loadArray($params);
+  $jRegistry->loadString($params->toString('ini'), 'ini');
+  $newparams = $jRegistry->toString();
+	// store the combined new and existing values back as a JSON string
+                                  /*
+                        $db->setQuery('UPDATE #__extensions SET params = ' .
+                                $db->quote( $newparams ) .
+                                ' WHERE name = "joomleague"' );
+                                $db->query();
+                                */
+	//$mainframe->enqueueMessage(JText::_('newparams<br><pre>'.print_r($newparams,true).'</pre>'   ),'');
+  
+  //$this->setParams( $form );
+ 
+//        echo '<p>' . JText::_('COM_DEMOCOMPUPDATE_POSTFLIGHT ' . $route . ' to ' . $this->release) . '</p>';	
+        $mainframe->enqueueMessage(JText::_('Joomleague Postflight : ' . $route . ' to ' . $this->release),'Notice');
+    
+        
+        
+                    
 		$db = JFactory::getDBO();
 		$query="UPDATE `#__extensions` SET client_id=1 WHERE name='joomleague'";
 		$db->setQuery($query);
@@ -347,6 +475,42 @@ class com_joomleagueInstallerScript
 		}
 	}
 	
+	/*
+  * get a variable from the manifest file (actually, from the manifest cache).
+  */
+  function getParam( $name ) {
+                $db = JFactory::getDbo();
+                $db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague" and type = "component" ');
+                $manifest = json_decode( $db->loadResult(), true );
+                return $manifest[ $name ];
+        }
+        
+  /*
+         * sets parameter values in the component's row of the extension table
+         */
+        function setParams($param_array) {
+                        $db = JFactory::getDbo();
+                        
+                                
+                if ( count($param_array) > 0 ) {
+                        // read the existing component value(s)
+                        $db = JFactory::getDbo();
+                        $db->setQuery('SELECT params FROM #__extensions WHERE name = "joomleague"');
+                        $params = json_decode( $db->loadResult(), true );
+                        // add the new variable(s) to the existing one(s)
+                        foreach ( $param_array as $name => $value ) {
+                                $params[ (string) $name ] = (string) $value;
+                        }
+                        // store the combined new and existing values back as a JSON string
+                        $paramsString = json_encode( $params );
+                        $db->setQuery('UPDATE #__extensions SET params = ' .
+                                $db->quote( $paramsString ) .
+                                ' WHERE name = "joomleague"' );
+                                $db->query();
+                }
+                
+        }      
+        
 	public function uninstall($adapter)
 	{
 		$params =& JComponentHelper::getParams('com_joomleague');

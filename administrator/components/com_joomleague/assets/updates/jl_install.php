@@ -129,9 +129,9 @@ function updateVersion($versionData)
 	echo $versionData->major . "." . $versionData->minor . "." . $versionData->build . "." . $versionData->revision . "-" . $versionData->version . "' ";
 	
   
-  $db =& JFactory::getDBO();
-  $db_table = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'version_history.sql';
-  $result = JInstallationHelper::populateDatabase($db, $db_table, $errors);
+//   $db =& JFactory::getDBO();
+//   $db_table = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'updates'.DS.$this->release.'.sql';
+//   $result = JInstallationHelper::populateDatabase($db, $db_table, $errors);
   
   
   return $status;
