@@ -24,14 +24,20 @@
 		}
 		?>
 		</td>
-    <td id="timeline-top">
-    <div id="timelinetop">
-    1.halbzeit
-    
-    2.halbzeit
+    <td id="" style="">
+    <div id="timelinetop" style="position:relative;width:100%;">
+    <div id="firsthalftime" style="position:absolute; top:0px; left:0px; width:50%; height:15px;text-align: center;color:#FFFFFF;background-color:lightgrey;">
+    <?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE_FIRST_HALF'); ?>
     </div>
+   
+    <div id="secondhalftime" style="position:absolute; top:0px; left:50%; width:50%; height:15px;text-align: center;color:#FFFFFF;background-color:grey;">
+    <?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE_SECOND_HALF'); ?>
+    </div>
+    </div>
+    <br>
   </td>
   </tr>
+  
 	<tr>
 		<?php
 		if ($this->team1->logo_small == '')
