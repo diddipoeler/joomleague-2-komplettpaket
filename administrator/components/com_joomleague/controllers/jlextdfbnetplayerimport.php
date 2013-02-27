@@ -243,7 +243,7 @@ function select()
 		
 		if (isset($post['dfbimportupdate']) )
 		{
-    $link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&controller=jlextdfbnetplayerimport&task=update';
+    $link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&task=jlextdfbnetplayerimport.update';
     }
     else
     {
