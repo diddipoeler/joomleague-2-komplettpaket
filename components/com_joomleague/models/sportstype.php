@@ -82,6 +82,22 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 	*
 	* get count of related leagues 
 	*/
+	public function getPersonsOnlyCount() {
+		$query = 'SELECT count(*) AS count FROM #__joomleague_person AS c 
+							';
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $this->_db->loadObject()->count;
+	}
+  
+  /**
+	*
+	* get count of related leagues 
+	*/
 	public function getClubsOnlyCount() {
 		$query = 'SELECT count(*) AS count FROM #__joomleague_club AS c 
 							';

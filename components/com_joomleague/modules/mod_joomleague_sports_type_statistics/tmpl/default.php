@@ -105,7 +105,7 @@ if ($data['projectscount'] == 0) {
 			echo JText::_($params->get( 'text_players' ));
 		}
 		?></li>
-		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectteamsplayerscount']?></li>
+		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['personscount']?></li>
 	</ul>
 	<?php } ?>
 	<?php if($params->get('show_divisions',1) == 1) { ?>
