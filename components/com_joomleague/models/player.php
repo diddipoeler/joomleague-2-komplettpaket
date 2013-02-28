@@ -172,6 +172,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 								t.name AS team_name,
 								pos.name AS position_name,
 								tp.project_position_id,
+                                tp.market_value,
 								t.id AS team_id,
 								pt.id AS ptid,
 								pos.id AS posID,

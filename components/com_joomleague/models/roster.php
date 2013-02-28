@@ -120,6 +120,7 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 								tp.jerseynumber AS position_number,
 								tp.notes AS description,
 								tp.injury AS injury,
+                                tp.market_value AS market_value,
 								tp.suspension AS suspension,
 								pt.team_id,
 								tp.away AS away,tp.picture,

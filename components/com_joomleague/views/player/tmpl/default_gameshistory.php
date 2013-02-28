@@ -4,6 +4,8 @@ defined('_JEXEC') or die('Restricted access');
 if ( $this->show_debug_info )
 {
 echo 'GAMES_HISTORY gamesstats<br /><pre>~' . print_r($this->gamesstats,true) . '~</pre><br />';
+echo 'GAMES_HISTORY config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
+echo 'GAMES_HISTORY games<br /><pre>~' . print_r($this->games,true) . '~</pre><br />';
 }
 
 ?>
@@ -79,6 +81,13 @@ if (count($this->games))
 							}
 						}
 					}
+                    if ($this->config['show_player_market_value'] )
+                    {
+                    ?>
+					<th class="td_c"><?php echo JText::_('COM_JOOMLEAGUE_EURO_MARKET_VALUE'); ?></th>
+					<?php    
+                    }
+                    
 					?>
 				</tr>
 			</thead>
@@ -187,6 +196,12 @@ if (count($this->games))
 							}
 						}
 					}
+                    if ($this->config['show_player_market_value'] )
+                    {
+                    ?>
+					<td class="td_r hasTip" title="<?php echo number_format($game->market_value,0, ",", "."); ?>">
+                    <?php    
+                    }
 					?>
 				</tr>
 				<?php

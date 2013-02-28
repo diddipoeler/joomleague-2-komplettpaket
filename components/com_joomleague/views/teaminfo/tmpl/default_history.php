@@ -21,7 +21,23 @@
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_WDL'); ?></td>
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_GOALS'); ?></td>
 		<td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS'); ?></td>
-    <td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS_MEAN_AGE'); ?></td>
+        
+        <?PHP
+        if( $this->config['show_teams_roster_mean_age'] )
+        {
+        ?>
+        <td><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS_MEAN_AGE'); ?></td>
+        <?PHP    
+        }
+        if( $this->config['show_teams_roster_market_value'] )
+        {
+        ?>
+        <td><?php echo JText::_('COM_JOOMLEAGUE_EURO_MARKET_VALUE'); ?></td>
+        <?PHP    
+        }
+        ?>
+    
+    
 	</tr>
 	<?php
 	$k=0;
@@ -67,9 +83,15 @@
 		<?php endif; ?>
     
     <?php if($this->config['show_teams_roster_mean_age'] == 1): ?>
-		<td><?php echo JHTML::link($players_link, $season->playermeanage); ?></td>
+		<td align="right"><?php echo JHTML::link($players_link, $season->playermeanage); ?></td>
 		<?php else: ?>
-		<td><?php echo $season->playermeanage; ?></td>
+		
+		<?php endif; ?>
+        
+        <?php if($this->config['show_teams_roster_market_value'] == 1): ?>
+		<td align="right"><?php echo JHTML::link($players_link, number_format($season->market_value,0, ",", ".") ); ?></td>
+		<?php else: ?>
+		
 		<?php endif; ?>
     
 	</tr>

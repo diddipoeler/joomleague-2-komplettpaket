@@ -27,10 +27,21 @@
 						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_JERSEYNR' );
 						?>
 					</td>
-					<td colspan="7">
+					<td colspan="1">
 						<input	class="inputbox" type="text" name="jerseynumber" size="5" maxlength="6"
 								value="<?php echo $this->project_player->jerseynumber; ?>" />
 					</td>
+                    
+                    <td width="20%" valign="top" align="right" class="key">
+						<?php
+						echo JText::_( 'COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_MARKET_VALUE' );
+						?>
+					</td>
+					<td colspan="7">
+						<input	class="inputbox" type="text" name="market_value" size="20" maxlength="20"
+								value="<?php echo $this->project_player->market_value; ?>" />
+					</td>
+                    
 				</tr>
 
 				<tr>

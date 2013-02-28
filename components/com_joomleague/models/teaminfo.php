@@ -126,6 +126,7 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 		    	$seasons[$k]->goals      = $ranking['goals'];
 		    	$seasons[$k]->playercnt  = $this->getPlayerCount($season->projectid, $season->ptid);
           $seasons[$k]->playermeanage  = $this->getPlayerMeanAge($season->projectid, $season->ptid);
+          $seasons[$k]->market_value  = $this->getPlayerMarketValue($season->projectid, $season->ptid);
 	    	} else {
 	    		$seasons[$k]->rank       = 0;
 	    		$seasons[$k]->leaguename = '';
@@ -139,7 +140,26 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
     	return $seasons;
 	}
 
-	/**
+	
+    
+    function getPlayerMarketValue($projectid, $projectteamid)
+    {
+    $player = array();
+		$query = " SELECT SUM(tp.market_value) AS market_value "
+		       . " FROM #__joomleague_person AS ps "
+		       . " INNER JOIN #__joomleague_team_player AS tp ON tp.person_id = ps.id "
+		       . " INNER JOIN #__joomleague_project_team AS pt ON tp.projectteam_id = pt.id "
+		       . " WHERE pt.project_id=" . $projectid
+		       . " AND pt.id=" . $projectteamid
+		       . " AND tp.published = 1 " 
+		       . " AND ps.published = 1 ";
+		       $this->_db->setQuery($query);
+		$player = $this->_db->loadResult();
+		return $player;    
+        
+    }
+    
+    /**
 	 * get ranking of current team in a project
 	 * @param int projectid
 	 * @param int division_id

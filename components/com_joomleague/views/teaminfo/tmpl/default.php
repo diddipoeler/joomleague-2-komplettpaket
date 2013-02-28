@@ -3,8 +3,9 @@
 
 if ( $this->show_debug_info )
 {
-echo 'this->team<br /><pre>~' . print_r($this->team,true) . '~</pre><br />';
-echo 'this->merge_clubs<br /><pre>~' . print_r($this->merge_clubs,true) . '~</pre><br />';
+echo 'this->teaminfo config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
+echo 'this->teaminfo team<br /><pre>~' . print_r($this->team,true) . '~</pre><br />';
+echo 'this->teaminfo merge_clubs<br /><pre>~' . print_r($this->merge_clubs,true) . '~</pre><br />';
 }
 
 

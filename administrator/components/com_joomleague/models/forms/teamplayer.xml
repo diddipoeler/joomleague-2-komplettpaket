@@ -28,6 +28,14 @@
 			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_JERSEYNR"
 			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_JERSEYNR_DESC"
 			class="inputbox"/>	
+			
+			<field
+			name="market_value"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_MARKET_VALUE"
+			description="COM_JOOMLEAGUE_ADMIN_TEAMPLAYER_MARKET_VALUE_DESC"
+			class="inputbox"/>
+			
 		<field
 			name="injury"
 			type="radio"

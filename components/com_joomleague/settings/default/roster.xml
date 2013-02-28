@@ -125,6 +125,13 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		
+		<field 	name="show_player_market_value" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_ROSTER_PARAM_LABEL_SHOW_PLAYER_MARKET_VALUE" 
+				description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_PLAYER_MARKET_VALUE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 		<field 	name="player_picture_width" type="text" default="40"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PLAYER_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PLAYER_PICTURE_WIDTH">

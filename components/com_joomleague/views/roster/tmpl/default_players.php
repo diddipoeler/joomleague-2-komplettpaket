@@ -25,6 +25,11 @@ if (!empty($this->rows))
 
 	$positionHeaderSpan = 0;
 	$totalcolspan = 0;
+    if ($this->config['show_player_market_value'])
+	{
+//      $positionHeaderSpan++;
+//		$totalcolspan++;
+	}
 	if ($this->config['show_player_numbers'])
 	{
 		$positionHeaderSpan++;
@@ -193,12 +198,24 @@ if (!empty($this->rows))
 				}
 			}
 		}
+        // diddipoeler marktwert
+        if ($this->config['show_player_market_value'])
+	{
+	?>
+		<th class="td_c">
+			<?php echo JText::_('COM_JOOMLEAGUE_EURO_MARKET_VALUE');?>
+		</th>
+						<?php
+	}
+        
+        
 		?>
 	</tr>
 	</thead>
 	<!-- end position header -->
 	<!-- Players row-->
 	<?php
+    $total_market_value = 0;
 	foreach ($players as $row)
 	{
 		?>
@@ -467,6 +484,19 @@ if (!empty($this->rows))
 			    }
 			}
 		}
+        
+        // diddipoeler marktwert
+        if ($this->config['show_player_market_value'])
+	   {
+	       $total_market_value += $row->market_value;
+	?>
+		<td class="td_r" class="hasTip" title="">
+			<?php echo number_format($row->market_value,0, ",", "."); ?>
+		</td>
+					<?php
+	   }
+        
+        
 		?>
 	</tr>
 	<?php
@@ -525,6 +555,13 @@ if (!empty($this->rows))
 				}
 			}
 		}
+        // diddipoeler marktwert
+        if ($this->config['show_player_market_value'])
+	   {
+	   ?>
+		<td class="td_r"><?php echo number_format($total_market_value,0, ",", "."); ?></td>
+					<?php    
+           }
 		?>
 	</tr>
 	<?php
