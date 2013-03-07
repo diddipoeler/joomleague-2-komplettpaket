@@ -1,6 +1,7 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
+jimport( 'joomla.filesystem.folder' );
 
 require_once( JLG_PATH_SITE . DS . 'models' . DS . 'project.php' );
 
@@ -90,6 +91,10 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
   $basePath = JPATH_SITE.DS.'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
   $sitePath = 'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
   $images 	= array ();
+  
+  
+  if( JFolder::exists($basePath) )
+{
   // Get the list of files and folders from the given folder
 	$fileList 	= JFolder::files($basePath);
   
@@ -127,7 +132,13 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		}
 		
 	$list = $images;
-  return $list;	
+  return $list;
+  }
+  else
+  {
+  return false;
+  }
+  	
   }
   
 	function getMatchPlayerPositions()

@@ -28,7 +28,12 @@
 		<action name="results.saveshort" title="COM_JOOMLEAGUE_SETTINGS_RESULTS_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_RESULTS_ACCESS_SAVE_DESC" />
 		<action name="editmatch.display" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT_DESC" />
 		<action name="editmatch.savematch" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVE_DESC" />
-		<!-- workspace -->
+		
+    <!-- round-->
+    <action name="round.unpublish" title="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_UNPUBLISH_DESC" />
+    <action name="round.publish" title="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_PUBLISH" description="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_PUBLISH_DESC" />
+    
+    <!-- workspace -->
 		<action name="joomleague.workspace" title="COM_JOOMLEAGUE_SETTINGS_ACCESS_WORKSPACE" description="COM_JOOMLEAGUE_SETTINGS_ACCESS_WORKSPACE_DESC" />
 		<action name="projectreferee.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTREFEREE_ACCESS_DISPLAY_DESC" />
 		<action name="projectteam.display" title="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_DISPLAY" description="COM_JOOMLEAGUE_SETTINGS_PROJECTTEAM_ACCESS_DISPLAY_DESC" />

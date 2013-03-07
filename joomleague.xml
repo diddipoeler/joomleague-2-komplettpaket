@@ -7,8 +7,8 @@
 	<authorUrl>http://www.joomleague.net</authorUrl>
 	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>2.0.49</version>
-	<description>League Management component for Joomla 2.5.x - Release 2.0.49 diddipoeler</description>
+	<version>2.0.50</version>
+	<description>League Management component for Joomla 2.5.x - Release 2.0.50 diddipoeler</description>
 
 	<!-- Site Main File Copy Section -->
 	<files folder="components/com_joomleague">
@@ -59,7 +59,7 @@
 	<install>
 		<sql>
 			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
-			<!-- <file driver="mysql" charset="utf8">sql/version_history.sql</file> -->
+			
 		</sql>
 	</install>
 	<uninstall>

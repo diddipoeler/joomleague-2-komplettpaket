@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form>
-	
-
+	<fieldset name="details">	
+  <field
+			name="parent_id"
+			type="associationslist"
+			class="inputbox"
+			size="30"
+			multiple="false"
+			label="COM_JOOMLEAGUE_ADMIN_ASSOCIATION_LIST"
+			description="COM_JOOMLEAGUE_ADMIN_ASSOCIATION_LIST_DESC"/>
+			
+	<field
+			name="website"
+			type="text"
+			class="inputbox"
+			
+			
+			label="COM_JOOMLEAGUE_ADMIN_ASSOCIATION_WEBSITE"
+			description="COM_JOOMLEAGUE_ADMIN_ASSOCIATION_WEBSITE_DESC"/>		
+</fieldset>
+			
 	<fieldset 	name="picture">
 				
 		<field 	name="assocflag" 

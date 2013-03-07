@@ -20,7 +20,7 @@ window.addEvent('domready', function(){
 	    var data = 's=' + ((this.form.s && this.form.s.value)||"") + 
 				    '&l=' + ((this.form.l && this.form.l.value)||"") +
 				    '&o=' + ((this.form.o && this.form.o.value)||"") +
-				    '&d=' + ((this.form.d && this.form.d.value)||"") +
+				    '&d=' + ((this.form.d && this.form.d.value)||"") ;
 		
 	    myXhr.send(data); 
 	});

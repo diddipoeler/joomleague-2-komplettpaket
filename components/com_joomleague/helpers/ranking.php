@@ -759,6 +759,7 @@ class JLGRanking
 		. ' OR (m.alt_decision=1)) '
 		. ' AND m.count_result '
 		. ' AND m.published = 1 '
+    . ' AND r.published = 1 '
 		. ' AND pt1.project_id = '.$db->Quote($pid)
 		. ' AND m.division_id = '.$division
 		. ' AND (m.cancel IS NULL OR m.cancel = 0) '

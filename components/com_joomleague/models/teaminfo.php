@@ -314,7 +314,14 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
     }
     
     }
+    
+    // diddipoeler
+    // damit kein fehler hochkommt: Warning: Division by zero
+    if ( $age != 0 )
+    {
     $meanage = round( $age / $countplayer , 2);
+    }
+    
 		return $meanage;
 	}
   

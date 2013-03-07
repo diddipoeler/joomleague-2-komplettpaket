@@ -28,7 +28,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('details');
 	}
 
-	if (($this->config['show_extended'])==1)
+	if (($this->config['show_extended'])==1 && $this->extended )
 	{
 		echo $this->loadTemplate('extended');
 	}
@@ -77,17 +77,17 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		}
 	}
 
-	if (($this->config['show_stats'])==1)
+	if (($this->config['show_stats'])==1 && $this->stats )
 	{
 		echo $this->loadTemplate('stats');
 	}
 
-	if (($this->config['show_summary'])==1)
+	if (($this->config['show_summary'])==1 && $this->match->summary )
 	{
 		echo $this->loadTemplate('summary');
 	}
 	
-	if (($this->config['show_pictures'])==1)
+	if (($this->config['show_pictures'])==1 && $this->matchimages )
 	{
 		echo $this->loadTemplate('pictures');
 	}
@@ -105,7 +105,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('details');
 	}
 
-	if (($this->config['show_extended'])==1)
+	if (($this->config['show_extended'])==1 && $this->extended )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('extended');
@@ -160,19 +160,19 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		}
 	}
 
-	if (($this->config['show_stats'])==1)
+	if (($this->config['show_stats'])==1 && $this->stats )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('stats');
 	}
 
-	if (($this->config['show_summary'])==1)
+	if (($this->config['show_summary'])==1  && $this->match->summary  )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('summary');
 	}
   
-  if (($this->config['show_pictures'])==1)
+  if (($this->config['show_pictures'])==1  && $this->matchimages )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_PICTURES'), 'panel'.($idxTab++));
   echo $this->loadTemplate('pictures');
@@ -247,7 +247,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('stats');
 	}
 
-	if (($this->config['show_summary'])==1)
+	if (($this->config['show_summary'])==1 && $this->match->summary )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('summary');

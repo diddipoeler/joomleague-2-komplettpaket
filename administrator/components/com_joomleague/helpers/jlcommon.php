@@ -1113,6 +1113,7 @@ class JoomleagueHelper
 		       . '      , id, name, round_date_first, round_date_last, roundcode '
 		       . ' FROM #__joomleague_round '
 		       . ' WHERE project_id= ' .$project_id
+           . ' AND published =  1'
 		       . ' ORDER BY roundcode '.$ordering;
 	
 		$db->setQuery($query);

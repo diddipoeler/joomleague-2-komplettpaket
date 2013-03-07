@@ -59,3 +59,7 @@ if($task != '' && $option == 'com_joomleague')  {
 		return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR').' Task: '  .$task);
 	}
 }
+
+// No conflict
+$document = JFactory::getDocument();
+$document->addScript(JURI::root(true).'/administrator/components/'.$option.'/assets/js/jl2.noconflict.js');

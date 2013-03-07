@@ -32,7 +32,14 @@
 			<td valign="top" align="right" class="key"><label for="ordering"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ASSOCIATION_COUNTRY'); ?></label></td>
 			<td><?php echo $this->lists['countries']; ?>&nbsp;<?php echo Countries::getCountryFlag($this->object->country); ?>&nbsp;(<?php echo $this->object->country; ?>)</td>
 		</tr>
-    
+		<tr>
+					<td class="key"><?php echo $this->form->getLabel('website'); ?></td>
+					<td><?php echo $this->form->getInput('website'); ?></td>
+				</tr>
+    <tr>
+					<td class="key"><?php echo $this->form->getLabel('parent_id'); ?></td>
+					<td><?php echo $this->form->getInput('parent_id'); ?></td>
+				</tr>
     
     
 		<tr>

@@ -558,6 +558,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project` (
   `modified_by` INT NULL ,
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   `staffel_id` VARCHAR(100) NOT NULL DEFAULT '' ,
+  `extendeduser` TEXT NULL ,
   PRIMARY KEY (`id`) ,
   KEY `league_id` (`league_id`),
   KEY `season_id` (`season_id`),
@@ -696,6 +697,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_round` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `published` TINYINT(1) NOT NULL DEFAULT '1' ,
   PRIMARY KEY (`id`) ,
   KEY `project_id` (`project_id`)
   )

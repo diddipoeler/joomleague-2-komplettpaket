@@ -76,7 +76,11 @@ class JoomleagueViewMatchReport extends JLGView
 		$dest = JPATH_ROOT.'/images/com_joomleague/database/matchreport/'.$this->match->id;
 		$folder = 'matchreport/'.$this->match->id;
 		$images = $model->getMatchPictures($folder);
-		$this->assignRef( 'matchimages', $images);
+		if ( $images )
+		{
+    $this->assignRef( 'matchimages', $images);
+		}
+		
 	  }
 	  
 		// Set page title

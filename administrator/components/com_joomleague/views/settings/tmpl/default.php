@@ -32,6 +32,7 @@ $i      = 1;
 				<ul class="config-option-list">
 				<?php foreach ($this->form->getFieldset($name) as $field): ?>
 					<li>
+                    
 					<?php if (!$field->hidden) : ?>
 					<?php echo $field->label; ?>
 					<?php endif; ?>

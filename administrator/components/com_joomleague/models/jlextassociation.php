@@ -98,14 +98,14 @@ class JoomleagueModeljlextassociation extends JoomleagueModelItem
 			$object->middle_name		= null;
 			$object->short_name			= null;			
 			$object->alias				= null;
-			$object->country			= null;
+			$object->country			= 'DEU';
 			$object->checked_out		= 0;
 			$object->checked_out_time	= 0;
 			$object->extended			= null;
 			$object->ordering			= 0;
       
       $object->website			= null;
-      $object->assocflag			= 'placeholder_flags.png';
+      $object->assocflag			= 'images/com_joomleague/database/placeholders/placeholder_flags.png';
 			$this->_data				= $object;
 
 			return (boolean) $this->_data;

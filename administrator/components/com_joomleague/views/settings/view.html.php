@@ -35,6 +35,8 @@ class JoomleagueViewSettings extends JLGView
 		$form =& JForm::getInstance($option, $xmlfile, array('control'=> 'params'), false, "/config");
 		$form->bind($jRegistry);
 		$this->assignRef('form', $form);
+        
+        $this->assignRef('formfieldtype', $jRegistry->get('cfg_radio_or_pulldown') );
 
 		$this->addToolbar();		
 		parent::display($tpl);

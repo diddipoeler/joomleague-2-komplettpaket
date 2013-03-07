@@ -49,16 +49,28 @@ class com_joomleagueInstallerScript
 	 */
 	public function installComponentLanguages()
 	{
-        echo 'Copy Administration language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
-		$src=JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS;
+	$mainframe =& JFactory::getApplication();
+	$lang = JFactory::getLanguage(); 
+  $languages = JLanguageHelper::getLanguages('lang_code');
+//    echo 'Copy Administration language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
+		//echo 'Language -> <pre>'.print_r($languages,true).'</pre><br>';
+    foreach ( $languages as $key => $value )
+    {
+    //$mainframe->enqueueMessage('Language installed -> ' . $key,'Notice');
+    echo 'Copy Administration language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
+    
+    $src=JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS;
 		$dest=JPATH_ADMINISTRATOR.DS.'modules';
-		JFolder::copy($src.DS.'language', JPATH_ADMINISTRATOR.DS.'language', '', true);
+		JFolder::copy($src.DS.'language'.DS.$key, JPATH_ADMINISTRATOR.DS.'language'.DS.$key, '', true);
+		
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
-		echo 'Copy Site language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
+		echo 'Copy Site language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
 		$src=JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS;
 		$dest=JPATH_SITE.DS;
-		JFolder::copy($src.DS.'language', JPATH_SITE.DS.'language', '', true);
+		JFolder::copy($src.DS.'language'.DS.$key, JPATH_SITE.DS.'language'.DS.$key, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+		}
+		
 	}
 
 	/**
@@ -68,26 +80,48 @@ class com_joomleagueInstallerScript
 	 */
 	public function installModules()
 	{
-        echo 'Copy Administration Modules language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
+	$mainframe =& JFactory::getApplication();
+	$lang = JFactory::getLanguage(); 
+  $languages = JLanguageHelper::getLanguages('lang_code');
+  
+    echo 'Copy Administration Modules language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
 		$src=JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'modules';
 		$dest=JPATH_ADMINISTRATOR.DS.'modules';
 		$modules = JFolder::folders($src);
-		foreach ($modules as $module)
+		
+ 		foreach ( $languages as $key => $value )
+    {
+    echo 'Copy Administration Modules language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';    
+    foreach ($modules as $module)
 		{
-			JFolder::copy($src.DS.$module.DS.'language', JPATH_ADMINISTRATOR.DS.'language', '', true);
+		if ( JFolder::exists($src.DS.$module.DS.'language'.DS.$key) )
+		{
+			JFolder::copy($src.DS.$module.DS.'language'.DS.$key, JPATH_ADMINISTRATOR.DS.'language'.DS.$key, '', true);
 		}
+    }
+		}
+
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 		echo 'Copy Administration Module(s)';
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
-		echo 'Copy Site Module(s) language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
+//		echo 'Copy Site Module(s) language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
 		$src=JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'modules';
 		$dest=JPATH_SITE.DS.'modules';
 		$modules = JFolder::folders($src);
-		foreach ($modules as $module)
+		
+		foreach ( $languages as $key => $value )
+    {
+    echo 'Copy Site Module(s) language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
+    foreach ($modules as $module)
 		{
-			JFolder::copy($src.DS.$module.DS.'language', JPATH_SITE.DS.'language', '', true);
+		if ( JFolder::exists($src.DS.$module.DS.'language'.DS.$key) )
+		{
+			JFolder::copy($src.DS.$module.DS.'language'.DS.$key, JPATH_SITE.DS.'language'.DS.$key, '', true);
 		}
+    }
+		}
+
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 		echo 'Copy Site Module(s)';
 		JFolder::copy($src, $dest, '', true);

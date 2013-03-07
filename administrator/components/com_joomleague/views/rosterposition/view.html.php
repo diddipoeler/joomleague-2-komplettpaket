@@ -319,7 +319,7 @@ $javascript .= '});' . "\n";
 
 $javascript .= 'function showDiv(){' . "\n";
 $javascript .= ' alert("hallo freunde");' . "\n";
-$javascript .= " $('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/myimage.jpg)\");" . "\n"; 
+$javascript .= " \$JoLe2('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/myimage.jpg)\");" . "\n"; 
 $javascript .= '}' . "\n";
 
 $javascript .= 'function div_bg(team){' . "\n";
