@@ -1856,7 +1856,7 @@ $rowmatch->projectteam2_id = $rowteam->id;
 
 } 	
 
-if ( $importcsv )
+if ( $importcsv && sizeof($exportreferee) > 0  )
 {
 $temp = new stdClass();
 $temp->id = 1;
