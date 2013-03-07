@@ -242,6 +242,17 @@ class JoomleagueControllerRound extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=rounds&task=round.display');
 	}
 
+  public function publish() {
+		$this->view_list = 'rounds';
+		parent::publish();
+	}
+	
+	public function unpublish() {
+		$this->view_list = 'rounds';
+		parent::unpublish();
+	}
+  
+  
 	function copyfrom()
 	{
 		// Check for request forgeries
@@ -339,6 +350,21 @@ class JoomleagueControllerRound extends JoomleagueController
   $project_id = JRequest::getInt('project_id');
   
   }
+  
+  /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Round', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
   
 }
 ?>

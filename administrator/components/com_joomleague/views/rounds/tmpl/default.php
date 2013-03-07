@@ -49,7 +49,12 @@ window.addEvent('domready',function(){
 						<th width="10%"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_EDIT_MATCHES'); ?></th>
 						<th width="20"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_PUBLISHED_CHECK'); ?></th>
 						<th width="20"><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_RESULT_CHECK'); ?></th>
-						<th width="5%"><?php echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'r.id', $this->lists['order_Dir'], $this->lists['order'] ); ?></th>
+						<th width="5%" class="title">
+						<?php
+						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','r.published',$this->lists['order_Dir'],$this->lists['order']);
+						?>
+					</th>
+            <th width="5%"><?php echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'r.id', $this->lists['order_Dir'], $this->lists['order'] ); ?></th>
 					</tr>
 				</thead>
 				<tfoot><tr><td colspan="12"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>
@@ -62,6 +67,7 @@ window.addEvent('domready',function(){
 						$link1=JRoute::_('index.php?option=com_joomleague&task=round.edit&cid[]='.$row->id);
 						$link2=JRoute::_('index.php?option=com_joomleague&view=matches&task=match.display&rid[]='.$row->id);
 						$checked=JHTML::_('grid.checkedout',$row,$i);
+            $published  = JHTML::_('grid.published',$row,$i,'tick.png','publish_x.png','round.');
 						?>
 						<tr class="<?php echo "row$k"; ?>">
 							<td class="center"><?php echo $this->pagination->getRowOffset($i); ?></td>
@@ -164,6 +170,7 @@ window.addEvent('domready',function(){
 									echo JHTML::image($imageFile,$imageTitle,$imageParams);
 								}
 								?></td>
+                <td class="center"><?php echo $published; ?></td>
 							<td class="center"><?php echo $row->id; ?></td>
 						</tr>
 						<?php

@@ -125,6 +125,9 @@ class JoomleagueViewRounds extends JLGView
 		{
 
       //JLToolBarHelper::custom('round.roundrobin','purge.png','purge_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUND_ROBIN_MASSADD_BUTTON'),false);
+      JLToolBarHelper::publishList('round.publish');
+		  JLToolBarHelper::unpublishList('round.unpublish');
+		  JToolBarHelper::divider();
       JLToolBarHelper::custom('round.populate','purge.png','purge_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_POPULATE_BUTTON'),false);
       JToolBarHelper::divider();
       JLToolBarHelper::apply('round.saveshort');
