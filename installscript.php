@@ -162,9 +162,10 @@ class com_joomleagueInstallerScript
     $mainframe =& JFactory::getApplication();    
     
 	$tblVersion = JTable::getInstance("Version", "Table");
-    $tblVersion->major		= '2';
-	$tblVersion->minor		= '0';
-	$tblVersion->build		= $this->release;
+    $teile = explode(".", $this->release);
+    $tblVersion->major		= $teile[0];
+	$tblVersion->minor		= $teile[1];
+	$tblVersion->build		= $teile[2];
 	$tblVersion->revision	= '-diddipoeler';
 	$tblVersion->date		= NULL;
 	$tblVersion->version	= 'a';
