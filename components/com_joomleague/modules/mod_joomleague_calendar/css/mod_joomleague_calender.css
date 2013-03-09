@@ -1,3 +1,6 @@
+.calenderheading { display: none; }
+#sbox-window .calenderheading { display: inline; }
+
 span.jlcal_jevents_time {
 	
 }

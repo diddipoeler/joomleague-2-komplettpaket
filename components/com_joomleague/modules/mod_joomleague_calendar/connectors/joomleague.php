@@ -180,7 +180,7 @@ class JoomleagueConnector extends JLCalendar{
 			if ($row->picture != '' AND file_exists(JPATH_BASE.DS.$row->picture))
 			{
 				$linkit = 1;
-				$newrows[$key]['name'] = '<img src="'.JURI::root(true).'/'.$row->picture.'" alt="Picture" style="height:40px; vertical-align:middle;margin:0 5px;" />';
+				$newrows[$key]['name'] = '<img src="'.JUri::root(true).'/'.$row->picture.'" alt="Picture" style="height:40px; vertical-align:middle;margin:0 5px;" />';
 
 				//echo $newrows[$key]['name'].'</br>';
 			}
@@ -206,6 +206,7 @@ class JoomleagueConnector extends JLCalendar{
 		$newrows = array();
 		$teamnames = $this->xparams->get('team_names', 'short_name');
 		$teams = JoomleagueConnector::getTeamsFromMatches( $rows );
+		$teams[0] = new stdclass;
 		$teams[0]->name = $teams[0]->$teamnames = $teams[0]->logo_small = $teams[0]->logo_middle = $teams[0]->logo_big =  '';
 
 		/*
@@ -300,7 +301,7 @@ class JoomleagueConnector extends JLCalendar{
 		if ($team->$image != '' && file_exists(JPATH_BASE.'/'.$team->$image))
 		{
 			$h = $this->xparams->get('logo_height', 20);
-			$logo = '<img src="'.JURI::root(true).'/'.$team->$image.'" alt="'
+			$logo = '<img src="'.JUri::root(true).'/'.$team->$image.'" alt="'
 			.parent::jl_utf8_convert ($team->short_name, 'iso-8859-1', 'utf-8').'" title="'
 			.parent::jl_utf8_convert ($team->name, 'iso-8859-1', 'utf-8').'"';
 			if ($h > 0) {

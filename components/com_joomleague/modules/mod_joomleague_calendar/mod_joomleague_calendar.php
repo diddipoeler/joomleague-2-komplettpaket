@@ -16,7 +16,7 @@
 require_once (dirname(__FILE__).DS.'helper.php');
 require_once(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
 
-JHTML::_('behavior.tooltip');
+JHtml::_('behavior.tooltip');
 $ajax= JRequest::getVar('ajaxCalMod',0,'default','POST');
 $ajaxmod= JRequest::getVar('ajaxmodid',0,'default','POST');
 if(!$params->get('cal_start_date')){
@@ -34,8 +34,8 @@ $helper = new modJLCalendarHelper;
 $doc = JFactory::getDocument();
 $lightbox    = $params->get('lightbox', 1);
 
-JHTML::_('behavior.mootools');
-JHTML::_('behavior.modal');
+JHtml::_('behavior.mootools');
+JHtml::_('behavior.modal');
 if ($lightbox ==1 && (!isset($_GET['format']) OR ($_GET['format'] != 'pdf'))) {
 	$doc->addScriptDeclaration(";
       window.addEvent('domready', function() {
@@ -55,11 +55,11 @@ $doc->addScriptDeclaration(';
       ');
 
 if (!defined('JLC_MODULESCRIPTLOADED')) {
-	$doc->addScript( JURI::base().'modules/mod_joomleague_calendar/js/mod_joomleague_calendar.js' );
+	$doc->addScript( JUri::base().'modules/mod_joomleague_calendar/js/mod_joomleague_calendar.js' );
 	$doc->addScriptDeclaration(';
-    var calendar_baseurl=\''. JURI::base() . '\';
+    var calendar_baseurl=\''. JUri::base() . '\';
       ');
-	$doc->addStyleSheet(JURI::base().'modules/mod_joomleague_calendar/css/mod_joomleague_calender.css');
+	$doc->addStyleSheet(JUri::base().'modules/mod_joomleague_calendar/css/mod_joomleague_calender.css');
 	define('JLC_MODULESCRIPTLOADED', 1);
 }
 $calendar = $helper->showCal($params,$year,$month,$ajax,$module->id);

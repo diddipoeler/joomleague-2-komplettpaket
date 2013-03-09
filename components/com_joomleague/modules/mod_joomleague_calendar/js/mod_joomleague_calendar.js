@@ -15,12 +15,18 @@ function jlCalmod_setTitle(targetid, sourceids, thistitle, modid) {
 function jlCalmod_setContent(targetid, tempcontentid, sourcecontent, thistitle, modid) {
 	$(targetid).innerHTML = sourcecontent;
 	$(tempcontentid).innerHTML = '<div class="componentheading">'
-			+ thistitle.replace('<br />', ' - ') + '</div>' + sourcecontent;
+			+ thistitle.replace('<br />', ' - ') + '</div>' + 
+      '<div class="calenderheading">' + sourcecontent + '</div>';
 	$$('#' + tempcontentid + ' acronym').each(function(handle) {
 		var header = new Element('span').injectAfter(handle);
 		header.innerHTML = handle.title;
 		handle.dispose();
 	});
+  
+// alert('jlCalmod_setContent-sourcecontent -> ' + sourcecontent );
+// alert('jlCalmod_setContent-targetid-> ' + targetid);
+// alert('jlCalmod_setContent-tempcontentid-> ' + tempcontentid);
+
 }
 
 function jlCalmod_injectContent(sourceid, destinationid, modid) {
@@ -47,6 +53,17 @@ function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) {
 			jlCalmod_injectContent(tempcontentid, incont, modid);
 		}
 	}
+
+//	alert('targetid -> ' + targetid);
+//	alert('sourceids -> ' + sourceids);
+//	alert('thistitle -> ' + thistitle);
+//	alert('inject -> ' + inject);
+//	alert('modid -> ' + modid);
+//	alert('incont -> ' + incont );
+	
+//	alert('targetcontent -> ' + targetcontent );
+//	alert('jlCalmod_showhide-sourcecontent -> ' + sourcecontent );
+  
 }
 function jlcnewAjax() {
 	/* THIS CREATES THE AJAX OBJECT */

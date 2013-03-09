@@ -95,7 +95,7 @@ class modJLCalendarHelper
 			$title .= ' ' . $article2;
 			$inject = $params->get('inject', 0);
 			$update_module = $params->get('update_module', 0);
-			$cal->linklist[$createdDate]['click']=	'jlCalmod_showhide(\'jlCalList-'.$modid.'\', \'jlcal_'
+			$cal->linklist[$createdDate]['click']=	'javascript:jlCalmod_showhide(\'jlCalList-'.$modid.'\', \'jlcal_'
 			.$counter[$createdDate]['createdYear'].'-'.$counter[$createdDate]['createdMonth'].'-'.$counter[$createdDate]['createdDay'].'-'.$modid
 			.'\', \''.str_replace(' :: ', ': ',$title).'\', '.$inject.', '.$modid.');';
 			//$cal->linklist[$createdDate]['click']=	'jlcnewDate('.$counter[$createdDate]['createdMonth'].",". $counter[$createdDate]['createdYear'].",".$modid."," .$day.');';
@@ -225,7 +225,7 @@ class JLCalendar extends PHPCalendar
 	function getCalendarLink($month, $year)
 	{
 		$getquery = JRequest::get('GET'); //get the GET query
-		$calendarLink= JURI::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
+		$calendarLink= JUri::current().'?'; //get the current url, without the GET query; and add "?", to set the GET vars
 
 		foreach($getquery as $key => $value){  /*this bucle goes through every GET variable that was in the url*/
 			if($key!='month' AND $key!='year' AND $key!='day' AND $value){ /*the month,year, and day Variables must be diferent of the current ones, because this is a link for a diferent month */
@@ -395,9 +395,9 @@ class JLCalendar extends PHPCalendar
 		$teamslist = array();
 		if(count($this->teams) > 0 && $this->params->get('show_teamslist', 0) == 1) {
 			$teams = $this->sortObject($this->teamslist, 'asc', 'name');
-			$teamslist[] = JHTML::_('select.option', 0, JText::_($this->params->get('teamslist_option')));
+			$teamslist[] = JHtml::_('select.option', 0, JText::_($this->params->get('teamslist_option')));
 			foreach ($teams AS $id => $obj) {
-				$teamslist[] = JHTML::_('select.option', $obj->value, JText::_($obj->name));
+				$teamslist[] = JHtml::_('select.option', $obj->value, JText::_($obj->name));
 			}
 		}
 		return $teamslist;

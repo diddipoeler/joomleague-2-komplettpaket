@@ -115,7 +115,7 @@ class JoomleagueConnector extends JLCalendar{
       global $mainframe;
       if ($this->xparams->get('jlbirthdaypix', 0) == 1 AND $row->default_picture != '' AND file_exists($mainframe->getCfg('absolute_path').DS.str_replace('/', DS, $row->default_picture))) {
         $linkit = 1;
-        $newrows[$key]['image'] = '<img src="'.(JURI::root(true).'/'.parent::jl_utf8_convert ($row->default_picture, 'iso-8859-1', 'utf-8'))
+        $newrows[$key]['image'] = '<img src="'.(JUri::root(true).'/'.parent::jl_utf8_convert ($row->default_picture, 'iso-8859-1', 'utf-8'))
                                 .'" alt="" style="height:40px; vertical-align:middle;margin:0 5px;" />';
       }
       JoomleagueConnector::build_url($row);
@@ -188,7 +188,7 @@ class JoomleagueConnector extends JLCalendar{
     $logo = '';
     if ($team->$image != '' && file_exists($mainframe->getCfg('absolute_path').'/'.$team->$image)){
       $h = $this->xparams->get('logo_height', 20);
-      $logo = '<img src="'.JURI::root(true).'/'.$team->$image.'" alt="'
+      $logo = '<img src="'.JUri::root(true).'/'.$team->$image.'" alt="'
            .parent::jl_utf8_convert ($team->short_name, 'iso-8859-1', 'utf-8').'" title="'
            .parent::jl_utf8_convert ($team->name, 'iso-8859-1', 'utf-8').'"';
       if ($h > 0) {
