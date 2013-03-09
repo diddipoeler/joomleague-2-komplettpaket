@@ -160,15 +160,15 @@ class com_joomleagueInstallerScript
     public function insertVersionString()
     {
     $mainframe =& JFactory::getApplication();    
-    $versionData			= new stdClass();
-	$versionData->major		= '2';
-	$versionData->minor		= '0';
-	$versionData->build		= $this->release;
-	$versionData->revision	= '-diddipoeler';
-	$versionData->date		= NULL;
-	$versionData->version	= 'a';
-	$versionData->file		= 'joomleague';
+    
 	$tblVersion = JTable::getInstance("Version", "Table");
+    $tblVersion->major		= '2';
+	$tblVersion->minor		= '0';
+	$tblVersion->build		= $this->release;
+	$tblVersion->revision	= '-diddipoeler';
+	$tblVersion->date		= NULL;
+	$tblVersion->version	= 'a';
+	$tblVersion->file		= 'joomleague';
     if (!$tblVersion->store())
 	{
 		echo($tblVersion->getError());
