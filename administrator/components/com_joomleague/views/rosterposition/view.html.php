@@ -218,93 +218,112 @@ $extended->bind($jRegistry);
     
     // Add Script
 //$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.$this->jquery_version.'/jquery.min.js');
-$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$this->jquery_ui_version.'.'.$this->jquery_ui_sub_version.'/jquery-ui.min.js');
+//$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$this->jquery_ui_version.'.'.$this->jquery_ui_sub_version.'/jquery-ui.min.js');
 
 
 
-$javascript .= "\n".'var $JoLe2 = jQuery.noConflict();' . "\n";
-$javascript .= '$JoLe2(document).ready(function() {' . "\n";
-$javascript .= '    $JoLe2("#draggable_1").draggable({stop: function(event, ui) {
+//$javascript .= "\n".'var $JoLe2 = jQuery.noConflict();' . "\n";
+$javascript .= "\n";
+$javascript .= 'jQuery(document).ready(function() {' . "\n";
+
+$start = 1;
+$ende = 11;
+for ($a = $start; $a <= $ende; $a++ )
+{
+$javascript .= '    jQuery("#draggable_'.$a.'").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_2").draggable({stop: function(event, ui) {
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$a.'_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_'.$a.'_LEFT").val(Stoppos.left);
+    }});' . "\n";    
+}
+
+/*
+$javascript .= '    jQuery("#draggable_1").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_3").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_2").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_3_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_4").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_3").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_3_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_5").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_4").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_6").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_5").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_7").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_6").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_8").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_7").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_9").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_8").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_10").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_9").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_LEFT").val(Stoppos.left);
     }});' . "\n";
-$javascript .= '    $JoLe2("#draggable_11").draggable({stop: function(event, ui) {
+$javascript .= '    jQuery("#draggable_10").draggable({stop: function(event, ui) {
     	// Show dropped position.
-    	var Stoppos = $JoLe2(this).position();
-    	$JoLe2("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	$JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_TOP").val(Stoppos.top);
-      $JoLe2("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_LEFT").val(Stoppos.left);
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_LEFT").val(Stoppos.left);
     }});' . "\n";
+$javascript .= '    jQuery("#draggable_11").draggable({stop: function(event, ui) {
+    	// Show dropped position.
+    	var Stoppos = jQuery(this).position();
+    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
+    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_TOP").val(Stoppos.top);
+      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_LEFT").val(Stoppos.left);
+    }});' . "\n";
+*/
+    
 $javascript .= '  });' . "\n";
 
 $javascript .= "\n";
 
+/*
 $javascript .= '$JoLe2(document).ready(function(){' . "\n"; 
 $javascript .= '  // bind it' . "\n"; 
 $javascript .= '  $JoLe2("#picture").change(function(){' . "\n"; 
@@ -325,6 +344,7 @@ $javascript .= '}' . "\n";
 $javascript .= 'function div_bg(team){' . "\n";
 $javascript .= "	document.getElementById('roster').style.backgroundImage=\"url(".JURI::root()."media/com_joomleague/rosterground/ + team )\";" . "\n";	
 $javascript .= '}' . "\n";
+*/
     
     $document->addScriptDeclaration( $javascript );
     $this->assignRef('form'      	, $this->get('form'));
