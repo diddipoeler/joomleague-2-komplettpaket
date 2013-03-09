@@ -122,6 +122,19 @@ class JoomleagueHelperRoute
 		return $link;
 	}
 
+  public static function getTournamentRoute( $projectid, , $round=null )
+  {
+  $params = array(	"option" => "com_joomleague",
+					"view" => "jltournamenttree",
+					"r" => $round,
+					"p" => $projectid );
+					
+  $query = JoomleagueHelperRoute::buildQuery( $params );
+		$link = JRoute::_( 'index.php?' . $query, false );
+
+		return $link;
+  }
+  
 	/**
 	 * 
 	 * @param int $projectid
