@@ -12,17 +12,21 @@ defined('_JEXEC') or die('Restricted access');
 
 require_once (dirname(__FILE__).DS.'helper.php');
 
+/*
 // No conflict
 $document = JFactory::getDocument();
 $document->addScript(JURI::root(true).'/administrator/components/com_joomleague/assets/js/jl2.noconflict.js');
+*/
 
 $jquery_version =  JComponentHelper::getParams('com_joomleague')->get('jqueryversionfrontend',0);
 $jquery_sub_version = JComponentHelper::getParams('com_joomleague')->get('jquerysubversionfrontend',0);
 $jquery_ui_version = JComponentHelper::getParams('com_joomleague')->get('jqueryuiversionfrontend',0);
 $jquery_ui_sub_version = JComponentHelper::getParams('com_joomleague')->get('jqueryuisubversionfrontend',0);
 
+/*
 $document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$jquery_ui_version.'.'.$jquery_ui_sub_version.'/jquery-ui.min.js');
 $document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.$jquery_version.'/jquery.min.js');
+*/
 
 $action = JRequest::getCmd('action');
 
