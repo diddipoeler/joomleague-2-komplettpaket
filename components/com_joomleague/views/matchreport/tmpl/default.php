@@ -5,6 +5,38 @@ JHTML::_('behavior.tooltip');
 // that they are loaded i.s.o. of the template of this view
 $templatesToLoad = array('projectheading', 'backbutton', 'footer');
 JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
+
+$hasMatchPlayerStats = false;
+$hasMatchStaffStats = false;
+
+if (!empty($this->matchplayerpositions ))
+{
+	$hasMatchPlayerStats = false;
+	$hasMatchStaffStats = false;
+	foreach ( $this->matchplayerpositions as $pos )
+	{
+		if(isset($this->stats[$pos->position_id]) && count($this->stats[$pos->position_id])>0) {
+			foreach ($this->stats[$pos->position_id] as $stat) {
+				if ($stat->showInSingleMatchReports() && $stat->showInMatchReport()) {
+					$hasMatchPlayerStats = true;
+					break;
+				}
+			}
+		}
+	}	
+	foreach ( $this->matchstaffpositions as $pos )
+	{
+		if(isset($this->stats[$pos->position_id]) && count($this->stats[$pos->position_id])>0) {
+			foreach ($this->stats[$pos->position_id] as $stat) {
+				if ($stat->showInSingleMatchReports() && $stat->showInMatchReport()) {
+					$hasMatchStaffStats = true;
+				}
+			}
+		}
+	}
+}    
+
+
 ?>
 <div class="joomleague"><?php
 	echo $this->loadTemplate('projectheading');
@@ -77,7 +109,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		}
 	}
 
-	if (($this->config['show_stats'])==1 && $this->stats )
+	if (($this->config['show_stats'])==1 && ( $hasMatchPlayerStats || $hasMatchStaffStats ) )
 	{
 		echo $this->loadTemplate('stats');
 	}
@@ -160,7 +192,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		}
 	}
 
-	if (($this->config['show_stats'])==1 && $this->stats )
+	if (($this->config['show_stats'])==1 && ( $hasMatchPlayerStats || $hasMatchStaffStats ) )
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('stats');
