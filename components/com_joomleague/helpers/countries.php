@@ -147,7 +147,8 @@ class Countries
 		
 		//$countries=Countries::getCountries();
 		if( $res )
-		return JText::_($countries[$iso3]['name']);
+		//return JText::_($countries[$iso3]['name']);
+		return JText::_($res);
 	}
 
   /**
