@@ -644,6 +644,10 @@ $options = array(JHTML::_('select.option', 0, JText::_($this->getParam('text_pro
 			case "treetonode":
 				$link = JoomleagueHelperRoute::getBracketsRoute( $this->_project_id );
 				break;
+                
+            case "jltournamenttree":
+				$link = JoomleagueHelperRoute::getTournamentRoute( $this->_project_id, $this->_round_id );
+				break;    
 				
 			case "separator":
 				return false;

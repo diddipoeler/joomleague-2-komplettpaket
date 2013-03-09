@@ -122,7 +122,7 @@ class JoomleagueHelperRoute
 		return $link;
 	}
 
-  public static function getTournamentRoute( $projectid, , $round=null )
+  public static function getTournamentRoute( $projectid, $round=null )
   {
   $params = array(	"option" => "com_joomleague",
 					"view" => "jltournamenttree",

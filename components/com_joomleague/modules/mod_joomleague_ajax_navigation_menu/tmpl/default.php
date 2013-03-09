@@ -77,8 +77,9 @@ echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module
 			<?php elseif ($params->get('navpoint'.$i) == "separator"): ?>
 				<li class="nav-item separator"><?php echo $params->get('navpoint_label'.$i); ?></li>
 			<?php endif; ?>
-		<?php endfor; ?>		
-		
+		<?php endfor; ?>
+        <?php $link = $helper->getLink('jltournamenttree')?>		
+<li class="nav-item"><?php echo JHTML::link(JRoute::_($link), 'jltournamenttree' ); ?></li>		
 	<?php endif; ?>
 </ul> 
 </fieldset>	   
