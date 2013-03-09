@@ -13,8 +13,10 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_version_history` (
 TRUNCATE TABLE  `#__joomleague_version_history`;
 
 INSERT INTO `#__joomleague_version_history` (`id`, `date`, `text`, `version`) VALUES
-(NULL, '2013-02-28', 'COM_JOOMLEAGUE_DB_UPDATE_2013_03_07', '2.0.51'),
+(NULL, '2013-03-07', 'COM_JOOMLEAGUE_DB_UPDATE_2013_03_07', '2.0.51'),
 (NULL, '2013-02-28', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_28', '2.0.50'),
 (NULL, '2013-02-20', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_20', '2.0.49'),
 (NULL, '2013-02-14', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_14', '2.0.48'),
 (NULL, '2013-02-13', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_13', '2.0.47');
+
+update #__joomleague_version set major='2', minor='0', build='51', revision='-diddipoeler', version='a', file='joomleague' where file='joomleague'

@@ -82,6 +82,10 @@ function updateVersion($versionData)
 {
 	echo JText::_('Updating database version');
 
+  /*
+  // diddipoeler 
+  // blödsinn
+  
 	$status=0;
 	$updateVersionFile=JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'assets'.DS.'updates'.DS.'update_version.sql';
 
@@ -125,8 +129,10 @@ function updateVersion($versionData)
 	{
 		echo($tblVersion->getError());
 	}
-	$status=1;
-	echo $versionData->major . "." . $versionData->minor . "." . $versionData->build . "." . $versionData->revision . "-" . $versionData->version . "' ";
+	*/
+  $status=1;
+	
+  //echo $versionData->major . "." . $versionData->minor . "." . $versionData->build . "." . $versionData->revision . "-" . $versionData->version . "' ";
 	
   
 //   $db =& JFactory::getDBO();

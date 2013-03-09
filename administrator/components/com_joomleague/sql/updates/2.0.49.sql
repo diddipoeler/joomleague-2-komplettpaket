@@ -16,3 +16,5 @@ INSERT INTO `#__joomleague_version_history` (`id`, `date`, `text`, `version`) VA
 (NULL, '2013-02-20', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_20', '2.0.49'),
 (NULL, '2013-02-14', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_14', '2.0.48'),
 (NULL, '2013-02-13', 'COM_JOOMLEAGUE_DB_UPDATE_2013_02_13', '2.0.47');
+
+update #__joomleague_version set major='2', minor='0', build='49', revision='-diddipoeler', version='a', file='joomleague' where file='joomleague'

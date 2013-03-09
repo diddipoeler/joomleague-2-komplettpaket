@@ -7,8 +7,8 @@
 	<authorUrl>http://www.joomleague.net</authorUrl>
 	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
-	<version>2.0.51</version>
-	<description>League Management component for Joomla 2.5.x - Release 2.0.51 diddipoeler</description>
+	<version>2.0.52</version>
+	<description>League Management component for Joomla 2.5.x - Release 2.0.52 diddipoeler</description>
 
 	<!-- Site Main File Copy Section -->
 	<files folder="components/com_joomleague">
