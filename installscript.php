@@ -31,6 +31,10 @@ class com_joomleagueInstallerScript
 		if($update) {
 			self::updateDatabase();
 		}
+        else
+        {
+            self::insertVersionString();
+        }
 		?>
 		
 		<h2>Welcome to JoomLeague!</h2>
@@ -152,6 +156,26 @@ class com_joomleagueInstallerScript
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 	}
+    
+    public function insertVersionString()
+    {
+    $mainframe =& JFactory::getApplication();    
+    $versionData			= new stdClass();
+	$versionData->major		= '2';
+	$versionData->minor		= '0';
+	$versionData->build		= $this->release;
+	$versionData->revision	= '-diddipoeler';
+	$versionData->date		= NULL;
+	$versionData->version	= 'a';
+	$versionData->file		= 'joomleague';
+	$tblVersion = JTable::getInstance("Version", "Table");
+    if (!$tblVersion->store())
+	{
+		echo($tblVersion->getError());
+	}
+        
+    }
+
 
 	public function updateDatabase() 
     {
