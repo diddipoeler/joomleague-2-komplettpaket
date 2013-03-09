@@ -63,10 +63,14 @@ else
 				echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_ADDRESS' );
 				$dummyStr = explode('<br />', $addressString);
 				for ($i = 0; $i < count($dummyStr); $i++) { echo '<br />'; }
+				echo '<br />';
 				?></span>
 			<span class="clubinfo_listing_value"><?php echo $addressString; ?>
-			
-			<?php echo JHTML::image(JURI::root().$this->clubassoc->assocflag, $this->clubassoc->name, array('title' => $this->clubassoc->name ) ).$this->clubassoc->name; ?>
+			</span>
+			<span class="clubinfo_listing_item">
+			</span>
+			<span class="clubinfo_listing_value">
+			<?php echo JHTML::image(JURI::root().$this->clubassoc->assocflag, $this->clubassoc->name, array('title' => $this->clubassoc->name ) ).substr($this->clubassoc->name,0,30); ?>
       <br />
       </span>
 			
@@ -138,27 +142,42 @@ else
 			<?php
 		}
 
-		if ( $this->club->founded )
+		if ( $this->club->founded && $this->club->founded != '0000-00-00' )
 		{
 			?>
 			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_FOUNDED' ); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->founded; ?></span>
 			<?php
 		}
-        
-            ?>
+    if ( $this->club->founded_year )
+		{    
+      ?>
 			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_FOUNDED_YEAR' ); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->founded_year; ?></span>
 			<?php
-            ?>
+    }
+    if ( $this->club->dissolved && $this->club->dissolved != '0000-00-00' )
+		{  
+      ?>
+			
+      <span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_DISSOLVED' ); ?></span>
+			<span class="clubinfo_listing_value"><?php echo $this->club->dissolved; ?></span>      
+			<?php
+    }
+    if ( $this->club->dissolved_year )
+		{  
+      ?>
 			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_DISSOLVED_YEAR' ); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->dissolved_year; ?></span>
 			<?php
-            ?>
+    }
+    if ( $this->club->unique_id )
+		{  
+      ?>
 			<span class="clubinfo_listing_item"><?php echo JText::_( 'COM_JOOMLEAGUE_CLUBINFO_UNIQUE_ID' ); ?></span>
 			<span class="clubinfo_listing_value"><?php echo $this->club->unique_id; ?></span>
 			<?php
-            
+    }        
 
 		if ( ( $this->config['show_playgrounds_of_club'] == 1 ) && ( isset( $this->stadiums ) ) && ( count( $this->stadiums ) > 0 ) )
 		{
