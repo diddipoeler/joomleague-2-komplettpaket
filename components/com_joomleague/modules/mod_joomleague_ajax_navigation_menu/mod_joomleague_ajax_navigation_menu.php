@@ -126,13 +126,13 @@ $document->addScriptDeclaration(';
     jlcmodal['.$module->id.'] = \''.$lightbox.'\';
       ');
       
-if (!defined('JLC_MODULESCRIPTLOADED')) {
+if (!defined('JLAM_MODULESCRIPTLOADED')) {
 	$document->addScript( JURI::base().'modules/mod_joomleague_ajax_navigation_menu/js/mod_joomleague_ajax_navigation_menu.js' );
 	$document->addScriptDeclaration(';
     var ajaxmenu_baseurl=\''. JURI::base() . '\';
       ');
 	$document->addStyleSheet(JURI::base().'modules/mod_joomleague_ajax_navigation_menu/css/mod_joomleague_ajax_navigation_menu.css');
-	define('JLC_MODULESCRIPTLOADED', 1);
+	define('JLAM_MODULESCRIPTLOADED', 1);
 }
 
 

@@ -26,7 +26,7 @@ defined('_JEXEC') or die('Restricted access');
 <?php
 if ( $params->get('show_season_dropdown') ) 
 {
-echo JHTML::_('select.genericlist', $seasonselect['seasons'], 'jlamseason'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlamnewleagues('.$module->id.');"',  'value', 'text', $season_id);
+echo JHTML::_('select.genericlist', $seasonselect['seasons'], 'jlamseason'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="javascript:jlamnewleagues('.$module->id.');"',  'value', 'text', $season_id);
 }
 ?>
 </div>
@@ -34,7 +34,7 @@ echo JHTML::_('select.genericlist', $seasonselect['seasons'], 'jlamseason'.$modu
 <?php if ( $leagueselect['leagues'] && $params->get('show_league_dropdown') ) { ?>
 <div style="margin: 0 auto;">
 <?php
-echo JHTML::_('select.genericlist', $leagueselect['leagues'], 'jlamleague'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlamnewprojects('.$module->id.');"',  'value', 'text', $league_id);
+echo JHTML::_('select.genericlist', $leagueselect['leagues'], 'jlamleague'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="javascript:jlamnewprojects('.$module->id.');"',  'value', 'text', $league_id);
 ?>
 </div>
 <?php } ?>
@@ -42,7 +42,7 @@ echo JHTML::_('select.genericlist', $leagueselect['leagues'], 'jlamleague'.$modu
 <?php if ( $projectselect['projects'] && $params->get('show_project_dropdown') ) { ?>
 <div style="margin: 0 auto;">
 <?php
-echo JHTML::_('select.genericlist', $projectselect['projects'], 'jlamproject'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlamnewdivisions('.$module->id.');"',  'value', 'text', $project_id);
+echo JHTML::_('select.genericlist', $projectselect['projects'], 'jlamproject'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="javascript:jlamnewdivisions('.$module->id.');"',  'value', 'text', $project_id);
 ?>
 </div>
 <?php } ?>
@@ -50,7 +50,7 @@ echo JHTML::_('select.genericlist', $projectselect['projects'], 'jlamproject'.$m
 <?php if ( $divisionsselect['divisions'] && $params->get('show_division_dropdown') ) { ?>
 <div style="margin: 0 auto;">
 <?php
-echo JHTML::_('select.genericlist', $divisionsselect['divisions'], 'jlamdivisions'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlamdivision('.$module->id.');"',  'value', 'text', $division_id);
+echo JHTML::_('select.genericlist', $divisionsselect['divisions'], 'jlamdivisions'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="javascript:jlamdivision('.$module->id.');"',  'value', 'text', $division_id);
 ?>
 </div>
 <?php } ?>
@@ -58,7 +58,7 @@ echo JHTML::_('select.genericlist', $divisionsselect['divisions'], 'jlamdivision
 <?php if ( $projectselect['teams'] && $params->get('show_teams_dropdown') ) { ?>
 <div style="margin: 0 auto;">
 <?php
-echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="jlamteam('.$module->id.');"',  'value', 'text', $team_id);
+echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module->id, 'class="inputbox" style="width:100%;visibility:show;" size="1" onchange="javascript:jlamteam('.$module->id.');"',  'value', 'text', $team_id);
 ?>
 </div>
 <?php } ?>
