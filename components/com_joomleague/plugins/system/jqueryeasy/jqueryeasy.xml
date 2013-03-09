@@ -253,7 +253,7 @@
 	            
 	            <field type="title" title="PLG_SYSTEM_JQUERYEASY_FIELD_JQUERYUI_LABEL" />
 	            
-	            <field name="jqueryuiversionbackend" type="list" default="1.9" 
+	            <field name="jqueryuiversionbackend" type="list" default="1.8" 
 	            	label="PLG_SYSTEM_JQUERYEASY_FIELD_JQUERYUIVERSION_LABEL" 
 	            	description="PLG_SYSTEM_JQUERYEASY_FIELD_JQUERYUIVERSION_DESC">
 	            	<option value="1.10">PLG_SYSTEM_JQUERYEASY_VALUE_LATESTUI110</option>
