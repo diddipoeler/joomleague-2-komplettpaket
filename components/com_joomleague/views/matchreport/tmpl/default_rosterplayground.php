@@ -5,14 +5,17 @@ $startfade = 1000;
 
 <script>
 jQuery(document).ready(function() {
+setTimeout(function(){    
 <?php
 foreach ($this->matchplayers as $player)
 {
 ?>    
-jQuery("#<?PHP echo $player->person_id; ?>").slideToggle("<?PHP echo $startfade; ?>");
-<?php    
+jQuery("#<?PHP echo $player->person_id; ?>").delay(<?PHP echo $startfade; ?>).slideToggle("slow");
+<?php
+$startfade += 1000;    
 }    
 ?>
+}, 2000);
 });    
 </script>
 
