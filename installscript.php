@@ -184,11 +184,18 @@ class com_joomleagueInstallerScript
     $to = 'diddipoeler@gmx.de';
     $subject = 'JoomLeague 2.0 Complete Installation';
     $message = 'JoomLeague 2.0 Complete Installation wurde auf der Seite : '.JURI::base().' gestartet.';
-    JUtility::sendMail( '', JURI::base(), $to, $subject, $message );   
-
+    JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
+    
+    if ( $this->release == $this->getParam('version') )
+    {
+// kein update, da die selbe version installiert wird
+}
+else
+{
   $db =& JFactory::getDBO();
   $db_table = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'sql'.DS.'updates'.DS.$this->release.'.sql';
   $result = JInstallationHelper::populateDatabase($db, $db_table, $errors);
+}   
 
 //   $params = JComponentHelper::getParams('com_joomleague');
 //   $xmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'config.xml';
