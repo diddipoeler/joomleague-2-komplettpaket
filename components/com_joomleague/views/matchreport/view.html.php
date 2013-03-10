@@ -127,18 +127,18 @@ class JoomleagueViewMatchReport extends JLGView
     \n";
     
     $document->addScriptDeclaration( $js );
-    
+/*    
     $startfade = 1000;
     
     $js = "jQuery(document).ready(function() {\n ";
     foreach ($this->matchplayers as $player)
     {
-    $js .= 'jQuery("#'.$player->person_id.'").slideToggle("'.$startfade.'");\n';
+    $js .= ' jQuery("#'.$player->person_id.'").slideToggle("'.$startfade.'");\n';
     $startfade += 1000;
     }
     $js .= "});\n";
     $document->addScriptDeclaration( $js );    
-
+*/
 		parent::display($tpl);
 
 	}
