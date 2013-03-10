@@ -72,7 +72,7 @@ $textdiv.= $playgroundname.'</div>';
  }
 $textdiv .= '<div class="jlplplanedate">';
  $textdiv .= JHTML::date( $match->match_date,$dateformat );
-$textdiv .= " ".JText::_('JL_START_TIME')." ";
+$textdiv .= " ".JText::_('MOD_JOOMLEAGUE_PLAYGROUNDPLAN_JL_START_TIME')." ";
  $textdiv .= JHTML::date( $match->match_date,$timeformat );
  $textdiv.= '</div>';
 if ($params->get ('show_project_name',0)) 
