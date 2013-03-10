@@ -76,10 +76,10 @@
 				<field name="maxmatches" type="text" default="7"
 					label="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_MAX_MATCHES_NUMBER"
 					description="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_MAX_MATCHES_NUMBER_DESC" />
-				<field name="dateformat" type="text" default="%A, %d %B"
+				<field name="dateformat" type="text" default="l, d. F Y"
 					label="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_LABEL_DATE_FORMAT"
 					description="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_LABEL_DATE_FORMAT_DESC" />
-				<field name="timeformat" type="text" default="%H:%M"
+				<field name="timeformat" type="text" default="H:i"
 					label="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_LABEL_TIME_FORMAT"
 					description="MOD_JOOMLEAGUE_PLAYGROUNDPLAN_LABEL_TIME_FORMAT_DESC" />
 				<field name="mode" type="list" default="0"
