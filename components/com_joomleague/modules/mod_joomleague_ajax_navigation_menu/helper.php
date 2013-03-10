@@ -95,16 +95,84 @@ class modJoomleagueAjaxNavigationMenuHelper {
 	
 	$url = $_SERVER["REQUEST_URI"]; 
     $parsearray = parse_url($url);
+    $startseo = 0;
+    $jltemplate = '';
     
+    if ( $parsearray['query'] )
+    {
     $varAdd = explode('&', $parsearray['query']);
         foreach($varAdd as $varOne)
         {
             $name_value = explode('=', $varOne);
             
             $varAdd_array[$name_value[0]] = $name_value[1];
-        }
+       }
+       
+    }
+    else
+    {
+    $varAdd = explode('/', $parsearray['path']);    
+    
+    foreach( $varAdd as $key => $value )
+    {
+    
+    if ( $value == 'joomleague' )
+    {
+    $startseo = $key + 1;
+    $jltemplate = $varAdd[$startseo];
+    
+    //echo 'jltemplaterequest queries -> <pre>'.print_r($jltemplate,true).'</pre><br>';
+    
+    switch ($jltemplate)
+    {
+    case 'clubinfo':
+    case 'clubplan':
+    $varAdd_array['p'] = $varAdd[$startseo + 1];
+    $varAdd_array['cid'] = $varAdd[$startseo + 2];
+    break;
+    
+    case 'roster':
+    case 'teamplan':
+    case 'teaminfo':
+    case 'teamstats':
+    case 'curve':
+    $varAdd_array['p'] = $varAdd[$startseo + 1];
+    $varAdd_array['tid'] = $varAdd[$startseo + 2];
+    break;
+    
+    case 'ranking':
+    $varAdd_array['p'] = $varAdd[$startseo + 1];
+    $varAdd_array['r'] = $varAdd[$startseo + 3];
+    break;
+    
+    case 'results':
+    case 'resultsmatrix':
+    case 'resultsranking':
+    $varAdd_array['p'] = $varAdd[$startseo + 1];
+    $varAdd_array['r'] = $varAdd[$startseo + 2];
+    break;
+    
+    case 'eventsranking':
+    case 'matrix':
+    case 'referees':
+    case 'stats':
+    case 'statsranking':
+    $varAdd_array['p'] = $varAdd[$startseo + 1];
+    break;
+        
+    }   
+     
+    }   
+     
+    }   
+     
+    }  
+       
 //     echo 'request queries -> <pre>'.print_r($varAdd_array,true).'</pre><br>';
-	  return $varAdd_array;
+	  
+      
+      
+      return $varAdd_array;
 	}
 	
 	public function setProject($project_id,$team_id,$division_id)
