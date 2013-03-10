@@ -48,7 +48,9 @@ if ($this->config['show_comments_count'] > 0){
 		if ( ($this->config['show_attendance_column']) || ($this->config['show_comments_count'] > 0) )
 		{
 			?>
-			<th colspan="<?php echo $nbcols-$nbcols_header; ?>"><?php echo JHTML::date( $date, JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'));
+			<th colspan="<?php echo $nbcols-$nbcols_header; ?>"><?php 
+            //echo JHTML::date( $date, JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE_MONTH'));
+            echo JHTML::date( $date, JText::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE_DAY'));
                 if ($this->config['show_matchday_dateheader']) {
                     echo ' - ' . JText::sprintf( 'COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode ); } ?>
             </th>
