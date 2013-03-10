@@ -1,6 +1,22 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
+$startfade = 1000;
+?>
 
+<script>
+jQuery(document).ready(function() {
+<?php
+foreach ($this->matchplayers as $player)
+{
+?>    
+jQuery("#<?PHP echo $player->person_id; ?>").slideToggle("<?PHP echo $startfade; ?>");
+<?php    
+}    
+?>
+});    
+</script>
+
+<?php
 if ( $this->show_debug_info )
 {
 echo 'this->formation1<br /><pre>~' . print_r($this->formation1,true) . '~</pre><br />';

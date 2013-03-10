@@ -148,6 +148,7 @@ class modJoomleagueAjaxNavigationMenuHelper {
     case 'results':
     case 'resultsmatrix':
     case 'resultsranking':
+    case 'matchreport':
     $varAdd_array['p'] = $varAdd[$startseo + 1];
     $varAdd_array['r'] = $varAdd[$startseo + 2];
     break;
