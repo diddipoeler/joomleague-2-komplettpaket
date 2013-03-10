@@ -89,7 +89,7 @@ class modJoomleagueAjaxNavigationMenuHelper {
 	// diddipoeler
 	/*
 	muss ich erstmal so machen, da die request variablen falsch 
-	übernommen werden.
+	uebernommen werden.
 	kommt vor, wenn das modul nach einen anderen modul dargestellt wird
 	*/
 	
