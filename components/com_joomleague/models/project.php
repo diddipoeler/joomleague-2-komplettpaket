@@ -888,12 +888,13 @@ class JoomleagueModelProject extends JModel
 
 	function getClubIconHtml(&$team,$type=1,$with_space=0)
 	{
-		$small_club_icon=$team->logo_small;
+		$small_club_icon = $team->logo_small;
 		if ($type==1)
 		{
 			$params=array();
 			$params['align']="top";
 			$params['border']=0;
+			$params['width']=21;
 			if ($with_space==1)
 			{
 				$params['style']='padding:1px;';
