@@ -569,7 +569,9 @@ class JoomleagueViewMatchReport extends JLGView
 
 	function getHtmlImageForTips($picture,$width=0,$height=0)
 	{
-		$picture = JURI::root(true).'/'.str_replace(JPATH_SITE.DS, "", $picture);
+		// diddipoeler
+    //$picture = JURI::root(true).'/'.str_replace(JPATH_SITE.DS, "", $picture);
+		$picture = JURI::root().$picture;
 		if($width > 0 && $height==0) {
 			return '&lt;img src=\''.$picture.'\' width=\''.$width.'\' /&gt;';
 		}
