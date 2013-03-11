@@ -79,6 +79,7 @@
 			<field
 				name="picture"
 				type="media"
+        default="images/com_joomleague/database/placeholders/placeholder_450_2.png"
 				label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE"
 				description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE_DESC"
 				class="inputbox"
@@ -89,7 +90,7 @@
 			<field
 				name="picture"
 				type="imageselect"
-				default="com_joomleague/database/placeholders/placeholder_450_2.png"					
+				default="images/com_joomleague/database/placeholders/placeholder_450_2.png"					
 				label="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE"
 				description="COM_JOOMLEAGUE_ADMIN_PLAYGROUND_PICTURE_DESC"
 				class="inputbox"

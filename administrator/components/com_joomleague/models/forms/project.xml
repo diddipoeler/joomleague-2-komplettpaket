@@ -396,7 +396,7 @@
 			<field
 				name="picture"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_21.png"				
+				default="images/com_joomleague/database/placeholders/placeholder_21.png"				
 				label="COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT_PICTURE"
 				description="COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT_PICTURE"
 				class="inputbox"
@@ -408,7 +408,7 @@
 			<field
 				name="picture"
 				type="imageselect"
-				default="com_joomleague/database/placeholders/placeholder_21.png"					
+				default="images/com_joomleague/database/placeholders/placeholder_21.png"					
 				label="COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT_PICTURE"
 				description="COM_JOOMLEAGUE_ADMIN_PROJECT_EDIT_PICTURE"
 				class="inputbox"

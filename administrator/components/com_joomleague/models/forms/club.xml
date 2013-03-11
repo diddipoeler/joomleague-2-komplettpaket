@@ -201,7 +201,7 @@
 			<field
 				name="logo_small"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_small.gif"				
+				default="images/com_joomleague/database/placeholders/placeholder_small.gif"				
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL_DESC"
 				class="inputbox"
@@ -210,7 +210,7 @@
 			<field
 				name="logo_middle"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				default="images/com_joomleague/database/placeholders/placeholder_50.png" 
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE_DESC"
 				class="inputbox"
@@ -219,7 +219,7 @@
 			<field
 				name="logo_big"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_150.png"
+				default="images/com_joomleague/database/placeholders/placeholder_150.png"
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE_DESC"
 				class="inputbox"
@@ -229,7 +229,7 @@
        <field
 				name="trikot_home"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				default="images/com_joomleague/database/placeholders/placeholder_small.png" 
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME_DESC"
 				class="inputbox"
@@ -238,7 +238,7 @@
 			<field
 				name="trikot_away"
 				type="media"
-				default="com_joomleague/database/placeholders/placeholder_150.png"
+				default="images/com_joomleague/database/placeholders/placeholder_small.png"
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_AWAY"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_TRIKOT_AWAY_DESC"
 				class="inputbox"
@@ -251,7 +251,7 @@
 			<field
 				name="logo_small"
 				type="imageselect"
-				default="com_joomleague/database/placeholders/placeholder_small.gif"				
+				default="images/com_joomleague/database/placeholders/placeholder_small.gif"				
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_SMALL_DESC"
 				class="inputbox"
@@ -261,7 +261,7 @@
 			<field
 				name="logo_middle"
 				type="imageselect"
-				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				default="images/com_joomleague/database/placeholders/placeholder_50.png" 
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_MIDDLE_DESC"
 				class="inputbox"
@@ -271,7 +271,7 @@
 			<field
 				name="logo_big"
 				type="imageselect"
-				default="com_joomleague/database/placeholders/placeholder_150.png"
+				default="images/com_joomleague/database/placeholders/placeholder_150.png"
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_LARGE_DESC"
 				class="inputbox"
@@ -283,7 +283,7 @@
 				name="trikot_home"
 				type="imageselect"
 				targetfolder="clubs_trikot_home"
-				default="com_joomleague/database/placeholders/placeholder_50.png" 
+				default="images/com_joomleague/database/placeholders/placeholder_small.png" 
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_HOME_DESC"
 				class="inputbox"
@@ -293,7 +293,7 @@
 				name="trikot_away"
 				type="imageselect"
 				targetfolder="clubs_trikot_away"
-				default="com_joomleague/database/placeholders/placeholder_150.png"
+				default="images/com_joomleague/database/placeholders/placeholder_small.png"
 				label="COM_JOOMLEAGUE_ADMIN_CLUB_TRIKOT_AWAY"
 				description="COM_JOOMLEAGUE_ADMIN_CLUB_LOGO_TRIKOT_AWAY_DESC"
 				class="inputbox"
