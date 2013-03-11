@@ -109,7 +109,7 @@ echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module
 <?php } ?>
 
 <?php 
-if ( $params->get('show_favteams_nav_links') && $project_id  ) 
+if ( $params->get('show_favteams_nav_links') && $project_id && $favteams ) 
 { 
 
 foreach ( $favteams as $teams )
