@@ -415,7 +415,7 @@ class JoomleagueViewJoomleague extends JLGView
 		$label[]=$label3;
 		$limage[]=$limage3;
 
-    $link4=array();
+        $link4=array();
 		$label4=array();
 		$limage4=array();
 		$pane=new stdClass();
@@ -423,26 +423,45 @@ class JoomleagueViewJoomleague extends JLGView
 		$pane->name='MMenuDiddipoeler';
 		$pane->alert=false;
 		$tabs[]=$pane;
-		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextlmoimports&task=jlextlmoimports.display');
+		if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_lmo_import',0) )
+        {
+        $link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextlmoimports&task=jlextlmoimports.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_LMO_IMPORT');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_LMO_IMPORT'));
+        }
+        
+        if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_dbb_import',0) )
+        {
 		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextdbbimports&task=jlextdbbimports.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_DBB_IMPORT');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_DBB_IMPORT'));
-    $link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextdfbnetplayerimport&task=jlextdfbnetplayerimport.display');
+        }
+        
+        if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_dfbnet_import',0) )
+        {
+        $link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextdfbnetplayerimport&task=jlextdfbnetplayerimport.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_DFBNET_IMPORT');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_DFBNET_IMPORT'));
-		$link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextassociations&task=jlextassociation.display');
+		}
+        
+        $link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextassociations&task=jlextassociation.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_ASSOCIATION');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_ASSOCIATION'));
-		$link4[]=JRoute::_('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
+		
+        if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_rosterposition',0) )
+        {
+        $link4[]=JRoute::_('index.php?option=com_joomleague&view=rosterpositions&task=rosterposition.display');
 		$label4[]=JText::_('COM_JOOMLEAGUE_ROSTER_POSITION');
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));
-		$link[]=$link4;
+		}
+        
+        $link[]=$link4;
 		$label[]=$label4;
 		$limage[]=$limage4;
 
-    $link6=array();
+        if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_ringer_import',0) )
+        {
+        $link6=array();
 		$label6=array();
 		$limage6=array();
 		$pane=new stdClass();
@@ -456,12 +475,10 @@ class JoomleagueViewJoomleague extends JLGView
 		$link6[]=JRoute::_('index.php?option=com_joomleague&view=jlextringerpositions&task=jlextringerpositions.display');
 		$label6[]=JText::_('JL_T_MENU_RINGER_POSITIONS');
 		$limage6[]=JHTML::_('image',$imagePath.'update.png',JText::_('JL_T_MENU_RINGER_POSITIONS'));
-    
-		
-		
 		$link[]=$link6;
 		$label[]=$label6;
 		$limage[]=$limage6;
+        }
     
   $link5=array();
 	$label5=array();

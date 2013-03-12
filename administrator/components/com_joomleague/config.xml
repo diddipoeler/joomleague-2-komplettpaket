@@ -149,6 +149,15 @@
 			<option value="3">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_ASK
 			</option>
 		</field>
+		
+		<field name="cfg_be_show_merge_teams" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_CLUB_MERGE_TEAMS_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_CLUB_MERGE_TEAMS_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 	</fieldset>
 	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
@@ -356,7 +365,57 @@
     label="COM_JOOMLEAGUE_SETTINGS_REFEREE2_CCOLUMN"
 		description="COM_JOOMLEAGUE_SETTINGS_REFEREE2_CCOLUMN">
 		</field>
+  
+  </fieldset>
+  
+<fieldset  
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_LABEL"
+		description="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_DESC">  
+
+<field name="cfg_be_extension_single_match" type="list"
+			default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_SINGLE_MATCH_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_SINGLE_MATCH_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+<field name="cfg_be_extension_lmo_import" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_LMO_IMPORT_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_LMO_IMPORT_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+<field name="cfg_be_extension_dbb_import" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DBB_IMPORT_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DBB_IMPORT_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>		
+<field name="cfg_be_extension_dfbnet_import" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DFBNET_IMPORT_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DFBNET_IMPORT_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>		
+<field name="cfg_be_extension_rosterposition" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_ROSTERPOSITION_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_ROSTERPOSITION_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>		
+<field name="cfg_be_extension_ringer_import" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_RINGER_IMPORT_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_RINGER_IMPORT_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
     
+      
+  </fieldset>
     
-  </fieldset>  
 </config>

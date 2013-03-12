@@ -31,7 +31,14 @@ fieldset button {
 							<input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
 						</th>
 						<th width="20" >&nbsp;</th>
-            <th width="20" >Einzelspiele</th>
+            <?php
+            if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_single_match',0) )
+            {
+            ?>
+            <th width="20" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SINGLE_MATCH'); ?></th>
+            <?php
+            }
+            ?>
 						<th width="20" >
 							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_MATCHES_MATCHNR','mc.match_number',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
@@ -134,6 +141,10 @@ fieldset button {
 							</td>
               <?php
 							// diddipoeler einzelsportart
+            
+            if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_single_match',0) )
+            {
+            
 							?>
               <td style="text-align:center; ">
 							<a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
@@ -152,7 +163,9 @@ fieldset button {
 									 									 ?>
 								</a>
 							</td>
-              
+              <?php
+            }
+            ?>
 							<td class="center">
 								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" type="text" name="match_number<?php echo $row->id; ?>"
 										value="<?php echo $row->match_number; ?>" size="6" tabindex="1" class="inputbox" />
