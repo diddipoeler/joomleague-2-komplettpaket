@@ -87,10 +87,17 @@ echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module
         $link = $helper->getLink('jltournamenttree')
         ?>		
 <li class="nav-item"><?php echo JHTML::link(JRoute::_($link), $params->get('show_tournament_text') ); ?></li>		
-	
-    
     <?php 
     }
+    
+     if ($params->get('show_alltimetable_nav_links'))
+        {
+        $link = $helper->getLink('rankingalltime')
+        ?>		
+<li class="nav-item"><?php echo JHTML::link(JRoute::_($link), $params->get('show_alltimetable_text') ); ?></li>		
+    <?php 
+    }
+    
     endif; 
     ?>
 </ul> 

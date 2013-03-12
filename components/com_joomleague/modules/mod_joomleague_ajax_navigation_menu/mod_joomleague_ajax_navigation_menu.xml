@@ -147,7 +147,9 @@
       <option value="logo_small_country_flag">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_LOGO_SMALL_COUNTRY_FLAG</option>
       <option value="country_flag_logo_small">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_COUNTRY_FLAG_LOGO_SMALL</option>
 		</field>        				
-		
+
+				<field type="spacer" hr="true" />
+        		
 				<field name="show_nav_links" type="radio" default="1" label="MODULE_JLG_NAVIGATION_NAV_MENU_ITEM_LABEL" description="MODULE_JLG_NAVIGATION_NAV_MENU_ITEM_DESC">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
