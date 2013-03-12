@@ -135,7 +135,20 @@ class JoomleagueHelperRoute
 		return $link;
   }
   
-	/**
+	
+  
+  public static function getRankingAllTimeRoute( $projectid, $round=null, $from=null, $to=null, $type=0, $division=0 )
+	{
+		$params = array(	"option" => "com_joomleague",
+					"view" => "rankingalltime",
+					"p" => $projectid );
+		$query = JoomleagueHelperRoute::buildQuery( $params );
+		$link = JRoute::_( 'index.php?' . $query, false );
+
+		return $link;			
+	}
+  				
+  /**
 	 * 
 	 * @param int $projectid
 	 * @param int $round

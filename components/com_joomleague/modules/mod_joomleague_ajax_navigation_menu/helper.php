@@ -652,7 +652,11 @@ $options = array(JHTML::_('select.option', 0, JText::_($this->getParam('text_pro
 			case "resultsranking":
 				$link = JoomleagueHelperRoute::getResultsRankingRoute( $this->_project_id, $this->_round_id, $this->_division_id  );
 				break;
-				
+			
+            case "rankingalltime":
+            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_project_id, $this->_round_id,null,null,0,$this->_division_id );
+ 		         break;
+                 
 			case "resultsrankingmatrix":
 				$link = JoomleagueHelperRoute::getResultsRankingMatrixRoute( $this->_project_id, $this->_round_id, $this->_division_id  );
 				break;
