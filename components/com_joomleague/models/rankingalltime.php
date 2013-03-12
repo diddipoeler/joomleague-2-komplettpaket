@@ -78,6 +78,11 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
         } else {
             $this->debug_info = false;
         }
+        
+        if ( $item->id )
+        {
+        // diddipoeler
+        // menüeintrag vorhanden    
 
 $registry = new JRegistry();
 $registry->loadArray($params);
@@ -89,36 +94,21 @@ foreach ($newparams['data'] as $key => $value ) {
             $this->_params[$key] = $value;
         }
         
-        //$this->menue_itemid = JRequest::getInt("Itemid", 0);
-        /*
-        if ($this->menue_itemid)
+        }
+        else
         {
-        $menu = JSite::getMenu();
-        $menuparams = $menu->getParams( $this->menue_itemid );
-        $params->merge( $menuparams );
+        $strXmlFile = JLG_PATH_SITE. DS.'views'.DS.'rankingalltime'.DS.'tmpl'.DS.'default.xml';    
+        $registry = new JRegistry();
+$registry->loadArray($strXmlFile);
+//$newparams = $registry->toString('ini');
+$newparams = $registry->toArray();
+//echo "<b>menue newparams</b><pre>" . print_r($newparams, true) . "</pre>";  
+foreach ($newparams['data'] as $key => $value ) {
+            
+            $this->_params[$key] = $value;
+        }    
         }
-        echo "<b>menue params</b><pre>" . print_r($params, true) . "</pre>";    
-        */
-
-
-        /*
-        $this->menue_itemid = JRequest::getInt("Itemid", 0);
-        $item = $menu->getItem($this->menue_itemid);
-        $this->_menu_params = new JParameter($item->params);
-
-        $params = explode("\n", trim($this->_menu_params->_raw));
-        foreach ($params as $param) {
-        list($name, $value) = explode("=", $param);
-        $this->_params[$name] = $value;
-        }
-
-        if ($this->debug_info) {
-        $this->dump_header("models function __construct");
-        $this->dump_variable("path site", JLG_PATH_SITE);
-        $this->dump_header("models function __construct");
-        $this->dump_variable("this->_params", $this->_params);
-        }
-        */
+        
         parent::__construct();
 
     }
