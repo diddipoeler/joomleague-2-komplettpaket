@@ -656,7 +656,7 @@ $options = array(JHTML::_('select.option', 0, JText::_($this->getParam('text_pro
 				break;
 			
             case "rankingalltime":
-            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_league_id, $this->_params['show_alltimetable_points']);
+            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_league_id, $this->getParam('show_alltimetable_points') );
  		         break;
                  
 			case "resultsrankingmatrix":
