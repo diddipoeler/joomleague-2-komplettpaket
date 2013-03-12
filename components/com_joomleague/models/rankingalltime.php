@@ -82,7 +82,7 @@ class JoomleagueModelRankingalltime extends JoomleagueModelProject
         if ( $item->id )
         {
         // diddipoeler
-        // menüeintrag vorhanden    
+        // menueeintrag vorhanden    
 
 $registry = new JRegistry();
 $registry->loadArray($params);
