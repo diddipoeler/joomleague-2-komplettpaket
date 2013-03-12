@@ -57,7 +57,7 @@ class com_joomleagueInstallerScript
 	$lang = JFactory::getLanguage(); 
   $languages = JLanguageHelper::getLanguages('lang_code');
 //    echo 'Copy Administration language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
-		//echo 'Language -> <pre>'.print_r($languages,true).'</pre><br>';
+	//	echo 'Language -> <pre>'.print_r($languages,true).'</pre><br>';
     foreach ( $languages as $key => $value )
     {
     //$mainframe->enqueueMessage('Language installed -> ' . $key,'Notice');
@@ -206,11 +206,11 @@ else
 	
                                 	
 // diddipoeler
-  
+// erstmal keine weiterleitung  
    
 	$mainframe->enqueueMessage(JText::_('Sie werden gleich zum Tabellenupdate weitergeleitet !'),'Notice');
     $restart_link = JURI::base() . 'index.php?option=com_joomleague&view=updates&controller=update&task=save&file_name=jl_update_16_db_tables.php';
-    echo '<meta http-equiv="refresh" content="3; URL='.$restart_link.'">';
+    echo '<meta http-equiv="refresh" content="6; URL='.$restart_link.'">';
   
       
 //		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
