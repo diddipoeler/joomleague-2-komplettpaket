@@ -78,9 +78,21 @@ echo JHTML::_('select.genericlist', $projectselect['teams'], 'jlamteams'.$module
 				<li class="nav-item separator"><?php echo $params->get('navpoint_label'.$i); ?></li>
 			<?php endif; ?>
 		<?php endfor; ?>
-        <?php $link = $helper->getLink('jltournamenttree')?>		
-<li class="nav-item"><?php echo JHTML::link(JRoute::_($link), 'jltournamenttree' ); ?></li>		
-	<?php endif; ?>
+    
+    
+    
+        <?php 
+        if ($params->get('show_tournament_nav_links'))
+        {
+        $link = $helper->getLink('jltournamenttree')
+        ?>		
+<li class="nav-item"><?php echo JHTML::link(JRoute::_($link), $params->get('show_tournament_text') ); ?></li>		
+	
+    
+    <?php 
+    }
+    endif; 
+    ?>
 </ul> 
 </fieldset>	   
 </div>
