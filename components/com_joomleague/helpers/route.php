@@ -137,11 +137,12 @@ class JoomleagueHelperRoute
   
 	
   
-  public static function getRankingAllTimeRoute( $projectid, $round=null, $from=null, $to=null, $type=0, $division=0 )
+  public static function getRankingAllTimeRoute( $leagueid, points)
 	{
 		$params = array(	"option" => "com_joomleague",
 					"view" => "rankingalltime",
-					"p" => $projectid );
+					"l" => $leagueid,
+					"points" => $points );
 		$query = JoomleagueHelperRoute::buildQuery( $params );
 		$link = JRoute::_( 'index.php?' . $query, false );
 

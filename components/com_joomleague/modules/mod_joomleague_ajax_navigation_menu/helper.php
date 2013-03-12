@@ -23,6 +23,7 @@ class modJoomleagueAjaxNavigationMenuHelper {
 // 	protected $_round_id = null;
 
 	var $_project_id;
+    var $_league_id;
 	var $_team_id;
 	var $_club_id;
 	var $_division_id = 0;
@@ -234,6 +235,7 @@ class modJoomleagueAjaxNavigationMenuHelper {
 	public function getLeagueId()
 	{
 		if ($this->getProject()) {
+		  $this->_league_id = $this->getProject()->league_id;
 			return $this->getProject()->league_id;
 		}
 		else {
@@ -654,7 +656,7 @@ $options = array(JHTML::_('select.option', 0, JText::_($this->getParam('text_pro
 				break;
 			
             case "rankingalltime":
-            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_project_id, $this->_round_id,null,null,0,$this->_division_id );
+            $link = JoomleagueHelperRoute::getRankingAllTimeRoute( $this->_league_id, $this->_params['show_alltimetable_points']);
  		         break;
                  
 			case "resultsrankingmatrix":
