@@ -57,7 +57,9 @@ class com_joomleagueInstallerScript
 	$lang = JFactory::getLanguage(); 
   $languages = JLanguageHelper::getLanguages('lang_code');
 //    echo 'Copy Administration language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
-	//	echo 'Language -> <pre>'.print_r($languages,true).'</pre><br>';
+	
+  	//echo 'Language -> <pre>'.print_r($languages,true).'</pre><br>';
+  
     foreach ( $languages as $key => $value )
     {
     //$mainframe->enqueueMessage('Language installed -> ' . $key,'Notice');
@@ -67,12 +69,12 @@ class com_joomleagueInstallerScript
 		$dest=JPATH_ADMINISTRATOR.DS.'modules';
 		JFolder::copy($src.DS.'language'.DS.$key, JPATH_ADMINISTRATOR.DS.'language'.DS.$key, '', true);
 		
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
-		echo 'Copy Site language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
+		echo ' - <span style="color:green">'.JText::_('Success-> '.$key).'</span><br />';
+		echo 'Copy Site language( '.$key.' ) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br>';
 		$src=JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS;
 		$dest=JPATH_SITE.DS;
 		JFolder::copy($src.DS.'language'.DS.$key, JPATH_SITE.DS.'language'.DS.$key, '', true);
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+		echo ' - <span style="color:green">'.JText::_('Success -> '.$key).'</span><br />';
 		}
 		
 	}
@@ -101,11 +103,12 @@ class com_joomleagueInstallerScript
 		if ( JFolder::exists($src.DS.$module.DS.'language'.DS.$key) )
 		{
 			JFolder::copy($src.DS.$module.DS.'language'.DS.$key, JPATH_ADMINISTRATOR.DS.'language'.DS.$key, '', true);
-		}
+		echo ' - <span style="color:green">'.JText::_('Success -> '.$module.' - '.$key).'</span><br />';
+    }
     }
 		}
 
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+		//echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 		echo 'Copy Administration Module(s)';
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
@@ -122,11 +125,12 @@ class com_joomleagueInstallerScript
 		if ( JFolder::exists($src.DS.$module.DS.'language'.DS.$key) )
 		{
 			JFolder::copy($src.DS.$module.DS.'language'.DS.$key, JPATH_SITE.DS.'language'.DS.$key, '', true);
+      echo ' - <span style="color:green">'.JText::_('Success -> '.$module.' - '.$key).'</span><br />';
 		}
     }
 		}
 
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+		//echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 		echo 'Copy Site Module(s)';
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
@@ -139,19 +143,32 @@ class com_joomleagueInstallerScript
 	 */
 	public function installPlugins()
 	{
-		echo 'Copy Plugin(s) language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
+  $mainframe =& JFactory::getApplication();
+	$lang = JFactory::getLanguage(); 
+  $languages = JLanguageHelper::getLanguages('lang_code');
+  
+//		echo 'Copy Plugin(s) language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a>';
 		$src=JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'plugins';
 		$dest=JPATH_SITE.DS.'plugins';
 		$groups = JFolder::folders($src);
+    
+    foreach ( $languages as $key => $value )
+    {
+    echo 'Copy Plugin(s) language(s) provided by <a href="https://opentranslators.transifex.com/projects/p/joomleague/">Transifex</a><br />';
 		foreach ($groups as $group)
 		{
 			$plugins = JFolder::folders($src.DS.$group);
 			foreach ($plugins as $plugin)
 			{
-				JFolder::copy($src.DS.$group.DS.$plugin.DS.'language', JPATH_ADMINISTRATOR.DS.'language', '', true);
-			}
+      if ( JFolder::exists($src.DS.$group.DS.$plugin.DS.'language'.DS.$key) )
+		{
+				JFolder::copy($src.DS.$group.DS.$plugin.DS.'language'.DS.$key, JPATH_ADMINISTRATOR.DS.'language'.DS.$key, '', true);
+		echo ' - <span style="color:green">'.JText::_('Success -> '.$group.' - '.$plugin.' - '.$key).'</span><br />';
+    }
+    	}
 		}
-		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+    }
+		//echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
 		echo 'Copy Plugin(s)';
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
@@ -207,11 +224,12 @@ else
                                 	
 // diddipoeler
 // erstmal keine weiterleitung  
-   
+  
+/*   
 	$mainframe->enqueueMessage(JText::_('Sie werden gleich zum Tabellenupdate weitergeleitet !'),'Notice');
     $restart_link = JURI::base() . 'index.php?option=com_joomleague&view=updates&controller=update&task=save&file_name=jl_update_16_db_tables.php';
     echo '<meta http-equiv="refresh" content="6; URL='.$restart_link.'">';
-  
+*/  
       
 //		echo '<iframe height="400" scrolling="auto" width="100%" src="index.php?option=com_joomleague&view=updates&task=update.save&file_name=jl_update_db_tables.php&tmpl=component&print=1" frameborder="0" ></iframe>';
 
