@@ -41,7 +41,8 @@ class modJLGSportsHelper
 		
 		return array(
 			'sportstype' => $model->getData(),
-			'projectscount' => $model->getProjectsCount(), 
+			'projectscount' => $model->getProjectsCount(),
+      'playgroundscount' => $model->getPlaygroundsOnlyCount(),  
 			'leaguescount' => $model->getLeaguesOnlyCount(), 
 			'seasonscount' => $model->getSeasonsOnlyCount(),
       'clubscount' => $model->getClubsOnlyCount(),

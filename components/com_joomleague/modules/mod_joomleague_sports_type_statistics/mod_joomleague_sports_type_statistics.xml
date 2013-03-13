@@ -71,7 +71,18 @@
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_TEXT"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_SEASONS_DESC_TEXT">
 				</field>
-				
+
+				<field name="show_playgrounds" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYGROUNDS"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYGROUNDS_DESC">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="textplaygrounds" type="text" default="Spielorte"
+					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYGROUNDS_TEXT"
+					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_PLAYGROUNDS_DESC_TEXT">
+				</field>
+        
 				<field name="show_clubs" type="radio" default="1"
 					label="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS"
 					description="MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_SHOW_CLUBS_DESC">

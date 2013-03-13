@@ -62,6 +62,23 @@ class JoomleagueModelSportsType extends JoomleagueModelItem
 		return $this->_db->loadObject()->count;
 	}
 	
+  
+  /**
+	*
+	* get count of related playgrounds 
+	*/
+	public function getPlaygroundsOnlyCount() {
+		$query = 'SELECT count(*) AS count FROM #__joomleague_playground AS p 
+							';
+		$this->_db->setQuery($query);
+		if (!$this->_db->query())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $this->_db->loadObject()->count;
+	}
+  
   /**
 	*
 	* get count of related leagues 

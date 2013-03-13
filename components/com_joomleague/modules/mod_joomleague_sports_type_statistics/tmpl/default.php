@@ -26,6 +26,7 @@ if ($data['projectscount'] == 0) {
 	<?php 
 	if($data['sportstype']->icon) { ?><img src="<?php echo $data['sportstype']->icon; ?>"><?php } ?> <?php echo JText::_($data['sportstype']->name); ?>
 	</h4>
+  
 	<?php if($params->get('show_project',1) == 1) { ?>
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
@@ -39,6 +40,7 @@ if ($data['projectscount'] == 0) {
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['projectscount']?></li>
 	</ul>
 	<?php } ?>
+  
 	<?php if($params->get('show_leagues',1) == 1) { ?>
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php 
@@ -52,6 +54,7 @@ if ($data['projectscount'] == 0) {
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['leaguescount']?></li>
 	</ul>
 	<?php } ?>
+  
 	<?php if($params->get('show_seasons',1) == 1) { ?>
 	<ul>
 		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php
@@ -63,6 +66,20 @@ if ($data['projectscount'] == 0) {
 		}
 		?></li>
 		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['seasonscount']?></li>
+	</ul>
+	<?php } ?>
+  
+  <?php if($params->get('show_playgrounds',1) == 1) { ?>
+	<ul>
+		<li class="label <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php
+		if($params->get('show_icon',1)==1) {
+			echo '<img alt="'.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYGROUNDS").'" src="administrator/components/com_joomleague/assets/images/playground.png">';
+			echo ' '.JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYGROUNDS");
+		} else {
+			echo JText::_("MOD_JOOMLEAGUE_SPORTS_TYPE_STATISTICS_PLAYGROUNDS");
+		}
+		?></li>
+		<li class="text <?php echo $params->get( 'moduleclass_sfx' ); ?>"><?php echo $data['playgroundscount']?></li>
 	</ul>
 	<?php } ?>
 	
