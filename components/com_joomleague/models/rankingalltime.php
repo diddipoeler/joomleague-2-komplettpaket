@@ -97,16 +97,34 @@ foreach ($newparams['data'] as $key => $value ) {
         }
         else
         {
-        $strXmlFile = JLG_PATH_SITE. DS.'views'.DS.'rankingalltime'.DS.'tmpl'.DS.'default.xml';    
+        $strXmlFile = JLG_PATH_SITE. DS.'settings'.DS.'default'.DS.'rankingalltime.xml';    
+        // get the JForm object
+        $form = &JForm::getInstance('jlattform', $strXmlFile);
+        //echo "<b>menue form</b><pre>" . print_r($form, true) . "</pre>";
+        foreach($form->getFieldset($fieldset->name) as $field)
+        {
+//         echo ' -> '. $field->name.'<br>';
+//         echo ' -> '. $field->type.'<br>';
+//         echo ' -> '. $field->input.'<br>';
+        $this->_params[$field->name] = $field->input;
+        
+        }
+        
+        
+        /*
         $registry = new JRegistry();
 $registry->loadArray($strXmlFile);
 //$newparams = $registry->toString('ini');
 $newparams = $registry->toArray();
+
 //echo "<b>menue newparams</b><pre>" . print_r($newparams, true) . "</pre>";  
+
 foreach ($newparams['data'] as $key => $value ) {
             
             $this->_params[$key] = $value;
-        }    
+        }
+        */
+            
         }
         
         parent::__construct();
