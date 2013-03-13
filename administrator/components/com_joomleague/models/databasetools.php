@@ -383,6 +383,11 @@ function PrintStepResult($result)
 		
 		$query = "update #__joomleague_club set logo_small = replace(logo_small, 'media/com_joomleague/clubs/small', 'images/com_joomleague/database/clubs/small')";
 		array_push($arrQueries, $query);
+    
+    $query = "update #__joomleague_club set trikot_home = replace(trikot_home, 'media/com_joomleague/clubs/trikot_home', 'images/com_joomleague/database/clubs/trikot_home')";
+		array_push($arrQueries, $query);
+    $query = "update #__joomleague_club set trikot_away = replace(trikot_away, 'media/com_joomleague/clubs/trikot_away', 'images/com_joomleague/database/clubs/trikot_away')";
+		array_push($arrQueries, $query);
 		
 		$query = "update #__joomleague_eventtype set icon = replace(icon, 'media/com_joomleague/event_icons', 'images/com_joomleague/database/events')";
 		array_push($arrQueries, $query);
