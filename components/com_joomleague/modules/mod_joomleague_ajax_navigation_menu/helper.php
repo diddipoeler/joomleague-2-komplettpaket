@@ -336,7 +336,7 @@ class modJoomleagueAjaxNavigationMenuHelper {
 	{
 		$options = array(JHTML::_('select.option', 0, JText::_($this->getParam('seasons_text'))));
 		$query = ' SELECT s.id AS value, s.name AS text '
-				. ' FROM #__joomleague_season AS s ORDER by s.name'
+				. ' FROM #__joomleague_season AS s ORDER by s.name DESC'
 				;
 		$this->_db->setQuery($query);
 		$res = $this->_db->loadObjectList();
