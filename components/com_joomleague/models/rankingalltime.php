@@ -106,7 +106,7 @@ foreach ($newparams['data'] as $key => $value ) {
 //         echo ' -> '. $field->name.'<br>';
 //         echo ' -> '. $field->type.'<br>';
 //         echo ' -> '. $field->input.'<br>';
-        $this->_params[$field->name] = $field->input;
+        $this->_params[$field->name] = $field->value;
         
         }
         
