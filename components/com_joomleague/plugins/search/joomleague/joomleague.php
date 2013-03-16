@@ -11,6 +11,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 // Import library dependencies
 jimport( 'joomla.plugin.plugin' );
+require_once(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'helpers'.DS.'countries.php' );
 
 class plgSearchJoomleague extends JPlugin
 {
@@ -131,6 +132,8 @@ class plgSearchJoomleague extends JPlugin
 		{
 			$query = "SELECT 'Club' as section, c.name AS title,"
 			." c.founded AS created,"
+			." c.country,"
+			." c.logo_big AS picture,"
 			." CONCAT( 'Address: ',c.address,' ',c.zipcode,' ',c.location,' Phone: ',c.phone,' Fax: ',c.fax,' E-Mail: ',c.email ) AS text,"
 			." pt.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -155,6 +158,7 @@ class plgSearchJoomleague extends JPlugin
 			." t.checked_out_time AS created,"
 			." t.notes AS text,"
 			." pt.project_id AS project, "
+			." pt.picture AS picture, "
 			." CONCAT( 'index.php?option=com_joomleague"
 			."&view=teaminfo&tid=', t.id,'&p=', pt.project_id ) AS href,"
 			." '2' AS browsernav"
@@ -175,6 +179,8 @@ class plgSearchJoomleague extends JPlugin
 
 			$query = "SELECT 'Person' as section, REPLACE(CONCAT(pe.firstname, ' \'', pe.nickname, '\' ' , pe.lastname ),'\'\'','') AS title,"
 			." pe.birthday AS created,"
+			." pe.country,"
+			." pe.picture AS picture, "
 			." CONCAT( 'Birthday:',pe.birthday , ' Notes:', pe.notes ) AS text,"
 			." pt.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -200,6 +206,8 @@ class plgSearchJoomleague extends JPlugin
 
 			$query = "SELECT 'Staff' as section, REPLACE(CONCAT(pe.firstname, ' \'', pe.nickname, '\' ' , pe.lastname ),'\'\'','') AS title,"
 			." pe.birthday AS created,"
+			." pe.country,"
+			." pe.picture AS picture, "
 			." CONCAT( 'Birthday:',pe.birthday , ' Notes:', pe.notes ) AS text,"
 			." pt.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -225,6 +233,8 @@ class plgSearchJoomleague extends JPlugin
 
 			$query = "SELECT 'Referee' as section, REPLACE(CONCAT(pe.firstname, ' \'', pe.nickname, '\' ' , pe.lastname ),'\'\'','') AS title,"
 			." pe.birthday AS created,"
+			." pe.country,"
+			." pe.picture AS picture, "
 			." CONCAT( 'Birthday:', pe.birthday, ' Notes:', pe.notes ) AS text,"
 			." pr.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -248,6 +258,8 @@ class plgSearchJoomleague extends JPlugin
 
 			$query = "SELECT 'Playground' as section, pl.name AS title,"
 			." pl.checked_out_time AS created,"
+			." pl.country,"
+			." pl.picture AS picture, "
 			." pl.notes AS text,"
 			." r.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -272,8 +284,32 @@ class plgSearchJoomleague extends JPlugin
 
 		if(count($rows))
 		{
+		  foreach($rows as $row)
+			{
+			if ( $row )
+			{
+			foreach($row as $output )
+			{
+			//echo 'country<pre>'.print_r($output->country,true).'</pre><br>';
+			//echo 'picture<pre>'.print_r($output->picture,true).'</pre><br>';
+			if ( $output->country)
+			{
+			$flag = Countries::getCountryFlag($output->country);
+			$output->text = $flag.' '.$output->text ;
+			}
+      if ( $output->picture )
+			{
+			$output->text = '<p><img style="float: left;" src="'.$output->picture.'" alt="" width="50" height="" >'.$output->text.'</p>';
+			}
+			}
+			}
+			}
+			
 			foreach($rows as $row)
 			{
+			// diddipoeler
+			// testausgabe
+			echo '<pre>'.print_r($row,true).'</pre><br>';
 				$results = array_merge($results, (array) $row);
 			}
 		}
