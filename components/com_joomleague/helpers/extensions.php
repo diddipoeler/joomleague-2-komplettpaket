@@ -21,7 +21,11 @@ $show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debu
 $model_pathes[]	= array();
 $view_pathes[]	= array();
 $lang 			= JFactory::getLanguage();
-for ($e = 0; $e < count($arrExtensions); $e++) {
+
+// diddipoeler
+// normale extension anfang
+for ($e = 0; $e < count($arrExtensions); $e++) 
+{
 	$extension = $arrExtensions[$e];
 	$extensionpath = JLG_PATH_SITE.DS.'extensions'.DS.$extension;
 	// include file named after the extension for specific includes for examples
@@ -58,18 +62,23 @@ for ($e = 0; $e < count($arrExtensions); $e++) {
 	$controller = JLGController::getInstance($extension, $params);
 	*/
 
+  /*
 	try  {
 		$controller = JLGController::getInstance(ucfirst($extension), $params);
 	} catch (Exception $exc) {
 		//fallback if no extensions controller has been initialized
 		$controller	= JLGController::getInstance('joomleague');
 	}
+	*/
+
+include_once($base_path.DS.'controllers'.DS.$extension.'.php');
+JTable::addIncludePath($base_path.DS.'tables');	
+	
 	$model_pathes[] = $base_path.DS.'models';
 	$view_pathes[] = $base_path.DS.'views';
 	
 
-	$model_pathes[] = $base_path.DS.'models';
-	$view_pathes[] = $base_path.DS.'views';
+	
 
 if ($show_debug_info)
 {
@@ -83,8 +92,82 @@ echo 'view_pathes<pre>',print_r($view_pathes,true),'</pre><br>';
 
 }
 
+}
+// normale extension ende
+
+// overlay extension anfang
+for ($e = 0; $e < count($arrExtensions); $e++) 
+{
+	$extension = $arrExtensions[$e];
+	$extensionpath = JLG_PATH_SITE.DS.'extensions-overlay'.DS.$extension;
+	// include file named after the extension for specific includes for examples
+	if ( file_exists( $extensionpath.DS.$extension.'.php') )  {
+		//e.g example.php
+		require_once $extensionpath.DS.$extension.'.php';
+	}
+	if($app->isAdmin()) {
+		$base_path = $extensionpath.DS.'admin';
+		// language file
+		$lang->load('com_joomleague_'.$extension, $base_path);
+	} else {
+		$base_path = $extensionpath;
+		//language file
+		$lang->load('com_joomleague_'.$extension, $base_path);
+	}
+	//set the base_path to the extension controllers directory
+	$params = array('base_path'=>$base_path);
+	/* own controllers currently not supported in 2.0
+	if (!file_exists($base_path.DS.'controller.php')) {
+		$extension = "joomleague";
+		$params = array();
+	} elseif (!file_exists($base_path.DS.$extension.'.php')) {
+		$extension = "joomleague";
+		$params = array();
+	}
+	*/
+
+
+
+	/*
+	$extension = "joomleague";
+	$params = array();
+	$controller = JLGController::getInstance($extension, $params);
+	*/
+
+  
+	try  {
+		$controller = JLGController::getInstance(ucfirst($extension), $params);
+	} catch (Exception $exc) {
+		//fallback if no extensions controller has been initialized
+		$controller	= JLGController::getInstance('joomleague');
+	}
+
+/*
+include_once($base_path.DS.'controllers'.DS.$extension.'.php');
+JTable::addIncludePath($base_path.DS.'tables');	
+*/
+	
+	$model_pathes[] = $base_path.DS.'models';
+	$view_pathes[] = $base_path.DS.'views';
+	
+
+	
+
+if ($show_debug_info)
+{
+echo 'extension<pre>',print_r($extension,true),'</pre><br>';
+echo 'extensionpath<pre>',print_r($extensionpath,true),'</pre><br>';
+
+echo 'base_path<pre>',print_r($base_path,true),'</pre><br>';
+echo 'controller<pre>',print_r($controller,true),'</pre><br>';
+echo 'model_pathes<pre>',print_r($model_pathes,true),'</pre><br>';
+echo 'view_pathes<pre>',print_r($view_pathes,true),'</pre><br>';
 
 }
+
+}
+// overlay extension ende
+
 if(is_null($controller) && !($controller instanceof JController)) {
 	//fallback if no extensions controller has been initialized
 	$controller	= JLGController::getInstance('joomleague');
