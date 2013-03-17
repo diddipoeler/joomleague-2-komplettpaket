@@ -73,7 +73,7 @@ class JFormFieldAssociationsList extends JFormFieldList
   $categoryparent = empty($sections) ? 0 : $sections[0]->id;
   //echo 'categoryparent<br /><pre>~' . print_r($categoryparent,true) . '~</pre><br />';
   //$options = $this->JJ_categoryArray();
-$list = $this->JJ_categoryArray();
+$list = $this->JJ_categoryArray(0, $country);
 
 $preoptions = array();
 $name = 'parent_id';
@@ -94,11 +94,11 @@ foreach ( $list as $item )
 		return $options;
 	}
 	
-function JJ_categoryArray($admin=0) 
+function JJ_categoryArray($admin=0,$country) 
   {
 $db = &JFactory::getDBO(); 
     // get a list of the menu items
-	$query = "SELECT * FROM #__joomleague_associations";
+	$query = "SELECT * FROM #__joomleague_associations where country = '".$country."'";
 
     $query .= " ORDER BY ordering, name";
     $db->setQuery($query);
