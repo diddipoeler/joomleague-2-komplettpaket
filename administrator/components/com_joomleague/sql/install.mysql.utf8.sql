@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_countries` (
   `fifa` varchar(3) DEFAULT NULL,
   `ds` varchar(3) DEFAULT NULL,
   `wmo` varchar(3) DEFAULT NULL,
+  `federation` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`,`alpha3`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;

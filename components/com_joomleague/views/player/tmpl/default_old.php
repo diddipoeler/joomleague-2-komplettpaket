@@ -65,34 +65,18 @@ if (isset($this->person))
 	{
 		$output[intval($this->config['show_order_stcareer'])] = 'playerstaffcareer';
 	}
-	
-    if($this->config['show_players_layout'] == "player_tabbed") {
+	if($this->config['show_players_layout'] == "player_tabbed") {
 		//$document = JFactory::getDocument();
 		//$css = 'components/com_joomleague/assets/css/tabs.css';
 		//$document->addStyleSheet($css);
 		$idxTab = 1;
-		echo JHTML::_('tabs.start','playertabs', array('useCookie'=>1));
+		echo JHTML::_('tabs.start','tabs', array('useCookie'=>1));
 		foreach ($output as $templ) {
 			echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)), 'panel'.($idxTab++));
 			echo $this->loadTemplate($templ);
 		}
 		echo JHTML::_('tabs.end');
-	}
-    else if($this->config['show_players_layout'] == "player_slider") {
-		//$document = JFactory::getDocument();
-		//$css = 'components/com_joomleague/assets/css/tabs.css';
-		//$document->addStyleSheet($css);
-		$idxTab = 1;
-        echo JHtml::_('sliders.start','playerslider', array('useCookie'=>0, 'show'=>0, 'display'=>0, 'startOffset'=>-1));
-		
-		foreach ($output as $templ) {
-			echo JHTML::_('sliders.panel', JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)), 'panel'.($idxTab++));
-			echo $this->loadTemplate($templ);
-		}
-		echo JHTML::_('sliders.end');
-	}  
-    
-    else {
+	} else {
 		foreach ($output as $templ)
 		{
 			echo $this->loadTemplate($templ);

@@ -18,6 +18,7 @@
 				description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_PLAYERS_LAYOUT">
 			<option value="player_standard">COM_JOOMLEAGUE_FES_PLAYER_PARAM_OPTION1_PLAYER_STANDARD</option>
 			<option value="player_tabbed">COM_JOOMLEAGUE_FES_PLAYER_PARAM_OPTION2_PLAYER_TABBED</option>
+			<option value="player_slider">COM_JOOMLEAGUE_FES_PLAYER_PARAM_OPTION3_PLAYER_SLIDER</option>
 		</field>
 		
 		<field 	name="show_plinfo" type="radio" default="1" 
