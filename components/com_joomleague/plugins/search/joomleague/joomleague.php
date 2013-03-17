@@ -309,7 +309,7 @@ class plgSearchJoomleague extends JPlugin
 			{
 			// diddipoeler
 			// testausgabe
-			echo '<pre>'.print_r($row,true).'</pre><br>';
+			//echo '<pre>'.print_r($row,true).'</pre><br>';
 				$results = array_merge($results, (array) $row);
 			}
 		}
