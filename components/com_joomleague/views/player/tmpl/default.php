@@ -83,7 +83,7 @@ if (isset($this->person))
 		//$css = 'components/com_joomleague/assets/css/tabs.css';
 		//$document->addStyleSheet($css);
 		$idxTab = 1;
-        echo JHtml::_('sliders.start','playerslider', array('useCookie'=>0, 'show'=>0, 'display'=>0, 'startOffset'=>-1));
+        echo JHtml::_('sliders.start','playerslider', array('useCookie'=>1, 'show'=>-1, 'display'=>-1, 'startOffset'=>-1));
 		
 		foreach ($output as $templ) {
 			echo JHTML::_('sliders.panel', JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)), 'panel'.($idxTab++));
