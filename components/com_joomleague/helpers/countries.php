@@ -13,6 +13,7 @@
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
+jimport( 'joomla.utilities.arrayhelper' );
 
 class Countries
 {

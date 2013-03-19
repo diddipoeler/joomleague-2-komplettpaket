@@ -21,6 +21,7 @@
 		<folder>assets</folder>
 		<folder>controllers</folder>
 		<folder>extensions</folder>
+		<folder>extensions-overlay</folder>
 		<folder>settings</folder>
 		<folder>help</folder>
 		<folder>helpers</folder>

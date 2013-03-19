@@ -71,8 +71,11 @@ for ($e = 0; $e < count($arrExtensions); $e++)
 	}
 	*/
 
+  if($app->isAdmin()) {
 include_once($base_path.DS.'controllers'.DS.$extension.'.php');
 JTable::addIncludePath($base_path.DS.'tables');	
+	
+	}
 	
 	$model_pathes[] = $base_path.DS.'models';
 	$view_pathes[] = $base_path.DS.'views';

@@ -5,7 +5,7 @@
 INSERT INTO `#__joomleague_countries` (`id`, `name`, `alpha2`, `alpha3`, `ordering`, `checked_out`, `checked_out_time`, `itu`, `fips`, `ioc`, `picture`, `fifa`, `ds`, `wmo`) VALUES
 (NULL, 'AFGHANISTAN__ISLAMIC_REPUBLIC', 'AF', 'AFG', 0, 0, '0000-00-00 00:00:00', 'AFG', 'AF', 'AFG', 'images/com_joomleague/database/flags/af.png', 'AFG', 'AFG', 'AF'),
 (NULL, 'ALAND_ISLANDS', 'AX', 'ALA', 0, 0, '0000-00-00 00:00:00', '', '', '', 'images/com_joomleague/database/flags/ax.png', 'ALD', 'FIN', ''),
-(NULL, 'ALBANIA__REPUBLIC OF', 'AL', 'ALB', 0, 0, '0000-00-00 00:00:00', 'ALB', 'AL', 'ALB', 'images/com_joomleague/database/flags/al.png', 'ALB', 'AL', 'AB'),
+(NULL, 'ALBANIA__REPUBLIC_OF', 'AL', 'ALB', 0, 0, '0000-00-00 00:00:00', 'ALB', 'AL', 'ALB', 'images/com_joomleague/database/flags/al.png', 'ALB', 'AL', 'AB'),
 (NULL, 'ALGERIA__PEOPLE_S_DEMOCRATIC_REPUBLIC', 'DZ', 'DZA', 0, 0, '0000-00-00 00:00:00', 'ALG', 'AG', 'ALG', 'images/com_joomleague/database/flags/dz.png', 'ALG', 'DZ', 'AL'),
 (NULL, 'AMERICAN_SAMOA', 'AS', 'ASM', 0, 0, '0000-00-00 00:00:00', 'SMA', 'AQ', 'ASA', 'images/com_joomleague/database/flags/as.png', 'ASA', 'USA', ''),
 (NULL, 'ANDORRA__PRINCIPALITY_OF', 'AD', 'AND', 0, 0, '0000-00-00 00:00:00', 'AND', 'AN', 'AND', 'images/com_joomleague/database/flags/ad.png', 'AND', 'AND', ''),
@@ -194,7 +194,7 @@ INSERT INTO `#__joomleague_countries` (`id`, `name`, `alpha2`, `alpha3`, `orderi
 (NULL, 'SAINT_PIERRE_AND_MIQUELON', 'PM', 'SPM', 0, 0, '0000-00-00 00:00:00', 'SPM', 'SB', 'SPM', 'images/com_joomleague/database/flags/pm.png', 'SPM', 'F', 'FP'),
 (NULL, 'SAINT_VINCENT_AND_THE_GRENADIN', 'VC', 'VCT', 0, 0, '0000-00-00 00:00:00', 'VCT', 'VC', 'VIN', 'images/com_joomleague/database/flags/vc.png', 'VIN', 'WV', 'VG'),
 (NULL, 'SAMOA__INDEPENDENT_STATE_OF', 'WS', 'WSM', 0, 0, '0000-00-00 00:00:00', 'SMO', 'WS', 'SAM', 'images/com_joomleague/database/flags/ws.png', 'SAM', 'WS', 'ZM'),
-(NULL, 'SAN MARINO__REPUBLIC_OF', 'SM', 'SMR', 0, 0, '0000-00-00 00:00:00', 'SMR', 'SM', 'SMR', 'images/com_joomleague/database/flags/sm.png', 'SMR', 'RSM', ''),
+(NULL, 'SAN_MARINO__REPUBLIC_OF', 'SM', 'SMR', 0, 0, '0000-00-00 00:00:00', 'SMR', 'SM', 'SMR', 'images/com_joomleague/database/flags/sm.png', 'SMR', 'RSM', ''),
 (NULL, 'SAO_TOME_AND_PRINCIPE__DEMOCRA', 'ST', 'STP', 0, 0, '0000-00-00 00:00:00', 'STP', 'TP', 'STP', 'images/com_joomleague/database/flags/st.png', 'STP', '', 'TP'),
 (NULL, 'SAUDI_ARABIA__KINGDOM_OF', 'SA', 'SAU', 0, 0, '0000-00-00 00:00:00', 'ARS', 'SA', 'KSA', 'images/com_joomleague/database/flags/sa.png', 'KSA', 'SA', 'SD'),
 (NULL, 'SENEGAL__REPUBLIC_OF', 'SN', 'SEN', 0, 0, '0000-00-00 00:00:00', 'SEN', 'SG', 'SEN', 'images/com_joomleague/database/flags/sn.png', 'SEN', 'SN', 'SG'),
