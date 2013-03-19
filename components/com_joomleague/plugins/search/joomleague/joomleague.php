@@ -295,6 +295,7 @@ class plgSearchJoomleague extends JPlugin
 			if ( $output->country)
 			{
 			$flag = Countries::getCountryFlag($output->country);
+			$output->flag = $flag;
 			$output->text = $flag.' '.$output->text ;
 			}
       if ( $output->picture )
