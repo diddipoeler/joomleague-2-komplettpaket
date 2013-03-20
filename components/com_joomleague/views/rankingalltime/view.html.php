@@ -15,7 +15,7 @@ class JoomleagueViewRankingAllTime extends JLGView
         // Get a refrence of the page instance in joomla
         $document = &JFactory::getDocument();
         $uri = &JFactory::getURI();
-
+        $this->project->id = JRequest::getInt('p', 0);
 
         $modelallseasons = &$this->getModel();
         $leagueallseasons = $modelallseasons->getLeagueSeasons();
@@ -59,7 +59,7 @@ class JoomleagueViewRankingAllTime extends JLGView
         }
 
         $this->assignRef('colors', $model->getColors($this->config['colors']));
-
+        
 
         // Set page title
         $pageTitle = JText::_('JL_RANKING_PAGE_TITLE');
