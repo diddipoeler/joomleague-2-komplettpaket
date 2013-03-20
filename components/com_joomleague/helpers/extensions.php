@@ -99,6 +99,7 @@ echo 'view_pathes<pre>',print_r($view_pathes,true),'</pre><br>';
 // normale extension ende
 
 // overlay extension anfang
+$arrExtensions 	= JoomleagueHelper::getExtensionsOverlay(JRequest::getInt('p'));
 for ($e = 0; $e < count($arrExtensions); $e++) 
 {
 	$extension = $arrExtensions[$e];

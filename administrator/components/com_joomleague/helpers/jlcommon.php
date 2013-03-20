@@ -256,6 +256,35 @@ class JoomleagueHelper
 
 		return $arrExtensions;
 	}
+	
+		public static function getExtensionsOverlay($project_id)
+	{
+		$option='com_joomleague';
+		$arrExtensions = array();
+		$excludeExtension = array();
+		if ($project_id) {
+			$db= JFactory::getDBO();
+			$query='SELECT extension FROM #__joomleague_project WHERE id='. $db->Quote((int)$project_id);
+
+			$db->setQuery($query);
+			$res=$db->loadObject();
+			if(!empty($res)) {
+				$excludeExtension = explode(",", $res->extension);
+			}
+		}
+		if(JFolder::exists(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'extensions-overlay')) {
+			$folderExtensions  = JFolder::folders(JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'extensions-overlay',
+													'.', false, false, $excludeExtension);
+			if($folderExtensions !== false) {
+				foreach ($folderExtensions as $ext)
+				{
+					$arrExtensions[] = $ext;
+				}
+			}
+		}
+
+		return $arrExtensions;
+	}
 
 	/**
 	 * returns number of years between 2 dates
