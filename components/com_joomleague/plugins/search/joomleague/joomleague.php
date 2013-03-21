@@ -152,7 +152,7 @@ class plgSearchJoomleague extends JPlugin
 			." c.founded AS created,"
 			." c.country,"
 			." c.logo_big AS picture,"
-			." CONCAT( 'Address: ',c.address,' ',c.zipcode,' ',c.location,' Phone: ',c.phone,' Fax: ',c.fax,' E-Mail: ',c.email ) AS text,"
+			." CONCAT( 'Address: ',c.address,' ',c.zipcode,' ',c.location,' Phone: ',c.phone,' Fax: ',c.fax,' E-Mail: ',c.email,' Vereinsnummer: ',c.unique_id ) AS text,"
 			." pt.project_id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
 			."&view=clubinfo&cid=', c.id,'&p=', pt.project_id ) AS href,"
