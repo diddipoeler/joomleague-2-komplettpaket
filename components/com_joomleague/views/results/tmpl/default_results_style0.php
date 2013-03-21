@@ -68,7 +68,7 @@ if ($this->config['show_comments_count'] > 0){
 
 		} else {
 			?>
-			<th colspan="<?php echo $nbcols; ?>"><?php echo JHTML::date( $date, JTExt::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE'));
+			<th colspan="<?php echo $nbcols; ?>"><?php echo JHTML::date( $date, JTExt::_('COM_JOOMLEAGUE_RESULTS_GAMES_DATE_DAY'));
                 if ($this->config['show_matchday_dateheader']) {
                     echo ' - ' . JText::sprintf( 'COM_JOOMLEAGUE_RESULTS_GAMEDAY_NB',$this->roundcode ); } ?>
             </th>
