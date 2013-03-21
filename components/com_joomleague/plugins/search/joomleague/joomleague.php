@@ -173,7 +173,8 @@ class plgSearchJoomleague extends JPlugin
 		{
 			$query = "SELECT 'Team' as section, t.name AS title,"
 			." t.checked_out_time AS created,"
-			." t.notes AS text,"
+			//." t.notes AS text,"
+            ." CONCAT( 'Teamart:',t.info , ' Notes:', t.notes ) AS text,"
 			." pt.project_id AS project, "
 			." pt.picture AS picture, "
 			." CONCAT( 'index.php?option=com_joomleague"
@@ -303,7 +304,7 @@ class plgSearchJoomleague extends JPlugin
 			." pro.checked_out_time AS created,"
 			." l.country,"
 			." pro.picture AS picture, "
-			." pro.name AS text,"
+			." CONCAT( pro.name, ' Staffel-ID (', pro.staffel_id, ')' ) AS text,"
 			." pro.id AS project,"
 			." CONCAT( 'index.php?option=com_joomleague"
 			."&view=ranking&type=', '0','&p=', pro.id ) AS href,"
