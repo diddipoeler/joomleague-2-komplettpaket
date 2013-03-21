@@ -44,6 +44,7 @@ class plgSearchJoomleague extends JPlugin
 		$search_playgrounds	= $this->params->def( 'search_playgrounds', 1 );
 		$search_staffs	 	= $this->params->def( 'search_staffs',	 	1 );
 		$search_referees	= $this->params->def( 'search_referees',	1 );
+        $search_projects	= $this->params->def( 'search_projects',	1 );
 		$text = trim( $text );
 		if ($text == '') {
 			return array();
@@ -61,6 +62,7 @@ class plgSearchJoomleague extends JPlugin
 				$wheresteam = array();
 				$wheresperson = array();
 				$wheresplayground = array();
+                $wheresproject = array();
 
 				if ( $search_clubs )
 				{
@@ -114,12 +116,27 @@ class plgSearchJoomleague extends JPlugin
 						$wheresplayground[] 	= implode( ' OR ', $wheres2 );
 					}
 				}
+                
+                if ( $search_projects )
+				{
+					foreach ($words as $word)
+					{
+						$word		= $db->Quote( '%'.$db->getEscaped( $word, true ).'%', false );
+						$wheres2 	= array();
+						$wheres2[] 	= 'pro.name LIKE '.$word;
+						$wheres2[] 	= 'pro.staffel_id LIKE '.$word;
+
+
+						$wheresproject[] 	= implode( ' OR ', $wheres2 );
+					}
+				}
 
 
 				$where = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheres ) . ')';
 				$whereteam = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheresteam ) . ')';
 				$wheresperson = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheresperson ) . ')';
 				$wheresplayground = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheresplayground ) . ')';
+                $wheresproject = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheresproject ) . ')';
 				break;
 
 
@@ -279,6 +296,28 @@ class plgSearchJoomleague extends JPlugin
 			$list = $db->loadObjectList();
 			$rows[] = $list;
 		}
+        
+        if ( $search_projects )
+		{
+        $query = "SELECT 'Project' as section, pro.name AS title,"
+			." pro.checked_out_time AS created,"
+			." l.country,"
+			." pro.picture AS picture, "
+			." pro.name AS text,"
+			." pro.id AS project,"
+			." CONCAT( 'index.php?option=com_joomleague"
+			."&view=ranking&type=', '0','&p=', pro.id ) AS href,"
+			." '2' AS browsernav"
+			." FROM #__joomleague_project AS pro"
+			." LEFT JOIN #__joomleague_league AS l"
+			." ON l.id = pro.league_id"
+			." WHERE ( ".$wheresproject." ) "
+			." GROUP BY pro.name ORDER BY pro.name ";
+
+			$db->setQuery( $query );
+			$list = $db->loadObjectList();
+			$rows[] = $list;
+        }
 
 		$results = array();
 

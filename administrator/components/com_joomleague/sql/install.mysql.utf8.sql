@@ -706,6 +706,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_round` (
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
   `published` TINYINT(1) NOT NULL DEFAULT '1' ,
+  `extendeduser` TEXT NULL ,
   PRIMARY KEY (`id`) ,
   KEY `project_id` (`project_id`)
   )

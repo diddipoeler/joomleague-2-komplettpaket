@@ -53,6 +53,11 @@
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</field>
+				<field name="search_projects" type="radio" default="1" label="Projects"
+					description="Search Projects ?">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</field>
 			</fieldset>
 		</fields>
 	</config>
