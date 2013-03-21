@@ -73,6 +73,7 @@ class plgSearchJoomleague extends JPlugin
 						$wheres2[] 	= 'c.name LIKE '.$word;
 						$wheres2[] 	= 'c.alias LIKE '.$word;
 						$wheres2[] 	= 'c.location LIKE '.$word;
+                        $wheres2[] 	= 'c.unique_id LIKE '.$word;
 
 						$wheres[] 	= implode( ' OR ', $wheres2 );
 					}
