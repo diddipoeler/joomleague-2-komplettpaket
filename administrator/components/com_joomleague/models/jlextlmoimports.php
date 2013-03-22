@@ -604,7 +604,7 @@ if (array_key_exists('league',$this->_datas))
     
     if ( substr($key, 0, 2) == 'NT' )
 		{
-		$team2_summary = $value;
+		$team2_summary = utf8_encode ( $value );
 
      if (array_key_exists( 'AT'.$lfdmatch ,$parse['Round'.$a] ))
      {
