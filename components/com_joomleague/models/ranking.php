@@ -24,6 +24,7 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	var $pageNav = array();
 	var $pageNav2 = array();
 	var $current_round = 0;
+	var $viewName = '';
 
 	function __construct( )
 	{
@@ -34,7 +35,8 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		$this->to	 = JRequest::getInt( 'to', $this->round);
 		$this->type  = JRequest::getInt( 'type', 0 );
 		$this->last  = JRequest::getInt( 'last', 0 );
-
+    $this->viewName = JRequest::getVar( "view");
+    
 		$this->selDivision = JRequest::getInt( 'division', 0 );
 
 		parent::__construct( );

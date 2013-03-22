@@ -732,7 +732,8 @@ class JLGRanking
 	 */
 	function _getMatches($pid,$division)
 	{
-		$db = Jfactory::getDBO();
+    $db = Jfactory::getDBO();
+    $viewName = JRequest::getVar( "view");
 
 		$query = ' SELECT m.id, '
 		. ' m.projectteam1_id, '
@@ -757,7 +758,7 @@ class JLGRanking
 		. ' INNER JOIN #__joomleague_round AS r ON m.round_id = r.id '
 		. ' WHERE ((m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL) '
 		. ' OR (m.alt_decision=1)) '
-		. ' AND m.count_result '
+//		. ' AND m.count_result '
 		. ' AND m.published = 1 '
     . ' AND r.published = 1 '
 		. ' AND pt1.project_id = '.$db->Quote($pid)
@@ -765,6 +766,15 @@ class JLGRanking
 		. ' AND (m.cancel IS NULL OR m.cancel = 0) '
 		. ' AND m.projectteam1_id>0 AND m.projectteam2_id>0 ';
 		
+		switch($viewName)
+		{
+    case 'rankingalltime':
+    break;
+    default:
+    $query .= ' AND m.count_result ';
+    break;
+    }
+    
 		$db->setQuery($query);
 		$res = $db->loadObjectList();
 		$matches = array();
