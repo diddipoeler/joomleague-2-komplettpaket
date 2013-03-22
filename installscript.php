@@ -158,7 +158,7 @@ class com_joomleagueInstallerScript
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
         
-        
+        /*
         $title = 'JL2 diddipoeler GitHub Commits Module';
 		$tblModules = JTable::getInstance('module');
 		$tblModules->load(array('title'=>$title));
@@ -197,7 +197,7 @@ class com_joomleagueInstallerScript
 
 		// Trigger the onContentCleanCache event.
 		$dispatcher->trigger('onContentCleanCache', $options);
-        
+        */
         
         
         
