@@ -157,6 +157,50 @@ class com_joomleagueInstallerScript
 		echo 'Copy Site Module(s)';
 		JFolder::copy($src, $dest, '', true);
 		echo ' - <span style="color:green">'.JText::_('Success').'</span><br />';
+        
+        
+        $title = 'JL2 diddipoeler GitHub Commits Module';
+		$tblModules = JTable::getInstance('module');
+		$tblModules->load(array('title'=>$title));
+		$tblModules->title			= $title;
+		$tblModules->module			= 'mod_joomleague_github';
+		$tblModules->position 		= 'cpanel';
+		$tblModules->published 		= 1;
+		$tblModules->client_id 		= 1;
+		$tblModules->ordering 		= 1;
+		$tblModules->access 		= 3;
+		$tblModules->language 		= '*';
+		$tblModules->publish_up		= '2000-00-00 00:00:00';
+		$tblModules->params 		= '{"username":"diddipoeler","repo":"joomleague-2-komplettpaket","count":15,"relativeTime":"1","layout":"_:default","moduleclass_sfx":"","cache":"1","cache_time":"900","cachemode":"static"}';
+
+		if (!$tblModules->store()) {
+			echo $tblModules->getError().'<br />';
+		}
+		$db = JFactory::getDBO();
+		$query = 'INSERT INTO #__modules_menu (moduleid,menuid) VALUES ('.$tblModules->id.',0)';
+		$db->setQuery($query);
+		if (!$db->query())
+		{
+			//echo $db->getErrorMsg().'<br />';
+		}
+	
+		// Initialise variables
+		$conf = JFactory::getConfig();
+		$dispatcher = JDispatcher::getInstance();
+
+		$options = array(
+			'defaultgroup' => ($tblModules->module) ? $tblModules->module : (isset($this->option) ? $this->option : JRequest::getCmd('option')),
+			'cachebase' => ($tblModules->client_id) ? JPATH_ADMINISTRATOR . '/cache' : $conf->get('cache_path', JPATH_SITE . '/cache'));
+
+		$cache = JCache::getInstance('callback', $options);
+		$cache->clean();
+
+		// Trigger the onContentCleanCache event.
+		$dispatcher->trigger('onContentCleanCache', $options);
+        
+        
+        
+        
 	}
 
 	/**
