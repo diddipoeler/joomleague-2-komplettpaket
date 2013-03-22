@@ -106,15 +106,7 @@ class JoomleagueViewClubInfo extends JLGView
     
     if (($this->config['show_maps'])==1)
 	  {
-	  
-	  /*
-	  foreach ( $extended->getGroups() as $key => $groups )
-		{
-		$lat = $extended->get('JL_ADMINISTRATIVE_AREA_LEVEL_1_LATITUDE');
-    $lng = $extended->get('JL_ADMINISTRATIVE_AREA_LEVEL_1_LONGITUDE');
-		}
-		*/
-		
+	/*	
 	  $this->map = new simpleGMapAPI();
   $this->geo = new simpleGMapGeocoder();
   $this->map->setWidth($this->mapconfig['width']);
@@ -142,12 +134,15 @@ class JoomleagueViewClubInfo extends JLGView
   
   $document->addScript($this->map->JLprintGMapsJS());
   $document->addScriptDeclaration($this->map->JLshowMap(false));
-  
+  */
 	}
 	
+        if (($this->config['show_maps'])==1)
+	  {
             // diddipoeler
         $this->geo = new simpleGMapGeocoder();
         $this->geo->genkml3file($this->club->id,$this->address_string,'club',$this->club->logo_big,$this->club->name);  
+}
 
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
     
