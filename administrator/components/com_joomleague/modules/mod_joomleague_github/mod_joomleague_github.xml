@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="administrator" method="upgrade">
+	<name>mod_joomleague_github</name>
+	<creationDate>2013-03-21</creationDate>
+	<author>diddipoeler</author>
+	<copyright>(C) 2013 diddipoeler</copyright>
+	<authorEmail>diddipoeler@gmx.de</authorEmail>
+	<authorUrl>http://www.fussballineuropa.de</authorUrl>
+	<version>1.0</version>
+	<license>GNU/GPL</license>
+	<description>MOD_GITHUB_XML_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<files>
+		<folder>language</folder>
+		<folder>media</folder>
+		<folder>tmpl</folder>
+		<filename module="mod_joomleague_github">mod_joomleague_github.php</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_joomleague_github.xml</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="github">
+				<field
+					name="username"
+					default="diddipoeler"
+					type="text"
+					label="MOD_GITHUB_FIELDSET_GITHUB_USERNAME_LABEL"
+					description="MOD_GITHUB_FIELDSET_GITHUB_USERNAME_DESCRIPTION"
+					required="true" />
+				<field
+					name="repo"
+					type="text"
+					default="joomleague-2-komplettpaket"
+					label="MOD_GITHUB_FIELDSET_GITHUB_REPO_LABEL"
+					description="MOD_GITHUB_FIELDSET_GITHUB_REPO_DESCRIPTION"
+					required="true" />
+				<field
+					name="count"
+					type="text"
+					default="15"
+					label="MOD_GITHUB_FIELDSET_GITHUB_COUNT_LABEL"
+					description="MOD_GITHUB_FIELDSET_GITHUB_COUNT_DESCRIPTION"
+					required="true"
+					filter="integer" />
+				<field
+					name="relativeTime"
+					type="radio"
+					default="1"
+					label="MOD_GITHUB_FIELDSET_GITHUB_RELATIVETIME_LABEL"
+					description="MOD_GITHUB_FIELDSET_GITHUB_RELATIVETIME_DESCRIPTION" >
+					<option
+						value="0">JNO</option>
+					<option
+						value="1">JYES</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+				<field
+					name="cache"
+					type="radio"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC" >
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
