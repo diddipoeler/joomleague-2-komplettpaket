@@ -5,7 +5,7 @@ require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'pagination.php');
 
 jimport('joomla.application.component.view');
 
-require_once (JLG_PATH_ADMIN . DS . 'models' . DS . 'divisions.php');
+//require_once (JLG_PATH_ADMIN . DS . 'models' . DS . 'divisions.php');
 
 class JoomleagueViewRankingAllTime extends JLGView
 {
@@ -82,11 +82,12 @@ echo '</pre>';
         $this->assign('action', $uri->toString());
         $this->assignRef('lists', $lists);
         $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info', 0));
+/*        
         if (!isset($config['colors'])) {
             $config['colors'] = "";
         }
-
-        //$this->assignRef('colors', $model->getColors($this->config['colors']));
+*/
+        $this->assignRef('colors', $model->getColors($this->config['colors']));
         
 
         // Set page title

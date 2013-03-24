@@ -539,18 +539,44 @@ foreach ($newparams['data'] as $key => $value ) {
 			$away->sum_away_for += $away_score;	
     
     
-    
-    
-    
-    
-    
-    
-    
     }
     
     return $this->teams;
      
     }    
+    
+    function getColors($configcolors='')
+	{
+		$s=substr($configcolors,0,-1);
+
+		$arr1=array();
+		if(trim($s) != "")
+		{
+			$arr1=explode(";",$s);
+		}
+
+		$colors=array();
+
+		$colors[0]["from"]="";
+		$colors[0]["to"]="";
+		$colors[0]["color"]="";
+		$colors[0]["description"]="";
+
+		for($i=0; $i < count($arr1); $i++)
+		{
+			$arr2=explode(",",$arr1[$i]);
+			if(count($arr2) != 4)
+			{
+				break;
+			}
+
+			$colors[$i]["from"]=$arr2[0];
+			$colors[$i]["to"]=$arr2[1];
+			$colors[$i]["color"]=$arr2[2];
+			$colors[$i]["description"]=$arr2[3];
+		}
+		return $colors;
+	}
     
     function getAllProject()
     {

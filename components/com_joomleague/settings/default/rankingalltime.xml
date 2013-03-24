@@ -112,7 +112,7 @@
 				description="JL_FES_RANKING_PARAM_DESCR_STYLE_EVEN">
 		</field>
 
-		<field 	name="colors" type="textarea" default="1,1,#bdd8be,Champions;2,2,#cee0ce,Champions League;3,3,#dce7dc,Qualification Champions League;4,5,#f7f6d0,Europa League;6,6,#fcfbed,UI Cup;16,18,#f6dfdb,Relegation;" 
+		<field 	name="colors" type="textarea" default="1,5,#AFD179,Top 5;6,10,#C3DC9A,nächsten 5;11,15,#D6EAB6,nächsten 5; 16,20,#E8F5D3,nächsten 5" 
 				label="JL_FES_RANKING_PARAM_LABEL_TABLE_COLORS" 
 				description="JL_FES_RANKING_PARAM_DESCR_TABLE_COLORS" 
 				rows="10" cols="50">
