@@ -15,46 +15,33 @@ class JoomleagueViewRankingAllTime extends JLGView
         // Get a refrence of the page instance in joomla
         $document = &JFactory::getDocument();
         $uri = &JFactory::getURI();
-        //$this->project->id = JRequest::getInt('p', 0);
+        $this->project->id = JRequest::getInt('p', 0);
 
-         $model = &$this->getModel();
-//         $leagueallseasons = $modelallseasons->getLeagueSeasons();
-//         $this->assignRef('allseasons', $leagueallseasons);
-//         $this->assignRef('leaguename', $modelallseasons->getLeagueName());
+        $modelallseasons = &$this->getModel();
+        $leagueallseasons = $modelallseasons->getLeagueSeasons();
+        $this->assignRef('allseasons', $leagueallseasons);
+        $this->assignRef('leaguename', $modelallseasons->getLeagueName());
 
 
-//         $this->project->name = $this->leaguename;
-//         $this->assignRef('alltimepoints', $modelallseasons->getAllTimePoints());
-         $this->assignRef('projectids', $model->getAllProject());
-         $project_ids = implode(",", $this->projectids);
-         $this->assignRef('project_ids', $project_ids);
-         $this->assignRef('teams', $model->getAllTeamsIndexedByPtid($project_ids));
-         $this->assignRef('matches', $model->getAllMatches($project_ids));
-         $this->assignRef('ranking', $model->getAllTimeRanking());
+        $this->project->name = $this->leaguename;
+        $this->assignRef('alltimepoints', $modelallseasons->getAllTimePoints());
+        $this->assignRef('projectids', $modelallseasons->getAllProject());
+        $project_ids = implode(",", $this->projectids);
+        $this->assignRef('project_ids', $project_ids);
+        $this->assignRef('teams', $modelallseasons->getAllTeamsIndexedByPtid($project_ids));
+        $this->assignRef('matches', $modelallseasons->getAllMatches($project_ids));
 
-/*
 echo 'views rankingalltime project_ids<pre>';
 print_r($project_ids);
 echo '</pre>';
-*/
 
-/*
 echo 'views rankingalltime teams<pre>';
 print_r($this->teams);
 echo '</pre>';
-*/
 
-/*
 echo 'views rankingalltime matches<pre>';
 print_r($this->matches);
 echo '</pre>';
-*/
-
-/*
-echo 'views rankingalltime ranking<pre>';
-print_r($this->ranking);
-echo '</pre>';
-*/
 
         /*
         foreach ($leagueallseasons as $allseasons) {
@@ -75,10 +62,9 @@ echo '</pre>';
         }
         */
 
-        
-        $this->assignRef('tableconfig', $model->getAllTimeParams());
-        $this->assignRef('config', $model->getAllTimeParams());
-        $this->assignRef('currentRanking', $model->getCurrentRanking());
+        $this->assignRef('tableconfig', $modelallseasons->getAllTimeParams());
+        $this->assignRef('config', $modelallseasons->getAllTimeParams());
+        $this->assignRef('currentRanking', $modelallseasons->getCurrentRanking());
         $this->assign('action', $uri->toString());
         $this->assignRef('lists', $lists);
         $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info', 0));
@@ -86,12 +72,16 @@ echo '</pre>';
             $config['colors'] = "";
         }
 
-        //$this->assignRef('colors', $model->getColors($this->config['colors']));
+        $this->assignRef('colors', $model->getColors($this->config['colors']));
         
 
         // Set page title
         $pageTitle = JText::_('JL_RANKING_PAGE_TITLE');
-        
+        /*
+        if (isset($this->project->name)) {
+        $pageTitle .= ': ' . $this->project->name;
+        }
+        */
         $document->setTitle($pageTitle);
 
         parent::display($tpl);

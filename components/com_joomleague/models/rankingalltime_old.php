@@ -45,17 +45,15 @@ if ((int)ini_get('max_execution_time') < $maxImportTime) {
     @set_time_limit($maxImportTime);
 }
 
-class JoomleagueModelRankingAllTime extends JModel
+class JoomleagueModelRankingalltime extends JoomleagueModel
 {
 
     var $teams = array();
     var $_teams = array();
-    var $_matches = array();
     var $alltimepoints = '';
     var $debug_info = false;
     var $projectid = 0;
     var $leagueid = 0;
-    
     /**
      * ranking parameters
      * @var array
@@ -69,8 +67,6 @@ class JoomleagueModelRankingAllTime extends JModel
 
     function __construct()
     {
-        $this->alltimepoints = JRequest::getVar("points", 0);
-        
         $menu = &JMenu::getInstance('site');
         $item = $menu->getActive();
         $params = &$menu->getParams($item->id);
@@ -132,49 +128,116 @@ foreach ($newparams['data'] as $key => $value ) {
             
         }
         
-        
         parent::__construct();
 
     }
-    
-    function getAllTeamsIndexedByPtid($project_ids)
+
+    function getAllTimeParams()
     {
-        $mainframe =& JFactory::getApplication();
-        $result = $this->getAllTeams($project_ids);
-        
-        $count_teams = count($result);
-    $mainframe->enqueueMessage(JText::_('Wir verarbeiten '.$count_teams.' Vereine !'),'');
+        return $this->_params;
+    }
 
-        if (count($result)) {
-            foreach ($result as $r) {
-                $this->teams[$r->team_id] = $r;
-                $this->teams[$r->team_id]->cnt_matches = 0;
-                $this->teams[$r->team_id]->sum_points = $r->points_finally;
-                $this->teams[$r->team_id]->neg_points = $r->neg_points_finally;
+    private function dump_header($text)
+    {
+        echo "<h1>$text</h1>";
+    }
 
-                $this->teams[$r->team_id]->cnt_won_home = 0;
-                $this->teams[$r->team_id]->cnt_draw_home = 0;
-                $this->teams[$r->team_id]->cnt_lost_home = 0;
+    private function dump_variable($description, $variable)
+    {
+        echo "<b>$description</b><pre>" . print_r($variable, true) . "</pre>";
+    }
 
-                $this->teams[$r->team_id]->cnt_won = 0;
-                $this->teams[$r->team_id]->cnt_draw = 0;
-                $this->teams[$r->team_id]->cnt_lost = 0;
 
-                $this->teams[$r->team_id]->sum_team1_result = 0;
-                $this->teams[$r->team_id]->sum_team2_result = 0;
-                $this->teams[$r->team_id]->sum_away_for = 0;
-                $this->teams[$r->team_id]->diff_team_results = 0;
+    function getAllTimePoints()
+    {
+        $mainframe = &JFactory::getApplication();
+        $this->alltimepoints = JRequest::getVar("points", 0);
 
-                $this->teams[$r->team_id]->round = 0;
-                $this->teams[$r->team_id]->rank = 0;
-
-            }
+        if (!$this->alltimepoints) {
+            // retrieve the value of the state variable. If no value is specified,
+            // the specified default value will be returned.
+            // function syntax is getUserState( $key, $default );
+            $this->alltimepoints = $mainframe->getUserState("com_joomleague.alltimetablepoints",
+                '3,1,0');
+        } else {
+            // store the variable that we would like to keep for next time
+            // function syntax is setUserState( $key, $value );
+            $mainframe->setUserState("com_joomleague.alltimetablepoints", $this->
+                alltimepoints);
         }
-       
 
-        return $this->teams;
+        return $this->alltimepoints;
     }
     
+    function getAllMatches($projects)
+    {
+    $query = ' SELECT m.id, '
+		. ' m.projectteam1_id, '
+		. ' m.projectteam2_id, '
+		. ' m.team1_result AS home_score, '
+		. ' m.team2_result AS away_score, '
+		. ' m.team1_bonus AS home_bonus, '
+		. ' m.team2_bonus AS away_bonus, '
+		. ' m.team1_legs AS l1, '
+		. ' m.team2_legs AS l2, '
+		. ' m.match_result_type AS match_result_type, '
+		. ' m.alt_decision as decision, '
+		. ' m.team1_result_decision AS home_score_decision, '
+		. ' m.team2_result_decision AS away_score_decision, '
+			. ' m.team1_result_ot AS home_score_ot, '
+			. ' m.team2_result_ot AS away_score_ot, '
+			. ' m.team1_result_so AS home_score_so, '
+			. ' m.team2_result_so AS away_score_so, '
+		. ' r.id as roundid, m.team_won, r.roundcode '
+		. ' FROM #__joomleague_match m '
+		. ' INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id = pt1.id '
+		. ' INNER JOIN #__joomleague_round AS r ON m.round_id = r.id '
+		. ' WHERE ((m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL) '
+		. ' OR (m.alt_decision=1)) '
+//		. ' AND m.count_result '
+		. ' AND m.published = 1 '
+    . ' AND r.published = 1 '
+		. ' AND pt1.project_id IN ('.$projects.')'
+		//. ' AND m.division_id = '.$division
+		. ' AND (m.cancel IS NULL OR m.cancel = 0) '
+		. ' AND m.projectteam1_id>0 AND m.projectteam2_id>0 ';
+    
+    $db->setQuery($query);
+    $res = $db->loadObjectList();        
+        
+        
+    }    
+
+
+    function getAllProject()
+    {
+        $league = JRequest::getInt("l", 0);
+
+        if (!$league) {
+            $projekt = JRequest::getInt("p", 0);
+            $query = 'select league_id 
+  from #__joomleague_project
+  where id = ' . $projekt . ' order by name ';
+            $this->_db->setQuery($query);
+            $league = $this->_db->loadResult();
+
+        }
+
+        $query = 'select id 
+  from #__joomleague_project
+  where league_id = ' . $league . ' order by name ';
+        $this->_db->setQuery($query);
+        //$result = $this->_db->loadObjectList();
+        $result = $this->_db->loadResultArray();
+        $this->project_ids = implode(",", $result);
+        $this->project_ids_array = $result;
+        return $result;
+
+    }
+
+    /*
+    * get all teams from all projects
+    */
     function getAllTeams($project_ids)
     {
 
@@ -204,390 +267,205 @@ foreach ($newparams['data'] as $key => $value ) {
         $this->_db->setQuery($query);
         $this->_teams = $this->_db->loadObjectList();
 
+        if ($this->debug_info) {
+            /*
+            $this->pane =& JPane::getInstance('sliders');
+            echo $this->pane->startPane('pane');    
+            echo $this->pane->startPanel('modelsfunctiongetAllTeams','modelsfunctiongetAllTeams');      
+            $this->dump_header("models function getAllTeams");
+            $this->dump_variable("this->_teams", $this->_teams);
+            echo $this->pane->endPanel();
+            echo $this->pane->endPane();   
+            */
+        }
+
+
         return $this->_teams;
 
     }
-    
-    function getAllMatches($projects)
+
+    function getAllTeamsIndexedByPtid($project_ids)
     {
-        $mainframe =& JFactory::getApplication();
-    $query = ' SELECT m.id, '
-		. ' m.projectteam1_id, '
-		. ' m.projectteam2_id, '
-		. ' m.team1_result AS home_score, '
-		. ' m.team2_result AS away_score, '
-		. ' m.team1_bonus AS home_bonus, '
-		. ' m.team2_bonus AS away_bonus, '
-		. ' m.team1_legs AS l1, '
-		. ' m.team2_legs AS l2, '
-		. ' m.match_result_type AS match_result_type, '
-		. ' m.alt_decision as decision, '
-		. ' m.team1_result_decision AS home_score_decision, '
-		. ' m.team2_result_decision AS away_score_decision, '
-		. ' m.team1_result_ot AS home_score_ot, '
-		. ' m.team2_result_ot AS away_score_ot, '
-		. ' m.team1_result_so AS home_score_so, '
-		. ' m.team2_result_so AS away_score_so, '
-		. ' t1.id AS team1_id, '
-		. ' t2.id AS team2_id, '
-		. ' r.id as roundid, m.team_won, r.roundcode '
-		. ' FROM #__joomleague_match m '
-		. ' INNER JOIN #__joomleague_project_team AS pt1 ON m.projectteam1_id = pt1.id '
-		. ' INNER JOIN #__joomleague_team t1 ON pt1.team_id = t1.id ' 
-		. ' INNER JOIN #__joomleague_project_team AS pt2 ON m.projectteam2_id = pt2.id '
-		. ' INNER JOIN #__joomleague_team t2 ON pt2.team_id = t2.id ' 
-		. ' INNER JOIN #__joomleague_round AS r ON m.round_id = r.id '
-		. ' WHERE ((m.team1_result IS NOT NULL AND m.team2_result IS NOT NULL) '
-		. ' OR (m.alt_decision=1)) '
-		. ' AND m.published = 1 '
-    . ' AND r.published = 1 '
-		. ' AND pt1.project_id IN ('.$projects.')'
-		. ' AND (m.cancel IS NULL OR m.cancel = 0) '
-		. ' AND m.projectteam1_id>0 AND m.projectteam2_id>0 ';
-    
-    $this->_db->setQuery($query);
-    $res = $this->_db->loadObjectList();        
-    $this->_matches = $res;
-    
-    $count_matches = count($res);
-    $mainframe->enqueueMessage(JText::_('Wir verarbeiten '.$count_matches.' Spiele !'),'');
-           
-    return $res;    
+        $result = $this->getAllTeams($project_ids);
+        //$teams = array();
+
+        /*
+        tl.points_finally
+        tl.neg_points_finally
+        tl.matches_finally
+        tl.won_finally
+        tl.draws_finally
+        tl.lost_finally
+        tl.homegoals_finally
+        tl.guestgoals_finally
+        tl.diffgoals_finally
+        */
+
+        if (count($result)) {
+            foreach ($result as $r) {
+                $this->teams[$r->team_id] = $r;
+                $this->teams[$r->team_id]->cnt_matches = 0;
+                $this->teams[$r->team_id]->sum_points = $r->points_finally;
+                $this->teams[$r->team_id]->neg_points = $r->neg_points_finally;
+
+                $this->teams[$r->team_id]->cnt_won_home = 0;
+                $this->teams[$r->team_id]->cnt_draw_home = 0;
+                $this->teams[$r->team_id]->cnt_lost_home = 0;
+
+                $this->teams[$r->team_id]->cnt_won = 0;
+                $this->teams[$r->team_id]->cnt_draw = 0;
+                $this->teams[$r->team_id]->cnt_lost = 0;
+
+                $this->teams[$r->team_id]->sum_team1_result = 0;
+                $this->teams[$r->team_id]->sum_team2_result = 0;
+                $this->teams[$r->team_id]->sum_away_for = 0;
+                $this->teams[$r->team_id]->diff_team_results = 0;
+
+                $this->teams[$r->team_id]->round = 0;
+                $this->teams[$r->team_id]->rank = 0;
+
+            }
+        }
+
+        /*
+        echo 'models function getAllTeamsIndexedByPtid this->teams<pre>';
+        print_r($this->teams);
+        echo '</pre>';
+        */
+
+        return $this->teams;
     }
-    
-    function getAllTimeRanking()
+
+
+    function getLeagueSeasons()
     {
-    $arr = explode(",",$this->alltimepoints);
-    
-    foreach ((array)$this->_matches as $match)
-		{
-		$resultType = $match->match_result_type;
-		$decision = $match->decision;
-		if ($decision == 0)
-			{
-				$home_score=$match->home_score;
-				$away_score=$match->away_score;
-				$leg1=$match->l1;
-				$leg2=$match->l2;
-			}
-			else
-			{
-				$home_score=$match->home_score_decision;
-				$away_score=$match->away_score_decision;
-				$leg1=0;
-				$leg2=0;
-			}
-            
-		$homeId = $match->team1_id;
-		$awayId = $match->team2_id;
-    $home = &$this->teams[$homeId];
-    $away = &$this->teams[$awayId];
-    
-    $home->cnt_matches++;
-		$away->cnt_matches++;
-    
-    $win_points  = (isset($arr[0])) ? $arr[0] : 3;
-			$draw_points = (isset($arr[1])) ? $arr[1] : 1;
-			$loss_points = (isset($arr[2])) ? $arr[2] : 0;
-    
-    if ( $loss_points )
-    {
-    $shownegpoints = 1;
+        // league_id holen
+        $this->projectid = JRequest::getInt('p', 0);
+        $league_id = JRequest::getInt('l', 0);
+
+        /*
+        $query="SELECT pro.league_id 
+        from #__joomleague_project as pro
+        WHERE pro.id = ".$this->projectid;
+        $this->_db->setQuery($query);
+        $league_id = $this->_db->loadResult();
+        */
+
+        //echo 'league_id -> '.$league_id.'<br>';
+        $query = "SELECT pro.id,pro.name,s.name as seasonname,l.name as leaguename 
+from #__joomleague_project as pro
+inner join #__joomleague_season as s
+on s.id = pro.season_id
+inner join #__joomleague_league as l
+on l.id = pro.league_id  
+WHERE pro.published = 1 
+and pro.league_id=" . $league_id . " order by s.name desc, pro.name asc";
+        $this->_db->setQuery($query);
+        $allseasons = $this->_db->loadObjectList();
+
+        // echo '<pre>';
+        // print_r($allseasons);
+        // echo '</pre><br>';
+
+        return $allseasons;
     }
-    else
+
+    function getLeagueName()
     {
-    $shownegpoints = 0;
+        $this->projectid = JRequest::getInt('p', 0);
+        $this->leagueid = JRequest::getInt('l', 0);
+
+        if ($this->projectid) {
+            $query = "SELECT l.name 
+from #__joomleague_project as pro
+inner join #__joomleague_league as l
+on l.id = pro.league_id 
+WHERE pro.id = " . $this->projectid;
+        }
+
+        if ($this->leagueid) {
+            $query = "SELECT l.name 
+from #__joomleague_league as l
+WHERE l.id = " . $this->leagueid;
+        }
+
+        $this->_db->setQuery($query);
+        $league_name = $this->_db->loadResult();
+
+        return $league_name;
+
     }
-    
-    
-			$home_ot = $match->home_score_ot;
-			$away_ot = $match->away_score_ot;			
-			$home_so = $match->home_score_so;
-			$away_so = $match->away_score_so;
-		
-    if ($decision!=1) {
-				if( $home_score > $away_score )
-				{
-					switch ($resultType) 
-					{
-					case 0: 
-						$home->cnt_won++; 
-						$home->cnt_won_home++; 
-						
-						$away->cnt_lost++; 
-						$away->cnt_lost_away++;	
-						break;
-					case 1: 
-						$home->cnt_wot++; 
-						$home->cnt_wot_home++; 
-						$home->cnt_won++; 
-						$home->cnt_won_home++; 
-						
-						$away->cnt_lot++; 
-						$away->cnt_lot_away++; 
-						//When LOT, LOT=1 but No LOSS Count(Hockey)
-						//$away->cnt_lost++; 
-						//$away->cnt_lost_home++; 						
-						break;
-					case 2: 
-						$home->cnt_wso++; 
-						$home->cnt_wso_home++;
-						$home->cnt_won++; 
-						$home->cnt_won_home++; 
-						
-						$away->cnt_lso++; 
-						$away->cnt_lso_away++; 
-						$away->cnt_lot++; 
-						$away->cnt_lot_away++; 		
-						//When LSO ,LSO=1 and LOT=1 but No LOSS Count (Hockey)
-						//$away->cnt_lost++; 
-						//$away->cnt_lost_home++; 							
-						break;
-					}				
-					
-					$home->sum_points += $win_points; //home_score can't be null...						
-					$away->sum_points += ( $decision == 0 || isset($away_score) ? $loss_points : 0);
 
-					if ( $shownegpoints == 1 )
-					{
-						$home->neg_points += $loss_points;
-						$away->neg_points += ( $decision == 0 || isset($away_score) ? $win_points : 0);
-					}		
-				}
-				else if ( $home_score == $away_score )
-				{
-					switch ($resultType) 
-					{
-					case 0: 				
-						$home->cnt_draw++;
-						$home->cnt_draw_home++;
-
-						$away->cnt_draw++;
-						$away->cnt_draw_away++;
-					break;	
-					case 1: 	
-						if ( $home_ot > $away_ot)
-						{
-							$home->cnt_won++;
-							$home->cnt_won_home++;
-							$home->cnt_wot++; 
-							$home->cnt_wot_home++;							
-
-							$away->cnt_lost++;
-							$away->cnt_lost_away++;
-							$away->cnt_lot++; 
-							$away->cnt_lot_away++;							
-						}
-						if ( $home_ot < $away_ot)
-						{
-							$away->cnt_won++;
-							$away->cnt_won_home++;
-							$away->cnt_wot++; 
-							$away->cnt_wot_home++;							
-
-							$home->cnt_lost++;
-							$home->cnt_lost_away++;
-							$home->cnt_lot++; 
-							$home->cnt_lot_away++;							
-						}						
-					break;						
-					case 2: 	
-						if ( $home_so > $away_so)
-						{
-							$home->cnt_won++;
-							$home->cnt_won_home++;
-							$home->cnt_wso++; 
-							$home->cnt_wso_home++;							
-
-							$away->cnt_lost++;
-							$away->cnt_lost_away++;
-							$away->cnt_lso++; 
-							$away->cnt_lso_away++;							
-						}
-						if ( $home_so < $away_so)
-						{
-							$away->cnt_won++;
-							$away->cnt_won_home++;
-							$away->cnt_wso++; 
-							$away->cnt_wso_home++;							
-
-							$home->cnt_lost++;
-							$home->cnt_lost_away++;
-							$home->cnt_lso++; 
-							$home->cnt_lso_away++;							
-						}						
-					break;					
-					}
-					$home->sum_points += ( $decision == 0 || isset($home_score) ? $draw_points : 0);
-					$away->sum_points += ( $decision == 0 || isset($away_score) ? $draw_points : 0);
-
-					if ($shownegpoints==1)
-					{
-						$home->neg_points += ( $decision == 0 || isset($home_score) ? ($win_points-$draw_points): 0); // bug fixed, timoline 250709
-						$away->neg_points += ( $decision == 0 || isset($away_score) ? ($win_points-$draw_points) : 0);// ex. for soccer, your loss = 2 points not 1 point
-					}
-				}
-				else if ( $home_score < $away_score )
-				{
-					switch ($resultType) {
-					case 0:   
-						$home->cnt_lost++; 
-						$home->cnt_lost_home++;
-						
-						$away->cnt_won++; 
-						$away->cnt_won_away++; 
-						break;
-					case 1:   
-						$home->cnt_lot++; 
-						$home->cnt_lot_home++; 
-						//When LOT, LOT=1 but No LOSS Count(Hockey)
-						//$home->cnt_lost++; 
-						//$home->cnt_lost_home++; 
-						
-						$away->cnt_wot++; 
-						$away->cnt_wot_away++; 
-						$away->cnt_won++; 
-						$away->cnt_won_away++; 						
-						break;
-					case 2:   
-						$home->cnt_lso++; 
-						$home->cnt_lso_home++; 
-						$home->cnt_lot++; 
-						$home->cnt_lot_home++; 
-						//When LSO ,LSO=1 and LOT=1 but No LOSS Count (Hockey)
-						//$home->cnt_lost++; 
-						//$home->cnt_lost_home++; 	
-						
-						$away->cnt_wso++; 
-						$away->cnt_wso_away++;
-						$away->cnt_won++; 
-						$away->cnt_won_away++; 						
-						break;
-					}					
-									
-					$home->sum_points += ( $decision == 0 || isset($home_score) ? $loss_points : 0);			
-					$away->sum_points += $win_points;
-
-					if ( $shownegpoints==1)
-					{
-						$home->neg_points += ( $decision == 0 || isset($home_score) ? $win_points : 0);
-						$away->neg_points += $loss_points;
-					}
-				}
-			} else {
-				if ($shownegpoints==1)
-				{
-					$home->neg_points += $loss_points;
-					$away->neg_points += $loss_points;
-				}
-				//Final Win/Loss Decision
-				if($match->team_won==0) {
-					$home->cnt_lost++;
-					$away->cnt_lost++; 
-				//record a won on the home team
-				} else if($match->team_won==1) {
-					$home->cnt_won++;
-					$away->cnt_lost++;
-					$home->sum_points += $win_points;
-					$away->cnt_lost_home++;					
-				//record a won on the away team
-				} else if($match->team_won==2) {
-					$away->cnt_won++;
-					$home->cnt_lost++;
-					$away->sum_points += $win_points;
-					$home->cnt_lost_home++;
-					//record a loss on both teams
-				} else if($match->team_won==3) {
-					$home->cnt_lost++;
-					$away->cnt_lost++;
-					$away->cnt_lost_home++;
-					$home->cnt_lost_home++;
-					//record a won on both teams
-				} else if($match->team_won==4) {
-					$home->cnt_won++;
-					$away->cnt_won++;
-					$home->sum_points += $win_points;
-					$away->sum_points += $win_points;
-						
-				}
-			}
-			/*winpoints*/
-			$home->winpoints=$win_points;
-			
-			/* bonus points */
-			$home->sum_points += $match->home_bonus;
-			$home->bonus_points += $match->home_bonus;
-
-			$away->sum_points += $match->away_bonus;
-			$away->bonus_points += $match->away_bonus;
-
-			/* goals for/against/diff */
-			$home->sum_team1_result += $home_score;
-			$home->sum_team2_result += $away_score;
-			$home->diff_team_results = $home->sum_team1_result - $home->sum_team2_result;
-			$home->sum_team1_legs   += $leg1;
-			$home->sum_team2_legs   += $leg2;
-			$home->diff_team_legs    = $home->sum_team1_legs - $home->sum_team2_legs;
-
-			$away->sum_team1_result += $away_score;
-			$away->sum_team2_result += $home_score;
-			$away->diff_team_results = $away->sum_team1_result - $away->sum_team2_result;
-			$away->sum_team1_legs   += $leg2;
-			$away->sum_team2_legs   += $leg1;
-			$away->diff_team_legs    = $away->sum_team1_legs - $away->sum_team2_legs;
-
-			$away->sum_away_for += $away_score;	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    }
-    
-    return $this->teams;
-     
-    }    
-    
-    function getAllProject()
+    function prepareRankingAllTime($ranking)
     {
-        $mainframe =& JFactory::getApplication();
-        $league = JRequest::getInt("l", 0);
 
-        if (!$league) {
-            $projekt = JRequest::getInt("p", 0);
-            $query = 'select league_id 
-  from #__joomleague_project
-  where id = ' . $projekt . ' order by name ';
-            $this->_db->setQuery($query);
-            $league = $this->_db->loadResult();
+        if ($this->debug_info) {
+            $this->dump_header("models function prepareRankingAllTime");
+            $this->dump_variable("ranking", $ranking);
+            $this->dump_header("models function prepareRankingAllTime");
+            $this->dump_variable("this->alltimepoints", $this->alltimepoints);
+        }
+
+
+        $arr = explode(",", $this->alltimepoints);
+        $win_points = (isset($arr[0])) ? $arr[0] : 0;
+        $draw_points = (isset($arr[1])) ? $arr[1] : 0;
+        $loss_points = (isset($arr[2])) ? $arr[2] : 0;
+
+        if (is_array($ranking)) {
+
+            foreach ($ranking as $key => $key2) {
+
+                if ($this->debug_info) {
+                    $this->dump_header("models function prepareRankingAllTime");
+                    $this->dump_variable("key2", $key2);
+                }
+
+                foreach ($key2 as $value) {
+                    $team_id = $value->_teamid;
+
+                    $this->teams[$team_id]->cnt_matches += $value->cnt_matches;
+
+                    if (!$value->cnt_won && !$value->cnt_draw && !$value->cnt_lost) {
+                        if ($win_points == 3) {
+                            $this->teams[$team_id]->sum_points += ($value->cnt_won * $win_points) + ($value->
+                                cnt_draw * $draw_points);
+                            $this->teams[$team_id]->neg_points += 0;
+                        }
+
+                        if ($win_points == 2) {
+                            $this->teams[$team_id]->sum_points += ($value->cnt_won * $win_points) + ($value->
+                                cnt_draw * $draw_points);
+                            $this->teams[$team_id]->neg_points += ($value->cnt_lost * $win_points) + ($value->
+                                cnt_draw * $draw_points);
+                        }
+
+                    } else {
+                        $this->teams[$team_id]->sum_points += $value->sum_points;
+                        $this->teams[$team_id]->neg_points += $value->neg_points;
+                    }
+
+                    $this->teams[$team_id]->cnt_won_home += $value->cnt_won_home;
+                    $this->teams[$team_id]->cnt_draw_home += $value->cnt_draw_home;
+                    $this->teams[$team_id]->cnt_lost_home += $value->cnt_lost_home;
+
+                    $this->teams[$team_id]->cnt_won += $value->cnt_won;
+                    $this->teams[$team_id]->cnt_draw += $value->cnt_draw;
+                    $this->teams[$team_id]->cnt_lost += $value->cnt_lost;
+
+                    $this->teams[$team_id]->sum_team1_result += $value->sum_team1_result;
+                    $this->teams[$team_id]->sum_team2_result += $value->sum_team2_result;
+                    $this->teams[$team_id]->sum_away_for += $value->sum_away_for;
+                    $this->teams[$team_id]->diff_team_results += $value->diff_team_results;
+
+                }
+
+            }
 
         }
 
-        $query = 'select id 
-  from #__joomleague_project
-  where league_id = ' . $league . ' order by name ';
-        $this->_db->setQuery($query);
-        //$result = $this->_db->loadObjectList();
-        $result = $this->_db->loadResultArray();
-        $this->project_ids = implode(",", $result);
-        $this->project_ids_array = $result;
-        
-        $count_project = count($result);
-    $mainframe->enqueueMessage(JText::_('Wir verarbeiten '.$count_project.' Projekte/Saisons !'),'');
-    
-        return $result;
-
     }
 
-    function getAllTimeParams()
-    {
-        return $this->_params;
-    }
-    
     function getCurrentRanking()
     {
         $newranking = array();
@@ -659,169 +537,6 @@ foreach ($newparams['data'] as $key => $value ) {
         // return $this->teams;
         return $newranking;
 
-    }
-    
-    
-    
-    
-    function _sortRanking(&$ranking)
-    {
-
-
-        $order = JRequest::getVar('order', '');
-        $order_dir = JRequest::getVar('dir', 'DESC');
-
-        if (!$order) {
-            $order_dir = 'DESC';
-            $sortarray = array();
-            
-
-            foreach ($this->_getRankingCriteria() as $c) {
-
-                if ($this->debug_info) {
-                    $this->dump_header("models function _sortRanking");
-                    $this->dump_variable("c", $c);
-                }
-
-                switch ($c) {
-                    case '_cmpPoints':
-                        $sortarray[sum_points] = SORT_DESC;
-                        break;
-                    case '_cmpPLAYED':
-                        $sortarray[cnt_matches] = SORT_DESC;
-                        break;
-                    case '_cmpDiff':
-                        $sortarray[diff_team_results] = SORT_DESC;
-                        break;
-                    case '_cmpFor':
-                        $sortarray[sum_team1_result] = SORT_DESC;
-                        break;
-                    case '_cmpPlayedasc':
-                        $sortarray[cnt_matches] = SORT_ASC;
-                        break;
-                }
-                //uasort( $ranking, array("JoomleagueModelRankingalltime",$c ));
-
-            }
-
-            if ($this->debug_info) {
-                $this->dump_header("models function _sortRanking");
-                $this->dump_variable("sortarray", $sortarray);
-            }
-
-            foreach ($ranking as $row) {
-                $arr2[$row->_teamid] = JArrayHelper::fromObject($row);
-            }
-            //$arr2 = $this->array_msort($arr2, array('sum_points'=>SORT_DESC,  'diff_team_results'=>SORT_DESC ) );
-            //$sortarray2 = implode (",", $sortarray);
-            //$arr2 = $this->array_msort($arr2, array($sortarray2) );
-            $arr2 = $this->array_msort($arr2, $sortarray);
-
-            if ($this->debug_info) {
-                $this->dump_header("models function _sortRanking");
-                $this->dump_variable("sortarray2", $sortarray2);
-            }
-
-            unset($ranking);
-
-            foreach ($arr2 as $key => $row) {
-                $ranking2[$key] = JArrayHelper::toObject($row, 'JLGRankingTeam');
-                $ranking[$key] = JArrayHelper::toObject($row, 'JLGRankingTeam');
-            }
-
-            if ($this->debug_info) {
-
-                $this->dump_header("models function _sortRanking");
-                $this->dump_variable("arr2", $arr2);
-
-
-                $this->dump_header("models function _sortRanking");
-                $this->dump_variable("ranking2", $ranking2);
-
-                $this->dump_header("models function _sortRanking");
-                $this->dump_variable("ranking", $ranking);
-
-
-            }
-
-
-        } else //     if ( !$order_dir)
-        {
-            //     $order_dir = 'DESC';
-            //     }
-            switch ($order) {
-                case 'played':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "playedCmp"));
-                    break;
-                case 'name':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "teamNameCmp"));
-                    break;
-                case 'rank':
-                    break;
-                case 'won':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "wonCmp"));
-                    break;
-                case 'draw':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "drawCmp"));
-                    break;
-                case 'loss':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "lossCmp"));
-                    break;
-                case 'winpct':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "winpctCmp"));
-                    break;
-                case 'quot':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "quotCmp"));
-                    break;
-                case 'goalsp':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalspCmp"));
-                    break;
-                case 'goalsfor':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalsforCmp"));
-                    break;
-                case 'goalsagainst':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalsagainstCmp"));
-                    break;
-                case 'legsdiff':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "legsdiffCmp"));
-                    break;
-                case 'legsratio':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "legsratioCmp"));
-                    break;
-                case 'diff':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "diffCmp"));
-                    break;
-                case 'points':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "pointsCmp"));
-                    break;
-                case 'start':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "startCmp"));
-                    break;
-                case 'bonus':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "bonusCmp"));
-                    break;
-                case 'negpoints':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "negpointsCmp"));
-                    break;
-                case 'pointsratio':
-                    uasort($ranking, array("JoomleagueModelRankingalltime", "pointsratioCmp"));
-                    break;
-
-                default:
-                    if (method_exists($this, $order . 'Cmp')) {
-                        uasort($ranking, array($this, $order . 'Cmp'));
-                    }
-                    break;
-            }
-
-            if ($order_dir == 'DESC') {
-                $ranking = array_reverse($ranking, true);
-            }
-
-        }
-
-        return $ranking;
-        
     }
 
     function playedCmp(&$a, &$b)
@@ -969,7 +684,231 @@ foreach ($newparams['data'] as $key => $value ) {
 
     }
 
-function _getRankingCriteria()
+
+    function _sortRanking(&$ranking)
+    {
+
+        // 	echo '_sortRanking vor der sortierung ranking <pre>';
+        // 	print_r($ranking);
+        // 	echo '</pre><br>';
+
+        $order = JRequest::getVar('order', '');
+        $order_dir = JRequest::getVar('dir', 'DESC');
+
+        if (!$order) {
+            $order_dir = 'DESC';
+            $sortarray = array();
+            /*
+            [25] => JLGRankingTeam Object
+            (
+            [_use_finally] => 0
+            [_points_finally] => 0
+            [_neg_points_finally] => 0
+            [_matches_finally] => 0
+            [_won_finally] => 0
+            [_draws_finally] => 0
+            [_lost_finally] => 0
+            [_homegoals_finally] => 0
+            [_guestgoals_finally] => 0
+            [_diffgoals_finally] => 0
+            [_is_in_score] => 1
+            [_ptid] => 25
+            [_teamid] => 19
+            [_divisionid] => 0
+            [_startpoints] => 0
+            [_name] => SG Langenhorn/Enge IV
+            [cnt_matches] => 3
+            [cnt_won] => 2
+            [cnt_draw] => 1
+            [cnt_lost] => 0
+            [cnt_won_home] => 2
+            [cnt_draw_home] => 0
+            [cnt_lost_home] => 0
+            [cnt_won_away] => 0
+            [cnt_draw_away] => 1
+            [cnt_lost_away] => 0
+            [cnt_wot] => 0
+            [cnt_wso] => 0
+            [cnt_lot] => 0
+            [cnt_lso] => 0
+            [cnt_wot_home] => 0
+            [cnt_wso_home] => 0
+            [cnt_lot_home] => 0
+            [cnt_lso_home] => 0
+            [cnt_wot_away] => 0
+            [cnt_wso_away] => 0
+            [cnt_lot_away] => 0
+            [cnt_lso_away] => 0
+            [sum_points] => 7
+            [neg_points] => 2
+            [bonus_points] => 0
+            [sum_team1_result] => 10
+            [sum_team2_result] => 2
+            [sum_away_for] => 2
+            [sum_team1_legs] => 0
+            [sum_team2_legs] => 0
+            [diff_team_results] => 8
+            [diff_team_legs] => 0
+            [round] => 0
+            [rank] => 1
+            [winpoints] => 3
+            JL_POINTS, JL_PLAYEDASC, JL_DIFF, JL_FOR
+            */
+
+            foreach ($this->_getRankingCriteria() as $c) {
+
+                if ($this->debug_info) {
+                    $this->dump_header("models function _sortRanking");
+                    $this->dump_variable("c", $c);
+                }
+
+                switch ($c) {
+                    case '_cmpPoints':
+                        $sortarray[sum_points] = SORT_DESC;
+                        break;
+                    case '_cmpPLAYED':
+                        $sortarray[cnt_matches] = SORT_DESC;
+                        break;
+                    case '_cmpDiff':
+                        $sortarray[diff_team_results] = SORT_DESC;
+                        break;
+                    case '_cmpFor':
+                        $sortarray[sum_team1_result] = SORT_DESC;
+                        break;
+                    case '_cmpPlayedasc':
+                        $sortarray[cnt_matches] = SORT_ASC;
+                        break;
+                }
+                //uasort( $ranking, array("JoomleagueModelRankingalltime",$c ));
+
+            }
+
+            if ($this->debug_info) {
+                $this->dump_header("models function _sortRanking");
+                $this->dump_variable("sortarray", $sortarray);
+            }
+
+            foreach ($ranking as $row) {
+                $arr2[$row->_teamid] = JArrayHelper::fromObject($row);
+            }
+            //$arr2 = $this->array_msort($arr2, array('sum_points'=>SORT_DESC,  'diff_team_results'=>SORT_DESC ) );
+            //$sortarray2 = implode (",", $sortarray);
+            //$arr2 = $this->array_msort($arr2, array($sortarray2) );
+            $arr2 = $this->array_msort($arr2, $sortarray);
+
+            if ($this->debug_info) {
+                $this->dump_header("models function _sortRanking");
+                $this->dump_variable("sortarray2", $sortarray2);
+            }
+
+            unset($ranking);
+
+            foreach ($arr2 as $key => $row) {
+                $ranking2[$key] = JArrayHelper::toObject($row, 'JLGRankingTeam');
+                $ranking[$key] = JArrayHelper::toObject($row, 'JLGRankingTeam');
+            }
+
+            if ($this->debug_info) {
+
+                $this->dump_header("models function _sortRanking");
+                $this->dump_variable("arr2", $arr2);
+
+
+                $this->dump_header("models function _sortRanking");
+                $this->dump_variable("ranking2", $ranking2);
+
+                $this->dump_header("models function _sortRanking");
+                $this->dump_variable("ranking", $ranking);
+
+
+            }
+
+
+        } else //     if ( !$order_dir)
+        {
+            //     $order_dir = 'DESC';
+            //     }
+            switch ($order) {
+                case 'played':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "playedCmp"));
+                    break;
+                case 'name':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "teamNameCmp"));
+                    break;
+                case 'rank':
+                    break;
+                case 'won':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "wonCmp"));
+                    break;
+                case 'draw':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "drawCmp"));
+                    break;
+                case 'loss':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "lossCmp"));
+                    break;
+                case 'winpct':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "winpctCmp"));
+                    break;
+                case 'quot':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "quotCmp"));
+                    break;
+                case 'goalsp':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalspCmp"));
+                    break;
+                case 'goalsfor':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalsforCmp"));
+                    break;
+                case 'goalsagainst':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "goalsagainstCmp"));
+                    break;
+                case 'legsdiff':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "legsdiffCmp"));
+                    break;
+                case 'legsratio':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "legsratioCmp"));
+                    break;
+                case 'diff':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "diffCmp"));
+                    break;
+                case 'points':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "pointsCmp"));
+                    break;
+                case 'start':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "startCmp"));
+                    break;
+                case 'bonus':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "bonusCmp"));
+                    break;
+                case 'negpoints':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "negpointsCmp"));
+                    break;
+                case 'pointsratio':
+                    uasort($ranking, array("JoomleagueModelRankingalltime", "pointsratioCmp"));
+                    break;
+
+                default:
+                    if (method_exists($this, $order . 'Cmp')) {
+                        uasort($ranking, array($this, $order . 'Cmp'));
+                    }
+                    break;
+            }
+
+            if ($order_dir == 'DESC') {
+                $ranking = array_reverse($ranking, true);
+            }
+
+        }
+
+
+        // 	echo '_sortRanking nach der sortierung ranking <pre>';
+        // 	print_r($ranking);
+        // 	echo '</pre><br>';
+
+        return $ranking;
+        //return true;
+    }
+
+    function _getRankingCriteria()
     {
 
         if (empty($this->_criteria)) {
@@ -998,9 +937,9 @@ function _getRankingCriteria()
 
         return $this->_criteria;
     }
-    
-    
-/*****************************************************************************
+
+
+    /*****************************************************************************
     *
     * Compare functions (callbacks for uasort)
     *
@@ -1303,8 +1242,8 @@ function _getRankingCriteria()
         $res = -($a->cnt_wso - $b->cnt_wso);
         return $res;
     }
-    
-    
+
+
 }
 
 /**
@@ -1623,6 +1562,5 @@ class JLGRankingalltimeTeam
 
 
 }
-
 
 ?>

@@ -171,6 +171,10 @@
 			<option value="2">JL_FES_RANKING_PARAM_OPTION2_SHOW_CLUB_LOGO</option>
 		</field>
 
+    <field	name="team_name_format" type="teamnameformat" default="2"
+				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_TYPE_NAME"
+				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_TYPE_NAME">
+				</field>
 		<field 	name="names" type="list" default="name" 
 				label="JL_FES_RANKING_PARAM_LABEL_TYPE_NAME" 
 				description="JL_FES_RANKING_PARAM_DESCR_TYPE_NAME">
