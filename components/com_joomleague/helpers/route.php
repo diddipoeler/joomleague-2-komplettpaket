@@ -86,7 +86,10 @@ class JoomleagueHelperRoute
 				$params["view"] = 'club'; 
 			}
 			$query = JoomleagueHelperRoute::buildQuery( $params );
+            // diddipoeler
+            // nicht im backend, sondern im frontend
 			$link = JRoute::_( "administrator/index.php?" . $query, false );
+            //$link = JRoute::_( "index.php?" . $query, false );
 		} else {
 			$query = JoomleagueHelperRoute::buildQuery( $params );
 			$link = JRoute::_( "index.php?" . $query, false );

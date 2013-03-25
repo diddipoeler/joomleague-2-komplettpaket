@@ -16,7 +16,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 jimport('joomla.application.component.model');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
-require_once('item.php');
 
 /**
  * Tracks Component Imageselect Model
@@ -43,11 +42,12 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 	{
 		parent::__construct();
 
+		$option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 
-		$limit		= $mainframe->getUserStateFromRequest( 'com_joomleague.imageselect'.'limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
-		$limitstart = $mainframe->getUserStateFromRequest( 'com_joomleague.imageselect'.'limitstart', 'limitstart', 0, 'int' );
-		$search 	= $mainframe->getUserStateFromRequest( 'com_joomleague.search', 'search', '', 'string' );
+		$limit		= $mainframe->getUserStateFromRequest( $option.'.imageselect'.'limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
+		$limitstart = $mainframe->getUserStateFromRequest( $option.'.imageselect'.'limitstart', 'limitstart', 0, 'int' );
+		$search 	= $mainframe->getUserStateFromRequest( $option.'.search', 'search', '', 'string' );
 		$search 	= trim(JString::strtolower( $search ) );
 
 		$this->setState('limit', $limit);
@@ -135,7 +135,7 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 
 		// Initialize variables
 		//$basePath = JPATH_SITE.DS.'media'.DS.'com_joomleague'.DS.$folder;
-        $basePath = JPATH_SITE.DS.'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
+		$basePath = JPATH_SITE.DS.'images'.DS.'com_joomleague'.DS.'database'.DS.$folder;
 
 		$images 	= array ();
 
@@ -243,8 +243,8 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 			}
 		}
 	}
-    
-    /**
+	
+	/**
 	 * Method to get the record form.
 	 *
 	 * @param	array	$data		Data for the form.
@@ -263,8 +263,8 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 		}
 		return $form;
 	}
-    
-    /**
+	
+	/**
 	 * Method to get the data that should be injected in the form.
 	 *
 	 * @return	mixed	The data for the form.
@@ -280,8 +280,7 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 		}
 		return $data;
 	}
-    
-    /**
+	/**
 	 * Returns a Table object, always creating it
 	 *
 	 * @param	type	The table type to instantiate
@@ -294,7 +293,5 @@ class JoomleagueModelImagehandler extends JoomleagueModelItem
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
-    
-    
 }
 ?>
