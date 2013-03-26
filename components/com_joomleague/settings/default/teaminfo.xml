@@ -66,10 +66,10 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
-		<field 	name="show_picture" type="list" default="team_picture"
+		<field 	name="show_picture" type="list" default="projectteam_picture"
 				label="COM_JOOMLEAGUE_FES_TEAMINFO_SHOW_PICTURE"
 				description="COM_JOOMLEAGUE_FES_TEAMINFO_SHOW_PICTURE_DESC">
-			<option value="team_picture">COM_JOOMLEAGUE_FES_TEAMINFO_TEAM_PICTURE</option>
+			<option value="picture">COM_JOOMLEAGUE_FES_TEAMINFO_TEAM_PICTURE</option>
 			<option value="projectteam_picture">COM_JOOMLEAGUE_FES_TEAMINFO_PROJECTTEAM_PICTURE</option>
 			<option value="logo_small">COM_JOOMLEAGUE_FES_TEAMINFO_CLUB_LOGO_SMALL</option>
 			<option value="logo_middle">COM_JOOMLEAGUE_FES_TEAMINFO_CLUB_LOGO_MIDDLE</option>
