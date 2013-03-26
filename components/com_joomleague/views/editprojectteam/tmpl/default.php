@@ -9,10 +9,14 @@ JFactory::getLanguage()->load('com_joomleague', JPATH_ADMINISTRATOR);
 ?>
 <!-- import the functions to move the events between selection lists	-->
 <?php
+
+/*
 $version = urlencode(JoomleagueHelper::getVersion());
 echo JHTML::script('JL_eventsediting.js?v='.$version,'administrator/components/com_joomleague/assets/js/');
+*/
+
 ?>
-<form action="index.php" method="post" id="adminForm">
+<form name="adminForm" action="index.php" method="post" id="adminForm">
 <?php
 		//save and close 
 		$close = JRequest::getInt('close',0);
@@ -26,7 +30,7 @@ echo JHTML::script('JL_eventsediting.js?v='.$version,'administrator/components/c
 		}
 		?>
         
-	<div class="col50">
+	
     <div class="fltrt">
 					<button type="button" onclick="Joomla.submitform('editprojectteam.save');">
 						<?php echo JText::_('JAPPLY');?></button>
@@ -57,10 +61,11 @@ echo JHTML::_('tabs.end');
 		<div class="clr"></div>
 		<input type="hidden" name="eventschanges_check"	value="0"	id="eventschanges_check" />
 		<input type="hidden" name="option"				value="com_joomleague" />
-		<input type="hidden" name="ptid"				value="<?php echo $this->project_team->id; ?>" />
-		<input type="hidden" name="project_id"			value="<?php echo $this->projectws->id; ?>" />
+		<input type="hidden" name="ptid[]"				value="<?php echo $this->projectteamid; ?>" />
+		<input type="hidden" name="p[]"			value="<?php echo $this->project_id; ?>" />
+        <input type="hidden" name="tid[]"			value="<?php echo $this->team_id; ?>" />
 		<input type="hidden" name="task"				value="" id='task'/>
-	</div>
+	
 	<?php echo JHTML::_('form.token'); ?>
 
 </form>

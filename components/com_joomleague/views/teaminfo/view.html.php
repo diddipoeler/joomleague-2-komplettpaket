@@ -27,6 +27,7 @@ class JoomleagueViewTeamInfo extends JLGView
 			$this->assignRef( 'seasons', $seasons );
 			$this->assignRef('showediticon', $isEditor);
 			$this->assignRef('projectteamid', $model->projectteamid);
+            $this->assignRef('teamid', $model->teamid);
       
       if ( $this->team->merge_clubs )
       {

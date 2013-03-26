@@ -28,6 +28,7 @@ class JoomleagueViewEditProjectteam extends JLGView
 		$option 	= JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 		$project_id = JRequest::getInt( 'p', 0 );
+        $team_id = JRequest::getInt( 'tid', 0 );
 		$uri 		= JFactory::getURI();
 		$user 		= JFactory::getUser();
 		$model		= $this->getModel();
@@ -106,6 +107,9 @@ class JoomleagueViewEditProjectteam extends JLGView
 		$this->assignRef('lists',			$lists);
 		$this->assignRef('project_team',	$project_team);
 		$this->assignRef('trainingData',	$trainingData);
+        
+        $this->assignRef('project_id',	$project_id);
+        $this->assignRef('team_id',	$team_id);
         
         $this->assignRef('projectteamid',	$project_team->id);
         $this->assignRef('project_team_name',	$model->projectteamname);

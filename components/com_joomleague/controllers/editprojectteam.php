@@ -83,10 +83,26 @@ public function getModel($name = '', $prefix = '', $config = array('ignore_reque
 		$mainframe = JFactory::getApplication();
     // Check for request forgeries
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
-		$msg='';
+		$msg = '';
+        $post = JRequest::get('post');
+        $ptid = JRequest::getVar('ptid',array(0),'post','array');
+        $project_id = JRequest::getVar('p',array(0),'post','array');
+        $team_id = JRequest::getVar('tid',array(0),'post','array');
+		$post['id'] = (int) $ptid[0];
+        $model = $this->getModel('projectteam');
 		
+        if ($model->store($post))
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_CTRL_SAVED');
+            $type='message';
+		}
+		else
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_CTRL_ERROR_SAVE').$model->getError();
+            $type='error';
+		}
         
-        $this->setRedirect('index.php?option=com_joomleague&close='.JRequest::getString('close', 0).'&tmpl=component&view=editprojectteam&pid='.$post['id'],$msg,$type);
+        $this->setRedirect('index.php?option=com_joomleague&close='.JRequest::getString('close', 0).'&tmpl=component&view=editprojectteam&pid='.(int) $ptid[0].'&p='.(int) $project_id[0].'&tid='.(int) $team_id[0],$msg,$type);
         
 	}
 
