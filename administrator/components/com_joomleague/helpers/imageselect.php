@@ -49,7 +49,7 @@ var $_foldertype = '';
         		$(fieldid).value = 'images/com_joomleague/database/" . ImageSelect::getfolder( $type ) . "/'+imagename;
       		}
 			$('a_' + field + '_name').fireEvent('change');
-			window.top.setTimeout('window.parent.SqueezeBox.close()', 100);
+			//window.top.setTimeout('window.parent.SqueezeBox.close()', 100);
 		}
 		function reset_" . $funcname . "()
 		{
@@ -116,14 +116,14 @@ var $_foldertype = '';
 
 		$sizelimit	= $params->get( 'image_max_size', 120 )*1024; //size limit in kb
 		$imagesize	= $file['size'];
-
+/*
 		//check if the upload is an image...getimagesize will return false if not
 		if ( !getimagesize( $file['tmp_name'] ) )
 		{
 			JError::raiseWarning( 100, JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_UPLOAD_FAILED' ) . ': ' . htmlspecialchars($file['name'], ENT_COMPAT, 'UTF-8' ) );
 			return false;
 		}
-
+*/
 		//check if the imagefiletype is valid
 		$fileext	= JFile::getExt($file['name']);
 

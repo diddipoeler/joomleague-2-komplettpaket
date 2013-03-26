@@ -67,6 +67,11 @@ class JoomLeagueControllerImagehandler extends JoomleagueController
 		//set the target directory
 		//$base_Dir = JPATH_SITE . DS . 'media' . DS . 'com_joomleague' . DS . $folder . DS;
 		$base_Dir = JPATH_SITE . DS . 'images' . DS . 'com_joomleague' . DS .'database'.DS. $folder . DS;
+        
+        $mainframe->enqueueMessage(JText::_($type),'');
+        $mainframe->enqueueMessage(JText::_($folder),'');
+        $mainframe->enqueueMessage(JText::_($base_Dir),'');
+        
 
     //do we have an imagelink?
     if ( !empty( $linkaddress ) )
@@ -94,7 +99,7 @@ echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_FAILED
 else
 {
 //echo "<script> alert('" . JText::_( 'COPY COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
-echo "<script>  alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_COMPLETE' ) . "');window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+echo "<script>  window.parent.selectImage_".$type."('$filename', '$filename','$field');window.parent.SqueezeBox.close(); </script>\n";
 //$mainframe->close();
 }
 
@@ -104,7 +109,7 @@ echo "<script>  alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_COM
 		//do we have an upload?
 		if ( empty( $file['name'] ) )
 		{
-			echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_IMAGE_EMPTY' )."');  </script>\n";
+			echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_IMAGE_EMPTY' )."');window.parent.SqueezeBox.close();  </script>\n";
 			//$mainframe->close();
 		}
 
@@ -123,7 +128,7 @@ echo "<script>  alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_COM
 		//upload the image
 		if ( !JFile::upload( $file['tmp_name'], $filepath ) )
 		{
-			echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_FAILED' )."');  </script>\n";
+			echo "<script> alert('".JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_FAILED' )."');window.parent.SqueezeBox.close();  </script>\n";
 			//$mainframe->close();
 
 		}
@@ -131,7 +136,7 @@ echo "<script>  alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_COPY_COM
 		{
 //			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE'.'-'.$folder.'-'.$type.'-'.$filename.'-'.$field ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
 //			echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.history.go(-1); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
-      echo "<script> alert('" . JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_CTRL_UPLOAD_COMPLETE' ) . "'); window.parent.selectImage_".$type."('$filename', '$filename','$field'); </script>\n";
+      echo "<script>  window.parent.selectImage_".$type."('$filename', '$filename','$field');window.parent.SqueezeBox.close(); </script>\n";
 			//$mainframe->close();
 		}
 
