@@ -43,7 +43,7 @@ if (!$commentsDisabled) {
 	$comments = '';
 
 	// get joomleague comments plugin params
-	$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+	$plugin	= & JPluginHelper::getPlugin('content', 'joomleague_comments');
 	if (is_object($plugin)) {
 		$pluginParams = new JParameter($plugin->params);
 	}
