@@ -10,6 +10,7 @@ $nbcols = 2;
 if ( $this->overallconfig['show_project_sporttype_picture'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_kunena_link'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_picture'] ) { $nbcols++; }
+if ( $this->overallconfig['show_project_staffel_id'] ) { $nbcols++; }
 if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 {
 	?>
@@ -77,6 +78,19 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 						</td>
 					<?php	
 			    	}
+			    	
+			    	if ( $this->overallconfig['show_project_staffel_id'] == 1 )
+					{
+						?>
+				    	<td>
+						<?php
+						//echo $this->project->staffel_id;
+						echo JText::sprintf('COM_JOOMLEAGUE_PROJECT_INFO_STAFFEL_ID','<i>'.$this->project->staffel_id.'</i>');
+						?>
+						</td>
+					<?php	
+			    	}
+			    	
 			    	?>
 					<td class="buttonheading" align="right">
 					<?php

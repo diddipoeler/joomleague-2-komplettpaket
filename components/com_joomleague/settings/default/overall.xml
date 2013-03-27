@@ -27,6 +27,13 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
     
+    <field name="show_project_staffel_id" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_STAFFEL_ID"
+			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_STAFFEL_ID">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
     <field name="show_project_sporttype_picture" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_PROJECT_SPORTTYPE_PICTURE"
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_PROJECT_SPORTTYPE_PICTURE">
