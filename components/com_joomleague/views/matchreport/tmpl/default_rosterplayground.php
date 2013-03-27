@@ -200,11 +200,16 @@ foreach ($this->matchplayers as $player)
 
 if ( $player->pposid == $pos->pposid && $player->ptid == $this->match->projectteam1_id )
 {
-
-$picture = $player->ppic;
+// player->ppic = person picture
+// player->picture = teamplay picture
+$picture = $player->picture;
+if ( !file_exists( $picture ) )
+{
+$picture = $player->ppic;    
 if ( !file_exists( $picture ) )
 {
 $picture = JoomleagueHelper::getDefaultPlaceholder("player");
+}
 }
 
 ?>
@@ -250,11 +255,16 @@ foreach ($this->matchplayers as $player)
 
 if ( $player->pposid == $pos->pposid && $player->ptid == $this->match->projectteam2_id )
 {
-
-$picture = $player->ppic;
+// player->ppic = person picture
+// player->picture = teamplay picture
+$picture = $player->picture;
 if ( !file_exists( $picture ) )
 {
+$picture = $player->ppic;    
+if ( !file_exists( $picture ) )
+{    
 $picture = JoomleagueHelper::getDefaultPlaceholder("player");
+}
 }
 
 ?>
