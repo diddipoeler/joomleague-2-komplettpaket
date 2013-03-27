@@ -15,9 +15,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 // Import library dependencies
 jimport( 'joomla.plugin.plugin' );
 
-class plgJoomleagueComments extends JPlugin {
+class plgContentJoomleague_Comments extends JPlugin {
 
-	public function plgJoomleagueComments(&$subject, $params)
+	public function plgContentJoomleague_Comments(&$subject, $params)
 	{
 		parent::__construct($subject, $params);
 
@@ -36,7 +36,7 @@ class plgJoomleagueComments extends JPlugin {
 		$app = JFactory::getApplication();
 
 		// load plugin params info
-		$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+		$plugin				= & JPluginHelper::getPlugin('content', 'joomleague_comments');
 		$pluginParams		= new JParameter( $plugin->params );
 		$separate_comments 	= $pluginParams->get( 'separate_comments', 0 );
 
@@ -63,7 +63,7 @@ class plgJoomleagueComments extends JPlugin {
 		$app = JFactory::getApplication();
 
 		// load plugin params info
-		$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+		$plugin				= & JPluginHelper::getPlugin('content', 'joomleague_comments');
 		$pluginParams		= new JParameter( $plugin->params );
 		$separate_comments 	= $pluginParams->get( 'separate_comments', 0 );
 
@@ -90,7 +90,7 @@ class plgJoomleagueComments extends JPlugin {
 		$app = JFactory::getApplication();
 
 		// load plugin params info
-		$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+		$plugin				= & JPluginHelper::getPlugin('content', 'joomleague_comments');
 		$pluginParams		= new JParameter( $plugin->params );
 		$separate_comments 	= $pluginParams->get( 'separate_comments', 0 );
 
