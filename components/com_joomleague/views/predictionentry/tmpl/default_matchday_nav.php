@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-//echo 'results<br /><pre>~' . print_r($this->model->predictionProject,true) . '~</pre><br />';
+//echo 'entry<br /><pre>~' . print_r($this->model->predictionProject,true) . '~</pre><br />';
 //echo 'rounds<br /><pre>~' . print_r($this->model->_projectRoundsCount,true) . '~</pre><br />';
 
 ?>

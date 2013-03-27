@@ -11,6 +11,8 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+//echo 'project_id<pre>'.print_r($this->model->predictionProject->project_id, true).'</pre><br>';
+
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'predictionheading' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'backbutton' . DS . 'tmpl' );
 $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS . 'tmpl' );
@@ -44,7 +46,7 @@ $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS
 			}
 		}
 	}
-
+  echo $this->loadTemplate('matchday_nav');
 	echo '<div>';
 		//backbutton
 		echo $this->loadTemplate('backbutton');

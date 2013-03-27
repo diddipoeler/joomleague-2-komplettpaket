@@ -50,7 +50,7 @@ else
 		if ((($this->model->pjID==$predictionProject->project_id) && ($gotSettings)) || ($this->model->pjID==0))
 		{
 			$this->model->pjID = $predictionProject->project_id;
-
+      $this->model->predictionProject = $predictionProject;
 			$actualProjectCurrentRound = $this->model->getProjectSettings($predictionProject->project_id);
 			if (!isset($this->model->roundID) || ($this->model->roundID < 1)){$this->model->roundID=$actualProjectCurrentRound;}
 			if ($this->model->roundID < 1){$this->model->roundID=1;}
