@@ -69,6 +69,7 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
 		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS">
 		<field name="seperator" type="text" default="-"
@@ -104,6 +105,7 @@
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_TIME_FORMAT">
 		</field>
 	</fieldset>
+	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONAL_DATA"
 		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PERSONAL_DATA">
 		<field name="nospam_email" type="radio" default="1"
