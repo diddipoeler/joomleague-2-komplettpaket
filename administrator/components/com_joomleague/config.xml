@@ -20,6 +20,12 @@
 		description="COM_JOOMLEAGUE_SETTINGS_HELPSERVER_DESC">
 		</field>
 		
+		<field name="cfg_update_server_file" type="text" default="https://github.com/diddipoeler/joomleague-2-komplettpaket/archive/master.zip"
+		size="100"
+    label="COM_JOOMLEAGUE_SETTINGS_UPDATESERVER_FILE"
+		description="COM_JOOMLEAGUE_SETTINGS_UPDATESERVER_FILE_DESC">
+		</field>
+		
     <field name="cfg_radio_or_pulldown" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_RADIO_OR_PULLDOWN"
 			description="COM_JOOMLEAGUE_SETTINGS_RADIO_OR_PULLDOWN_DESCR">
