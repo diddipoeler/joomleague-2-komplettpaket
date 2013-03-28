@@ -184,19 +184,20 @@ if ($this->config['show_comments_count'] > 0){
 		?></td>
 		<?php
 		}
-        
-        if ($this->config['show_match_summary'])
+    
+    // diddipoeler    
+    if ($this->config['show_match_summary'])
 		{
-		  $summary = JURI::root().'components/com_joomleague/views/results/tmpl/default_summary.php';
 		  ?>
-          <td width="5" class="ko">
-		  <a href="<?php echo $summary; ?>" onclick="return hs.htmlExpand(this, { outlineType: 'rounded-white',
-			wrapperClassName: 'draggable-header', objectType: 'ajax' } )"
-			class="highslide">
-		AJAX content
-	</a>
-    </td>
-    <?php
+		<td width="5" class="ko">
+        <?php
+$link = "javascript:void(0);";
+			$img = JHTML::image('media/com_joomleague/jl_images/discuss.gif', 'discuss.gif');
+			$params = array("title"   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
+							"onclick" => 'SqueezeBox.setContent(\'string\',\''.$game->id.'\');');
+			echo JHTML::link($link,$img,$params);
+            ?></td>
+		<?php 	  
 		}  
 		?>
 		<!-- show divisions -->
