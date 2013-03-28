@@ -38,7 +38,17 @@ $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS
 
 			if (!$this->tippEntryDone)
 			{
-				echo $this->loadTemplate('view_tippentry_do');
+				if (($this->config['show_help']==0)||($this->config['show_help']==2))
+                {
+                    echo $this->model->createHelptText($predictionProject->mode);
+                }
+                echo $this->loadTemplate('view_tippentry_do');
+                echo $this->loadTemplate('matchday_nav');
+            if (($this->config['show_help']==1)||($this->config['show_help']==2))
+			{
+				echo $this->model->createHelptText($predictionProject->mode);
+			}
+            
 			}
 			else
 			{
@@ -46,8 +56,10 @@ $this->_addPath( 'template', JPATH_COMPONENT . DS . 'views' . DS . 'footer' . DS
 			}
 		}
 	}
-  echo $this->loadTemplate('matchday_nav');
-	echo '<div>';
+  
+//  echo $this->loadTemplate('matchday_nav');
+	
+    echo '<div>';
 		//backbutton
 		echo $this->loadTemplate('backbutton');
 		// footer

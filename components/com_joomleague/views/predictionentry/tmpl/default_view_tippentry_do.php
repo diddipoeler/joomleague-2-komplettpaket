@@ -85,7 +85,7 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 			
 			
 			
-			if (($this->config['show_help']==0)||($this->config['show_help']==2)){echo $this->model->createHelptText($predictionProject->mode);}
+//			if (($this->config['show_help']==0)||($this->config['show_help']==2)){echo $this->model->createHelptText($predictionProject->mode);}
 			?>
 			<a name='jl_top' id='jl_top'></a>
 			<form name='resultsRoundSelector' method='post' onsubmit="alert(1)">
@@ -510,10 +510,10 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form><br />
 			<?php
-			if (($this->config['show_help']==1)||($this->config['show_help']==2))
-			{
-				echo $this->model->createHelptText($predictionProject->mode);
-			}
+//			if (($this->config['show_help']==1)||($this->config['show_help']==2))
+//			{
+//				echo $this->model->createHelptText($predictionProject->mode);
+//			}
 		}
 	}
 }
