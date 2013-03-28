@@ -3,6 +3,7 @@
 if ($this->config['show_comments_count'] == 1 || $this->config['show_comments_count'] == 2)
 {
 	require_once (JPATH_ROOT . '/components/com_jcomments/jcomments.class.php');
+	require_once (JPATH_ROOT . '/components/com_jcomments/jcomments.config.php');
 	require_once (JPATH_ROOT . '/components/com_jcomments/models/jcomments.php');
 
 	// get joomleague comments plugin params
