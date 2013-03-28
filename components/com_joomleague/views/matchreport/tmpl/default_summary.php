@@ -45,12 +45,12 @@ if (!empty($this->match->summary))
 // Comments integration
 if (!$commentsDisabled) {
 
-	JPluginHelper::importPlugin( 'joomleague' );
 	$dispatcher =& JDispatcher::getInstance();
+        JPluginHelper::importPlugin( 'content', 'joomleague_comments' );
 	$comments = '';
 
 	// get joomleague comments plugin params
-	$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+	$plugin= & JPluginHelper::getPlugin('content', 'joomleague_comments');
 	if (is_object($plugin)) {
 		$pluginParams = new JParameter($plugin->params);
 	}
@@ -76,3 +76,4 @@ if (!$commentsDisabled) {
 
 ?>
 <!-- END of match summary -->
+
