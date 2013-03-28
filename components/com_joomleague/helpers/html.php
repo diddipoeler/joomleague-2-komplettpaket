@@ -41,7 +41,7 @@ class JoomleagueHelperHtml {
 
 		if (strtotime($game->match_date))
 		{
-			$matchTime = JHTML::date($game->match_date,$overallconfig['time_format']);
+			$matchTime = JHTML::date($game->match_date,$overallconfig['time_format'],'UTC');
 
 			if ($config['show_time_suffix'] == 1)
 			{
