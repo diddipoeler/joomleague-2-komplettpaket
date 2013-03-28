@@ -244,7 +244,8 @@ class JLGStatistic extends JObject {
 	function showInMatchReport()
 	{
 		$params = &$this->getParams();
-		$statistic_views = explode(',', $params->get('statistic_views'));
+		//$statistic_views = explode(',', $params->get('statistic_views'));
+        $statistic_views = $params->get('statistic_views');
 		if (!count($statistic_views)) {
 			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
