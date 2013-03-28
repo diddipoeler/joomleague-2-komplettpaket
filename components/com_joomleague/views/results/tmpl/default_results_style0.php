@@ -1,5 +1,19 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' );
+<?php 
+defined( '_JEXEC' ) or die( 'Restricted access' );
+?>
 
+<script>
+function example_alertBox( boxText )
+{		
+	var options = {size: {x: 300, y: 250}};
+	SqueezeBox.initialize(options);
+	SqueezeBox.setContent('string','nummer: ' + boxText);
+			
+	
+}
+</script>
+
+<?php
 $nbcols			= 7;
 $nbcols_header	= 0;
 $dates			= $this->sortByDate();
@@ -19,12 +33,13 @@ if ($this->config['show_comments_count'] > 0){
 	$nbcols_header++;
 
 	require_once (JPATH_ROOT . '/components/com_jcomments/jcomments.class.php');
+    require_once (JPATH_ROOT . '/components/com_jcomments/jcomments.config.php');
 	require_once (JPATH_ROOT . '/components/com_jcomments/models/jcomments.php');
 
 	// get joomleague comments plugin params
 	JPluginHelper::importPlugin( 'joomleague' );
 
-	$plugin				= & JPluginHelper::getPlugin('joomleague', 'comments');
+	$plugin	= & JPluginHelper::getPlugin('joomleague', 'comments');
 
 	if (is_object($plugin)) {
 		$pluginParams = new JParameter($plugin->params);
@@ -194,7 +209,7 @@ if ($this->config['show_comments_count'] > 0){
 $link = "javascript:void(0);";
 			$img = JHTML::image('media/com_joomleague/jl_images/discuss.gif', 'discuss.gif');
 			$params = array("title"   => JText::_('COM_JOOMLEAGUE_TEAMPLAN_EVENTS'),
-							"onclick" => 'SqueezeBox.setContent(\'string\',\''.$game->id.'\');');
+							"onclick" => 'example_alertBox(\''.$game->id.'\');');
 			echo JHTML::link($link,$img,$params);
             ?></td>
 		<?php 	  
