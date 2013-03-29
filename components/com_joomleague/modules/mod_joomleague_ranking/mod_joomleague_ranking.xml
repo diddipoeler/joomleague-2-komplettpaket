@@ -115,6 +115,13 @@
 					<option value="1">MOD_JOOMLEAGUE_RANKING_YES</option>
 				</field>
 		
+				<field 	name="show_full_row_colors" type="radio" default="1"
+						label="MOD_JOOMLEAGUE_RANKING_SHOW_FULL_ROW_COLOR_LABEL"
+						description="MOD_JOOMLEAGUE_RANKING_SHOW_FULL_ROW_COLOR_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_RANKING_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_RANKING_YES</option>
+				</field>
+		
 				<field 	name="fav_team_highlight_type" type="radio" default="1"
 						label="MOD_JOOMLEAGUE_RANKING_FAV_TEAM_HIGHLIGHT_LABEL"
 						description="MOD_JOOMLEAGUE_RANKING_FAV_TEAM_HIGHLIGHT_DESCR">
