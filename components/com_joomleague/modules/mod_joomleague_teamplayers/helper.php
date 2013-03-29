@@ -80,7 +80,7 @@ class modJLGTeamPlayersHelper
 		if ($params->get('show_player_link'))
 		{
 			$link = JoomleagueHelperRoute::getPlayerRoute($params->get('p'), 
-															$params->get('teams'), 
+															$params->get('team'), 
 															$item->slug );
 			echo $flag . JHTML::link($link, $text);
 		}
