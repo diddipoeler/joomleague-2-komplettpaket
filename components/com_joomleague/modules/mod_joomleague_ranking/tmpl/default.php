@@ -110,7 +110,7 @@ echo 'this->mod_joomleague_ranking ranking<br /><pre>~' . print_r($list['ranking
 		?>
 		<tr class="<?php echo $class; ?>">
 			<td class="rank"<?php if ($color != '') echo $rowStyle; ?>><?php echo $item->rank; ?></td>
-			<td class="team"<?php if ($color != '') echo $rowStyle; ?>>
+			<td class="team"<?php if ($color != '' AND $params->get('show_full_row_colors') =='1') echo $rowStyle; ?>>
 				<?php if ($params->get('show_logo', 0)): ?>
 				<?php echo modJLGRankingHelper::getLogo($item, $params->get('show_logo', 0)); ?>
 				<?php endif; ?>
@@ -123,7 +123,7 @@ echo 'this->mod_joomleague_ranking ranking<br /><pre>~' . print_r($list['ranking
 				<?php if ($spanStyle != '') echo '</span>'; ?>
 			</td>
 			<?php foreach ($columns as $col): ?>
-			<td class="rankcolval"<?php if ($color != '') echo $rowStyle; ?>>
+			<td class="rankcolval"<?php if ($color != '' AND $params->get('show_full_row_colors') =='1') echo $rowStyle; ?>>
 			<?php echo modJLGRankingHelper::getColValue(trim($col), $item); ?>
 			</td>
 			<?php endforeach; ?>
