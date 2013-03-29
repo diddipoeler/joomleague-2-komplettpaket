@@ -52,6 +52,7 @@ function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) {
 		if ($(incont) && inject > 0) {
 			jlCalmod_injectContent(tempcontentid, incont, modid);
 		}
+        SqueezeBox.setContent('string',sourcecontent ); 
 	}
 
 //	alert('targetid -> ' + targetid);
@@ -63,7 +64,8 @@ function jlCalmod_showhide(targetid, sourceids, thistitle, inject, modid) {
 	
 //	alert('targetcontent -> ' + targetcontent );
 //	alert('jlCalmod_showhide-sourcecontent -> ' + sourcecontent );
-SqueezeBox.setContent('string',sourcecontent );  
+
+//SqueezeBox.setContent('string',sourcecontent );  
   
 }
 function jlcnewAjax() {
