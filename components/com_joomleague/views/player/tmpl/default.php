@@ -109,21 +109,33 @@ if (isset($this->person))
     // anzeige als tabs oder slider von joomlaworks
     $startoutput = '';
     $params = '';
-    if($this->config['show_players_layout'] == "player_tabbed") {
+    if($this->config['show_players_layout'] == "player_tabbed") 
+    {
         $startoutput = '{tab=';
         $endoutput = '{/tabs}';
-    }    
-    else if($this->config['show_players_layout'] == "player_slider") {
-        $startoutput = '{slider=';
-        $endoutput = '{/slider}';
-    }    
-    
+        
     foreach ($output as $templ) 
     {
     $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
     $params .= $this->loadTemplate($templ);    
     }    
-    $params .= $endoutput;     
+    $params .= $endoutput;   
+       
+    }    
+    else if($this->config['show_players_layout'] == "player_slider") 
+    {
+        $startoutput = '{slider=';
+        $endoutput = '{/slider}';
+    foreach ($output as $templ) 
+    {
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $this->loadTemplate($templ);    
+    $params .= $endoutput;
+    }    
+        
+    }    
+    
+       
     
     echo JHTML::_('content.prepare', $params); 
     }
