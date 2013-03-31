@@ -59,11 +59,12 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     {
     // diddipoeler
     // anzeige als tabs von joomlaworks
-    $params  = '{tab=tabelle}';
+    $params  = '{tab='.JText::_('COM_JOOMLEAGUE_RANKING_PAGE_TITLE' ).'}';
 	$params .= $this->loadTemplate('ranking');
-    $params  = '{tab=ergebnisse}';
+    $params .= '{tab='.JText::_( 'COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS' ).'}';
 	$params .= $this->loadTemplate('results');
-	$params .= "{/tabs}";    
+	$params .= "{/tabs}";
+    echo JHTML::_('content.prepare', $params);     
         
         
     }

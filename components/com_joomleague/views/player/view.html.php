@@ -71,6 +71,7 @@ class JoomleagueViewPlayer extends JLGView
 		$this->assignRef( 'extended', $extended );
 		
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    $this->assign('use_joomlaworks', JComponentHelper::getParams('com_joomleague')->get('use_joomlaworks',0) );
         
 		if (isset($person))
 		{

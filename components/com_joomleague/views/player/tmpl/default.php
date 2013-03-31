@@ -65,6 +65,9 @@ if (isset($this->person))
 	{
 		$output[intval($this->config['show_order_stcareer'])] = 'playerstaffcareer';
 	}
+    
+    if ( $this->use_joomlaworks == 0 )
+    {
 	
     if($this->config['show_players_layout'] == "player_tabbed") {
 		//$document = JFactory::getDocument();
@@ -98,6 +101,32 @@ if (isset($this->person))
 			echo $this->loadTemplate($templ);
 		}
 	}
+    
+    }
+    else
+    {
+    // diddipoeler
+    // anzeige als tabs oder slider von joomlaworks
+    $startoutput = '';
+    $params = '';
+    if($this->config['show_players_layout'] == "player_tabbed") {
+        $startoutput = '{tab=';
+        $endoutput = '{/tabs}';
+    }    
+    else if($this->config['show_players_layout'] == "player_slider") {
+        $startoutput = '{slider=';
+        $endoutput = '{/slider}';
+    }    
+    
+    foreach ($output as $templ) 
+    {
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $this->loadTemplate($templ);    
+    }    
+    $params .= $endoutput;     
+    
+    echo JHTML::_('content.prepare', $params); 
+    }
 	// Person view END
 
 	echo "<div>";
