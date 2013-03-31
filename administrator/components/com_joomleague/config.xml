@@ -94,6 +94,14 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="use_joomlaworks" type="radio" default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_USE_JOOMLAWORKS_LIBRARY"
+			description="COM_JOOMLEAGUE_SETTINGS_USE_JOOMLAWORKS_LIBRARY_DESC">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 		<field name="usethumblib" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_DESC">
