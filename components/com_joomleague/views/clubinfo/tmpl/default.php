@@ -25,7 +25,34 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 	// Needs some changing &Mindh4nt3r
 	echo $this->loadTemplate('clubinfo');
-		
+	
+    // ################################################################
+  // diddipoeler
+  // aufbau der templates
+  $output = array();
+  if (($this->config['show_extended'])==1)
+	{
+	$output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
+	}
+    if (($this->config['show_maps'])==1)
+	{ 
+        $output['COM_JOOMLEAGUE_GMAP_DIRECTIONS'] = 'maps';
+	}
+    if (($this->config['show_teams_of_club'])==1)
+	{ 
+        $output['COM_JOOMLEAGUE_CLUBINFO_TEAMS'] = 'teams';
+	}
+    if (($this->config['show_club_rssfeed']) == 1  )
+	{
+		if ( $this->rssfeeditems )
+        {
+        $output['COM_JOOMLEAGUE_CLUBINFO_RSSFEED'] = 'rssfeed';  
+        }
+	}
+    // ################################################################
+  
+    if ( $this->use_joomlaworks == 0 )
+    {	
 	echo "<div class='jl_defaultview_spacing'>";
 	echo "&nbsp;";
 	echo "</div>";
@@ -61,16 +88,52 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     
     if (($this->config['show_club_rssfeed']) == 1  )
 	{
-	   //if ( !empty($this->rssfeedoutput) )
-//       {
-//       echo $this->loadTemplate('rssfeed-table'); 
-//       }
+
 		if ( $this->rssfeeditems )
         {
         echo $this->loadTemplate('rssfeed');    
         }
         
 	}
+    
+    }
+    else
+    {
+    // diddipoeler
+    // anzeige als tabs oder slider von joomlaworks
+    $startoutput = '';
+    $params = '';
+    
+    if($this->config['show_clubinfo_tabs'] == "show_tabs") 
+    {
+    $startoutput = '{tab=';
+    $endoutput = '{/tabs}';
+        
+    foreach ( $output as $key => $templ ) 
+    {
+    $params .= $startoutput.JText::_($key).'}';
+    $params .= $this->loadTemplate($templ);    
+    }    
+    $params .= $endoutput;   
+       
+    }    
+    else if($this->config['show_clubinfo_tabs'] == "show_slider") 
+    {
+    $startoutput = '{slider=';
+    $endoutput = '{/slider}';
+    foreach ( $output as $key => $templ ) 
+    {
+    $params .= $startoutput.JText::_($key).'}';
+    $params .= $this->loadTemplate($templ);    
+    $params .= $endoutput;
+    }    
+        
+    }    
+
+    echo JHTML::_('content.prepare', $params); 
+    
+    
+    }
 
 
 	echo "<div>";

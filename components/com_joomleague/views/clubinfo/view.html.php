@@ -145,6 +145,7 @@ class JoomleagueViewClubInfo extends JLGView
 }
 
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    $this->assign('use_joomlaworks', JComponentHelper::getParams('com_joomleague')->get('use_joomlaworks',0) );
     
 		$pageTitle = JText::_( 'COM_JOOMLEAGUE_CLUBINFO_PAGE_TITLE' );
 		if ( isset( $this->club ) )
