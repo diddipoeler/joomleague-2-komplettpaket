@@ -65,8 +65,8 @@ if (!empty($this->matchplayerpositions ))
 	}
 	if (($this->config['show_roster'])==1)
 	{
-        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP-PLAYER'] = 'roster';
-        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP-STAFF'] = 'staff';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE_UP_PLAYER'] = 'roster';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE_UP_STAFF'] = 'staff';
         $output['COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES'] = 'subst';
 	}
     if (($this->config['show_roster_playground'])==1)
