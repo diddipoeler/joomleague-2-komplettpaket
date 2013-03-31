@@ -491,6 +491,19 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 
 		return $output;
 	}
+    
+    function showMatchSummaryAsSqueezeBox(&$game)
+	{
+	/*
+    $output = '<script language="JavaScript">';
+    $output .= 'var options = {size: {x: 300, y: 250}}';
+	$output .= 'SqueezeBox.initialize(options)';
+    $output .= "SqueezeBox.setContent('string','nummer:')";
+    $output .= '</script>'; 
+    echo $output;
+    */  
+    return $game->summary;
+    }   
 
 	function showMatchRefereesAsTooltip(&$game)
 	{

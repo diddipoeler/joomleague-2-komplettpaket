@@ -69,6 +69,7 @@ class JoomleagueViewMatchReport extends JLGView
     $schemaaway = $this->assignRef('schemaaway',$model->getSchemaAway($this->formation2));
     
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+    $this->assign('use_joomlaworks', JComponentHelper::getParams('com_joomleague')->get('use_joomlaworks',0) );
     
     if ( $this->config['show_pictures'] == 1 )
 	  {

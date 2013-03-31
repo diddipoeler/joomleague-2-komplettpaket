@@ -111,8 +111,8 @@ if (isset($this->person))
     $params = '';
     if($this->config['show_players_layout'] == "player_tabbed") 
     {
-        $startoutput = '{tab=';
-        $endoutput = '{/tabs}';
+    $startoutput = '{tab=';
+    $endoutput = '{/tabs}';
         
     foreach ($output as $templ) 
     {
@@ -124,8 +124,8 @@ if (isset($this->person))
     }    
     else if($this->config['show_players_layout'] == "player_slider") 
     {
-        $startoutput = '{slider=';
-        $endoutput = '{/slider}';
+    $startoutput = '{slider=';
+    $endoutput = '{/slider}';
     foreach ($output as $templ) 
     {
     $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
@@ -135,9 +135,8 @@ if (isset($this->person))
         
     }    
     
-       
-    
-    echo JHTML::_('content.prepare', $params); 
+    echo JHTML::_('content.prepare', $params);
+     
     }
 	// Person view END
 

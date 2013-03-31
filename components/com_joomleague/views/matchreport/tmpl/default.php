@@ -50,7 +50,47 @@ if (!empty($this->matchplayerpositions ))
 	{
 		echo $this->loadTemplate('result');
 	}
+    
+  // ################################################################
+  // diddipoeler
+  // aufbau der templates
+  $output = array();
+  if (($this->config['show_details'])==1)
+	{
+		$output[] = 'details';
+	}
+  if (($this->config['show_extended'])==1 && $this->extended )
+	{
+        $output[] = 'extended';
+	}
+	if (($this->config['show_roster'])==1)
+	{
+        $output[] = 'roster';
+        $output[] = 'staff';
+        $output[] = 'subst';
+	}
+    if (($this->config['show_roster_playground'])==1)
+	{
+        $output[] = 'rosterplayground';
+	}
+    if (($this->config['show_stats'])==1 && ( $hasMatchPlayerStats || $hasMatchStaffStats ) )
+	{
+        $output[] = 'stats';
+	}
 
+	if (($this->config['show_summary'])==1 && $this->match->summary )
+	{
+        $output[] = 'summary';
+	}
+	
+	if (($this->config['show_pictures'])==1 && $this->matchimages )
+	{
+        $output[] = 'pictures';
+	}    
+
+  // ################################################################
+  if ( $this->use_joomlaworks == 0 )
+    {
   // anzeige mit tabs ?
   if ( ($this->config['show_result_tabs']) == "no_tabs" )
 	{
@@ -284,10 +324,45 @@ if (!empty($this->matchplayerpositions ))
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('summary');
 	}
-  
-  
-  
+ 
   echo JHTML::_('sliders.end');
+  }
+
+  }
+  else
+  {
+  // diddipoeler
+  // anzeige als tabs oder slider von joomlaworks
+  $startoutput = '';
+    $params = '';
+    if($this->config['show_result_tabs'] == "show_tabs") 
+    {
+    $startoutput = '{tab=';
+    $endoutput = '{/tabs}';
+        
+    foreach ($output as $templ) 
+    {
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $this->loadTemplate($templ);    
+    }    
+    $params .= $endoutput;   
+       
+    }    
+    else if($this->config['show_result_tabs'] == "show_slider") 
+    {
+    $startoutput = '{slider=';
+    $endoutput = '{/slider}';
+    foreach ($output as $templ) 
+    {
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $this->loadTemplate($templ);    
+    $params .= $endoutput;
+    }    
+        
+    }    
+
+    echo JHTML::_('content.prepare', $params); 
+    
   }
   
 	echo "<div>";
