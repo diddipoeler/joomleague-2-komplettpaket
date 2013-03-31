@@ -26,7 +26,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	// Needs some changing &Mindh4nt3r
 	echo $this->loadTemplate('clubinfo');
 	
-    // ################################################################
+  // ################################################################
   // diddipoeler
   // aufbau der templates
   $output = array();

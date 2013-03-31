@@ -27,7 +27,42 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('sectionheader');
 	}
 		
-	if ($this->config['show_teaminfo']==1)
+// ################################################################
+  // diddipoeler
+  // aufbau der templates
+  $output = array();
+  if ($this->config['show_teaminfo']==1)
+	{
+        $output['COM_JOOMLEAGUE_TEAMINFO_PAGE_TITLE'] = 'teaminfo';
+	}
+
+	if ($this->config['show_description']==1)
+	{
+        $output['COM_JOOMLEAGUE_TEAMINFO_TEAMINFORMATION'] = 'description';
+	}
+	//fix me css	
+	if ($this->config['show_extended']==1)
+	{
+        $output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
+	}	
+		
+	if ($this->config['show_history']==1)
+	{
+        $output['COM_JOOMLEAGUE_TEAMINFO_HISTORY'] = 'history';
+	}
+    
+    if ($this->config['show_history_leagues']==1)
+	{
+        $output['COM_JOOMLEAGUE_TEAMINFO_HISTORY_PER_LEAGUE_SUMMARY'] = 'history_leagues';
+	}
+    
+  
+  // ################################################################
+  
+    if ( $this->use_joomlaworks == 0 )
+    {
+        
+    if ($this->config['show_teaminfo']==1)
 	{
 		echo $this->loadTemplate('teaminfo');
 	}
@@ -51,8 +86,48 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('history_leagues');
 	}
+    
+    }
+    else
+    {
+    // diddipoeler
+    // anzeige als tabs oder slider von joomlaworks
+    $startoutput = '';
+    $params = '';
+    
+    if($this->config['show_teaminfo_tabs'] == "show_tabs") 
+    {
+    $startoutput = '{tab=';
+    $endoutput = '{/tabs}';
+        
+    foreach ( $output as $key => $templ ) 
+    {
+    $params .= $startoutput.JText::_($key).'}';
+    $params .= $this->loadTemplate($templ);    
+    }    
+    $params .= $endoutput;   
+       
+    }    
+    else if($this->config['show_teaminfo_tabs'] == "show_slider") 
+    {
+    $startoutput = '{slider=';
+    $endoutput = '{/slider}';
+    foreach ( $output as $key => $templ ) 
+    {
+    $params .= $startoutput.JText::_($key).'}';
+    $params .= $this->loadTemplate($templ);    
+    $params .= $endoutput;
+    }    
+        
+    }    
+
+    echo JHTML::_('content.prepare', $params);     
+        
+    }
 		
-	echo "<div>";
+	
+    
+    echo "<div>";
 		echo $this->loadTemplate('backbutton');
 		echo $this->loadTemplate('footer');
 	echo "</div>";
