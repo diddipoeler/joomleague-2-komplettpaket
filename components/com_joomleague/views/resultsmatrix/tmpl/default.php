@@ -47,8 +47,17 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     // anzeige als tabs von joomlaworks
     $params  = '{tab='.JText::_('COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS' ).'}';
 	$params .= $this->loadTemplate('results');
+    if(isset($this->divisions) && count($this->divisions) > 1) 
+  {
+    $params .= '{tab='.JText::_( 'COM_JOOMLEAGUE_MATRIX' ).'}';
+	$params .= $this->loadTemplate('matrix_division');
+    }
+    else
+    {
     $params .= '{tab='.JText::_( 'COM_JOOMLEAGUE_MATRIX' ).'}';
 	$params .= $this->loadTemplate('matrix');
+    }
+    
 	$params .= "{/tabs}";
     echo JHTML::_('content.prepare', $params);        
     }
