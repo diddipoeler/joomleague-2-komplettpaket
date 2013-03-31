@@ -10,7 +10,9 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	echo $this->loadTemplate('projectheading');
 		
 	echo $this->loadTemplate('selectround');
-		
+	
+    if ( $this->use_joomlaworks == 0 )
+    {	
 	$results = '';
 	if ($this->config['show_sectionheader'])
 	{
@@ -37,6 +39,19 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo '<br />'.$results;
 	}
+    
+    }
+    else
+    {
+    // diddipoeler
+    // anzeige als tabs von joomlaworks
+    $params  = '{tab='.JText::_('COM_JOOMLEAGUE_RESULTS_ROUND_RESULTS' ).'}';
+	$params .= $this->loadTemplate('results');
+    $params .= '{tab='.JText::_( 'COM_JOOMLEAGUE_MATRIX' ).'}';
+	$params .= $this->loadTemplate('matrix');
+	$params .= "{/tabs}";
+    echo JHTML::_('content.prepare', $params);        
+    }
 
 	echo "<div>";
 		echo $this->loadTemplate('backbutton');
