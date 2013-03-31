@@ -115,6 +115,8 @@ else {
 								if(isset($teams[$match->projectteam1_id])) {	
 									if($params->get('teamlink') != '0')
 									{
+										echo modJLGResultsHelper::getLogo($teams[$match->projectteam1_id], $params);
+										echo '&nbsp;';
 										echo JHTML::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam1_id], $params, $list['project']), $teams[$match->projectteam1_id]->$nametype);
 									}
 									else
@@ -122,12 +124,28 @@ else {
 										echo $teams[$match->projectteam1_id]->$nametype;
 									}
 									echo '&nbsp;';
-									echo modJLGResultsHelper::getLogo($teams[$match->projectteam1_id], $params);
+									
 								}
 							?>
 						</td>
-
-					<?php if ($params->get('show_score_design', 1)): ?>
+						<td class="mod_jl_results_opponent_right<?php echo $params->get( 'moduleclass_sfx' ) ?>">
+							<?php
+							if(isset($teams[$match->projectteam2_id])) {
+								echo modJLGResultsHelper::getLogo($teams[$match->projectteam2_id], $params);
+								echo '&nbsp;';
+								if($params->get('teamlink') != '0')
+								{
+									echo JHTML::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam2_id], $params, $list['project']), $teams[$match->projectteam2_id]->$nametype);
+								}
+								else
+								{
+									echo $teams[$match->projectteam2_id]->$nametype;
+								}
+							}
+							?>
+						</td>
+						<td>
+							<?php if ($params->get('show_score_design', 1)): ?>
 						<?php if(($match->team1_result > $match->team2_result) || ($match->team1_result_decision > $match->team2_result_decision)) {
 							$matchresultclass1	=	"mod_jl_results_matchwin" . $params->get( 'moduleclass_sfx' );
 							$matchresultclass2	=	"mod_jl_results_matchloss" . $params->get( 'moduleclass_sfx' );
@@ -157,7 +175,7 @@ else {
 								<span class="<?php echo $matchresultclass1; ?>">
 									<?php echo $match->team1_result; ?>
 								</span>
-									&nbsp;-&nbsp;
+									-
 								<span class="<?php echo $matchresultclass2; ?>">
 									<?php echo $match->team2_result; ?>
 								</span>							
@@ -167,24 +185,7 @@ else {
 							<?php endif?>
 						</td>
 					<?php endif?>
-						
-						<td class="mod_jl_results_opponent_right<?php echo $params->get( 'moduleclass_sfx' ) ?>">
-							<?php
-							if(isset($teams[$match->projectteam2_id])) {
-								echo modJLGResultsHelper::getLogo($teams[$match->projectteam2_id], $params);
-								echo '&nbsp;';
-								if($params->get('teamlink') != '0')
-								{
-									echo JHTML::link(modJLGResultsHelper::getTeamLink($teams[$match->projectteam2_id], $params, $list['project']), $teams[$match->projectteam2_id]->$nametype);
-								}
-								else
-								{
-									echo $teams[$match->projectteam2_id]->$nametype;
-								}
-							}
-							?>
-						</td>
-				
+					</td>	
 					</tr>	
 					
 					
