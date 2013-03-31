@@ -14,6 +14,9 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('selectround');
 	}
+    
+    if ( $this->use_joomlaworks == 0 )
+    {
 
 	$results = '';
 	if ($this->config['show_sectionheader'])
@@ -50,7 +53,21 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo '<br />'.$results;
 	}
-		
+	
+    }
+    else
+    {
+    // diddipoeler
+    // anzeige als tabs von joomlaworks
+    $params  = '{tab=tabelle}';
+	$params .= $this->loadTemplate('ranking');
+    $params  = '{tab=ergebnisse}';
+	$params .= $this->loadTemplate('results');
+	$params .= "{/tabs}";    
+        
+        
+    }
+    	
 	if ($this->config['show_pagnav']==1)
 	{
 		echo $this->loadTemplate('pagnav');
