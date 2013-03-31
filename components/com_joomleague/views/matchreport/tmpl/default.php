@@ -73,6 +73,21 @@ if (!empty($this->matchplayerpositions ))
 	{
         $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_PLAYGROUND'] = 'rosterplayground';
 	}
+    if ( !empty( $this->matchevents ) )
+	{
+		if (($this->config['show_timeline'])==1)
+		{
+            $output['COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'] = 'timeline';
+		}
+        if (($this->config['show_events'])==1)
+		{
+					if ( !empty( $this->eventtypes ) ) 
+                    {
+                        $output['COM_JOOMLEAGUE_MATCHREPORT_EVENTS'] = 'events';
+					}
+        }
+        
+    }    
     if (($this->config['show_stats'])==1 && ( $hasMatchPlayerStats || $hasMatchStaffStats ) )
 	{
         $output['COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'] = 'stats';
