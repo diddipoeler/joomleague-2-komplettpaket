@@ -57,35 +57,35 @@ if (!empty($this->matchplayerpositions ))
   $output = array();
   if (($this->config['show_details'])==1)
 	{
-		$output[] = 'details';
+		$output['COM_JOOMLEAGUE_MATCHREPORT_DETAILS'] = 'details';
 	}
   if (($this->config['show_extended'])==1 && $this->extended )
 	{
-        $output[] = 'extended';
+        $output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
 	}
 	if (($this->config['show_roster'])==1)
 	{
-        $output[] = 'roster';
-        $output[] = 'staff';
-        $output[] = 'subst';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP-PLAYER'] = 'roster';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_LINE-UP-STAFF'] = 'staff';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_SUBSTITUTES'] = 'subst';
 	}
     if (($this->config['show_roster_playground'])==1)
 	{
-        $output[] = 'rosterplayground';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STARTING_PLAYGROUND'] = 'rosterplayground';
 	}
     if (($this->config['show_stats'])==1 && ( $hasMatchPlayerStats || $hasMatchStaffStats ) )
 	{
-        $output[] = 'stats';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_STATISTICS'] = 'stats';
 	}
 
 	if (($this->config['show_summary'])==1 && $this->match->summary )
 	{
-        $output[] = 'summary';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'] = 'summary';
 	}
 	
 	if (($this->config['show_pictures'])==1 && $this->matchimages )
 	{
-        $output[] = 'pictures';
+        $output['COM_JOOMLEAGUE_MATCHREPORT_MATCH_PICTURES'] = 'pictures';
 	}    
 
   // ################################################################
@@ -340,9 +340,9 @@ if (!empty($this->matchplayerpositions ))
     $startoutput = '{tab=';
     $endoutput = '{/tabs}';
         
-    foreach ($output as $templ) 
+    foreach ( $output as $key => $templ ) 
     {
-    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $startoutput.JText::_($key).'}';
     $params .= $this->loadTemplate($templ);    
     }    
     $params .= $endoutput;   
@@ -352,9 +352,9 @@ if (!empty($this->matchplayerpositions ))
     {
     $startoutput = '{slider=';
     $endoutput = '{/slider}';
-    foreach ($output as $templ) 
+    foreach ( $output as $key => $templ ) 
     {
-    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_PLAYER_TAB_LABEL_'.strtoupper($templ)).'}';
+    $params .= $startoutput.JText::_($key).'}';
     $params .= $this->loadTemplate($templ);    
     $params .= $endoutput;
     }    
