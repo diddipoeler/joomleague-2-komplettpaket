@@ -2,6 +2,7 @@
 
 if ( $this->show_debug_info )
 {
+echo 'club config<pre>',print_r($this->config,true),'</pre><br>';    
 echo 'club address_string<pre>',print_r($this->address_string,true),'</pre><br>';
 echo 'club teams<pre>',print_r($this->teams,true),'</pre><br>';
 echo 'club extended<pre>',print_r($this->extended,true),'</pre><br>';
@@ -51,7 +52,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	}
     // ################################################################
   
-    if ( $this->use_joomlaworks == 0 )
+    if ( $this->use_joomlaworks == 0 || $this->config['show_clubinfo_tabs'] == 'no_tabs' )
     {	
 	echo "<div class='jl_defaultview_spacing'>";
 	echo "&nbsp;";

@@ -59,7 +59,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
   
   // ################################################################
   
-    if ( $this->use_joomlaworks == 0 )
+    if ( $this->use_joomlaworks == 0 || $this->config['show_teaminfo_tabs'] == 'no_tabs' )
     {
         
     if ($this->config['show_teaminfo']==1)
