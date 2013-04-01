@@ -104,7 +104,7 @@ if (!empty($this->matchplayerpositions ))
 	}    
 
   // ################################################################
-  if ( $this->use_joomlaworks == 0 )
+  if ( $this->use_joomlaworks == 0 || $this->config['show_result_tabs'] == "no_tabs" )
     {
   // anzeige mit tabs ?
   if ( ($this->config['show_result_tabs']) == "no_tabs" )
