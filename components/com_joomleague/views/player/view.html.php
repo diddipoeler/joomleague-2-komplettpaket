@@ -69,7 +69,34 @@ class JoomleagueViewPlayer extends JLGView
 
 		$extended = $this->getExtended($person->extended, 'person');
 		$this->assignRef( 'extended', $extended );
-		
+        
+        $this->assignRef( 'hasDescription',$this->teamPlayer->notes);
+        foreach ($this->extended->getFieldsets() as $fieldset)
+	{
+	$hasData = false;
+			foreach ($fields as $field)
+			{
+				// TODO: backendonly was a feature of JLGExtraParams, and is not yet available.
+				//       (this functionality probably has to be added later)
+				$value = $field->value;	// Remark: empty($field->value) does not work, using an extra local var does
+				if (!empty($value)) // && !$field->backendonly
+				{
+					$hasData = true;
+					break;
+				}
+			}   
+	}
+    $this->assignRef( 'hasExtendedData',$hasData);
+    
+    $hasStatus = false;
+    if (	( isset($this->teamPlayer->injury) && $this->teamPlayer->injury > 0 ) ||
+		( isset($this->teamPlayer->suspension) && $this->teamPlayer->suspension > 0 ) ||
+		( isset($this->teamPlayer->away) && $this->teamPlayer->away > 0 ) )
+    {
+    $hasStatus = true;
+    }
+    $this->assignRef( 'hasStatus',$hasStatus);
+    	
     $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
     $this->assign('use_joomlaworks', JComponentHelper::getParams('com_joomleague')->get('use_joomlaworks',0) );
         

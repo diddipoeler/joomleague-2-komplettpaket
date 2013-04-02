@@ -24,6 +24,7 @@ if (isset($this->person))
 	}
 
 	// Person view START
+    
 	$output = array();
 
     if ( $this->use_joomlaworks == 0 )
@@ -40,31 +41,31 @@ if (isset($this->person))
 	{
 		$output[intval($this->config['show_order_playfield'])] = 'playfield';
 	}
-    if ($this->config['show_extended'] == 1)
+    if ($this->config['show_extended'] == 1 && $this->hasExtendedData )
 	{
 		$output[intval($this->config['show_order_extended'])] = 'extended';
 	}
-	if ($this->config['show_plstatus'] == 1)
+	if ($this->config['show_plstatus'] == 1 && $this->hasStatus )
 	{
 		$output[intval($this->config['show_order_plstatus'])] = 'status';
 	}
-	if ($this->config['show_description'] == 1)
+	if ($this->config['show_description'] == 1 && !empty($this->hasDescription) )
 	{
 		$output[intval($this->config['show_order_description'])] = 'description';
 	}
-	if ($this->config['show_gameshistory'] == 1)
+	if ($this->config['show_gameshistory'] == 1 && count($this->games) )
 	{
 		$output[intval($this->config['show_order_gameshistory'])] = 'gameshistory';
 	}
-	if ($this->config['show_plstats'] == 1)
+	if ($this->config['show_plstats'] == 1 )
 	{
 		$output[intval($this->config['show_order_plstats'])] = 'playerstats';
 	}
-	if ($this->config['show_plcareer'] == 1)
+	if ($this->config['show_plcareer'] == 1 && count($this->historyPlayer) > 0 )
 	{
 		$output[intval($this->config['show_order_plcareer'])] = 'playercareer';
 	}
-	if ($this->config['show_stcareer'] == 1)
+	if ($this->config['show_stcareer'] == 1 && count($this->historyPlayerStaff) > 0 )
 	{
 		$output[intval($this->config['show_order_stcareer'])] = 'playerstaffcareer';
 	}
