@@ -128,7 +128,7 @@ $uri = JURI::root();
 							<?php
 							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ppl.ordering', $this->lists['order_Dir'], $this->lists['order'] );
 							echo '<br />';
-							echo JHTML::_( 'grid.order',	$this->items );
+							echo JHtml::_('grid.order',$this->items, 'filesave.png', 'teamstaff.saveorder');
 							?>
 						</th>
 						<th width="5%" >
