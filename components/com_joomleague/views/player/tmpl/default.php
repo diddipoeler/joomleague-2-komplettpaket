@@ -26,49 +26,53 @@ if (isset($this->person))
 	// Person view START
 	$output = array();
 
-	if ($this->config['show_plinfo']==1)
+    if ( $this->use_joomlaworks == 0 )
+    {
+    // diddipoeler
+    // joomlaworks nicht anwenden und die playerinfo in´s array    
+	if ($this->config['show_plinfo'] == 1)
 	{
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}
-	
-    if ($this->config['show_playfield']==1)
+	}
+    
+    if ($this->config['show_playfield'] == 1)
 	{
 		$output[intval($this->config['show_order_playfield'])] = 'playfield';
 	}
-    
-    
-    if ($this->config['show_extended']==1)
+    if ($this->config['show_extended'] == 1)
 	{
 		$output[intval($this->config['show_order_extended'])] = 'extended';
 	}
-	if ($this->config['show_plstatus']==1)
+	if ($this->config['show_plstatus'] == 1)
 	{
 		$output[intval($this->config['show_order_plstatus'])] = 'status';
 	}
-	if ($this->config['show_description']==1)
+	if ($this->config['show_description'] == 1)
 	{
 		$output[intval($this->config['show_order_description'])] = 'description';
 	}
-	if ($this->config['show_gameshistory']==1)
+	if ($this->config['show_gameshistory'] == 1)
 	{
 		$output[intval($this->config['show_order_gameshistory'])] = 'gameshistory';
 	}
-	if ($this->config['show_plstats']==1)
+	if ($this->config['show_plstats'] == 1)
 	{
 		$output[intval($this->config['show_order_plstats'])] = 'playerstats';
 	}
-	if ($this->config['show_plcareer']==1)
+	if ($this->config['show_plcareer'] == 1)
 	{
 		$output[intval($this->config['show_order_plcareer'])] = 'playercareer';
 	}
-	if ($this->config['show_stcareer']==1)
+	if ($this->config['show_stcareer'] == 1)
 	{
 		$output[intval($this->config['show_order_stcareer'])] = 'playerstaffcareer';
 	}
     
     if ( $this->use_joomlaworks == 0 )
     {
-	
+	// diddipoeler
+    // joomlaworks nicht anwenden
     if($this->config['show_players_layout'] == "player_tabbed") {
 		//$document = JFactory::getDocument();
 		//$css = 'components/com_joomleague/assets/css/tabs.css';
@@ -107,8 +111,10 @@ if (isset($this->person))
     {
     // diddipoeler
     // anzeige als tabs oder slider von joomlaworks
+    // und die spielerinfo immer als erstes
     $startoutput = '';
     $params = '';
+    $params .= $this->loadTemplate('INFO'); 
     if($this->config['show_players_layout'] == "player_tabbed") 
     {
     $startoutput = '{tab=';

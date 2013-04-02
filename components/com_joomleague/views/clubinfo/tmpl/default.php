@@ -104,7 +104,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     // anzeige als tabs oder slider von joomlaworks
     $startoutput = '';
     $params = '';
-    
+    $params .= '<div class="">';
     if($this->config['show_clubinfo_tabs'] == "show_tabs") 
     {
     $startoutput = '{tab=';
@@ -129,7 +129,9 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     $params .= $endoutput;
     }    
         
-    }    
+    }
+    
+    $params .= '</div>';    
 
     echo JHTML::_('content.prepare', $params); 
     
