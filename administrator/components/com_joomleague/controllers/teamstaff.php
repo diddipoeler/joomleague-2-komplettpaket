@@ -303,6 +303,21 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 			$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display',$msg);
 		}
 	}
+    
+    /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Teamstaff', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
+	}
 
 }
 ?>
