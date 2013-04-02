@@ -74,6 +74,7 @@ class JoomleagueViewPlayer extends JLGView
         foreach ($this->extended->getFieldsets() as $fieldset)
 	{
 	$hasData = false;
+    $fields = $this->extended->getFieldset($fieldset->name);
 			foreach ($fields as $field)
 			{
 				// TODO: backendonly was a feature of JLGExtraParams, and is not yet available.
