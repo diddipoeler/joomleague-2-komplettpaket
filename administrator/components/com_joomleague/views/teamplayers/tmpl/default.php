@@ -367,7 +367,8 @@ JHTML::_('behavior.mootools');
 	</fieldset>
 	<input type="hidden" name="project_team_id"		value="<?php echo $this->teamws->id; ?>" />
 	<input type="hidden" name="search_mode"			value="<?php echo $this->lists['search_mode'];?>" id="search_mode" />
-	<input type="hidden" name="task"				value="teamplayer.display" />
+	<input type="hidden" name="task"				value="" />
+	<input type="hidden" name="view"				value="" />
 	<input type="hidden" name="boxchecked"			value="0" />
 	<input type="hidden" name="filter_order"		value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir"	value="" />
