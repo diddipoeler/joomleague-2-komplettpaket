@@ -20,7 +20,7 @@
 						$picture = JoomleagueHelper::getDefaultPlaceholder("team");
 					}					
 					$imgTitle = JText::sprintf( 'COM_JOOMLEAGUE_ROSTER_PICTURE_TEAM', $this->team->name );
-                    if ( !$this->config['show_highslide'] )
+                    if ( !$this->config['show_highslide'] || !$this->config['show_team_logo_highslide'] )
 		{
 					/*
           echo JoomleagueHelper::getPictureThumb($picture, $imgTitle,
@@ -29,7 +29,7 @@
 					*/
           echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['team_picture_width'] ));
           }
-                    else
+          else
 			{
       ?>
 <a href="<?php echo $picture;?>" alt="<?php echo $this->team->name;?>" title="<?php echo $this->team->name;?>" class="highslide" onclick="return hs.expand(this)">

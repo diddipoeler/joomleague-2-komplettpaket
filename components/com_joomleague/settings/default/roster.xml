@@ -62,6 +62,13 @@
 			<option value="staff_johncage">COM_JOOMLEAGUE_FES_ROSTER_PARAM_OPTION3_STAFF_CARD</option>
 		</field>
 
+    <field 	name="show_drop_down_menue" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_ROSTER_PARAM_LABEL_SHOW_DROP_DOWN" 
+				description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_DROP_DOWN">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+
 		<field 	name="show_team_shortform" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_ROSTER_PARAM_LABEL_SHOW_TEAM_SHORTFORM" 
 				description="COM_JOOMLEAGUE_FES_ROSTER_PARAM_DESCR_SHOW_TEAM_SHORTFORM">
@@ -263,6 +270,14 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
 		</field>
+		
+		<field 	name="show_team_logo_highslide" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HIGHSLIDE" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HIGHSLIDE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 <!-- wird automatisch berechnet			
 		<field 	name="team_picture_height" type="text" default="0"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT" 
