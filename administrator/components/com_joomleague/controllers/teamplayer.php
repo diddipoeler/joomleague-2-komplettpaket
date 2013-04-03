@@ -232,20 +232,26 @@ class JoomleagueControllerTeamPlayer extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
 
-	function orderup()
+	/*
+	// diddipoeler
+  function orderup()
 	{
 		$model=$this->getModel('teamplayer');
 		$model->move(-1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
-
+  */
+  
+  /*
+  // diddipoeler
 	function orderdown()
 	{
 		$model=$this->getModel('teamplayer');
 		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
-
+  */
+  
 	function saveorder()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');

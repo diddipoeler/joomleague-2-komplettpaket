@@ -242,20 +242,26 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
 
+  /*
+  // diddipoeler
 	function orderup()
 	{
 		$model=$this->getModel('teamstaff');
 		$model->move(-1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
-
+  */
+  
+  /*
+  // diddipoeler
 	function orderdown()
 	{
 		$model=$this->getModel('teamstaff');
 		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
-
+  */
+  
 	function saveorder()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');
