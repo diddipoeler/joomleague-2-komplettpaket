@@ -3,6 +3,7 @@
 
 if ( $this->show_debug_info )
 {
+echo 'player view games<pre>',print_r($this->games,true),'</pre><br>'; 
 echo 'player view teams<pre>',print_r($this->teams,true),'</pre><br>';    
 }
 

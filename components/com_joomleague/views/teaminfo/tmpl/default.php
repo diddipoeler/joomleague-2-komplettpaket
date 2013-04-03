@@ -31,11 +31,12 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
   // diddipoeler
   // aufbau der templates
   $output = array();
+  /*
   if ($this->config['show_teaminfo']==1)
 	{
         $output['COM_JOOMLEAGUE_TEAMINFO_PAGE_TITLE'] = 'teaminfo';
 	}
-
+  */
 	if ($this->config['show_description']==1)
 	{
         $output['COM_JOOMLEAGUE_TEAMINFO_TEAMINFORMATION'] = 'description';
@@ -94,6 +95,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     // anzeige als tabs oder slider von joomlaworks
     $startoutput = '';
     $params = '';
+    echo $this->loadTemplate('teaminfo');
     
     if($this->config['show_teaminfo_tabs'] == "show_tabs") 
     {
