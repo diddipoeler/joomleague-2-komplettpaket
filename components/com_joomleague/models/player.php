@@ -615,6 +615,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 
 /*
 // blödsinn diddipoeler
+// performance killer
 			$query_ms = ' SELECT m.id AS mid, tp.id AS tpid, tp.projectteam_id'
 					  . ' FROM #__joomleague_match_statistic AS md '
 					  . $common_query_part
@@ -649,7 +650,8 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 					. '   AND p.published = 1 '
 					. ' ORDER BY m.match_date';
 */
-
+  
+					  
 			$query 	= ' SELECT m.*,'
 					. ' t1.id AS team1,'
 					. ' t2.id AS team2, '
@@ -658,7 +660,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 					. ' COALESCE(mp.started,0) as started,'
 					. ' COALESCE(mp.sub_in, 0) as sub_in,'
 					. ' COALESCE(mp.sub_out,0) as sub_out,'
-					. ' IF(mp.projectteam_id,mp.projectteam_id,IF(ms.projectteam_id,ms.projectteam_id, me.projectteam_id)) AS projectteam_id'
+					. ' mp.projectteam_id AS projectteam_id'
 					. ' FROM #__joomleague_match AS m '
 					. ' INNER JOIN #__joomleague_round r ON m.round_id=r.id '
 					. ' INNER JOIN #__joomleague_project AS p ON p.id=r.project_id '
