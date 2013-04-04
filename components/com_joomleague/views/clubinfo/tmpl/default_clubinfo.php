@@ -20,11 +20,14 @@ else
 		{
 			$club_emblem_title = str_replace( "%CLUBNAME%", $this->club->name, JText::_( 'COM_JOOMLEAGUE_CLUBINFO_EMBLEM_TITLE' ) );
 			$picture = $this->club->logo_big;
+      /*
 			echo JoomleagueHelper::getPictureThumb($picture, 
 								$club_emblem_title,
 								$this->config['team_picture_width'],
 								$this->config['team_picture_height'],
-								1);			
+								1);
+                */
+     echo JHTML::image($picture, $club_emblem_title, array('title' => $club_emblem_title,'width' => $this->config['team_picture_width'] ));           			
 		}
 		?>
 		<!-- SHOW LOGO - END -->
@@ -40,6 +43,16 @@ else
 								20,
 								3);				
 		}
+    if ( $this->club->website )
+		{
+      if( $this->config['show_club_internetadress_picture'] )
+      {
+      echo '<img style="" src="http://www.thumbshots.de/cgi-bin/show.cgi?url='.$this->club->website.'">';
+      }
+      
+		}
+    
+    
 		?>
 		<!-- SHOW SMALL LOGO - END -->
 	</div>
@@ -124,6 +137,8 @@ else
 				<?php echo JHTML::_( 'link', $this->club->website, $this->club->website, array( "target" => "_blank" ) ); ?>
 			</span>
 			<?php
+      
+      
 		}
 
 		if ( $this->club->president )

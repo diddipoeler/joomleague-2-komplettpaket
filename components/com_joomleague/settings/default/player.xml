@@ -259,11 +259,13 @@
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PLAYER_PICTURE_WIDTH" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PLAYER_PICTURE_WIDTH">
 		</field>
-		
+
+<!--	
 		<field 	name="picture_height" type="text" default="150"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PLAYER_PICTURE_HEIGHT" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PLAYER_PICTURE_HEIGHT">
 		</field>
+-->
 		
 		<field 	name="show_nationality" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_NATIONALITY" 

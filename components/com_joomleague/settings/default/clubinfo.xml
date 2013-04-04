@@ -17,7 +17,13 @@
 			<option value="show_slider">COM_JOOMLEAGUE_FES_CLUBINFO_SLIDER</option>
 		</field>
 		
-		
+		<field name="show_club_internetadress_picture" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_CLUB_INTERNETADRESS_PICTURE"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_CLUB_INTERNETADRESS_PICTURE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+    
 		<field name="show_club_info" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_CLUBINFO"
 			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_CLUBINFO">
@@ -80,6 +86,7 @@
 		</field>
 		
 	</fieldset>
+  
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
 		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS">
 		<field name="show_club_logo" type="radio" default="1"
@@ -92,10 +99,14 @@
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
 		</field>
+
+<!--     
 		<field name="team_picture_height" type="text" default="150"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
 		</field>
+-->   
+ 
 		<field name="show_route" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_ROUTE"
 			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_ROUTE">
@@ -121,4 +132,5 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 	</fieldset>
+  
 </form>
