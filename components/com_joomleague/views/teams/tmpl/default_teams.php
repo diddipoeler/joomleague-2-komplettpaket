@@ -110,7 +110,9 @@
       }
       else
       {
+      ?>
       <td class="club_logo"></td>
+      <?php 
       } 
       ?>
       
