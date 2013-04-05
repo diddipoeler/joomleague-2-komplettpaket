@@ -107,6 +107,10 @@
       ?>
 			<td class="club_logo"><?php echo '<img style="" src="http://www.thumbshots.de/cgi-bin/show.cgi?url='.$team->club_www.'">'; ?></td>
 			<?php 
+      }
+      else
+      {
+      <td class="club_logo"></td>
       } 
       ?>
       
