@@ -11,6 +11,11 @@
 		<?php if ($this->config['show_medium_logo']) { ?>
 		<th class="club_logo"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_LOGO_CLUB' ); ?></th>
 		<?php } ?>
+    
+    <?php if ($this->config['show_club_internetadress_picture']) { ?>
+		<th class="club_logo"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_HOMEPAGE_PICTURE' ); ?></th>
+		<?php } ?>
+    
 		<th class="club_address"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_NAME_CLUBADDRESS' ); ?></th>
 	</tr>
 	</thead>
@@ -95,6 +100,16 @@
 			<?php if ($this->config['show_medium_logo']) { ?>
 			<td class="club_logo"><?php echo $mediumClubLogoLink; ?></td>
 			<?php } ?>
+      
+      <?php 
+      if ($this->config['show_club_internetadress_picture'] && !empty($team->club_www) ) 
+      { 
+      ?>
+			<td class="club_logo"><?php echo '<img style="" src="http://www.thumbshots.de/cgi-bin/show.cgi?url='.$team->club_www.'">'; ?></td>
+			<?php 
+      } 
+      ?>
+      
 			<td class="club_address">
 				<?php
 				echo Countries::convertAddressString(	$team->club_name,

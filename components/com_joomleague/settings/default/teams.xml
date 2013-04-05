@@ -43,14 +43,22 @@
                label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_WIDTH" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_WIDTH">
         </field>
 
+<!--
         <field name="team_picture_height" type="text" default="0"
                label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAM_PICTURE_HEIGHT" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAM_PICTURE_HEIGHT">
         </field>
+-->
 
         <field type="spacer">
         </field>
 
-
+    <field name="show_club_internetadress_picture" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_CLUB_INTERNETADRESS_PICTURE"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_CLUB_INTERNETADRESS_PICTURE">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+    
     <field 	name="show_medium_logo" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_TEAMS_PARAM_LABEL_SHOW_MEDIUM_LOGO" 
 				description="COM_JOOMLEAGUE_FES_TEAMS_PARAM_DESCR_SHOW_MEDIUM_LOGO">
