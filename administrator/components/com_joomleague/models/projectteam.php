@@ -99,7 +99,120 @@ class JoomleagueModelProjectteam extends JoomleagueModelItem
 		return true;
 	}
 
-	/**
+	function deleteprojectteam($cid)
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe	= JFactory::getApplication();    
+    //$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_DELETE').'<pre>'.print_r($cid,true).'</pre><br>'  ,'');
+    $proteamsdelete = implode(",",$cid);
+    //$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MODEL_DELETE').'<pre>'.print_r($proteamsdelete,true).'</pre><br>'  ,'');
+    
+    // team im projekt
+    $query="DELETE FROM #__joomleague_project_team WHERE id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_DELETE_OK'),'');
+    }
+    // heimspiele
+    $query="DELETE FROM #__joomleague_match WHERE projectteam1_id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_HOME_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_HOME_DELETE_OK'),'');
+    }
+    // auswärtsspiele
+    $query="DELETE FROM #__joomleague_match WHERE projectteam2_id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_AWAY_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_AWAY_DELETE_OK'),'');
+    }
+    // trainingsdaten
+    $query="DELETE FROM #__joomleague_team_trainingdata WHERE project_team_id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_TRAININGDATA_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_TRAININGDATA_DELETE_OK'),'');
+    }
+    // zugeordnete spieler
+    $query="DELETE mp, me
+FROM #__joomleague_team_player AS tp 
+INNER JOIN #__joomleague_match_player AS mp 
+ON tp.id = mp.teamplayer_id
+INNER JOIN #__joomleague_match_event AS me 
+ON tp.id = me.teamplayer_id
+WHERE tp.projectteam_id IN ($proteamsdelete)";
+$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MATCH_PLAYER_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MATCH_PLAYER_DELETE_OK'),'');
+    }
+// zugeordnete trainer
+$query="DELETE ms
+FROM #__joomleague_team_staff AS ts 
+INNER JOIN #__joomleague_match_staff AS ms 
+ON ts.id = ms.team_staff_id
+WHERE ts.projectteam_id IN ($proteamsdelete)";
+$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MATCH_STAFF_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_MATCH_STAFF_DELETE_OK'),'');
+    }
+    // teamspieler 
+    $query="DELETE FROM #__joomleague_team_player WHERE projectteam_id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_PLAYER_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_PLAYER_DELETE_OK'),'');
+    }     
+    // teamtrainer 
+    $query="DELETE FROM #__joomleague_team_staff WHERE projectteam_id IN ($proteamsdelete)";
+	$this->_db->setQuery($query);
+	if(!$this->_db->query())
+	{
+		$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_STAFF_DELETE_ERROR'),'Error');
+	}
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAM_STAFF_DELETE_OK'),'');
+    }    
+    
+    
+    
+    
+    }
+    
+    
+    /**
 	* Method to return a playgrounds array (id, name)
 	 	*
 	 	* @access	public

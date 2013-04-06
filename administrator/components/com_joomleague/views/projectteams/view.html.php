@@ -337,6 +337,7 @@ class JoomleagueViewProjectteams extends JLGView
 	{ 	
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_TITLE'));
+        JLToolBarHelper::deleteList('', 'projectteam.remove');
 
 		JLToolBarHelper::apply('projectteam.saveshort');
 		JLToolBarHelper::custom('projectteam.changeteams','move.png','move_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_BUTTON_CHANGE_TEAMS'),false);

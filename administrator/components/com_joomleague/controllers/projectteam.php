@@ -295,6 +295,12 @@ class JoomleagueControllerProjectteam extends JoomleagueController
 	{
 		$cid = JRequest::getVar('cid', array(), 'post', 'array');
 		JArrayHelper::toInteger($cid);
+        $model = $this->getModel('projectteam');
+        $model->deleteprojectteam($cid);
+        
+        /*
+        $cid = JRequest::getVar('cid', array(), 'post', 'array');
+		JArrayHelper::toInteger($cid);
 
 		if (count($cid) < 1)
 		{
@@ -309,6 +315,8 @@ class JoomleagueControllerProjectteam extends JoomleagueController
 		}
 
 		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=projectteam.display');
+        */
+        $this->setRedirect('index.php?option=com_joomleague&view=projectteams&task=projectteam.display');
 	}
 
 	function publish()
