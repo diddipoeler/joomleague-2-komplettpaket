@@ -15,7 +15,9 @@
     <?php if ($this->config['show_club_internetadress_picture']) { ?>
 		<th class="club_logo"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_HOMEPAGE_PICTURE' ); ?></th>
 		<?php } ?>
-    
+    <?php if ($this->config['show_club_number']) { ?>
+		<th class="club_logo"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_CLUB_NUMBER' ); ?></th>
+		<?php } ?>
 		<th class="club_address"><?php echo JText::_( 'COM_JOOMLEAGUE_TEAMS_NAME_CLUBADDRESS' ); ?></th>
 	</tr>
 	</thead>
@@ -113,7 +115,22 @@
       ?>
       <td class="club_logo"></td>
       <?php 
-      } 
+      }
+      
+      if ($this->config['show_club_number'] ) 
+      { 
+      ?>
+        <td class="club_logo"><?php echo $team->unique_id; ?></td>
+		<?php 
+      }
+      else
+      {
+      ?>
+      <td class="club_logo"></td>
+      <?php 
+      }
+      
+       
       ?>
       
 			<td class="club_address">

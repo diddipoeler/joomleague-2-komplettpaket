@@ -53,6 +53,7 @@ class JoomleagueModelTeams extends JoomleagueModelProject
                     c.location as club_location,
                     c.email as club_email,
                     c.logo_big,
+                    c.unique_id,
                     c.logo_small,
                     c.logo_middle,
                     c.country as club_country,
