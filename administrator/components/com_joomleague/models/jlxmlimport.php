@@ -526,7 +526,7 @@ class JoomleagueModelJLXMLImport extends JModel
 
 	public function getClubAndTeamListSelect()
 	{
-		$query  = ' SELECT t.id AS value, CONCAT(c.name, " - ", t.name) AS text, t.club_id, c.name AS club_name, t.name AS team_name, c.country'
+		$query  = ' SELECT t.id AS value, CONCAT(c.name, " - ", t.name , " (", t.info , ")" ) AS text, t.club_id, c.name AS club_name, t.name AS team_name, c.country'
 				. ' FROM #__joomleague_club AS c'
 				. ' INNER JOIN #__joomleague_team AS t ON t.club_id=c.id'
 				. ' ORDER BY c.name, t.name';
