@@ -1,4 +1,6 @@
-<?php defined( '_JEXEC' ) or die( 'Restricted access' ); ?>
+<?php 
+defined( '_JEXEC' ) or die( 'Restricted access' ); 
+?>
 
 <!-- section header e.g. ranking, results etc. -->
 <a id="jl_top"></a>
@@ -18,7 +20,7 @@
 
 			if ( $this->showediticon )
 			{
-				$link = JoomleagueHelperRoute::getResultsRoute( $this->project->id, $this->roundid, $this->model->divisionid, $this->model->mode, $this->model->order, 'form');
+				$link = JoomleagueHelperRoute::getResultsRoute( $this->project->id, $this->roundid, $this->model->divisionid, $this->model->mode, $this->model->order, $this->config['result_style_edit'] );
 				$imgTitle = JText::_( 'COM_JOOMLEAGUE_RESULTS_ENTER_EDIT_RESULTS' );
 				$desc = JHTML::image( 'media/com_joomleague/jl_images/edit.png', $imgTitle, array( ' title' => $imgTitle ) );
 				echo ' ';

@@ -942,8 +942,8 @@ for ($a=1; $a <= $anzahltage ;$a++ )
   $temp = new stdClass();
   $temp->id = $a;
   $temp->roundcode = $a;
-  $temp->name = $a.'.Spieltag';
-  $temp->alias = $a.'.Spieltag';
+  $temp->name = $a.'- Spieltag';
+  $temp->alias = $a.'-spieltag';
   $temp->round_date_first = '';
   $temp->round_date_last = '';
   $exportround[$a] = $temp;

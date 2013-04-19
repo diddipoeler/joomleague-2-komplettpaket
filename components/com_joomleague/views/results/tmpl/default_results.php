@@ -31,7 +31,12 @@ else
 		{
 			switch ( $this->config['result_style'] )
 			{
-				case 3:
+				case 4:
+							{
+								echo $this->loadTemplate('results_style_dfcday');
+							}
+							break;
+        case 3:
 							{
 								echo $this->loadTemplate('results_style3');
 							}
