@@ -122,7 +122,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
     //$mainframe->enqueueMessage(JText::_('die komponente '.$this->config['show_image_from'].' ist f&uuml;r das profilbild nicht installiert'),'Error');
     }
 		
-	$mainframe->enqueueMessage(JText::_('komponente ->'.$this->config['show_image_from']),'Notice');
+	//$mainframe->enqueueMessage(JText::_('komponente ->'.$this->config['show_image_from']),'Notice');
 
 	switch ( $this->config['show_image_from'] )
 	{
@@ -151,7 +151,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 	$db->setQuery($query);
 	$results = $db->loadResult();
     // diddipoeler
-    $mainframe->enqueueMessage(JText::_('avatar com_comprofiler ->'.$results),'Notice');
+    //$mainframe->enqueueMessage(JText::_('avatar com_comprofiler ->'.$results),'Notice');
     if ( $results )
     {
     $picture = 'images/comprofiler/'.$results;
@@ -165,7 +165,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 	$db->setQuery($query);
 	$results = $db->loadResult();
     // diddipoeler
-    $mainframe->enqueueMessage(JText::_('avatar com_kunena ->'.$results),'Notice');
+    //$mainframe->enqueueMessage(JText::_('avatar com_kunena ->'.$results),'Notice');
     if ( $results )
     {
     $picture = 'media/kunena/avatars/'.$results;
@@ -181,7 +181,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 	$db->setQuery($query);
 	$results = $db->loadResult();
     // diddipoeler
-    $mainframe->enqueueMessage(JText::_('avatar com_community ->'.$results),'Notice');
+    //$mainframe->enqueueMessage(JText::_('avatar com_community ->'.$results),'Notice');
     if ( $results )
     {
     $picture = $results;
