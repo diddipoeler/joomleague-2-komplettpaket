@@ -108,23 +108,24 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 //	$mainframe->enqueueMessage(JText::_('user_id ->'.$user_id),'Notice');
 	
 	
-		if ($this->config['show_photo'])
-		{
-		// von welcher komponente soll das bild kommen
-		// und ist die komponente installiert
-		$query = "SELECT option
-					FROM #__components
-					WHERE option LIKE '" . $this->config['show_image_from'] . "'" ;
-		$db->setQuery($query);
-		$results = $db->loadResult();
-		if ( !$results )
-		{
+	if ($this->config['show_photo'])
+	{
+	// von welcher komponente soll das bild kommen
+	// und ist die komponente installiert
+	$query = "SELECT option
+				FROM #__components
+				WHERE option LIKE '" . $this->config['show_image_from'] . "'" ;
+	$db->setQuery($query);
+	$results = $db->loadResult();
+	if ( !$results )
+	{
     //$mainframe->enqueueMessage(JText::_('die komponente '.$this->config['show_image_from'].' ist f&uuml;r das profilbild nicht installiert'),'Error');
     }
 		
-//		$mainframe->enqueueMessage(JText::_('komponente ->'.$this->config['show_image_from']),'Notice');
-		switch ( $this->config['show_image_from'] )
-		{
+	$mainframe->enqueueMessage(JText::_('komponente ->'.$this->config['show_image_from']),'Notice');
+
+	switch ( $this->config['show_image_from'] )
+	{
     case 'com_joomleague':
     $picture = $this->predictionMember->picture;
 		
@@ -133,26 +134,38 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
     case 'com_cbe':
     $picture = 'components/com_cbe/assets/user.png';
     $query = 'SELECT avatar
-					FROM #__cbe_users
-					WHERE userid = ' . (int)$user_id ;
-		$db->setQuery($query);
-		$results = $db->loadResult();
-		if ( $results )
+			FROM #__cbe_users
+			WHERE userid = ' . (int)$user_id ;
+	$db->setQuery($query);
+	$results = $db->loadResult();
+	if ( $results )
     {
     $picture = $results;
     }
     break;
     
     case 'com_comprofiler':
+    $query = 'SELECT avatar
+			FROM #__comprofiler
+			WHERE user_id = ' . (int)$user_id ;
+	$db->setQuery($query);
+	$results = $db->loadResult();
+    // diddipoeler
+    $mainframe->enqueueMessage(JText::_('avatar com_comprofiler ->'.$results),'Notice');
+    if ( $results )
+    {
+    $picture = 'images/comprofiler/'.$results;
+    }
     break;
     
     case 'com_kunena':
     $query = 'SELECT avatar
-					FROM #__kunena_users
-					WHERE userid = ' . (int)$user_id ;
-		$db->setQuery($query);
-		$results = $db->loadResult();
-    //$mainframe->enqueueMessage(JText::_('com_kunena ->'.$results),'Notice');
+			FROM #__kunena_users
+			WHERE userid = ' . (int)$user_id ;
+	$db->setQuery($query);
+	$results = $db->loadResult();
+    // diddipoeler
+    $mainframe->enqueueMessage(JText::_('avatar com_kunena ->'.$results),'Notice');
     if ( $results )
     {
     $picture = 'media/kunena/avatars/'.$results;
@@ -163,11 +176,12 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
     
     case 'com_community':
     $query = 'SELECT avatar
-					FROM #__community_users
-					WHERE userid = ' . (int)$user_id ;
-		$db->setQuery($query);
-		$results = $db->loadResult();
-    //$mainframe->enqueueMessage(JText::_('com_community ->'.$results),'Notice');
+			FROM #__community_users
+			WHERE userid = ' . (int)$user_id ;
+	$db->setQuery($query);
+	$results = $db->loadResult();
+    // diddipoeler
+    $mainframe->enqueueMessage(JText::_('avatar com_community ->'.$results),'Notice');
     if ( $results )
     {
     $picture = $results;
@@ -179,17 +193,18 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 			//$imgTitle = JText::sprintf('JL_PRED_USERS_AVATAR_OF', $outputUserName, '');
 			
 			
-			if ( !file_exists($picture) )
-			{
-				$picture = JoomleagueHelper::getDefaultPlaceholder("player");
-			}
-			//echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
-			echo JoomleagueHelper::getPictureThumb($picture, $playerName,0,0);
-		}
-		else
-		{
-			echo '&nbsp;';
-		}
+	if ( !file_exists($picture) )
+	{
+		$picture = JoomleagueHelper::getDefaultPlaceholder("player");
+	}
+	//echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
+	echo JoomleagueHelper::getPictureThumb($picture, $playerName,0,0);
+	}
+	else
+	{
+		echo '&nbsp;';
+	}
+    
 	}
   
   /**

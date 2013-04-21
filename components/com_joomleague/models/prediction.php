@@ -237,7 +237,18 @@ class JoomleagueModelPrediction extends JModel
     {
     $picture = $results;
     }
+    break;
     
+    case 'com_comprofiler':
+    $query = 'SELECT avatar
+			FROM #__comprofiler
+			WHERE user_id = ' . (int)$members ;
+		$this->_db->setQuery($query);
+		$results = $this->_db->loadResult();
+    if ( $results )
+    {
+    $picture = $results;
+    }
     break;
     
     }
