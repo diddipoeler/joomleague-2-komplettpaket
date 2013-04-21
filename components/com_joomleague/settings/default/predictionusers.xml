@@ -3,7 +3,8 @@
 
 	<fieldset	group="JL_FES_PARAMS_GROUP_OPTIONS"
 	name="JL_FES_PARAMS_GROUP_OPTIONS"
-			description="JL_FES_PARAMS_DESCR_OPTIONS">
+			description="JL_FES_PARAMS_DESCR_OPTIONS"
+      addfieldpath="/administrator/components/com_joomleague/elements">
 
 		<field	name="show_photo" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO"
@@ -12,16 +13,10 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
-		<field	name="show_image_from" type="list" default="1"
+		<field	name="show_image_from" type="avatarfromcomponent" default="0"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO_FROM"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO_FROM">
-			<option value="0">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION0_SHOW_PHOTO_FROM</option>
-			<option value="com_joomleague">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION1_SHOW_PHOTO_FROM</option>
-			<option value="com_cbe15">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION5_SHOW_PHOTO_FROM</option>
-			<option value="com_cbe25">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION2_SHOW_PHOTO_FROM</option>
-			<option value="com_cbe">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION6_SHOW_PHOTO_FROM</option>
-			<option value="com_kunena">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION3_SHOW_PHOTO_FROM</option>
-			<option value="com_community">COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_OPTION4_SHOW_PHOTO_FROM</option>
+			
 		</field>
 
 		<field	name="show_register_date" type="radio" default="1"
