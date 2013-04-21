@@ -66,9 +66,9 @@ $modelpg = &JLGModel::getInstance('PredictionRanking', 'JoomleagueModel');
 // dadurch erhalten wir die sortierung aus dem backend
 $overallConfig	= $modelpg->getPredictionOverallConfig();
 $config = array_merge($overallConfig,$config);
-$configavatar			= $modelpg->getPredictionTemplateConfig('predictionusers');
+$configavatar = $modelpg->getPredictionTemplateConfig('predictionusers');
 $predictionGame[] = $modelpg->getPredictionGame();
-$predictionMember[] = $modelpg->getPredictionMember();
+$predictionMember[] = $modelpg->getPredictionMember($configavatar);
 $predictionProjectS[] = $modelpg->getPredictionProjectS();
 $actJoomlaUser[] = JFactory::getUser();
 $roundID = $modelpg->roundID;
