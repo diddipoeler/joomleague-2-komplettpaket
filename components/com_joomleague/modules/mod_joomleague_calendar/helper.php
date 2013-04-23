@@ -63,6 +63,7 @@ class modJLCalendarHelper
 		//it is loaded from the language ini because it may vary from one country to another, in Spain
 		//for example, the startday is Monday (1)
 		$cal->lightbox = $params->get('lightbox');
+        $cal->lightbox_on_pageload = $params->get('lightbox_on_pageload');
 		$cal->prefix = $params->get('custom_prefix');
 		$cal->usedteams = $params->get('usedteams');
 		$cal->usedclubs = $params->get('usedclubs');

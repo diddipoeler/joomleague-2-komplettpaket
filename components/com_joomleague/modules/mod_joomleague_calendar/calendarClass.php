@@ -223,7 +223,8 @@ class PHPCalendar
       $s .= "</table>\n";
 
 
-      if($todaylink!='' && $this->ajax == 0)
+      //if($todaylink!='' && $this->ajax == 0)
+      if($todaylink!='' && $this->ajax == 0 && $this->lightbox == 1 && $this->lightbox_on_pageload == 1)
       {
         $doc->addScriptDeclaration('window.addEvent(\'domready\', function() {
   			'.$todaylink.'
@@ -295,6 +296,8 @@ class PHPCalendar
   
     var $modid = "";
     var $ajax = 0;
+    var $lightbox = 0;
+    var $lightbox_on_pageload = 0;
     var $usedteams = '';
     var $usedclubs = '';
 }
