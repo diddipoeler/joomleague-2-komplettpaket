@@ -244,6 +244,7 @@ class JLGStatistic extends JObject {
 	function showInMatchReport()
 	{
 		$params = &$this->getParams();
+        // diddipoeler
 		//$statistic_views = explode(',', $params->get('statistic_views'));
         $statistic_views = $params->get('statistic_views');
 		if (!count($statistic_views)) {
@@ -266,7 +267,9 @@ class JLGStatistic extends JObject {
 	function showInRoster()
 	{
 		$params = &$this->getParams();
-		$statistic_views = explode(',', $params->get('statistic_views'));
+        // diddipoeler
+		//$statistic_views = explode(',', $params->get('statistic_views'));
+        $statistic_views = $params->get('statistic_views');
 		if (!count($statistic_views)) {
 			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
@@ -287,6 +290,7 @@ class JLGStatistic extends JObject {
 	function showInPlayer()
 	{
 		$params = &$this->getParams();
+        // diddipoeler
 		//$statistic_views = explode(',', $params->get('statistic_views'));
         $statistic_views = $params->get('statistic_views');
 		if (!count($statistic_views)) {
