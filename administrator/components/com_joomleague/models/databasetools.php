@@ -394,8 +394,20 @@ function PrintStepResult($result)
 		
 		$query = "update #__joomleague_person set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
 		array_push($arrQueries, $query);
-		
+
+// diddipoeler test
+// update j25_joomleague_person set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')
+// platzhalter
+// update j25_joomleague_person set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_150_2.png', 'images/com_joomleague/database/placeholders/placeholder_150_2.png')		
+// update j25_joomleague_team_player set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_150_2.png', 'images/com_joomleague/database/placeholders/placeholder_150_2.png')
+// update j25_joomleague_team_staff set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_150_2.png', 'images/com_joomleague/database/placeholders/placeholder_150_2.png')
+
 		$query = "update #__joomleague_team_player set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
+		array_push($arrQueries, $query);
+		
+		// diddipoeler
+		// leider vergessen
+		$query = "update #__joomleague_team_staff set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
 		array_push($arrQueries, $query);
 		
 		$query = "update #__joomleague_project set picture = replace(picture, 'media/com_joomleague/projects', 'images/com_joomleague/database/projects')";

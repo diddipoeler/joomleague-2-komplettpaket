@@ -252,7 +252,7 @@ class JoomleagueModelProject extends JoomleagueModelItem
 		if ($season) {
 			$query .= ' AND season_id = '.(int) $season;
 		}
-		$query .=	" ORDER BY p.ordering, p.name ASC ";
+		$query .=	" ORDER BY p.name ASC ";
 		$this->_db->setQuery($query);
 		if (!$result = $this->_db->loadObjectList())
 		{

@@ -21,10 +21,13 @@
 				{
 					$picture = JoomleagueHelper::getDefaultPlaceholder("player") ;
 				}
+				/*
 				echo JoomleagueHelper::getPictureThumb($picture, $imgTitle,
 														$this->config['picture_width'],
 														$this->config['picture_height']);
-				?>
+				*/
+        echo JHTML::image($picture, $imgTitle, array('title' => $imgTitle,'width' => $this->config['picture_width'] ));
+        ?>
 			</td>
 			<?php
 		}

@@ -18,6 +18,7 @@ class JoomleagueViewStaff extends JLGView
 		$this->assignRef('overallconfig',$model->getOverallConfig());
 		$this->assignRef('config',$config);
 		$this->assignRef('person',$person);
+		$this->assignRef('showediticon',$model->getAllowed($config['edit_own_player']));
 		
 		$staff=&$model->getTeamStaff();
 		$titleStr=JText::sprintf('COM_JOOMLEAGUE_STAFF_ABOUT_AS_A_STAFF', JoomleagueHelper::formatName(null, $this->person->firstname, $this->person->nickname, $this->person->lastname, $this->config["name_format"]));		

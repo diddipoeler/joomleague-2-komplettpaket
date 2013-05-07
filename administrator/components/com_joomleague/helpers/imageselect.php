@@ -127,7 +127,7 @@ var $_foldertype = '';
 		//check if the imagefiletype is valid
 		$fileext	= JFile::getExt($file['name']);
 
-		$allowable	= array ( 'gif', 'jpg', 'png' );
+		$allowable	= array ( 'gif', 'jpg', 'png','GIF', 'JPG', 'PNG' );
 		if ( !in_array( $fileext, $allowable ) )
 		{
 			JError::raiseWarning( 100, JText::_( 'COM_JOOMLEAGUE_ADMIN_IMAGEHANDLER_ERROR1' ) . ': ' . htmlspecialchars( $file['name'], ENT_COMPAT, 'UTF-8' ) );
