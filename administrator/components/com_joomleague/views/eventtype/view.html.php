@@ -75,7 +75,7 @@ class JoomleagueViewEventtype extends JLGView
 		if (empty($event->icon)){$event->icon=$default;}
 
 		// image selector
-		$imageselect=ImageSelect::getSelector('icon','picture_preview','events',$event->icon,$default,'icon','icon');
+		$imageselect=ImageSelectJL::getSelector('icon','picture_preview','events',$event->icon,$default,'icon','icon');
 
 		//build the html select list for event
 		$myoptions=array();

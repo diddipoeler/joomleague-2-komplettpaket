@@ -56,7 +56,7 @@ class JoomLeagueControllerImagehandler extends JoomleagueController
 		$file	= JRequest::getVar( 'userfile', '', 'files', 'array' );
 		//$task	= JRequest::getVar( 'task' );
 		$type	= JRequest::getVar( 'type' );
-		$folder	= ImageSelect::getfolder($type);
+		$folder	= ImageSelectJL::getfolder($type);
 		$field	= JRequest::getVar( 'field' );
 		$linkaddress	= JRequest::getVar( 'linkaddress' );
 		// Set FTP credentials, if given
@@ -84,7 +84,7 @@ $filename = $file['name'];
 else
 {
     //sanitize the image filename
-		$filename = ImageSelect::sanitize( $base_Dir, $file['name'] );
+		$filename = ImageSelectJL::sanitize( $base_Dir, $file['name'] );
 }
 
 		
@@ -113,7 +113,7 @@ echo "<script>  window.parent.selectImage_".$type."('$filename', '$filename','$f
 		}
 
 		//check the image
-		$check = ImageSelect::check( $file );
+		$check = ImageSelectJL::check( $file );
 
 		if ( $check === false )
 		{
@@ -121,7 +121,7 @@ echo "<script>  window.parent.selectImage_".$type."('$filename', '$filename','$f
 		}
 
 		//sanitize the image filename
-		$filename = ImageSelect::sanitize( $base_Dir, $file['name'] );
+		$filename = ImageSelectJL::sanitize( $base_Dir, $file['name'] );
 		$filepath = $base_Dir . $filename;
 
 		//upload the image
@@ -159,7 +159,7 @@ echo "<script>  window.parent.selectImage_".$type."('$filename', '$filename','$f
 		$images	= JRequest::getVar( 'rm', array(), '', 'array' );
 		$type	= JRequest::getVar( 'type' );
 
-		$folder	= ImageSelect::getfolder( $type );
+		$folder	= ImageSelectJL::getfolder( $type );
 
 		if ( count( $images ) )
 		{

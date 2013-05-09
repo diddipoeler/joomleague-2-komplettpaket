@@ -16,7 +16,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-class ImageSelect
+class ImageSelectJL
 {
 
 var $_foldertype = '';
@@ -35,18 +35,18 @@ var $_foldertype = '';
     
 		JHTML::_( 'behavior.modal' );
 
-		$baseFolder = JURI::root();//.'images/com_joomleague/database/'.ImageSelect::getfolder($type);
+		$baseFolder = JURI::root();//.'images/com_joomleague/database/'.ImageSelectJL::getfolder($type);
 		$funcname = preg_replace( "/^[.]*/", '', $fieldid );
 
 		//Build the image select functionality
 		$js = "
 		function selectImage_" . $type . "(image, imagename, field, fieldid)
 		{
-			$('a_' + field).value = 'images/com_joomleague/database/" . ImageSelect::getfolder( $type ) . "/'+image;
-			$('a_' + field + '_name').value ='images/com_joomleague/database/" . ImageSelect::getfolder( $type ) . "/'+imagename;
+			$('a_' + field).value = 'images/com_joomleague/database/" . ImageSelectJL::getfolder( $type ) . "/'+image;
+			$('a_' + field + '_name').value ='images/com_joomleague/database/" . ImageSelectJL::getfolder( $type ) . "/'+imagename;
 			$('a_' + field + '_name').fireEvent('change');
       		if($(fieldid)) {
-        		$(fieldid).value = 'images/com_joomleague/database/" . ImageSelect::getfolder( $type ) . "/'+imagename;
+        		$(fieldid).value = 'images/com_joomleague/database/" . ImageSelectJL::getfolder( $type ) . "/'+imagename;
       		}
 			$('a_' + field + '_name').fireEvent('change');
 			//window.top.setTimeout('window.parent.SqueezeBox.close()', 100);

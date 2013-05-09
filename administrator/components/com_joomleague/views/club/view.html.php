@@ -100,14 +100,14 @@ class JoomleagueViewClub extends JLGView
         $default_big = JoomleagueHelper::getDefaultPlaceholder("clublogobig");
 		if (empty($club->logo_big)){$club->logo_big=$default_big;}
 
-		$logo_bigselect=ImageSelect::getSelector('logo_big','logo_big_preview','clubs_large',$club->logo_big,$default_big,'logo_big','logo_big');
+		$logo_bigselect=ImageSelectJL::getSelector('logo_big','logo_big_preview','clubs_large',$club->logo_big,$default_big,'logo_big','logo_big');
 
 		// logo_middle
 		//if there is no logo selected,use default logo
         $default_middle = JoomleagueHelper::getDefaultPlaceholder("clublogomedium");
 		if (empty($club->logo_middle)){$club->logo_middle=$default_middle;}
 
-		$logo_middleselect=ImageSelect::getSelector('logo_middle','logo_middle_preview','clubs_medium',$club->logo_middle,$default_middle, 'logo_middle', 'logo_middle');
+		$logo_middleselect=ImageSelectJL::getSelector('logo_middle','logo_middle_preview','clubs_medium',$club->logo_middle,$default_middle, 'logo_middle', 'logo_middle');
 
 
 		// logo_small
@@ -115,7 +115,7 @@ class JoomleagueViewClub extends JLGView
         $default_small = JoomleagueHelper::getDefaultPlaceholder("clublogosmall");
 		if (empty($club->logo_small)){$club->logo_small=$default_small;}
 
-		$logo_smallselect=ImageSelect::getSelector('logo_small','logo_small_preview','clubs_small',$club->logo_small,$default_small, 'logo_small', 'logo_small');
+		$logo_smallselect=ImageSelectJL::getSelector('logo_small','logo_small_preview','clubs_small',$club->logo_small,$default_small, 'logo_small', 'logo_small');
 */
 		$this->assignRef('form'      	, $this->get('form'));	
 		$this->assignRef('edit',$edit);

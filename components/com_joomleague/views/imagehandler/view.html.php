@@ -43,7 +43,7 @@ class JoomLeagueViewImagehandler extends JLGView  {
 
 		//get vars
 		$type     = JRequest::getVar( 'type' );
-		$folder = ImageSelect::getfolder($type);
+		$folder = ImageSelectJL::getfolder($type);
 		$field = JRequest::getVar( 'field' );
 		$search 	= $mainframe->getUserStateFromRequest( $option.'.imageselect', 'search', '', 'string' );
 		$search 	= trim(JString::strtolower( $search ) );
@@ -105,7 +105,7 @@ class JoomLeagueViewImagehandler extends JLGView  {
 		$uri 		= JFactory::getURI();
 		$params = & JComponentHelper::getParams('com_joomleague');
 		$type     = JRequest::getVar( 'type' );
-		$folder = ImageSelect::getfolder($type);
+		$folder = ImageSelectJL::getfolder($type);
 		$field  = JRequest::getVar( 'field' );
 		$menu = JRequest::setVar( 'hidemainmenu', 1 );
 		//get vars

@@ -36,8 +36,12 @@ class JLGStatisticSumstats extends JLGStatistic {
 	
 	function getSids()
 	{
-		$params = &$this->getParams();
+		$mainframe	=& JFactory::getApplication();
+        $params = &$this->getParams();
+        // diddipoeler 
 		$stat_ids = explode(',', $params->get('stat_ids'));
+        //$stat_ids = $params->get('stat_ids');
+        //$mainframe->enqueueMessage(JText::_('stat_ids '.print_r($stat_ids,true).' '),'Notice');		
 		if (!count($stat_ids)) {
 			JError::raiseWarning(0, JText::sprintf('STAT %s/%s WRONG CONFIGURATION', $this->_name, $this->id));
 			return(array(0));
