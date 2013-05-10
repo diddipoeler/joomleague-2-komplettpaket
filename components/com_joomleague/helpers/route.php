@@ -398,6 +398,19 @@ class JoomleagueHelperRoute
 
 		return $link;
 	}
+	
+	public static function getPlayersRouteAllTime( $projectid, $teamid, $task=null )
+	{
+		$params = array(	"option" => "com_joomleague",
+					"view" => "rosteralltime",
+					"p" => $projectid,
+					"tid" => $teamid );
+
+		$query = JoomleagueHelperRoute::buildQuery( $params );
+		$link = JRoute::_( 'index.php?' . $query, false );
+
+		return $link;
+	}
 
 	public static function getDivisionsRoute( $projectid, $divisionid, $task=null )
 	{

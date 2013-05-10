@@ -6,6 +6,16 @@ if ($this->config['show_nation'] == 1) $colspan++;
 if ($this->config['show_icons'] == 1) $show_icons = 1;
 ?>
 
+<style type="text/css">
+
+.pageslinks ul { 
+    list-style: none; 
+} 
+.pageslinks ul li { 
+    display: inline; 
+} 
+</style>
+
 <?php foreach ($this->eventtypes AS $rows): ?>
 <?php if ($this->multiple_events == 1) :?>
 <h2><?php echo JText::_($rows->name); ?></h2>
