@@ -32,10 +32,53 @@ class JoomleagueModelRosteralltime extends JoomleagueModelProject
 		$this->projectteamid=JRequest::getInt('ttid',0);
 		//$this->getProjectTeam();
 	}
+    
+    function getPlayerPosition()
+    {
+    $query = "SELECT po.*
+from #__joomleague_position as po
+where po.parent_id != '0' 
+and persontype = '1'
+";
 
-	
+$this->_db->setQuery( $query );
+return $this->_db->loadObjectList();    
+        
+    }
+    
+    function getPositionEventTypes($positionId=0)
+	{
+		$result=array();
+		$query='	SELECT	pet.*,
+							
+							et.name AS name,
+							et.icon AS icon
+					FROM #__joomleague_position_eventtype AS pet
+					INNER JOIN #__joomleague_eventtype AS et ON et.id = pet.eventtype_id
+					WHERE et.published=1 ';
+		
+		$query .= ' ORDER BY pet.ordering, et.ordering';
+		$this->_db->setQuery($query);
+		$result=$this->_db->loadObjectList();
+		if ($result)
+		{
+			if ($positionId)
+			{
+				return $result;
+			}
+			else
+			{
+				$posEvents=array();
+				foreach ($result as $r)
+				{
+					$posEvents[$r->position_id][]=$r;
+				}
+				return ($posEvents);
+			}
+		}
+		return array();
+	}
 
-	
 
 	/**
 	 * return team players by positions

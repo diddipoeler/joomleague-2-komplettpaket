@@ -15,7 +15,10 @@ class JoomleagueViewRosteralltime extends JLGView
 		$config = $model->getTemplateConfig($this->getName());
 
 		$this->assignRef('config',$config);
-    $this->assignRef('rows',$model->getTeamPlayers());
+    $this->assignRef('rows',$model->getTeamPlayers() );
+    $this->assignRef('playerposition',$model->getPlayerPosition() );
+    $this->assignRef('project',$model->getProject());
+    $this->assignRef('positioneventtypes',$model->getPositionEventTypes());
 		
 		parent::display($tpl);
 	}
