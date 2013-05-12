@@ -78,6 +78,30 @@ return $this->_db->loadObjectList();
 		}
 		return array();
 	}
+    
+    function getTeam()
+	{
+		if (is_null($this->team))
+		{
+			if (!$this->teamid)
+			{
+				$this->setError(JText::_('Missing team id'));
+				return false;
+			}
+			if (!$this->projectid)
+			{
+				$this->setError(JText::_('Missing project id'));
+				return false;
+			}
+			$query='	SELECT	t.*,
+								CASE WHEN CHAR_LENGTH(t.alias) THEN CONCAT_WS(\':\',t.id,t.alias) ELSE t.id END AS slug
+						FROM #__joomleague_team AS t
+						WHERE t.id='.$this->_db->Quote($this->teamid);
+			$this->_db->setQuery($query);
+			$this->team=$this->_db->loadObject();
+		}
+		return $this->team;
+	}
 
 
 	/**
@@ -129,6 +153,7 @@ return $this->_db->loadObjectList();
 		$player->start = 0;
 		$player->came_in = 0;
 		$player->out = 0;
+/*        
 $query = '	SELECT count(*) as total
 FROM #__joomleague_match_player
 WHERE came_in = 0  
@@ -152,7 +177,34 @@ and teamplayer_id = ' . $player->playerid;
 $this->_db->setQuery( $query );
 $player->out = $this->_db->loadResult();
 $this->_all_time_players[$player->pid]->out = $this->_all_time_players[$player->pid]->out + $player->out;
+*/
 
+$query	= ' SELECT tp1.id AS tp_id1, '
+					. ' tp1.person_id AS person_id1, '
+					. ' tp2.id AS tp_id2, '
+					. ' tp2.person_id AS person_id2,'
+					. ' m.id AS mid, '
+					. ' mp.came_in, mp.out, mp.in_for'
+					. ' FROM #__joomleague_match AS m'
+					. ' INNER JOIN #__joomleague_round r ON m.round_id = r.id '
+					. ' INNER JOIN #__joomleague_project AS p ON p.id = r.project_id '
+					. ' INNER JOIN #__joomleague_match_player AS mp ON mp.match_id = m.id '
+					. ' INNER JOIN #__joomleague_team_player AS tp1 ON tp1.id = mp.teamplayer_id'
+					. ' LEFT JOIN #__joomleague_team_player AS tp2 ON tp2.id = mp.in_for'
+					. ' WHERE tp1.id = '.$player->playerid
+					. ' AND m.published = 1 '
+					. ' AND p.published = 1 ';
+			$this->_db->setQuery($query);
+			$rows = $this->_db->loadObjectList();
+foreach ($rows AS $row)
+			{
+				$this->_all_time_players[$player->pid]->start += ($row->came_in == 0);
+				$this->_all_time_players[$player->pid]->came_in  += ($row->came_in == 1);
+				$this->_all_time_players[$player->pid]->out += ($row->out == 1);
+
+			
+			}            
+            
 for($a=1; $a < 5; $a++ )
 {
 $query = '	SELECT count(*) as total
