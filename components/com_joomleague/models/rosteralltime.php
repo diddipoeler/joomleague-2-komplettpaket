@@ -153,6 +153,20 @@ return $this->_db->loadObjectList();
 		$player->start = 0;
 		$player->came_in = 0;
 		$player->out = 0;
+        
+        if (  !isset($this->_all_time_players[$player->pid]->start) )
+        {
+            $this->_all_time_players[$player->pid]->start = 0;
+        }
+        if (  !isset($this->_all_time_players[$player->pid]->came_in) )
+        {
+            $this->_all_time_players[$player->pid]->came_in = 0;
+        }
+        if (  !isset($this->_all_time_players[$player->pid]->out) )
+        {
+            $this->_all_time_players[$player->pid]->out = 0;
+        }
+        
 /*        
 $query = '	SELECT count(*) as total
 FROM #__joomleague_match_player
