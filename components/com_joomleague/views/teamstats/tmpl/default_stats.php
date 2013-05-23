@@ -94,13 +94,9 @@
 						<?php 
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highest_home->matchid);
 							$highest_home_result = $this->highest_home->homegoals . $this->overallconfig['seperator'] . $this->highest_home->guestgoals;
-							echo JHTML::link($link,$highest_home_result);
-						?>
-						<br>
-						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highest_home->team1_id );
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highest_home->team2_id );
-							$match	= JHTML::link($team1,$this->highest_home->hometeam) . "<br>" . $this->overallconfig['seperator'] . "<br>" . JHTML::link($team2,$this->highest_home->guestteam);
+							$match	= JHTML::link($link,$highest_home_result) . " -  " . JHTML::link($team2,$this->highest_home->guestteam);
 							echo $match;
 						?>
 					</td>
@@ -114,14 +110,10 @@
 					<td class="statvalue">
 						<?php 
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highest_away->matchid);
-							$highest_away_result = $this->highest_away->homegoals . $this->overallconfig['seperator'] . $this->highest_away->guestgoals;
-							echo JHTML::link($link,$highest_away_result);
-						?>
-						<br>
-						<?php 
+							$highest_away_result = $this->highest_away->guestgoals . $this->overallconfig['seperator'] . $this->highest_away->homegoals;
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highest_away->team1_id );
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highest_away->team2_id );
-							$match	= JHTML::link($team1,$this->highest_away->hometeam) . "<br>" . $this->overallconfig['seperator'] . "<br>" . JHTML::link($team2,$this->highest_away->guestteam);
+							$match	= JHTML::link($link,$highest_away_result) . " - " . JHTML::link($team1,$this->highest_away->hometeam) ;
 							echo $match;
 						?>
 					</td>
@@ -146,13 +138,9 @@
 						<?php 
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highestdef_home->matchid);
 							$highestdef_home_result = $this->highestdef_home->homegoals . $this->overallconfig['seperator'] . $this->highestdef_home->guestgoals;
-							echo JHTML::link($link,$highestdef_home_result);
-						?>
-						<br>
-						<?php 
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highestdef_home->team1_id );
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highestdef_home->team2_id );
-							$match	= JHTML::link($team1,$this->highestdef_home->hometeam) . "<br>" . $this->overallconfig['seperator'] . "<br>" . JHTML::link($team2,$this->highestdef_home->guestteam);
+							$match	= JHTML::link($link,$highestdef_home_result) . " - " . JHTML::link($team2,$this->highestdef_home->guestteam);
 							echo $match;
 						?>
 					</td>
@@ -166,14 +154,10 @@
 					<td class="statvalue">
 						<?php 
 							$link=JoomleagueHelperRoute::getMatchReportRoute($this->project->id,$this->highestdef_away->matchid);
-							$highestdef_away_result = $this->highestdef_away->homegoals . $this->overallconfig['seperator'] . $this->highestdef_away->guestgoals;
-							echo JHTML::link($link,$highestdef_away_result);
-						?>
-						<br>
-						<?php 
+							$highestdef_away_result = $this->highestdef_away->guestgoals . $this->overallconfig['seperator'] . $this->highestdef_away->homegoals;
 							$team1 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highestdef_away->team1_id );
 							$team2 	= JoomleagueHelperRoute::getTeamInfoRoute( $this->project->id, $this->highestdef_away->team2_id );
-							$match	= JHTML::link($team1,$this->highestdef_away->hometeam) . "<br>" . $this->overallconfig['seperator'] . "<br>" . JHTML::link($team2,$this->highestdef_away->guestteam);
+							$match	= JHTML::link($link,$highestdef_away_result) . " - " . JHTML::link($team1,$this->highestdef_away->hometeam);
 							echo $match;
 						?>
 					</td>
