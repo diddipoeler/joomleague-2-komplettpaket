@@ -101,12 +101,19 @@ class MatchesJoomleagueConnector extends modMatchesHelper {
 	public function buildOrder() {
 
 		$limit = ($this->params->get('limit', 0) > 0) ? $this->params->get('limit', 0) : 1;
-
+		
 		if ($this->params->get('order_by_project') == 0) {
-			return	" ORDER by match_date LIMIT " . $limit;
+		  if ($this->params->get('lastsortorder') == 'desc') {
+		    return " ORDER by match_date DESC LIMIT " . $limit;
+		  }
+		  else {
+		    return " ORDER by match_date LIMIT " . $limit;
+		  }
 		}
 		else {
-			return	" ORDER by match_date_notime, p.ordering ASC LIMIT ". $limit;
+					return	" ORDER by match_date_notime, p.ordering ASC LIMIT ". $limit;
+			
+			
 		}
 	}
 
