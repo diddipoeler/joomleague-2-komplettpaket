@@ -235,7 +235,13 @@
 		?>
 		<a class='mymodal' title='example' href="<?php echo $url; ?>" rel="{handler: 'iframe',size: {x: <?php echo JComponentHelper::getParams('com_joomleague')->get('modal_popup_width', 900); ?>,y: <?php echo JComponentHelper::getParams('com_joomleague')->get('modal_popup_height', 600); ?>}}"> <?php echo $desc; ?></a>
 	</td>
-	
+	<!-- Published -->
+	<td valign='top' style='text-align: center;'>
+		<input type='checkbox' name='published<?php echo $thismatch->id; ?>' id='cbp<?php echo $thismatch->id; ?>'
+		value='<?php echo ((isset($thismatch->published)&&(!$thismatch->published)) ? 0 : 1); ?>'
+		<?php if ($thismatch->published){echo ' checked="checked" '; } ?>
+		onchange="$('cb<?php echo $i; ?>').checked=true; if(document.adminForm.cbp<?php echo $thismatch->id; ?>.value==0){document.adminForm.cbp<?php echo $thismatch->id; ?>.value=1;}else{document.adminForm.cbp<?php echo $thismatch->id; ?>.value=0;}" />
+	</td>
 	
 	<?php
 	}
