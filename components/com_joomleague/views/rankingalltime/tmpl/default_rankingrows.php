@@ -140,10 +140,25 @@ foreach( $current as $ptid => $team )
         else 
         {
 			$pic = $config['show_logo_small_table'];
+            switch ($pic)
+            {
+                case 'logo_small';
+                echo JHTML::image($team->team->$pic, $imgTitle, array('title' => $team->team->name,'width' => '20' ));
+                break;
+                case 'logo_middle';
+                echo JHTML::image($team->team->$pic, $imgTitle, array('title' => $team->team->name,'width' => '20' ));
+                break;
+                case 'logo_big';
+                echo JHTML::image($team->team->$pic, $imgTitle, array('title' => $team->team->name,'width' => '20' ));
+                break;
+                
+            }
+            /*
 			echo JoomleagueHelper::getPictureThumb($team->team->$pic,
 					$team->team->name,
 					$config['team_picture_width'],
 					$config['team_picture_height'],3);
+           */         
 		}
 
 		echo '</td>';
@@ -187,7 +202,7 @@ foreach( $current as $ptid => $team )
 				echo '>';
 				if (( $config['show_wdl_teamplan_link'])==1)
 				{
-					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 1);
+					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($team->team->project_id, $team->_teamid, 0, 1);
 					echo JHTML::link($teamplan_link, $team->cnt_won);
 				}
 				else
@@ -206,7 +221,7 @@ foreach( $current as $ptid => $team )
 				echo '>';
 				if (( $config['show_wdl_teamplan_link'])==1)
 				{
-					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 2);
+					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($team->team->project_id, $team->_teamid, 0, 2);
 					echo JHTML::link($teamplan_link, $team->cnt_draw);
 				}
 				else
@@ -225,7 +240,7 @@ foreach( $current as $ptid => $team )
 				echo '>';
 				if (( $config['show_wdl_teamplan_link'])==1)
 				{
-					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($this->project->id, $team->_teamid, 0, 3);
+					$teamplan_link  = JoomleagueHelperRoute::getTeamPlanRoute($team->team->project_id, $team->_teamid, 0, 3);
 					echo JHTML::link($teamplan_link, $team->cnt_lost);
 				}
 				else

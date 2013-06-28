@@ -185,7 +185,7 @@ foreach ($newparams['data'] as $key => $value ) {
             ' tl.picture, tl.project_id, ' .
             ' t.id, t.name, t.short_name, t.middle_name,	t.notes, t.club_id, ' .
             ' u.username, u.email, ' .
-            ' c.email as club_email, c.logo_small,	c.country, c.website, ' .
+            ' c.email as club_email, c.logo_small,c.logo_middle,c.logo_big,	c.country, c.website, ' .
             ' d.name AS division_name,	d.shortname AS division_shortname, d.parent_id AS parent_division_id, ' .
             ' plg.name AS playground_name,	plg.short_name AS playground_short_name, ' .
             ' CASE WHEN CHAR_LENGTH( p.alias ) THEN CONCAT_WS( \':\', p.id, p.alias ) ELSE p.id END AS project_slug, ' .

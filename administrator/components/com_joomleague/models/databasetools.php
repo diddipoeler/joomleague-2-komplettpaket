@@ -402,6 +402,8 @@ function PrintStepResult($result)
 // update j25_joomleague_team_player set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_150_2.png', 'images/com_joomleague/database/placeholders/placeholder_150_2.png')
 // update j25_joomleague_team_staff set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_150_2.png', 'images/com_joomleague/database/placeholders/placeholder_150_2.png')
 
+// update j25_joomleague_project_team set picture = replace(picture, 'media/com_joomleague/placeholders/placeholder_450_2.png', 'images/com_joomleague/database/placeholders/placeholder_450_2.png')
+
 		$query = "update #__joomleague_team_player set picture = replace(picture, 'media/com_joomleague/persons', 'images/com_joomleague/database/persons')";
 		array_push($arrQueries, $query);
 		

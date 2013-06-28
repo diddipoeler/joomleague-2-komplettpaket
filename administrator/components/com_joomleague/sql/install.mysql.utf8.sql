@@ -231,6 +231,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match_event` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' ,
   `modified` DATETIME NULL ,
   `modified_by` INT NULL ,
+  `penalty_points` INT(11) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `match_id` (`match_id`),
   KEY `projectteam_id` (`projectteam_id`),

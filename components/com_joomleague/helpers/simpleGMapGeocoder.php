@@ -35,24 +35,7 @@ class simpleGMapGeocoder {
 function JLgetGeoCoords($address)
 {
     $coords = array();
-    
-    /*
-      OBSOLETE, now using utf8_encode
-      
-      // replace special characters (eg. German "Umlaute")
-      $address = str_replace("ä", "ae", $address);
-      $address = str_replace("ö", "oe", $address);
-      $address = str_replace("ü", "ue", $address);
-      $address = str_replace("Ä", "Ae", $address);
-      $address = str_replace("Ö", "Oe", $address);
-      $address = str_replace("Ü", "Ue", $address);
-      $address = str_replace("ß", "ss", $address);
-    */
-    
-    //$address = utf8_encode($address);
-    
-    //echo 'getGeoCoords address -> '.$address.'<br>';
-    
+   
     // call geoencoding api with param json for output
     $geoCodeURL = "http://maps.google.com/maps/api/geocode/json?address=".
                   urlencode($address)."&sensor=false";
@@ -70,6 +53,8 @@ $file_content = curl_exec($initial);
 curl_close($initial);
 $result = json_decode($file_content, true);    
     
+    echo 'JLgetGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
+    
     /*
     $coords['status'] = $result["status"];
     
@@ -83,6 +68,24 @@ $result = json_decode($file_content, true);
     return $result;
 }
 
+function getGeoCoordsMapQuest($address_string)
+{
+
+$geoCodeURL = "http://open.mapquestapi.com/geocoding/v1/address?key=Fmjtd%7Cluub2g6r20%2Crl%3Do5-9uaxu4&location=".
+                  urlencode($address_string)."&callback=renderGeocode&outFormat=json";    
+
+$initial = curl_init();
+curl_setopt($initial, CURLOPT_URL, $geoCodeURL);
+curl_setopt($initial, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($initial, CURLOPT_CONNECTTIMEOUT, 5);
+$file_content = curl_exec($initial);
+curl_close($initial);
+$result = json_decode($file_content, true);    
+    
+echo 'getGeoCoordsMapQuest result<br><pre>'.print_r($result,true).'</pre><br>';
+        
+}
+
 
 function genkml3file($id, $address_string, $type, $picture, $name)
 {
@@ -93,7 +96,8 @@ $lat = '';
 $lng = '';
 
 $coords = $this->JLgetGeoCoords($address_string);
-		if ( $coords["status"] == 'OK')
+		
+        if ( $coords["status"] == 'OK')
 		{
     $lat = $coords["results"][0]["geometry"]["location"]["lat"];
     $lng = $coords["results"][0]["geometry"]["location"]["lng"];
@@ -109,6 +113,7 @@ $coords = $this->JLgetGeoCoords($address_string);
     }
     else
     {
+    $mapquest = $this->getGeoCoordsMapQuest($address_string);    
     $lat = '';
     $lng = '';
     }
@@ -441,6 +446,8 @@ function getOSMGeoCoords($address)
                   urlencode($address);
     
     $result = json_decode(file_get_contents($geoCodeURL), true);
+    echo 'getOSMGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
+    
     if ( isset($result[0]) )
     {        
     $coords['lat'] = $result[0]["lat"];
