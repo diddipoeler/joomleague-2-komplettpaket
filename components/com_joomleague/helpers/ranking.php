@@ -636,7 +636,7 @@ class JLGRanking
 				. ' t.name, t.id as teamid, pt.neg_points_finally, '	
 				// new for use_finally
 				. ' pt.use_finally, pt.points_finally,pt.matches_finally,pt.won_finally,pt.draws_finally,pt.lost_finally, '
-				. ' pt.homegoals_finally, pt.guestgoals_finally,pt.diffgoals_finally '	
+				. ' pt.homegoals_finally, pt.guestgoals_finally,pt.diffgoals_finally,pt.penalty_points '	
 				. ' FROM #__joomleague_project_team AS pt '
 				. ' INNER JOIN #__joomleague_team AS t ON t.id = pt.team_id '
 				
@@ -654,7 +654,7 @@ class JLGRanking
 				. ' t.name, t.id as teamid, pt.neg_points_finally, '	
 				// new for use_finally
 				. ' pt.use_finally, pt.points_finally,pt.matches_finally,pt.won_finally,pt.draws_finally,pt.lost_finally, '
-				. ' pt.homegoals_finally, pt.guestgoals_finally,pt.diffgoals_finally '	
+				. ' pt.homegoals_finally, pt.guestgoals_finally,pt.diffgoals_finally,pt.penalty_points '	
 				
 				. ' FROM #__joomleague_project_team AS pt '
 				. ' INNER JOIN #__joomleague_team AS t ON t.id = pt.team_id '
@@ -692,6 +692,8 @@ class JLGRanking
 			$t->sethomegoals_finally($r->homegoals_finally);
 			$t->setguestgoals_finally($r->guestgoals_finally);
 			$t->setdiffgoals_finally($r->diffgoals_finally);
+            
+            $t->penalty_points = $r->penalty_points;
       
 			if ( $r->use_finally ) 
 			{
@@ -1044,6 +1046,19 @@ class JLGRanking
 		$res =- ($a->getPoints() - $b->getPoints());
 		return (int)$res;
 	}
+    
+    /**
+	 * Point comparison
+	 * @param JLGRankingTeam a
+	 * @param JLGRankingTeam b
+	 * @return int
+	 */
+	function _cmpPenaltypoints($a, $b)
+	{
+		$res =- ($a->penalty_points - $b->penalty_points );
+		return (int)$res;
+	}
+    
 
 	/**
 	 * Bonus points comparison

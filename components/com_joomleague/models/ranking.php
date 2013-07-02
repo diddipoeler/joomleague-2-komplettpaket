@@ -425,6 +425,11 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 			case 'points':
 			uasort( $ranking, array("JoomleagueModelRanking","pointsCmp" ));
 			break;
+            
+            case 'penaltypoints':
+			uasort( $ranking, array("JoomleagueModelRanking","penaltypointsCmp" ));
+			break;
+            
 			case 'start':
 			uasort( $ranking, array("JoomleagueModelRanking","startCmp" ));
 			break;
@@ -551,6 +556,11 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 	
 	function bonusCmp( &$a, &$b){
 	  $res = ($a->bonus_points - $b->bonus_points);
+	  return $res;
+	}
+    
+    function penaltypointsCmp( &$a, &$b){
+	  $res = ($a->penalty_points - $b->penalty_points);
 	  return $res;
 	}
 

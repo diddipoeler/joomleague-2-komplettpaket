@@ -165,6 +165,13 @@ $column_names	= explode( ',', $this->config['ordered_columns_names'] );
 				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "points", $this->config );
 				echo '</th>';
 				break;
+                
+            case 'PENALTYPOINTS':
+				echo '<th class="headers">';
+				echo '<span class="hasTip" title="'.$toolTipTitle.'::'.$toolTipText.'">';	
+				JoomleagueHelperHtml::printColumnHeadingSort( $column_names[$k], "penaltypoints", $this->config );
+				echo '</th>';
+				break;    
 
 			case 'NEGPOINTS':
 				echo '<th class="headers">';

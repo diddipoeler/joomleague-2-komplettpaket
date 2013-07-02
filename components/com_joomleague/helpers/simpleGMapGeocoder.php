@@ -53,7 +53,7 @@ $file_content = curl_exec($initial);
 curl_close($initial);
 $result = json_decode($file_content, true);    
     
-    echo 'JLgetGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
+//    echo 'JLgetGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
     
     /*
     $coords['status'] = $result["status"];
@@ -446,7 +446,7 @@ function getOSMGeoCoords($address)
                   urlencode($address);
     
     $result = json_decode(file_get_contents($geoCodeURL), true);
-    echo 'getOSMGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
+//    echo 'getOSMGeoCoords result<br><pre>'.print_r($result,true).'</pre><br>';
     
     if ( isset($result[0]) )
     {        

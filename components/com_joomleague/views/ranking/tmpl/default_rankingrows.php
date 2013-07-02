@@ -39,6 +39,7 @@ foreach( $current as $ptid => $team )
 
 	//**********Favorite Team
 	$format = "%s";
+    $format2 = "( %s )";
 	$favStyle = '';
 	if ( in_array( $team->team->id, explode(",",$this->project->fav_team) ) && $this->project->fav_team_highlight_type == 1 )
 	{
@@ -47,6 +48,7 @@ foreach( $current as $ptid => $team )
 			$color = trim($this->project->fav_team_color);
 		}
 		$format = "%s";
+        $format2 = "( %s )";
 		$favStyle = ' style="';
 		$favStyle .= ($this->project->fav_team_text_bold != '') ? 'font-weight:bold;' : '';
 		$favStyle .= (trim($this->project->fav_team_text_color) != '') ? 'color:'.trim($this->project->fav_team_text_color).';' : '';
@@ -409,6 +411,17 @@ foreach( $current as $ptid => $team )
 				echo '</td>';
 				echo "\n";
 				break;
+                
+            case 'PENALTYPOINTS':
+				echo '<td class="rankingrow_penaltypoints"';
+				if($color != '' && $config['use_background_row_color']) {
+					echo 'style="background-color:' . $color . '"';
+				}
+				echo '>';
+				printf( $format2, $team->penalty_points );
+				echo '</td>';
+				echo "\n";
+				break;    
 
 			case 'NEGPOINTS':
 				echo '<td class="rankingrow"';

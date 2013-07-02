@@ -71,6 +71,7 @@ class JoomleagueModelProjectteam extends JoomleagueModelItem
 			$team->start_points			= null;
 			$team->points_finally		= 0;
 			$team->neg_points_finally 	= 0;
+            $team->penalty_points 	= 0;
 			$team->matches_finally		= 0;
 			$team->won_finally			= 0;
 			$team->draws_finally		= 0;
@@ -286,6 +287,7 @@ $this->_db->setQuery($query);
 				$p_team->set('start_points', 0);
 				$p_team->set('points_finally', 0);
 				$p_team->set('neg_points_finally', 0);
+                $p_team->set('penalty_points', 0);
 				$p_team->set('matches_finally', 0);
 				$p_team->set('won_finally', 0);
 				$p_team->set('draws_finally', 0);

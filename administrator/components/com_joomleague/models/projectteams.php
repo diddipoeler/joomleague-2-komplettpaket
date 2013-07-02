@@ -191,6 +191,7 @@ class JoomleagueModelProjectteams extends JoomleagueModelList
 			$tblProjectteam->start_points =			$data['start_points' .$cid[$x]];
 			$tblProjectteam->points_finally =		$data['points_finally' .$cid[$x]];
 			$tblProjectteam->neg_points_finally =	$data['neg_points_finally' . $cid[$x]];
+            $tblProjectteam->penalty_points =	$data['penalty_points' . $cid[$x]];
 			$tblProjectteam->matches_finally =		$data['matches_finally' . $cid[$x]];
 			$tblProjectteam->won_finally = 			$data['won_finally' . $cid[$x]];
 			$tblProjectteam->draws_finally = 		$data['draws_finally' . $cid[$x]];
