@@ -658,6 +658,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project_team` (
   `trikot_home` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   `trikot_away` VARCHAR(255) NOT NULL DEFAULT 'images/com_joomleague/database/placeholders/placeholder_small.gif' ,
   `extendeduser` TEXT NULL ,
+  `penalty_points` INT(11) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `project_id` (`project_id`),
   KEY `team_id` (`team_id`),

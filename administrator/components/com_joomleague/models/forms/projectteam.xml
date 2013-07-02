@@ -71,7 +71,13 @@
 			type="text"
 			label="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_NEG_POINTS"
 			description="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_NEG_POINTS_DESC"
-			class="inputbox validate-numeric"/>	
+			class="inputbox validate-numeric"/>
+    <field
+			name="penalty_points"
+			type="text"
+			label="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_PENALTY_POINTS"
+			description="COM_JOOMLEAGUE_ADMIN_P_TEAM_TOT_PENALTY_POINTS_DESC"
+			class="inputbox validate-numeric"/>	  	
 		<field
 			name="won_finally"
 			type="text"

@@ -141,6 +141,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MA'); ?></th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PLUS_P'); ?></th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_MINUS_P'); ?></th>
+                        <th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_PENALTY_P'); ?></th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_W'); ?></th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_D'); ?></th>
 						<th><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTTEAMS_L'); ?></th>
@@ -290,6 +291,13 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 																	value="<?php echo $row->neg_points_finally; ?>"
 																	onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" />
 							</td>
+                            <td class="center">
+								<input<?php echo $inputappend; ?>	type="text" size="2" class="inputbox"
+																	name="penalty_points<?php echo $row->id; ?>"
+																	value="<?php echo $row->penalty_points; ?>"
+																	onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" />
+							</td>
+                            
 							<td class="center">
 								<input<?php echo $inputappend; ?>	type="text" size="2" class="inputbox"
 																	name="won_finally<?php echo $row->id; ?>"

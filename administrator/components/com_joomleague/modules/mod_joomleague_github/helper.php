@@ -75,6 +75,8 @@ class ModGithubHelper
 
 		// Set options
 		curl_setopt($ch, CURLOPT_HEADER, false);
+        $t_vers = curl_version();
+        curl_setopt( $ch, CURLOPT_USERAGENT, 'curl/' . $t_vers['version'] );
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 

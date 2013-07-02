@@ -79,6 +79,10 @@
 					<td class="key"><?php echo $this->form->getLabel('neg_points_finally'); ?></td>
 					<td><?php echo $this->form->getInput('neg_points_finally'); ?></td>
 				</tr>
+                <tr>
+					<td class="key"><?php echo $this->form->getLabel('penalty_points'); ?></td>
+					<td><?php echo $this->form->getInput('penalty_points'); ?></td>
+				</tr>
 				<tr>
 					<td class="key"><?php echo $this->form->getLabel('won_finally'); ?></td>
 					<td><?php echo $this->form->getInput('won_finally'); ?></td>
