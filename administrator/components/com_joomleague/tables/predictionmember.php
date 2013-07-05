@@ -25,31 +25,7 @@ jimport( 'joomla.filter.input' );
  */
 class TablePredictionMember extends JTable
 {
-	/**
-	 * Primary Key
-	 *
-	 * @var int
-	 */
-	var $id = null;
-
-	var $prediction_id;	// field contains the id of a record of the JoomLeague Table #__joomleague_prediction_game
-	var $user_id;		// field contains the id of a record of the Joomla Table #__user
-
-	var $registerDate;
-	var $approved;
-	var $show_profile;
-	var $fav_team;
-	var $champ_tipp;
-	var $slogan;
-	var $aliasName;
-	var $reminder;
-	var $receipt;
-	var $admintipp;		// Is the admin allowed to make a tipp
-	var $picture;
-	var $last_tipp;
-
-	var $checked_out;
-	var $checked_out_time;
+	
 
 	/**
 	 * Constructor

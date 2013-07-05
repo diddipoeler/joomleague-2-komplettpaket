@@ -23,7 +23,7 @@ require_once(JPATH_COMPONENT . DS . 'models' . DS . 'item.php');
  * @package	JoomLeague
  * @since	1.5.100625
  */
-class JoomleagueModelPredictionMember extends JoomleagueModelItem
+class JoomleagueModelpredictionmember extends JoomleagueModelItem
 {
 	/**
 	 * Method to load content member data
@@ -136,7 +136,27 @@ class JoomleagueModelPredictionMember extends JoomleagueModelItem
 		return $data;
 	}
 	
-	
+	function store($post)
+    {
+        $mainframe = JFactory::getApplication();
+        //$mainframe->enqueueMessage(JText::_('JoomleagueModelpredictionmember store -> '.'<pre>'.print_r($post,true).'</pre>'),'');
+        $member_id = $post['id'];
+        $record =& JTable::getInstance('predictionmember','Table');
+		$record->load($member_id);
+		$record->group_id = $post['group_id'];
+		if (!$record->store())
+					{
+						$this->setError($record->getError());
+						return false;
+					}
+        else
+        {
+            return true;
+        }
+        
+    }
+    
+    
   function sendEmailtoMembers($cid,$prediction_id)
   {
   

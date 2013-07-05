@@ -227,11 +227,13 @@ function cancel()
     
 function save()
 	{
+	   $mainframe = JFactory::getApplication();
 		//Check for request forgeries
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(0),'post','array');
 		$post['id']=(int) $cid[0];
+        //$mainframe->enqueueMessage(JText::_('PredictionMember Task save -> '.'<pre>'.print_r($post,true).'</pre>'),'');
 		$model=$this->getModel('predictionmember');
 		if ($model->store($post))
 		{
@@ -239,7 +241,7 @@ function save()
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONMEMBER_CTRL_ERROR_SAVE').$model->getError();
+			$msg = JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONMEMBER_CTRL_ERROR_SAVE');
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -275,7 +277,7 @@ function save()
 	 * @return	object	The model.
 	 * @since	1.6
 	 */
-	function getModel($name = 'PredictionMember', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	function getModel($name = 'predictionmember', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;

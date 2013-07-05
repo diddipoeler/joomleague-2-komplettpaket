@@ -25,30 +25,7 @@ jimport( 'joomla.filter.input' );
  */
 class TablePredictionGroup extends JTable
 {
-	/**
-	 * Primary Key
-	 *
-	 * @var int
-	 */
-	var $id = null;
-
-	var $name;
-
-	/* alias for nice sef urls */
-	var $alias;
-
-	var $auto_approve;
-	var $only_favteams;
-	var $admin_tipp;
-	var $master_template;
-	var $sub_template_id;
-	var $extension;
-	var $notify_to;
-
-	var $published;
-
-	var $checked_out;
-	var $checked_out_time;
+	
 
 	/**
 	 * Constructor

@@ -13,7 +13,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 JHTML::_( 'behavior.tooltip' );
 
-echo 'predictionuser<pre>',print_r($this->predictionuser, true),'</pre>';
+//echo 'predictionuser<pre>',print_r($this->predictionuser, true),'</pre>';
 
 // Set toolbar items for the page
 $edit = JRequest::getVar( 'edit', true );
