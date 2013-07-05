@@ -55,7 +55,8 @@
 	
 
 	<!-- Runs on install/uninstall/update -->
-	<scriptfile>installscript.php</scriptfile>
+	<!--  <scriptfile>installscript.php</scriptfile> -->
+	<scriptfile>script.php</scriptfile>
 	
 	<!-- Install Database Section -->
 	<install>
@@ -98,6 +99,7 @@
 			<folder>tables</folder>
 			<folder>views</folder>
 		</files>
+		
 	</administration>
 	
 	
