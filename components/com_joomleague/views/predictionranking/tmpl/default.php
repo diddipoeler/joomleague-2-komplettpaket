@@ -25,7 +25,11 @@ echo $this->loadTemplate('predictionheading');
 echo $this->loadTemplate('sectionheader');
 
 echo $this->loadTemplate('ranking');
+
+if ($this->config['show_all_user_google_map'])
+{
 echo $this->loadTemplate('maps');
+}
 
 //if ($this->config['show_matchday_pagenav']){echo $this->loadTemplate('matchday_nav');}
 

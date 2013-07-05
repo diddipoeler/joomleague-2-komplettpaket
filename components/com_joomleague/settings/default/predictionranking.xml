@@ -35,6 +35,13 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field	name="show_all_user_google_map" type="radio" default="0"
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONRANKING_PARAM_LABEL_SHOW_ALL_USERS_GOOGLE_MAP"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONRANKING_PARAM_DESCR_SHOW_ALL_USERS_GOOGLE_MAP">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
 
 		<field	name="limit" type="text" size="3" maxlength="2" default="10"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONRANKING_PARAM_LABEL_USER_LIMIT"
