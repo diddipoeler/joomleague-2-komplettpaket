@@ -89,7 +89,7 @@ $uri =& JFactory::getURI();
 		<input type="hidden" name="eventschanges_check"	id="eventschanges_check"	value="0" />
 		<input type="hidden" name="option"											value="com_joomleague" />
 		
-		<input type="hidden" name="cid[]"											value="<?php echo $this->prediction->id; ?>" />
+		<input type="hidden" name="cid[]"											value="<?php echo $this->predictionuser->id; ?>" />
 		<input type="hidden" name="task"											value="" />
 	</div>
 	<?php echo JHTML::_( 'form.token' ); ?>

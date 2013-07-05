@@ -217,6 +217,14 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display' );
 	}
 
+function cancel()
+	{
+		// Checkin the project
+		$model=$this->getModel('predictionmember');
+		$model->checkin();
+		$this->setRedirect('index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display');
+	}
+    
 function save()
 	{
 		//Check for request forgeries
