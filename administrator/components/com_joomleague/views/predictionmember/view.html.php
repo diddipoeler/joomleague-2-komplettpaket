@@ -68,7 +68,7 @@ class JoomleagueViewPredictionMember extends JLGView
 		}
 
 		
-        
+/*        
         //build the html select list for parent positions
 		$parents[] = JHTML::_( 'select.option', '0', '- ' . JText::_( 'Prediction Group' ) . ' -' );
 		if ( $res =& $model->getPredictionGroups() )
@@ -78,8 +78,9 @@ class JoomleagueViewPredictionMember extends JLGView
 		$lists['parents'] = JHTML::_(	'select.genericlist', $parents, 'group_id', 'class="inputbox" size="1"', 'value', 'text',
 										$predictionuser->group_id );
 		unset( $parents );
-
-		$this->assignRef( 'lists',			$lists );
+*/
+		//$this->assignRef( 'lists',			$lists );
+        $this->assignRef('form'      	, $this->get('form'));
 		$this->assignRef( 'predictionuser',	$predictionuser );
 
 		parent::display( $tpl );

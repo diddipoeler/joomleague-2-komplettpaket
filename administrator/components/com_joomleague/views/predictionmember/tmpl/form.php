@@ -13,6 +13,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 JHTML::_( 'behavior.tooltip' );
 
+echo 'predictionuser<pre>',print_r($this->predictionuser, true),'</pre>';
+
 // Set toolbar items for the page
 $edit = JRequest::getVar( 'edit', true );
 $text = !$edit ? JText::_( 'COM_JOOMLEAGUE_GLOBAL_NEW' ) : JText::_( 'COM_JOOMLEAGUE_GLOBAL_EDIT' );
@@ -34,10 +36,8 @@ else
 JLToolBarHelper::onlinehelp();
 
 $uri =& JFactory::getURI();
-?>
-<!-- import the functions to move the events between selection lists  -->
-<?php
-#echo JHTML::script( 'JL_eventsediting.js','administrator/components/com_joomleague/assets/js/' );
+
+
 ?>
 
 
@@ -49,33 +49,23 @@ $uri =& JFactory::getURI();
 	}
 </style>
 
-<form action="index.php" method="post" name="adminForm" id="adminForm">
+<form action="index.php" method="post"  id="adminForm">
 	<div class="col50">
 		<fieldset class="adminform">
 			<legend>
 				<?php
-				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER' );
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER' ).' ['.']';
 				?>
 			</legend>
 
 			<table class="admintable">
                 
     			
-				
 				<tr>
-					<td valign="top" align="right" class="key">
-		 				<label for="ordering">
-							<?php
-							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER_PREDICTION_GROUP' );
-							?>
-						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['parents'];
-						?>
-					</td>
+					<td class="key"><?php echo $this->form->getLabel('group_id'); ?></td>
+					<td><?php echo $this->form->getInput('group_id'); ?></td>
 				</tr>
+				
 				
 				
 				
@@ -86,7 +76,7 @@ $uri =& JFactory::getURI();
 		
 
 		<div class="clr"></div>
-		<input type="hidden" name="eventschanges_check"	id="eventschanges_check"	value="0" />
+		
 		<input type="hidden" name="option"											value="com_joomleague" />
 		
 		<input type="hidden" name="cid[]"											value="<?php echo $this->predictionuser->id; ?>" />

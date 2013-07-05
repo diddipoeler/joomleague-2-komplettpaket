@@ -64,6 +64,7 @@ class JoomleagueModelPredictionMember extends JoomleagueModelItem
 			$member->id					= 0;
 			$member->prediction_id		= 0;
 			$member->user_id			= 0;
+            $member->group_id			= 0;
 
 			$member->registerDate		= '0000-00-00 00:00:00';
 			$member->approved			= 0;
