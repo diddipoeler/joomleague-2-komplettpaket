@@ -217,6 +217,36 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 		$this->setRedirect( 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display' );
 	}
 
+function save()
+	{
+		//Check for request forgeries
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
+		$post=JRequest::get('post');
+		$cid=JRequest::getVar('cid',array(0),'post','array');
+		$post['id']=(int) $cid[0];
+		$model=$this->getModel('predictionmember');
+		if ($model->store($post))
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONMEMBER_CTRL_SAVED');
+		}
+		else
+		{
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONMEMBER_CTRL_ERROR_SAVE').$model->getError();
+		}
+		// Check the table in so it can be edited.... we are done with it anyway
+		$model->checkin();
+		if ($this->getTask()=='save')
+		{
+			$link='index.php?option=com_joomleague&view=predictionmembers';
+		}
+		else
+		{
+			$link='index.php?option=com_joomleague&task=predictionmember.edit&cid[]='.$post['id'];
+		}
+		$this->setRedirect($link,$msg);
+	}
+    
+    
   function save_memberlist()
   {
   $model = $this->getModel('predictionmembers');

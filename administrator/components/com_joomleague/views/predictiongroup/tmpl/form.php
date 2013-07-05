@@ -5,7 +5,7 @@
 <fieldset class="adminform">
 			<legend>
       <?php 
-      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_SEASON_LEGEND_DESC','<i>'.$this->season->name.'</i>'); 
+      echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUP_LEGEND_DESC','<i>'.$this->season->name.'</i>'); 
       ?>
       </legend>
 	<div class="col50">

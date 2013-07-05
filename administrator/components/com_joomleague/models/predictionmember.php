@@ -240,6 +240,19 @@ class JoomleagueModelPredictionMember extends JoomleagueModelItem
     $this->_db->setQuery( $query );
 		return $this->_db->loadResultArray();
 	}
+    
+    function getPredictionGroups()
+    {
+        
+        $query = 'SELECT id, name as text FROM #__joomleague_prediction_groups ORDER BY name ASC ';
+		$this->_db->setQuery($query);
+		if (!$result = $this->_db->loadObjectList())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return array();
+		}
+		return $result;
+    }
 
 	/**
 	 * Method to (un)publish / (un)approve a prediction member

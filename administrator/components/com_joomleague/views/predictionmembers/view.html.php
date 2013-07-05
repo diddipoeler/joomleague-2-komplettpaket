@@ -175,6 +175,7 @@ class JoomleagueViewPredictionMembers extends JLGView
 		
 		if ( $prediction_id )
 		{
+		  JLToolBarHelper::editList('predictionmember.edit');
     JToolBarHelper::custom('predictionmember.editlist','upload.png','upload_f2.png',JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_BUTTON_ASSIGN'),false);
  		JToolBarHelper::divider();
  		}

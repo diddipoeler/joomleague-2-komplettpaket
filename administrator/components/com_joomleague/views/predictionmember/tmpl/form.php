@@ -15,21 +15,21 @@ JHTML::_( 'behavior.tooltip' );
 
 // Set toolbar items for the page
 $edit = JRequest::getVar( 'edit', true );
-$text = !$edit ? JText::_( 'JL_GLOBAL_NEW' ) : JText::_( 'JL_GLOBAL_EDIT' );
-JToolBarHelper::title( JText::_( 'JL_ADMIN_PMEMBER_PGAME' ) . ': <small><small>[ ' . $text . ' ]</small></small>' );
-JToolBarHelper::save();
+$text = !$edit ? JText::_( 'COM_JOOMLEAGUE_GLOBAL_NEW' ) : JText::_( 'COM_JOOMLEAGUE_GLOBAL_EDIT' );
+JToolBarHelper::title( JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER_PGAME' ) . ': <small><small>[ ' . $text . ' ]</small></small>' );
+JToolBarHelper::save('predictionmember.save');
 
 if ( !$edit )
 {
 	JToolBarHelper::divider();
-	JToolBarHelper::cancel();
+	JToolBarHelper::cancel('predictionmember.cancel');
 }
 else
 {
 	// for existing items the button is renamed `close` and the apply button is showed
-	JToolBarHelper::apply();
+	JToolBarHelper::apply('predictionmember.apply');
 	JToolBarHelper::divider();
-	JToolBarHelper::cancel( 'cancel', 'JL_GLOBAL_CLOSE' );
+	JToolBarHelper::cancel( 'predictionmember.cancel');
 }
 JLToolBarHelper::onlinehelp();
 
@@ -39,32 +39,7 @@ $uri =& JFactory::getURI();
 <?php
 #echo JHTML::script( 'JL_eventsediting.js','administrator/components/com_joomleague/assets/js/' );
 ?>
-<script language="javascript" type="text/javascript">
 
-		function submitbutton(pressbutton)
-		{
-			var form = document.adminForm;
-			if (pressbutton == 'cancel')
-			{
-				submitform( pressbutton );
-				return;
-			}
-			var mylist = document.getElementById('position_eventslist');
-	 		for(var i=0; i<mylist.length; i++)
-	 		{
-				mylist[i].selected = true;
-			}
-			// do field validation
-			if (form.name.value == "")
-			{
-				alert( "<?php echo JText::_( 'JL_ADMIN_PMEMBER_ERROR_POS_NAME', true ); ?>" );
-			}
-			else
-			{
-				submitform( pressbutton );
-			}
-		}
-</script>
 
 <style type="text/css">
 	table.paramlist td.paramlist_key {
@@ -79,114 +54,21 @@ $uri =& JFactory::getURI();
 		<fieldset class="adminform">
 			<legend>
 				<?php
-				echo JText::_( 'JL_ADMIN_PMEMBER_POS' );
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER' );
 				?>
 			</legend>
 
 			<table class="admintable">
-                <tr>
-    			    <td width="100" align="right" class="key">
-    				    <label for="name">
-    					    <?php
-    					    echo JText::_( 'JL_ADMIN_PMEMBER_SPORTTYPE' );
-    					    ?>
-    				    </label>
-    			    </td>
-    			        			    <td>
-    				    <input  class="text_area" type="text" name="sports_type_id" id="title" size="25" maxlength="25"
-    				            value="<?php echo JText::_( $this->position->sports_type_id ); ?>" />
-    			    </td>
-    		    </tr>
-    			<tr>
-					<td width="100" align="right" class="key">
-						<label for="name">
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_NAME' );
-							?>
-						</label>
-					</td>
-					<td>
-						<input  class="text_area" type="text" name="name" id="title" size="32" maxlength="250"
-								value="<?php echo $this->position->name; ?>" />
-					</td>
-				</tr>
-				<!--
+                
+    			
+				
 				<tr>
 					<td valign="top" align="right" class="key">
 		 				<label for="ordering">
 							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_ORDERING' );
+							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER_PREDICTION_GROUP' );
 							?>
 						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['ordering'];
-						?>
-					</td>
-				</tr>
-				-->
-				<tr>
-					<td valign="top" align="right" class="key">
-		 				<label for="ordering">
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_POS_PLAYERS' );
-							?>
-						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['isPlayer'];
-						?>
-					</td>
-				</tr>
-				<tr>
-					<td valign="top" align="right" class="key">
-		 				<label for="ordering">
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_POS_TEAMSTAFFS' );
-							?>
-						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['isStaff'];
-						?>
-					</td>
-				</tr>
-				<tr>
-					<td valign="top" align="right" class="key">
-		 				<label for="ordering">
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_POS_REFEREES' );
-							?>
-						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['isReferee'];
-						?>
-					</td>
-				</tr>
-				<tr>
-					<td valign="top" align="right" class="key">
-		 				<label for="ordering">
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_POS_CLUBSTAFFS' );
-							?>
-						</label>
-					</td>
-					<td>
-						<?php
-						echo $this->lists['isClubStaff'];
-						?>
-					</td>
-				</tr>
-				<tr>
-					<td valign="top" align="right" class="key">
-						<?php
-						echo JText::_( 'JL_ADMIN_PMEMBER_PARENT_POS' );
-						?>:
 					</td>
 					<td>
 						<?php
@@ -194,65 +76,19 @@ $uri =& JFactory::getURI();
 						?>
 					</td>
 				</tr>
+				
+				
+				
+				
 			</table>
 		</fieldset>
 
-		<fieldset class="adminform">
-			<legend>
-				<?php
-				echo JText::_( 'JL_ADMIN_PMEMBER_POS_EVENTS' );
-				?>
-			</legend>
-			<table class="admintable">
-				<tr>
-					<td >
-						<b>
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_EXIST_EVENTS' );
-							?>
-							<br />
-						</b>
-						<?php
-						echo $this->lists['events'];
-						?>
-					</td>
-					<td>
-						<input  type="button" class="inputbox"
-								onclick="document.getElementById('eventschanges_check').value=1;move(document.getElementById('eventslist'), document.getElementById('position_eventslist'));selectAll(document.getElementById('position_eventslist'));"
-								value="&gt;&gt;" />
-						<br /><br />
-	 					<input  type="button" class="inputbox"
-	 							onclick="document.getElementById('eventschanges_check').value=1;move(document.getElementById('position_eventslist'), document.getElementById('eventslist'));selectAll(document.getElementById('position_eventslist'));"
-								value="&lt;&lt;" />
-					</td>
-					<td>
-						<b>
-							<?php
-							echo JText::_( 'JL_ADMIN_PMEMBER_ASSIGN_POS' );
-							?>
-							<br />
-						</b>
-						<?php
-						echo $this->lists['position_events'];
-						?>
-					</td>
-					<td align='center'>
-						<input  type="button" class="inputbox"
-								onclick="document.getElementById('eventschanges_check').value=1;moveOptionUp( 'position_eventslist' );"
-								value="<?php echo JText::_( 'JL_GLOBAL_UP' ); ?>" />
-						<br /><br />
-						<input type="button" class="inputbox"
-							   onclick="document.getElementById('eventschanges_check').value=1;moveOptionDown( 'position_eventslist' );"
-							   value="<?php echo JText::_( 'JL_GLOBAL_DOWN' ); ?>" />
-					</td>
-				   </tr>
-			</table>
-		</fieldset>
+		
 
 		<div class="clr"></div>
 		<input type="hidden" name="eventschanges_check"	id="eventschanges_check"	value="0" />
 		<input type="hidden" name="option"											value="com_joomleague" />
-		<input type="hidden" name="controller"										value="predictionmember" />
+		
 		<input type="hidden" name="cid[]"											value="<?php echo $this->prediction->id; ?>" />
 		<input type="hidden" name="task"											value="" />
 	</div>
