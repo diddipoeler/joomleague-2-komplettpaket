@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <view title="JL_XML_ALL_PROJECT_ROUNDS_VIEW_TITLE">
+    <view title="COM_JOOMLEAGUE_XML_ALL_PROJECT_ROUNDS_VIEW_TITLE">
         <message>
             <![CDATA[JL_XML_ALL_PROJECT_ROUNDS_VIEW_DESCR]]>
         </message>

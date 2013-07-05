@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="JL_XML_PREDICTIONRESULTS_LAYOUT_TITLE">
+	<layout title="COM_JOOMLEAGUE_XML_PREDICTIONRESULTS_LAYOUT_TITLE">
 		<message>
 			<![CDATA[JL_XML_PREDICTIONRESULTS_LAYOUT_MESSAGE]]>
 		</message>
@@ -10,8 +10,8 @@
 					label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
 					addfieldpath ="/administrator/components/com_joomleague/elements">
 			<field	type="sql" name="prediction_id"
-					label="JL_XML_PREDICTIONRESULTS_STATE_PARAM_LABEL"
-					description="JL_XML_PREDICTIONRESULTS_STATE_PARAM_DESCRIPTION"
+					label="COM_JOOMLEAGUE_XML_PREDICTIONRESULTS_STATE_PARAM_LABEL"
+					description="COM_JOOMLEAGUE_XML_PREDICTIONRESULTS_STATE_PARAM_DESCRIPTION"
 					query="SELECT id AS value, name AS prediction_id FROM #__joomleague_prediction_game WHERE published='1' ORDER BY name" />
 		</fieldset>
 	</fields>

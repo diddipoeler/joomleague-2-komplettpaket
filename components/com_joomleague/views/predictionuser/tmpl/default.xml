@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="JL_XML_TIPUSERS_LAYOUT_TITLE">
+	<layout title="COM_JOOMLEAGUE_XML_TIPUSER_LAYOUT_TITLE">
 		<message>
 			<![CDATA[JL_XML_TIPUSERS_LAYOUT_DESCR]]>
 		</message>
@@ -10,16 +10,16 @@
 					label="COM_JOOMLEAGUE_XML_BASIC_FIELDSET_LABEL"
 					addfieldpath ="/administrator/components/com_joomleague/elements">
 
-			<field	type="sql" name="prediction_id" label="JL_XML_JL_PRED_USERS_SELECT_GAME"
-					description="JL_XML_JL_PRED_USERS_SELECT_GAME_DESC"
+			<field	type="sql" name="prediction_id" label="COM_JOOMLEAGUE_XML_JL_PRED_USERS_SELECT_GAME"
+					description="COM_JOOMLEAGUE_XML_JL_PRED_USERS_SELECT_GAME_DESC"
 					query="	SELECT CASE WHEN CHAR_LENGTH(alias) THEN CONCAT_WS(':', id, alias) ELSE id END AS value,
 									name AS prediction_id
 						 	FROM #__joomleague_prediction_game
 						 	WHERE published=1
 						 	ORDER BY name"/>
 
-			<field	type="dependsql" name="uid" depends="prediction_id" task="predictionmembersoptions" label="JL_XML_JL_PRED_USERS_SELECT_MEMBERr"
-					description="JL_XML_JL_PRED_USERS_SELECT_MEMBER_DESC"
+			<field	type="dependsql" name="uid" depends="prediction_id" task="predictionmembersoptions" label="COM_JOOMLEAGUE_XML_JL_PRED_USERS_SELECT_MEMBERr"
+					description="COM_JOOMLEAGUE_XML_JL_PRED_USERS_SELECT_MEMBER_DESC"
 					query="" />
 
 			
