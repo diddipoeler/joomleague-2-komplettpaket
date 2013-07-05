@@ -35,7 +35,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 	$output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
 	}
-    if (($this->config['show_maps'])==1)
+    if (($this->config['show_maps'])==1 && (JPluginHelper::isEnabled('system', 'plugin_googlemap2') || JPluginHelper::isEnabled('system', 'plugin_googlemap3')) )
 	{ 
         $output['COM_JOOMLEAGUE_GMAP_DIRECTIONS'] = 'maps';
 	}

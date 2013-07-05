@@ -29,7 +29,7 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('picture');
 	}
 		
-	if (($this->config['show_maps'])==1)
+	if (($this->config['show_maps'])==1 && (JPluginHelper::isEnabled('system', 'plugin_googlemap2') || JPluginHelper::isEnabled('system', 'plugin_googlemap3')))
 	{ 
 		echo $this->loadTemplate('maps');
 	}
