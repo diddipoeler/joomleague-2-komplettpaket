@@ -31,12 +31,12 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					</th>
 					<th width="20">&nbsp;</th>
 					<th>
-						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_SEASONS_NAME','s.name',$this->lists['order_Dir'],$this->lists['order']); ?>
+						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUPS_NAME','s.name',$this->lists['order_Dir'],$this->lists['order']); ?>
 					</th>
 					<th width="10%">
 						<?php
 						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','s.ordering',$this->lists['order_Dir'],$this->lists['order']);
-						echo JHTML::_('grid.order',$this->items, 'filesave.png', 'season.saveorder');
+						echo JHTML::_('grid.order',$this->items, 'filesave.png', 'predictiongroup.saveorder');
 						?>
 					</th>
 					<th width="20">
@@ -51,7 +51,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 				for ($i=0,$n=count($this->items); $i < $n; $i++)
 				{
 					$row =& $this->items[$i];
-					$link=JRoute::_('index.php?option=com_joomleague&task=season.edit&cid[]='.$row->id);
+					$link=JRoute::_('index.php?option=com_joomleague&task=predictiongroup.edit&cid[]='.$row->id);
 					$checked=JHTML::_('grid.checkedout',$row,$i);
 					?>
 					<tr class="<?php echo "row$k"; ?>">
@@ -70,7 +70,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 							<td class="center">
 								<a href="<?php echo $link; ?>">
 									<?php
-									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_SEASONS_EDIT_DETAILS');
+									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUPS_EDIT_DETAILS');
 									echo JHTML::_(	'image','administrator/components/com_joomleague/assets/images/edit.png',
 													$imageTitle,'title= "'.$imageTitle.'"');
 									?>
@@ -82,10 +82,10 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 						<td><?php echo $row->name; ?></td>
 						<td class="order">
 							<span>
-								<?php echo $this->pagination->orderUpIcon($i,$i > 0,'season.orderup','COM_JOOMLEAGUE_GLOBAL_ORDER_UP',$ordering); ?>
+								<?php echo $this->pagination->orderUpIcon($i,$i > 0,'predictiongroup.orderup','COM_JOOMLEAGUE_GLOBAL_ORDER_UP',$ordering); ?>
 							</span>
 							<span>
-								<?php echo $this->pagination->orderDownIcon($i,$n,$i < $n,'season.orderdown','COM_JOOMLEAGUE_GLOBAL_ORDER_DOWN',$ordering); ?>
+								<?php echo $this->pagination->orderDownIcon($i,$n,$i < $n,'predictiongroup.orderdown','COM_JOOMLEAGUE_GLOBAL_ORDER_DOWN',$ordering); ?>
 								<?php $disabled=true ? '' : 'disabled="disabled"'; ?>
 							</span>
 							<input	type="text" name="order[]" size="5" value="<?php echo $row->ordering;?>" <?php echo $disabled ?>

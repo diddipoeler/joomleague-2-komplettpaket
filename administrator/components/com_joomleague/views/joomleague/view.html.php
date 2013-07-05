@@ -488,13 +488,21 @@ class JoomleagueViewJoomleague extends JLGView
 	$pane->name='PREDICTIONGAMES';
 	$pane->alert=false;
 	$tabs[]=$pane;
-  $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongames&task=predictiongame.display');
+    $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongames&task=predictiongame.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGAMES');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGAMES'));
-	$link5[]=JRoute::_('index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display');
+	
+    $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongroups&task=predictiongroup.display');
+    $label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGROUPS');
+	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGROUPS'));
+	
+    
+    
+    $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONMEMBERS');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONMEMBERS'));
-	$link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display');
+	
+    $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONTEMPLATES');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONTEMPLATES'));
 	$link[]=$link5;
