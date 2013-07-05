@@ -217,16 +217,21 @@ class JoomleagueModelJoomleague extends JoomleagueModelItem
 	
 	function getVersion()
 	{
-		$query = "SELECT CONCAT(major,'.',minor,'.',build,'.',revision) AS version
+		/*
+    $query = "SELECT CONCAT(major,'.',minor,'.',build,'.',revision) AS version
 						FROM #__joomleague_version 
 						ORDER BY date DESC LIMIT 1";
 		$this->_db->setQuery($query);
+		
 		if (!$result=$this->_db->loadObjectList())
 		{
 			$this->setError($this->_db->getErrorMsg());
 			return false;
 		}
-		return $result;
+		*/
+		$this->_db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague" and type ="component" ');
+    $paramsdata = json_decode( $this->_db->loadResult(), true );
+		return $paramsdata['version'];;
 	}
 
 }

@@ -431,7 +431,13 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
-    
+<field name="cfg_be_extension_pl_import" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_PL_IMPORT_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_PL_IMPORT_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>    
       
   </fieldset>
     

@@ -581,7 +581,7 @@ class JoomleagueViewJoomleague extends JLGView
 
 		$mdlJoomleague = JModel::getInstance('Joomleague', 'JoomleagueModel');
 		$versions  = $mdlJoomleague->getVersion();
-		if ($versions) {$version=$versions[0]->version;} else {$version='';}
+		//if ($versions) {$version=$versions[0]->version;} else {$version='';}
 
 		$this->assignRef('version',$version);
 		$this->assignRef('link',$link);

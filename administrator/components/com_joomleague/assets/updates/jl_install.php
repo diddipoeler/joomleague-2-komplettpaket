@@ -34,7 +34,9 @@ function PrintStepResult($status)
 function getVersion()
 {
 	$db = JFactory::getDBO();
-
+    $db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague" and type ="component" ');
+    $paramsdata = json_decode( $db->loadResult(), true );
+    /*
 	$version=new stdClass();
 	$version->major=2;
 	$version->minor=0;
@@ -49,7 +51,8 @@ function getVersion()
 	if (!$result){
 		return $version;
 	}
-	return $result;
+	*/
+	return $paramsdata['version'];
 }
 
 /**

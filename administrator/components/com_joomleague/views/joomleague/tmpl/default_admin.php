@@ -33,7 +33,7 @@ window.addEvent('domready', function() {
 		<div id="element-box">
 			<div class="m">
 			<div id="navbar">
-			<a href='#' style='text-decoration: none; color: green; text-align: left; padding: 2px;'>JoomLeague - v<?php echo $this->version; ?></a>
+			<a href='#' style='text-decoration: none; color: green; text-align: left; padding: 2px;'>JoomLeague - <?php echo $this->version; ?> (diddipoeler)</a>
 			<form action="index.php?option=com_joomleague" method="post" id="adminForm1">
 				<div id="area" style="overflow:hidden; width:100%; max-width: 150px;">
 				<?php echo $this->lists['sportstypes']; ?>

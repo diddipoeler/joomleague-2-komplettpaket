@@ -888,13 +888,16 @@ class JoomleagueHelper
 	public static function getVersion()
 	{
 		$database = JFactory::getDBO();
-
-		$query="SELECT CONCAT(major,'.',minor,'.',build,'.',revision) AS version
+    $database->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague" and type ="component" ');
+    $paramsdata = json_decode( $database->loadResult(), true );
+		/*
+    $query="SELECT CONCAT(major,'.',minor,'.',build,'.',revision) AS version
 				  FROM #__joomleague_version 
 				  ORDER BY date DESC LIMIT 1";
 		$database->setQuery($query);
 		$result=$database->loadResult();
-		return $result;
+		*/
+		return $paramsdata['version'];
 	}
 
 	/**

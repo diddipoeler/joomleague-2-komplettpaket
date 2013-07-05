@@ -16,7 +16,7 @@ if (JComponentHelper::getParams('com_joomleague')->get('show_footer',0))
 			echo ' :: Powered by ';
 			echo JHTML::link('http://www.joomleague.net','JoomLeague',array('target' => '_blank'));
 			echo ' - ';
-			echo JHTML::link('index.php?option=com_joomleague&amp;view=about',sprintf('Version %1$s',JoomleagueHelper::getVersion()));
+			echo JHTML::link('index.php?option=com_joomleague&amp;view=about',sprintf('Version %1$s (diddipoeler)',JoomleagueHelper::getVersion()));
 			echo ' :: ';
 			echo ' :: Hilfeseite ';
 			
