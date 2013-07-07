@@ -21,6 +21,9 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_joomleague')) {
 jimport('joomla.application.component.controller');
 
 require_once(JPATH_ROOT.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
+
+
+        
 // Require the base controller
 require_once ( JPATH_COMPONENT .DS . 'controller.php' );
 require_once ( JPATH_COMPONENT .DS . 'helpers' . DS . 'jlparameter.php' );

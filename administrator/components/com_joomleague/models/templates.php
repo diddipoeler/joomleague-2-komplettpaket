@@ -104,8 +104,12 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 	 */
 	function checklist()
 	{
+	   $mainframe		=& JFactory::getApplication();
+      $option = JRequest::getCmd('option');
 		$project_id=$this->_project_id;
 		$defaultpath=JPATH_COMPONENT_SITE.DS.'settings';
+        // Get the views for this component.
+        $path = JPATH_SITE.'/components/'.$option.'/views';
 		$predictionTemplatePrefix='prediction';
 
 		if (!$project_id){return;}
@@ -157,6 +161,28 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 						)
 					{
 						$template=substr($file,0,(strlen($file)-4));
+                        
+                        // Determine if a metadata file exists for the view.
+				        //$metafile = $path.'/'.$template.'/metadata.xml';
+                        $metafile = $path.'/'.$template.'/tmpl/default.xml';
+                        $attributetitle = '';
+                        if (is_file($metafile)) 
+                        {
+                        // Attempt to load the xml file.
+					   if ($metaxml = simplexml_load_file($metafile)) 
+                        {
+                        //$mainframe->enqueueMessage(JText::_('PredictionGame template metaxml-> '.'<br /><pre>~' . print_r($metaxml,true) . '~</pre><br />'),'');    
+                        // This will save the value of the attribute, and not the objet
+                        //$attributetitle = (string)$metaxml->view->attributes()->title;
+                        $attributetitle = (string)$metaxml->layout->attributes()->title;
+                        //$mainframe->enqueueMessage(JText::_('PredictionGame template attribute-> '.'<br /><pre>~' . print_r($attributetitle,true) . '~</pre><br />'),'');
+                        if ($menu = $metaxml->xpath('view[1]')) 
+                        {
+							$menu = $menu[0];
+                            //$mainframe->enqueueMessage(JText::_('PredictionGame template menu-> '.'<br /><pre>~' . print_r($menu,true) . '~</pre><br />'),'');
+                            }
+                        }
+                        }
 
 						if ((empty($records)) || (!in_array($template,$records)))
 						{
@@ -172,7 +198,15 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 							
 							$tblTemplate_Config = JTable::getInstance('template', 'table');
 							$tblTemplate_Config->template = $template;
-							$tblTemplate_Config->title = $file;
+                            if ( $attributetitle )
+                            {
+                                $tblTemplate_Config->title = $attributetitle;
+                            }
+                            else
+                            {
+                                $tblTemplate_Config->title = $file;
+                            }
+							
 							$tblTemplate_Config->params = $defaultvalues;
 							$tblTemplate_Config->project_id = $project_id;
 							

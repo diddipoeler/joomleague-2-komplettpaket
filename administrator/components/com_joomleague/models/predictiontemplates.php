@@ -156,10 +156,14 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 	function checklist()
 	{
 	  $mainframe		=& JFactory::getApplication();
+      $option = JRequest::getCmd('option');
 		$prediction_id	= $this->_prediction_id;
 		//$defaultpath	= JLG_PATH_EXTENSION_PREDICTIONGAME.DS.'settings';
 		$defaultpath	= JPATH_COMPONENT_SITE.DS.'settings';
     //$extensionspath	= JPATH_COMPONENT_SITE . DS . 'extensions' . DS;
+    // Get the views for this component.
+	$path = JPATH_SITE.'/components/'.$option.'/views';
+        
 		$templatePrefix	= 'prediction';
 //    $defaultvalues = array();
     
@@ -184,16 +188,7 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 		$this->_db->setQuery($query);
 		$records = $this->_db->loadResultArray();
 		if (empty($records)){$records=array();}
-    /*
-		// first check extension template folder if template is not default
-		if ((isset($params->extension)) && ($params->extension!=''))
-		{
-			if (is_dir($extensionspath . $params->extension . DS . 'settings'))
-			{
-				$xmldirs[] = $extensionspath . $params->extension . DS . 'settings';
-			}
-		}
-    */
+    
 		// add default folder
 		$xmldirs[] = $defaultpath . DS . 'default';
 
@@ -211,8 +206,32 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 						strtolower(substr($file,0,strlen($templatePrefix)))==$templatePrefix)
 					{
 						$template = substr($file,0,(strlen($file)-4));
-
-						if ((empty($records)) || (!in_array($template,$records)))
+                        
+                        //$mainframe->enqueueMessage(JText::_('PredictionGame template -> '.$template),'');
+                        
+						// Determine if a metadata file exists for the view.
+				        //$metafile = $path.'/'.$template.'/metadata.xml';
+                        $metafile = $path.'/'.$template.'/tmpl/default.xml';
+                        $attributetitle = '';
+                        if (is_file($metafile)) 
+                        {
+                        // Attempt to load the xml file.
+					   if ($metaxml = simplexml_load_file($metafile)) 
+                        {
+                        //$mainframe->enqueueMessage(JText::_('PredictionGame template metaxml-> '.'<br /><pre>~' . print_r($metaxml,true) . '~</pre><br />'),'');    
+                        // This will save the value of the attribute, and not the objet
+                        //$attributetitle = (string)$metaxml->view->attributes()->title;
+                        $attributetitle = (string)$metaxml->layout->attributes()->title;
+                        //$mainframe->enqueueMessage(JText::_('PredictionGame template attribute-> '.'<br /><pre>~' . print_r($attributetitle,true) . '~</pre><br />'),'');
+                        if ($menu = $metaxml->xpath('view[1]')) 
+                        {
+							$menu = $menu[0];
+                            //$mainframe->enqueueMessage(JText::_('PredictionGame template menu-> '.'<br /><pre>~' . print_r($menu,true) . '~</pre><br />'),'');
+                            }
+                        }
+                        }
+                        
+                        if ((empty($records)) || (!in_array($template,$records)))
 						{
 						  $jRegistry = new JRegistry();
 							$form = JForm::getInstance($file, $xmldir.DS.$file);
@@ -238,7 +257,15 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 							
 							$tblTemplate_Config = JTable::getInstance('predictiontemplate', 'table');
 							$tblTemplate_Config->template = $template;
-							$tblTemplate_Config->title = $file;
+                            if ( $attributetitle )
+                            {
+                                $tblTemplate_Config->title = $attributetitle;
+                            }
+                            else
+                            {
+                                $tblTemplate_Config->title = $file;
+                            }
+							
 							$tblTemplate_Config->params = $defaultvalues;
 							$tblTemplate_Config->prediction_id = $prediction_id;
 							/*
