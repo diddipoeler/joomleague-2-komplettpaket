@@ -298,6 +298,8 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 			//total rank
 			else {
 				$this->currentRanking[$division] = $ranking->getRanking($this->from, $this->to,	$division);
+				$this->homeRank[$division] = $ranking->getRankingHome($this->from, $this->to,	$division);
+				$this->awayRank[$division] = $ranking->getRankingAway($this->from, $this->to,	$division);
 			}
 			$this->_sortRanking($this->currentRanking[$division]);
 

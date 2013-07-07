@@ -26,7 +26,20 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 	if ($this->config['show_ranking']==1)
 	{
+	   // tabs anzeigen
+       //echo 'currentRanking<pre>',print_r($this->currentRanking ,true),'</pre>';
+       //echo 'homeRank<pre>',print_r($this->homeRank ,true),'</pre>';
+       //echo 'awayRank<pre>',print_r($this->awayRank ,true),'</pre>';
+       
+  $idxTab = 1;
+  echo JHTML::_('tabs.start','tabs_ranking', array('useCookie'=>1));
+  echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('ranking');
+        echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING'), 'panel'.($idxTab++));
+		echo $this->loadTemplate('ranking_home');
+        echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'), 'panel'.($idxTab++));
+		echo $this->loadTemplate('ranking_away');
+echo JHTML::_('tabs.end');		
 	}
 
 	if ($this->config['show_colorlegend']==1)
