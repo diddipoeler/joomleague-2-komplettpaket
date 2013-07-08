@@ -30,8 +30,26 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
        //echo 'currentRanking<pre>',print_r($this->currentRanking ,true),'</pre>';
        //echo 'homeRank<pre>',print_r($this->homeRank ,true),'</pre>';
        //echo 'awayRank<pre>',print_r($this->awayRank ,true),'</pre>';
-       
-  $idxTab = 1;
+    
+   
+    if ( JPluginHelper::isEnabled('content', 'jw_ts') )
+    {
+    $params = '';
+    $startoutput = '{tab=';
+    $endoutput = '{/tabs}';
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING').'}';
+    $params .= $this->loadTemplate('ranking');
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_HOME_RANKING').'}';
+    $params .= $this->loadTemplate('ranking_home'); 
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING').'}';
+    $params .= $this->loadTemplate('ranking_away');  
+    
+    $params .= $endoutput;
+    echo JHTML::_('content.prepare', $params);
+    }
+    else
+    {
+    $idxTab = 1;
   echo JHTML::_('tabs.start','tabs_ranking', array('useCookie'=>1));
   echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_FULL_RANKING'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('ranking');
@@ -39,8 +57,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('ranking_home');
         echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('ranking_away');
-echo JHTML::_('tabs.end');		
-	}
+echo JHTML::_('tabs.end');    
+    }
+    
+    }
 
 	if ($this->config['show_colorlegend']==1)
 	{
