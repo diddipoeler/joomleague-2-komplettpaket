@@ -203,13 +203,15 @@ class JoomleagueModelMatches extends JoomleagueModelList
 	function getProjectTeamsOptions($iDivisionId=0)
 	{
 		$option = JRequest::getCmd('option');
-
 		$mainframe	= JFactory::getApplication();
 		$project_id = $mainframe->getUserState($option . 'project');
 
+    $teamname = JComponentHelper::getParams('com_joomleague')->get('cfg_be_show_match_teamname','');
+    
 		$query = ' SELECT	pt.id AS value, '
-		. ' CASE WHEN CHAR_LENGTH(t.name) < 25 THEN t.name ELSE t.middle_name END AS text '
-		. ' FROM #__joomleague_team AS t '
+		//. ' CASE WHEN CHAR_LENGTH(t.name) < 25 THEN t.name ELSE t.middle_name END AS text '
+		. ' t.'.$teamname.' as text'
+    . ' FROM #__joomleague_team AS t '
 		. ' LEFT JOIN #__joomleague_project_team AS pt ON pt.team_id = t.id '
 		. ' WHERE pt.project_id = ' . $project_id;
 		if($iDivisionId>0)  {

@@ -172,6 +172,17 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		
+		<field name="cfg_be_show_match_teamname" type="list"
+			default="name"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_MATCH_TEAM_NAME_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_MATCH_TEAM_NAME_DESCR">
+			<option value="short_name">COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_SHORT</option>
+			<option value="middle_name">COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_MEDIUM</option>
+			<option value="name">COM_JOOMLEAGUE_GLOBAL_TEAM_NAME_FORMAT_FULL</option>
+		</field>
+
+
+		
 	</fieldset>
 	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
