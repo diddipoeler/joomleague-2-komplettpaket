@@ -15,6 +15,10 @@ class JoomleagueViewRanking extends JLGView {
 		// Get a refrence of the page instance in joomla
 		$document = JFactory :: getDocument();
 		$uri = JFactory :: getURI();
+        
+        $version = urlencode(JoomleagueHelper::getVersion());
+		$css='components/com_joomleague/assets/css/tabs.css?v='.$version;
+		$document->addStyleSheet($css);
 
 		$model = $this->getModel();
 		$config = $model->getTemplateConfig($this->getName());
@@ -48,38 +52,8 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
     {
     $this->assignRef( 'rssfeeditems', $rssfeeditems );
     }
-    //echo 'rssfeed<br><pre>'.print_r($rssfeedlink,true).'</pre><br>';
-    /*
-    if ( $rssfeedlink )
-    {
-    $srfrFeedsArray 							= explode("\n",$rssfeedlink);
-    $perFeedItems 								= $this->overallconfig['perFeedItems'];
-    $totalFeedItems 							= $this->overallconfig['totalFeedItems'];
-    $feedTimeout									= $this->overallconfig['feedTimeout'];
-    $this->assignRef( 'feedTitle' , $this->overallconfig['feedTitle'] );
-    $this->assignRef( 'feedFavicon' , $this->overallconfig['feedFavicon'] );
-    $this->assignRef( 'feedItemTitle' , $this->overallconfig['feedItemTitle'] );
-    $this->assignRef( 'feedItemDate' , $this->overallconfig['feedItemDate'] );
-    $feedItemDateFormat						= $this->overallconfig['feedItemDateFormat'];
-    $this->assignRef( 'feedItemDescription' , $this->overallconfig['feedItemDescription'] );
-    $feedItemDescriptionWordlimit	= $this->overallconfig['feedItemDescriptionWordlimit'];
-    $feedItemImageHandling				= $this->overallconfig['feedItemImageHandling'];
-    $feedItemImageResizeWidth			= $this->overallconfig['feedItemImageResizeWidth'];
-    $feedItemImageResampleQuality	= $this->overallconfig['feedItemImageResampleQuality'];
-    $this->assignRef( 'feedItemReadMore' , $this->overallconfig['feedItemReadMore'] );
     
-    $this->assignRef( 'feedsBlockPreText' ,	$this->overallconfig['feedsBlockPreText'] );
-    $this->assignRef( 'feedsBlockPostText' , $this->overallconfig['feedsBlockPostText'] );
-    $this->assignRef( 'feedsBlockPostLink' , $this->overallconfig['feedsBlockPostLink'] );
-    $feedsBlockPostLinkURL				= $this->overallconfig['feedsBlockPostLinkURL'];
-    $feedsBlockPostLinkTitle			= $this->overallconfig['feedsBlockPostLinkTitle'];
-    $srfrCacheTime								= $this->overallconfig['srfrCacheTime'];
-    $cacheLocation								= 'cache'.DS.$mod_name;
-    $this->assignRef( 'rssfeedoutput',SimpleRssFeedReaderHelper::getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth,$feedItemImageResampleQuality,$this->feedFavicon) );
-    $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
-		$document->addStyleSheet($css); 
-		} 
-        */
+        
        }
        
 		$model->computeRanking();
