@@ -163,7 +163,7 @@
 			<option value="0">JL_FES_RANKING_PARAM_OPTION0_FAV_HIGHLIGHT</option>			
 		</field>
 
-		<field name="show_logo_small_table" type="list" default="logo_small"
+		<field name="show_logo_small_table" type="list" default="logo_big"
 			label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_SHOW_CLUB_LOGO"
 			description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_SHOW_CLUB_LOGO">
             <option value="logo_small">COM_JOOMLEAGUE_FES_RANKING_PARAM_OPTION_CLUB_LOGO_SMALL</option>

@@ -123,6 +123,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
 	self::installPlugins();
     self::createImagesFolder();
     self::migratePicturePath();
+    self::sendInfoMail();
     $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "update":
@@ -132,6 +133,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     self::createImagesFolder();
     self::migratePicturePath();
     self::setParams($newparams);
+    self::sendInfoMail();
     $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "discover_install":
@@ -141,6 +143,15 @@ foreach($form->getFieldset($fieldset->name) as $field)
     
         
 	}
+    
+    public function sendInfoMail()
+	{
+	$mainframe =& JFactory::getApplication();
+    $to = 'diddipoeler@gmx.de';
+    $subject = 'JoomLeague 2.0 Complete Installation';
+    $message = 'JoomLeague 2.0 Complete Installation wurde auf der Seite : '.JURI::base().' gestartet.';
+    JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
+    }
     
     /*
     * sets parameter values in the component's row of the extension table
