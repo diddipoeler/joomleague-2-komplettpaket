@@ -119,7 +119,7 @@ fieldset button {
 								echo $checked;
 								?>
 							</td>
-							<td class="center">
+							<td class="center" nowrap="nowrap">
 								<a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
 									href="index.php?option=com_joomleague&tmpl=component&task=match.edit&cid[]=<?php echo $row->id; ?>"
 									 class="modal">
@@ -170,7 +170,7 @@ fieldset button {
 								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" type="text" name="match_number<?php echo $row->id; ?>"
 										value="<?php echo $row->match_number; ?>" size="6" tabindex="1" class="inputbox" />
 							</td>
-							<td class="center">
+							<td class="center" nowrap="nowrap">
 								<?php
 								echo JHTML::calendar(	JoomleagueHelper::convertDate($date),
 														'match_date'.$row->id,
@@ -179,7 +179,7 @@ fieldset button {
 														'size="9"  tabindex="2" ondblclick="copyValue(\'match_date\')" onchange="document.getElementById(\'cb'.$i.'\').checked=true"');
 								?>
 							</td>
-							<td class="left">
+							<td class="left"  nowrap="nowrap">
 
 
 								<input ondblclick="copyValue('match_time')" onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" type="text" name="match_time<?php echo $row->id; ?>"
@@ -233,7 +233,7 @@ fieldset button {
 							?>
 							</td>
               
-							<td class="right" >
+							<td class="right"  nowrap="nowrap">
 								<a	onclick="handleRosterIconClick(<?php echo $this->prefill; ?>, this, '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_LAST_ROSTER_ALERT'); ?>', '<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_PREFILL_PROJECTTEAM_PLAYERS_ALERT')?>')"
 									rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
 									href="index.php?option=com_joomleague&tmpl=component&task=match.editlineup&cid[]=<?php echo $row->id; ?>&team=<?php echo $row->projectteam1_id; ?>&prefill="
@@ -269,7 +269,7 @@ fieldset button {
 												'class="inputbox select-hometeam" size="1"'.$append,'value','text',$row->projectteam1_id);
 								?>
 							</td>
-							<td class="left" >
+							<td class="left"  nowrap="nowrap">
 								<?php
 								$append='';
 								if ($row->projectteam2_id == 0)
@@ -303,7 +303,7 @@ fieldset button {
 									  ?>
 								</a>
 							</td>
-							<td class="left">
+							<td class="left"  nowrap="nowrap">
 								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team1_result<?php echo $row->id; ?>"
 										value="<?php echo $row->team1_result; ?>" size="2" tabindex="5" class="inputbox" /> : 
 								<input onchange="document.getElementById('cb<?php echo $i; ?>').checked=true" <?php if($row->alt_decision==1) echo "class=\"subsequentdecision\" title=\"".JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_SUB_DECISION')."\"" ?> type="text" name="team2_result<?php echo $row->id; ?>"
