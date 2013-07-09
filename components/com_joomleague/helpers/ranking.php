@@ -1055,7 +1055,8 @@ class JLGRanking
 	 */
 	function _cmpPenaltypoints($a, $b)
 	{
-		$res =- ($a->penalty_points - $b->penalty_points );
+		//$res =- ($a->penalty_points - $b->penalty_points );
+        $res =- ($b->penalty_points - $a->penalty_points );
 		return (int)$res;
 	}
     
