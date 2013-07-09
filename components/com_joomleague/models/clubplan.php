@@ -58,7 +58,10 @@ class JoomleagueModelClubPlan extends JoomleagueModelProject
 
 	function getStartDate()
 	{
-		$config=$this->getTemplateConfig("clubplan");
+	   $mainframe = JFactory::getApplication();
+       //$mainframe->enqueueMessage(JText::_('Model clubplan startdate vorher -> '.'<pre>'.print_r($this->startdate,true).'</pre>' ),'');
+	
+    	$config=$this->getTemplateConfig("clubplan");
 		if (empty($this->startdate))
 		{
 			$dayz=$config['days_before'];
@@ -70,24 +73,29 @@ class JoomleagueModelClubPlan extends JoomleagueModelProject
 			$project=$this->getProject();
 			$this->startdate=$project->start_date;
 		}
+        //$mainframe->enqueueMessage(JText::_('Model clubplan startdate nachher -> '.'<pre>'.print_r($this->startdate,true).'</pre>' ),'');
 		return $this->startdate;
 	}
 
 	function getEndDate()
 	{
+	   $mainframe = JFactory::getApplication();
+       //$mainframe->enqueueMessage(JText::_('Model clubplan enddate vorher -> '.'<pre>'.print_r($this->enddate,true).'</pre>' ),'');
 		if (empty($this->enddate))
 		{
-			$config=$this->getTemplateConfig("clubplan");
-			$dayz=$config['days_after'];
+			$config = $this->getTemplateConfig("clubplan");
+			$dayz = $config['days_after'];
 			//$dayz=6;
 			$nextweek=mktime(0,0,0,date("m"),date("d")+ $dayz,date("y"));
 			$this->enddate=date("Y-m-d",$nextweek);
 		}
+        //$mainframe->enqueueMessage(JText::_('Model clubplan enddate vorher -> '.'<pre>'.print_r($this->enddate,true).'</pre>' ),'');
 		return $this->enddate;
 	}
 
 	function setStartDate($date)
 	{
+	   $mainframe = JFactory::getApplication();
 		// should be in proper sql format
 		if (strtotime($date)) {
 			$this->startdate=strftime("%Y-%m-%d",strtotime($date));
@@ -99,6 +107,7 @@ class JoomleagueModelClubPlan extends JoomleagueModelProject
 
 	function setEndDate($date)
 	{
+	   $mainframe = JFactory::getApplication();
 		// should be in proper sql format
 		if (strtotime($date)) {
 			$this->enddate=strftime("%Y-%m-%d",strtotime($date));

@@ -118,7 +118,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     switch ($type)        
     {
     case "install":
-    //self::installComponentLanguages();
+    self::installComponentLanguages();
     self::installModules();
 	self::installPlugins();
     self::createImagesFolder();
@@ -127,7 +127,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "update":
-    //self::installComponentLanguages();
+    self::installComponentLanguages();
     self::installModules();
     self::installPlugins();
     self::createImagesFolder();
