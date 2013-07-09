@@ -88,7 +88,7 @@ class JoomleagueModelSportsTypes extends JoomleagueModelList
 		$db->setQuery($query);
 		if (!$result=$db->loadObjectList())
 		{
-			$this->setError($db->getErrorMsg());
+			//$this->setError($db->getErrorMsg());
 			return array();
 		}
 		foreach ($result as $sportstype){
