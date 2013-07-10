@@ -126,7 +126,7 @@ JHTML::_( 'behavior.tooltip' );
 				$row =& $this->items[$i];
 
 				$link	= JRoute::_( 'index.php?option=com_joomleague&task=prediction.edit&cid[]=' . $row->id );
-				$link2	= JRoute::_( 'index.php?option=com_users&view=user&task=edit&cid[]=' . $row->user_id );
+				$link2	= JRoute::_( 'index.php?option=com_users&view=user&layout=edit&cid[]=' . $row->user_id );
 
 				$checked = JHTML::_( 'grid.checkedout', $row, $i );
 				?>
