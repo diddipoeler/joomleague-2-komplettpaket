@@ -48,7 +48,7 @@ foreach( $current as $ptid => $team )
 			$color = trim($this->project->fav_team_color);
 		}
 		$format = "%s";
-        $format2 = "( %s )";
+        $format2 = "(%s)";
 		$favStyle = ' style="';
 		$favStyle .= ($this->project->fav_team_text_bold != '') ? 'font-weight:bold;' : '';
 		$favStyle .= (trim($this->project->fav_team_text_color) != '') ? 'color:'.trim($this->project->fav_team_text_color).';' : '';
@@ -413,7 +413,7 @@ foreach( $current as $ptid => $team )
 				break;
                 
             case 'PENALTYPOINTS':
-				echo '<td class="rankingrow_penaltypoints"';
+				echo '<td class="rankingrow_points"';
 				if($color != '' && $config['use_background_row_color']) {
 					echo 'style="background-color:' . $color . '"';
 				}
