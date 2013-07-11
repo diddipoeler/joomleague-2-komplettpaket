@@ -51,6 +51,14 @@ if (!empty($this->matchplayerpositions ))
 		echo $this->loadTemplate('result');
 	}
     
+    if ( !empty( $this->matchevents ) )
+	{
+    if (($this->config['show_timeline_under_results'])==1)
+	{
+		echo $this->loadTemplate('timeline');
+	}
+    }
+    
   // ################################################################
   // diddipoeler
   // aufbau der templates
@@ -75,7 +83,7 @@ if (!empty($this->matchplayerpositions ))
 	}
     if ( !empty( $this->matchevents ) )
 	{
-		if (($this->config['show_timeline'])==1)
+		if (($this->config['show_timeline'])==1 && $this->config['show_timeline_under_results']==0 )
 		{
             $output['COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'] = 'timeline';
 		}
@@ -135,7 +143,7 @@ if (!empty($this->matchplayerpositions ))
 
 	if ( !empty( $this->matchevents ) )
 	{
-		if (($this->config['show_timeline'])==1)
+		if (($this->config['show_timeline'])==1 && $this->config['show_timeline_under_results']==0)
 		{
 			echo $this->loadTemplate('timeline');
 		}
@@ -214,7 +222,7 @@ if (!empty($this->matchplayerpositions ))
   
 	if ( !empty( $this->matchevents ) )
 	{
-		if (($this->config['show_timeline'])==1)
+		if (($this->config['show_timeline'])==1 && $this->config['show_timeline_under_results']==0 )
 		{
 		echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'), 'panel'.($idxTab++));
 			echo $this->loadTemplate('timeline');
@@ -295,7 +303,7 @@ if (!empty($this->matchplayerpositions ))
 
 	if ( !empty( $this->matchevents ) )
 	{
-		if (($this->config['show_timeline'])==1)
+		if (($this->config['show_timeline'])==1 && $this->config['show_timeline_under_results']==0)
 		{
 		echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_TIMELINE'), 'panel'.($idxTab++));
 			echo $this->loadTemplate('timeline');

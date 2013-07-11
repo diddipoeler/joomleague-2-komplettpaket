@@ -96,6 +96,13 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
+    <field 	name="show_timeline_under_results" type="radio" default="0"
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TIMELINE_UNDER_RESULTS" 
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TIMELINE_UNDER_RESULTS">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 	</fieldset>
 
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_EVENTSOPTIONS" 
