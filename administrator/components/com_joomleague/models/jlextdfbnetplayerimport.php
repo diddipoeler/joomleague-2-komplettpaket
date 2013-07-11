@@ -1141,7 +1141,7 @@ $temp->lastname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_firstname')]
 $temp->firstname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_lastname')];
 
 $temp->info = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_info')];
-$datetime = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_birthday')];
+$datetime = strtotime($csv->data[$a][$jRegistry->get('cfg_dfbnet_player_birthday')]);
 $temp->birthday = date('Y-m-d', $datetime);
 
 $temp->country = $country;
