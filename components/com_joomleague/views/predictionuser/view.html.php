@@ -90,10 +90,16 @@ class JoomleagueViewPredictionUser extends JLGView
 
 			if ($this->predictionMember->pmID > 0){$dMemberID=$this->predictionMember->pmID;}else{$dMemberID=0;}
 			if (!$this->allowedAdmin){$userID=$this->actJoomlaUser->id;}else{$userID=null;}
-			$predictionMembers[] = JHTML::_('select.option','0',JText::_($this->optiontext.'JL_PRED_SELECT_MEMBER'),'value','text');
 
+			$predictionMembers[] = JHTML::_('select.option','0',JText::_($this->optiontext.'JL_PRED_SELECT_MEMBER'),'value','text');
 			if ($res=&$mdlPredUsers->getPredictionMemberList($this->config,$userID)){$predictionMembers=array_merge($predictionMembers,$res);}
 			$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
+			unset($res);
+			unset($predictionMembers);
+            
+            $predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PREDICTION_MEMBER_GROUP'),'value','text');
+			if ($res=&$mdlPredUsers->getPredictionGroupList()){$predictionMembers=array_merge($predictionMembers,$res);}
+			$lists['grouplist']=JHTML::_('select.genericList',$predictionMembers,'group_id','class="inputbox" onchange="this.form.submit(); "','value','text',$this->predictionMember->group_id);
 			unset($res);
 			unset($predictionMembers);
 

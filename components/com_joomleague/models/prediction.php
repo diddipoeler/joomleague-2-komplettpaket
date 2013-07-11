@@ -1064,6 +1064,15 @@ $body .= $this->createHelptText($predictionProject->mode);
 		?><td class='labelEdit'<?php echo ($rowspan > 1 ? ' rowspan="'.$rowspan.'"' : '')?> ><span class='hasTip' title="<?php echo JText::_($labelTextHelp); ?>"><?php echo JText::_($labelText); ?></span></td><?php
 	}
 
+
+  function getPredictionGroupList()
+	{
+	$query="SELECT id AS value, name AS group_id FROM #__joomleague_prediction_groups ORDER BY name ASC"
+	$this->_db->setQuery($query);
+		$results=$this->_db->loadObjectList();
+		return $results;
+	}
+	
 	function getPredictionMemberList(&$config,$actUserId=null)
 	{
 		if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
