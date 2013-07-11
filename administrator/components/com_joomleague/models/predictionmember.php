@@ -37,11 +37,23 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
 		// Lets load the content if it doesn't already exist
 		if ( empty( $this->_data ) )
 		{
+		  /*
 			$query = '	SELECT *
 						FROM #__joomleague_prediction_member
 						WHERE id = ' . (int) $this->_id;
+                        */
 
-			$this->_db->setQuery( $query );
+			$query		=	'	SELECT	tmb.*,
+									u.name AS realname,
+									u.username AS username,
+									p.name AS predictionname
+							FROM	#__joomleague_prediction_member AS tmb
+							LEFT JOIN #__joomleague_prediction_game AS p ON p.id = tmb.prediction_id
+							LEFT JOIN #__users AS u ON u.id = tmb.user_id 
+                            WHERE tmb.id = ' . (int) $this->_id
+							
+							;
+            $this->_db->setQuery( $query );
 			$this->_data = $this->_db->loadObject();
 			return (boolean) $this->_data;
 		}
@@ -144,6 +156,13 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
         $record =& JTable::getInstance('predictionmember','Table');
 		$record->load($member_id);
 		$record->group_id = $post['group_id'];
+        
+        $record->reminder = $post['reminder'];
+        $record->receipt = $post['receipt'];
+        $record->show_profile = $post['show_profile'];
+        $record->admintipp = $post['admintipp'];
+        $record->approved = $post['approved'];
+        
 		if (!$record->store())
 					{
 						$this->setError($record->getError());

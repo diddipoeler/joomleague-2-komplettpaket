@@ -54,17 +54,19 @@ $uri =& JFactory::getURI();
 		<fieldset class="adminform">
 			<legend>
 				<?php
-				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER' ).' ['.']';
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBER' ).' ['.$this->predictionuser->username.']';
 				?>
 			</legend>
 
 			<table class="admintable">
-                
+            <?php foreach ($this->form->getFieldset('details') as $field): ?>
+					<tr>
+						<td class="key"><?php echo $field->label; ?></td>
+						<td><?php echo $field->input; ?></td>
+					</tr>					
+					<?php endforeach; ?>    
     			
-				<tr>
-					<td class="key"><?php echo $this->form->getLabel('group_id'); ?></td>
-					<td><?php echo $this->form->getInput('group_id'); ?></td>
-				</tr>
+				
 				
 				
 				

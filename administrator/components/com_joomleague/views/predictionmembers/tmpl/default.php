@@ -126,7 +126,8 @@ JHTML::_( 'behavior.tooltip' );
 				$row =& $this->items[$i];
 
 				$link	= JRoute::_( 'index.php?option=com_joomleague&task=prediction.edit&cid[]=' . $row->id );
-				$link2	= JRoute::_( 'index.php?option=com_users&view=user&layout=edit&cid[]=' . $row->user_id );
+				//$link2	= JRoute::_( 'index.php?option=com_users&view=user&layout=edit&cid[]=' . $row->user_id );
+                $link2	= JRoute::_( 'index.php?option=com_joomleague&task=predictionmember.edit&cid[]=' . $row->id );
 
 				$checked = JHTML::_( 'grid.checkedout', $row, $i );
 				?>
@@ -151,7 +152,7 @@ JHTML::_( 'behavior.tooltip' );
 						{
 						?>
 							<a  href="<?php echo $link2; ?>"
-								title="<?php echo JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_EDIT_USER' ); ?>" target="_blank">
+								title="<?php echo JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_EDIT_USER' ); ?>" >
 								<?php
 								echo $row->username;
 								?>
