@@ -395,7 +395,49 @@
 		</field>
   
   </fieldset>
+
+  <fieldset  
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_LABEL"
+		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_DESC">
   
+  <field name="cfg_dfbnet_player_startrow" type="text" default="10"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_startrow_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_startrow_CCOLUMN">
+		</field>
+		
+  <field name="cfg_dfbnet_player_passnummer" type="text" default="A"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_PASSNUMMER_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_PASSNUMMER_CCOLUMN">
+		</field>
+		
+		<field name="cfg_dfbnet_player_firstname" type="text" default="B"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_firstname_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_firstname_CCOLUMN">
+		</field>
+		
+		<field name="cfg_dfbnet_player_lastname" type="text" default="C"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_lastname_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_lastname_CCOLUMN">
+		</field>
+		
+		<field name="cfg_dfbnet_player_info" type="text" default="D"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_info_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_info_CCOLUMN">
+		</field>
+		
+		<field name="cfg_dfbnet_player_birthday" type="text" default="E"
+		size="20"
+    label="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_birthday_CCOLUMN"
+		description="COM_JOOMLEAGUE_SETTINGS_DFBNET_PLAYER_birthday_CCOLUMN">
+		</field>
+  
+  </fieldset>  
+      
 <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_DESC">  

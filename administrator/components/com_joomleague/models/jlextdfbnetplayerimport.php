@@ -427,22 +427,6 @@ $jlxmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.$option.DS.'config.xml';
 $jRegistry = new JRegistry;
 $jRegistry->loadString($params->toString('ini'), 'ini');
         
-//$mainframe->enqueueMessage(JText::_('params<br><pre>'.print_r($params,true).'</pre>'   ),'');
-//$mainframe->enqueueMessage(JText::_('jRegistry<br><pre>'.print_r($jRegistry,true).'</pre>'   ),'');
-
-/*
-$jRegistry = new JRegistry;
-$jRegistry->loadString($params->toString('ini'), 'ini');
-$form =& JForm::getInstance($option, $xmlfile, array('control'=> 'params'), false, "/config");
-$form->bind($jRegistry);
-$fieldSets = $form->getFieldsets('COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS');
-$mainframe->enqueueMessage(JText::_('fieldSets<br><pre>'.print_r($fieldSets,true).'</pre>'   ),'');
-*/
-
-
-  
-
-
 //   echo 'Die aktuelle Sprache lautet: ' . $lang->getName() . '<br>';
   $teile = explode("-",$lang->getTag());
   $country = Countries::convertIso2to3($teile[1]);  
@@ -513,32 +497,6 @@ $this->_project_id = $post['projects'];
 
 $file = JPATH_SITE.DS.'tmp'.DS.'joomleague_import.csv';
 $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
-
-/*
-$csv = & new csv_bv($file, ',', '"' , '\\'); 
-$csv->SkipEmptyRows(TRUE);
-$csv->TrimFields(TRUE);
-$_arr = $csv->csv2Array(); 
-$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($_arr,true).'</pre>'   ),'');
-*/
-
-/*
-# tab delimited, and encoding conversion
-$csv = new JLparseCSV();
-//$csv->encoding('UTF-16', 'UTF-8');
-$csv->delimiter = $delimiter;
-$csv->parse($file);
-//print_r($csv->data);
-*/
-
-//$csv->delimiter = $delimiter;
-//$csvdata = parseCSV::parse($file);
-
-/*
-$csvdata = new parseCSV();
-$csvdata->delimiter = $delimiter;
-$csvdata->parse($file);
-*/
 
 //$mainframe->enqueueMessage(JText::_('csv result<br><pre>'.print_r($csvdata->data,true).'</pre>'   ),'');
     
@@ -1106,6 +1064,7 @@ if( $this->lines )
 {
 $row = 0;
 
+/*
 foreach($this->lines as $line )
 {
 
@@ -1145,9 +1104,54 @@ elseif ( $whichfile == 'matchfile' )
 }
 $row++;
 }
+*/
 
 if ( $whichfile == 'playerfile' )
 {
+// test
+// spielplan anfang
+# tab delimited, and encoding conversion
+	$csv = new parseCSV();
+	$csv->encoding('UTF-16', 'UTF-8');
+	//$csv->delimiter = "\t";
+    switch ($delimiter)
+    {
+        case ";":
+        $csv->delimiter = ";";
+        break;
+        case ",":
+        $csv->delimiter = ",";
+        break;
+        default:
+        $csv->delimiter = "\t";
+        break;
+    }
+
+$startrow = $jRegistry->get('cfg_dfbnet_player_startrow') - 2;
+$csv->parse($file,$startrow);
+//$mainframe->enqueueMessage(JText::_('result<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+
+// anfang schleife csv file  
+  for($a=0; $a < sizeof($csv->data); $a++  )
+  {
+  $temp = new stdClass();
+$temp->id = 0;
+$temp->knvbnr = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_passnummer')];
+$temp->lastname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_firstname')];
+$temp->firstname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_lastname')];
+
+$temp->info = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_info')];
+$datetime = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_birthday')];
+$temp->birthday = date('Y-m-d', $datetime);
+
+$temp->country = $country;
+$temp->nickname = '';
+$temp->position_id = '';
+$temp->lastname = utf8_encode ($temp->lastname);
+$temp->firstname = utf8_encode ($temp->firstname);
+$exportplayer[] = $temp;  
+  }  
+  
 // spielerdatei    
 $temp = new stdClass();
 $temp->name = 'playerfile';
@@ -1204,41 +1208,6 @@ $lfdnumbermatchreferee = 1;
   
   if ( empty($lfdnumber) )
   {
-  
-/*
-[0] => Array
-        (
-1            [Datum] => 20.02.2013
-2            [Uhrzeit] => 11:00
-3            [Saison] => 12/13
-4            [Verband] => Schleswig-Holsteinischer Fußballverband
-5            [MannschaftsartID] => 016
-6            [Mannschaftsart] => C-Junioren
-7            [SpielklasseID] => 054
-8            [Spielklasse] => Kreisklasse A
-9            [SpielgebietID] => 032
-10            [Spielgebiet] => Kreis Nordfriesland
-11            [Rahmenspielplan] => 6
-12            [Staffelnummer] => 001
-13            [Staffel] => C - Junioren KKA 11er II
-14            [Staffelkennung] => 040718
-15            [Staffelleiter] => Stöhrmann, Wolfgang
-16            [Spieldatum] => 10.03.2013
-17            [Wochentag] => Sonntag
-18            [Spieltag] => 1
-19            [Schlüsseltag] => 1
-20            [Heimmannschaft] => FSV Wyk-Föhr II
-21            [Gastmannschaft] => TSV Amrum
-22            [freigegeben] => Nein
-23            [Spielstätte] => verlegt auf So, 24.03.2013
-24            [Spielleitung] => 
-25            [Assistent 1] => 
-26            [Assistent 2] => 
-27            [verlegtWochentag] => Sonntag
-28            [verlegtSpieldatum] => 24.03.2013
-29            [verlegtUhrzeit] => 14:00
-        )  
-*/  
   
   $temp = new stdClass();
   $temp->name = $csv->data[$a][$jRegistry->get('cfg_dfbnet_verband_name')];
@@ -2334,53 +2303,6 @@ return $this->_datas;
 		return false;
 	}    
     
-    
-    
-    
-    
-	
-	
-	
-	
-	
-
-
-
-
-	
-
-
-
-
-
-
-
-
-  	
-	
-	
-
-
-
-
-	
-  
-  
-	
-	
-
-	
-
-	
-
-  
-
-  
-	
-	
-  	
-
-  
   
 	/**
 	 * _getDataFromObject
@@ -2425,210 +2347,6 @@ return $this->_datas;
 		return '#Error in _getClubName#';
 	}
 	
-	
-	/**
- * private function _convertNewPlaygroundIDs()
- * 	{
- * 		$my_text='';
- * 		$converted=false;
- * 		if (isset($this->_convertPlaygroundID) && !empty($this->_convertPlaygroundID))
- * 		{
- * 			foreach ($this->_convertPlaygroundID AS $key => $new_pg_id)
- * 			{
- * 				$p_playground=$this->_getPlaygroundRecord($new_pg_id);
- * 				foreach ($this->_convertClubID AS $key => $new_club_id)
- * 				{
- * 					if (isset($p_playground->club_id) && ($p_playground->club_id ==$key))
- * 					{
- * 						if ($this->_updatePlaygroundRecord($new_club_id,$new_pg_id))
- * 						{
- * 							$converted=true;
- * 							$my_text .= '<span style="color:green">';
- * 							$my_text .= JText::sprintf(	'Converted club-info %1$s in imported playground %2$s',
- * 														'</span><strong>'.$this->_getClubName($new_club_id).'</strong><span style="color:green">',
- * 														"</span><strong>$p_playground->name</strong>");
- * 							$my_text .= '<br />';
- * 						}
- * 						break;
- * 					}
- * 				}
- * 			}
- * 			if (!$converted){$my_text .= '<span style="color:green">'.JText::_('Nothing needed to be converted').'<br />';}
- * 			$this->_success_text['JL_ADMIN_DFBNET_IMPORT_GENERAL_CONVERTING_NEW_PLAYGROUND:']=$my_text;
- * 		}
- * 		return true;
- * 	}
- */
-	
-	/**
- * private function _updatePlaygroundRecord($club_id,$playground_id)
- * 	{
- * 		$query='UPDATE #__joomleague_playground SET club_id='.(int)$club_id.' WHERE id='.(int)$playground_id;
- * 		$this->_db->setQuery($query);
- * 		return $this->_db->query();
- * 	}
- */
-	
-	/**
- * 	private function _getPlaygroundRecord($id)
- * 	{
- * 		$query='SELECT * FROM #__joomleague_playground WHERE id='.(int)$id;
- * 		$this->_db->setQuery($query);
- * 		$this->_db->query();
- * 		if ($object=$this->_db->loadObject()){return $object;}
- * 		return null;
- * 	}
- */
-	
-	
-	
-	
-	
-	/**
-	 * check that all templates in default location have a corresponding record,except if project has a master template
-	 *
-	 */
-	/**
- * private function _checklist()
- * 	{
- * 		$project_id=$this->_project_id;
- * 		$defaultpath=JPATH_COMPONENT_SITE.DS.'settings';
- * 		$extensiontpath=JPATH_COMPONENT_SITE.DS.'extensions'.DS;
- * 		$predictionTemplatePrefix='prediction';
-
- * 		if (!$project_id){return;}
-
- * 		// get info from project
- * 		$query='SELECT master_template,extension FROM #__joomleague_project WHERE id='.(int)$project_id;
-
- * 		$this->_db->setQuery($query);
- * 		$params=$this->_db->loadObject();
-
- * 		// if it's not a master template,do not create records.
- * 		if ($params->master_template){return true;}
-
- * 		// otherwise,compare the records with the files
- * 		// get records
- * 		$query='SELECT template FROM #__joomleague_template_config WHERE project_id='.(int)$project_id;
-
- * 		$this->_db->setQuery($query);
- * 		$records=$this->_db->loadResultArray();
- * 		if (empty($records)){$records=array();}
-
- * 		// first check extension template folder if template is not default
- * 		if ((isset($params->extension)) && ($params->extension!=''))
- * 		{
- * 			if (is_dir($extensiontpath.$params->extension.DS.'settings'))
- * 			{
- * 				$xmldirs[]=$extensiontpath.$params->extension.DS.'settings';
- * 			}
- * 		}
-
- * 		// add default folder
- * 		$xmldirs[]=$defaultpath.DS.'default';
-
- * 		// now check for all xml files in these folders
- * 		foreach ($xmldirs as $xmldir)
- * 		{
- * 			if ($handle=opendir($xmldir))
- * 			{
- 
- * 				while ($file=readdir($handle))
- * 				{
- * 					if	(	$file!='.' &&
- * 							$file!='..' &&
- * 							$file!='do_tipsl' &&
- * 							strtolower(substr($file,-3))=='xml' &&
- * 							strtolower(substr($file,0,strlen($predictionTemplatePrefix)))!=$predictionTemplatePrefix
- * 						)
- * 					{
- * 						$template=substr($file,0,(strlen($file)-4));
-
- * 						if ((empty($records)) || (!in_array($template,$records)))
- * 						{
- * 							//template not present,create a row with default values
- * 							$params=new JLParameter(null,$xmldir.DS.$file);
-
- * 							//get the values
- * 							$defaultvalues=array();
- * 							foreach ($params->getGroups() as $key => $group)
- * 							{
- * 								foreach ($params->getParams('params',$key) as $param)
- * 								{
- * 									$defaultvalues[]=$param[5].'='.$param[4];
- * 								}
- * 							}
- * 							$defaultvalues=implode("\n",$defaultvalues);
-
- * 							$query="	INSERT INTO #__joomleague_template_config (template,title,params,project_id)
- * 													VALUES ('$template','$params->name','$defaultvalues','$project_id')";
- * 							$this->_db->setQuery($query);
- * 							//echo error,allows to check if there is a mistake in the template file
- * 							if (!$this->_db->query())
- * 							{
- * 								$this->setError($this->_db->getErrorMsg());
- * 								return false;
- * 							}
- * 							array_push($records,$template);
- * 						}
- * 					}
- * 				}
- * 				closedir($handle);
- * 			}
- * 		}
- * 	}
- */
-	
-		/**
- * private function _getRoundName($round_id)
- * 	{
- * 		$query='SELECT name FROM #__joomleague_round WHERE id='.(int)$round_id;
- * 		$this->_db->setQuery($query);
- * 		$this->_db->query();
- * 		if ($this->_db->getAffectedRows())
- * 		{
- * 			$result=$this->_db->loadResult();
- * 			return $result;
- * 		}
- * 		return null;
- * 	}
- */
-	
-	/**
- * private function _getTeamName($team_id)
- * 	{
- * 		$query='	SELECT t.name
- * 					FROM #__joomleague_team AS t
- * 					INNER JOIN #__joomleague_project_team AS pt on pt.id='.(int)$team_id.' WHERE t.id=pt.team_id';
- * 		$this->_db->setQuery($query);
- * 		$this->_db->query();
- * 		if ($object=$this->_db->loadObject())
- * 		{
- * 			return $object->name;
- * 		}
- * 		return '#Error in _getTeamName ('.$team_id.') #';
- * 	}
- */
-
-	/**
- * private function _getTeamName2($team_id)
- * 	{
- * 		$query='SELECT name FROM #__joomleague_team WHERE id='.(int)$team_id;
- * 		$this->_db->setQuery($query);
- * 		$this->_db->query();
- * 		if ($this->_db->getAffectedRows())
- * 		{
- * 			$result=$this->_db->loadResult();
- * 			return $result;
- * 		}
- * 		return '#Error in _getTeamName2 ('.$team_id.') #';
- * 	}
- */
-	
-	
-    
-    
-	
   private function _getObjectName($tableName,$id,$usedFieldName='')
 	{
 		$fieldName=($usedFieldName=='') ? 'name' : $usedFieldName;
@@ -2638,45 +2356,6 @@ return $this->_datas;
 		return JText::sprintf('Item with ID [%1$s] not found inside [#__joomleague_%2$s]',$id,$tableName)." $query";
 	}
   
-  	
-  
-   
-	
-  
-  
-	
-	
-  
-  
-  
-     
-  
-  
-	
-  
-  	
-  
-  
-    
-  /**
- * private function _getPersonName($person_id)
- * 	{
- * 		$query='SELECT lastname,firstname FROM #__joomleague_person WHERE id='.(int)$person_id;
- * 		$this->_db->setQuery($query);
- * 		$this->_db->query();
- * 		if ($this->_db->getAffectedRows())
- * 		{
- * 			$result=$this->_db->loadObject();
- * 			return $result;
- * 		}
- * 	}
- */
-  
-    
-    
-    
-        
-	
   
 function _SetRoundDates($project)
 	{
