@@ -58,6 +58,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 		$reminder			= JRequest::getVar('reminder',		'','post','int');
 		$receipt			= JRequest::getVar('receipt',		'','post','int');
 		$admintipp			= JRequest::getVar('admintipp',		'','post','int');
+        $group_id		= JRequest::getVar('group_id',		'','post','int');
 		$picture			= JRequest::getVar('picture',		'','post','string',JREQUEST_ALLOWRAW);
 		$aliasName			= JRequest::getVar('aliasName',		'','post','string',JREQUEST_ALLOWRAW);
 
@@ -75,6 +76,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 		$query =	"	UPDATE	#__joomleague_prediction_member
 							SET	registerDate='$registerDate',
 								show_profile=$show_profile,
+                                group_id=$group_id,
 								fav_team='$dFavTeams',
 								champ_tipp='$dChampTeams',
 								slogan='$slogan',
