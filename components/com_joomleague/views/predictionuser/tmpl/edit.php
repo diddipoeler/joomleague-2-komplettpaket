@@ -243,7 +243,23 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			</td>
 		</tr>
 		
-		
+<tr>
+		    <td>
+<fieldset class="adminform">
+			<legend><?php echo JText::_($this->optiontext.'JL_PRED_USERS_EDIT_LABEL_GROUP' );?>
+			</legend>
+			<table class="admintable">
+					<?php foreach ($this->form->getFieldset('group') as $field): ?>
+					<tr>
+						<td class="key"><?php echo $field->label; ?></td>
+						<td><?php echo $field->input; ?></td>
+					</tr>					
+					<?php endforeach; ?>
+			</table>
+		</fieldset>
+
+			</td>
+		</tr>		
 		
 		<?php
 		}		
