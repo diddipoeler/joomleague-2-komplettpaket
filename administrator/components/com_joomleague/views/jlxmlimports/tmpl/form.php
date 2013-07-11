@@ -1933,6 +1933,9 @@ if (isset($this->xml) && is_array($this->xml))
                                                 <td><?php echo '<b>'.JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_INFO').'</b>'; ?><br />
 													<input type='text' name='personInfo_<?php echo $key; ?>' maxlength='50' size='50' value="<?php echo $person->info; ?>" <?php echo $disabled; ?> />
 												</td>
+                                                <td><?php echo '<b>'.JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_KNVBNR').'</b>'; ?><br />
+													<input type='text' name='personKnvbnr_<?php echo $key; ?>' maxlength='10' size='10' value="<?php echo $person->knvbnr; ?>" <?php echo $disabled; ?> />
+												</td>
 											</tr>
 										</table>
 									</td>
