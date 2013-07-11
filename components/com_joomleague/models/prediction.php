@@ -1067,7 +1067,7 @@ $body .= $this->createHelptText($predictionProject->mode);
 
   function getPredictionGroupList()
 	{
-	$query="SELECT id AS value, name AS group_id FROM #__joomleague_prediction_groups ORDER BY name ASC";
+	$query="SELECT id AS value, name AS text FROM #__joomleague_prediction_groups ORDER BY name ASC";
 	$this->_db->setQuery($query);
 		$results=$this->_db->loadObjectList();
 		return $results;
