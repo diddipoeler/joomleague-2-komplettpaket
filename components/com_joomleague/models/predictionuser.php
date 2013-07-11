@@ -60,7 +60,7 @@ class JoomleagueModelPredictionUser extends JModelForm
 		$admintipp			= JRequest::getVar('admintipp',		'','post','int');
 		$picture			= JRequest::getVar('picture',		'','post','string',JREQUEST_ALLOWRAW);
 		$aliasName			= JRequest::getVar('aliasName',		'','post','string',JREQUEST_ALLOWRAW);
-
+    $group_id		= JRequest::getVar('group_id',		'','post','int');
 		$pRegisterDate		= JRequest::getVar('registerDate',	'',	'post',	'date',JREQUEST_ALLOWRAW);
 		$pRegisterTime		= JRequest::getVar('registerTime',	'',	'post',	'time',JREQUEST_ALLOWRAW);
 		//echo '<br /><pre>~'.print_r($pRegisterDate,true).'~</pre><br />';
@@ -75,6 +75,7 @@ class JoomleagueModelPredictionUser extends JModelForm
 		$query =	"	UPDATE	#__joomleague_prediction_member
 							SET	registerDate='$registerDate',
 								show_profile=$show_profile,
+								group_id=$group_id,
 								fav_team='$dFavTeams',
 								champ_tipp='$dChampTeams',
 								slogan='$slogan',
