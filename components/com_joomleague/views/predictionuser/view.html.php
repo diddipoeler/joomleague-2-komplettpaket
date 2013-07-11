@@ -99,7 +99,7 @@ class JoomleagueViewPredictionUser extends JLGView
             
             $predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PREDICTION_MEMBER_GROUP'),'value','text');
 			if ($res=&$mdlPredUsers->getPredictionGroupList()){$predictionMembers=array_merge($predictionMembers,$res);}
-			$lists['grouplist']=JHTML::_('select.genericList',$predictionMembers,'group_id','class="inputbox" onchange="this.form.submit(); "','value','text',$this->predictionMember->group_id);
+			$lists['grouplist']=JHTML::_('select.genericList',$predictionMembers,'group_id','class="inputbox" onchange=""','value','text',$this->predictionMember->group_id);
 			unset($res);
 			unset($predictionMembers);
 
