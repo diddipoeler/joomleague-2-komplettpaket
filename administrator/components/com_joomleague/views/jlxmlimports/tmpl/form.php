@@ -1931,7 +1931,7 @@ if (isset($this->xml) && is_array($this->xml))
 													<input type='text' name='personBirthday_<?php echo $key; ?>' maxlength='10' size='11' value="<?php echo $person->birthday; ?>" <?php echo $disabled; ?> />
 												</td>
                                                 <td><?php echo '<b>'.JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_INFO').'</b>'; ?><br />
-													<input type='text' name='personInfo_<?php echo $key; ?>' maxlength='10' size='11' value="<?php echo $person->info; ?>" <?php echo $disabled; ?> />
+													<input type='text' name='personInfo_<?php echo $key; ?>' maxlength='50' size='50' value="<?php echo $person->info; ?>" <?php echo $disabled; ?> />
 												</td>
 											</tr>
 										</table>
