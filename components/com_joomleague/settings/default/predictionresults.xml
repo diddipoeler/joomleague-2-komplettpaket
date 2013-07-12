@@ -73,6 +73,11 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
+    <field	name="background_color_ranking" type="colorpicker" size="8" maxlength="8" default="#6F7860"
+label="COM_JOOMLEAGUE_JL_FES_PREDICTIONRANKING_PARAM_LABEL_BACKGROUND_COLOR"
+description="COM_JOOMLEAGUE_JL_FES_PREDICTIONRANKING_PARAM_DESCR_BACKGROUND_COLOR_GUEST_WIN" >
+</field>
+
 	</fieldset>
 
 </form>

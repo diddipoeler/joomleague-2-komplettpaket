@@ -353,7 +353,9 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				if ($i <= $skipMemberCount) { $i++; continue; }
 
 				$class = ($k==0) ? 'sectiontableentry1' : 'sectiontableentry2';
-				$styleStr = ($this->predictionMember->pmID==$key) ? ' style="background-color:yellow; color:black; " ' : '';
+                // änderung bluesunny62
+				//$styleStr = ($this->predictionMember->pmID==$key) ? ' style="background-color:yellow; color:black; " ' : '';
+                $styleStr = ($this->predictionMember->pmID==$key) ? ' style="background-color:'.$this->config['background_color_ranking'].'; color:black; " ' : '';
 				$class = ($this->predictionMember->pmID==$key) ? 'sectiontableentry1' : $class;
 				$tdStyleStr = " style='text-align:center; vertical-align:middle; ' ";
 				?>
