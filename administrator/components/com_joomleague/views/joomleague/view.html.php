@@ -488,6 +488,7 @@ class JoomleagueViewJoomleague extends JLGView
 	$pane->name='PREDICTIONGAMES';
 	$pane->alert=false;
 	$tabs[]=$pane;
+    
     $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongames&task=predictiongame.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGAMES');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGAMES'));
@@ -495,8 +496,6 @@ class JoomleagueViewJoomleague extends JLGView
     $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiongroups&task=predictiongroup.display');
     $label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGROUPS');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGROUPS'));
-	
-    
     
     $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONMEMBERS');
@@ -505,6 +504,7 @@ class JoomleagueViewJoomleague extends JLGView
     $link5[]=JRoute::_('index.php?option=com_joomleague&view=predictiontemplates&task=predictiontemplate.display');
 	$label5[]=JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONTEMPLATES');
 	$limage5[]=JHTML::_('image',$imagePath.'icon-16-FrontendSettings.png',JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONTEMPLATES'));
+
 	$link[]=$link5;
 	$label[]=$label5;
 	$limage[]=$limage5;
@@ -539,7 +539,8 @@ class JoomleagueViewJoomleague extends JLGView
 				
 				case 'predictiongames':
         case 'predictionmembers':
-        case 'predictiontemplates':    
+        case 'predictiontemplates': 
+        case 'predictiongroups':   
 				 		$active=4;		
 				break;
 				
@@ -579,6 +580,7 @@ class JoomleagueViewJoomleague extends JLGView
 				case 'predictiongames': 
 				case 'predictionmembers':
 				case 'predictiontemplates':
+                case 'predictiongroups': 
 				 		$active=3;		
 				break;
 
