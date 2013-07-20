@@ -123,9 +123,9 @@ foreach($form->getFieldset($fieldset->name) as $field)
 	self::installPlugins();
     self::createImagesFolder();
     self::migratePicturePath();
-    self::deleteInstallFolders();
+    //self::deleteInstallFolders();
     self::sendInfoMail();
-    $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
+    //$parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "update":
     self::installComponentLanguages();
@@ -134,9 +134,9 @@ foreach($form->getFieldset($fieldset->name) as $field)
     self::createImagesFolder();
     self::migratePicturePath();
     self::setParams($newparams);
-    self::deleteInstallFolders();
+    //self::deleteInstallFolders();
     self::sendInfoMail();
-    $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
+    //$parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "discover_install":
     break;

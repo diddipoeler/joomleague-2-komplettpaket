@@ -66,8 +66,7 @@
 			<file driver="mysql" charset="utf8">sql/prediction_db.sql</file>
 			<!-- Install association -->
 			<file driver="mysql" charset="utf8">sql/association_db.sql</file>
-			<!-- Insert countries -->
-			<file driver="mysql" charset="utf8">sql/countries.sql</file>
+			
 			
 		</sql>
 	</install>
