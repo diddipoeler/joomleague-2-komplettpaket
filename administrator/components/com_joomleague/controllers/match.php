@@ -556,13 +556,14 @@ class JoomleagueControllerMatch extends JoomleagueController
 
 	function remove()
 	{
-		$cid=JRequest::getVar('cid',array(),'post','array');
+		//$cid=JRequest::getVar('cid',array(),'post','array');
+        $ids = JRequest::getVar('cid', array(), 'post', 'array');
 		JArrayHelper::toInteger($cid);
 		if (count($cid) < 1){
 			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		$model=$this->getModel('match');
-		if (!$model->delete($cid)){
+		if (!$model->delete($ids)){
 			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
 		}
 		$this->setRedirect('index.php?option=com_joomleague&task=match.display&view=matches');
