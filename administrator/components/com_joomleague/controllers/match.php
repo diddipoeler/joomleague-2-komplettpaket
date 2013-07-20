@@ -559,7 +559,7 @@ class JoomleagueControllerMatch extends JoomleagueController
 		//$cid=JRequest::getVar('cid',array(),'post','array');
         $ids = JRequest::getVar('cid', array(), 'post', 'array');
 		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){
+		if (count($ids) < 1){
 			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_DELETE'));
 		}
 		$model=$this->getModel('match');
