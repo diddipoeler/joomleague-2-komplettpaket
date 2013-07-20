@@ -213,41 +213,65 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 * @return	boolean	True on success
 	 * @since	0.1
 	 */
-	function delete($cid=array())
+	function delete($pk=array())
 	{
+	   $mainframe =& JFactory::getApplication();
+       //$mainframe->enqueueMessage(JText::_('delete pk<br><pre>'.print_r($pk,true).'</pre>'   ),'');
 		$result=false;
-		if (count($cid))
+		if (count($pk))
 		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
-			$query="DELETE FROM #__joomleague_match_statistic WHERE match_id IN ($cids)";
+			//JArrayHelper::toInteger($cid);
+			$cids=implode(',',$pk);
+            //$mainframe->enqueueMessage(JText::_('delete cids<br><pre>'.print_r($cids,true).'</pre>'   ),'');
+			
+            $query="DELETE FROM #__joomleague_match_statistic WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
 			{
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-			$query="DELETE FROM #__joomleague_match_staff_statistic WHERE match_id IN ($cids)";
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_statistic_CTRL_DELETED'),'');
+            }
+			
+            $query="DELETE FROM #__joomleague_match_staff_statistic WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
 			{
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-			$query="DELETE FROM #__joomleague_match_staff WHERE match_id IN ($cids)";
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_staff_statistic_CTRL_DELETED'),'');
+            }
+			
+            $query="DELETE FROM #__joomleague_match_staff WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
 			{
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-			$query="DELETE FROM #__joomleague_match_event WHERE match_id IN ($cids)";
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_staff_CTRL_DELETED'),'');
+            }
+			
+            $query="DELETE FROM #__joomleague_match_event WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
 			{
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_event_CTRL_DELETED'),'');
+            }
+            
 			$query="DELETE FROM #__joomleague_match_referee WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
@@ -255,6 +279,11 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_referee_CTRL_DELETED'),'');
+            }
+            
 			$query="DELETE FROM #__joomleague_match_player WHERE match_id IN ($cids)";
 			$this->_db->setQuery($query);
 			if (!$this->_db->query())
@@ -262,7 +291,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 				$this->setError($this->_db->getErrorMsg());
 				return false;
 			}
-			return parent::delete($cids);
+            else
+            {
+                $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_match_player_CTRL_DELETED'),'');
+            }
+            
+			return parent::delete($pk);
 		}
 		return true;
 	}

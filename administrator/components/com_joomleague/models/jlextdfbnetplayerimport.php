@@ -194,7 +194,7 @@ function property_value_in_array($array, $property, $value)
 
 function getUpdateData()
 	{
-  global $mainframe, $option;
+  //global $mainframe, $option;
   $mainframe =& JFactory::getApplication();
   $document	=& JFactory::getDocument();
 
