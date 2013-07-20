@@ -123,6 +123,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
 	self::installPlugins();
     self::createImagesFolder();
     self::migratePicturePath();
+    self::deleteInstallFolders();
     self::sendInfoMail();
     $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
@@ -133,6 +134,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     self::createImagesFolder();
     self::migratePicturePath();
     self::setParams($newparams);
+    self::deleteInstallFolders();
     self::sendInfoMail();
     $parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
@@ -143,6 +145,45 @@ foreach($form->getFieldset($fieldset->name) as $field)
     
         
 	}
+    
+    public function deleteInstallFolders()
+	{
+	$mainframe =& JFactory::getApplication();
+    // ueberfluessige module admin
+    $src = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'modules';
+    if( JFolder::delete($src) )
+    {
+    $mainframe->enqueueMessage(JText::_('Admin Installationsverzeichnis: Module gelöscht'),'');
+    }
+    // ueberfluessige sprachdateien admin
+	$src = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'language';
+    if( JFolder::delete($src) )
+    {
+    $mainframe->enqueueMessage(JText::_('Admin Installationsverzeichnis: Sprachen gelöscht'),'');
+    }	
+    
+    // ueberfluessige module side
+    $src = JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'modules';
+    if( JFolder::delete($src) )
+    {
+    $mainframe->enqueueMessage(JText::_('Side Installationsverzeichnis: Module gelöscht'),'');
+    }
+    // ueberfluessige sprachdateien side
+	$src = JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'language';
+    if( JFolder::delete($src) )
+    {
+    $mainframe->enqueueMessage(JText::_('Side Installationsverzeichnis: Sprachen gelöscht'),'');
+    }
+    // ueberfluessige plugins side
+	$src = JPATH_SITE.DS.'components'.DS.'com_joomleague'.DS.'plugins';
+    if( JFolder::delete($src) )
+    {
+    $mainframe->enqueueMessage(JText::_('Side Installationsverzeichnis: Plugins gelöscht'),'');
+    }
+    
+    
+    
+    }
     
     public function sendInfoMail()
 	{
