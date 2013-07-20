@@ -136,7 +136,7 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 						WHERE tp.projectteam_id='.$this->_db->Quote($projectteam->id).'
 						AND pr.published = 1
 						AND tp.published = 1
-						ORDER BY pos.ordering, ppos.position_id, tp.jerseynumber, pr.lastname, pr.firstname';
+						ORDER BY pos.ordering, ppos.position_id, tp.ordering, tp.jerseynumber, pr.lastname, pr.firstname';
 			$this->_db->setQuery($query);
 			$this->_players=$this->_db->loadObjectList();
 		}
@@ -186,7 +186,7 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 					WHERE ts.projectteam_id='.$this->_db->Quote($projectteam->id).'
 					  AND pr.published = 1
 					  AND ts.published = 1
-					ORDER BY pos.parent_id, pos.ordering';
+					ORDER BY pos.parent_id, pos.ordering, ts.ordering';
 		$this->_db->setQuery($query);
 		$stafflist=$this->_db->loadObjectList();
 		return $stafflist;
