@@ -502,104 +502,11 @@ $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
     
 if ( $whichfile == 'playerfile' )
 {
-
-/*
-* ##### structure of playerfile #####
-* Passnr.;
-* Name;
-* Vorname;
-* Altersklasse;
-* Geburtsdatum;
-* Spielrecht Pflicht / Verband;
-* Spielrecht Freundschaft / Privat;
-* Abmeldung;
-* Spielerstatus;
-* Gast/Zweitspielrecht;
-* Spielzeit;
-* Spielart;
-* Passdruck;
-* Einsetzbar;
-* Stammverein
-*/
 $startline = 9 ;
-
 }
 elseif ( $whichfile == 'matchfile' )
 {
-
-/*
-* ##### structure of matchfile #####
-* Datum;0
-* Zeit;1
-* Saison;2
-* Verband;3
-* Mannschaftsart_Key;4
-* Mannschaftsart;5
-* Spielklasse_Key;6
-* Spielklasse;7
-* Spielgebiet_Key;8
-* Spielgebiet;9
-* Rahmenspielplan;10
-* Staffel_Nr;11
-* Staffel;12
-* Staffelkennung;13
-* Staffelleiter;14
-* Spieldatum;15
-* Anstoss;16
-* Wochentag;17
-* Spieltag;18
-* Schluesseltag;19
-* Spielkennung;20
-* Heim Mannschaft;21
-* Gast Mannschaft;22
-* freigegeben;23
-* Spielstaette;24
-* Spielleitung;25
-* 1. Assistent;26
-* 2. Assistent;27
-* Verlegt_Wochentag;28
-* Verlegt_Datum;29
-* Verlegt_Uhrzeit;30
-
-neu ab 2012/13
-Datum
-Uhrzeit
-Saison
-Verband
-MannschaftsartID
-Mannschaftsart
-SpielklasseID
-Spielklasse
-SpielgebietID
-Spielgebiet
-Rahmenspielplan
-Staffelnummer
-Staffel
-Staffelkennung
-Staffelleiter
-Spieldatum
-Uhrzeit
-Wochentag
-Spieltag
-Schlüsseltag
-Heimmannschaft
-Gastmannschaft
-freigegeben
-Spielstätte
-Spielleitung
-Assistent 1
-Assistent 2
-verlegtWochentag
-verlegtSpieldatum
-verlegtUhrzeit
-
-
-
-
-
-*/
 $startline = 1 ;
-
 }
 elseif ( $whichfile == 'icsfile' )
 {
@@ -1064,48 +971,6 @@ if( $this->lines )
 {
 $row = 0;
 
-/*
-foreach($this->lines as $line )
-{
-
-if ( $startline <= $row && $row <= count($this->lines)  )
-{
-// spielerliste
-if ( $whichfile == 'playerfile' )
-{
-$fields = array();
-$fields = explode($delimiter, $line);
-                    
-$temp = new stdClass();
-$temp->id = 0;
-$temp->knvbnr = $fields[0];
-$temp->lastname = $fields[1];
-$temp->firstname = $fields[2];
-$temp->country = $country;
-$temp->nickname = '';
-$temp->position_id = '';
-$temp->lastname = utf8_encode ($temp->lastname);
-$temp->firstname = utf8_encode ($temp->firstname);
-
-$temp->info = $fields[3];
-$datetime = strtotime($fields[4]);
-$temp->birthday = date('Y-m-d', $datetime);
-$exportplayer[] = $temp;
-
-$fields = "";
-}
-elseif ( $whichfile == 'matchfile' )
-{
-// spielplan anfang
-
-// spielplan ende
-}
-
-}
-$row++;
-}
-*/
-
 if ( $whichfile == 'playerfile' )
 {
 // test
@@ -1139,16 +1004,17 @@ $temp->id = 0;
 $temp->knvbnr = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_passnummer')];
 $temp->lastname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_firstname')];
 $temp->firstname = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_lastname')];
-
 $temp->info = $csv->data[$a][$jRegistry->get('cfg_dfbnet_player_info')];
 $datetime = strtotime($csv->data[$a][$jRegistry->get('cfg_dfbnet_player_birthday')]);
 $temp->birthday = date('Y-m-d', $datetime);
-
 $temp->country = $country;
 $temp->nickname = '';
 $temp->position_id = '';
-$temp->lastname = utf8_encode ($temp->lastname);
-$temp->firstname = utf8_encode ($temp->firstname);
+
+//$temp->lastname = utf8_encode ($temp->lastname);
+//$temp->firstname = utf8_encode ($temp->firstname);
+
+
 $exportplayer[] = $temp;  
   }  
   
