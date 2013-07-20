@@ -51,7 +51,8 @@ class JoomleagueViewteamPlayers extends JLGView
 		$uri		= JFactory::getURI();
 
 		$filter_state		= $mainframe->getUserStateFromRequest( $option . 'tp_filter_state',		'filter_state',		'',				'word' );
-		$filter_order		= $mainframe->getUserStateFromRequest( $option . 'tp_filter_order',		'filter_order',		'ppl.ordering',	'cmd' );
+		//$filter_order		= $mainframe->getUserStateFromRequest( $option . 'tp_filter_order',		'filter_order',		'ppl.ordering',	'cmd' );
+        $filter_order		= $mainframe->getUserStateFromRequest( $option . 'tp_filter_order',		'filter_order',		'tp.ordering',	'cmd' );
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest( $option . 'tp_filter_order_Dir',	'filter_order_Dir',	'',				'word' );
 		$search			= $mainframe->getUserStateFromRequest( $option . 'tp_search',			'search',			'',				'string' );
 		$search_mode		= $mainframe->getUserStateFromRequest( $option . 'tp_search_mode',		'search_mode',		'',				'string' );

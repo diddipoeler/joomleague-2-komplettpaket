@@ -28,9 +28,14 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 
 	function _buildQuery()
 	{
-		// Get the WHERE and ORDER BY clauses for the query
+		$option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+        // Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
+        
+        //$mainframe->enqueueMessage(JText::_('JoomleagueModelTeamStaffs orderby<br><pre>'.print_r($orderby,true).'</pre>'),'');
+
 		$query='	SELECT	ppl.firstname,
 							ppl.lastname,
 							ppl.nickname,
@@ -49,7 +54,8 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
-		$filter_order		= $mainframe->getUserStateFromRequest($option.'ts_filter_order',		'filter_order',		'ppl.ordering',	'cmd');
+		//$filter_order		= $mainframe->getUserStateFromRequest($option.'ts_filter_order',		'filter_order',		'ppl.ordering',	'cmd');
+        $filter_order		= $mainframe->getUserStateFromRequest($option.'ts_filter_order',		'filter_order',		'ts.ordering',	'cmd');
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'ts_filter_order_Dir',	'filter_order_Dir',	'',				'word');
 		if ($filter_order=='ppl.lastname')
 		{
@@ -117,6 +123,7 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 		{
 			$query="	UPDATE #__joomleague_team_staff
 						SET project_position_id='".$data['project_position_id'.$cid[$x]]."',
+                        
 							checked_out=0,
 							checked_out_time=0
 							WHERE id=".$cid[$x];

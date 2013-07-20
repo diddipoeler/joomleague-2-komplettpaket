@@ -1,13 +1,14 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 //Ordering allowed ?
-$ordering = ( $this->lists['order'] == 'ppl.ordering' );
+//$ordering = ( $this->lists['order'] == 'ppl.ordering' );
+$ordering = ( $this->lists['order'] == 'ts.ordering' );
 
 $this->addTemplatePath( JPATH_COMPONENT . DS . 'views' . DS . 'joomleague' );
 ?>
 <script>
 
-	var quickaddsearchurl = '<?php echo JURI::root();?>administrator/index.php?option=com_joomleague&task=quickadd.searchstaff&projectteam_id=<?php echo $this->teamws->id; ?>';
+	var quickaddsearchurl = '<?php echo JUri::root();?>administrator/index.php?option=com_joomleague&task=quickadd.searchstaff&projectteam_id=<?php echo $this->teamws->id; ?>';
 
 	function searchTeamStaff(val)
 	{
@@ -21,7 +22,7 @@ $this->addTemplatePath( JPATH_COMPONENT . DS . 'views' . DS . 'joomleague' );
 	}
 </script>
 <?php
-$uri = JURI::root();
+$uri = JUri::root();
 ?>
 <fieldset class="adminform">
 	<legend>
@@ -29,7 +30,7 @@ $uri = JURI::root();
 	echo JText::_("COM_JOOMLEAGUE_ADMIN_TEAMSTAFFS_QUICKADD_STAFF");
 	?>
 	</legend>
-	<form id="quickaddForm" action="<?php echo JURI::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addstaff" method="post">
+	<form id="quickaddForm" action="<?php echo JUri::root(); ?>administrator/index.php?option=com_joomleague&task=quickadd.addstaff" method="post">
 	<input type="hidden" name="projectteam_id" id="projectteam_id" value="<?php echo $this->teamws->id; ?>" />
 	<input type="hidden" id="cpersonid" name="cpersonid" value="">
 	<table>
@@ -39,7 +40,7 @@ $uri = JURI::root();
 			<td><input type="submit" name="submit" id="submit" value="<?php echo JText::_('Add');?>" /></td>
 		</tr>
 	</table>
-	<?php echo JHTML::_( 'form.token' ); ?>
+	<?php echo JHtml::_( 'form.token' ); ?>
 	</form>
 </fieldset>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
@@ -97,7 +98,7 @@ $uri = JURI::root();
 						</th>
 						<th class="title" class="nowrap" >
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_NAME', 'ppl.lastname', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_NAME', 'ppl.lastname', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 						<th width="20" >
@@ -112,7 +113,7 @@ $uri = JURI::root();
 						</th>
 						<th class="title" class="nowrap" >
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_POS', 'ppl.project_position_id', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_POS', 'ppl.project_position_id', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 						<th class="title" class="nowrap" >
@@ -122,18 +123,19 @@ $uri = JURI::root();
 						</th>
 						<th class="title" class="nowrap">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','ts.published',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','ts.published',$this->lists['order_Dir'],$this->lists['order']);
 						?></th>
 						<th width="10%" >
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ppl.ordering', $this->lists['order_Dir'], $this->lists['order'] );
+							//echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ppl.ordering', $this->lists['order_Dir'], $this->lists['order'] );
+                            echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ts.ordering', $this->lists['order_Dir'], $this->lists['order'] );
 							echo '<br />';
 							echo JHtml::_('grid.order',$this->items, 'filesave.png', 'teamstaff.saveorder');
 							?>
 						</th>
 						<th width="5%" >
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'ppl.id', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'ppl.id', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 					</tr>
@@ -156,7 +158,7 @@ $uri = JURI::root();
 #echo '<pre>'; print_r($row); echo '</pre>';
 						$link = JRoute::_(	'index.php?option=com_joomleague&task=teamstaff.edit&team=' .
 											$this->teamws->id . '&cid[]=' . $row->id );
-						$checked = JHTML::_( 'grid.checkedout', $row, $i );
+						$checked = JHtml::_( 'grid.checkedout', $row, $i );
 						$inputappend = '';
 
 						?>
@@ -172,7 +174,7 @@ $uri = JURI::root();
 								?>
 							</td>
 							<?php
-							if ( JTable::isCheckedOut( $this->user->get ('id'), $row->checked_out ) )
+							if ( JLTable::_isCheckedOut( $this->user->get ('id'), $row->checked_out ) )
 							{
 								$inputappend = ' disabled="disabled"';
 								?>
@@ -188,7 +190,7 @@ $uri = JURI::root();
 									<a href="<?php echo $link; ?>">
 										<?php
 										$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_EDIT_DETAILS' );
-										echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/edit.png',
+										echo JHtml::_(	'image', 'administrator/components/com_joomleague/assets/images/edit.png',
 														$imageTitle,
 														'title= "' . $imageTitle . '"' );
 										?>
@@ -210,7 +212,7 @@ $uri = JURI::root();
 								if ( $row->picture == '' )
 								{
 									$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_NO_IMAGE' );
-									echo JHTML::_(	'image',
+									echo JHtml::_(	'image',
 													'administrator/components/com_joomleague/assets/images/delete.png',
 													$imageTitle,
 													'title= "' . $imageTitle . '"' );
@@ -219,7 +221,7 @@ $uri = JURI::root();
 								elseif ( $row->picture == JoomleagueHelper::getDefaultPlaceholder("player"))
 								{
 										$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_DEFAULT_IMAGE' );
-										echo JHTML::_(	'image',
+										echo JHtml::_(	'image',
 														'administrator/components/com_joomleague/assets/images/information.png',
 														$imageTitle,
 														'title= "' . $imageTitle . '"' );
@@ -256,7 +258,7 @@ $uri = JURI::root();
 									$append=' style="background-color:#FFCCCC"';
 								}
 
-								echo JHTML::_( 'select.genericlist', $this->lists['project_position_id'], 'project_position_id' . $row->id, $inputappend . 'class="inputbox" size="1" onchange="document.getElementById(\'cb' . $i . '\').checked=true"' . $append, 'value', 'text', $selectedvalue );
+								echo JHtml::_( 'select.genericlist', $this->lists['project_position_id'], 'project_position_id' . $row->id, $inputappend . 'class="inputbox" size="1" onchange="document.getElementById(\'cb' . $i . '\').checked=true"' . $append, 'value', 'text', $selectedvalue );
 								?>
 							</td>
 
@@ -268,21 +270,21 @@ $uri = JURI::root();
 								if ( $row->injury > 0 )
 								{
 									$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_INJURED' );
-									echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/injured.gif',
+									echo JHtml::_(	'image', 'administrator/components/com_joomleague/assets/images/injured.gif',
 													$imageTitle,
 													'title= "' . $imageTitle . '"' );
 								}
 								if ( $row->suspension > 0 )
 								{
 									$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_SUSPENDED' );
-									echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/suspension.gif',
+									echo JHtml::_(	'image', 'administrator/components/com_joomleague/assets/images/suspension.gif',
 													$imageTitle,
 													'title= "' . $imageTitle . '"' );
 								}
 								if ( $row->away > 0 )
 								{
 									$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_AWAY' );
-									echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/away.gif',
+									echo JHtml::_(	'image', 'administrator/components/com_joomleague/assets/images/away.gif',
 													$imageTitle,
 													'title= "' . $imageTitle . '"' );
 								}
@@ -291,7 +293,7 @@ $uri = JURI::root();
 							</td>
 							<td class="center">
 								<?php
-								echo JHTML::_('grid.published',$row,$i, 'tick.png','publish_x.png','teamstaff.');
+								echo JHtml::_('grid.published',$row,$i, 'tick.png','publish_x.png','teamstaff.');
 								?>
 							</td>
 							<td class="order">
@@ -309,7 +311,8 @@ $uri = JURI::root();
 								$disabled = true ?	'' : 'disabled="disabled"';
 								?>
 								<input	type="text" name="order[]" size="5" value="<?php echo $row->ordering; ?>" <?php echo $disabled; ?>
-										class="text_area" style="text-align: center; " />
+										onchange="document.getElementById('cb<?php echo $i; ?>').checked=true"
+                                        class="text_area" style="text-align: center; " />
 							</td>
 							<td class="center">
 								<?php
@@ -327,10 +330,9 @@ $uri = JURI::root();
 	</fieldset>
 	<input type="hidden" name="team" value="<?php echo $this->teamws->id; ?>" />
 	<input type="hidden" name="search_mode" value="<?php echo $this->lists['search_mode'];?>" id="search_mode" />
-	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="view"				value="" />
+	<input type="hidden" name="task" value="teamstaff.display" />
 	<input type="hidden" name="boxchecked" value="0" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />
-	<?php echo JHTML::_( 'form.token' ); ?>
+	<?php echo JHtml::_( 'form.token' ); ?>
 </form>

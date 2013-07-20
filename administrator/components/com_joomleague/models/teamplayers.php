@@ -27,9 +27,14 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 
 	function _buildQuery()
 	{
-		// Get the WHERE and ORDER BY clauses for the query
+		$option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+        // Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
+        
+        //$mainframe->enqueueMessage(JText::_('JoomleagueModelTeamPlayers orderby<br><pre>'.print_r($orderby,true).'</pre>'),'');
+        
 		$query='	SELECT	ppl.firstname,
 							ppl.lastname,
 							ppl.nickname,
@@ -40,7 +45,7 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 							tp.project_position_id,
 							u.name AS editor
 					FROM #__joomleague_person AS ppl
-					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id=ppl.id
+					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id = ppl.id
 					LEFT JOIN #__users AS u ON u.id=tp.checked_out '
 					. $where
 					. $orderby;
@@ -51,7 +56,8 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
-		$filter_order		= $mainframe->getUserStateFromRequest($option.'tp_filter_order',		'filter_order',		'ppl.ordering',	'cmd');
+		//$filter_order		= $mainframe->getUserStateFromRequest($option.'tp_filter_order',		'filter_order',		'ppl.ordering',	'cmd');
+        $filter_order		= $mainframe->getUserStateFromRequest($option.'tp_filter_order',		'filter_order',		'tp.ordering',	'cmd');
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'tp_filter_order_Dir',	'filter_order_Dir',	'',				'word');
 		if ($filter_order=='ppl.lastname')
 		{
@@ -125,6 +131,7 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 						SET project_position_id='" .		$data['project_position_id'.$cid[$x]] .	"',
 							jerseynumber='" .		$data['jerseynumber'.$cid[$x]] .	"',
               market_value='" .		$data['market_value'.$cid[$x]] .	"',
+              
 							checked_out=0,
 							checked_out_time=0
 							WHERE id=" .			$cid[$x];

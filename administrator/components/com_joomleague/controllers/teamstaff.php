@@ -1,6 +1,6 @@
-<?php defined('_JEXEC') or die('Restricted access'); // Check to ensure this file is included in Joomla!
+<?php
 /**
-* @copyright	Copyright (C) 2007 Joomteam.de. All rights reserved.
+* @copyright	Copyright (C) 2006-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL,see LICENSE.php
 * Joomla! is free software. This version may have been modified pursuant
 * to the GNU General Public License,and as distributed it includes or
@@ -8,6 +8,9 @@
 * other free or open source software licenses.
 * See COPYRIGHT.php for copyright notices and details.
 */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
 
@@ -20,6 +23,8 @@ jimport('joomla.application.component.controller');
 class JoomleagueControllerTeamSTaff extends JoomleagueController
 {
 
+protected $view_list = 'teamstaffs';
+
 	function __construct()
 	{
 		parent::__construct();
@@ -30,7 +35,7 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		$this->registerTask('apply','save');
 	}
 
-	function display()
+	public function display($cachable = false, $urlparams = false)
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
@@ -71,8 +76,6 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 					$view=$this->getView('teamstaff',$viewType);
 					$view->setModel($model,true);  // true is for the default model;
 
-					$projectws=$this->getModel('project');
-					$projectws->set('name','projectws');
 					$projectws->setId($mainframe->getUserState($option.'project',0));
 					$view->setModel($projectws);
 
@@ -207,7 +210,18 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		if(!$model->delete($cid)){echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";}
 		$this->setRedirect('index.php?option=com_joomleague&view=teams&task=teamstaff.display');
 	}
+    
+    public function publish() {
+		$this->view_list = 'teamstaffs&task=teamstaff.display';
+		parent::publish();
+	}
+	
+	public function unpublish() {
+		$this->view_list = 'teamstaffs&task=teamstaff.display';
+		parent::unpublish();
+	}
 
+/*
 	function publish()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');
@@ -220,7 +234,9 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
+*/
 
+/*
 	function unpublish()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');
@@ -233,6 +249,7 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
+*/
 
 	function cancel()
 	{
@@ -242,26 +259,26 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
 
-  /*
-  // diddipoeler
+/*
+// diddipoeler
 	function orderup()
 	{
 		$model=$this->getModel('teamstaff');
 		$model->move(-1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
-  */
-  
-  /*
-  // diddipoeler
+*/
+
+/*
+// diddipoeler
 	function orderdown()
 	{
 		$model=$this->getModel('teamstaff');
 		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamstaffs&task=teamstaff.display');
 	}
-  */
-  
+*/
+
 	function saveorder()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');
@@ -319,11 +336,12 @@ class JoomleagueControllerTeamSTaff extends JoomleagueController
 	 * @return	object	The model.
 	 * @since	1.6
 	 */
-	function getModel($name = 'Teamstaff', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	function getModel($name = 'TeamStaff', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 		return $model;
 	}
+    
 
 }
 ?>

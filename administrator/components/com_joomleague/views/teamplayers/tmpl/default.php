@@ -1,7 +1,8 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 //Ordering allowed ?
-$ordering = ( $this->lists['order'] == 'ppl.ordering' );
+//$ordering = ( $this->lists['order'] == 'ppl.ordering' );
+$ordering = ( $this->lists['order'] == 'tp.ordering' );
 
 $this->addTemplatePath( JPATH_COMPONENT . DS . 'views' . DS . 'adminmenu' );
 
@@ -160,7 +161,8 @@ JHTML::_('behavior.mootools');
 						?></th>
 						<th width="10%">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ppl.ordering', $this->lists['order_Dir'], $this->lists['order'] );
+							//echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'ppl.ordering', $this->lists['order_Dir'], $this->lists['order'] );
+                            echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'tp.ordering', $this->lists['order_Dir'], $this->lists['order'] );
 							echo JHTML::_( 'grid.order', $this->items, 'filesave.png', 'teamplayer.saveorder' );
 							?>
 						</th>
@@ -349,7 +351,8 @@ JHTML::_('behavior.mootools');
 								$disabled = true ?	'' : 'disabled="disabled"';
 								?>
 								<input	type="text" name="order[]" size="5" value="<?php echo $row->ordering; ?>" <?php echo $disabled; ?>
-										class="text_area" style="text-align: center; " />
+										onchange="document.getElementById('cb<?php echo $i; ?>').checked=true"
+                                        class="text_area" style="text-align: center; " />
 							</td>
 							<td class="center">
 								<?php
@@ -367,8 +370,8 @@ JHTML::_('behavior.mootools');
 	</fieldset>
 	<input type="hidden" name="project_team_id"		value="<?php echo $this->teamws->id; ?>" />
 	<input type="hidden" name="search_mode"			value="<?php echo $this->lists['search_mode'];?>" id="search_mode" />
-	<input type="hidden" name="task"				value="" />
-	<input type="hidden" name="view"				value="" />
+	<input type="hidden" name="task"				value="teamplayer.display" />
+	
 	<input type="hidden" name="boxchecked"			value="0" />
 	<input type="hidden" name="filter_order"		value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir"	value="" />

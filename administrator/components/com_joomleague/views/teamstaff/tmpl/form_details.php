@@ -32,9 +32,11 @@
 						?>
 					</td>
 					<td class="nowrap">
-						<?php
-						echo $this->lists['injury'];
-						?>
+						<fieldset class="radio">
+							<?php
+							echo $this->lists['injury'];
+							?>
+						</fieldset>
 					</td>
 					<td valign="top" align="right" class="key">
 						<?php
@@ -74,9 +76,11 @@
 						?>
 					</td>
 					<td class="nowrap">
-						<?php
-						echo $this->lists['suspension'];
-						?>
+						<fieldset class="radio">
+							<?php
+							echo $this->lists['suspension'];
+							?>
+						</fieldset>
 					</td>
 					<td valign="top" align="right" class="key">
 						<?php
@@ -116,9 +120,11 @@
 						?>
 					</td>
 					<td class="nowrap">
-						<?php
-						echo $this->lists['away'];
-						?>
+						<fieldset class="radio">
+							<?php
+							echo $this->lists['away'];
+							?>
+						</fieldset>
 					</td>
 					<td valign="top" align="right" class="key">
 						<?php

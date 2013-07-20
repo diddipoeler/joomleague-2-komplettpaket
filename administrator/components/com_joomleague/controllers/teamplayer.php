@@ -20,6 +20,8 @@ jimport('joomla.application.component.controller');
 class JoomleagueControllerTeamPlayer extends JoomleagueController
 {
 
+protected $view_list = 'teamplayers';
+
 	function __construct()
 	{
 		parent::__construct();
@@ -232,7 +234,7 @@ class JoomleagueControllerTeamPlayer extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
 
-	/*
+/*	
 	// diddipoeler
   function orderup()
 	{
@@ -240,9 +242,9 @@ class JoomleagueControllerTeamPlayer extends JoomleagueController
 		$model->move(-1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
-  */
+*/  
   
-  /*
+/*  
   // diddipoeler
 	function orderdown()
 	{
@@ -250,7 +252,7 @@ class JoomleagueControllerTeamPlayer extends JoomleagueController
 		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display');
 	}
-  */
+*/  
   
 	function saveorder()
 	{
