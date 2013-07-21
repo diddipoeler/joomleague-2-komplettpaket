@@ -24,6 +24,8 @@ class plgSystemJqueryeasy extends JPlugin {
 		$this->_jquicsspath = '';		
 		$this->_jqnoconflictpath = '';
 		
+		$this->_jqmigratepath = '';
+		
 		$this->_supplement_scripts = array();
 		$this->_supplement_stylesheets = array();
 		
@@ -38,7 +40,9 @@ class plgSystemJqueryeasy extends JPlugin {
 		$this->_timeafterroute = 0;
 		$this->_timebeforerender = 0;
 		$this->_timeafterrender = 0;
-	} 
+		
+		$this->_back_compat_path = true;
+	}
 	
 	function onAfterRoute() {
 		
@@ -53,10 +57,36 @@ class plgSystemJqueryeasy extends JPlugin {
 		$doc = JFactory::getDocument();
 		
 		$this->_showreport = $this->params->get('showreport', false);
+		$this->_back_compat_path = $this->params->get('back_compat_paths', true);
 		
 		$time_start = microtime(true);
 				
 		$suffix = $app->isAdmin() ? 'backend' : 'frontend';
+		
+		// disable plugin in selected templates
+		if ($app->isSite()) {
+			
+			$templates_array = $this->params->get('templateid', array('none'));
+			
+			if (!is_array($templates_array)) { // before the plugin is saved, the value is the string 'none'
+				$templates_array = explode(' ', $templates_array);
+			}
+			
+			$array_of_template_values = array_count_values($templates_array);
+			if (isset($array_of_template_values['none']) && $array_of_template_values['none'] > 0) { // 'none' was selected
+				// keep the plugin enabled
+			} else {		
+				if (!empty($app->getTemplate(true)->id)) {		
+					$current_template_id = $app->getTemplate(true)->id;				
+					foreach ($array_of_template_values as $key => $value) {
+						if ($current_template_id == $key) {
+							$this->_enabled = false;
+							return;
+						}
+					}	
+				}		
+			}		
+		}		
 		
 		// enable plugin only on the allowed pages
 		$includedPaths = trim( (string) $this->params->get('enableonlyin'.$suffix, ''));
@@ -70,24 +100,10 @@ class plgSystemJqueryeasy extends JPlugin {
 			//}			
 			
 			$found = false;
-			foreach ($paths as $path) {					
-				if (strpos($path, '*') === 0) {
-					$path = ltrim($path, '*');
-					if (stripos($current_uri_string, $path) !== false) { // any URL containing $path
-						$found = true;
-						
-						//if ($this->_showreport) {
-						//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', $path);
-						//}						
-					}
-				} else {
-					if (strcasecmp($current_uri_string, JURI::root().ltrim($path, '//')) == 0) { // case-insensitive string comparison
-						$found = true;
-						
-						//if ($this->_showreport) {
-						//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', JURI::root().ltrim($path, '//'));
-						//}
-					}
+			foreach ($paths as $path) {	
+				$paths_compare = self::path_compare($current_uri_string, $path, $this->_back_compat_path);
+				if ($paths_compare) {
+					$found = true;
 				}
 			}				
 			if (!$found) {
@@ -106,28 +122,11 @@ class plgSystemJqueryeasy extends JPlugin {
 				//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURI', $current_uri_string);
 				//}			
 			
-				foreach ($paths as $path) {
-					if (strpos($path, '*') === 0) {
-						$path = ltrim($path, '*');
-						if (stripos($current_uri_string, $path) !== false) { // any URL containing $path
-							$this->_enabled = false;
-							
-							//if ($this->_showreport) {
-							//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', $path);
-							//}
-							
-							return;
-						}
-					} else {
-						if (strcasecmp($current_uri_string, JURI::root().ltrim($path, '//')) == 0) { // case-insensitive string comparison
-							$this->_enabled = false;
-							
-							//if ($this->_showreport) {
-							//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', JURI::root().ltrim($path, '//'));
-							//}
-							
-							return;
-						}
+				foreach ($paths as $path) {					
+					$paths_compare = self::path_compare($current_uri_string, $path, $this->_back_compat_path);
+					if ($paths_compare) {
+						$this->_enabled = false;
+						return;
 					}
 				}
 			}
@@ -186,6 +185,7 @@ class plgSystemJqueryeasy extends JPlugin {
 		}
         		
 		$jQueryHTTP = $this->params->get('whichhttp'.$suffix,'https');
+		$jQueryHTTP = ($jQueryHTTP == 'none') ? '' : $jQueryHTTP.':';
 		
 		$jQueryCompressed = '';
 		if ($this->params->get('compression'.$suffix,'compressed') == 'compressed') {
@@ -211,12 +211,29 @@ class plgSystemJqueryeasy extends JPlugin {
         		}
         	}
         } else {
-        	$this->_jqpath = $jQueryHTTP."://ajax.googleapis.com/ajax/libs/jquery/".$jQueryVersion.$jQuerySubversion."/jquery".$jQueryCompressed.".js";
+        	$this->_jqpath = $jQueryHTTP."//ajax.googleapis.com/ajax/libs/jquery/".$jQueryVersion.$jQuerySubversion."/jquery".$jQueryCompressed.".js";
         }
 		
         if (!empty($this->_jqpath)) {
         	$doc->addScript("JQEASY_JQLIB");	
-        }
+        }	
+		
+		// jQuery Migrate
+		
+		$localPathMigrate = trim($this->params->get('localpathmigrate'.$suffix, ''));		
+		if ($localPathMigrate) {
+			if (JFile::exists(JPATH_ROOT.$localPathMigrate)) {
+				$this->_jqmigratepath = JURI::root(true).$localPathMigrate;
+			} else {
+				if ($this->_showreport) {
+					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_COULDNOTFINDFILE', JPATH_ROOT.$localPathMigrate);
+				}
+			}
+		}		
+		
+        if (!empty($this->_jqmigratepath)) {
+        	$doc->addScript("JQEASY_JQMIGRATELIB");	
+        }	
 		
         // no conflict path
         
@@ -262,7 +279,7 @@ class plgSystemJqueryeasy extends JPlugin {
 				}
 			}
 		} else {
-			$this->_jquipath = $jQueryHTTP."://ajax.googleapis.com/ajax/libs/jqueryui/".$jQueryUIVersion.$jQueryUISubversion."/jquery-ui".$jQueryCompressed.".js";
+			$this->_jquipath = $jQueryHTTP."//ajax.googleapis.com/ajax/libs/jqueryui/".$jQueryUIVersion.$jQueryUISubversion."/jquery-ui".$jQueryCompressed.".js";
 		}
 		
 		if (!empty($this->_jquipath)) {
@@ -288,7 +305,7 @@ class plgSystemJqueryeasy extends JPlugin {
 					}
 				}
 			} else {
-				$this->_jquicsspath = $jQueryHTTP."://ajax.googleapis.com/ajax/libs/jqueryui/".$jQueryUIVersion.$jQueryUISubversion."/themes/".$jQueryUITheme."/jquery-ui.css";
+				$this->_jquicsspath = $jQueryHTTP."//ajax.googleapis.com/ajax/libs/jqueryui/".$jQueryUIVersion.$jQueryUISubversion."/themes/".$jQueryUITheme."/jquery-ui.css";
 			}
 			
 			if (!empty($this->_jquicsspath)) {
@@ -329,7 +346,7 @@ class plgSystemJqueryeasy extends JPlugin {
 		$js_needing_mootools = array("mooRainbow.js", "mootree.js");
 		$js_to_ignore = array("mootools-core.js", "mootools-more.js"); // uncompressed versions are not taken into account because used for debug
 			
-		$quoted_path = preg_quote('media/system/js/');		
+		$quoted_path = preg_quote('media/system/js/', '/');		
 		
 		// put MooTools in front
 		foreach ($scripts as $url => $type) {
@@ -404,24 +421,10 @@ class plgSystemJqueryeasy extends JPlugin {
 						//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURI', $current_uri_string);
 						//}			
 				
-						foreach ($this->_exceptpaths as $path) {
-							if (strpos($path, '*') === 0) {
-								$path = ltrim($path, '*');
-								if (stripos($current_uri_string, $path) !== false) { // any URL containing $path
-									$ignore = false;
-							
-									//if ($this->_showreport) {
-									//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', $path);
-									//}									
-								}
-							} else {
-								if (strcasecmp($current_uri_string, JURI::root().ltrim($path, '//')) == 0) { // case-insensitive string comparison
-									$ignore = false;
-									
-									//if ($this->_showreport) {
-									//	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_CURRENTURIMATCH', JURI::root().ltrim($path, '//'));
-									//}
-								}
+						foreach ($this->_exceptpaths as $path) {							
+							$paths_compare = self::path_compare($current_uri_string, $path, $this->_back_compat_path);
+							if ($paths_compare) {
+								$ignore = false;
 							}
 						}
 					}
@@ -496,14 +499,15 @@ class plgSystemJqueryeasy extends JPlugin {
 			// remove all '...jQuery.noConflict(...);' or '... $.noConflict(...);'
 			$removejQueryNoConflict = $this->params->get('removenoconflict'.$suffix, 1);
 			if ($removejQueryNoConflict) {
-				
-				if (preg_match_all('#[^\n^>]*(jQuery|\$)\.noConflict\((true|false|)\);#', $body, $matches, PREG_SET_ORDER) > 0) {	
+				$matches = array();
+				if (preg_match_all('#[^}^;^\n^>]*(jQuery|\$)\.noConflict\((true|false|)\);#', $body, $matches, PREG_SET_ORDER) > 0) {	
 
-					$quoted_javascript = preg_quote('<script type="text/javascript">');
+					$quoted_javascript = preg_quote('<script type="text/javascript">', '/');
 					
 					foreach ($matches as $match) {						
-						$quoted_match = preg_quote($match[0]); // prepares for regexp						
-						if (preg_match('#'.$quoted_javascript.'([^>]*)'.$quoted_match.'#', $body)) { // makes sure we are in a script tag														
+						$quoted_match = preg_quote($match[0], '#'); // prepares for regexp
+						
+						if (preg_match('#('.$quoted_javascript.'[\S\s]*?'.$quoted_match.')#', $body)) { // makes sure we are in a javascript tag with anything in between the script tag and the noConflict code
 							$body = preg_replace('#'.$quoted_match.'#', '', $body, 1);
 							if ($this->_showreport) {
 								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDNOCONFLICTSCRIPTDECLARATIONS', $match[0]);
@@ -512,51 +516,134 @@ class plgSystemJqueryeasy extends JPlugin {
 					}
 			
 					$count = 0;
-					$body = preg_replace('#<script type="text/javascript">\s*</script>#', '', $body, -1, $count); // remove newly empty scripts, if any
+					$body = preg_replace('#<script type="text/javascript">[\s]*?</script>#', '', $body, -1, $count); // remove newly empty scripts, if any
 					if ($count > 0 && $this->_showreport) {
 						$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDEMPTYSCRIPTTAGS', $count);
 					}
 				}
 				
-				/*
+				// remove potential jquery-noconflict.js (different combinations)
 				$count = 0;
-				$body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]noconflict\.js"#', 'GARBAGE', $body, -1, $count); // find potential jquery-noconflict.js
+				$body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]no[.-]*[cC]onflict\.js"#', 'GARBAGE', $body, -1, $count);
 				if ($count > 0 && $this->_showreport) {
 					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDNOCONFLICTSCRIPTS', $count);
-				}
-				*/
+				}				
+			}			
+			
+			$do_not_add_libraries = false;
+			$move_unique_library = false;
+			$move_unique_libraryui = false;
+			$move_unique_cssui = false;			
+			
+			$replace_when_unique = $this->params->get('replacewhenunique'.$suffix, 1);
+			$add_when_missing = $this->params->get('addwhenmissing'.$suffix, 1);			
+			
+			// remove all other references to jQuery library except some
+			$ignoreScripts = trim( (string) $this->params->get('ignorescripts'.$suffix, ''));
+			if ($ignoreScripts) {
+				$ignoreScripts = array_map('trim', (array) explode("\n", $ignoreScripts));
 			}
-				
-			// remove all other references to jQuery library
-			$count = 0;
-	        $body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery([0-9\.-]|min|pack)*?.js"#', 'GARBAGE', $body, -1, $count); // find jQuery versions
-	        if ($count > 0 && $this->_showreport) {
-	        	$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERY', $count);
-	        }
+			
+			if (empty($ignoreScripts) && $add_when_missing && $replace_when_unique) { // faster this way
+				$count = 0;
+				$body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery([0-9\.-]|core|min|pack)*?.js"#', 'GARBAGE', $body, -1, $count); // find jQuery versions
+				if ($count > 0 && $this->_showreport) {
+					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERY', $count);
+				}
+			} else {			
+				$matches = array();
+				if (preg_match_all('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery([0-9\.-]|core|min|pack)*?.js"#', $body, $matches, PREG_SET_ORDER) >= 0) {
+										
+					$nbr_of_matches = sizeof($matches);
+					if ($nbr_of_matches == 0 && !$add_when_missing) {
+						$do_not_add_libraries = true;
+						if ($this->_showreport) {
+							$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_NOJQUERYLIBRARIESADDED');
+						}
+					} elseif ($nbr_of_matches == 1 && !$replace_when_unique) {
+						foreach ($matches as $match) {
+							$this->_jqpath = rtrim(substr($match[0], 5), '"');
+							$move_unique_library = true;
+							if ($this->_showreport) {
+								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_KEEPINGUNIQUELIBRARY', $this->_jqpath);
+							}
+						}
+					}					
+					
+					foreach ($matches as $match) {
+						$quoted_match = preg_quote($match[0], '/'); // prepares for regexp
+						$ignore = false;
+						if ($ignoreScripts) {
+							foreach ($ignoreScripts as $script) {
+								if (stripos($match[0], $script) !== false) { // library needs to be ignored for removal
+									$ignore = true;
+									if ($this->_showreport) {
+										$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_IGNORESCRIPT', $script);
+									}
+								}
+							}
+						}
+						if (!$ignore) { // remove the library
+							$body = preg_replace('#'.$quoted_match.'#', 'GARBAGE', $body, 1);
+							if ($this->_showreport) {
+								if ($nbr_of_matches == 1 && !$replace_when_unique) {
+									// do not show any message
+								} else {
+									$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYLIBRARY', rtrim(substr($match[0], 5), '"'));
+								}
+							}
+						}
+					}
+				}
+			}
 	        
 			// use jQuery version set in the plugin			
 			if (!empty($this->_jqpath)) {
-				$body = preg_replace('#JQEASY_JQLIB#', $this->_jqpath, $body, 1);
-				if ($this->_showreport) {
-					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERY', $this->_jqpath);
+				if ($do_not_add_libraries) {
+					$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQLIB#', 'GARBAGE', $body, 1);
+				} else {
+					$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQLIB#', $this->_jqpath, $body, 1);
+					if ($this->_showreport) {
+						if ($move_unique_library) {
+							$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_MOVEDJQUERY', $this->_jqpath);
+						} else {
+							$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERY', $this->_jqpath);
+						}
+					}
 				}
 			} else {
 				if ($this->_showreport) {
 					$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_ERRORADDINGJQUERY');
 				}
 			}
+			
+			// use jQuery Migrate
+			if (!empty($this->_jqmigratepath)) {
+				$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQMIGRATELIB#', $this->_jqmigratepath, $body, 1);
+				if ($this->_showreport) {
+					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERYMIGRATE', $this->_jqmigratepath);
+				}
+			}
 					
-			// replace deleted occurences
-			$addjQueryNoConflict = $this->params->get('addnoconflict'.$suffix, 1);			
+			// replace deleted occurences	
+			$addjQueryNoConflict = $this->params->get('addnoconflict'.$suffix, 1);
 	        if ($addjQueryNoConflict == 1) {
-	        	$body = preg_replace('#JQEASY_JQNOCONFLICT#', 'jQuery.noConflict();', $body, 1); // add unique jQuery.noConflict();
-	        	if ($this->_showreport) {
-	        		$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDNOCONFLICTDECLARATION');
+	        	if ($do_not_add_libraries) {
+	        		$body = preg_replace('#JQEASY_JQNOCONFLICT#', '', $body, 1);
+	        	} else {
+		        	$body = preg_replace('#JQEASY_JQNOCONFLICT#', 'jQuery.noConflict();', $body, 1); // add unique jQuery.noConflict();
+		        	if ($this->_showreport) {
+		        		$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDNOCONFLICTDECLARATION');
+		        	}
 	        	}
 	        } elseif ($addjQueryNoConflict == 2) {
-	        	$body = preg_replace('#JQEASY_JQNOCONFLICT#', $this->_jqnoconflictpath, $body, 1); // add jquerynoconflict.js   
-	        	if ($this->_showreport) {
-	        		$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDNOCONFLICTSCRIPT', $this->_jqnoconflictpath);
+	        	if ($do_not_add_libraries) {
+	        		$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQNOCONFLICT#', 'GARBAGE', $body, 1);	        		
+	        	} else {
+		        	$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQNOCONFLICT#', $this->_jqnoconflictpath, $body, 1); // add jquerynoconflict.js   
+		        	if ($this->_showreport) {
+		        		$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDNOCONFLICTSCRIPT', $this->_jqnoconflictpath);
+		        	}
 	        	}
 	        }  
 	        
@@ -570,51 +657,122 @@ class plgSystemJqueryeasy extends JPlugin {
 	        }        
 			
 			if ($this->_usejQueryUI) {
+				
 				// remove all other references to jQuery UI library
-				$count = 0;
-				$body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|custom|min|pack)*?.js"#', 'GARBAGE', $body, -1, $count); // find jQuery UI versions		
-				if ($count > 0 && $this->_showreport) {
-					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUI', $count);
+				if (!$replace_when_unique) {
+					$matches = array();
+					if (preg_match_all('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|core|custom|min|pack)*?.js"#', $body, $matches, PREG_SET_ORDER) > 0) {
+							
+						$nbr_of_matches = sizeof($matches);
+						if ($nbr_of_matches == 1) {
+							foreach ($matches as $match) {
+								$this->_jquipath = rtrim(substr($match[0], 5), '"');
+								$quoted_match = preg_quote($match[0], '/'); // prepares for regexp
+								$body = preg_replace('#'.$quoted_match.'#', 'GARBAGE', $body, 1);
+								if ($this->_showreport) {
+									$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_KEEPINGUNIQUELIBRARYUI', $this->_jquipath);
+								}
+							}
+						} else {							
+							foreach ($matches as $match) {
+								$quoted_match = preg_quote($match[0], '/'); // prepares for regexp
+								$body = preg_replace('#'.$quoted_match.'#', 'GARBAGE', $body, 1);
+								if ($this->_showreport) {
+									$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUILIBRARY', rtrim(substr($match[0], 5), '"'));
+								}
+							}
+						}
+					}
+				} else { // faster this way
+					$count = 0;
+					$body = preg_replace('#src="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|core|custom|min|pack)*?.js"#', 'GARBAGE', $body, -1, $count); // find jQuery UI versions
+					if ($count > 0 && $this->_showreport) {
+						$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUI', $count);
+					}
 				}
 				
 				// use jQuery UI version set in the plugin
 				if (!empty($this->_jquipath)) {
-					$body = preg_replace('#JQEASY_JQUILIB#', $this->_jquipath, $body, 1);
-					if ($this->_showreport) {
-						$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERYUI', $this->_jquipath);
+					if ($do_not_add_libraries) {
+						$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQUILIB#', 'GARBAGE', $body, 1);
+					} else {
+						$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQUILIB#', $this->_jquipath, $body, 1);
+						if ($this->_showreport) {
+							if ($move_unique_libraryui) {
+								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_MOVEDJQUERYUI', $this->_jquipath);
+							} else {
+								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERYUI', $this->_jquipath);
+							}
+						}
 					}
 				} else {
 					if ($this->_showreport) {
 						$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_ERRORADDINGJQUERYUI');
 					}
-				}				
+				}					
 			
 				// remove all other references to jQuery UI stylesheets
-				$count = 0;
-				$body = preg_replace('#href="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|custom|min|pack)*?.css"#', 'GARBAGE', $body, -1, $count); // find jQuery UI CSS versions
-				if ($count > 0 && $this->_showreport) {
-					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUICSS', $count);
-				}
-
-				$count = 0;
-				$body = preg_replace('#<link[^>]*GARBAGE[^>]*/>#', '', $body, -1, $count); // remove newly empty stylesheets
-				if ($count > 0 && $this->_showreport) {
-					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDEMPTYLINKTAGS', $count);
+				if (!$replace_when_unique) {
+					$matches = array();
+					if (preg_match_all('#href="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|core|custom|min|pack)*?.css"#', $body, $matches, PREG_SET_ORDER) > 0) {
+							
+						$nbr_of_matches = sizeof($matches);
+						if ($nbr_of_matches == 1) {
+							foreach ($matches as $match) {
+								$this->_jquicsspath = rtrim(substr($match[0], 5), '"');
+								$quoted_match = preg_quote($match[0], '/'); // prepares for regexp
+								$body = preg_replace('#'.$quoted_match.'#', 'GARBAGE', $body, 1);
+								if ($this->_showreport) {
+									$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_KEEPINGUNIQUECSSUI', $this->_jquicsspath);
+								}
+							}
+						} else {
+							foreach ($matches as $match) {
+								$quoted_match = preg_quote($match[0], '/'); // prepares for regexp
+								$body = preg_replace('#'.$quoted_match.'#', 'GARBAGE', $body, 1);
+								if ($this->_showreport) {
+									$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUICSSLINK', rtrim(substr($match[0], 5), '"'));
+								}
+							}
+						}
+					}
+				} else { // faster this way
+					$count = 0;
+					$body = preg_replace('#href="([\\\/a-zA-Z0-9_:\.-]*)jquery[.-]ui([0-9\.-]|core|custom|min|pack)*?.css"#', 'GARBAGE', $body, -1, $count); // find jQuery UI CSS versions
+					if ($count > 0 && $this->_showreport) {
+						$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDJQUERYUICSS', $count);
+					}
 				}
 				
 				// use jQuery UI CSS set in the plugin
 				if (!empty($this->_jquicsspath)) {
-					$body = preg_replace('#JQEASY_JQUICSS#', $this->_jquicsspath, $body, 1);
-					if ($this->_showreport) {
-						$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERYUICSS', $this->_jquicsspath);
+					if ($do_not_add_libraries) {
+						$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQUICSS#', 'GARBAGE', $body, 1);
+					} else {
+						$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)JQEASY_JQUICSS#', $this->_jquicsspath, $body, 1);
+						if ($this->_showreport) {
+							if ($move_unique_cssui) {
+								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_MOVEDJQUERYUICSS', $this->_jquicsspath);
+							} else {
+								$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDJQUERYUICSS', $this->_jquicsspath);
+							}
+						}
 					}
 				} else {
 					if ($this->_showreport) {
 						$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_ERRORADDINGJQUERYUICSS');
 					}
 				}
+				
+				// remove all obsolete link tags
+				$count = 0;
+				$body = preg_replace('#<link[^>]*GARBAGE[^>]*/>#', '', $body, -1, $count); // remove newly empty stylesheets
+				if ($count > 0 && $this->_showreport) {
+					$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDEMPTYLINKTAGS', $count);
+				}
 			}
 			
+			// remove all obsolete script tags
 			$count = 0;
 			$body = preg_replace('#<script[^>]*GARBAGE[^>]*></script>#', '', $body, -1, $count); // remove newly empty scripts
 			if ($count > 0 && $this->_showreport) {
@@ -625,12 +783,16 @@ class plgSystemJqueryeasy extends JPlugin {
 		// remove window.addEvent('load', function() {}); left after removal of 'new JCaption('img.caption');'
 		$ignore_caption = $this->params->get('disablecaptions', 0);
 		if ($ignore_caption && $app->isSite()) {
-			$body = preg_replace('#window.addEvent\(\'load\', function\(\) {}\);#', '', $body, -1, $count); // remove newly empty scripts
+			$count = 0;
+			$body = preg_replace('#window.addEvent\(\'load\', function\(\) {[\s]*?}\);#', '', $body, -1, $count); // remove newly empty scripts
+			if ($count > 0 && $this->_showreport) {
+				$this->_verbose_array[] = JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_REMOVEDEMPTYSCRIPTWINDOWADDEVENT');
+			}
 		}
 		
 		if (!empty($this->_supplement_scripts)) {
 			foreach($this->_supplement_scripts as $path) {
-				$body = preg_replace('#ADD_SCRIPT_HERE([0-9]*)#', $path, $body, 1);
+				$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)ADD_SCRIPT_HERE([0-9]*)#', $path, $body, 1);
 	        	if ($this->_showreport) {
 	        		$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDSCRIPT', $path);
 	        	}
@@ -648,7 +810,7 @@ class plgSystemJqueryeasy extends JPlugin {
 			
 		if (!empty($this->_supplement_stylesheets)) {
 			foreach($this->_supplement_stylesheets as $path) {
-				$body = preg_replace('#ADD_STYLESHEET_HERE([0-9]*)#', $path, $body, 1);
+				$body = preg_replace('#([\\\/a-zA-Z0-9_:\.-]*)ADD_STYLESHEET_HERE([0-9]*)#', $path, $body, 1);
 	        	if ($this->_showreport) {
 	        		$this->_verbose_array[] = JText::sprintf('PLG_SYSTEM_JQUERYEASY_VERBOSE_ADDEDSTYLESHEET', $path);
 	        	}
@@ -682,13 +844,23 @@ class plgSystemJqueryeasy extends JPlugin {
 		if ($this->_showreport) {
 			
 			$pattern = '#</body>#';
-			$replacement = '<div style="position: relative; width: 100%; background-color: #D9EDF7; color: #3A87AD; margin: 10px 0"><dl style="padding: 15px">';
-			$replacement .= '<dt style="border-bottom: 1px solid #BCE8F1; margin-bottom: 10px">'.JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_JQUERYEASY').'</dt>';
+			$replacement = '<div style="display: block; float: left; width: 100%; background-color: #D9EDF7; color: #48484C;">';
+			$replacement .= '<dl style="padding: 15px; margin: 20px; border: 1px solid #BCE8F1; border-radius: 4px; background-color: #FFFFFF;">';
+			$replacement .= '<dt style="padding: 5px; border: 1px solid #DDDDDD; border-radius: 4px; background-color: #F5F5F5; margin-bottom: 10px">'.JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_JQUERYEASY').'</dt>';
 			
 			if (!empty($this->_verbose_array)) {
 				foreach ($this->_verbose_array as $verbose) {
-					$color = stripos($verbose, 'remove') !== false ? "#000000" : (stripos($verbose, 'error') === false ? "#3A87AD" : "#B94A48");					
-					$replacement .= '<dd style="color: '.$color.';">'.$verbose.'</dd>';
+					
+					$color = '#48484C';
+					switch (substr($verbose, 0, 3)) {
+						case 'INF': $color = '#3A87AD'; break;
+						case 'DEL': $color = '#C09853'; break;
+						case 'ERR': $color = '#B94A48'; break;
+						case 'ADD': $color = '#468847'; break;
+						default: $color = '#48484C'; break;
+					}
+								
+					$replacement .= '<dd style="color: '.$color.';">'.substr($verbose, 4).'</dd>';
 				}
 			} else {
 				$replacement .= '<dd>'.JText::_('PLG_SYSTEM_JQUERYEASY_VERBOSE_NOCHANGESMADE').'</dd>';
@@ -702,5 +874,37 @@ class plgSystemJqueryeasy extends JPlugin {
 		JResponse::setBody($output);
 		
 		return true;
-	}
+	}	
+	
+	static protected function path_compare($uri, $path, $use_backward_compatibility)
+	{		
+		$first_pos = (strpos($path, '*') === 0) ? true: false;
+		$last_pos = (strrpos($path, '*') === (strlen($path) - 1)) ? true: false;
+		
+		if (($first_pos && $last_pos && !$use_backward_compatibility) || ($first_pos && $use_backward_compatibility)) { // any URL containing $path
+			$path = trim($path, '*');
+			if (stripos($uri, $path) !== false) {
+				return true;
+			}
+		} else if ($first_pos && !$last_pos && !$use_backward_compatibility) { // any URL ending with $path
+			$path = ltrim($path, '*');			
+			$path_length = strlen($path);
+			$uri_tip = substr($uri, -$path_length);
+			if (strcasecmp($uri_tip, $path) == 0) { // compare end of URI with $path
+				return true;
+			}				
+		} else if (!$first_pos && $last_pos && !$use_backward_compatibility) { // any URL starting with $path
+			$path = rtrim($path, '*');		
+			if (stripos($uri, JURI::root().ltrim($path, '/')) !== false) {
+				return true;
+			}
+		} else {
+			if (strcasecmp($uri, JURI::root().ltrim($path, '/')) == 0) { // case-insensitive string comparison
+				return true;
+			}
+		}
+		
+		return false;
+	}	
+	
 }
