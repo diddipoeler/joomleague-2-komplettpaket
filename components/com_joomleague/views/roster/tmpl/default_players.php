@@ -1,5 +1,20 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
+//echo 'project<pre>',print_r($this->project,true),'</pre>';
+//echo 'rows <pre>',print_r($this->rows,true),'</pre>';
+
+/*
+das sind alle projektdaten
+$this->project
+
+das ist die spielzeit im projekt
+$this->project->game_regular_time
+
+das sind die positionen mit den spielern
+$this->rows
+
+*/
+
 // Show team-players as defined
 if (!empty($this->rows))
 {
@@ -66,6 +81,7 @@ if (!empty($this->rows))
 	?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" style="text-align: center;">
 	<?php
+    // jetzt kommt die schleife über die positionen
 	foreach ($this->rows as $position_id => $players)
 	{
 		$meanage = 0;
@@ -143,6 +159,13 @@ if (!empty($this->rows))
 				echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 				$imageTitle,array('title'=> $imageTitle,'height'=> 20));
 		?></th>
+        
+        <th class="td_c"><?php
+				$imageTitle=JText::_('COM_JOOMLEAGUE_PLAYED_TIME');
+				echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/uhr.png',
+				$imageTitle,array('title'=> $imageTitle,'height'=> 11));
+		?></th>
+        
 			<?php
 			}
 		}
@@ -398,12 +421,18 @@ if (!empty($this->rows))
 		<td class="td_c" nowrap="nowrap"><?php echo $played;?></td>
 				<?php
 			}
+            
+            // spielzeit des spielers
+            $timePlayed = 0;
+            $this->assignRef('timePlayed',$model->getTimePlayed($row->playerid,$this->project->game_regular_time));
+            $timePlayed  = $this->timePlayed;
 			if ($this->config['show_substitution_stats'])
 			{
 				?>
 		<td class="td_c"><?php echo $started;?></td>
 		<td class="td_c"><?php echo $subIn;?></td>
 		<td class="td_c"><?php echo $subOut;?></td>
+        <td class="td_c"><?php echo $timePlayed;?></td>
 				<?php
 			}
 		}
