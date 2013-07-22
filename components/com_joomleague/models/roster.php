@@ -302,7 +302,9 @@ class JoomleagueModelRoster extends JoomleagueModelProject
     //$mainframe->enqueueMessage(JText::_('cameautresult -> '.'<pre>'.print_r($cameautresult,true).'</pre>' ),'');
     if ( $cameautresult )
     {
-    $result += ( $cameautresult->totalout );
+    // bug erkannt durch @player2000    
+    //$result += ( $cameautresult->totalout );
+    $result += ( $cameautresult->totalout ) - ( $cameautresult->totalmatch * $game_regular_time );
     }
     
     //$mainframe->enqueueMessage(JText::_('result -> '.'<pre>'.print_r($result,true).'</pre>' ),'');
