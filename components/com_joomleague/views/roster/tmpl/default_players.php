@@ -424,7 +424,7 @@ if (!empty($this->rows))
             
             // spielzeit des spielers
             $timePlayed = 0;
-            $this->assignRef('timePlayed',$model->getTimePlayed($row->playerid,$this->project->game_regular_time));
+            $this->assignRef('timePlayed',$model->getTimePlayed($row->playerid,$this->project->game_regular_time,NULL,$this->overallconfig['person_events']));
             $timePlayed  = $this->timePlayed;
 			if ($this->config['show_substitution_stats'])
 			{

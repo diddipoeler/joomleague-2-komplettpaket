@@ -115,7 +115,7 @@ if (count($this->games))
 				// gespielte zeit
                 $model = $this->getModel();
                 $timePlayed = 0;
-                $this->assignRef('timePlayed',$model->getTimePlayed($this->teamPlayer->id,$this->project->game_regular_time,$game->id));
+                $this->assignRef('timePlayed',$model->getTimePlayed($this->teamPlayer->id,$this->project->game_regular_time,$game->id,$this->overallconfig['person_events']));
                 $timePlayed  = $this->timePlayed;
                 
                 ?>

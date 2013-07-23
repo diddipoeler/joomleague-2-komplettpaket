@@ -136,6 +136,20 @@ class JoomleagueControllerTemplate extends JoomleagueController
 		if(count($cid) == 1)
 		{
 			$post['id']=(int) $cid[0];
+        
+            if (isset($post['params']['person_events']))
+		{
+			if (count($post['params']['person_events']) > 0)
+			{
+				$temp=implode(",",$post['params']['person_events']);
+			}
+			else
+			{
+				$temp='';
+			}
+			$post['params']['person_events']=$temp;
+		}
+        
 			$model=$this->getModel('template');
 			if ($model->store($post))
 			{

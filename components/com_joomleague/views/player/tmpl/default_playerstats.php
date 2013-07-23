@@ -113,7 +113,7 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 					$this->assignRef('inoutstat',$model->getInOutStats($player_hist->project_id, $player_hist->ptid, $player_hist->tpid));
 					// gespielte zeit
                     $timePlayed = 0;
-                    $this->assignRef('timePlayed',$model->getTimePlayed($player_hist->tpid,$this->project->game_regular_time));
+                    $this->assignRef('timePlayed',$model->getTimePlayed($player_hist->tpid,$this->project->game_regular_time,NULL,$this->overallconfig['person_events']));
                     $timePlayed  = $this->timePlayed;
             
                     $link1=JoomleagueHelperRoute::getPlayerRoute($player_hist->project_slug,$player_hist->team_slug,$this->person->slug);

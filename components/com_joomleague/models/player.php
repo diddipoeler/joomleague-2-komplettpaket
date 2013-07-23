@@ -313,11 +313,14 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 		return $info;
 	}
     
-    function getTimePlayed($player_id,$game_regular_time,$match_id = NULL)
+    function getTimePlayed($player_id,$game_regular_time,$match_id = NULL,$cards=NULL)
     {
-        $mainframe = JFactory::getApplication();
-    //    $mainframe->enqueueMessage(JText::_('player_id -> '.'<pre>'.print_r($player_id,true).'</pre>' ),'');
-    //    $mainframe->enqueueMessage(JText::_('game_regular_time -> '.'<pre>'.print_r($game_regular_time,true).'</pre>' ),'');
+    $mainframe = JFactory::getApplication();
+    
+    //$mainframe->enqueueMessage(JText::_('player_id -> '.'<pre>'.print_r($player_id,true).'</pre>' ),'');
+    //$mainframe->enqueueMessage(JText::_('game_regular_time -> '.'<pre>'.print_r($game_regular_time,true).'</pre>' ),'');
+    //$mainframe->enqueueMessage(JText::_('match_id -> '.'<pre>'.print_r($match_id,true).'</pre>' ),'');
+    //$mainframe->enqueueMessage(JText::_('cards -> '.'<pre>'.print_r($cards,true).'</pre>' ),'');
     
     $result = 0;
     // startaufstellung ohne ein und auswechselung
@@ -371,6 +374,27 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
     //$result += ( $cameautresult->totalout );
     $result += ( $cameautresult->totalout ) - ( $cameautresult->totalmatch * $game_regular_time );
     }
+    
+    // jetzt muss man noch die karten berücksichtigen, die zu einer hinausstellung führen
+    if ( $cards )
+    {
+    $query = 'SELECT *
+			FROM #__joomleague_match_event 
+			WHERE teamplayer_id = '.$player_id;
+    $query .= ' and event_type_id in ('.$cards.')';
+    if ( $match_id )
+    {
+    $query .= ' and match_id = '.$match_id;     
+    }
+    $this->_db->setQuery($query);
+    $cardsresult = $this->_db->loadObjectList();  
+    foreach ( $cardsresult as $row )
+    {
+        $result -= ( $game_regular_time - $row->event_time );
+    }  
+    //$mainframe->enqueueMessage(JText::_('cardsresult -> '.'<pre>'.print_r($cardsresult,true).'</pre>' ),'');
+    }
+    
     
     //$mainframe->enqueueMessage(JText::_('result -> '.'<pre>'.print_r($result,true).'</pre>' ),'');
     
