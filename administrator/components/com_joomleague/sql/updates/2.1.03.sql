@@ -1,0 +1,1 @@
+ALTER TABLE  `#__joomleague_team_player` ADD  `played_time` INT( 11 ) NOT NULL DEFAULT  '0'
