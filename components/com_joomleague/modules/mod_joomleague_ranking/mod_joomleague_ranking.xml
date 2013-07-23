@@ -39,8 +39,8 @@
         <field name="@spacer" type="spacer" default="" label="" description="" />
         <field name="columns" type="text" default="PLAYED, POINTS" label="MOD_JOOMLEAGUE_RANKING_COLUMNS_LABEL" description="MOD_JOOMLEAGUE_RANKING_COLUMNS_DESCR" size="50"/>
         <field name="show_tableheader" type="list" default="1" label="MOD_JOOMLEAGUE_RANKING_SHOW_TABLEHEADER" description="MOD_JOOMLEAGUE_RANKING_SHOW_TABLEHEADER_DESCR">
-          <option value="0">MOD_JOOMLEAGUE_RANKING_TABLEHEADER_NO</option>
-          <option value="1">MOD_JOOMLEAGUE_RANKING_TABLEHEADER_YES</option>
+          <option value="0">MOD_JOOMLEAGUE_RANKING_SHOW_TABLEHEADER_NO</option>
+          <option value="1">MOD_JOOMLEAGUE_RANKING_SHOW_TABLEHEADER_YES</option>
         </field>
         <field name="column_names" type="text" default="MP, PTS" label="MOD_JOOMLEAGUE_RANKING_COLUMN_NAMES_LABEL" description="MOD_JOOMLEAGUE_RANKING_COLUMN_NAMES_DESCR" size="50"/>
         <field name="@spacer" type="spacer" default="" label="" description="" />
