@@ -225,6 +225,7 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				<td class="td_c"><?php echo ($career['started'] ); ?></td>
 				<td class="td_c"><?php echo ($career['in'] ); ?></td>
 				<td class="td_c"><?php echo ($career['out'] ); ?></td>
+                <td class="td_c"><?php echo ($career['playedtime'] ); ?></td>
 				<?php
 				}
 				?>
