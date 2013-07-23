@@ -313,7 +313,7 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 		return $info;
 	}
     
-    function getTimePlayed($player_id,$game_regular_time)
+    function getTimePlayed($player_id,$game_regular_time,$match_id = NULL)
     {
         $mainframe = JFactory::getApplication();
     //    $mainframe->enqueueMessage(JText::_('player_id -> '.'<pre>'.print_r($player_id,true).'</pre>' ),'');
@@ -321,9 +321,15 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
     
     $result = 0;
     // startaufstellung ohne ein und auswechselung
-    $query='SELECT count(match_id) as totalmatch
+    $query = 'SELECT count(match_id) as totalmatch
 			FROM #__joomleague_match_player 
-			WHERE teamplayer_id = '.$player_id.' and came_in = 0';    
+			WHERE teamplayer_id = '.$player_id.' and came_in = 0'; 
+    
+    if ( $match_id )
+    {
+    $query .= ' and match_id = '.$match_id;     
+    }   
+            
     $this->_db->setQuery($query);
     $totalresult = $this->_db->loadObject();
     //$mainframe->enqueueMessage(JText::_('totalresult -> '.'<pre>'.print_r($totalresult,true).'</pre>' ),'');
@@ -336,6 +342,10 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
     $query='SELECT count(match_id) as totalmatch, SUM(in_out_time) as totalin
 			FROM #__joomleague_match_player 
 			WHERE teamplayer_id = '.$player_id.' and came_in = 1 and in_for IS NOT NULL';    
+    if ( $match_id )
+    {
+    $query .= ' and match_id = '.$match_id;     
+    }
     $this->_db->setQuery($query);
     $cameinresult = $this->_db->loadObject();
     //$mainframe->enqueueMessage(JText::_('cameinresult -> '.'<pre>'.print_r($cameinresult,true).'</pre>' ),'');
@@ -348,6 +358,10 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
     $query='SELECT count(match_id) as totalmatch, SUM(in_out_time) as totalout
 			FROM #__joomleague_match_player 
 			WHERE in_for = '.$player_id.' and came_in = 1 ';    
+    if ( $match_id )
+    {
+    $query .= ' and match_id = '.$match_id;     
+    }
     $this->_db->setQuery($query);
     $cameautresult = $this->_db->loadObject();
     //$mainframe->enqueueMessage(JText::_('cameautresult -> '.'<pre>'.print_r($cameautresult,true).'</pre>' ),'');

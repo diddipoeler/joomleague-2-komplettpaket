@@ -42,6 +42,13 @@ if (count($this->games))
 					echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 					$imageTitle,array(' title' => $imageTitle));
 					?></th>
+                    
+                    <th class="td_c"><?php
+				$imageTitle=JText::_('COM_JOOMLEAGUE_PLAYED_TIME');
+				echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/uhr.png',
+				$imageTitle,array('title'=> $imageTitle,'height'=> 11));
+		?></th>
+        
 					<?php
 					}
 					if ($this->config['show_career_events_stats'])
@@ -98,13 +105,20 @@ if (count($this->games))
 			$total['startRoster']=0;
 			$total['in']=0;
 			$total['out']=0;
+            $total['playedtime']=0;
 			$total_event_stats=array();
 			foreach ($this->games as $game)
 			{
 				$report_link=JoomleagueHelperRoute::getMatchReportRoute($this->project->slug,$game->id);
 				$teaminfo_home_link=JoomleagueHelperRoute::getTeamInfoRoute($this->project->slug,$this->teams[$game->projectteam1_id]->team_id);
 				$teaminfo_away_link=JoomleagueHelperRoute::getTeamInfoRoute($this->project->slug,$this->teams[$game->projectteam2_id]->team_id);
-				?>
+				// gespielte zeit
+                $model = $this->getModel();
+                $timePlayed = 0;
+                $this->assignRef('timePlayed',$model->getTimePlayed($this->teamPlayer->id,$this->project->game_regular_time,$game->id));
+                $timePlayed  = $this->timePlayed;
+                
+                ?>
 				<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
 					<td class="td_l"><?php
 					echo JHTML::link($report_link,strftime($this->config['games_date_format'],strtotime($game->match_date)));
@@ -146,6 +160,12 @@ if (count($this->games))
 					$total['out'] += $game->sub_out;
 					echo ($game->sub_out) ;
 					?></td>
+                    
+                    <td class="td_c"><?php
+					$total['playedtime'] += $timePlayed;
+					echo ($timePlayed) ;
+					?></td>
+                    
 					<?php
 					}
 					if ($this->config['show_career_events_stats'])
@@ -217,6 +237,7 @@ if (count($this->games))
 					<td class="td_c"><?php echo ($total['startRoster'] ); ?></td>
 					<td class="td_c"><?php echo ($total['in'] ) ; ?></td>
 					<td class="td_c"><?php echo ($total['out'] ) ; ?></td>
+                    <td class="td_c"><?php echo ($total['playedtime'] ) ; ?></td>
 					<?php
 					}
 					if ($this->config['show_career_events_stats'])

@@ -852,6 +852,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_team_player` (
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   `market_value` INT(11) NOT NULL DEFAULT '0' ,
   `extendeduser` TEXT NULL ,
+  `played_time` INT(11) NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `projectteam_id` (`projectteam_id`),
   KEY `person_id` (`person_id`),
