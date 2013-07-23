@@ -312,6 +312,56 @@ class JoomleagueModelPlayer extends JoomleagueModelPerson
 		$info=$this->_db->loadObjectList();
 		return $info;
 	}
+    
+    function getTimePlayed($player_id,$game_regular_time)
+    {
+        $mainframe = JFactory::getApplication();
+    //    $mainframe->enqueueMessage(JText::_('player_id -> '.'<pre>'.print_r($player_id,true).'</pre>' ),'');
+    //    $mainframe->enqueueMessage(JText::_('game_regular_time -> '.'<pre>'.print_r($game_regular_time,true).'</pre>' ),'');
+    
+    $result = 0;
+    // startaufstellung ohne ein und auswechselung
+    $query='SELECT count(match_id) as totalmatch
+			FROM #__joomleague_match_player 
+			WHERE teamplayer_id = '.$player_id.' and came_in = 0';    
+    $this->_db->setQuery($query);
+    $totalresult = $this->_db->loadObject();
+    //$mainframe->enqueueMessage(JText::_('totalresult -> '.'<pre>'.print_r($totalresult,true).'</pre>' ),'');
+    if ( $totalresult )
+    {
+    $result += $totalresult->totalmatch * $game_regular_time;
+    }
+    
+    // einwechselung
+    $query='SELECT count(match_id) as totalmatch, SUM(in_out_time) as totalin
+			FROM #__joomleague_match_player 
+			WHERE teamplayer_id = '.$player_id.' and came_in = 1 and in_for IS NOT NULL';    
+    $this->_db->setQuery($query);
+    $cameinresult = $this->_db->loadObject();
+    //$mainframe->enqueueMessage(JText::_('cameinresult -> '.'<pre>'.print_r($cameinresult,true).'</pre>' ),'');
+    if ( $cameinresult )
+    {
+    $result += ( $cameinresult->totalmatch * $game_regular_time ) - ( $cameinresult->totalin );
+    }
+    
+    // auswechselung
+    $query='SELECT count(match_id) as totalmatch, SUM(in_out_time) as totalout
+			FROM #__joomleague_match_player 
+			WHERE in_for = '.$player_id.' and came_in = 1 ';    
+    $this->_db->setQuery($query);
+    $cameautresult = $this->_db->loadObject();
+    //$mainframe->enqueueMessage(JText::_('cameautresult -> '.'<pre>'.print_r($cameautresult,true).'</pre>' ),'');
+    if ( $cameautresult )
+    {
+    // bug erkannt durch @player2000    
+    //$result += ( $cameautresult->totalout );
+    $result += ( $cameautresult->totalout ) - ( $cameautresult->totalmatch * $game_regular_time );
+    }
+    
+    //$mainframe->enqueueMessage(JText::_('result -> '.'<pre>'.print_r($result,true).'</pre>' ),'');
+    
+    return $result;    
+    }
 
 	function getInOutStats($project_id, $projectteam_id, $teamplayer_id)
 	{

@@ -45,6 +45,16 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/out.png',
 				$imageTitle,array(' title' => $imageTitle));
 				?></th>
+                
+                <?PHP
+                // gespielte zeit
+                ?>
+                <th class="td_c"><?php
+				$imageTitle=JText::_('COM_JOOMLEAGUE_PLAYED_TIME');
+				echo JHTML::image(	'images/com_joomleague/database/events/'.$this->project->fs_sport_type_name.'/uhr.png',
+				$imageTitle,array('title'=> $imageTitle,'height'=> 11));
+		?></th>
+        
 				<?php
 					}
 				}
@@ -101,7 +111,12 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				{
 					$model = $this->getModel();
 					$this->assignRef('inoutstat',$model->getInOutStats($player_hist->project_id, $player_hist->ptid, $player_hist->tpid));
-					$link1=JoomleagueHelperRoute::getPlayerRoute($player_hist->project_slug,$player_hist->team_slug,$this->person->slug);
+					// gespielte zeit
+                    $timePlayed = 0;
+                    $this->assignRef('timePlayed',$model->getTimePlayed($player_hist->tpid,$this->project->game_regular_time));
+                    $timePlayed  = $this->timePlayed;
+            
+                    $link1=JoomleagueHelperRoute::getPlayerRoute($player_hist->project_slug,$player_hist->team_slug,$this->person->slug);
 					$link2=JoomleagueHelperRoute::getTeamInfoRoute($player_hist->project_slug,$player_hist->team_slug);
 					?>
 			<tr class="<?php echo ($k==0)? $this->config['style_class1'] : $this->config['style_class2']; ?>">
@@ -143,6 +158,13 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 						$career['out'] += $this->inoutstat->sub_out;
 						echo ($this->inoutstat->sub_out) ;
 						?></td>
+                        
+                        <!-- Player stats History - played time -->
+						<td class="td_c"><?php
+						$career['playedtime'] += $timePlayed;
+						echo ($timePlayed) ;
+						?></td>
+                        
 						<?php
 					}
 				}
