@@ -103,7 +103,7 @@ class JoomleagueControllerTemplate extends JoomleagueController
 			$post['params']['person_events']=$temp;
 		}
         
-        $mainframe->enqueueMessage(JText::_('template<br><pre>'.print_r($post,true).'</pre>'   ),'');
+        //$mainframe->enqueueMessage(JText::_('template<br><pre>'.print_r($post,true).'</pre>'   ),'');
         
 		$model=$this->getModel('template');
 		if ($model->store($post))

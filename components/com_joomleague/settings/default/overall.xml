@@ -124,7 +124,7 @@
 		</field>
 		
 		<field name="person_events" type="sql" default="0"
-		size="10"
+		size="20"
 		multiple="true"
 		query="SELECT e.id , e.name  FROM #__joomleague_eventtype e WHERE published=1 ORDER BY name"
 		key_field="id" value_field="name"
