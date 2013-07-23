@@ -114,13 +114,19 @@
 	</fieldset>
 	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONAL_DATA"
-		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PERSONAL_DATA">
+		description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PERSONAL_DATA"
+    addfieldpath ="/administrator/components/com_joomleague/elements">
 		<field name="nospam_email" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_PROTECT_EMAIL"
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_PROTECT_EMAIL">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="person_events" type="events" default="0"
+			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PERSON_EVENTS" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PERSON_EVENTS">
+		</field>
+		
 	</fieldset>
 	
 
