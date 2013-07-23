@@ -65,10 +65,17 @@ class JoomleagueViewTemplate extends JLGView
 		
 		$jRegistry = new JRegistry;
 		$jRegistry->loadString($template->params, 'ini');
+
 		$form =& JForm::getInstance($template->template, $xmlfile, 
 									array('control'=> 'params'));
 		$form->bind($jRegistry);
-		
+		$form_value = $form->getValue('person_events');
+        if ( $form_value )
+        {
+            $form->setValue('person_events', null,explode(",",$form_value));
+        }
+        
+        
 		$master_id=($projectws->master_template) ? $projectws->master_template : '-1';
 		$templates=array();
 		//$templates[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATE_OTHER_TEMPLATE' ),'value','text');

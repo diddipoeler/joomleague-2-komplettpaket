@@ -85,9 +85,26 @@ class JoomleagueControllerTemplate extends JoomleagueController
 
 	function apply()
 	{
+	   $mainframe =& JFactory::getApplication();
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(0),'post','array');
 		$post['id']=(int) $cid[0];
+
+        if (isset($post['params']['person_events']))
+		{
+			if (count($post['params']['person_events']) > 0)
+			{
+				$temp=implode(",",$post['params']['person_events']);
+			}
+			else
+			{
+				$temp='';
+			}
+			$post['params']['person_events']=$temp;
+		}
+        
+        $mainframe->enqueueMessage(JText::_('template<br><pre>'.print_r($post,true).'</pre>'   ),'');
+        
 		$model=$this->getModel('template');
 		if ($model->store($post))
 		{

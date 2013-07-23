@@ -123,7 +123,11 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 		
-		<field name="person_events" type="events" default="0"
+		<field name="person_events" type="sql" default="0"
+		size="10"
+		multiple="true"
+		query="SELECT e.id , e.name  FROM #__joomleague_eventtype e WHERE published=1 ORDER BY name"
+		key_field="id" value_field="name"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PERSON_EVENTS" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PERSON_EVENTS">
 		</field>
 		
