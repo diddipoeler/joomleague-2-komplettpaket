@@ -160,6 +160,7 @@
 		</field>		
 
 	</fieldset>
+	
 <!-- reiter 3 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_DIV_OPTIONS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_DIV_OPTIONS"
@@ -193,6 +194,7 @@
 		</field>
 
 	</fieldset>
+	
 <!-- reiter 4 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_TEAMOPTIONS"
@@ -290,6 +292,7 @@
 		</field>
 
 	</fieldset>
+	
 <!-- reiter 5 -->	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ADVANCED_OPTIONS">	

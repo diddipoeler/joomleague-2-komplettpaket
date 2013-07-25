@@ -788,7 +788,6 @@ class JoomleagueHelper
 		{
 			$formattedTeamName = $team->name.' ('.$team->info.')';
 		}
-		
         
         
         if (empty($formattedTeamName))
