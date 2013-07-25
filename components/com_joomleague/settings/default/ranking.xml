@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+<!-- reiter 1 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
 
@@ -80,6 +81,7 @@
         </field>
 	</fieldset>
 
+<!-- reiter 2 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_OPTIONS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_OPTIONS">
 
@@ -158,7 +160,7 @@
 		</field>		
 
 	</fieldset>
-
+<!-- reiter 3 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_DIV_OPTIONS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_DIV_OPTIONS"
 		description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_DIV_OPTIONS">
@@ -191,7 +193,7 @@
 		</field>
 
 	</fieldset>
-
+<!-- reiter 4 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_TEAMOPTIONS"
 		addfieldpath="/administrator/components/com_joomleague/elements">
@@ -288,7 +290,7 @@
 		</field>
 
 	</fieldset>
-	
+<!-- reiter 5 -->	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ADVANCED_OPTIONS">	
 			
