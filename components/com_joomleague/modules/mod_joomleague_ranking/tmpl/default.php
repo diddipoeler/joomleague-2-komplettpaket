@@ -48,7 +48,9 @@ echo 'this->mod_joomleague_ranking ranking<br /><pre>~' . print_r($list['ranking
 <p class="projectname"><?php echo $list['project']->name; ?></p>
 <?php endif; ?>
 
+
 <table class="ranking">
+<?php if ($params->get('show_tableheader', 0)):?>
 	<thead>
 		<tr class="sectiontableheader">
 			<th class="rank"><?php echo JText::_('MOD_JOOMLEAGUE_RANKING_COLUMN_RANK')?></th>
@@ -58,6 +60,7 @@ echo 'this->mod_joomleague_ranking ranking<br /><pre>~' . print_r($list['ranking
 			<?php endforeach; ?>
 		</tr>
 	</thead>
+<?php endif; ?>
 	<tbody>
 	<?php
 		$k = 0;
