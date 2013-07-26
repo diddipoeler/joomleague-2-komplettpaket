@@ -4,6 +4,7 @@ $startfade = $this->config['roster_playground_player_fade'];
 
 if ( $this->config['roster_playground_player_jquery_fade'] )
 {
+$div_display ="none";    
 ?>
 <script>
 jQuery(document).ready(function() {
@@ -21,6 +22,10 @@ $startfade += $this->config['roster_playground_player_fade'];
 });    
 </script>
 <?php
+}
+else
+{
+    $div_display ="";
 }
 
 if ( $this->show_debug_info )
@@ -230,7 +235,7 @@ echo 'this->heim picture<br /> ~' . $picture . ' ~<br />';
 
 ?>
 
-<div id="<?php echo $player->person_id;?>" style="display:none;position:absolute; width:103px; left:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['links']; ?>px; top:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['oben']; ?>px; text-align:center;">
+<div id="<?php echo $player->person_id;?>" style="display:<?php echo $div_display;?>;position:absolute; width:103px; left:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['links']; ?>px; top:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['oben']; ?>px; text-align:center;">
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px; " src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>
@@ -290,7 +295,7 @@ $picture = JoomleagueHelper::getDefaultPlaceholder("player");
 
 ?>
 
-<div id="<?php echo $player->person_id;?>" style="display:none;position:absolute; width:103px; left:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['links']; ?>px; top:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['oben']; ?>px; text-align:center;">
+<div id="<?php echo $player->person_id;?>" style="display:<?php echo $div_display;?>;position:absolute; width:103px; left:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['links']; ?>px; top:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['oben']; ?>px; text-align:center;">
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px;" src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>
