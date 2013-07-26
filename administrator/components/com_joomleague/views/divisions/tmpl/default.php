@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-JHTML::_( 'behavior.tooltip' );
+JHtml::_( 'behavior.tooltip' );
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<fieldset class="adminform">
@@ -55,29 +55,29 @@ JHTML::_( 'behavior.tooltip' );
 						</th>
 						<th class="title" style="vertical-align: top; ">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_NAME', 'dv.name', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_NAME', 'dv.name', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 						<th class="title" style="vertical-align: top; ">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_S_NAME', 'dv.shortname', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_S_NAME', 'dv.shortname', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 						<th class="title" style="vertical-align: top; ">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_PARENT_NAME', 'parent_name', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_ADMIN_DIVS_PARENT_NAME', 'parent_name', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 						<th width="85" style="vertical-align: top; ">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'dv.ordering', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ORDER', 'dv.ordering', $this->lists['order_Dir'], $this->lists['order'] );
 							echo '<br />';
-							echo JHTML::_( 'grid.order', $this->items );
+							echo JHtml::_( 'grid.order', $this->items );
 							?>
 						</th>
 						<th style="vertical-align: top; ">
 							<?php
-							echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'dv.id', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'dv.id', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 					</tr>
@@ -100,7 +100,7 @@ JHTML::_( 'behavior.tooltip' );
 					{
 						$row		=& $this->items[$i];
 						$link 		= JRoute::_( 'index.php?option=com_joomleague&task=division.edit&cid[]=' . $row->id );
-						$checked 	= JHTML::_( 'grid.checkedout',   $row, $i );
+						$checked 	= JHtml::_( 'grid.checkedout',   $row, $i );
 						?>
 						<tr class="<?php echo "row$k"; ?>">
 							<td style="text-align:center; ">
@@ -110,7 +110,7 @@ JHTML::_( 'behavior.tooltip' );
 								<?php echo $checked; ?>
 							</td>
 							<?php
-							if ( JTable::isCheckedOut( $this->user->get( 'id' ), $row->checked_out ) )
+							if ( JLTable::_isCheckedOut( $this->user->get( 'id' ), $row->checked_out ) )
 							{
 								$inputappend = ' disabled="disabled"';
 								?>
@@ -127,7 +127,7 @@ JHTML::_( 'behavior.tooltip' );
 									<a href="<?php echo $link; ?>">
 										<?php
 										$imageTitle = JText::_( 'COM_JOOMLEAGUE_ADMIN_DIVS_EDIT_DETAILS' );
-										echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/edit.png',
+										echo JHtml::_(	'image', 'administrator/components/com_joomleague/assets/images/edit.png',
 														$imageTitle,
 														'title= "' . $imageTitle . '"' );
 										?>
@@ -185,5 +185,5 @@ JHTML::_( 'behavior.tooltip' );
 	<input type="hidden" name="boxchecked"			value="0" />
 	<input type="hidden" name="filter_order"		value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir"	value="" />
-	<?php echo JHTML::_( 'form.token' ); ?>
+	<?php echo JHtml::_( 'form.token' ); ?>
 </form>
