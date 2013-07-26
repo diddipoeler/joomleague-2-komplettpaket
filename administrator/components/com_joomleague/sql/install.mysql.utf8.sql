@@ -684,6 +684,7 @@ CREATE TABLE IF NOT EXISTS `#__joomleague_rosterposition` (
   `middle_name` varchar(25) NOT NULL default '',
   `extended` text,
   `picture` varchar(255) NOT NULL DEFAULT 'spielfeld_578x1050.png',
+  `players` int(11) NOT NULL default '11',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `name` (`name`,`short_name`),
   KEY `country` (`country`)

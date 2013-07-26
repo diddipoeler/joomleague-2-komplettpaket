@@ -1,6 +1,11 @@
 <?php
 JHTML::_('behavior.tooltip');
 
+/*
+// diddipoeler
+echo 'ranking teams<pre>',print_r($this->teams,true),'</pre>';
+*/
+
 $current  = &$this->current;
 $previous = &$this->previousRanking[$this->division];
 

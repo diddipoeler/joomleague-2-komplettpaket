@@ -764,15 +764,33 @@ class JoomleagueHelper
 		$desc .= '<span style="'.$style.'">';
 		
 		$formattedTeamName = "";
-		if ($config['team_name_format']== 0)
+		if ($config['team_name_format'] == 0)
 		{
 			$formattedTeamName = $team->short_name;
 		}
-		else if ($config['team_name_format']== 1)
+		else if ($config['team_name_format'] == 1)
 		{
 			$formattedTeamName = $team->middle_name;
 		}
-		if (empty($formattedTeamName))
+        else if ($config['team_name_format'] == 2)
+		{
+			$formattedTeamName = $team->name;
+		}
+        else if ($config['team_name_format'] == 10)
+		{
+			$formattedTeamName = $team->short_name.' ('.$team->info.')';
+		}
+        else if ($config['team_name_format'] == 11)
+		{
+			$formattedTeamName = $team->middle_name.' ('.$team->info.')';
+		}
+        else if ($config['team_name_format'] == 12)
+		{
+			$formattedTeamName = $team->name.' ('.$team->info.')';
+		}
+        
+        
+        if (empty($formattedTeamName))
 		{
 			$formattedTeamName = $team->name;
 		}

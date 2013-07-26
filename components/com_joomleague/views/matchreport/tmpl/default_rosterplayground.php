@@ -1,8 +1,11 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$startfade = 1000;
-?>
+$startfade = $this->config['roster_playground_player_fade'];
 
+if ( $this->config['roster_playground_player_jquery_fade'] )
+{
+$div_display ="none";    
+?>
 <script>
 jQuery(document).ready(function() {
 setTimeout(function(){    
@@ -12,14 +15,19 @@ foreach ($this->matchplayers as $player)
 ?>    
 jQuery("#<?PHP echo $player->person_id; ?>").delay(<?PHP echo $startfade; ?>).slideToggle("slow");
 <?php
-$startfade += 1000;    
+$startfade += $this->config['roster_playground_player_fade'];    
 }    
 ?>
 }, 2000);
 });    
 </script>
-
 <?php
+}
+else
+{
+    $div_display ="";
+}
+
 if ( $this->show_debug_info )
 {
 echo 'this->formation1<br /><pre>~' . print_r($this->formation1,true) . '~</pre><br />';
@@ -192,6 +200,11 @@ foreach ($this->matchplayerpositions as $pos)
 				}
 			}
 
+if ( $this->show_debug_info )
+{
+echo 'this->heim personCount<br /><pre>~' . print_r($personCount,true) . '~</pre><br />';
+}
+
 if ($personCount > 0)
 {
 
@@ -212,9 +225,17 @@ $picture = JoomleagueHelper::getDefaultPlaceholder("player");
 }
 }
 
+if ( $this->show_debug_info )
+{
+echo 'this->heim person_id<br /> ~' . $player->person_id . ' ~<br />';
+echo 'this->heim lastname<br /> ~' . $player->lastname . ' ~<br />';
+echo 'this->heim firstname<br /> ~' . $player->firstname . ' ~<br />';
+echo 'this->heim picture<br /> ~' . $picture . ' ~<br />';
+}
+
 ?>
 
-<div id="<?php echo $player->person_id;?>" style="display:none;position:absolute; width:103px; left:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['links']; ?>px; top:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['oben']; ?>px; text-align:center;">
+<div id="<?php echo $player->person_id;?>" style="display:<?php echo $div_display;?>;position:absolute; width:103px; left:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['links']; ?>px; top:<?PHP echo $this->schemahome[$schemahome][$testlauf]['heim']['oben']; ?>px; text-align:center;">
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px; " src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>
@@ -247,6 +268,11 @@ foreach ($this->matchplayerpositions as $pos)
 				}
 			}
 
+if ( $this->show_debug_info )
+{
+echo 'this->gast personCount<br /><pre>~' . print_r($personCount,true) . '~</pre><br />';
+}
+
 if ($personCount > 0)
 {			
 
@@ -269,7 +295,7 @@ $picture = JoomleagueHelper::getDefaultPlaceholder("player");
 
 ?>
 
-<div id="<?php echo $player->person_id;?>" style="display:none;position:absolute; width:103px; left:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['links']; ?>px; top:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['oben']; ?>px; text-align:center;">
+<div id="<?php echo $player->person_id;?>" style="display:<?php echo $div_display;?>;position:absolute; width:103px; left:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['links']; ?>px; top:<?PHP echo $this->schemaaway[$schemaguest][$testlauf]['gast']['oben']; ?>px; text-align:center;">
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px;" src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>

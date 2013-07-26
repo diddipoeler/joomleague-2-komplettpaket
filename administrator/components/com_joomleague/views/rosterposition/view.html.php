@@ -239,112 +239,13 @@ $javascript .= '    jQuery("#draggable_'.$a.'").draggable({stop: function(event,
     }});' . "\n";    
 }
 
-/*
-$javascript .= '    jQuery("#draggable_1").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_1_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_2").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_2_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_3").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_3_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_4").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_4_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_5").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_5_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_6").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_6_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_7").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_7_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_8").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_8_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_9").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_9_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_10").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_10_LEFT").val(Stoppos.left);
-    }});' . "\n";
-$javascript .= '    jQuery("#draggable_11").draggable({stop: function(event, ui) {
-    	// Show dropped position.
-    	var Stoppos = jQuery(this).position();
-    	jQuery("div#stop").text("STOP: \nLeft: "+ Stoppos.left + "\nTop: " + Stoppos.top);
-    	jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_TOP").val(Stoppos.top);
-      jQuery("#extended_COM_JOOMLEAGUE_EXT_ROSTERPOSITIONS_11_LEFT").val(Stoppos.left);
-    }});' . "\n";
-*/
+
     
 $javascript .= '  });' . "\n";
 
 $javascript .= "\n";
 
-/*
-$javascript .= '$JoLe2(document).ready(function(){' . "\n"; 
-$javascript .= '  // bind it' . "\n"; 
-$javascript .= '  $JoLe2("#picture").change(function(){' . "\n"; 
-$javascript .= " var background = \$JoLe2(this).find('option:selected').text();" . "\n";
-//$javascript .= ' alert(background);' . "\n";
-$javascript .= " \$JoLe2('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/ + background)\");" . "\n";
-//$javascript .= '    showDiv();' . "\n"; 
-$javascript .= '  });' . "\n"; 
-$javascript .= '  // run it automagically' . "\n"; 
-//$javascript .= '  showDiv();' . "\n"; 
-$javascript .= '});' . "\n"; 
 
-$javascript .= 'function showDiv(){' . "\n";
-$javascript .= ' alert("hallo freunde");' . "\n";
-$javascript .= " \$JoLe2('#roster').css(\"background-image\", \"url(".JURI::root()."media/com_joomleague/rosterground/myimage.jpg)\");" . "\n"; 
-$javascript .= '}' . "\n";
-
-$javascript .= 'function div_bg(team){' . "\n";
-$javascript .= "	document.getElementById('roster').style.backgroundImage=\"url(".JURI::root()."media/com_joomleague/rosterground/ + team )\";" . "\n";	
-$javascript .= '}' . "\n";
-*/
     
     $document->addScriptDeclaration( $javascript );
     $this->assignRef('form'      	, $this->get('form'));
