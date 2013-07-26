@@ -1,8 +1,10 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
 $startfade = $this->config['roster_playground_player_fade'];
-?>
 
+if ( $this->config['roster_playground_player_jquery_fade'] )
+{
+?>
 <script>
 jQuery(document).ready(function() {
 setTimeout(function(){    
@@ -18,8 +20,9 @@ $startfade += $this->config['roster_playground_player_fade'];
 }, 2000);
 });    
 </script>
-
 <?php
+}
+
 if ( $this->show_debug_info )
 {
 echo 'this->formation1<br /><pre>~' . print_r($this->formation1,true) . '~</pre><br />';
