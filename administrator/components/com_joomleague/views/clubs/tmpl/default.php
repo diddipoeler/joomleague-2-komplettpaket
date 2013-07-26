@@ -226,5 +226,5 @@ JHtml::_('behavior.tooltip');JHtml::_('behavior.modal');
 	<input type="hidden" name="task" value="" />
 	<input type="hidden" name="filter_order" value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir" value="" />
-	<?php echo JHTML::_('form.token')."\n"; ?>
+	<?php echo JHtml::_('form.token')."\n"; ?>
 </form>
