@@ -3,7 +3,7 @@
 //Ordering allowed ?
 $ordering=($this->lists['order'] == 'obj.ordering');
 
-JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
+JHtml::_('behavior.tooltip');JHtml::_('behavior.modal');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<table>
@@ -36,7 +36,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					<th width="20">&nbsp;</th>
 					<th>
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_STANDARD_NAME_OF_EVENT','obj.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_STANDARD_NAME_OF_EVENT','obj.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th>
@@ -44,28 +44,28 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					</th>
 					<th width="10%">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_ICON','obj.icon',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_ICON','obj.icon',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th width="10%">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE','obj.sports_type_id',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE','obj.sports_type_id',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th width="1%">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','obj.published',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','obj.published',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th width="10%">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','obj.ordering',$this->lists['order_Dir'],$this->lists['order']);
-						echo JHTML::_('grid.order',$this->items, 'filesave.png', 'eventtype.saveorder');
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','obj.ordering',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.order',$this->items, 'filesave.png', 'eventtype.saveorder');
 						?>
 					</th>
 					<th width="5%">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','obj.id',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','obj.id',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 				</tr>
@@ -79,14 +79,14 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					$row=&$this->items[$i];
 
 					$link=JRoute::_('index.php?option=com_joomleague&task=eventtype.edit&cid[]='.$row->id);
-					$checked=JHTML::_('grid.checkedout',$row,$i);
-					$published=JHTML::_('grid.published',$row,$i,'tick.png','publish_x.png','eventtype.');
+					$checked=JHtml::_('grid.checkedout',$row,$i);
+					$published=JHtml::_('grid.published',$row,$i,'tick.png','publish_x.png','eventtype.');
 					?>
 					<tr class="<?php echo "row$k"; ?>">
 						<td class="center"><?php echo $this->pagination->getRowOffset($i); ?></td>
 						<td class="center"><?php echo $checked; ?></td>
 						<?php
-						if (JTable::isCheckedOut($this->user->get('id'),$row->checked_out))
+						if (JLTable::_isCheckedOut($this->user->get('id'),$row->checked_out))
 						{
 							$inputappend=' disabled="disabled"';
 							?><td class="center">&nbsp;</td><?php
@@ -99,7 +99,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 								<a href="<?php echo $link; ?>">
 									<?php
 									$imageTitle=JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_EDIT_DETAILS');
-									echo JHTML::_(	'image','administrator/components/com_joomleague/assets/images/edit.png',
+									echo JHtml::_(	'image','administrator/components/com_joomleague/assets/images/edit.png',
 													$imageTitle, 'title= "'.$imageTitle.'"');
 									?>
 								</a>
@@ -170,5 +170,5 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 	<input type="hidden" name="boxchecked"			value="0" />
 	<input type="hidden" name="filter_order"		value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir"	value="" />
-	<?php echo JHTML::_('form.token'); ?>
+	<?php echo JHtml::_('form.token'); ?>
 </form>
