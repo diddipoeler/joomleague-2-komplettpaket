@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <form>
+<!-- register 1 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 		group="COM_JOOMLEAGUE_FES_PARAMS_GROUP_PAGE_ELEMENTS" description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PAGE_ELEMENTS">
 
@@ -105,6 +106,7 @@
 		
 	</fieldset>
 
+  <!-- register 2 -->
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_EVENTSOPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_EVENTSOPTIONS"
 			addfieldpath="/administrator/components/com_joomleague/elements">
@@ -160,6 +162,7 @@
 		</field>
 	</fieldset>
 
+  <!-- register 3 -->
 	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_MATCHOPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_MATCHOPTIONS">	
 
@@ -219,7 +222,8 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>	
 	</fieldset>				
-	
+
+<!-- register 4 -->	
 	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_RESULTSOPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_RESULTSOPTIONS">	
 
@@ -244,7 +248,8 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>	
 	</fieldset>		
-	
+
+<!-- register 5 -->	
   <fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ROSTER_PLAYGROUND"
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ROSTER_PLAYGROUND">
   
@@ -279,6 +284,11 @@
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_PICTURE_WIDTH">
 		</field>
 
+    <field 	name="roster_playground_player_fade" type="text" default="1000"
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_FADE" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_FADE">
+		</field>
+		
 <field name="roster_playground_select" 
 type="imagelist" default="spielfeld_578x1050.png" 
 label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_SELECT" 
@@ -330,7 +340,8 @@ stripext=""
 		</field>
 -->                  
   </fieldset>
-      
+
+<!-- register 6 -->      
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_TEAMOPTIONS"
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_TEAMOPTIONS">	
 			
@@ -372,6 +383,7 @@ stripext=""
 		
 	</fieldset>		
 
+  <!-- register 7 -->
 	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONOPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_PERSONOPTIONS">	
 			
@@ -427,7 +439,8 @@ stripext=""
 -->
 		
 	</fieldset>
-	
+
+<!-- register 8 -->	
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ADVANCED_OPTIONS">	
 			

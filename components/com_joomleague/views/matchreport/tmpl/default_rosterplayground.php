@@ -1,6 +1,6 @@
 <?php 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-$startfade = 1000;
+$startfade = $this->config['roster_playground_player_fade'];
 ?>
 
 <script>
@@ -12,7 +12,7 @@ foreach ($this->matchplayers as $player)
 ?>    
 jQuery("#<?PHP echo $player->person_id; ?>").delay(<?PHP echo $startfade; ?>).slideToggle("slow");
 <?php
-$startfade += 1000;    
+$startfade += $this->config['roster_playground_player_fade'];    
 }    
 ?>
 }, 2000);
