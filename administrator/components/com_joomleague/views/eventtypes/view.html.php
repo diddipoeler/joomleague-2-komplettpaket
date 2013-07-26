@@ -28,7 +28,7 @@ class JoomleagueViewEventtypes extends JLGView
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
-		$uri	= JFactory::getURI();
+		$uri	= JFactory::getUri();
 		$filter_sports_type	= $mainframe->getUserStateFromRequest($option.'.'.$this->get('identifier').'.filter_sports_type','filter_sports_type','',			'int');
 		$filter_state		= $mainframe->getUserStateFromRequest($option.'.'.$this->get('identifier').'.filter_state',		'filter_state',		'',				'word');
 		$filter_order		= $mainframe->getUserStateFromRequest($option.'.'.$this->get('identifier').'.filter_order',		'filter_order',		'obj.ordering',	'cmd');
@@ -41,7 +41,7 @@ class JoomleagueViewEventtypes extends JLGView
 		$pagination =& $this->get('Pagination');
 
 		// state filter
-		$lists['state']	= JHTML::_('grid.state', $filter_state);
+		$lists['state']	= JHtml::_('grid.state', $filter_state);
 
 		// table ordering
 		$lists['order_Dir']	= $filter_order_Dir;
@@ -51,12 +51,12 @@ class JoomleagueViewEventtypes extends JLGView
 		$lists['search']	= $search;
 
 		//build the html select list for sportstypes
-		$sportstypes[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_EVENTS_SPORTSTYPE_FILTER'),'id','name');
 		$allSportstypes =& JoomleagueModelSportsTypes::getSportsTypes();
 		
 		$sportstypes=array_merge($sportstypes,$allSportstypes);
 		
-		$lists['sportstypes']=JHTML::_( 'select.genericList',
+		$lists['sportstypes']=JHtml::_( 'select.genericList',
 										$sportstypes,
 										'filter_sports_type',
 										'class="inputbox" onChange="this.form.submit();" style="width:120px"',
