@@ -195,6 +195,11 @@ foreach ($this->matchplayerpositions as $pos)
 				}
 			}
 
+if ( $this->show_debug_info )
+{
+echo 'this->heim personCount<br /><pre>~' . print_r($personCount,true) . '~</pre><br />';
+}
+
 if ($personCount > 0)
 {
 
@@ -213,6 +218,14 @@ if ( !file_exists( $picture ) )
 {
 $picture = JoomleagueHelper::getDefaultPlaceholder("player");
 }
+}
+
+if ( $this->show_debug_info )
+{
+echo 'this->heim person_id<br /> ~' . $player->person_id . ' ~<br />';
+echo 'this->heim lastname<br /> ~' . $player->lastname . ' ~<br />';
+echo 'this->heim firstname<br /> ~' . $player->firstname . ' ~<br />';
+echo 'this->heim picture<br /> ~' . $picture . ' ~<br />';
 }
 
 ?>
@@ -249,6 +262,11 @@ foreach ($this->matchplayerpositions as $pos)
 					$personCount++;
 				}
 			}
+
+if ( $this->show_debug_info )
+{
+echo 'this->gast personCount<br /><pre>~' . print_r($personCount,true) . '~</pre><br />';
+}
 
 if ($personCount > 0)
 {			
