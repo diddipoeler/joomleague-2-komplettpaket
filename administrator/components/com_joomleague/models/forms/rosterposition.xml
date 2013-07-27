@@ -29,6 +29,16 @@ addrulepath="/administrator/components/com_joomleague/models/rules"
 				value="AWAY_POS">
 				AWAY_POS</option>
 		</field>
+		
+		<field
+			name="players"
+			type="text"
+			class="inputbox"
+			default="11"
+			label="COM_JOOMLEAGUE_ADMIN_ROSTERPOSITIONS_PLAYERS"
+			description="COM_JOOMLEAGUE_ADMIN_ROSTERPOSITIONS_PLAYERS"
+			/>
+			
 <field
 			name="country"
 			type="country"

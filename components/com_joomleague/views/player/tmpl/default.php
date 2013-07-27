@@ -37,6 +37,14 @@ if (isset($this->person))
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}
 	}
+    else
+    {
+    if ($this->config['show_plinfo'] == 1)
+	{
+		$output[intval($this->config['show_order_plinfo'])] = 'info';
+	}    
+    }
+    
     
     if ($this->config['show_playfield'] == 1)
 	{
@@ -117,7 +125,7 @@ if (isset($this->person))
     $startoutput = '';
     $params = '';
     $params .= $this->loadTemplate('INFO'); 
-    if($this->config['show_players_layout'] == "player_tabbed") 
+    if( $this->config['show_players_layout'] == "player_tabbed" ) 
     {
     $startoutput = '{tab=';
     $endoutput = '{/tabs}';
@@ -128,9 +136,9 @@ if (isset($this->person))
     $params .= $this->loadTemplate($templ);    
     }    
     $params .= $endoutput;   
-       
+    echo JHTML::_('content.prepare', $params);   
     }    
-    else if($this->config['show_players_layout'] == "player_slider") 
+    else if($this->config['show_players_layout'] == "player_slider" ) 
     {
     $startoutput = '{slider=';
     $endoutput = '{/slider}';
@@ -140,10 +148,16 @@ if (isset($this->person))
     $params .= $this->loadTemplate($templ);    
     $params .= $endoutput;
     }    
-        
+    echo JHTML::_('content.prepare', $params);    
     }    
+    else 
+    {
+	foreach ($output as $templ)
+	{
+	echo $this->loadTemplate($templ);
+	}
+	}
     
-    echo JHTML::_('content.prepare', $params);
      
     }
 	// Person view END

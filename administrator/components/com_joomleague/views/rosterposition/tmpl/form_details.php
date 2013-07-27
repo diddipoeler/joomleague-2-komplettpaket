@@ -13,6 +13,11 @@
 			<td class="key"><?php echo $this->form->getLabel('short_name'); ?></td>
 			<td><?php echo $this->form->getInput('short_name'); ?></td>
 		</tr>		
+        
+        <tr>
+			<td class="key"><?php echo $this->form->getLabel('players'); ?></td>
+			<td><?php echo $this->form->getInput('players'); ?></td>
+		</tr>
 		
 		<tr>
 			<td class="key"><?php echo $this->form->getLabel('country'); ?></td>
