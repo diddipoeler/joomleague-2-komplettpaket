@@ -8,7 +8,16 @@ if(count($this->extended->getFieldsets()) > 0)
 	
 	foreach ($this->extended->getFieldsets() as $fieldset)
 	{
-		$fields = $this->extended->getFieldset($fieldset->name);
+		
+        if ( $this->config['show_extended_geo_values'] )
+        {
+            $fields = $this->extended->getFieldset($fieldset->name);
+        }
+        else
+        {
+            $fields = $this->extended->getFieldset('COM_JOOMLEAGUE_EXT_EXTENDED_PREFERENCES');
+        }
+        
 		if (count($fields) > 0)
 		{
 			// Check if the extended data contains information 

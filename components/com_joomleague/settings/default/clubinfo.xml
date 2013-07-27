@@ -51,6 +51,14 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
+		
+		<field name="show_extended_geo_values" type="radio" default="0"
+			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_EXTENDED_GEO"
+			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_EXTENDED_GEO">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 		<field name="show_maps" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_LABEL_SHOW_MAPS"
 			description="COM_JOOMLEAGUE_FES_CLUBINFO_PARAM_DESCR_SHOW_MAPS">
