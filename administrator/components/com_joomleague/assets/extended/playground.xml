@@ -12,14 +12,13 @@
 			<option value="Naturrasen">Naturrasen</option>
 			<option value="Hyprid-Rasen">Hyprid-Rasen (Kunstrasen/Naturrasen-Mix)</option>
 			<option value="TennenHartplatz">Tennen/Hartplatz (Grand/Asche...)</option>
-			
-			
 			<option value="Grand">Grand</option>
 			<option value="Asche">Asche</option>
 			<option value="Gummiplatz">Gummiplatz</option>
-			
 		</field>
-		
+</fieldset>
+
+<fieldset name="COM_JOOMLEAGUE_EXT_EXTENDED_GEOVALUES">		
 		<field 	name="COM_JOOMLEAGUE_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME" type="text" 
 				label="COM_JOOMLEAGUE_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME_LABEL"
 				description="COM_JOOMLEAGUE_ADMINISTRATIVE_AREA_LEVEL_1_LONG_NAME_DESC">
