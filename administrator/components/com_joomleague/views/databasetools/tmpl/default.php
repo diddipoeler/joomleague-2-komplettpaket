@@ -1,6 +1,6 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
-JHTML::_( 'behavior.tooltip' );
+JHtml::_( 'behavior.tooltip' );
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<div id="editcell">
@@ -106,5 +106,5 @@ JHTML::_( 'behavior.tooltip' );
 	</div>
 
 	<input type="hidden" name="task" value="databasetool.execute" />
-	<?php echo JHTML::_( 'form.token' ); ?>
+	<?php echo JHtml::_( 'form.token' ); ?>
 </form>
