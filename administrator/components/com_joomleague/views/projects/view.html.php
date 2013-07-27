@@ -27,7 +27,7 @@ class JoomleagueViewProjects extends JLGView
 	{
 		$option 	= JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
-		$uri		= JFactory::getURI();
+		$uri		= JFactory::getUri();
 
 		$filter_league		= $mainframe->getUserStateFromRequest($option.'.'.$this->get('identifier').'.filter_league',		'filter_league','',					'int');
 		$filter_sports_type	= $mainframe->getUserStateFromRequest($option.'.'.$this->get('identifier').'.filter_sports_type',	'filter_sports_type','',			'int');
@@ -45,7 +45,7 @@ class JoomleagueViewProjects extends JLGView
 		$javascript = "onchange=\"$('adminForm').submit();\"";
 
 		// state filter
-		$lists['state'] = JHTML::_('grid.state',$filter_state);
+		$lists['state'] = JHtml::_('grid.state',$filter_state);
 
 		// table ordering
 		$lists['order_Dir'] = $filter_order_Dir;
@@ -55,11 +55,11 @@ class JoomleagueViewProjects extends JLGView
 		$lists['search'] = $search;
 
 		//build the html select list for leagues
-		$leagues[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUES_FILTER'),'id','name');
+		$leagues[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUES_FILTER'),'id','name');
 		$mdlLeagues = JModel::getInstance('Leagues','JoomleagueModel');
 		$allLeagues = $mdlLeagues->getLeagues();
 		$leagues=array_merge($leagues,$allLeagues);
-		$lists['leagues']=JHTML::_( 'select.genericList',
+		$lists['leagues']=JHtml::_( 'select.genericList',
 									$leagues,
 									'filter_league',
 									'class="inputbox" onChange="this.form.submit();" style="width:120px"',
@@ -70,11 +70,11 @@ class JoomleagueViewProjects extends JLGView
 		
 		
 		//build the html select list for sportstypes
-		$sportstypes[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE_FILTER'),'id','name');
+		$sportstypes[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE_FILTER'),'id','name');
 		$mdlSportsTypes = JModel::getInstance('SportsTypes', 'JoomleagueModel');
 		$allSportstypes = $mdlSportsTypes->getSportsTypes();
 		$sportstypes=array_merge($sportstypes,$allSportstypes);
-		$lists['sportstypes']=JHTML::_( 'select.genericList',
+		$lists['sportstypes']=JHtml::_( 'select.genericList',
 										$sportstypes,
 										'filter_sports_type',
 										'class="inputbox" onChange="this.form.submit();" style="width:120px"',
@@ -85,11 +85,11 @@ class JoomleagueViewProjects extends JLGView
 		
 		
 		//build the html select list for seasons
-		$seasons[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON_FILTER'),'id','name');
+		$seasons[]=JHtml::_('select.option','0',JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON_FILTER'),'id','name');
 
 		if ($res = $this->get('Seasons')){$seasons=array_merge($seasons,$res);}
 		
-		$lists['seasons']=JHTML::_( 'select.genericList',
+		$lists['seasons']=JHtml::_( 'select.genericList',
 									$seasons,
 									'filter_season',
 									'class="inputbox" onChange="this.form.submit();" style="width:120px"',

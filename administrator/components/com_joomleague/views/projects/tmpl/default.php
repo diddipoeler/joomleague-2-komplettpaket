@@ -1,5 +1,5 @@
 <?php defined('_JEXEC') or die('Restricted access');
-JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
+JHtml::_('behavior.tooltip');JHtml::_('behavior.modal');
 ?>
 <form action="<?php echo $this->request_url; ?>" method="post" id="adminForm">
 	<table>
@@ -34,27 +34,27 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					<th width="20">&nbsp;</th>
 					<th class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_NAME_OF_PROJECT','p.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_NAME_OF_PROJECT','p.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUE','l.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_LEAGUE','l.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON','s.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SEASON','s.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE','st.name',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_SPORTSTYPE','st.name',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_PROJECTTYPE','p.project_type',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PROJECTS_PROJECTTYPE','p.project_type',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th width="5%" class="title">
@@ -64,18 +64,18 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					</th>
 					<th width="5%" class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','p.published',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','p.published',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 					<th width="10%" class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','p.ordering',$this->lists['order_Dir'],$this->lists['order']);
-						echo JHTML::_('grid.order', $this->items, 'filesave.png', 'project.saveorder');
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','p.ordering',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.order', $this->items, 'filesave.png', 'project.saveorder');
 						?>
 					</th>
 					<th width="5%" class="title">
 						<?php
-						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','p.id',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','p.id',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 				</tr>
@@ -92,14 +92,14 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					$link2=JRoute::_('index.php?option=com_joomleague&view=projects&task=project.display&&cid[]='.$row->id);
 					$link2panel=JRoute::_('index.php?option=com_joomleague&task=joomleague.workspace&layout=panel&pid[]='.$row->id.'&stid[]='.$row->sports_type_id);
 
-					$checked    = JHTML::_('grid.checkedout',$row,$i);
-					$published  = JHTML::_('grid.published',$row,$i,'tick.png','publish_x.png','project.');
+					$checked    = JHtml::_('grid.checkedout',$row,$i);
+					$published  = JHtml::_('grid.published',$row,$i,'tick.png','publish_x.png','project.');
 					?>
 					<tr class="<?php echo "row$k"; ?>">
 						<td class="center"><?php echo $this->pagination->getRowOffset($i); ?></td>
 						<td width="5%" class="center"><?php echo $checked; ?></td>
 						<?php
-						if (JTable::isCheckedOut($this->user->get ('id'),$row->checked_out))
+						if (JLTable::_isCheckedOut($this->user->get ('id'),$row->checked_out))
 						{
 							$inputappend=' disabled="disabled"';
 							?><td class="center">&nbsp;</td><?php
@@ -110,7 +110,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 							?>
 							<td class="center">
 								<a href="<?php echo $link; ?>">
-									<img src="<?php echo JURI::root();?>/administrator/components/com_joomleague/assets/images/edit.png"
+									<img src="<?php echo JUri::root();?>/administrator/components/com_joomleague/assets/images/edit.png"
 										 border="0"
 										 alt="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_EDIT_DETAILS');?>"
 										 title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_EDIT_DETAILS');?>" />
@@ -121,7 +121,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 						?>
 						<td>
 							<?php
-							if (JTable::isCheckedOut($this->user->get('id'),$row->checked_out))
+							if (JLTable::_isCheckedOut($this->user->get('id'),$row->checked_out))
 							{
 								echo $row->name;
 							}
@@ -137,8 +137,8 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 						<td class="center"><?php echo JText::_($row->project_type); ?></td>
 						<td class="center">
 							<?php if ($row->current_round): ?>
-								<?php echo JHTML::link('index.php?option=com_joomleague&view=matches&task=match.display&pid[]='.$row->id.'&rid[]='. $row->current_round,
-								                       JHTML::image(JURI::root().'administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png', JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES_DETAILS'))); ?>
+								<?php echo JHtml::link('index.php?option=com_joomleague&view=matches&task=match.display&pid[]='.$row->id.'&rid[]='. $row->current_round,
+								                       JHtml::image(JUri::root().'administrator/components/com_joomleague/assets/images/icon-16-Matchdays.png', JText::_('COM_JOOMLEAGUE_ADMIN_PROJECTS_GAMES_DETAILS'))); ?>
 							<?php endif; ?>
 						</td>
 						<td class="center"><?php echo $published; ?></td>
@@ -163,5 +163,5 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 	<input type="hidden" name="boxchecked"			value="0" />
 	<input type="hidden" name="filter_order"		value="<?php echo $this->lists['order']; ?>" />
 	<input type="hidden" name="filter_order_Dir"	value="" />
-	<?php echo JHTML::_('form.token'); ?>
+	<?php echo JHtml::_('form.token'); ?>
 </form>

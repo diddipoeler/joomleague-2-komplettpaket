@@ -28,7 +28,7 @@ class JoomleagueViewClubs extends JLGView
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
-		$uri	= JFactory::getURI();
+		$uri	= JFactory::getUri();
 
 		$filter_state		= $mainframe->getUserStateFromRequest($option.'a_filter_state',		'filter_state',		'',				'word');
 		$filter_order		= $mainframe->getUserStateFromRequest($option.'a_filter_order',		'filter_order',		'a.ordering',	'cmd');
@@ -42,7 +42,7 @@ class JoomleagueViewClubs extends JLGView
 		$pagination =& $this->get('Pagination');
 
 		// state filter
-		$lists['state'] = JHTML::_('grid.state',$filter_state);
+		$lists['state'] = JHtml::_('grid.state',$filter_state);
 
 		// table ordering
 		$lists['order_Dir'] = $filter_order_Dir;
