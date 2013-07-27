@@ -272,6 +272,12 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 				$tblTeamplayer =& JTable::getInstance( 'Teamplayer', 'Table' );
 				$tblTeamplayer->person_id		= $pid;
 				$tblTeamplayer->projectteam_id	= $projectteam_id;
+                // diddipoeler published
+                $tblTeamplayer->published		= 1;
+                // diddipoeler picture
+                $tblPerson =& JTable::getInstance( 'Person', 'Table' );
+                $tblPerson->load($pid);
+                
 
 				$tblProjectTeam =& JTable::getInstance( 'Projectteam', 'Table' );
 				$tblProjectTeam->load($projectteam_id);
@@ -297,7 +303,7 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 					{
 						$tblTeamplayer->project_position_id = $resPrjPosition->id;
 					}
-
+                    // diddipoeler picture
 					$tblTeamplayer->picture			= $person->picture;
 					$tblTeamplayer->projectteam_id	= $projectteam_id;
 
