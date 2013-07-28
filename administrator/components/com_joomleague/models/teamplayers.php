@@ -303,8 +303,9 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 					{
 						$tblTeamplayer->project_position_id = $resPrjPosition->id;
 					}
-                    // diddipoeler picture
+                    // diddipoeler picture and notes
 					$tblTeamplayer->picture			= $person->picture;
+                    $tblTeamplayer->notes			= $person->notes;
 					$tblTeamplayer->projectteam_id	= $projectteam_id;
 
 				}
