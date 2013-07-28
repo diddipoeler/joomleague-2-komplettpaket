@@ -14,20 +14,24 @@ $nebenimage = 'images/com_joomleague/database/person_playground/nebenposition.pn
 switch ( $this->teamPlayer->position_name )
 {
 case 'JL_P_GOALKEEPER':
+case 'COM_JOOMLEAGUE_P_GOALKEEPER':
 case 'Torwart':
 case 'Torhüter':
 case 'TorhÃ¼ter':
 $image_class = 'hp1';
 break;
 case 'JL_P_DEFENDER':
+case 'COM_JOOMLEAGUE_P_DEFENDER':
 case 'Abwehr':
 $image_class = 'hp3l';
 break;
 case 'JL_P_MIDFIELDER':
+case 'COM_JOOMLEAGUE_P_MIDFIELDER':
 case 'Mittelfeld':
 $image_class = 'hp6';
 break;
 case 'JL_P_FORWARD':
+case 'COM_JOOMLEAGUE_P_FORWARD':
 case 'Sturm':
 case 'Stürmer':
 case 'StÃ¼rmer':
