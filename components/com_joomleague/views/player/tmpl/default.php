@@ -153,6 +153,10 @@ if (isset($this->person))
     }    
     else 
     {
+    if ($this->config['show_plinfo'] == 1)
+	{
+		$output[intval($this->config['show_order_plinfo'])] = 'info';
+	}     
 	foreach ($output as $templ)
 	{
 	echo $this->loadTemplate($templ);
