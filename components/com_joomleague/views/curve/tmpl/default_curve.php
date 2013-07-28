@@ -28,7 +28,7 @@ foreach ($this->divisions as $division)
 		
 		<form name="curveform<?php echo $division->id; ?>" method="get"
 			id="curveform<?php echo $division->id; ?>">
-			
+			<input type="hidden" name="option" value="com_joomleague" />
 			<input type="hidden" name="view" value="curve" />
 			<input type="hidden" name="p" value="<?php echo $this->project->id; ?>" />  
 			<input type="hidden" name="tid1" value="" /> 
