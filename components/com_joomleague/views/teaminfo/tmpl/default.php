@@ -57,6 +57,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
         $output['COM_JOOMLEAGUE_TEAMINFO_HISTORY_PER_LEAGUE_SUMMARY'] = 'history_leagues';
 	}
     
+    if ($this->config['show_training']==1)
+	{
+        $output['COM_JOOMLEAGUE_TEAMINFO_TRAINING'] = 'training';
+	}
+    
   
   // ################################################################
   
