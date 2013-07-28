@@ -538,8 +538,10 @@ if (!empty($this->rows))
 	if ($this->config['show_totals'] && ($this->config['show_stats'] || $this->config['show_events_stats']))
 	{
   
+  if ( $age && $countplayer )
+  {
   $meanage = round( $age / $countplayer , 2);
-  
+  }
 		?>
 	<tr class='<?php echo ($k==0? 'sectiontableentry1' : 'sectiontableentry2').' totals'; ?>'>
     <td class="td_r" colspan="3"><?php echo JText::_('COM_JOOMLEAGUE_TEAMINFO_TOTAL_PLAYERS_MEAN_AGE').' '.$meanage; ?></td>
