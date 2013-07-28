@@ -264,6 +264,11 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 				$tblTeamstaff =& JTable::getInstance('Teamstaff','Table');
 				$tblTeamstaff->person_id=$pid;
 				$tblTeamstaff->projectteam_id=$projectteam_id;
+                // diddipoeler published
+                $tblTeamplayer->published		= 1;
+                // diddipoeler picture
+                $tblPerson =& JTable::getInstance( 'Person', 'Table' );
+                $tblPerson->load($pid);
 
 				$tblProjectTeam =& JTable::getInstance( 'Projectteam', 'Table' );
 				$tblProjectTeam->load($projectteam_id);
