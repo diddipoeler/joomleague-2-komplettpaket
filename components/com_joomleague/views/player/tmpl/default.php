@@ -37,6 +37,7 @@ if (isset($this->person))
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}
 	}
+    /*
     else
     {
     if ($this->config['show_plinfo'] == 1)
@@ -44,7 +45,7 @@ if (isset($this->person))
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}    
     }
-    
+    */
     
     if ($this->config['show_playfield'] == 1)
 	{
