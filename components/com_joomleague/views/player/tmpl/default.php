@@ -37,15 +37,18 @@ if (isset($this->person))
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}
 	}
-    /*
+    
     else
+    {
+    if($this->config['show_players_layout'] == "player_standard")
     {
     if ($this->config['show_plinfo'] == 1)
 	{
 		$output[intval($this->config['show_order_plinfo'])] = 'info';
 	}    
     }
-    */
+    }
+    
     
     if ($this->config['show_playfield'] == 1)
 	{
@@ -153,10 +156,10 @@ if (isset($this->person))
     }    
     else 
     {
-    if ($this->config['show_plinfo'] == 1)
-	{
-		$output[intval($this->config['show_order_plinfo'])] = 'info';
-	}     
+//  if ($this->config['show_plinfo'] == 1)
+//	{
+//		$output[intval($this->config['show_order_plinfo'])] = 'info';
+//	}     
 	foreach ($output as $templ)
 	{
 	echo $this->loadTemplate($templ);
