@@ -121,6 +121,8 @@ else {
 									}
 									else
 									{
+										echo modJLGResultsHelper::getLogo($teams[$match->projectteam1_id], $params);
+										echo '&nbsp;';
 										echo $teams[$match->projectteam1_id]->$nametype;
 									}
 									echo '&nbsp;';
