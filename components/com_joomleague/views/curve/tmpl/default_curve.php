@@ -36,7 +36,7 @@ foreach ($this->divisions as $division)
 			<input type="hidden" name="division" value="<?php echo $division->id; ?>" /> 
 			<input type="submit" style="font-size: 9px;" class="inputbox"
 				value="<?php echo JText::_('COM_JOOMLEAGUE_CURVE_GO'); ?>" />
-			<?php echo JHTML::_( 'form.token' ); ?>
+			<?php echo JHtml::_( 'form.token' ); ?>
 		</form>
 	</td>
 	</tr>
@@ -47,13 +47,13 @@ function get_curve_chart_<?php echo $division->id; ?>() {
 	echo $this->$chart->toString(); ?>;
 	return JSON.stringify(data_curve_chart_<?php echo $division->id; ?>);
 }
-swfobject.embedSWF("<?php echo JURI::base().'components/com_joomleague/assets/classes/open-flash-chart/open-flash-chart.swf'; ?>", 
+swfobject.embedSWF("<?php echo JUri::base().'components/com_joomleague/assets/classes/open-flash-chart/open-flash-chart.swf'; ?>", 
 		"curve_chart_<?php echo $division->id; ?>", "100%", "400", "9.0.0", false, 
 		{"loading": "loading <?php echo $division->name; ?>","get-data": "get_curve_chart_<?php echo $division->id; ?>", "wmode" : "transparent"} );
 
 function reload_curve_chart_<?php echo $division->id; ?>() {
 	var tmp = findSWF("curve_chart_<?php echo $division->id; ?>");
-	var baseurl = '<?php echo JURI::base() ?>/';
+	var baseurl = '<?php echo JUri::base() ?>/';
 	var reloadstring = 'index.php?option=com_joomleague&format=raw&view=curve&p=<?php echo $this->project->slug?>&division=<?php echo $division->id;?>'+
 	'&tid1='+document.getElementById('tid1_<?php echo $division->id; ?>').options[document.getElementById('tid1_<?php echo $division->id; ?>').selectedIndex].value+
 	'&tid2='+document.getElementById('tid2_<?php echo $division->id; ?>').options[document.getElementById('tid2_<?php echo $division->id; ?>').selectedIndex].value;

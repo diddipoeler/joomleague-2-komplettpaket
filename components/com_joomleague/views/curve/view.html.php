@@ -30,7 +30,7 @@ class JoomleagueViewCurve extends JLGView
 		{
 			$teamid1 = $model->teamid1;
 			$teamid2 = $model->teamid2;
-			$options = array(	JHTML::_( 'select.option', '0', JText::_('COM_JOOMLEAGUE_CURVE_CHOOSE_TEAM') ) );
+			$options = array(	JHtml::_( 'select.option', '0', JText::_('COM_JOOMLEAGUE_CURVE_CHOOSE_TEAM') ) );
 			$divisions = $model->getDivisions();
 			if (count($divisions)>0 && $division == 0)
 			{
@@ -40,7 +40,7 @@ class JoomleagueViewCurve extends JLGView
 					$teams = $model->getTeams($d->id);
 					$i=0;
 					foreach ((array) $teams as $t) {
-						$options[] = JHTML::_( 'select.option', $t->id, $t->name );
+						$options[] = JHtml::_( 'select.option', $t->id, $t->name );
 						if($i==0) {
 							$teamid1=$t->id;
 						}
@@ -49,8 +49,8 @@ class JoomleagueViewCurve extends JLGView
 						}
 						$i++;
 					}
-					$team1select[$d->id] = JHTML::_('select.genericlist', $options, 'tid1_'.$d->id, 'onchange="reload_curve_chart_'.$d->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid1);
-					$team2select[$d->id] = JHTML::_('select.genericlist', $options, 'tid2_'.$d->id, 'onchange="reload_curve_chart_'.$d->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid2);
+					$team1select[$d->id] = JHtml::_('select.genericlist', $options, 'tid1_'.$d->id, 'onchange="reload_curve_chart_'.$d->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid1);
+					$team2select[$d->id] = JHtml::_('select.genericlist', $options, 'tid2_'.$d->id, 'onchange="reload_curve_chart_'.$d->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid2);
 				}
 			}
 			else
@@ -68,7 +68,7 @@ class JoomleagueViewCurve extends JLGView
 				$teams = $model->getTeams($division);
 				$i=0;
 				foreach ((array) $teams as $t) {
-					$options[] = JHTML::_( 'select.option', $t->id, $t->name );
+					$options[] = JHtml::_( 'select.option', $t->id, $t->name );
 					if($i==0 && $teamid1==0) {
 						$teamid1=$t->id;
 					}
@@ -77,8 +77,8 @@ class JoomleagueViewCurve extends JLGView
 					}
 					$i++;
 				}
-				$team1select[$div->id] = JHTML::_('select.genericlist', $options, 'tid1_'.$div->id, 'onchange="reload_curve_chart_'.$div->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid1);
-				$team2select[$div->id] = JHTML::_('select.genericlist', $options, 'tid2_'.$div->id, 'onchange="reload_curve_chart_'.$div->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid2);		
+				$team1select[$div->id] = JHtml::_('select.genericlist', $options, 'tid1_'.$div->id, 'onchange="reload_curve_chart_'.$div->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid1);
+				$team2select[$div->id] = JHtml::_('select.genericlist', $options, 'tid2_'.$div->id, 'onchange="reload_curve_chart_'.$div->id.'()" class="inputbox" style="font-size:9px;"','value', 'text', $teamid2);		
 			}
 
 			$this->assignRef( 'overallconfig', $model->getOverallConfig() );
@@ -98,9 +98,7 @@ class JoomleagueViewCurve extends JLGView
 			$this->assignRef( 'team1select',     $team1select );
 			$this->assignRef( 'team2select',     $team2select );
 			$this->_setChartdata(array_merge($flashconfig, $rankingconfig));
-			
-			$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
-      // Set page title
+			// Set page title
 			$pageTitle = JText::_( 'COM_JOOMLEAGUE_CURVE_PAGE_TITLE' );
 			if (( isset( $this->team1 ) ) AND (isset( $this->team1 )))
 			{

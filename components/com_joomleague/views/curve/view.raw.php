@@ -8,7 +8,8 @@ class JoomleagueViewCurve extends JLGView
 {
 	function display($tpl = null)
 	{
-		global $option;
+		$option = JRequest::getCmd('option');
+		
 		// Get a reference of the page instance in joomla
 		$document = JFactory::getDocument();
 		$uri      = JFactory::getURI();
