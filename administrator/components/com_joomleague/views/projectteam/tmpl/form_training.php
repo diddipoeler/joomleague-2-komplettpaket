@@ -12,7 +12,7 @@
 				<table class='admintable'>
 					<tr>
 						<td class='key' nowrap='nowrap'>
-							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_ADD_NEW'); ?>&nbsp;<input type='checkbox' name='add_trainingData' id='add' value='' onchange='javascript:submitbutton("apply");' />
+							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_ADD_NEW'); ?>&nbsp;<input type='checkbox' name='add_trainingData' id='add' value='' onchange='javascript:submitbutton("projectteam.apply");' />
 						</td>
 						<td class='key' style='text-align:center;' width='5%'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_DAY'); ?></td>
 						<td class='key' style='text-align:center;' width='5%'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_P_TEAM_STARTTIME'); ?></td>
@@ -37,7 +37,7 @@
 							?>
 							<tr>
 								<td class='key' nowrap='nowrap'>
-									<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE');?>&nbsp;<input type='checkbox' name='delete_<?php echo $td->id; ?>' value='' onchange='javascript:submitbutton("apply");' />
+									<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE');?>&nbsp;<input type='checkbox' name='delete_<?php echo $td->id; ?>' value='' onchange='javascript:submitbutton("projectteam.apply");' />
 								</td>
 								<td nowrap='nowrap' width='5%'><?php echo $this->lists['dayOfWeek'][$td->id]; ?></td>
 								<td nowrap='nowrap' width='5%'>
