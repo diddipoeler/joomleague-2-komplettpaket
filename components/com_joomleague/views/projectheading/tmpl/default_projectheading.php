@@ -1,5 +1,6 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
 
+
 if ( $this->show_debug_info )
 {
 echo 'this->overallconfig<br /><pre>~' . print_r($this->overallconfig,true) . '~</pre><br />';
@@ -39,26 +40,41 @@ if ( $this->overallconfig['show_project_heading'] == 1 && $this->project)
 						?>
 						<td>
 						<?php
-						echo JoomleagueHelper::getPictureThumb($this->project->sport_type_picture,
+                        // diddipoeler
+                        echo JHTML::image($this->project->sport_type_picture, $this->project->sport_type_name, array('title' => $this->project->sport_type_name,'width' => $this->overallconfig['picture_width'] ));
+						/*
+                        echo JoomleagueHelper::getPictureThumb($this->project->sport_type_picture,
 																$this->project->sport_type_name,
 																$this->overallconfig['picture_width'],
 																$this->overallconfig['picture_height'], 
 																2);
-						?>
+						*/
+                        ?>
 						</td>
 					<?php	
 			    	}	
 			    	if ( $this->overallconfig['show_project_picture'] == 1 )
 					{
-						?>
+						$picture = $this->project->picture;
+                        if ( $picture == 'images/com_joomleague/database/placeholders/placeholder_150.png' )
+                        {
+                            $picture = $this->project->leaguepicture;
+                        }
+                        
+                        
+                        ?>
 						<td>
 						<?php
-						echo JoomleagueHelper::getPictureThumb($this->project->picture,
+                        // diddipoeler
+                        echo JHTML::image($picture, $this->project->name, array('title' => $this->project->name,'width' => $this->overallconfig['picture_width'] ));
+						/*
+                        echo JoomleagueHelper::getPictureThumb($this->project->picture,
 																$this->project->name,
 																$this->overallconfig['picture_width'],
 																$this->overallconfig['picture_height'], 
 																2);
-						?>
+						*/
+                        ?>
 						</td>
 					<?php	
 			    	}

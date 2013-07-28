@@ -2,6 +2,7 @@
 
 jimport( 'joomla.application.component.view');
 
+
 class JoomleagueViewProjectHeading extends JLGView
 {
     function display( $tpl = null )

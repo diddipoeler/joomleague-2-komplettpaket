@@ -59,10 +59,12 @@
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PROJECT_PICTURE_WIDTH"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PROJECT_PICTURE_WIDTH">
 		</field>
+		<!--
 		<field name="picture_height" type="text" default="50"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_PROJECT_PICTURE_HEIGHT"
 			description="COM_JOOMLEAGUE_FES_PARAM_DESCR_PROJECT_PICTURE_HEIGHT">
 		</field>
+		-->
 		<field name="show_icons" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_SHOW_ICONS"
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_SHOW_ICONS">

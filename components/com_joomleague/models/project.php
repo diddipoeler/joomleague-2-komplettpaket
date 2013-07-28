@@ -68,7 +68,7 @@ class JoomleagueModelProject extends JModel
 		{
 			//fs_sport_type_name = sport_type folder name
 			$query='SELECT p.*, l.country, st.id AS sport_type_id, st.name AS sport_type_name,
-      st.icon AS sport_type_picture, 
+      st.icon AS sport_type_picture, l.picture as leaguepicture, 
 					LOWER(SUBSTR(st.name, CHAR_LENGTH( "COM_JOOMLEAGUE_ST_")+1)) AS fs_sport_type_name,
 					CASE WHEN CHAR_LENGTH( p.alias )
 					THEN CONCAT_WS( \':\', p.id, p.alias )
