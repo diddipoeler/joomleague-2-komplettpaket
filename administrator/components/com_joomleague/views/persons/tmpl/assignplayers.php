@@ -58,6 +58,7 @@
 						?>
 					</button>
 					</td>
+                    <td class="nowrap" align="right"><?php echo $this->lists['infofield'].'&nbsp;&nbsp;'; ?></td>
 			 	<td align="center" colspan="4">
 					<?php
 						for ($i=65; $i < 91; $i++)

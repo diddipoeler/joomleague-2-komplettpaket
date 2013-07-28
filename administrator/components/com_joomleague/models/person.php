@@ -401,7 +401,19 @@ class JoomleagueModelPerson extends JoomleagueModelItem
 		return false;
 	}
 	
-	/**
+	function getInfofield()
+    {
+    $query='	SELECT	info as id,
+							info AS name
+					FROM #__joomleague_person
+					GROUP BY info
+                    ORDER by info';
+		$this->_db->setQuery($query);
+        $result=$this->_db->loadObjectList();
+        return $result;
+    }
+    
+    /**
 	 * Method to return a positions array (id,position + (sports_type_name))
 	 *
 	 * @access	public

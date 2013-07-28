@@ -30,7 +30,7 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 	 * @param {string} query - the search string
 	 * @param {int} projectteam_id - the projectteam_id
 	 */
-	function getNotAssignedPlayers($searchterm, $projectteam_id)
+	function getNotAssignedPlayers($searchterm, $projectteam_id,$searchinfo = NULL )
 	{
 		$query  = "	SELECT pl.*, pl.id as id2 
 					FROM #__joomleague_person AS pl
@@ -44,7 +44,12 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 								WHERE	projectteam_id = ". $this->_db->Quote($projectteam_id) . " AND
 										tp.person_id = pl.id ) ";
 
-		$option = JRequest::getCmd('option');
+		if ( $searchinfo )
+        {
+            $query .= " AND pl.info LIKE '".$searchinfo . "' ";
+        }
+        
+        $option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 
 		$filter_order		= $mainframe->getUserStateFromRequest( $option . 'pl_filter_order', 'filter_order', 'pl.lastname', 'cmd' );
@@ -73,7 +78,7 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 	 * @param {string} query - the search string
 	 * @param {int} projectteam_id - the projectteam_id
 	 */
-	function getNotAssignedStaff($searchterm, $projectteam_id)
+	function getNotAssignedStaff($searchterm, $projectteam_id,$searchinfo = NULL)
 	{
 		$query  = "SELECT pl.* ";
 		$query .= "FROM #__joomleague_person AS pl ";
@@ -87,7 +92,12 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 		$query .= "                     WHERE projectteam_id = ". $this->_db->Quote($projectteam_id);
 		$query .= "                     AND ts.person_id = pl.id ) ";
 		
-		$option = JRequest::getCmd('option');
+		if ( $searchinfo )
+        {
+            $query .= " AND pl.info LIKE '".$searchinfo . "' ";
+        }
+        
+        $option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 
 		$filter_order		= $mainframe->getUserStateFromRequest( $option . 'pl_filter_order', 'filter_order', 'pl.lastname', 'cmd' );
@@ -117,7 +127,7 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 	 * @param {string} query - the search string
 	 * @param {int} projectteam_id - the projectteam_id
 	 */
-	function getNotAssignedReferees($searchterm, $projectid)
+	function getNotAssignedReferees($searchterm, $projectid,$searchinfo = NULL)
 	{
 		$query  = "SELECT pl.* ";
 		$query .= "FROM #__joomleague_person AS pl ";
@@ -130,7 +140,14 @@ class JoomleagueModelQuickAdd extends JoomleagueModelList
 		$query .= "                     FROM #__joomleague_project_referee AS pr ";
 		$query .= "                     WHERE project_id = ". $this->_db->Quote($projectid);
 		$query .= "                     AND pr.person_id = pl.id ) ";
-		$option = JRequest::getCmd('option');
+		
+        
+        if ( $searchinfo )
+        {
+            $query .= " AND pl.info LIKE '".$searchinfo . "' ";
+        }
+        
+        $option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 
 		$filter_order		= $mainframe->getUserStateFromRequest( $option . 'pl_filter_order', 'filter_order', 'pl.lastname', 'cmd' );

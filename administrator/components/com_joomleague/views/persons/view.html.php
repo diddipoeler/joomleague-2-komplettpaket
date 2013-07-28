@@ -41,6 +41,7 @@ class JoomleagueViewPersons extends JLGView
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'pl_filter_order_Dir', 'filter_order_Dir', '', 'word');
 		$search				= $mainframe->getUserStateFromRequest($option.'pl_search', 'search', '', 'string');
 		$search_mode		= $mainframe->getUserStateFromRequest($option.'pl_search_mode', 'search_mode', '', 'string');
+        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'word');
 
 		$items =& $this->get('Data');
 		$total =& $this->get('Total');
@@ -99,6 +100,8 @@ class JoomleagueViewPersons extends JLGView
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'pl_filter_order_Dir', 'filter_order_Dir', '', 'word');
 		$search			= $mainframe->getUserStateFromRequest($option.'pl_search', 'search', '', 'string');
 		$search_mode		= $mainframe->getUserStateFromRequest($option.'pl_search_mode',	'search_mode', '', 'string');
+        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'word');
+        
 
 		//save icon should be replaced by the apply
 		JLToolBarHelper::apply('person.saveassigned',JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_SAVE_SELECTED'));		
@@ -110,28 +113,47 @@ class JoomleagueViewPersons extends JLGView
                     //back icon should be replaced by the abort/close icon
                     JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK'),'index.php?option=com_joomleague&task=teamplayer.display&view=teamplayers');
                     JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_PLAYERS'),'generic.png');
-                    $items = $mdlQuickAdd->getNotAssignedPlayers(JString::strtolower($search),$project_team_id);
+                    $items = $mdlQuickAdd->getNotAssignedPlayers(JString::strtolower($search),$project_team_id,$filter_info);
 		}
 		elseif ($type==1)
 		{
                     //back icon should be replaced by the abort/close icon
                     JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK'),'index.php?option=com_joomleague&task=teamstaff.display&view=teamstaffs');
                     JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_STAFF'),'generic.png');
-                    $items = $mdlQuickAdd->getNotAssignedStaff(JString::strtolower($search),$project_team_id);
+                    $items = $mdlQuickAdd->getNotAssignedStaff(JString::strtolower($search),$project_team_id,$filter_info);
 		}
 		elseif ($type==2)
 		{
                     //back icon should be replaced by the abort/close icon
                     JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_BACK'),'index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display');
                     JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_ASSIGN_REFEREES'),'generic.png');
-                    $items = $mdlQuickAdd->getNotAssignedReferees(JString::strtolower($search),$project_id);
+                    $items = $mdlQuickAdd->getNotAssignedReferees(JString::strtolower($search),$project_id,$filter_info);
 		}
 
 		JLToolBarHelper::onlinehelp();		
 		
 		$limit = $mainframe->getUserStateFromRequest('global.list.limit','limit',$mainframe->getCfg('list_limit'),'int');
 
-		jimport('joomla.html.pagination');
+		
+        
+        //build the html select list for info field
+		$infoList[]=JHtml::_('select.option','',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_INFO_FIELD'),'id','name');
+		$infos = JModel::getInstance('person','JoomleagueModel');
+		$allInfos = $infos->getInfofield();
+        if ( $allInfos )
+        {
+		$infoList=array_merge($infoList,$allInfos);
+		$lists['infofield']=JHtml::_( 'select.genericList',
+									$infoList,
+									'filter_info',
+									'class="inputbox" onChange="this.form.submit();" style="width:120px"',
+									'id',
+									'name',
+									$filter_info);
+		unset($infoList);
+        }
+        
+        jimport('joomla.html.pagination');
 		$pagination = new JPagination($mdlQuickAdd->_total,JRequest::getVar('limitstart',0,'','int'),$limit);
 		$mdlQuickAdd->_pagination=$pagination;
 
