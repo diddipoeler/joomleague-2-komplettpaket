@@ -69,6 +69,13 @@
 			full season calendar" description="Shows all games for competitions belonging to 
 			same season."> <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option> <option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option> 
 			</field> -->
+			
+			<field name="show_training" type="radio" default="1"
+			label="COM_JOOMLEAGUE_FES_TEAMINFO_PARAM_LABEL_SHOW_TEAM_TRAINING" description="COM_JOOMLEAGUE_FES_TEAMINFO_PARAM_DESCR_SHOW_TEAM_TRAINING">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>
+		
 	</fieldset>
 
 

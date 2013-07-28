@@ -23,6 +23,24 @@ class JoomleagueModelTeamInfo extends JoomleagueModelProject
 	}
 
 	/**
+	* Method to return a team trainingdata array
+	* @param int projectid
+	* @return	array
+	*/
+	function getTrainigData( $projectid )
+	{
+		$trainingData = array();
+		if($this->projectteamid <= 0) {
+			$projectTeamID  = $this->getprojectteamID($this->teamid);
+		}
+		$query = "SELECT * FROM #__joomleague_team_trainingdata WHERE project_id=$projectid "
+				."AND project_team_id=$projectTeamID ORDER BY dayofweek ASC";
+		$this->_db->setQuery($query);
+		$trainingData = $this->_db->loadObjectList();
+		return $trainingData;
+	}
+    
+    /**
 	 * get team info
 	 * @return object
 	 */

@@ -28,6 +28,21 @@ class JoomleagueViewTeamInfo extends JLGView
 			$this->assignRef('showediticon', $isEditor);
 			$this->assignRef('projectteamid', $model->projectteamid);
             $this->assignRef('teamid', $model->teamid);
+            
+            $trainingData = $model->getTrainigData($this->project->id);
+			$this->assignRef( 'trainingData', $trainingData );
+
+			$daysOfWeek=array(
+				1 => JText::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),
+				2 => JText::_('COM_JOOMLEAGUE_GLOBAL_TUESDAY'),
+				3 => JText::_('COM_JOOMLEAGUE_GLOBAL_WEDNESDAY'),
+				4 => JText::_('COM_JOOMLEAGUE_GLOBAL_THURSDAY'),
+				5 => JText::_('COM_JOOMLEAGUE_GLOBAL_FRIDAY'),
+				6 => JText::_('COM_JOOMLEAGUE_GLOBAL_SATURDAY'),
+				7 => JText::_('COM_JOOMLEAGUE_GLOBAL_SUNDAY')
+			);
+			$this->assignRef( 'daysOfWeek', $daysOfWeek );
+            
       
       if ( $this->team->merge_clubs )
       {

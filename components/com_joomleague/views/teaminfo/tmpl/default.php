@@ -76,6 +76,10 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	if ($this->config['show_extended']==1)
 	{
 		echo $this->loadTemplate('extended');
+	}
+    if ($this->config['show_training']==1)
+	{
+		echo $this->loadTemplate('training');
 	}	
 		
 	if ($this->config['show_history']==1)
