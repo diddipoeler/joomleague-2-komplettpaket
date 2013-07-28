@@ -40,11 +40,14 @@ class JoomleagueControllerSettings extends JoomleagueController
 
 	function save()
 	{
-		// Check for request forgeries
+		$mainframe = JFactory::getApplication();
+        // Check for request forgeries
 		JRequest::checkToken() or die( 'COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN' );
 
 		// Sanitize
 		$task	= JRequest::getVar('task');
+        //$mainframe->enqueueMessage(JText::_('settings task -> '.'<pre>'.print_r($task,true).'</pre>' ),'');
+        
 		$data 	= JRequest::get( 'post' );
 		$data['option'] = 'com_joomleague';
 		$params = JRequest::getVar('params', array(), 'post', 'array');
@@ -202,11 +205,14 @@ class JoomleagueControllerSettings extends JoomleagueController
 		switch ($task)
 		{
 			case 'apply':
+            	$link = 'index.php?option=com_joomleague&task=settings.edit';
+				break;
 			case 'save':
-				$link = 'index.php?option=com_joomleague&task=settings.edit';
+				$link='index.php?option=com_joomleague&view=projects&task=project.display';
+                //$link = 'index.php?option=com_joomleague&task=settings.edit';
 				break;
 			default:
-				$link = 'index.php?option=com_joomleague&task=settings.display';
+				$link = 'index.php?option=com_joomleague&view=settings&task=settings.display';
 				break;
 		}
 
@@ -215,7 +221,8 @@ class JoomleagueControllerSettings extends JoomleagueController
 
 	function cancel()
 	{
-		$this->setRedirect( 'index.php?option=com_joomleague&task=settings.display' );
+		//$this->setRedirect( 'index.php?option=com_joomleague&view=settings&task=settings.display' );
+        $this->setRedirect( 'index.php?option=com_joomleague&view=projects&task=project.display' );
 	}
 }
 
