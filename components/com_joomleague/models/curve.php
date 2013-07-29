@@ -110,7 +110,8 @@ class JoomleagueModelCurve extends JoomleagueModelProject
 			$expiry_time = $config ? $config['expiry_time'] : 0;
 			$where_unplayed = ' AND (m.team1_result IS NULL OR m.team2_result IS NULL)'
 					. ' AND DATE_ADD(m.match_date, INTERVAL '.$this->_db->Quote($expiry_time).' MINUTE)'
-					. '    >= CONVERT_TZ(UTC_TIMESTAMP(), '.$this->_db->Quote('UTC').', p.timezone)';
+					// . '    >= CONVERT_TZ(UTC_TIMESTAMP(), '.$this->_db->Quote('UTC').', p.timezone)';
+                    . ' >= NOW()';
 			$order = ' ORDER BY m.match_date';
 			$this->_db->setQuery($query.$where.$where_unplayed.$order);
 			$match = $this->_db->loadObject();
