@@ -173,7 +173,7 @@ function _displayDefaultUpdate( $tpl )
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
 		$model	=& $this->getModel();
-		//$option='com_joomleague';
+
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
@@ -203,7 +203,7 @@ function _displayDefaultEdit( $tpl )
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();
 		$model	=& $this->getModel();
-		//$option='com_joomleague';
+
 		$project = $mainframe->getUserState( $option . 'project' );
 		$this->assignRef( 'project',		$project );
 		$config =& JComponentHelper::getParams('com_media');
@@ -313,7 +313,7 @@ $this->insert_task = 'insertmatch';
 
 	private function _displaySelectpage($tpl)
 	{
-		//$option='com_joomleague';
+
 		$mainframe =& JFactory::getApplication();
         $option = JRequest::getCmd('option');
 		$document =& JFactory::getDocument();

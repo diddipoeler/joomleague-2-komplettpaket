@@ -28,7 +28,7 @@ class JoomleagueViewjlextdbbimports extends JLGView
 function display( $tpl = null )
 	{
 		global $mainframe;
-    $option='com_joomleague';
+    $option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$revisionDate='2011-04-15 - 12:00';
 		$this->assignRef('revisionDate',$revisionDate);

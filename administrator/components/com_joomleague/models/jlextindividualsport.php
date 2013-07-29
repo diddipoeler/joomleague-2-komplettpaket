@@ -229,7 +229,7 @@ class JoomleagueModeljlextindividualsport extends JoomleagueModelList
 
 	function _buildContentOrderBy()
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 
 		$mainframe	=& JFactory::getApplication();
 		$filter_order		= $mainframe->getUserStateFromRequest($option . 'mc_filter_order', 'filter_order', 'mc.match_date', 'cmd');
@@ -253,7 +253,7 @@ class JoomleagueModeljlextindividualsport extends JoomleagueModelList
 
 	function _buildContentWhere()
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$where=array();
 		
 		$mainframe	=& JFactory::getApplication();

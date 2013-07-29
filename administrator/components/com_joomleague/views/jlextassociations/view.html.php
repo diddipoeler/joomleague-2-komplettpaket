@@ -25,7 +25,7 @@ class JoomleagueViewjlextassociations extends JLGView
 {
 	function display($tpl=null)
 	{
-		//$option='com_joomleague';
+
 		$mainframe =& JFactory::getApplication();
     $db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();

@@ -45,13 +45,7 @@ class JoomleagueViewPredictionGame extends JLGView
 
 	function _displayForm($tpl)
 	{
-	  /* 
-		$option='com_joomleague';
-		$mainframe =& JFactory::getApplication();
-		$db =& JFactory::getDBO();
-		$uri =& JFactory::getURI();
-		$user =& JFactory::getUser();
-		*/
+	  
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$uri 	= JFactory::getURI();
@@ -123,7 +117,7 @@ class JoomleagueViewPredictionGame extends JLGView
 
 	function _displayPredSettings($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();

@@ -80,7 +80,7 @@ function __construct( )
 
 function checkStartExtension()
 {
-$option='com_joomleague';
+$option = JRequest::getCmd('option');
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
 $fileextension = JPATH_SITE.DS.'tmp'.DS.'dfbnet.txt';
@@ -211,7 +211,7 @@ function getUpdateData()
   $teile = explode("-",$lang->getTag());
   $country = Countries::convertIso2to3($teile[1]);  
 //   echo 'Das aktuelle Land lautet: ' . $country . '<br>';
-  $option='com_joomleague';
+  $option = JRequest::getCmd('option');
 	$project = $mainframe->getUserState( $option . 'project', 0 );
 	
 	if ( !$project )
@@ -431,7 +431,7 @@ $jRegistry->loadString($params->toString('ini'), 'ini');
   $teile = explode("-",$lang->getTag());
   $country = Countries::convertIso2to3($teile[1]);  
 //   echo 'Das aktuelle Land lautet: ' . $country . '<br>';
-  $option='com_joomleague';
+  $option = JRequest::getCmd('option');
 	$project = $mainframe->getUserState( $option . 'project', 0 );
 	
   $lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams');

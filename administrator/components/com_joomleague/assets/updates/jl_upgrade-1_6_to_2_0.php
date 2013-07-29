@@ -530,7 +530,7 @@ function getVersion()
 
 function getUpdatePart()
 {
-	$option='com_joomleague';
+	$option = JRequest::getCmd('option');
 
 	$mainframe = JFactory::getApplication();
 	$update_part=$mainframe->getUserState($option.'update_part');
@@ -544,7 +544,7 @@ function getUpdatePart()
 
 function setUpdatePart($val=1)
 {
-	$option='com_joomleague';
+	$option = JRequest::getCmd('option');
 	$mainframe = JFactory::getApplication();
 	$update_part=$mainframe->getUserState($option.'update_part');
 	if ($val!=0)

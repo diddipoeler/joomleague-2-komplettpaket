@@ -39,7 +39,7 @@ class JoomleagueViewjlextringerposition extends JLGView
 
 	function _displayForm($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();

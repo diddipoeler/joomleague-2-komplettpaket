@@ -42,7 +42,7 @@ class JoomleagueModelrosterpositions extends JoomleagueModelList
 
 	function _buildContentOrderBy()
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$filter_order		= $mainframe->getUserStateFromRequest($option.'l_filter_order',		'filter_order',		'obj.ordering',	'cmd');
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'l_filter_order_Dir',	'filter_order_Dir',	'',				'word');
@@ -59,7 +59,7 @@ class JoomleagueModelrosterpositions extends JoomleagueModelList
 
 	function _buildContentWhere()
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$filter_order		= $mainframe->getUserStateFromRequest($option.'l_filter_order',		'filter_order',		'obj.ordering',	'cmd');
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'l_filter_order_Dir',	'filter_order_Dir',	'',				'word');

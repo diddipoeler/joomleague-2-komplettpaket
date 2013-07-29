@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="1.7" group="content" method="upgrade">
+  <name>Content - Tooltip</name>
+  <creationDate>Jan-2012</creationDate>
+  <author>Andy Thielke</author>
+  <authorEmail>kontakt@joomla.de.com</authorEmail>
+  <authorUrl>http://www.joomla.de.com</authorUrl>
+  <copyright>Copyright (C) 2005 - 2008 Open Source Matters. All rights reserved.</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+  <version>1.6</version>
+  <description>Tooltip</description>
+  <files folder="site">
+    <filename plugin="tooltip">tooltip.php</filename>
+	<filename plugin="tooltip">tooltip.js</filename>
+	</files>
+  <languages folder="site">
+	   <language tag="en-GB">en-GB.plg_content_tooltip.ini</language>
+	   <language tag="de-DE">de-DE.plg_content_tooltip.ini</language>
+	</languages> 
+  <config>
+  	<fields name="params">
+		<fieldset name="basic">
+	 <field type="text" name="kategorie_id" label="Kategorie ID" default="0" description="Hier die Kategorie ID eingeben" class="" size=""/>
+	 <field type="text" name="count" label="Anzahl der Tipps pro Übereinstimmung" default="-1" description="Kommt die Übereinstimmung mehr wie einmal im Artikel vor kann man hier die Anzahl der Tipps einstellen. -1 ist Standard = alle Übereinstimmungen; 1 = es bekommt nur die erste Übereinstimmung ein Tooltip; 2 = es bekommt nur die ersten 2 Übereinstimmungen ein Tooltip usw.." class="" size=""/>
+	  <field type="spacer" label="Optionen" default="" description=""/>
+	  
+	  <field type="radio" name="fixed" label="Maus folgen" default="fals" description="Soll das Tooltipfenster der Maus folgen?">
+      <option value="fals">Ja</option>
+      <option value="tru">Nein</option>
+     </field>
+	  <field type="radio" name="opacity" label="Einblenden" default="0" description="Soll das Tooltipfenster Weich oder Hard eingeblendet werden?">
+      <option value="0">Weich</option>
+      <option value="1">Hard</option>
+     </field>
+	 <field type="text" name="tipx" label="Versatz in X" default="0" description="Zusätzlicher Versatz" class="" size=""/>
+	 <field type="text" name="tipy" label="Versatz in Y" default="0" description="Zusätzlicher Versatz" class="" size=""/>
+	 <field type="spacer" label="" default="" description=""/>
+	 <field name="tooltip_fenster" type="textarea" rows="5" cols="40" default="
+		color: #000;
+		max-width: 350px;
+		z-index: 13000;
+		border: 1px solid #006;
+		margin: 0px;
+		padding:0px;
+		background: none;	
+	 " label="CSS für das Tooltip Fenster" description="Hier legen Sie das Aussehen des Fensters fest." />
+  
+  <field name="tooltip_titel" type="textarea" rows="5" cols="40" default="
+		font-weight: bold;
+		font-size: 12px;
+		text-align: center;
+		margin: 0;
+		padding:4px;
+		background: #CCC;
+		background-image:none;
+  " label="CSS für den Tooltip Titel" description="Hier legen Sie das Aussehen der Überschrift/Titel fest." />
+  
+  <field name="tooltip_text" type="textarea" rows="5" cols="40" default="
+		padding: 4px 8px 8px;
+		background: #DDD;
+		text-align: left;
+
+  " label="CSS für den Tooltip Text" description="Hier legen Sie das Aussehen des Textes fest" />
+  
+  <field name="tooltip_link" type="textarea" rows="5" cols="40" default="
+		cursor: pointer;
+		background-repeat: repeat-x;  background-position: center;
+		padding-right: 5px;
+		padding-left: 5px;
+		color: blue;
+		text-decoration: none;
+  " label="CSS für den Tooltip Link" description="Hier legen Sie das Aussehen des Links fest." />
+  		</fieldset>
+	</fields>
+  </config>
+
+</extension>

@@ -84,7 +84,7 @@ private function dump_header($text)
 
 function checkStartExtension()
 {
-$option='com_joomleague';
+$option = JRequest::getCmd('option');
 $mainframe	=& JFactory::getApplication();
 $user = JFactory::getUser();
 $fileextension = JPATH_SITE.DS.'tmp'.DS.'lmoimport-2-0.txt';
@@ -213,7 +213,7 @@ TRUNCATE TABLE `jos_joomleague_playground`;
   
   $mainframe->enqueueMessage(JText::_('land '.$country.''),'');
   
-  $option='com_joomleague';
+  $option = JRequest::getCmd('option');
 	$project = $mainframe->getUserState( $option . 'project', 0 );
 	
 	$tempprovorschlag = '';
@@ -1233,7 +1233,7 @@ echo $this->pane->endPane();
   $mainframe =& JFactory::getApplication();
   $document	=& JFactory::getDocument();
   
-  $option='com_joomleague';
+  $option = JRequest::getCmd('option');
 	$project = $mainframe->getUserState( $option . 'project', 0 );
 	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
 	
@@ -1286,7 +1286,7 @@ $country = $this->_db->loadResult();
   $mainframe =& JFactory::getApplication();
   $document	=& JFactory::getDocument();
   
-  $option='com_joomleague';
+  $option = JRequest::getCmd('option');
 	$project = $mainframe->getUserState( $option . 'project', 0 );
 	$lmoimportuseteams=$mainframe->getUserState($option.'lmoimportuseteams'); 
 	

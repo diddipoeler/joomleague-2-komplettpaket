@@ -25,7 +25,7 @@ class JoomleagueViewjlextringerpositions extends JLGView
 {
 	function display($tpl=null)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 
 		// Set toolbar items for the page

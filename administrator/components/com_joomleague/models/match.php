@@ -305,7 +305,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	// Gucky 2007/05/25
 	function save_array($cid=null,$post=null,$zusatz=false,$project_id)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
 		$datatable[0]='#__joomleague_match';
 		$fields=$this->_db->getTableFields($datatable);
@@ -716,7 +716,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getProjectPositions($id=0)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	pos.id AS value,
@@ -748,7 +748,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getProjectPositionsOptions($id=0, $person_type=1)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	ppos.id AS value,
@@ -781,7 +781,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getProjectStaffPositions($id=0)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	pos.id AS value,
@@ -813,7 +813,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getProjectRefereePositions($id=0)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$query='	SELECT	ppos.id AS value,
@@ -1047,7 +1047,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function getSubstitutions($tid=0)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$in_out=array();

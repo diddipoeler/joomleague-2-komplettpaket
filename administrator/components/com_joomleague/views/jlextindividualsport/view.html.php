@@ -39,7 +39,7 @@ class JoomleagueViewjlextindividualsport extends JLGView
 
 	function _displayDefault($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe =& JFactory::getApplication();
 		$uri =& JFactory::getURI();
     $cid = JRequest::getCmd('cid');

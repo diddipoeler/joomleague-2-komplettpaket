@@ -210,7 +210,7 @@ class JoomleagueHelper
 	 */
 	function getExtension($project_id=0)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		if (!$project_id)
 		{
 			$app=&JFactory::getApplication();
@@ -230,7 +230,7 @@ class JoomleagueHelper
 
 	public static function getExtensions($project_id)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$arrExtensions = array();
 		$excludeExtension = array();
 		if ($project_id) {
@@ -259,7 +259,7 @@ class JoomleagueHelper
 	
 		public static function getExtensionsOverlay($project_id)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$arrExtensions = array();
 		$excludeExtension = array();
 		if ($project_id) {

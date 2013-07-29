@@ -156,7 +156,7 @@ class JoomleagueViewMatch extends JLGView
 
 	function _displayEditevents($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState('com_joomleagueproject');
 		$document = JFactory::getDocument();
@@ -215,7 +215,7 @@ class JoomleagueViewMatch extends JLGView
 
 	function _displayEditeventsbb($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState('com_joomleagueproject');
 		$document = JFactory::getDocument();
@@ -269,7 +269,7 @@ class JoomleagueViewMatch extends JLGView
 	
 	function _displayEditstats($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$document = JFactory::getDocument();
@@ -327,7 +327,7 @@ class JoomleagueViewMatch extends JLGView
 
 	function _displayEditlineup($tpl)
 	{
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id=$mainframe->getUserState($option.'project');
 		$document = JFactory::getDocument();
@@ -513,7 +513,7 @@ class JoomleagueViewMatch extends JLGView
 	function _displayForm($tpl)
 	{
 		$mainframe = JFactory::getApplication();
-		$option='com_joomleague';
+		$option = JRequest::getCmd('option');
 		$user = JFactory::getUser();
 		$model = $this->getModel();
 		$lists=array();
