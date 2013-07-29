@@ -52,6 +52,19 @@
 			label="COM_JOOMLEAGUE_EXT_PERSON_ICQ" description="COM_JOOMLEAGUE_EXT_PERSON_ICQ_DESCRIPTION"
 			backendonly="">
 		</field>
+		<field name="personpositions" type="multilist" size="40" default="" multiple="multiple" label="JL_EXT_PERSON_POSITIONS"
+ description="Select one or more items from the list.  You can use Ctrl-click to select more than one item.">
+	<option value="hp1">Torwart</option>
+	<option value="hp14">Sturm</option>
+	<option value="hp3l">Innenverteidiger Links</option>
+	<option value="hp3r">Innenverteidiger Rechts</option>
+	<option value="hp5">Rechter Verteidiger</option>
+	<option value="hp6">Mittelfeld</option>
+	<option value="np12m">Rechtsaussen</option>
+	<option value="np5">Rechter Verteidiger</option>
+	<option value="np6">Defensives Mittelfeld</option>
+</field>
+
 		</fieldset>
 		
 		<fieldset name="COM_JOOMLEAGUE_EXT_EXTENDED_GEOVALUES">
