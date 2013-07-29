@@ -73,39 +73,7 @@ class JoomleagueViewPerson extends JLGView
 		{
 			$person->ordering=0;
 		}
-/*
-		//build the html select list for countries
-		$countries[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY'));
-		if ($res =& Countries::getCountryOptions()){$countries=array_merge($countries,$res);}
-		$lists['countries']=JHTMLSelect::genericlist($countries,'country','class="inputbox" size="1"','value','text',$person->country);
-		$lists['address_countries']=JHTMLSelect::genericlist(	$countries,
-																'address_country',
-																'class="inputbox" size="1"',
-																'value',
-																'text',
-																$person->address_country);
-		unset($countries);
 
-		$lists['birthday']=JHTML::calendar(JoomleagueHelper::convertDate($person->birthday),'birthday','birthday','%d-%m-%Y');
-		$lists['deathday']=JHTML::calendar(JoomleagueHelper::convertDate($person->deathday),'deathday','deathday','%d-%m-%Y');
-
-		//build the html select list for Joomla users
-		$jl_users[]=JHTMLSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_USER'));
-		if ($res =& $model->getJLUsers()){$jl_users=array_merge($jl_users,$res);}
-		$lists['jl_users']=JHTMLSelect::genericlist($jl_users,'user_id','class="inputbox" size="1"','value','text',$person->user_id);
-		unset($jl_users);
-
-		//build the html select list for positions
-		$positionsList[]=JHTMLSelect::option('0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION'));
-		$positions=$model->getPositions();
-		if ($positions){$positions=array_merge($positionsList,$positions);}
-		$lists['positions']=JHTMLSelect::genericlist($positions,'position_id','class="inputbox" size="1"','value','text',$person->position_id);
-		unset($positionsList);
-
-		//if there is no image selected,use default picture
-		$default = JoomleagueHelper::getDefaultPlaceholder("player");
-		if (empty($person->picture)){$person->picture=$default;}
-*/
 
 		$this->assignRef('form'      	, $this->get('form'));	
 		$this->assignRef('edit',$edit);

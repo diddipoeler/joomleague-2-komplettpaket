@@ -104,7 +104,11 @@ class JoomleagueControllerPerson extends JoomleagueController
 		$coords = $model->resolveLocation($address);
 		
 		//$mainframe->enqueueMessage(JText::_('coords -> '.'<pre>'.print_r($coords,true).'</pre>' ),'');
-		
+		if (count($post['extended']['COM_JOOMLEAGUE_EXT_PERSON_POSITIONS']) > 0)
+			{
+				$post['extended']['COM_JOOMLEAGUE_EXT_PERSON_POSITIONS'] = implode(",",$post['extended']['COM_JOOMLEAGUE_EXT_PERSON_POSITIONS']);
+			}
+			
 		foreach( $coords as $key => $value )
 		{
     $post['extended'][$key] = $value;
