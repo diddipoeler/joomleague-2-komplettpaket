@@ -110,7 +110,8 @@ $javascript .= "       }". "\n";
 $javascript .= "    });". "\n";
 $javascript .= "});". "\n";        
 $javascript .= "\n";
-    $document->addScriptDeclaration( $javascript );        
+    $document->addScriptDeclaration( $javascript ); 
+    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
         parent::display($tpl);
     }
 
