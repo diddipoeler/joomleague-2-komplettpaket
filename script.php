@@ -81,14 +81,10 @@ class com_joomleagueInstallerScript
 $db->setQuery('SELECT params FROM #__extensions WHERE name = "joomleague" and type ="component" ');
 $paramsdata = json_decode( $db->loadResult(), true );
 //$mainframe->enqueueMessage(JText::_('postflight paramsdata<br><pre>'.print_r($paramsdata,true).'</pre>'   ),'');
-  
 $params = JComponentHelper::getParams('com_joomleague');
-
 $xmlfile = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_joomleague'.DS.'config.xml';  
 $jRegistry = new JRegistry;
 $jRegistry->loadString($params->toString('ini'), 'ini');
-//$form =& JForm::getInstance('com_joomleague', $xmlfile, array('control'=> 'params'), false, "/config");
-//$form =& JForm::getInstance('com_joomleague', $xmlfile);
 $form =& JForm::getInstance('com_joomleague', $xmlfile, array('control'=> ''), false, "/config");
 $form->bind($jRegistry);
 
@@ -212,25 +208,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
         $mainframe->enqueueMessage(JText::_('Joomleague Konfiguration gesichert'),'');
         }
                         
-                /*                
-                if ( count($param_array) > 0 ) {
-                        // read the existing component value(s)
-                        $db = JFactory::getDbo();
-                        $db->setQuery('SELECT params FROM #__extensions WHERE name = "joomleague" and type ="component" ');
-                        $params = json_decode( $db->loadResult(), true );
-                        $mainframe->enqueueMessage(JText::_('setParams params<br><pre>'.print_r($params,true).'</pre>'   ),'');
-                        // add the new variable(s) to the existing one(s)
-                        foreach ( $param_array as $name => $value ) {
-                                $params[ (string) $name ] = (string) $value;
-                        }
-                        // store the combined new and existing values back as a JSON string
-                        $paramsString = json_encode( $params );
-                        $db->setQuery('UPDATE #__extensions SET params = ' .
-                                $db->quote( $paramsString ) .
-                                ' WHERE name = "joomleague"' );
-                                $db->query();
-                }
-                */
+                
         }
         
    /**

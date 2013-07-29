@@ -14,6 +14,15 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
 require_once(JPATH_COMPONENT.DS.'models'.DS.'item.php');
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
+
+// import JArrayHelper
+jimport( 'joomla.utilities.array' );
+jimport( 'joomla.utilities.arrayhelper' ) ;
+
+// import JFile
+jimport('joomla.filesystem.file');
+jimport( 'joomla.utilities.utility' );
 
 /**
  * Joomleague Component Match Model
@@ -707,7 +716,39 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $this->_db->loadObjectList();
 	}
 
-	/**
+	
+    function getPressebericht()
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe = JFactory::getApplication();    
+    $file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
+    $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
+    # tab delimited, and encoding conversion
+	$csv = new parseCSV();
+	$csv->encoding('UTF-16', 'UTF-8');
+	$csv->delimiter = ";";
+    /*
+    switch ($delimiter)
+    {
+        case ";":
+        $csv->delimiter = ";";
+        break;
+        case ",":
+        $csv->delimiter = ",";
+        break;
+        default:
+        $csv->delimiter = "\t";
+        break;
+    }
+    */
+    
+    $csv->parse($file);
+    $mainframe->enqueueMessage(JText::_('getPressebericht csv<br><pre>'.print_r($csv,true).'</pre>'   ),'');
+    $mainframe->enqueueMessage(JText::_('getPressebericht csv->data<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+    
+    }
+    
+    /**
 	 * Method to return the project positions array (id,name)
 	 *
 	 * @access	public

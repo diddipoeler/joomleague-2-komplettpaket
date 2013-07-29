@@ -391,6 +391,38 @@ class parseCSV {
     {
 	  $letters[] = 'A'.$buchstabe;
     }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'B'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'C'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'D'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'E'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'F'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'G'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'H'.$buchstabe;
+    }
+    foreach(range('A','Z') as $buchstabe)
+    {
+	  $letters[] = 'I'.$buchstabe;
+    }
     //$mainframe->enqueueMessage(JText::_('head<br><pre>'.print_r($head,true).'</pre>'   ),'');
 		
 		// walk through each character

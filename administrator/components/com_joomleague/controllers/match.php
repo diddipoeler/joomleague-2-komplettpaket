@@ -513,7 +513,126 @@ class JoomleagueControllerMatch extends JoomleagueController
 		$this->setRedirect($link,$msg);
 	}
 
-	// bilder pro spiel
+	function readpressebericht()
+    {
+    JRequest::setVar('hidemainmenu',1);
+		JRequest::setVar('layout','readpressebericht');
+		JRequest::setVar('view','match');
+		JRequest::setVar('edit',true);
+
+		
+		parent::display();    
+        
+        
+    }
+    
+    function savepressebericht()
+    {
+    	// Check for request forgeries
+		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
+		$msg='';
+		JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
+		$mainframe = JFactory::getApplication();
+		$post=JRequest::get('post');
+        $model = $this->getModel('match');
+
+		// first step - upload
+		if (isset($post['sent']) && $post['sent']==1)
+		{
+			$upload=JRequest::getVar('import_package',null,'files','array');
+			$tempFilePath=$upload['tmp_name'];
+			$mainframe->setUserState('com_joomleague'.'uploadArray',$upload);
+			$filename='';
+			$msg='';
+			$dest=JPATH_SITE.DS.'tmp'.DS.$upload['name'];
+			$extractdir=JPATH_SITE.DS.'tmp';
+			$importFile=JPATH_SITE.DS.'tmp'. DS.'pressebericht.jlg';
+			if (JFile::exists($importFile))
+			{
+				JFile::delete($importFile);
+			}
+			if (JFile::exists($tempFilePath))
+			{
+					if (JFile::exists($dest))
+					{
+						JFile::delete($dest);
+					}
+					if (!JFile::upload($tempFilePath,$dest))
+					{
+						JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_CANT_UPLOAD'));
+						return;
+					}
+					else
+					{
+						if (strtolower(JFile::getExt($dest))=='zip')
+						{
+							$result=JArchive::extract($dest,$extractdir);
+							if ($result === false)
+							{
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_ERROR'));
+								return false;
+							}
+							JFile::delete($dest);
+							$src=JFolder::files($extractdir,'jlg',false,true);
+							if(!count($src))
+							{
+								JError::raiseWarning(500,'COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_EXTRACT_NOJLG');
+								//todo: delete every extracted file / directory
+								return false;
+							}
+							if (strtolower(JFile::getExt($src[0]))=='jlg')
+							{
+								if (!@ rename($src[0],$importFile))
+								{
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_ERROR_RENAME'));
+									return false;
+								}
+							}
+							else
+							{
+								JError::raiseWarning(500,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_TMP_DELETED'));
+								return;
+							}
+						}
+						else
+						{
+							if (strtolower(JFile::getExt($dest))=='csv')
+							{
+								if (!@ rename($dest,$importFile))
+								{
+									JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_RENAME_FAILED'));
+									return false;
+								}
+							}
+							else
+							{
+								JError::raiseWarning(21,JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_CTRL_WRONG_EXTENSION'));
+								return false;
+							}
+						}
+					}
+			}
+		}
+        $csv_file = $model->getPressebericht();  
+		$link='index.php?option=com_joomleague&task=match.readpressebericht';
+		$this->setRedirect($link,$msg);    
+        
+        
+    }
+    
+    function pressebericht()
+    {
+    JRequest::setVar('hidemainmenu',1);
+		JRequest::setVar('layout','pressebericht');
+		JRequest::setVar('view','match');
+		JRequest::setVar('edit',true);
+
+		
+		parent::display();    
+        
+    }
+    
+    // bilder pro spiel
 	function picture()
   {
   $cid = JRequest::getVar('cid',array(0),'','array');

@@ -374,6 +374,17 @@ fieldset button {
 							}
 							?>
 							<td class="center">
+                            
+                            <a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
+									 href="index.php?option=com_joomleague&tmpl=component&task=match.pressebericht&cid[]=<?php echo $row->id; ?>"
+									 class="modal open-pressebericht"
+									 title="<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_PRESSEBERICHT'); ?>">
+									 <?php
+									 echo JHTML::_(	'image','administrator/components/com_joomleague/assets/images/link.png',
+													 JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_PRESSEBERICHT'),'title= "'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_EDIT_PRESSEBERICHT').'"');
+									 ?>
+								</a>
+                                
 								<a	rel="{handler: 'iframe',size: {x: <?php echo $modalwidth; ?>,y: <?php echo $modalheight; ?>}}"
 									 href="index.php?option=com_joomleague&tmpl=component&task=match.editevents&cid[]=<?php echo $row->id; ?>"
 									 class="modal open-editevents"

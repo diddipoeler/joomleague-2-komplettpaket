@@ -216,4 +216,22 @@
       <section>Updates</section>
       <targetplatform name="joomla" version="2.5" />
    </update>
+   <update>
+      <name>com_joomleague</name>
+      <description>Joomleague Component</description>
+      <element>com_joomleague</element>
+      <type>component</type>
+      <version>2.1.05</version>
+      <infourl title="Joomleague update">http://fussballineuropa.de</infourl>
+      <downloads>
+         <downloadurl type="full" format="zip">https://github.com/diddipoeler/joomleague-2-komplettpaket/archive/master.zip</downloadurl>
+      </downloads>
+      <tags>
+         <tag>Updateserver</tag>
+      </tags>
+      <maintainer>diddipoeler</maintainer>
+      <maintainerurl>http://fussballineuropa.de</maintainerurl>
+      <section>Updates</section>
+      <targetplatform name="joomla" version="2.5" />
+   </update>
 </updates>

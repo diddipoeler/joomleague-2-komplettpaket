@@ -60,9 +60,59 @@ class JoomleagueViewMatch extends JLGView
 			$this->_displayEditReferees($tpl);
 			return;
 		}
+        elseif ($this->getLayout() == 'readpressebericht')
+		{
+			$this->_displayPressebericht($tpl);
+			return;
+		}
+        $config =& JComponentHelper::getParams('com_media');
+		$post=JRequest::get('post');
+		$files=JRequest::get('files');
+        $uri = JFactory::getURI();
+		$this->assignRef('request_url',$uri->toString());
+		$this->assignRef('config',$config);
 
 		parent::display($tpl);
 	}
+    
+    function _displayPressebericht($tpl)
+    {
+        $mainframe = JFactory::getApplication();
+		$document = JFactory::getDocument();
+$file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
+$javascript .= "jQuery(document).ready(function() {". "\n";
+$javascript .= "    jQuery.ajax({". "\n";
+$javascript .= "       type: 'GET',". "\n";
+$javascript .= "       url: '".$file."',". "\n";
+$javascript .= "       data: null,". "\n";
+$javascript .= "       success: function(text) {". "\n";
+$javascript .= "       var fields = text.split(/\n/);". "\n";
+$javascript .= "       fields.pop(fields.length-1);". "\n";
+$javascript .= "           var headers = fields[0].split(','),". "\n"; 
+$javascript .= "               html = '<table>';". "\n";
+$javascript .= "           html += '<tr>';". "\n";
+$javascript .= "           for(var i = 0; i < headers.length; i += 1) {". "\n";
+$javascript .= "              html += '<th scope=\"col\">' + headers[i] + '</th>';". "\n";
+$javascript .= "           }". "\n";
+$javascript .= "           html += '</tr>';". "\n";
+$javascript .= "           var data = fields.slice(1, fields.length);". "\n";
+$javascript .= "           for(var j = 0; j < data.length; j += 1) {". "\n";
+$javascript .= "              var dataFields = data[j].split(',');". "\n";
+$javascript .= "              html += '<tr>';". "\n";
+$javascript .= "              html += '<td>' + dataFields[0] + '</td>';". "\n";
+$javascript .= "              html += '<td><a href=\"' + dataFields[1] + '\">' + dataFields[1] + '</a></td>';". "\n";
+$javascript .= "              html += '<td>' + dataFields[2] + '</td>';". "\n";
+$javascript .= "              html += '</tr>';". "\n";
+$javascript .= "           }". "\n";
+$javascript .= "           html += '</table>';". "\n";
+$javascript .= "           jQuery(html).appendTo('body');". "\n";
+$javascript .= "       }". "\n";
+$javascript .= "    });". "\n";
+$javascript .= "});". "\n";        
+$javascript .= "\n";
+    $document->addScriptDeclaration( $javascript );        
+        parent::display($tpl);
+    }
 
 	function _displayEditReferees($tpl)
 	{

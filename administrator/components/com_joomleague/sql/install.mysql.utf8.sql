@@ -201,6 +201,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match` (
   `modified_by` INT NULL ,
   `division_id` INT(11) NULL DEFAULT '0' ,
   `extendeduser` TEXT NULL ,
+  `pressebericht` TEXT NULL ,
   PRIMARY KEY (`id`),
   KEY `round_id` (`round_id`),
   KEY `projectteam1_id` (`projectteam1_id`),
