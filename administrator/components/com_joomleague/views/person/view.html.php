@@ -77,15 +77,17 @@ class JoomleagueViewPerson extends JLGView
 
 		$this->assignRef('form'      	, $this->get('form'));
         
-        $form_value = $this->form->getValue('COM_JOOMLEAGUE_EXT_PERSON_POSITIONS');
-        if ( $form_value )
-        {
-            $this->form->setValue('COM_JOOMLEAGUE_EXT_PERSON_POSITIONS', null,explode(",",$form_value));
-        }
+        
         	
 		$this->assignRef('edit',$edit);
 		$extended = $this->getExtended($person->extended, 'person');		
 		$this->assignRef( 'extended', $extended );
+        $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_POSITIONS');
+        //$mainframe->enqueueMessage(JText::_('form_value -> '.'<pre>'.print_r($form_value,true).'</pre>' ),'');
+        if ( $form_value )
+        {
+            $this->extended->setValue('COM_JOOMLEAGUE_EXT_PERSON_POSITIONS', null,explode(",",$form_value));
+        }
 		//$this->assignRef('lists',$lists);
 		$this->assignRef('person',$person);
 
