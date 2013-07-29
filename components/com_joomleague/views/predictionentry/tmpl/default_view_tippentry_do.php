@@ -260,7 +260,8 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 // 								echo JHTML::date($result->match_date,JText::_($this->optiontext.'JL_GLOBAL_CALENDAR_DATE'));
 // 								echo ' - ';
 // 								echo JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$this->config['time_format']); 
-                echo $result->match_date;
+                //echo $result->match_date;
+                echo JHtml::date($result->match_date, 'd.m.Y H:i', false);
 								?>
 							</td>
 								<?php
