@@ -1,0 +1,1 @@
+ALTER TABLE  `#__joomleague_match` ADD  `pressebericht` text NULL 
