@@ -41,7 +41,7 @@ class JoomleagueViewPersons extends JLGView
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'pl_filter_order_Dir', 'filter_order_Dir', '', 'word');
 		$search				= $mainframe->getUserStateFromRequest($option.'pl_search', 'search', '', 'string');
 		$search_mode		= $mainframe->getUserStateFromRequest($option.'pl_search_mode', 'search_mode', '', 'string');
-        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'word');
+        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'string');
 
 		$items =& $this->get('Data');
 		$total =& $this->get('Total');
@@ -100,7 +100,7 @@ class JoomleagueViewPersons extends JLGView
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'pl_filter_order_Dir', 'filter_order_Dir', '', 'word');
 		$search			= $mainframe->getUserStateFromRequest($option.'pl_search', 'search', '', 'string');
 		$search_mode		= $mainframe->getUserStateFromRequest($option.'pl_search_mode',	'search_mode', '', 'string');
-        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'word');
+        $filter_info		= $mainframe->getUserStateFromRequest($option.'pl_filter_info', 'filter_info', '', 'string');
         
 
 		//save icon should be replaced by the apply
