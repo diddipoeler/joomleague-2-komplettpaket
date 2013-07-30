@@ -239,7 +239,7 @@ echo 'this->heim picture<br /> ~' . $picture . ' ~<br />';
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px; " src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>
-<font color="white"><a class="link" href=""><?PHP echo $player->lastname." ".$player->firstname; ?></a></font>
+<a class="link" href=""><font color="white"><?PHP echo $player->lastname." "; ?></font></a>
 </div>
                                       
 <?PHP
@@ -299,7 +299,7 @@ $picture = JoomleagueHelper::getDefaultPlaceholder("player");
 <a href="<?php echo $picture;?>" alt="<?php echo $player->lastname;?>" title="<?php echo $player->lastname;?>" class="highslide" onclick="return hs.expand(this)">
 <img id="<?php echo $player->person_id;?>" class="bild_s" style="width:<?PHP echo $this->config['roster_playground_player_picture_width']; ?>px;" src="<?PHP echo $picture; ?>" alt="" /><br />
 </a>
-<font color="white"><a class="link" href=""><?PHP echo $player->lastname." ".$player->firstname; ?></a></font>
+<a class="link" href=""><font color="white"><?PHP echo $player->lastname." "; ?></font></a>
 </div>
                                       
 <?PHP
