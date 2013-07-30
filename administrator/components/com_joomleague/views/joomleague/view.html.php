@@ -455,6 +455,13 @@ class JoomleagueViewJoomleague extends JLGView
 		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));
 		}
         
+        if ( JComponentHelper::getParams('com_joomleague')->get('cfg_be_extension_user_fields',0) )
+        {
+        $link4[]=JRoute::_('index.php?option=com_joomleague&view=jlextuserextrafields&task=jlextuserextrafield.display');
+		$label4[]=JText::_('COM_JOOMLEAGUE_USER_FIELDS');
+		$limage4[]=JHTML::_('image',$imagePath.'update.png',JText::_('COM_JOOMLEAGUE_USER_FIELDS'));
+		}
+        
         $link[]=$link4;
 		$label[]=$label4;
 		$limage[]=$limage4;

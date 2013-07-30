@@ -103,7 +103,7 @@ class JoomleagueViewjlextuserextrafield extends JLGView
 		else
 		{
 			// for existing items the button is renamed `close` and the apply button is showed
-			JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIOGROUP_EDIT'),'jlextuserextrafields');
+			JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_EXTRA_FIELD_EDIT'),'jlextuserextrafields');
 			JLToolBarHelper::apply('jlextuserextrafield.apply');
 			JToolBarHelper::divider();
 			JLToolBarHelper::cancel('jlextuserextrafield.cancel','COM_JOOMLEAGUE_GLOBAL_CLOSE');

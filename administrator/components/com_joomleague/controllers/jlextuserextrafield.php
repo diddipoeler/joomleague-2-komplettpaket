@@ -64,19 +64,36 @@ class JoomleagueControllerjlextuserextrafield extends JoomleagueController
 
 	function save()
 	{
-		//Check for request forgeries
+		$mainframe = JFactory::getApplication();
+        //Check for request forgeries
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$post=JRequest::get('post');
 		$cid=JRequest::getVar('cid',array(0),'post','array');
 		$post['id']=(int) $cid[0];
+        //$mainframe->enqueueMessage(JText::_('post -> '.'<pre>'.print_r($post,true).'</pre>' ),'');
 		$model=$this->getModel('jlextuserextrafield');
-		if ($model->store($post))
+		
+        switch ($post['template_backend'])
+        {
+            case 'club':
+            $post['template_frontend'] = 'clubinfo';
+            break;
+            case 'team':
+            $post['template_frontend'] = 'teaminfo';
+            break;
+            case 'person':
+            $post['template_frontend'] = 'player';
+            break;
+        }
+        
+        
+        if ($model->store($post))
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUP_CTRL_SAVED');
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_EXTRA_FIELD_CTRL_SAVED');
 		}
 		else
 		{
-			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUP_CTRL_ERROR_SAVE').$model->getError();
+			$msg=JText::_('COM_JOOMLEAGUE_ADMIN_EXTRA_FIELD_CTRL_ERROR_SAVE').$model->getError();
 		}
 		// Check the table in so it can be edited.... we are done with it anyway
 		$model->checkin();
@@ -105,7 +122,7 @@ class JoomleagueControllerjlextuserextrafield extends JoomleagueController
 		}
 		else
 		{
-			$msg='COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUP_CTRL_DELETED';
+			$msg='COM_JOOMLEAGUE_ADMIN_EXTRA_FIELD_CTRL_DELETED';
 		}
 		$this->setRedirect('index.php?option=com_joomleague&view=jlextuserextrafields&task=jlextuserextrafield.display');
 	}

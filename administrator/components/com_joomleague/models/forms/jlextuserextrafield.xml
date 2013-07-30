@@ -8,6 +8,15 @@
 			description="COM_JOOMLEAGUE_GLOBAL_NAME_DESC"
 			class="inputbox"
 			required="true"/>
-				
+		<field
+			name="template_backend"
+			type="list"
+			default="0"
+			label="COM_JOOMLEAGUE_ADMIN_EXTRA_FIELDS_TEMPLATE_BACKEND"
+			description="COM_JOOMLEAGUE_ADMIN_EXTRA_FIELDS_TEMPLATE_BACKEND_DESC">
+		<option value="club">Verein</option>
+		<option value="team">Mannschaft</option>
+		<option value="person">Personen</option>
+		</field>		
 	</fieldset>				
 </form>

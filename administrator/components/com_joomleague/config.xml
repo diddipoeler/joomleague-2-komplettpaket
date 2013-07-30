@@ -490,7 +490,15 @@
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_PL_IMPORT_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
-		</field>    
+		</field>  
+    
+    <field name="cfg_be_extension_user_fields" type="list"
+			default="1"
+			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_USER_FIELDS_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_USER_FIELDS_DESCR">
+			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+		</field>   
       
   </fieldset>
     

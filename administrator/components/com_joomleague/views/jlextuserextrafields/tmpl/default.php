@@ -33,6 +33,14 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					<th>
 						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EXTRA_FIELDS_NAME','s.name',$this->lists['order_Dir'],$this->lists['order']); ?>
 					</th>
+                    
+                    <th>
+						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EXTRA_FIELDS_TEMPLATE_BACKEND','s.template_backend',$this->lists['order_Dir'],$this->lists['order']); ?>
+					</th>
+                    <th>
+						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_EXTRA_FIELDS_TEMPLATE_FRONTEND','s.template_frontend',$this->lists['order_Dir'],$this->lists['order']); ?>
+					</th>
+                    
 					<th width="10%">
 						<?php
 						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ORDER','s.ordering',$this->lists['order_Dir'],$this->lists['order']);
@@ -44,7 +52,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					</th>
 				</tr>
 			</thead>
-			<tfoot><tr><td colspan="6"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>
+			<tfoot><tr><td colspan="8"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>
 			<tbody>
 				<?php
 				$k=0;
@@ -80,6 +88,8 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 						}
 						?>
 						<td><?php echo $row->name; ?></td>
+                        <td><?php echo $row->template_backend; ?></td>
+                        <td><?php echo $row->template_frontend; ?></td>
 						<td class="order">
 							<span>
 								<?php echo $this->pagination->orderUpIcon($i,$i > 0,'jlextuserextrafield.orderup','COM_JOOMLEAGUE_GLOBAL_ORDER_UP',$ordering); ?>

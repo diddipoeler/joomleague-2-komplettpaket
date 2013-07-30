@@ -79,6 +79,7 @@ class JoomleagueViewMatch extends JLGView
     {
         $mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
+/*
 $file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
 $javascript .= "jQuery(document).ready(function() {". "\n";
 $javascript .= "    jQuery.ajax({". "\n";
@@ -110,8 +111,12 @@ $javascript .= "       }". "\n";
 $javascript .= "    });". "\n";
 $javascript .= "});". "\n";        
 $javascript .= "\n";
-    $document->addScriptDeclaration( $javascript ); 
-    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
+    $document->addScriptDeclaration( $javascript );
+*/
+     
+//    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
+    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv.js');
+    
         parent::display($tpl);
     }
 
