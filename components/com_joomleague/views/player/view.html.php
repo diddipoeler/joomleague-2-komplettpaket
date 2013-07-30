@@ -69,8 +69,12 @@ class JoomleagueViewPlayer extends JLGView
 
 		$extended = $this->getExtended($person->extended, 'person');
 		$this->assignRef( 'extended', $extended );
-        $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_POSITIONS');
-        $this->assignRef ('person_positions', explode(",",$form_value) );
+        $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_PARENT_POSITIONS');
+        $this->assignRef ('person_parent_positions', explode(",",$form_value) );
+        
+        $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_POSITION');
+        $this->assignRef ('person_position', $form_value );
+        
         $this->assignRef( 'hasDescription',$this->teamPlayer->notes);
         
         foreach ($this->extended->getFieldsets() as $fieldset)

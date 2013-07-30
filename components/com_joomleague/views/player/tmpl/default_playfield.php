@@ -11,47 +11,21 @@ $backimage = 'images/com_joomleague/database/person_playground/' . $this->teamPl
 $hauptimage = 'images/com_joomleague/database/person_playground/hauptposition.png';
 $nebenimage = 'images/com_joomleague/database/person_playground/nebenposition.png';
 
-switch ( $this->teamPlayer->position_name )
-{
-case 'JL_P_GOALKEEPER':
-case 'COM_JOOMLEAGUE_P_GOALKEEPER':
-case 'Torwart':
-case 'Torhüter':
-case 'TorhÃ¼ter':
-$image_class = 'hp1';
-break;
-case 'JL_P_DEFENDER':
-case 'COM_JOOMLEAGUE_P_DEFENDER':
-case 'Abwehr':
-$image_class = 'hp3l';
-break;
-case 'JL_P_MIDFIELDER':
-case 'COM_JOOMLEAGUE_P_MIDFIELDER':
-case 'Mittelfeld':
-$image_class = 'hp6';
-break;
-case 'JL_P_FORWARD':
-case 'COM_JOOMLEAGUE_P_FORWARD':
-case 'Sturm':
-case 'Stürmer':
-case 'StÃ¼rmer':
-$image_class = 'hp14';
-break;
-}
+
 
 ?>
 <div style="position:relative;height:170px;background-image:url(<?PHP echo $backimage;?>);background-repeat:no-repeat;">
-<img src="<?PHP echo $hauptimage;?>" class="<?PHP echo $image_class;?>" alt="<?PHP echo $this->teamPlayer->position_name; ?>" title="<?PHP echo $this->teamPlayer->position_name; ?>" />
+<img src="<?PHP echo $hauptimage;?>" class="<?PHP echo $this->person_position;?>" alt="<?PHP echo $this->teamPlayer->position_name; ?>" title="<?PHP echo $this->teamPlayer->position_name; ?>" />
 
 <?PHP
 
 
-if ( isset($this->person_positions) )
+if ( isset($this->person_parent_positions) )
 {
 
-if ( is_array($this->person_positions) )
+if ( is_array($this->person_parent_positions) )
 {
-foreach ( $this->person_positions as $key => $value)
+foreach ( $this->person_parent_positions as $key => $value)
 {
 ?>
 <img src="<?PHP echo $nebenimage;?>" class="<?PHP echo $value;?>" alt="Nebenposition" title="Nebenposition" />
@@ -61,7 +35,7 @@ foreach ( $this->person_positions as $key => $value)
 else
 {
 ?>
-<img src="<?PHP echo $nebenimage;?>" class="<?PHP echo $this->person_positions;?>" alt="Nebenposition" title="Nebenposition" />
+<img src="<?PHP echo $nebenimage;?>" class="<?PHP echo $this->person_parent_positions;?>" alt="Nebenposition" title="Nebenposition" />
 <?PHP
 }
 
