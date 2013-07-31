@@ -697,6 +697,20 @@ AND p.published = 1
 		}
 		return $result;
 	}
+    
+    function getLastSeasonDate()
+    {
+        $query='SELECT max(round_date_last) FROM #__joomleague_round 
+					WHERE project_id='.$this->projectid;
+        $this->_db->setQuery($query);
+        if (!$result=$this->_db->loadResult())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $result;
+        
+    }
 
 }
 ?>

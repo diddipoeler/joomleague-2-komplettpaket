@@ -372,8 +372,10 @@ if (!empty($this->rows))
 						$birthdateStr = "";
 						break;
 				}
-        
-        $age += JoomleagueHelper::getAge( $row->birthday,$row->deathday );
+        // das alter berechnen zur weiterberechnung des durchschnittsalters
+        // nicht das alter normal berechnen, sonder das alter des spielers in der saison
+        //$age += JoomleagueHelper::getAge( $row->birthday,$row->deathday );
+        $age += JoomleagueHelper::getAge( $row->birthday,$this->lastseasondate );
         $countplayer++;
         
 			}

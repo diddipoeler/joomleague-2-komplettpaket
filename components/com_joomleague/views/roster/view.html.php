@@ -11,6 +11,7 @@ class JoomleagueViewRoster extends JLGView
 	{
 		// Get a refrence of the page instance in joomla
 		$document = JFactory::getDocument();
+        $mainframe = JFactory::getApplication();
 		$model = $this->getModel();
 		$config=$model->getTemplateConfig($this->getName());
 
@@ -19,6 +20,8 @@ class JoomleagueViewRoster extends JLGView
 		//$this->assignRef('staffconfig',$model->getTemplateConfig('teamstaff'));
 		$this->assignRef('config',$config);
 		$this->assignRef('projectteam',$model->getProjectTeam());
+        
+        $this->assignRef('lastseasondate',$model->getLastSeasonDate());
         
         $type = JRequest::getVar("type", 0);
         $typestaff = JRequest::getVar("typestaff", 0);
