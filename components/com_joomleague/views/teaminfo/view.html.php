@@ -8,9 +8,12 @@ class JoomleagueViewTeamInfo extends JLGView
 	{
 		// Get a reference of the page instance in joomla
 		$document	= JFactory::getDocument();
+        $mainframe = JFactory::getApplication();
 		$model		= $this->getModel();
 		$config		= $model->getTemplateConfig( $this->getName() );
 		$project	= $model->getProject();
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+//        $mainframe->enqueueMessage(JText::_('teaminfo checkextrafields -> '.'<pre>'.print_r($this->checkextrafields,true).'</pre>' ),'');
 		$this->assignRef( 'project', $project );
 		$isEditor = $model->hasEditPermission('projectteam.edit');
 
@@ -31,6 +34,10 @@ class JoomleagueViewTeamInfo extends JLGView
             
             $trainingData = $model->getTrainigData($this->project->id);
 			$this->assignRef( 'trainingData', $trainingData );
+            if ( $this->checkextrafields )
+            {
+            $this->assignRef( 'extrafields', $model->getUserExtraFields($model->teamid) );
+            }
 
 			$daysOfWeek=array(
 				1 => JText::_('COM_JOOMLEAGUE_GLOBAL_MONDAY'),

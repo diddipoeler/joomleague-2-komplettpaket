@@ -41,7 +41,12 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
         $output['COM_JOOMLEAGUE_TEAMINFO_TEAMINFORMATION'] = 'description';
 	}
-	//fix me css	
+	
+    if ($this->config['show_extra_fields']==1)
+	{
+        $output['COM_JOOMLEAGUE_TABS_EXTRA_FIELDS'] = 'extra_fields';
+	}
+    //fix me css	
 	if ($this->config['show_extended']==1)
 	{
         $output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
@@ -77,7 +82,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 	{
 		echo $this->loadTemplate('description');
 	}
-	//fix me css	
+	if ($this->config['show_extra_fields']==1)
+	{
+		echo $this->loadTemplate('extra_fields');
+	}	
+    //fix me css	
 	if ($this->config['show_extended']==1)
 	{
 		echo $this->loadTemplate('extended');

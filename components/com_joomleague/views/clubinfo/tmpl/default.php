@@ -31,10 +31,17 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
   // diddipoeler
   // aufbau der templates
   $output = array();
-  if (($this->config['show_extended'])==1)
+  
+  if (($this->config['show_extra_fields'])==1)
+	{
+	$output['COM_JOOMLEAGUE_TABS_EXTRA_FIELDS'] = 'extra_fields';
+	}
+    
+    if (($this->config['show_extended'])==1)
 	{
 	$output['COM_JOOMLEAGUE_TABS_EXTENDED'] = 'extended';
 	}
+    
     if (($this->config['show_maps'])==1 && (JPluginHelper::isEnabled('system', 'plugin_googlemap2') || JPluginHelper::isEnabled('system', 'plugin_googlemap3')) )
 	{ 
         $output['COM_JOOMLEAGUE_GMAP_DIRECTIONS'] = 'maps';
@@ -60,6 +67,14 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 
 
 	//fix me
+    if (($this->config['show_extra_fields'])==1)
+	{
+		echo $this->loadTemplate('extra_fields');
+		echo "<div class='jl_defaultview_spacing'>";
+		echo "&nbsp;";
+		echo "</div>";	
+	}
+    
 	if (($this->config['show_extended'])==1)
 	{
 		echo $this->loadTemplate('extended');

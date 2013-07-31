@@ -54,6 +54,12 @@ if (isset($this->person))
 	{
 		$output[intval($this->config['show_order_playfield'])] = 'playfield';
 	}
+    
+    if ($this->config['show_extra_fields'] == 1)
+	{
+		$output[intval($this->config['show_order_extra_fields'])] = 'extra_fields';
+	}
+    
     if ($this->config['show_extended'] == 1 && $this->hasExtendedData )
 	{
 		$output[intval($this->config['show_order_extended'])] = 'extended';

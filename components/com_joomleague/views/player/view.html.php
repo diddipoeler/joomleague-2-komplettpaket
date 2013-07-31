@@ -9,10 +9,12 @@ class JoomleagueViewPlayer extends JLGView
 	{
 		// Get a refrence of the page instance in joomla
 		$document = JFactory::getDocument();
+        $mainframe = JFactory::getApplication();
 		$model = $this->getModel();
-		$config=$model->getTemplateConfig($this->getName());
+		$config = $model->getTemplateConfig($this->getName());
+        
 
-		$person=$model->getPerson();
+		$person = $model->getPerson();
 		$nickname = isset($person->nickname) ? $person->nickname : "";
 		if(!empty($nickname)){$nickname="'".$nickname."'";}
 		$this->assignRef('isContactDataVisible',$model->isContactDataVisible($config['show_contact_team_member_only']));
@@ -22,8 +24,14 @@ class JoomleagueViewPlayer extends JLGView
 		$this->assignRef('config',$config);
 		$this->assignRef('person',$person);
 		$this->assignRef('nickname',$nickname);
-
 		$this->assignRef('teamPlayers',$model->getTeamPlayers());
+        
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+//        $mainframe->enqueueMessage(JText::_('player checkextrafields -> '.'<pre>'.print_r($this->checkextrafields,true).'</pre>' ),'');
+        if ( $this->checkextrafields )
+        {
+            $this->assignRef( 'extrafields', $model->getUserExtraFields($person->id) );
+        }
 
 		// Select the teamplayer that is currently published (in case the player played in multiple teams in the project)
 		$teamPlayer = null;

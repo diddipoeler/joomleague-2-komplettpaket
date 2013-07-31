@@ -292,5 +292,50 @@ on prot.team_id=t.id'
 		}
 		return $allowed;
 	}
+    
+    function checkUserExtraFields()
+    {
+        $mainframe = JFactory::getApplication();
+        //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r(JRequest::getVar('view'),true).'</pre>' ),'');
+    $query="SELECT id FROM #__joomleague_user_extra_fields WHERE template_frontend LIKE '".JRequest::getVar('view')."' and published = 1 ";
+			//$mainframe->enqueueMessage(JText::_('query -> '.'<pre>'.print_r($query,true).'</pre>' ),'');
+			$this->_db->setQuery($query);
+			if ($this->_db->loadResult())
+			{
+			 //$mainframe->enqueueMessage(JText::_('loadResult -> '.'<pre>'.print_r($this->_db->loadResult(),true).'</pre>' ),'');
+				return true;
+			}
+            else
+            {
+                return false;
+            }    
+        
+    }
+    
+    function getUserExtraFields($jlid)
+    {
+        $mainframe = JFactory::getApplication();
+    	$query = "SELECT ef.*,
+        ev.fieldvalue as fvalue,
+        ev.id as value_id 
+        FROM #__joomleague_user_extra_fields as ef 
+        LEFT JOIN #__joomleague_user_extra_fields_values as ev 
+        ON ef.id = ev.field_id 
+        AND ev.jl_id = ".$jlid." 
+        WHERE ef.template_frontend LIKE '".JRequest::getVar('view')."'  
+        and ef.published = 1
+        ORDER BY ef.ordering";    
+        $this->_db->setQuery($query);
+		if (!$result=$this->_db->loadObjectList())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+        //$mainframe->enqueueMessage(JText::_('loadResult -> '.'<pre>'.print_r($result,true).'</pre>' ),'');
+		return $result;
+    
+    }
+
+    
 }
 ?>

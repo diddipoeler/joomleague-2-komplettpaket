@@ -137,6 +137,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
     <field name="show_order_playfield" type="list" default="2"
@@ -151,6 +152,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 		
 		<field name="show_order_extended" type="list" default="3"
@@ -165,6 +167,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_plstatus" type="list" default="4"
@@ -179,6 +182,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_description" type="list" default="5"
@@ -193,6 +197,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_gameshistory" type="list" default="6"
@@ -207,6 +212,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_plstats" type="list" default="7"
@@ -221,6 +227,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_plcareer" type="list" default="8"
@@ -235,6 +242,7 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
 
 		<field name="show_order_stcareer" type="list" default="9"
@@ -249,8 +257,22 @@
 			<option value="7">7</option>
 			<option value="8">8</option>
 			<option value="9">9</option>
+			<option value="10">10</option>
 		</field>
-		
+		<field name="show_order_extra_fields" type="list" default="10"
+			label="COM_JOOMLEAGUE_FES_PLAYER_PARAM_LABEL_SHOW_ORDER_EXTRA_FIELDS"
+			description="COM_JOOMLEAGUE_FES_PLAYER_PARAM_DESCR_SHOW_ORDER_EXTRA_FIELDS">
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+			<option value="9">9</option>
+			<option value="10">10</option>
+		</field>
 	</fieldset>
 
 	<fieldset name= "COM_JOOMLEAGUE_FES_PARAMS_GROUP_PERSONOPTIONS" 

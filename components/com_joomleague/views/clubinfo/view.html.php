@@ -11,6 +11,7 @@ class JoomleagueViewClubInfo extends JLGView
 	{
 		// Get a refrence of the page instance in joomla
 		$document		= JFactory::getDocument();
+        $mainframe = JFactory::getApplication();
 		$model			= $this->getModel();
 		$club			= $model->getClub() ;
 		
@@ -24,7 +25,14 @@ class JoomleagueViewClubInfo extends JLGView
 		$address_string = $model->getAddressString();
 		$map_config		= $model->getMapConfig();
 		$google_map		= $model->getGoogleMap( $map_config, $address_string );
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+        //$mainframe->enqueueMessage(JText::_('clubinfo checkextrafields -> '.'<pre>'.print_r($this->checkextrafields,true).'</pre>' ),'');
 		
+        if ( $this->checkextrafields )
+        {
+            $this->assignRef( 'extrafields', $model->getUserExtraFields($club->id) );
+        }
+        
 		$lat ='';
     $lng ='';
 		
