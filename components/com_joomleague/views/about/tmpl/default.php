@@ -95,6 +95,7 @@ echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
 	<?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DETAILS'); ?>
 </div>
 <table class="about">
+<!--
 	<tr>
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_TRANSLATIONS'); ?></b></td>
 		<td><?php echo $this->about->translations; ?></td>
@@ -145,7 +146,7 @@ echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DEVELOPERS'); ?></b></td>
 		<td><?php echo $this->about->developer; ?></td>
 	</tr>
-<!--
+
 	<tr>
 		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_SUPPORTERS'); ?></b></td>
 		<td><?php //echo $this->about->supporters; ?></td>
@@ -154,7 +155,7 @@ echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
 		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_TRANSLATORS'); ?></b></td>
 		<td><?php //echo $this->about->translator; ?></td>
 	</tr>
--->
+
 	<tr>
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DESIGNER'); ?></b></td>
 		<td><?php echo $this->about->designer; ?></td>
@@ -171,7 +172,7 @@ echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_PHPTHUMB'); ?></b></td>
 		<td><?php echo $this->about->phpthumb; ?></td>
 	</tr>	
-<!--
+
 	<tr>
 		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_GRAPHIC_LIBRARY'); ?></b></td>
 		<td><?php //echo $this->about->graphic_library; ?></td>
