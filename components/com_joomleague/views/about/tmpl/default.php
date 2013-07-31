@@ -155,11 +155,12 @@ echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
 		<td><b><?php //echo JText::_('COM_JOOMLEAGUE_ABOUT_TRANSLATORS'); ?></b></td>
 		<td><?php //echo $this->about->translator; ?></td>
 	</tr>
-
+-->
 	<tr>
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_DESIGNER'); ?></b></td>
 		<td><?php echo $this->about->designer; ?></td>
 	</tr>
+<!--    
 	<tr>
 		<td><b><?php echo JText::_('COM_JOOMLEAGUE_ABOUT_ICONS'); ?></b></td>
 		<td><?php echo $this->about->icons; ?></td>

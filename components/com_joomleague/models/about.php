@@ -59,11 +59,15 @@ class JoomleagueModelAbout extends JoomleagueModelProject
 
 		//developer
 		$about->developer = '<a href="http://stats.joomleague.net/authors.html" target="_blank">JoomLeague-Team</a>';
-
+/*
 		//designer
 		$about->designer = 'Kasi';
 		$about->designer .= ', <a href="http://www.cg-design.net" target="_blank">cg design</a>&nbsp;(Carsten Grob) ';
-
+*/
+		//designer
+		$about->designer = 'DonClumsy';
+		$about->designer .= ', (Tim Keller) ';
+        
 		//icons
 		$about->icons = '<a href="http://www.hollandsevelden.nl/iconset/" target="_blank">Jersey Icons</a> (Hollandsevelden.nl)';
 		$about->icons .= ', <a href="http://www.famfamfam.com/lab/icons/silk/" target="_blank">Silk / Flags Icons</a> (Mark James)';
