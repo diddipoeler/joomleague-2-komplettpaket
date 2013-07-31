@@ -14,7 +14,7 @@ if (JComponentHelper::getParams('com_joomleague')->get('show_footer',0))
 		<div align='center' style='font-size:9px;float:none;clear:both; '>
 			<?php
 			echo ' :: Extended Version Powered by ';
-			echo JHTML::link('http://www.fussballineuropa.de','JoomLeague',array('target' => '_blank'));
+			echo JHTML::link('http://www.fussballineuropa.de','Fussball in Europa',array('target' => '_blank'));
 			echo ' - ';
 			echo JHTML::link('index.php?option=com_joomleague&amp;view=about',sprintf('Version %1$s (diddipoeler)',JoomleagueHelper::getVersion()));
 			echo ' :: ';
