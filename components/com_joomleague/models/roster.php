@@ -372,158 +372,8 @@ class JoomleagueModelRoster extends JoomleagueModelProject
 			//    This is derived from the match_player table only.
 
 			// Sub 1: get number of matches played by teamplayers of the projectteam
-			
-/*
-// performance
-
-// ############################################################################
-// test 1
-
-SELECT pse.person_id,
-COUNT(pse.mid) AS played,
-0 AS started,
-0 AS sub_in,
-0 AS sub_out
-FROM
-(
-SELECT DISTINCT m.id as mid, tp.id as tpid, tp.person_id
-FROM jos_joomleague_match AS m
-INNER JOIN jos_joomleague_round r ON m.round_id=r.id
-INNER JOIN jos_joomleague_project AS p ON p.id=r.project_id
-
-LEFT  JOIN (
-SELECT DISTINCT m.id AS mid, tp.id AS tpid
-FROM jos_joomleague_match_player AS md
-INNER JOIN jos_joomleague_match AS m ON m.id = md.match_id
-INNER JOIN jos_joomleague_team_player AS tp ON tp.id = md.teamplayer_id
-INNER JOIN jos_joomleague_project_team AS pt ON pt.id=tp.projectteam_id
-WHERE pt.id=398604
-AND (md.came_in = 0 || md.came_in = 1)
-) AS mp ON mp.mid = m.id
-
-INNER JOIN jos_joomleague_team_player AS tp
-ON (tp.id = mp.tpid )
-WHERE tp.projectteam_id = 398604
-AND m.published = 1
-AND p.published = 1
-) AS pse
-GROUP BY pse.tpid
-
-// ############################################################################
-
-// ############################################################################
-// test 2
-
-SELECT pse.person_id,
-COUNT(pse.mid) AS played,
-0 AS started,
-0 AS sub_in,
-0 AS sub_out
-FROM
-(
-SELECT DISTINCT m.id as mid, tp.id as tpid, tp.person_id
-FROM jos_joomleague_match AS m
-INNER JOIN jos_joomleague_round r ON m.round_id=r.id
-INNER JOIN jos_joomleague_project AS p ON p.id=r.project_id
-
-LEFT  JOIN (
-SELECT DISTINCT m.id AS mid, tp.id AS tpid
-FROM jos_joomleague_match_statistic AS md
-INNER JOIN jos_joomleague_match AS m ON m.id = md.match_id
-INNER JOIN jos_joomleague_team_player AS tp ON tp.id = md.teamplayer_id
-INNER JOIN jos_joomleague_project_team AS pt ON pt.id=tp.projectteam_id
-WHERE pt.id=398604					  
-) AS ms ON ms.mid = m.id
-
-INNER JOIN jos_joomleague_team_player AS tp
-ON ( tp.id = ms.tpid )
-WHERE tp.projectteam_id = 398604
-AND m.published = 1
-AND p.published = 1
-) AS pse
-GROUP BY pse.tpid
-
-// ############################################################################
-
-// ############################################################################
-// test 3
-
-SELECT pse.person_id,
-COUNT(pse.mid) AS played,
-0 AS started,
-0 AS sub_in,
-0 AS sub_out
-FROM
-(
-SELECT DISTINCT m.id as mid, tp.id as tpid, tp.person_id
-FROM jos_joomleague_match AS m
-INNER JOIN jos_joomleague_round r ON m.round_id=r.id
-INNER JOIN jos_joomleague_project AS p ON p.id=r.project_id
-
-LEFT  JOIN (
-SELECT DISTINCT m.id AS mid, tp.id AS tpid
-FROM jos_joomleague_match_event AS md
-INNER JOIN jos_joomleague_match AS m ON m.id = md.match_id
-INNER JOIN jos_joomleague_team_player AS tp ON tp.id = md.teamplayer_id
-INNER JOIN jos_joomleague_project_team AS pt ON pt.id=tp.projectteam_id
-WHERE pt.id=398604					  
-) AS me ON me.mid = m.id
-
-INNER JOIN jos_joomleague_team_player AS tp
-ON ( tp.id = me.tpid )
-WHERE tp.projectteam_id = 398604
-AND m.published = 1
-AND p.published = 1
-) AS pse
-GROUP BY pse.tpid
-
-// ############################################################################
-
-// performance fresser
-SELECT pse.person_id,
-COUNT(pse.mid) AS played,
-0 AS started,
-0 AS sub_in,
-0 AS sub_out
-FROM
-(
-SELECT DISTINCT m.id as mid, tp.id as tpid, tp.person_id
-FROM jos_joomleague_match AS m
-INNER JOIN jos_joomleague_round r ON m.round_id=r.id
-INNER JOIN jos_joomleague_project AS p ON p.id=r.project_id
-
-LEFT  JOIN (
-SELECT DISTINCT m.id AS mid, tp.id AS tpid
-FROM jos_joomleague_match_player AS md
-INNER JOIN jos_joomleague_match AS m ON m.id = md.match_id
-INNER JOIN jos_joomleague_team_player AS tp ON tp.id = md.teamplayer_id
-INNER JOIN jos_joomleague_project_team AS pt ON pt.id=tp.projectteam_id
-WHERE pt.id=398604
-AND (md.came_in = 0 || md.came_in = 1)
-) AS mp ON mp.mid = m.id
-
-LEFT  JOIN (
-SELECT DISTINCT m.id AS mid, tp.id AS tpid
-FROM jos_joomleague_match_statistic AS md
-INNER JOIN jos_joomleague_match AS m ON m.id = md.match_id
-INNER JOIN jos_joomleague_team_player AS tp ON tp.id = md.teamplayer_id
-INNER JOIN jos_joomleague_project_team AS pt ON pt.id=tp.projectteam_id
-WHERE pt.id=398604					  
-) AS ms ON ms.mid = m.id
 
 
-
-INNER JOIN jos_joomleague_team_player AS tp
-ON (tp.id = mp.tpid OR tp.id = ms.tpid )
-WHERE tp.projectteam_id = 398604
-AND m.published = 1
-AND p.published = 1
-) AS pse
-GROUP BY pse.tpid
-
-LEFT  JOIN ('.$query_me.') AS me ON me.mid = m.id
-
-*/
 			
 			$common_query_part 	= ' INNER JOIN #__joomleague_match AS m ON m.id = md.match_id'
 								. ' INNER JOIN #__joomleague_team_player AS tp ON tp.id = md.teamplayer_id'
@@ -536,40 +386,8 @@ LEFT  JOIN ('.$query_me.') AS me ON me.mid = m.id
 					  . ' FROM #__joomleague_match_player AS md'
 					  . $common_query_part
 					  . ' AND (md.came_in = 0 || md.came_in = 1)';
+                     
 
-/*
-			$query_ms = ' SELECT DISTINCT m.id AS mid, tp.id AS tpid'
-					  . ' FROM #__joomleague_match_statistic AS md'
-					  . $common_query_part;
-
-			$query_me = ' SELECT DISTINCT m.id AS mid, tp.id AS tpid'
-					  . ' FROM #__joomleague_match_event AS md'
-					  . $common_query_part;
-*/
-                      
-/*
-			$query	= ' SELECT pse.person_id, '
-					. '        COUNT(pse.mid) AS played,'
-					. '        0 AS started,'
-					. '        0 AS sub_in,'
-					. '        0 AS sub_out'
-					. ' FROM'
-					. ' ('
-					. '     SELECT DISTINCT m.id as mid, tp.id as tpid, tp.person_id'
-					. '     FROM #__joomleague_match AS m'
-					. '     INNER JOIN #__joomleague_round r ON m.round_id=r.id '
-					. '     INNER JOIN #__joomleague_project AS p ON p.id=r.project_id '
-					. '     LEFT  JOIN ('.$query_mp.') AS mp ON mp.mid = m.id'
-					. '     LEFT  JOIN ('.$query_ms.') AS ms ON ms.mid = m.id'
-					. '     LEFT  JOIN ('.$query_me.') AS me ON me.mid = m.id'
-					. '     INNER JOIN #__joomleague_team_player AS tp'
-					. '             ON (tp.id = mp.tpid OR tp.id = ms.tpid OR tp.id = me.tpid)'
-					. '     WHERE tp.projectteam_id = '.$projectteam_id
-					. '       AND m.published = 1 '
-					. '       AND p.published = 1 '
-					. ' ) AS pse'
-					. ' GROUP BY pse.tpid';
-*/
 $query	= ' SELECT pse.person_id, '
 					. '        COUNT(pse.mid) AS played,'
 					. '        0 AS started,'
@@ -594,27 +412,6 @@ $query	= ' SELECT pse.person_id, '
 			$this->_teaminout = $this->_db->loadObjectList('person_id');
 
 			// Sub 2: get the in/out stats
-/*
-// performance
-// abfrage ist ok
-SELECT tp1.id AS tp_id1,
-tp1.person_id AS person_id1,
-tp2.id AS tp_id2,
-tp2.person_id AS person_id2,
-m.id AS mid,
-mp.came_in, mp.out, mp.in_for
-FROM jos_joomleague_match AS m
-INNER JOIN jos_joomleague_round r ON m.round_id=r.id
-INNER JOIN jos_joomleague_project AS p ON p.id=r.project_id
-INNER JOIN jos_joomleague_match_player AS mp ON mp.match_id=m.id
-INNER JOIN jos_joomleague_team_player AS tp1 ON tp1.id=mp.teamplayer_id
-LEFT JOIN jos_joomleague_team_player AS tp2 ON tp2.id = mp.in_for
-WHERE tp1.projectteam_id = 398604
-AND m.published = 1
-AND p.published = 1 
-
-*/
-			
 			$query	= ' SELECT tp1.id AS tp_id1, '
 					. ' tp1.person_id AS person_id1, '
 					. ' tp2.id AS tp_id2, '
