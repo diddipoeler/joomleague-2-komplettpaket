@@ -30,6 +30,8 @@ class JoomleagueViewClub extends JLGView
 		$uri 	= JFactory::getURI();
 		$user 	= JFactory::getUser();
 		$model	= $this->getModel();
+        
+        //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r(JRequest::getVar('view'),true).'</pre>' ),'');
 
 		$edit	= JRequest::getVar('edit',true);
 
@@ -57,73 +59,19 @@ class JoomleagueViewClub extends JLGView
 			// initialise new record
 			$club->order=0;
 		}
-/*
-		//build the html select list for admin
-		$lists['admin']=JHTML::_('list.users','admin',$club->admin);
 
-		// build the html select list for ordering
-		$query = $model->getOrderingAndClubQuery();
-		$lists['ordering'] 	= JHTML::_('list.specificordering',$club,$club->id,$query,1);
-
-		//build the html select list for countries
-		$countries[]=JHTML::_('select.option','',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_COUNTRY'));
-		if ($res =& Countries::getCountryOptions())
-		{
-			$countries=array_merge($countries,$res);
-		}
-		$lists['countries']=JHTML::_(	'select.genericlist',
-										$countries,
-										'country',
-										'class="inputbox" size="1"',
-										'value',
-										'text',
-										$club->country);
-		unset($countries);
-
-		//build the html select list for playgrounds
-		$playgrounds[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PLAYGROUND'));
-		if ($res =& $model->getPlaygrounds())
-		{
-			$playgrounds=array_merge($playgrounds,$res);
-		}
-		$lists['playgrounds']=JHTML::_(	'select.genericlist',
-										$playgrounds,
-										'standard_playground',
-										'class="inputbox" size="1"',
-										'value',
-										'text',
-										$club->standard_playground);
-		unset($playgrounds);
-
-		// logo_big
-		//if there is no logo selected,use default logo
-        $default_big = JoomleagueHelper::getDefaultPlaceholder("clublogobig");
-		if (empty($club->logo_big)){$club->logo_big=$default_big;}
-
-		$logo_bigselect=ImageSelectJL::getSelector('logo_big','logo_big_preview','clubs_large',$club->logo_big,$default_big,'logo_big','logo_big');
-
-		// logo_middle
-		//if there is no logo selected,use default logo
-        $default_middle = JoomleagueHelper::getDefaultPlaceholder("clublogomedium");
-		if (empty($club->logo_middle)){$club->logo_middle=$default_middle;}
-
-		$logo_middleselect=ImageSelectJL::getSelector('logo_middle','logo_middle_preview','clubs_medium',$club->logo_middle,$default_middle, 'logo_middle', 'logo_middle');
-
-
-		// logo_small
-		//if there is no logo selected,use default logo
-        $default_small = JoomleagueHelper::getDefaultPlaceholder("clublogosmall");
-		if (empty($club->logo_small)){$club->logo_small=$default_small;}
-
-		$logo_smallselect=ImageSelectJL::getSelector('logo_small','logo_small_preview','clubs_small',$club->logo_small,$default_small, 'logo_small', 'logo_small');
-*/
 		$this->assignRef('form'      	, $this->get('form'));	
 		$this->assignRef('edit',$edit);
 		$extended = $this->getExtended($club->extended, 'club');
 		$this->assignRef( 'extended', $extended );
-		//$this->assignRef('logo_bigselect',$logo_bigselect);
-		//$this->assignRef('logo_middleselect',$logo_middleselect);
-		//$this->assignRef('logo_smallselect',$logo_smallselect);
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+        if ( $this->checkextrafields )
+        {
+            $lists['ext_fields'] = $model->getUserExtraFields($club->id);
+            //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r($lists['ext_fields'],true).'</pre>' ),'');
+        }
+        
+		
 		$this->assignRef('lists',$lists);
 		$this->assignRef('club',$club);
 

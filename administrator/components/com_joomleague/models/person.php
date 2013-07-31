@@ -114,6 +114,43 @@ class JoomleagueModelPerson extends JoomleagueModelItem
 		}
 		return true;
 	}
+    
+    function checkUserExtraFields()
+    {
+    $query="SELECT id FROM #__joomleague_user_extra_fields WHERE template_backend LIKE '".JRequest::getVar('view')."' ";
+			//echo '<pre>'.print_r($query,true).'</pre>';
+			$this->_db->setQuery($query);
+			if ($this->_db->loadResult())
+			{
+				return true;
+			}
+            else
+            {
+                return false;
+            }    
+        
+    }
+    
+    function getUserExtraFields($jlid)
+    {
+    	$query = "SELECT ef.*,
+        ev.fieldvalue as fvalue,
+        ev.id as value_id 
+        FROM #__joomleague_user_extra_fields as ef 
+        LEFT JOIN #__joomleague_user_extra_fields_values as ev 
+        ON ef.id = ev.field_id 
+        AND ev.jl_id = ".$jlid." 
+        WHERE ef.template_backend LIKE '".JRequest::getVar('view')."'  
+        ORDER BY ef.ordering";    
+        $this->_db->setQuery($query);
+		if (!$result=$this->_db->loadObjectList())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+		return $result;
+    
+    }
 
 	/**
 	 * Method to remove a person

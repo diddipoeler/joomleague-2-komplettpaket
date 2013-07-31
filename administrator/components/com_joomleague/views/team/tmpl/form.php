@@ -24,6 +24,12 @@ echo $this->loadTemplate('description');
 echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel4');
 echo $this->loadTemplate('extended');
 
+if ( $this->checkextrafields )
+{
+    echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTRA_FIELDS'), 'panel5');
+    echo $this->loadTemplate('extra_fields');
+}
+
 echo JHTML::_('tabs.end');
 ?>
 <div class="clr"></div>

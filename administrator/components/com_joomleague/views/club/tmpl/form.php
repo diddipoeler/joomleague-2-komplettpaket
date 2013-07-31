@@ -20,6 +20,12 @@ echo $this->loadTemplate('picture');
 echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTENDED'), 'panel3');
 echo $this->loadTemplate('extended');
 
+if ( $this->checkextrafields )
+{
+    echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTRA_FIELDS'), 'panel4');
+    echo $this->loadTemplate('extra_fields');
+}
+
 echo JHtml::_('tabs.end');
 ?>
 	<div class="clr"></div>

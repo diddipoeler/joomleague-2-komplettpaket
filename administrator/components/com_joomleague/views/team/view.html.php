@@ -48,6 +48,8 @@ class JoomleagueViewTeam extends JLGView
 		//get the club
 		$team	=& $this->get('data');
 		$isNew	= ($team->id < 1);
+        
+        //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r(JRequest::getVar('view'),true).'</pre>' ),'');
 
     $team->merge_clubs = explode(",", $team->merge_clubs);
     
@@ -69,33 +71,16 @@ class JoomleagueViewTeam extends JLGView
 			//$season->published = 1;
 			$club->order 	= 0;
 		}
-/*
-		//build the html select list for admin
-		//	$lists['admin'] = JHTML::_('list.users',  'admin', $club->admin);
+        
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+        if ( $this->checkextrafields )
+        {
+            $lists['ext_fields'] = $model->getUserExtraFields($team->id);
+            //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r($lists['ext_fields'],true).'</pre>' ),'');
+        }
 
-		// build the html select list for ordering
-		$query = $model->getOrderingAndTeamQuery();
-		$lists['ordering']	= JHTML::_( 'list.specificordering', $team, $team->id, $query, 1 );
-
-		//build the html select list for clubs
-		$clubs[] = JHTML::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_SELECT_CLUB' ), 'id', 'name' );
-		if ( $res = & $this->get('Clubs') )
-		{
-			$clubs = array_merge( $clubs, $res );
-		}
-
-		if($team->club_id){
-			$selected_club = $team->club_id;
-		} else {
-			$selected_club = JRequest::getInt('cid',0);
-		}
-
-		$lists['clubs'] = JHTML::_( 'select.genericlist', $clubs, 'club_id', 'class="inputbox" size="1"', 'id', 'name', $selected_club );
-		unset($clubs);
-
-	$this->assignRef('lists',	$lists);
-*/				
 		$this->assignRef('team',	$team);
+        $this->assignRef('lists',	$lists);
 
 		$extended = $this->getExtended($team->extended, 'team');
 		$this->assignRef( 'extended', $extended );

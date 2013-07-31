@@ -165,6 +165,36 @@ class JoomleagueControllerClub extends JoomleagueController
 		{
 			$link='index.php?option=com_joomleague&task=club.edit&cid[]='.$post['id'];
 		}
+        
+        //-------extra fields-----------//
+		if(isset($post['extraf']) && count($post['extraf']))
+        {
+		
+        for($p=0;$p<count($post['extraf']);$p++)
+        {
+            $tbl = JTable::getInstance("jlextuserextrafieldvalue", "Table");
+        // extra feld ist schon vorhanden
+        if ( $post['extra_value_id'][$p] )
+        {
+            $result = $post['extra_value_id'][$p];
+            $tbl->load($result);
+            $tbl->field_id = $post['extra_id'][$p];
+            $tbl->jl_id = $post['id'];
+            $tbl->fieldvalue = $post['extraf'][$p];
+        }
+        else
+        {
+            $tbl->field_id = $post['extra_id'][$p];
+            $tbl->jl_id = $post['id'];
+            $tbl->fieldvalue = $post['extraf'][$p];
+        }
+        if (!$tbl->store())
+			{
+			} 
+        }
+        
+        }
+        
 		$this->setRedirect($link,$msg);
 	}
 

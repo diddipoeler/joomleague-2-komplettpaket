@@ -71,7 +71,7 @@ class JoomleagueControllerPerson extends JoomleagueController
 		$post		= JRequest::get('post');
 		$pid		= JRequest::getInt('cid');
 		$post['id'] = $pid; //map cid to table pk: id
-		
+		//$mainframe->enqueueMessage(JText::_('post -> '.'<pre>'.print_r($post,true).'</pre>' ),'');
 		// decription must be fetched without striping away html code
 		$post['notes']=JRequest:: getVar('notes','none','post','STRING',JREQUEST_ALLOWHTML);
 
@@ -154,6 +154,36 @@ class JoomleagueControllerPerson extends JoomleagueController
 			$link='index.php?option=com_joomleague&task=person.edit&cid='.$pid;
 		}
 		#echo $msg;
+        
+        //-------extra fields-----------//
+		if(isset($post['extraf']) && count($post['extraf']))
+        {
+		
+        for($p=0;$p<count($post['extraf']);$p++)
+        {
+            $tbl = JTable::getInstance("jlextuserextrafieldvalue", "Table");
+        // extra feld ist schon vorhanden
+        if ( $post['extra_value_id'][$p] )
+        {
+            $result = $post['extra_value_id'][$p];
+            $tbl->load($result);
+            $tbl->field_id = $post['extra_id'][$p];
+            $tbl->jl_id = $post['id'];
+            $tbl->fieldvalue = $post['extraf'][$p];
+        }
+        else
+        {
+            $tbl->field_id = $post['extra_id'][$p];
+            $tbl->jl_id = $post['id'];
+            $tbl->fieldvalue = $post['extraf'][$p];
+        }
+        if (!$tbl->store())
+			{
+			} 
+        }
+        
+        }
+        
 		$this->setRedirect($link,$msg);
 	}
 

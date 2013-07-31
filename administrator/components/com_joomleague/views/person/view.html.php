@@ -49,6 +49,8 @@ class JoomleagueViewPerson extends JLGView
 		$user = JFactory::getUser();
 		$model = $this->getModel();
 		$edit=JRequest::getVar('edit',true);
+        
+        //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r(JRequest::getVar('view'),true).'</pre>' ),'');
 		
 		$this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
             
@@ -86,7 +88,15 @@ class JoomleagueViewPerson extends JLGView
         {
             $this->extended->setValue('COM_JOOMLEAGUE_EXT_PERSON_PARENT_POSITIONS', null,explode(",",$form_value));
         }
-		//$this->assignRef('lists',$lists);
+		
+        $this->assignRef( 'checkextrafields', $model->checkUserExtraFields() );
+        if ( $this->checkextrafields )
+        {
+            $lists['ext_fields'] = $model->getUserExtraFields($person->id);
+            //$mainframe->enqueueMessage(JText::_('view -> '.'<pre>'.print_r($lists['ext_fields'],true).'</pre>' ),'');
+        }
+        
+        $this->assignRef('lists',$lists);
 		$this->assignRef('person',$person);
         
         $document->addStyleSheet( JURI::root(). '/components/'.$option.'/assets/css/player.css' );

@@ -34,6 +34,12 @@
 			echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_ASSIGN'), 'panel6');
 			echo $this->loadTemplate('assign');
 		endif;
+        
+        if ( $this->checkextrafields )
+        {
+        echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_EXTRA_FIELDS'), 'panel7');
+        echo $this->loadTemplate('extra_fields');
+        }
 
 		echo JHTML::_('tabs.end');
 		?>
