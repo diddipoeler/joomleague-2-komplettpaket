@@ -14,17 +14,25 @@
  * @package   Joomleague
  * @since 0.1
 */
+
+/*
+<object type="application/x-shockwave-flash" data="media/com_joomleague/jl_images/joomleague_logo.swf" id="movie" width="410" height="200">
+<param name="movie" value="media/com_joomleague/jl_images/joomleague_logo.swf" />
+<param name="bgcolor" value="#FFFFFF" />
+<param name="quality" value="high" />
+<param name="loop" value="false" />
+<param name="allowscriptaccess" value="samedomain" />
+</object>
+      
+*/
 ?>
 <table class="about">
 	<tr>
 		<td align="center">
-		<object type="application/x-shockwave-flash" data="media/com_joomleague/jl_images/joomleague_logo.swf" id="movie" width="410" height="200">
-		<param name="movie" value="media/com_joomleague/jl_images/joomleague_logo.swf" />
-		<param name="bgcolor" value="#FFFFFF" />
-		<param name="quality" value="high" />
-		<param name="loop" value="false" />
-		<param name="allowscriptaccess" value="samedomain" />
-	  </object>
+<?PHP 
+$backgroundimage = 'media/com_joomleague/jl_images/JL-logo.png';       
+echo "<img class=\"\" style=\"\" src=\"".$backgroundimage."\" alt=\"\" >";
+?>		
 		</td>
 	</tr>
 </table>
