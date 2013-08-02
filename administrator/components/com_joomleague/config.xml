@@ -251,11 +251,12 @@
 	</fieldset>
 
 <!-- register 7 -->
+<!-- 
   <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY" label="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_DESC">
 
-<!--  
+ 
   <field name="COM_JOOMLEAGUE_use_jquery_version" type="radio"
 			default="0" 
       label="COM_JOOMLEAGUE_SETTINGS_USE_JQUERY_VERSION_TITLE" 
@@ -263,7 +264,7 @@
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
--->
+
 		
   <field name="jqueryversionfrontend" type="list" default="1.8" 
 	            	label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYVERSION_LABEL" 
@@ -292,6 +293,7 @@
 					label="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_LABEL" 
 					description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_DESC" />					
   </fieldset>
+-->
 
 <!-- register 8 -->
   <fieldset  
