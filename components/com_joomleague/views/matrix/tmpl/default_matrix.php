@@ -1,6 +1,36 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 ?>
+
+<style>  
+.rotate_text
+      {
+         text-align: center;
+                vertical-align: middle;
+                width: 20px;
+                margin: 0px;
+                padding: 0px;
+                padding-left: 3px;
+                padding-right: 3px;
+                padding-top: 10px;
+                white-space: nowrap;
+                -webkit-transform: rotate(-90deg); 
+                -moz-transform: rotate(-90deg); 
+      }      
+
+      .rotated_cell
+      {
+         height:400px;
+         background-color: ;
+         color: white;
+         padding-bottom: 3px;
+         padding-left: 5px;
+         padding-right: 5px;
+         white-space:nowrap; 
+         vertical-align:bottom
+      }
+   </style>
+
 <div>
  <?php
 
@@ -34,14 +64,14 @@ defined('_JEXEC') or die('Restricted access');
 					$desc = JoomleagueHelper::getPictureThumb($picture, $title,0,0,3);
 				}
 				if ($this->config['link_teams'] == 1) {
-					$header = '<th class="teamsheader">';
+					$header = '<th class="rotated_cell"><div class="rotate_text">';
 					$header .= JHTML :: link($link, $desc);
-					$header .= '</th>';
+					$header .= '</div></th>';
 					$matrix .= $header;
 				} else {
-					$header = '<th class="teamsheader">';
+					$header = '<th class="rotated_cell"<div class="rotate_text">>';
 					$header .= $desc;
-					$header .= '</th>';
+					$header .= '</div></th>';
 					$matrix .= $header;
 				}
 			}
@@ -71,7 +101,7 @@ defined('_JEXEC') or die('Restricted access');
 					$tValue .= '</th>';
 					$matrix .= $tValue;
 				} else {
-					$tValue = '<th class="teamsleft"">';
+					$tValue = '<th class="teamsleft">';
 					$tValue .= $desc;
 					$tValue .= '</th>';
 					$matrix .= $tValue;

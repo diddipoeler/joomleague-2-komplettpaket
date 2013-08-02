@@ -168,19 +168,61 @@ class JoomleagueModelMatches extends JoomleagueModelList
 	function getProjectTeams()
 	{
 		$option = JRequest::getCmd('option');
-
 		$mainframe	= JFactory::getApplication();
 		$project_id = $mainframe->getUserState($option . 'project');
+        $round_id = $mainframe->getUserState($option . 'round_id');
+        
+$query="SELECT project_type
+FROM #__joomleague_project
+WHERE id= ".$project_id;
+$this->_db->setQuery($query);
+$project_type = $this->_db->loadResult();
 
-		$query = '	SELECT	pt.id AS value,
-							t.name AS text,
-							t.short_name AS short_name,
-							t.notes
+//$mainframe->enqueueMessage(JText::_('project_type -> '.'<pre>'.print_r($project_type,true).'</pre>' ),'');
 
-					FROM #__joomleague_team AS t
-					LEFT JOIN #__joomleague_project_team AS pt ON pt.team_id = t.id
-					WHERE pt.project_id = ' . $project_id . '
-					ORDER BY text ASC ';
+$query="SELECT roundcode
+FROM #__joomleague_round
+WHERE id= ".$round_id." and project_id = ".$project_id;
+$this->_db->setQuery($query);
+$roundcode = $this->_db->loadResult();
+
+//$mainframe->enqueueMessage(JText::_('roundcode -> '.'<pre>'.print_r($roundcode,true).'</pre>' ),'');
+
+$query = '	SELECT	pt.id AS value,
+			t.name AS text,
+			t.short_name AS short_name,
+			t.notes
+			FROM #__joomleague_team AS t
+			LEFT JOIN #__joomleague_project_team AS pt 
+            ON pt.team_id = t.id
+			WHERE pt.project_id = ' . $project_id;
+                    
+switch ($project_type)
+{
+    case 'TOURNAMENT_MODE';
+    // diddipoeler
+    // verlierer selektieren
+    $query2 = "select ma.team_lost
+    FROM #__joomleague_match AS ma
+    LEFT JOIN #__joomleague_round AS r 
+    ON r.id = ma.round_id
+    where ma.team_lost != 0 and r.roundcode < ".$roundcode." and r.project_id = ".$project_id;
+    $this->_db->setQuery($query2);
+    //$mainframe->enqueueMessage(JText::_('query2 -> '.'<pre>'.print_r($query2,true).'</pre>' ),'');
+    $loser = $this->_db->loadResultArray();
+    if ( $loser )
+    {
+        $query .= " AND pt.id NOT IN (".implode(",",$loser).")";
+    }
+    //$mainframe->enqueueMessage(JText::_('loser -> '.'<pre>'.print_r($loser,true).'</pre>' ),'');
+    break;
+    default:
+    break;
+}
+
+$query .= ' ORDER BY text ASC ';
+
+//$mainframe->enqueueMessage(JText::_('query -> '.'<pre>'.print_r($query,true).'</pre>' ),'');
 
 		$this->_db->setQuery($query);
 

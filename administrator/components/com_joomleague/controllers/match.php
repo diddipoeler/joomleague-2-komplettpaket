@@ -379,15 +379,15 @@ class JoomleagueControllerMatch extends JoomleagueController
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 
-		$proj=$mainframe->getUserState($option.'project',0);
-		$post=JRequest::get('post');
-		$cid=JRequest::getVar('cid',array(),'post','array');
+		$proj = $mainframe->getUserState($option.'project',0);
+		$post = JRequest::get('post');
+		$cid = JRequest::getVar('cid',array(),'post','array');
 		JArrayHelper::toInteger($cid);
 
 		$model=$this->getModel('match');
 		for ($x=0; $x < count($cid); $x++)
 		{
-			$post['match_date'.$cid[$x]]=JoomleagueHelper::convertDate($post['match_date'.$cid[$x]],0);
+			$post['match_date'.$cid[$x]] = JoomleagueHelper::convertDate($post['match_date'.$cid[$x]],0);
 				
 			//clear ranking cache
 			$cache = JFactory::getCache('joomleague.project'.$proj);

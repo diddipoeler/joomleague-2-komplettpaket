@@ -1,0 +1,1 @@
+ALTER TABLE  `#__joomleague_match` ADD `team_lost` INT(11) NOT NULL DEFAULT '0'

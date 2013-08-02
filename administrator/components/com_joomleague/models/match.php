@@ -368,7 +368,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 								team1_bonus,team1_legs,team2_result,team2_bonus,team2_legs,
 								team1_result_decision,team2_result_decision,team1_result_split,
 								team2_result_split,team1_result_ot,team2_result_ot,
-								team1_result_so,team2_result_so,team_won,",$keys.',') &&
+								team1_result_so,team2_result_so,team_won,team_lost,",$keys.',') &&
 					$result == '' && isset($post[$keys.$fieldzusatz]))
 					{
 						$result='NULL';
@@ -395,6 +395,29 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 						if ($query){$query .= ',';}
 						$query .= $keys.'=null';
 					}
+                    // diddipoeler
+                    // verlierer setzen
+                    if ( $post['team1_result'.$fieldzusatz] && $post['team2_result'.$fieldzusatz] )
+					{
+						if ($query){$query .= ',';}
+						if ( $post['team1_result'.$fieldzusatz] < $post['team2_result'.$fieldzusatz] )
+                        {
+                        $query .= 'team_lost='.$post['projectteam1_id'.$fieldzusatz];    
+                        }
+                        elseif ( $post['team1_result'.$fieldzusatz] > $post['team2_result'.$fieldzusatz] )
+                        {
+                        $query .= 'team_lost='.$post['projectteam2_id'.$fieldzusatz];    
+                        }
+                        else
+                        {
+                        $query .= 'team_lost=0';
+                        }
+					}
+                    else
+                    {
+                        if ($query){$query .= ',';}
+                        $query .= 'team_lost=0';
+                    }
 				}
 			}
 		}
