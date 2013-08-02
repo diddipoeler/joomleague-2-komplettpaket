@@ -16,6 +16,7 @@ defined('_JEXEC') or die('Restricted access');
                 white-space: nowrap;
                 -webkit-transform: rotate(-90deg); 
                 -moz-transform: rotate(-90deg); 
+                -o-transform: rotate(-90deg);
       }      
 
       .rotated_cell
