@@ -1185,6 +1185,7 @@ echo $this->pane->endPane();
 	private function _setJoomLeagueVersion()
 	{
 		$exportRoutine='2010-09-23 15:00:00';
+        /*
 		$query = "SELECT CONCAT(major,'.',minor,'.',build,'.',revision) AS version FROM #__joomleague_version ORDER BY date DESC LIMIT 1";
 		$this->_db->setQuery($query);
 		$this->_db->query();
@@ -1199,6 +1200,14 @@ echo $this->pane->endPane();
 			return $result;
 		}
 		return false;
+        */
+        $result[0]['version']=JoomleagueHelper::getVersion();
+            $result[0]['exportRoutine']=$exportRoutine;
+			$result[0]['exportDate']=date('Y-m-d');
+			$result[0]['exportTime']=date('H:i:s');
+			$result[0]['exportSystem']=JFactory::getConfig()->getValue('config.sitename');
+			$result[0]['object']='JoomLeagueVersion';
+			return $result;
 	}
     
 /**
