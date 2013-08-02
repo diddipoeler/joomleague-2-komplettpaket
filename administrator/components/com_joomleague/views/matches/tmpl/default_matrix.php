@@ -1,6 +1,28 @@
 <?php defined('_JEXEC') or die('Restricted access');
 ?>
 
+<!--[if IE]>
+   <style>
+      .rotate_text
+      {
+         writing-mode: tb-rl;
+         filter: flipH() flipV();
+      }
+      .rotated_cell
+      {
+         height:400px;
+         background-color: grey;
+         color: white;
+         padding-bottom: 3px;
+         padding-left: 5px;
+         padding-right: 5px;
+         white-space:nowrap; 
+         vertical-align:bottom
+      }
+   </style>
+<![endif]-->
+
+<!--[if !IE]><!-->
 <style>  
 .rotate_text
       {
@@ -30,6 +52,7 @@
          vertical-align:bottom
       }
    </style>
+<!--<![endif]--> 
    
 <div class="clr"></div>
 <form method="post" name="matrixForm" id="matrixForm">
