@@ -2272,12 +2272,21 @@ $this->dump_variable("import_team", $import_team);
 		{
 			foreach ($this->_dbpersonsid AS $key => $id)
 			{
-				$oldID=$this->_getDataFromObject($this->_datas['person'][$key],'id');
+				$oldID = $this->_getDataFromObject($this->_datas['person'][$key],'id');
 				$this->_convertPersonID[$oldID]=$id;
 				$my_text .= '<span style="color:'.$this->existingInDbColor.'">';
 				$my_text .= JText::sprintf(	'Using existing person data: %1$s',
-											'</span><strong>'.$this->_getObjectName('person',$id,"CONCAT(lastname,',',firstname,' - ',nickname,' - ',birthday) AS name").'</strong>');
+											'</span><strong>'.$this->_getObjectName('person',$id,"CONCAT(id,' -> ',lastname,',',firstname,' - ',nickname,' - ',birthday) AS name").'</strong>');
 				$my_text .= '<br />';
+                $update_person =&  $this->getTable('person');
+                $update_person->load($id);
+                $update_person->info = $this->_getDataFromObject($this->_datas['person'][$key],'info');
+                if ($update_person->store() === false)
+					{
+					}
+					else
+					{
+					}
 			}
 		}
 		if (!empty($this->_newpersonsid))

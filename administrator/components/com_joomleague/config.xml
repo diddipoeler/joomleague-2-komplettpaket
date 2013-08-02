@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	
+<!-- register 1 -->	
   <fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
 		<field name="cfg_edit_club_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
@@ -34,7 +34,8 @@
 		</field>
 		
 </fieldset>
-	
+
+<!-- register 2 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
 		<field name="JoomLeague updates" type="list" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_UPDATES_TITLE" description="COM_JOOMLEAGUE_SETTINGS_UPDATES_DESCR">
@@ -73,7 +74,7 @@
 			label="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT" description="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT_DESCR">
 		</field>
 	</fieldset>
-	
+<!-- register 3 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
 		<field name="show_footer" type="radio" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_DESCR">
@@ -118,7 +119,7 @@
 			label="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_TITLE" description="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_DESCR">
 		</field>
 	</fieldset>
-	
+<!-- register 4 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_BACKEND"
 		addfieldpath="/administrator/components/com_joomleague/elements">
 		<field name="defsportstype" type="sql" default="Soccer"
@@ -184,7 +185,8 @@
 
 		
 	</fieldset>
-	
+
+<!-- register 5 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
 		addfieldpath="/administrator/components/com_joomleague/models/fields">
 		
@@ -238,7 +240,7 @@
 			preview="show">			
 		</field>
 	</fieldset>
-	
+<!-- register 6 -->	
 	<fieldset name="Permissions" label="JCONFIG_PERMISSIONS_LABEL"
 		description="JCONFIG_PERMISSIONS_DESC">
 		<field name="rules" type="rules" label="COM_JOOMLEAGUE_SETTINGS_ACCESS_COMPONENT"
@@ -246,7 +248,7 @@
 			section="component" />
 	</fieldset>
 
-
+<!-- register 7 -->
   <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY" label="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_JQUERY_DESC">
@@ -289,6 +291,7 @@
 					description="COM_JOOMLEAGUE_SYSTEM_JQUERY_FIELD_JQUERYUISUBVERSION_DESC" />					
   </fieldset>
 
+<!-- register 8 -->
   <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_DESC">
@@ -396,6 +399,7 @@
   
   </fieldset>
 
+<!-- register 9 -->
   <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_DESC">
@@ -437,7 +441,8 @@
 		</field>
   
   </fieldset>  
-      
+
+<!-- register 10 -->      
 <fieldset  
   name="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_EXTENSIONS_DESC">  
