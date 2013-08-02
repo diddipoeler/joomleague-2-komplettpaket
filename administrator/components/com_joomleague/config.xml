@@ -37,12 +37,14 @@
 
 <!-- register 2 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
+<!--
 		<field name="JoomLeague updates" type="list" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_UPDATES_TITLE" description="COM_JOOMLEAGUE_SETTINGS_UPDATES_DESCR">
 			<option value="0">COM_JOOMLEAGUE_GLOBAL_ON</option>
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_MANUAL</option>
 			<option value="2">COM_JOOMLEAGUE_GLOBAL_OFF</option>
 		</field>
+-->		
 		<field name="cfg_which_media_tool" type="radio"
 			default="imageselect" label="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_MEDIA_TOOL_DESCR">
