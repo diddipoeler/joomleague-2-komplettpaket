@@ -26,6 +26,8 @@ if ($params->get('max_width', 800) > 0 AND $cnt <= 20) $css .= 'table.modjlclubi
 div.modjlclubicons { max-width: '.$params->get('max_width', 800).'px;}';
 $doc->addStyleDeclaration($css);
 
+if ( $cnt )
+{
 $tdw = intval(100/$cnt);
 $doc->addStyleDeclaration('td.modjlclubicons { width:'.$tdw.'%;}
 span.modjlclubicons { width:'.$tdw.'%;}
@@ -54,6 +56,7 @@ $script =  'script';
 $doc->addScript( JURI::base() . 'modules/mod_joomleague_clubicons/js/'.$script.'.js');
 $doc->addScriptDeclaration($initjs);
 require(JModuleHelper::getLayoutPath('mod_joomleague_clubicons', $tpl));
+}
 
 /* NOTE: this is not implemented yet:
 if ($tpl == 'tableless') {
