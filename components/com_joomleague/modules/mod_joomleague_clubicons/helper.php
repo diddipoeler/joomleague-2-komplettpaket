@@ -35,7 +35,8 @@ class modJLClubiconsHelper
 	 */
 	private function _getData()
 	{
-		if (!class_exists('JoomleagueModelRanking')) {
+		$mainframe = JFactory::getApplication();
+        if (!class_exists('JoomleagueModelRanking')) {
 			require_once(JLG_PATH_SITE.DS.'models'.DS.'ranking.php');
 		}
 		$project_id = (JRequest::getVar('option','') == 'com_joomleague' AND 
@@ -44,7 +45,7 @@ class modJLClubiconsHelper
 									JRequest::getInt('p') : $this->params->get('project_ids');
 		if (is_array($project_id)) { $project_id = $project_id[0];}
 		$model = &JLGModel::getInstance('project', 'JoomleagueModel');
-		$model->setProjectId(1);
+		$model->setProjectId($project_id);
 
 		$this->project = &$model->getProject();
 
