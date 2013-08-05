@@ -140,6 +140,14 @@ class JoomleagueViewPredictionUsers extends JLGView
 					if ( $predictionProject->champ )
           {
           $disabled='';
+          // ist überhaupt das startdatum gesetzt ?
+          if ( $predictionProject->start_date == '0000-00-00' )
+          {
+          $mainframe->enqueueMessage(JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING_STARTDATE'),'Error');  
+          $disabled=' disabled="disabled" ';
+          }
+          else
+          {
           // ist die saison beendet ?
           $predictionProjectSettings = $model->getPredictionProject($predictionProject->project_id);
           $time=strtotime($predictionProject->start_date);
@@ -149,6 +157,7 @@ class JoomleagueViewPredictionUsers extends JLGView
           $competitionStartTimeDate = JoomleagueHelper::getTimestamp($showDate,1,$predictionProjectSettings->serveroffset);
           $tippAllowed =	( ( $thisTimeDate < $competitionStartTimeDate ) ) ;
 					if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
+          }
           
           if ( $this->show_debug_info )
             {

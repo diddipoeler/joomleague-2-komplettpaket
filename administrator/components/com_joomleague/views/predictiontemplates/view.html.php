@@ -27,8 +27,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 	function display( $tpl = null )
 	{
 		$mainframe			=& JFactory::getApplication();
-// 		$option				= 'com_joomleague';
-//     $component_text = 'COM_JOOMLEAGUE_';
+
     
     // Get a refrence of the page instance in joomla
 		$document	=& JFactory::getDocument();

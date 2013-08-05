@@ -329,20 +329,33 @@ class JoomleagueModelPrediction extends JModel
 
 	function getPredictionProjectS()
 	{
-		if (!$this->_predictionProjectS)
+		$mainframe = JFactory::getApplication();
+        if (!$this->_predictionProjectS)
 		{
 			if ($this->predictionGameID > 0)
 			{
 				$query =	'	SELECT	pp.*,
 										p.name AS projectName, p.start_date
 								FROM #__joomleague_prediction_project AS pp
-								LEFT JOIN #__joomleague_project AS p ON p.id=pp.project_id
+								LEFT JOIN #__joomleague_project AS p 
+                                ON p.id = pp.project_id
 								WHERE	pp.prediction_id='.$this->_db->Quote($this->predictionGameID).' AND
 										pp.published=1';
 				$this->_db->setQuery($query);
-				$this->_predictionProjectS=$this->_db->loadObjectList();
+				$this->_predictionProjectS = $this->_db->loadObjectList();
 			}
 		}
+        // das startdatum überprüfen
+        foreach( $this->_predictionProjectS as $row )
+        {
+        if ( $row->start_date == '0000-00-00' )
+          {
+          $query = "SELECT min(round_date_first) from #__joomleague_round where project_id = ".$row->project_id;
+          $this->_db->setQuery($query);
+          $row->start_date = $this->_db->loadResult();
+          } 
+        }
+        //echo '_predictionProjectS <br /><pre>~' . print_r($this->_predictionProjectS,true) . '~</pre><br />';
 		return $this->_predictionProjectS;
 	}
 
@@ -457,7 +470,14 @@ class JoomleagueModelPrediction extends JModel
 			$query='SELECT * FROM #__joomleague_project WHERE id='.$project_id;
 			$this->_db->setQuery($query);
 			if (!$result=$this->_db->loadObject()){return false;}
-			return $result;
+			
+            if ( $result->start_date == '0000-00-00' )
+            {
+            $query = "SELECT min(round_date_first) from #__joomleague_round where project_id = ".$project_id;
+          $this->_db->setQuery($query);
+          $result->start_date = $this->_db->loadResult();    
+            }
+            return $result;
 		}
 		return false;
 	}

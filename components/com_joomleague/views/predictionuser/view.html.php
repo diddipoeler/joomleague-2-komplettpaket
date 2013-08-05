@@ -146,10 +146,18 @@ class JoomleagueViewPredictionUser extends JLGView
           
 					$lists['fav_team'][$predictionProject->project_id] = JHTML::_('select.genericList',$projectteams,'fav_team['.$predictionProject->project_id.']','class="inputbox"','value','text',$favTeamsList[$predictionProject->project_id]);
 
-					// kann champion ausgewaehlt werden ?
-					if ( $predictionProject->champ )
+		// kann champion ausgewaehlt werden ?
+		if ( $predictionProject->champ )
           {
           $disabled='';
+          // ist überhaupt das startdatum gesetzt ?
+          if ( $predictionProject->start_date == '0000-00-00' )
+          {
+          $mainframe->enqueueMessage(JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING_STARTDATE'),'Error');  
+          $disabled=' disabled="disabled" ';
+          }
+          else
+          {
           // ist die saison beendet ?
           $predictionProjectSettings = $mdlPredUsers->getPredictionProject($predictionProject->project_id);
           $time=strtotime($predictionProject->start_date);
@@ -158,8 +166,8 @@ class JoomleagueViewPredictionUser extends JLGView
           $thisTimeDate = JoomleagueHelper::getTimestamp('',1,$predictionProjectSettings->serveroffset);
           $competitionStartTimeDate = JoomleagueHelper::getTimestamp($showDate,1,$predictionProjectSettings->serveroffset);
           $tippAllowed =	( ( $thisTimeDate < $competitionStartTimeDate ) ) ;
-					if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
-          
+		if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
+          }
           if ( $this->show_debug_info )
             {
 echo '<br />predictionuser view.html edit -> time <pre>~' . print_r($time,true) . '~</pre><br />';

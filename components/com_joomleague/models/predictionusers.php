@@ -34,7 +34,6 @@ require_once('prediction.php');
  * @since	1.5.100625
  */
 class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
-//class JoomleagueModelPredictionUsers extends JModelForm
 {
 
 	function __construct()

@@ -90,7 +90,6 @@ class JoomleagueModelPredictionTemplate extends JoomleagueModelItem
 		return JTable::getInstance($type, $prefix, $config);
 	}
 	
-	
   	/**
 	 * Method to get the record form.
 	 *

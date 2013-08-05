@@ -89,7 +89,6 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 				JRequest::setVar( 'layout',			'form' );
 				JRequest::setVar( 'view',			'predictiontemplate');
 				JRequest::setVar( 'edit',			true );
-
 				
 				//$model = $this->getModel( 'predictiontemplate' );
 				

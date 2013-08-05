@@ -44,21 +44,7 @@ if (!empty($memberPredictionPoints))
 		}
 	}
 }
-/*
-$memberID=$this->predictionMember->pmID;
-$membersResultsArray = array();
-$membersResultsArray[$memberID]['rank']				= 0;
-$membersResultsArray[$memberID]['predictionsCount']	= $predictionsCount;
-$membersResultsArray[$memberID]['totalPoints']		= $totalPoints;
-$membersResultsArray[$memberID]['totalTop']			= $totalTop;
-$membersResultsArray[$memberID]['totalDiff']		= $totalDiff;
-$membersResultsArray[$memberID]['totalTend']		= $totalTend;
-$membersResultsArray[$memberID]['totalJoker']		= $totalJoker;
 
-$computedMembersRanking=$this->model->computeMembersRanking($membersResultsArray,$this->config);
-$recordCount=count($computedMembersRanking);
-echo '<br /><pre>~' . print_r($computedMembersRanking,true) . '~</pre><br />';
-*/
 ?>
 <table class='plgeneralinfo'>
 	<tr>

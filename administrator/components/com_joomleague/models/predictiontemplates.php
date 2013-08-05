@@ -251,8 +251,11 @@ class JoomleagueModelPredictionTemplates extends JoomleagueModelList
 								}				
 							}
 							$defaultvalues = $jRegistry->toString('ini');
-							//$defaultvalues = ereg_replace('"', '', $defaultvalues);
-                            $defaultvalues = preg_replace('"', '', $defaultvalues);
+                            
+//$mainframe->enqueueMessage(JText::_('defaultvalues -> '.'<pre>'.print_r($defaultvalues,true).'</pre>' ),'');
+                            
+							$defaultvalues = ereg_replace('"', '', $defaultvalues);
+                            //$defaultvalues = preg_replace('"', '', $defaultvalues);
 							//$defaultvalues = implode('\n', $defaultvalues);
 							//echo 'defaultvalues<br /><pre>~' . print_r($defaultvalues,true) . '~</pre><br />';
 							

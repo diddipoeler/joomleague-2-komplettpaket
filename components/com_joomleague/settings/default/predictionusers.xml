@@ -13,7 +13,7 @@
 			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
 		</field>
 
-		<field	name="show_image_from" type="avatarfromcomponent" default="0"
+		<field	name="show_image_from" type="avatarfromcomponent" default="com_users"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO_FROM"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO_FROM">
 			
