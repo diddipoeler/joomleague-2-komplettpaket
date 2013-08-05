@@ -44,7 +44,10 @@ class modJLClubiconsHelper
 									$this->params->get('usepfromcomponent',0) == 1 ) ? 
 									JRequest::getInt('p') : $this->params->get('project_ids');
 		if (is_array($project_id)) { $project_id = $project_id[0];}
-		$model = &JLGModel::getInstance('project', 'JoomleagueModel');
+		
+        if ( $project_id )
+        {
+        $model = &JLGModel::getInstance('project', 'JoomleagueModel');
 		$model->setProjectId($project_id);
 
 		$this->project = &$model->getProject();
@@ -75,6 +78,7 @@ class modJLClubiconsHelper
 		$this->buildData($teams);
 		unset($teams);
 		unset($model);
+        }
 
 	}
 	function buildData( &$result )
