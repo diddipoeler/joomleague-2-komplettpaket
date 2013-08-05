@@ -4,29 +4,31 @@
 		
     <field name="COM_JOOMLEAGUE_EXT_MATCH_TVBROADCAST" type="textarea"
 			rows="4" cols="50" label="COM_JOOMLEAGUE_EXT_MATCH_TVBROADCAST"
-			description="Enter the tv broadcast info here.">
+			description="COM_JOOMLEAGUE_EXT_MATCH_TVBROADCAST_DESC">
 		</field>
 		
-    <field name="Weather" type="list" label="COM_JOOMLEAGUE_EXT_MATCH_WEATHER"
-			description="Weather">
+    <field name="COM_JOOMLEAGUE_EXT_MATCH_WEATHER" type="list" label="COM_JOOMLEAGUE_EXT_MATCH_WEATHER"
+			description="COM_JOOMLEAGUE_EXT_MATCH_WEATHER_DESC">
 			<option value=""></option>
-			<option value="dry">Dry</option>
-			<option value="rainy">Rainy</option>
-			<option value="sunny">Sunny</option>
-			<option value="windy">Windy</option>
-			<option value="snowing">Snowing</option>
+			<option value="dry">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_DRY</option>
+			<option value="rainy">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_RAINY</option>
+			<option value="sunny">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_SUNNY</option>
+			<option value="windy">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_WINDY</option>
+			<option value="snowing">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_SNOWING</option>
+      <option value="foggy">COM_JOOMLEAGUE_EXT_MATCH_WEATHER_FOGGY</option>
 		</field>
 		
     <field name="COM_JOOMLEAGUE_EXT_MATCH_TEMPERATURE" type="text"
-			label="COM_JOOMLEAGUE_EXT_MATCH_TEMPERATURE" description="Temperature">
+			label="COM_JOOMLEAGUE_EXT_MATCH_TEMPERATURE" description="COM_JOOMLEAGUE_EXT_MATCH_TEMPERATURE_DESC">
 		</field>
 		
     <field name="COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION" type="list"
-			label="COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION" description="Field condition">
+			label="COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION" description="COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_DESC">
 			<option value=""></option>
-			<option value="normal">Normal</option>
-			<option value="dry">Dry</option>
-			<option value="wet">Wet</option>
+			<option value="normal">COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_NORMAL</option>
+			<option value="dry">COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_DRY</option>
+			<option value="wet">COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_WET</option>
+      <option value="snow">COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_SNOW</option>
 		</field>
 		
 <field name="formation1" type="sql"  label="Spielsystem-Heim" description="Spielsystem-Heim"
