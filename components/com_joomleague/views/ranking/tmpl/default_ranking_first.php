@@ -5,7 +5,8 @@
 
 <!-- content -->
 <?php
-echo 'computeRanking this->firstRank -> '.'<pre>'.print_r($this->firstRank,true).'</pre>';
+
+//echo 'computeRanking this->firstRank -> '.'<pre>'.print_r($this->firstRank,true).'</pre>';
 
 foreach ( $this->firstRank as $division => $cu_rk )
 {

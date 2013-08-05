@@ -79,6 +79,15 @@
             <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
             <option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
         </field>
+        
+        <field 	name="show_half_of_season" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_SHOW_HALF_OF_SEASON" 
+				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_SHOW_HALF_OF_SEASON">
+            <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+            <option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+        </field>
+        
+        
 	</fieldset>
 
 <!-- reiter 2 -->

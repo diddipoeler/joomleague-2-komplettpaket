@@ -128,8 +128,8 @@ class JoomleagueModelClub extends JoomleagueModelItem
 			$club->modified_by			= null;
       
       $club->dissolved			= null;
-      $club->dissolved_year			= null;
-      $club->founded_year			= null;
+      $club->dissolved_year			= '0000';
+      $club->founded_year			= '0000';
       $club->unique_id			= null;
       $club->new_club_id			= null;
       $club->enable_sb			= null;

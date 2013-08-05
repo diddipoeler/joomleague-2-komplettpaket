@@ -44,6 +44,14 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     $params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING').'}';
     $params .= $this->loadTemplate('ranking_away');  
     
+    if ($this->config['show_half_of_season']==1)
+	{
+	$params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_FIRST_HALF_RANKING').'}';
+    $params .= $this->loadTemplate('ranking_first'); 
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_RANKING_SECOND_HALF_RANKING').'}';
+    $params .= $this->loadTemplate('ranking_second'); 
+    }
+    
     $params .= $endoutput;
     echo JHTML::_('content.prepare', $params);
     }
@@ -57,6 +65,15 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 		echo $this->loadTemplate('ranking_home');
         echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_AWAY_RANKING'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('ranking_away');
+    
+    if ($this->config['show_half_of_season']==1)
+	{
+	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_FIRST_HALF_RANKING'), 'panel'.($idxTab++));
+	echo $this->loadTemplate('ranking_first');
+    echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_RANKING_SECOND_HALF_RANKING'), 'panel'.($idxTab++));
+	echo $this->loadTemplate('ranking_second');
+    }   
+        
 echo JHTML::_('tabs.end');    
     }
     

@@ -175,7 +175,23 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		return $res;
 	}
 		
-	/**
+	/*
+    function getFirstRank($part)
+    {
+        $this->part = 1;
+        self::computeRanking();
+    }
+    */
+    
+    /*
+    function getSecondRank($part)
+    {
+        $this->part = 2;
+        self::computeRanking();
+    }
+    */
+    
+    /**
 	 * computes the ranking
 	 *
 	 */
@@ -201,11 +217,15 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		if ( $this->part == 1 )
 		{
 			$this->from = $firstRound['id'];
-			$this->to = $this->rounds[intval(count($this->rounds)/2)]->id;
+            // diddipoeler: das ist ein bug
+			//$this->to = $this->rounds[intval(count($this->rounds)/2)]->id;
+            $this->to = $this->rounds[intval(count($this->rounds)/2)-1]->id;
 		}
 		elseif ( $this->part == 2 )
 		{
-			$this->from = $this->rounds[intval(count($this->rounds)/2)+1]->id;
+		  // diddipoeler: das ist ein bug
+			//$this->from = $this->rounds[intval(count($this->rounds)/2)+1]->id;
+            $this->from = $this->rounds[intval(count($this->rounds)/2)]->id;
 			$this->to = $lastRound['id'];
 		}
 		else
@@ -228,6 +248,20 @@ class JoomleagueModelRanking extends JoomleagueModelProject
 		}
 
 		$this->divLevel = 0;
+
+
+//echo 'computeRanking this->part -> '.'<pre>'.print_r($this->part,true).'</pre>';
+//echo 'computeRanking this->from -> '.'<pre>'.print_r($this->from,true).'</pre>';
+//echo 'computeRanking this->to-> '.'<pre>'.print_r($this->to,true).'</pre>';
+//echo 'computeRanking this->rounds -> '.'<pre>'.print_r($this->rounds,true).'</pre>';
+
+
+
+//$mainframe->enqueueMessage(JText::_('computeRanking this->part -> '.'<pre>'.print_r($this->part,true).'</pre>' ),'');
+//$mainframe->enqueueMessage(JText::_('computeRanking this->from -> '.'<pre>'.print_r($this->from,true).'</pre>' ),'');
+//$mainframe->enqueueMessage(JText::_('computeRanking this->to-> '.'<pre>'.print_r($this->to,true).'</pre>' ),'');
+//$mainframe->enqueueMessage(JText::_('computeRanking this->rounds -> '.'<pre>'.print_r($this->rounds,true).'</pre>' ),'');
+
 
 		//for sub division ranking tables
 		if ( $project->project_type=='DIVISIONS_LEAGUE' )
