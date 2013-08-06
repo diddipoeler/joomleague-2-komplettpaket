@@ -83,6 +83,11 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				?>
 				<td <?php echo $tdClassStr; ?> ><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER'); ?></td>
 				<?php
+                if ($this->config['show_pred_group'])
+				{
+					?><td <?php echo $tdClassStr; ?> ><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td><?php
+				}
+                
 				// holen wir uns die spiele
 				$match_ids = '';
 				if ( $this->config['use_pred_select_matches'] )
@@ -282,6 +287,8 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				}
 
 				$membersResultsArray[$member->pmID]['rank']				= 0;
+                $membersResultsArray[$member->pmID]['pg_group_name']				= $member->pg_group_name;
+                $membersResultsArray[$member->pmID]['pg_group_id']				= $member->pg_group_id;
 				$membersResultsArray[$member->pmID]['predictionsCount']	= $predictionsCount;
 				$membersResultsArray[$member->pmID]['totalPoints']		= $totalPoints;
 				$membersResultsArray[$member->pmID]['totalTop']			= $totalTop;
@@ -299,7 +306,9 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
           }
           
 					$playerName = $member->name;
-					
+					$membersDataArray[$member->pmID]['pg_group_name']				= $member->pg_group_name;
+                    $membersDataArray[$member->pmID]['pg_group_id']				= $member->pg_group_id;
+                    
 					if (((!isset($member->avatar)) ||
 						($member->avatar=='') ||
 						(!file_exists($member->avatar)) ||
@@ -361,11 +370,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				?>
 				<?php
 	
-    			//$this->config['show_all_user']=1;
-				//if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
-//					( $this->config['show_all_user'] ) ||
-//					( $this->predictionMember->pmID == $key ) )
-//				{
+    			
     
 					?>
 					<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
@@ -379,6 +384,13 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 						<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['name']; ?></td>
 
 						<?php
+                        
+                        if ($this->config['show_pred_group'])
+				{
+				    ?>
+							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['pg_group_name']; ?></td>
+							<?php
+				    }
 						foreach ($roundMatchesList AS $roundMatch)
 						{
 							echo '<td'.$tdStyleStr.'>';

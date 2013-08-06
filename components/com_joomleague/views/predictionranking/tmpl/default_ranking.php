@@ -173,6 +173,12 @@ echo $this->pagination->getListFooter();
 				?>
 				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER'); ?></td>
 				<?php
+                if ($this->config['show_pred_group'])
+				{
+					?>
+                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td>    
+                    <?php
+				}
 
 
         if ($this->config['show_champion_tip'])
@@ -313,7 +319,9 @@ echo $this->pagination->getListFooter();
 
           $ChampPoints = $this->model->getChampionPoints($member->champ_tipp);
           
-					$membersResultsArray[$member->pmID]['rank']				= 0;
+					$membersResultsArray[$member->pmID]['pg_group_name']				= $member->pg_group_name;
+                    $membersResultsArray[$member->pmID]['pg_group_id']				= $member->pg_group_id;
+                    $membersResultsArray[$member->pmID]['rank']				= 0;
 					$membersResultsArray[$member->pmID]['predictionsCount']	= $predictionsCount;
 					$membersResultsArray[$member->pmID]['totalPoints']		= $totalPoints + $ChampPoints;
 					$membersResultsArray[$member->pmID]['totalTop']			= $totalTop;
@@ -338,6 +346,8 @@ echo $this->pagination->getListFooter();
 					
 					$output = JoomleagueHelper::getPictureThumb($picture, $playerName,0,25);
 					$membersDataArray[$member->pmID]['show_user_icon'] = $output;
+                    $membersDataArray[$member->pmID]['pg_group_name']				= $member->pg_group_name;
+                    $membersDataArray[$member->pmID]['pg_group_id']				= $member->pg_group_id;
 
           if ( $member->aliasName )
           {
@@ -377,25 +387,7 @@ echo $this->pagination->getListFooter();
 				echo '<br />membersResultsArray<pre>~' . print_r($membersResultsArray,true) . '~</pre><br />';
 				echo '<br />membersDataArray<pre>~' . print_r($membersDataArray,true) . '~</pre><br />';
 				}
-				
-				
-				
-				//$membersResultsArray2=$membersResultsArray;
-				//$membersResultsArray3=$membersResultsArray;
-				//$membersResultsArray4=$membersResultsArray;
-				//$membersResultsArray5=$membersResultsArray;
-				//$membersResultsArray6=$membersResultsArray;
 
-				/*
-				$membersResultsArray = array_merge(	$membersResultsArray,
-													$membersResultsArray2,
-													$membersResultsArray3,
-													$membersResultsArray4,
-													$membersResultsArray5,
-													$membersResultsArray6
-													);
-				*/
-				
 				$computedMembersRanking = $this->model->computeMembersRanking($membersResultsArray,$this->config);
 				$recordCount = count($computedMembersRanking);
 				
@@ -408,12 +400,7 @@ echo $this->pagination->getListFooter();
 
 				$i=1;
 				
-//         if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
-// 				$rlimit=ceil($recordCount / $this->config['limit']);
-// 				$this->model->page=($this->model->page > $rlimit) ? $rlimit : $this->model->page;
-// 				$skipMemberCount=($this->model->page > 0) ? (($this->model->page-1)*$this->config['limit']) : 0;
 
-        //foreach ( $this->items as $items )
 				foreach ($computedMembersRanking AS $key => $value)
 				{
 				
@@ -421,42 +408,13 @@ echo $this->pagination->getListFooter();
 				{
 				if ( $key == $items->pmID )
 				{
-// 				$key = $items->pmID;
-// 				$value = $computedMembersRanking[$key];
-				
-					//echo '<br /><pre>~' . print_r($value,true) . '~</pre><br />';
-// 					if ($i <= $skipMemberCount) { $i++; continue; }
 
 					$class = ($k==0) ? 'sectiontableentry1' : 'sectiontableentry2';
 					$styleStr = ($this->predictionMember->pmID==$key) ? ' style="background-color:'.$this->config['background_color_ranking'].'; color:black; " ' : '';
 					$class = ($this->predictionMember->pmID==$key) ? 'sectiontableentry1' : $class;
 					$tdStyleStr = " style='text-align:center; vertical-align:middle; ' ";
 
-					//$this->config['show_all_user']=1;
 					
-// 					if (((!$this->config['show_all_user']) && ($value['predictionsCount'] > 0)) ||
-// 						($this->config['show_all_user']) ||
-// 						($this->predictionMember->pmID==$key))
-// 					{
-					
-					   // pagenavi
-//                        if ( !$this->limitend )
-//                        {
-//                        $this->limitend = $recordCount;
-//                        }
-//                        if ( !$this->limit )
-//                        {
-//                        $this->limitend = $recordCount;
-//                        $this->limitstart = 0;
-//                        }
-
-//echo 'recordCount<br /><pre>~' . print_r($recordCount,true) . '~</pre><br />';
-//echo 'limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
-//echo 'limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
-//echo 'limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
-
-// 						if(in_array($i, range($this->limitstart + 1, $this->limitend)))
-//                         {
                         ?>
                         
 						<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
@@ -471,7 +429,12 @@ echo $this->pagination->getListFooter();
 							?>
 							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['name']; ?></td>
 							<?php
-							
+							if ($this->config['show_pred_group'])
+				{
+				    ?>
+							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['pg_group_name']; ?></td>
+							<?php
+				    }
 							
 							if ($this->config['show_champion_tip'])
 							{

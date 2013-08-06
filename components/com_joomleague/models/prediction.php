@@ -269,10 +269,15 @@ class JoomleagueModelPrediction extends JModel
 			{
 				$query=" SELECT	pm.id AS pmID,
 									pm.registerDate AS pmRegisterDate,
-									pm.*, u.name, u.username
+									pm.*, u.name, u.username,
+                                    pg.id as pg_group_id,
+                                    pg.name as pg_group_name
+                                    
 							FROM #__joomleague_prediction_member AS pm
 								LEFT JOIN #__users AS u 
                 ON u.id = pm.user_id
+                left join #__joomleague_prediction_groups as pg
+                on pg.id = pm.group_id
 							WHERE	pm.prediction_id=".$this->_db->Quote($this->predictionGameID)." AND
 									pm.id=".$this->_db->Quote($this->predictionMemberID);
 				$this->_db->setQuery($query,0,1);
@@ -1099,10 +1104,15 @@ $body .= $this->createHelptText($predictionProject->mode);
 	{
 		if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
 		$query="	SELECT	pm.id AS value,
-							u.".$nameType." AS text
+							u.".$nameType." AS text,
+                            pg.id as pg_group_id,
+                                    pg.name as pg_group_name
 
 					FROM #__joomleague_prediction_member AS pm
-						LEFT JOIN #__users AS u ON	u.id=pm.user_id
+						LEFT JOIN #__users AS u 
+                        ON	u.id=pm.user_id
+                        left join #__joomleague_prediction_groups as pg
+                on pg.id = pm.group_id
 					WHERE	prediction_id=".$this->_db->Quote((int)$this->predictionGameID);
 		if(isset($actUserId))
 		{
@@ -1741,12 +1751,16 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             pm.aliasName as aliasName,
             cbeu.latitude,
             cbeu.longitude,
-			u.".$nameType." AS name
+			u.".$nameType." AS name,
+            pg.id as pg_group_id,
+            pg.name as pg_group_name
 			FROM #__joomleague_prediction_member AS pm
 			INNER JOIN #__users AS u 
             ON u.id = pm.user_id
             INNER JOIN #__cbe_users AS cbeu
-            ON cbeu.userid = u.id  
+            ON cbeu.userid = u.id
+            left join #__joomleague_prediction_groups as pg
+            on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
 			ORDER BY pm.id ASC";
     break;
@@ -1757,10 +1771,14 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 			pm.show_profile AS show_profile,
 			pm.champ_tipp AS champ_tipp,
             pm.aliasName as aliasName,
-			u.".$nameType." AS name
+			u.".$nameType." AS name,
+            pg.id as pg_group_id,
+            pg.name as pg_group_name
 			FROM #__joomleague_prediction_member AS pm
 			INNER JOIN #__users AS u 
             ON u.id = pm.user_id
+            left join #__joomleague_prediction_groups as pg
+            on pg.id = pm.group_id
 			WHERE pm.prediction_id=$this->predictionGameID
 			ORDER BY pm.id ASC";
     break;
@@ -1777,12 +1795,16 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             cf.cb_state,
             cf.cb_zip,
             cf.cb_country,
-			u.".$nameType." AS name
+			u.".$nameType." AS name,
+            pg.id as pg_group_id,
+            pg.name as pg_group_name
 			FROM #__joomleague_prediction_member AS pm
 			INNER JOIN #__users AS u 
             ON u.id = pm.user_id
             INNER JOIN #__comprofiler AS cf
-            ON cf.user_id = u.id  
+            ON cf.user_id = u.id
+            left join #__joomleague_prediction_groups as pg
+            on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
 			ORDER BY pm.id ASC";
     break;
@@ -1793,12 +1815,16 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 			pm.show_profile AS show_profile,
 			pm.champ_tipp AS champ_tipp,
             pm.aliasName as aliasName,
-			u.".$nameType." AS name
+			u.".$nameType." AS name,
+            pg.id as pg_group_id,
+            pg.name as pg_group_name
 			FROM #__joomleague_prediction_member AS pm
 			INNER JOIN #__users AS u 
             ON u.id = pm.user_id
             INNER JOIN #__kunena_users AS cf
-            ON cf.userid = u.id  
+            ON cf.userid = u.id
+            left join #__joomleague_prediction_groups as pg
+            on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
 			ORDER BY pm.id ASC";
     break;
