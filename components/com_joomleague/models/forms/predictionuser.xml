@@ -10,7 +10,7 @@
 				description="COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_AVATAR_DESC"
 				class="inputbox"
 				preview="show"
-				directory="com_joomleague/database/predictionusers"/>	
+				directory="images/com_joomleague/database/predictionusers"/>	
 		
 	</fieldset>
   <fieldset name="group">

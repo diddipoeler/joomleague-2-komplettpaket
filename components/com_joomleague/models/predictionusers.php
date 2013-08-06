@@ -99,23 +99,22 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 
 	function showMemberPicture($outputUserName, $user_id = 0)
 	{
-	global $mainframe, $option;
+	//global $mainframe, $option;
 	$mainframe	=& JFactory::getApplication();
 	$db =& JFactory::getDBO();
 	$playerName = $outputUserName;
 	$picture = '';
 	
-//	$mainframe->enqueueMessage(JText::_('username ->'.$outputUserName),'Notice');
-//	$mainframe->enqueueMessage(JText::_('user_id ->'.$user_id),'Notice');
-	
+	//$mainframe->enqueueMessage(JText::_('username ->'.$outputUserName),'Notice');
+	//$mainframe->enqueueMessage(JText::_('user_id ->'.$user_id),'Notice');
 	
 	if ($this->config['show_photo'])
 	{
 	// von welcher komponente soll das bild kommen
 	// und ist die komponente installiert
-	$query = "SELECT option
-				FROM #__components
-				WHERE option LIKE '" . $this->config['show_image_from'] . "'" ;
+	$query = "SELECT element
+				FROM #__extensions
+				WHERE element LIKE '" . $this->config['show_image_from'] . "'" ;
 	$db->setQuery($query);
 	$results = $db->loadResult();
 	if ( !$results )
@@ -160,6 +159,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
     break;
     
     case 'com_kunena':
+    $picture = 'media/kunena/avatars/resized/size200/nophoto.jpg';
     $query = 'SELECT avatar
 			FROM #__kunena_users
 			WHERE userid = ' . (int)$user_id ;
@@ -196,7 +196,9 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 			
 	if ( !file_exists($picture) )
 	{
-		$picture = JoomleagueHelper::getDefaultPlaceholder("player");
+		//$mainframe->enqueueMessage(JText::_('user bild ->'.$picture.' ist nicht vorhanden'),'Error');
+        $picture = JoomleagueHelper::getDefaultPlaceholder("player");
+        //$mainframe->enqueueMessage(JText::_('nehme standard ->'.$picture),'Notice');
 	}
 	//echo JHTML::image($picture, $imgTitle, array(' title' => $imgTitle));
 	echo JoomleagueHelper::getPictureThumb($picture, $playerName,0,0);

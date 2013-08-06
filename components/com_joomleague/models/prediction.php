@@ -216,6 +216,7 @@ class JoomleagueModelPrediction extends JModel
     break;
     
     case 'com_kunena':
+    $picture = 'media/kunena/avatars/resized/size200/nophoto.jpg';
     $query = 'SELECT avatar
 			FROM #__kunena_users
 			WHERE userid = ' . (int)$members ;
