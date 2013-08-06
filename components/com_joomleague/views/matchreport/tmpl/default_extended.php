@@ -40,7 +40,18 @@ if(count($this->extended->getFieldsets()) > 0)
 						?>
 						<tr>
 							<td class="label"><?php echo $field->label; ?></td>
-							<td class="data"><?php echo $field->value;?></td>
+							<td class="data">
+              <?php if ($field->value =="foggy") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_FOGGY');?>
+              <?php if ($field->value =="rainy") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_RAINY');?>
+              <?php if ($field->value =="sunny") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_SUNNY');?>
+              <?php if ($field->value =="windy") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_WINDY');?>
+              <?php if ($field->value =="dry") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_DRY');?>
+              <?php if ($field->value =="snowing") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_WEATHER_SNOWING');?>
+              <?php if ($field->value =="normal") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_NORMAL');?>
+              <?php if ($field->value =="wet") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_WET');?>
+              <?php if ($field->value =="dry") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_DRY');?>
+              <?php if ($field->value =="snow") echo JText::_('COM_JOOMLEAGUE_EXT_MATCH_FIELDCONDITION_SNOW');?>
+              </td>
 						<tr>
 						<?php
 					}
