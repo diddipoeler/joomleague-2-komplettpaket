@@ -9,8 +9,8 @@
 		<field	name="show_photo" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_PHOTO"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_PHOTO">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_image_from" type="avatarfromcomponent" default="com_users"
@@ -22,29 +22,29 @@
 		<field	name="show_register_date" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_REGISTER_DATE"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_REGISTER_DATE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_fav_team" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FAV_TEAM"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FAV_TEAM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_slogan" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_SLOGAN"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_SLOGAN">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_lasttip" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LASTTIP"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LASTTIP">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_user_profile" type="list" default="0"
@@ -62,78 +62,78 @@
 		<field	name="show_ranking" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_RANKING"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_RANKING">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_totalpoints" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOTAL_POINTS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOTAL_POINTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_lastpoints" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_LAST_POINTS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_LAST_POINTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_counttipps" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_COUNT_TIPS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_COUNT_TIPS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_averagepoints" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_AVERAGE_POINTS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_AVERAGE_POINTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_toptipps" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TOP_TIPS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TOP_TIPS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_difftipps" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_DIFF_TIPS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_DIFF_TIPS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_tendtipps" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_TEND_TIPS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_TEND_TIPS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_form" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FORM"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FORM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_flash_statistic_points" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_POINTS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_POINTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_flash_statistic_ranks" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_SHOW_FLASH_RANKS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_SHOW_FLASH_RANKS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 	</fieldset>
@@ -145,29 +145,29 @@
 		<field	name="edit_favteam" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_FAV_TEAM"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_FAV_TEAM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="edit_slogan" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_SLOGAN"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_SLOGAN">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="edit_reminder" type="radio" default="0"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_REMINDER"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_REMINDER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="edit_avatar_upload" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_AVATAR_UPLOAD"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_AVATAR_UPLOAD">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="reminder_subject" type="text" size="100" maxlength="255"
@@ -188,8 +188,8 @@
 		<field	name="edit_receipt" type="radio" default="0"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_LABEL_EDIT_RECEIPT"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONUSERS_PARAM_DESCR_EDIT_RECEIPT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="receipt_subject" type="text" size="100" maxlength="255"

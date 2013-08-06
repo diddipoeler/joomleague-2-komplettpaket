@@ -83,43 +83,43 @@
 
 		<field name="map_type_select" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_TYPE_SELECT" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_TYPE_SELECT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="map_scale" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_SCALE" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_SCALE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_marker" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_MARKER" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_MARKER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="map_inset" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_INSET" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_INSET">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="cont_zoom" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_CONT_ZOOM" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_CONT_ZOOM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="dblclick_zoom" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_DCLICK_ZOOM" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_DCLICK_ZOOM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="center_link" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_MAP_PARAM_LABEL_CENTER_LINK" description="COM_JOOMLEAGUE_FES_MAP_PARAM_DESCR_CENTER_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 	</fieldset>
 </form>

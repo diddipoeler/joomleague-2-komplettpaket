@@ -22,8 +22,8 @@
 			<field 	name="show_percent_symbol" type="radio" default="1" 
 					label="COM_JOOMLEAGUE_STAT_PERCENTAGE_SHOW_PERCENTAGE_SYMBOL" 
 					description="COM_JOOMLEAGUE_STAT_PERCENTAGE_SHOW_PERCENTAGE_SYMBOL_DESC">
-				<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-				<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
 			</field>
 			<field name="statistic_views" type="list" default="roster,matchreport,player" multiple="multiple" 
 					label="COM_JOOMLEAGUE_STAT_SHOW_IN_VIEWS_IDS"

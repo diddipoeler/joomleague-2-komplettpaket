@@ -6,22 +6,22 @@
 		<field 	name="show_sectionheader" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_curve" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_CURVE_PARAM_LABEL_SHOW_CURVE" 
 				description="COM_JOOMLEAGUE_FES_CURVE_PARAM_DESCR_SHOW_CURVE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_colorlegend" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_CURVE_PARAM_LABEL_SHOW_COLOR" 
 				description="COM_JOOMLEAGUE_FES_CURVE_PARAM_DESCR_SHOW_COLOR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 	</fieldset>

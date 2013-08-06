@@ -6,8 +6,8 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_field_LABEL_SHOW_SECTIONHEADER"
 			description="COM_JOOMLEAGUE_FES_field_DESCR_SHOW_SECTIONHEADER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_treeoverlib" type="radio" default="1"
@@ -80,14 +80,14 @@
 		<field	name="highlight_fav" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_RESULTS_field_LABEL_HIGHLIGHT_FAV"
 				description="COM_JOOMLEAGUE_FES_RESULTS_field_DESCR_HIGHLIGHT_FAV">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_logo_small_flag" type="list" default="1"
 				label="COM_JOOMLEAGUE_FES_RESULTS_field_LABEL_SHOW_LOGO_SMALL"
 				description="COM_JOOMLEAGUE_FES_RESULTS_field_DESCR_SHOW_LOGO_SMALL">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="0">JNO</option>
 			<option value="1">COM_JOOMLEAGUE_FES_RESULTS_field_OPTION1_LOGO_SMALL</option>
 			<option value="2">COM_JOOMLEAGUE_FES_RESULTS_field_OPTION2_LOGO_SMALL</option>
 		</field>
@@ -119,7 +119,7 @@
 		<field	name="show_logo_small_flag_leaf" type="list" default="1"
 				label="COM_JOOMLEAGUE_FES_TREE_field_LABEL_SHOW_LOGO_SMALL_LEAF"
 				description="COM_JOOMLEAGUE_FES_RESULTS_field_DESCR_SHOW_LOGO_SMALL">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="0">JNO</option>
 			<option value="1">COM_JOOMLEAGUE_FES_RESULTS_field_OPTION1_LOGO_SMALL</option>
 			<option value="2">COM_JOOMLEAGUE_FES_RESULTS_field_OPTION2_LOGO_SMALL</option>
 		</field>
@@ -145,8 +145,8 @@
 		<field 	name="show_overlib_seed" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_TREE_field_LABEL_SHOW_OVERLIB_SEED" 
 				description="COM_JOOMLEAGUE_FES_TREE_field_DESCR_SHOW_OVERLIB_SEED">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="overlib_result_style" type="list" default="1"
@@ -167,8 +167,8 @@
 		<field	name="show_playground" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_RESULTS_field_LABEL_SHOW_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_RESULTS_field_DESCR_SHOW_PLAYGROUND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_playground_name" type="list" default="shortname"
@@ -185,8 +185,8 @@
 		<field 	name="show_round_date" type="radio" default="0" 
 				label="COM_JOOMLEAGUE_FES_TREE_field_LABEL_SHOW_ROUND_DATE" 
 				description="COM_JOOMLEAGUE_FES_TREE_field_DESCR_SHOW_ROUND_DATE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_name_from" type="radio" default="0" 

@@ -5,8 +5,8 @@
 
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_SHOW_SECTIONHEADER" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_SHOW_SECTIONHEADER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="type_matches" type="list" default="4"
@@ -35,8 +35,8 @@
 		<field name="use_project_start_date" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_USE_PROJECT_START_DATE"
 			description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_USE_PROJECT_START_DATE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="days_before" type="text" default="6"
@@ -49,50 +49,50 @@
 
 		<field name="show_match_nr" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_MATCH_NR" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_MATCH_NR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_matchday" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_MATCHDAY" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_MATCHDAY">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_match_date" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_MATCH_DATE" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_MATCH_DATE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_match_time" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_MATCH_TIME" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_MATCH_TIME">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_time_suffix" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_ADD_TIME_SUFFIX" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_ADD_TIME_SUFFIX">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_time_present" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_TIME_PRESENT" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_TIME_PRESENT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_league" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_LEAGUE" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_LEAGUE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_club_logo" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_CLUB_LOGO" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_CLUB_LOGO">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="which_link" type="list" default="2"
@@ -107,20 +107,20 @@
 
 		<field name="show_referee" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_REFEREE" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_REFEREE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_playground" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_PLAYGROUND" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_PLAYGROUND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_thumbs_picture" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_LABEL_SHOW_THUMBS_PICTURE" description="COM_JOOMLEAGUE_FES_CLUBPLAN_PARAM_DESCR_SHOW_THUMBS_PICTURE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>		
 	</fieldset>	
 	
@@ -145,14 +145,14 @@
 
 		<field name="highlight_fav" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_TEAMPLAN_PARAM_LABEL_HIGHLIGHT_FAV" description="COM_JOOMLEAGUE_FES_TEAMPLAN_PARAM_DESCR_HIGHLIGHT_FAV">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_teamplan_link" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_TEAMPLAN_PARAM_LABEL_SHOW_TEAMPLAN_LINK" description="COM_JOOMLEAGUE_FES_TEAMPLAN_PARAM_DESCR_SHOW_TEAMPLAN_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field type="spacer">
@@ -167,44 +167,44 @@
 
 		<field name="show_club_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CLUBINFO_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CLUBINFO_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_team_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_teaminfo_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMINFO_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMINFO_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_teamstats_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMSTATS_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMSTATS_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_plan_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TEAMPLAN_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TEAMPLAN_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_clubplan_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CLUBPLAN_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CLUBPLAN_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_curve_link" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_PARAM_LABEL_CURVE_LINK" description="COM_JOOMLEAGUE_FES_PARAM_DESCR_CURVE_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 	</fieldset>

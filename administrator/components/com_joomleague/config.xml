@@ -5,14 +5,14 @@
 		<field name="cfg_edit_club_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="cfg_edit_person_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_PERSON_CLUBADMINS_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="cfg_help_server" type="text" default="http://joomleaguewiki.grammatikas-grill.de/index.php/"
 		size="100"
@@ -54,13 +54,13 @@
 		<field name="cfg_drop_joomleague_tables_when_uninstalled" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_UNINSTALL_TABLES_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="show_debug_info" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_DEBUG_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="max_import_time" type="text" default="480"
 			label="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_TIME_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MAX_IMPORT_TIME_DESCR">
@@ -80,36 +80,36 @@
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
 		<field name="show_footer" type="radio" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="cfg_google_api_key" type="text" default=""
 			label="COM_JOOMLEAGUE_SETTINGS_GMAP_APIKEY_TITLE" description="COM_JOOMLEAGUE_SETTINGS_GMAP_APIKEY_DESCR">
 		</field>
 		<field name="force_ranking_cache" type="radio" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE" description="COM_JOOMLEAGUE_SETTINGS_FORCE_RANKING_CACHE_DESC">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="use_highslide" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_HIGHSLIDE_LIBRARY_DESC">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field name="use_joomlaworks" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_JOOMLAWORKS_LIBRARY"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_JOOMLAWORKS_LIBRARY_DESC">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field name="usethumblib" type="radio" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_SERVERSIDE_THUMBCREATION_DESC">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="thumbformat" type="list" default="PNG"
 			label="COM_JOOMLEAGUE_SETTINGS_THUMB_FORMAT" description="COM_JOOMLEAGUE_SETTINGS_THUMB_FORMAT_DESCR">
@@ -145,20 +145,20 @@
 		<field name="cfg_show_seasons_in_project_drop_down" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_SEASON_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="on_prefill_delete_current_match_roster" type="radio"
 			default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER"
 			description="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="use_prefilled_match_roster" type="list" default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="0">JNO</option>
 			<option value="1">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_WITH_LAST_MATCH_ROSTER
 			</option>
 			<option value="2">COM_JOOMLEAGUE_SETTINGS_MATCH_ROSTER_PREFILL_WITH_PROJECTTEAM_PLAYERS
@@ -171,8 +171,8 @@
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_CLUB_MERGE_TEAMS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_CLUB_MERGE_TEAMS_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field name="cfg_be_show_match_teamname" type="list"
@@ -261,8 +261,8 @@
 			default="0" 
       label="COM_JOOMLEAGUE_SETTINGS_USE_JQUERY_VERSION_TITLE" 
       description="COM_JOOMLEAGUE_SETTINGS_USE_JQUERY_VERSION_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		
@@ -455,58 +455,58 @@
 			default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_SINGLE_MATCH_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_SINGLE_MATCH_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 <field name="cfg_be_extension_lmo_import" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_LMO_IMPORT_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_LMO_IMPORT_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 <field name="cfg_be_extension_dbb_import" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DBB_IMPORT_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DBB_IMPORT_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>		
 <field name="cfg_be_extension_dfbnet_import" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DFBNET_IMPORT_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_DFBNET_IMPORT_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>		
 <field name="cfg_be_extension_rosterposition" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_ROSTERPOSITION_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_ROSTERPOSITION_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>		
 <field name="cfg_be_extension_ringer_import" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_RINGER_IMPORT_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_RINGER_IMPORT_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 <field name="cfg_be_extension_pl_import" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_PL_IMPORT_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_PL_IMPORT_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>  
     
     <field name="cfg_be_extension_user_fields" type="list"
 			default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_USER_FIELDS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_SHOW_EXTENSION_USER_FIELDS_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>   
       
   </fieldset>

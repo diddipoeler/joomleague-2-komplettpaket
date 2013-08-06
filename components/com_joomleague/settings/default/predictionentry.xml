@@ -9,28 +9,28 @@
 		<field	name="show_points" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_POINTS"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_POINTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="use_tipp_admin" type="radio" default="0"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_USE_TIPP_ADMIN"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_USE_TIPP_ADMIN">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_tipp_tendence" type="radio" default="0"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_TIPP_TENDENCE"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_TIPP_TENDENCE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field	name="show_logo_small" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_LABEL_SHOW_LOGO_SMALL"
 				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONENTRY_PARAM_DESCR_SHOW_LOGO_SMALL">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
+			<option value="0">JNO</option>
 			<option value="1">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION1_LOGO_SMALL</option>
 			<option value="2">COM_JOOMLEAGUE_JL_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
 		</field>
@@ -77,8 +77,8 @@
 	<field	name="use_pred_select_matches" type="radio" default="0"
 				label="COM_JOOMLEAGUE_JL_XML_PREDICTION_USE_SELECT_MATCH_LABEL"
 				description="COM_JOOMLEAGUE_JL_XML_PREDICTION_USE_SELECT_MATCH_DESCR">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 	<field name="predictionmatchid" type="matchid" depends="preid" task="prematchoptions" 

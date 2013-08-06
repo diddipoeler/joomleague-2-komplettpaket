@@ -7,8 +7,8 @@
 		<field name="show_sectionheader" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_HEADER"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_HEADER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
     <field name="show_result_tabs" type="radio" default="no_tabs"
@@ -22,29 +22,29 @@
 		<field name="show_result" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_RESULT"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_RESULT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_details" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_DETAILS"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_DETAILS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_extended" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EXTENDED"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EXTENDED">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="show_pictures" type="radio" default="1"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PICTURES"
 			description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PICTURES">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="show_pictures_width" type="text" default="150"
 			label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PICTURES_WIDTH"
@@ -58,50 +58,50 @@
 		<field 	name="show_roster" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
     <field 	name="show_roster_playground" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER_PLAYGROUND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>	
     
 		<field 	name="show_events" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENTS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_stats" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_STATS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_STATS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_summary" type="radio" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SUMMARY"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SUMMARY">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_timeline" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TIMELINE" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TIMELINE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
     <field 	name="show_timeline_under_results" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TIMELINE_UNDER_RESULTS" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TIMELINE_UNDER_RESULTS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 	</fieldset>
@@ -114,51 +114,51 @@
 		<field 	name="show_substitutions" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SUBS" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SUBS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="use_tabs_events" type="list" default="2"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_USE_TABS" 
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_USE_TABS">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 			<option value="2">COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_OPTION2_EVENT_OPTION</option>
 		</field>
 
 		<field 	name="sort_events_desc" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SORT_DESC"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SORT_DESC">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="show_event_minute" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_MINUTE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_MINUTE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="show_event_sum" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_SUM"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_SUM">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="show_event_notice" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_EVENT_NOTICE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_EVENT_NOTICE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field	name="event_link_player" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_EVENT_LINK_PLAYER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_EVENT_LINK_PLAYER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 	</fieldset>
 
@@ -169,57 +169,57 @@
 		<field 	name="show_match_date" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_DATE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_DATE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_match_time" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_TIME"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_TIME">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_time_suffix" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_ADD_TIME_SUFFIX"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_ADD_TIME_SUFFIX">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_match_number" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_NUMBER"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_NUMBER">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_match_playground" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_PLAYGROUND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_match_referees" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_REFEREES"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_REFEREES">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>		
 		
 		<field 	name="show_referee_position" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_REFEREE_POSITION"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_REFEREE_POSITION">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_match_crowd" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_MATCH_CROWD"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_MATCH_CROWD">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>	
 	</fieldset>				
 
@@ -230,22 +230,22 @@
 		<field 	name="show_period_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PERIOD_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PERIOD_RESULT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_overtime_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_OVERTIME_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_OVERTIME_RESULT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field 	name="show_shotout_result" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_SHOTOUT_RESULT"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_SHOTOUT_RESULT">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>	
 	</fieldset>		
 
@@ -256,8 +256,8 @@
   <field 	name="show_roster_playground" type="list" default="1" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_ROSTER_PLAYGROUND"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_ROSTER_PLAYGROUND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
     
 <!--    
@@ -271,8 +271,8 @@
 <field 	name="roster_playground_use_fav_teams" type="list" default="0" 
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_USE_FAV_TEAMS"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_USE_FAV_TEAMS">
-			  <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			  <option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
     
   <field 	name="roster_playground_team_picture_width" type="text" default="60"
@@ -287,8 +287,8 @@
     <field 	name="roster_playground_player_jquery_fade" type="list" default="0" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_JQUERY_FADE"
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_ROSTER_PLAYGROUND_PLAYER_JQUERY_FADE">
-			  <option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			  <option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
     <field 	name="roster_playground_player_fade" type="text" default="1000"
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_ROSTER_PLAYGROUND_PLAYER_FADE" 
@@ -362,8 +362,8 @@ stripext=""
 		<field 	name="show_team_logo" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TEAM_LOGO"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_TEAM_LOGO">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="show_picture" type="list" default="logo_big"
@@ -401,8 +401,8 @@ stripext=""
 		<field 	name="show_player_profile_link" type="list" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PLAYER_PROFILE_LINK"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PLAYER_PROFILE_LINK">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 			<option value="2">COM_JOOMLEAGUE_FES_MATCHREPORT_FAVTEAM_ONLY</option>
 		</field>
 
@@ -416,8 +416,8 @@ stripext=""
 		<field 	name="show_player_picture" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_PLAYER_PICTURE"
 				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_PLAYER_PICTURE">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		
 		<field 	name="player_picture_width" type="text" default="40"

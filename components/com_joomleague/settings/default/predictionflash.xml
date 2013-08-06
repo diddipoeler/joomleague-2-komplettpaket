@@ -42,8 +42,8 @@
 		<field 	name="x_axis_legend" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_X_AXIS_LEGEND"
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_X_AXIS_LEGEND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 	</fieldset>
@@ -65,8 +65,8 @@
 		<field 	name="y_axis_legend" type="radio" default="1"
 				label="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_LABEL_Y_AXIS_LEGEND"
 				description="COM_JOOMLEAGUE_JL_FES_FLASH_PARAM_DESCR_Y_AXIS_LEGEND">
-			<option value="0">COM_JOOMLEAGUE_GLOBAL_NO</option>
-			<option value="1">COM_JOOMLEAGUE_GLOBAL_YES</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 	</fieldset>
 	
