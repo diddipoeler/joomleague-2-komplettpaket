@@ -92,7 +92,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			<input type='hidden' name='pjID' value='<?php echo (int)$showProjectID; ?>' />
 			<input type='hidden' name='task' value='predictionranking.selectprojectround' />
 			<input type='hidden' name='option' value='com_joomleague' />
-			
+			<input type='hidden' name='pggroup' value='<?php echo (int)$this->model->pggroup; ?>' />
 
 
 
@@ -105,6 +105,11 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					</td>
 					<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
           <?php
+          $groups = $this->model->getPredictionGroupList();
+          $predictionGroups[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_GROUPS'),'value','text');
+                        $predictionGroups = array_merge($predictionGroups,$groups);
+                        $htmlGroupOptions = JHTML::_('select.genericList',$predictionGroups,'pggroup','class="inputbox" onchange="this.form.submit(); "','value','text',$this->model->pggroup);
+          echo $htmlGroupOptions;
 						echo $this->model->createProjectSelector(	$this->model->_predictionProjectS,
 																	$predictionProject->project_id,
 																	$showProjectID);

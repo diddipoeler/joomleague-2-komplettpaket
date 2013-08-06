@@ -16,12 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 if (!empty($this->model->_projectRoundsCount))
 {
 	?><br /><table width='96%' align='center' cellpadding='0' cellspacing='0' border='0'><tr><td><div class='pagenav'><?php
-	/*
-	 * echo $this->model->pagenav(	$this->model->predictionProject->prediction_id,
-								$this->model->_projectRoundsCount,
-								$this->roundID,
-								$this->model->predictionProject->project_id);
-	*/							
+								
 				$pageNavigation  = "<div class='pagenav'>";
 				$pageNavigation .= JoomleaguePagination::pagenav($this->model->getPredictionProject($this->model->predictionProject->project_id));
 				$pageNavigation .= "</div>";

@@ -40,6 +40,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
       <input type='hidden' name='p' value='<?php echo (int)$predictionProject->project_id; ?>' />
 			<input type='hidden' name='r' value='<?php echo (int)$this->roundID; ?>' />
 			<input type='hidden' name='pjID' value='<?php echo (int)$this->model->pjID; ?>' />
+            <input type='hidden' name='pggroup' value='<?php echo (int)$this->model->pggroup; ?>' />
 			<input type='hidden' name='task' value='predictionresults.selectprojectround' />
 			
 			<?php echo JHTML::_('form.token'); ?>
@@ -53,11 +54,17 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					</td>
 					<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' ><?php
 						$rounds = JoomleagueHelper::getRoundsOptions($predictionProject->project_id);
+                        $groups = $this->model->getPredictionGroupList();
 						//$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="document.forms[\'resultsRoundSelector\'].r.value=this.value;submit()"','value','text',$this->roundID);
 						$htmlRoundsOptions = JHTML::_('select.genericList',$rounds,'r','class="inputbox" onchange="this.form.submit(); "','value','text',$this->roundID);
+                        
+                        $predictionGroups[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_GROUPS'),'value','text');
+                        $predictionGroups = array_merge($predictionGroups,$groups);
+                        $htmlGroupOptions = JHTML::_('select.genericList',$predictionGroups,'pggroup','class="inputbox" onchange="this.form.submit(); "','value','text',$this->model->pggroup);
             echo JText::sprintf(	'COM_JOOMLEAGUE_JL_PRED_RESULTS_SUBTITLE_02',
 						$htmlRoundsOptions,
-						$this->model->createProjectSelector($this->model->_predictionProjectS,$predictionProject->project_id));
+						$this->model->createProjectSelector($this->model->_predictionProjectS,$predictionProject->project_id),
+                        $htmlGroupOptions);
 						
             echo '&nbsp;&nbsp;';
             

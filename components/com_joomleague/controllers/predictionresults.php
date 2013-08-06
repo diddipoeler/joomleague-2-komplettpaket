@@ -39,11 +39,11 @@ class JoomleagueControllerPredictionResults extends JLGController
 		$pID	= JRequest::getVar('prediction_id',	null,	'post',	'int');
 		
 		// diddipoeler
-        //$pjID	= JRequest::getVar('project_id',	null,	'post',	'int');
+        $pggroup	= JRequest::getVar('pggroup',	null,	'post',	'int');
 		$pjID	= JRequest::getVar('p',	null,	'post',	'int');
 		
         $rID	= JRequest::getVar('r',				null,	'post',	'int');
-		$link = PredictionHelperRoute::getPredictionResultsRoute($pID,$rID,$pjID);
+		$link = PredictionHelperRoute::getPredictionResultsRoute($pID,$rID,$pjID,NULL,'',$pggroup);
 		$this->setRedirect($link);
 	}
 

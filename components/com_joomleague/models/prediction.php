@@ -48,6 +48,7 @@ class JoomleagueModelPrediction extends JModel
 		$this->predictionMemberID	= JRequest::getInt('uid',	0);
 		$this->joomlaUserID			= JRequest::getInt('juid',	0);
 		$this->roundID				= JRequest::getInt('r',		0);
+        $this->pggroup				= JRequest::getInt('pggroup',		0);
 		$this->pjID					= JRequest::getInt('p',		0);
 		$this->isNewMember			= JRequest::getInt('s',		0);
 		$this->tippEntryDone		= JRequest::getInt('eok',	0);
@@ -1381,7 +1382,7 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 			{
 				$output .= " selected='selected'";
 			}
-			$output .= '>'.JText::_('JL_PRED_TOTAL_RANKING').'</option>';
+			$output .= '>'.JText::_('COM_JOOMLEAGUE_JL_PRED_TOTAL_RANKING').'</option>';
 		}
 		else
 		{
@@ -1743,7 +1744,7 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 		switch ( $configavatar['show_image_from'] )
 		{
     case 'com_cbe':
-    $query=	"SELECT	pm.id AS pmID,
+    $query = "SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
 			pm.show_profile AS show_profile,
@@ -1762,10 +1763,10 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             left join #__joomleague_prediction_groups as pg
             on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
-			ORDER BY pm.id ASC";
+			";
     break;
     case 'com_users':
-    $query=	"SELECT	pm.id AS pmID,
+    $query =	"SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
 			pm.show_profile AS show_profile,
@@ -1780,11 +1781,11 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             left join #__joomleague_prediction_groups as pg
             on pg.id = pm.group_id
 			WHERE pm.prediction_id=$this->predictionGameID
-			ORDER BY pm.id ASC";
+			";
     break;
     
     case 'com_comprofiler':
-    $query=	"SELECT	pm.id AS pmID,
+    $query =	"SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
 			pm.show_profile AS show_profile,
@@ -1806,10 +1807,10 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             left join #__joomleague_prediction_groups as pg
             on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
-			ORDER BY pm.id ASC";
+			";
     break;
     case 'com_kunena':
-    $query=	"SELECT	pm.id AS pmID,
+    $query =	"SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
 			pm.show_profile AS show_profile,
@@ -1826,12 +1827,16 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
             left join #__joomleague_prediction_groups as pg
             on pg.id = pm.group_id  
 			WHERE pm.prediction_id=$this->predictionGameID
-			ORDER BY pm.id ASC";
+			";
     break;
     }
 		
-
-		$this->_db->setQuery($query);
+if ( $this->pggroup )
+{
+$query .= " AND pm.group_id = ".$this->pggroup;    
+}
+		$query .= " ORDER BY pm.id ASC";
+        $this->_db->setQuery($query);
 		$results = $this->_db->loadObjectList();
 		
 		foreach ( $results as $row )

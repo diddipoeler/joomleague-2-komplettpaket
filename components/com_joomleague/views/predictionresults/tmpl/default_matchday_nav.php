@@ -24,12 +24,7 @@ if (!empty($this->model->_projectRoundsCount))
   <td>
   <div class='pagenav'>
   <?php
-	/*
-	 * echo $this->model->pagenav(	$this->model->predictionProject->prediction_id,
-								$this->model->_projectRoundsCount,
-								$this->roundID,
-								$this->model->predictionProject->project_id);
-	*/							
+								
 				$pageNavigation  = "<div class='pagenav'>";
 				$pageNavigation .= JoomleaguePagination::pagenav($this->model->getPredictionProject($this->model->predictionProject->project_id));
 				$pageNavigation .= "</div>";

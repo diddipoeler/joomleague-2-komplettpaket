@@ -21,7 +21,7 @@ jimport('joomla.application.component.helper');
 class PredictionHelperRoute extends JoomleagueHelperRoute 
 {
 
-public static function getPredictionResultsRoute($predictionID,$roundID=null,$projectID=null,$userID=null,$anchor='')
+public static function getPredictionResultsRoute($predictionID,$roundID=null,$projectID=null,$userID=null,$anchor='',$groupID=null)
 	{
 		$params = array('option' => 'com_joomleague', 
 						'view' => 'predictionresults', 
@@ -29,7 +29,7 @@ public static function getPredictionResultsRoute($predictionID,$roundID=null,$pr
 
         // diddipoeler
         if (!is_null($projectID)){$params['p']=$projectID;}
-        
+        if (!is_null($groupID)){$params['pggroup']=$groupID;}
 		if (!is_null($projectID)){$params['pj']=$projectID;}
 		if (!is_null($roundID)){$params['r']=$roundID;}
 		if (!is_null($userID)){$params['uid']=$userID;}
@@ -40,7 +40,7 @@ public static function getPredictionResultsRoute($predictionID,$roundID=null,$pr
 		return $link;
 	}
 
-public static function getPredictionRankingRoute($predictionID,$projectID=null,$roundID=null,$anchor='')
+public static function getPredictionRankingRoute($predictionID,$projectID=null,$roundID=null,$anchor='',$groupID=null)
 	{
 		$params = array('option' => 'com_joomleague', 
 						'view' => 'predictionranking', 
@@ -48,7 +48,7 @@ public static function getPredictionRankingRoute($predictionID,$projectID=null,$
 
         // diddipoeler
         if (!is_null($projectID)){$params['p']=$projectID;}
-        
+        if (!is_null($groupID)){$params['pggroup']=$groupID;}
 		if (!is_null($projectID)){$params['pj']=$projectID;}
 		if (!is_null($roundID)){$params['r']=$roundID;}
 

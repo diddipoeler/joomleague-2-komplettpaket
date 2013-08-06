@@ -66,22 +66,15 @@ class JoomleagueControllerPredictionRanking extends JoomleagueController
 		$post	= JRequest::get('post');
 		//echo '<br /><pre>~' . print_r($post,true) . '~</pre><br />';
 		$pID	= JRequest::getVar('prediction_id',	'',	'post',	'int');
-		
-        //$pjID	= JRequest::getVar('project_id',	'',	'post',	'int');
+		$pggroup	= JRequest::getVar('pggroup',	null,	'post',	'int');
+        
         $pjID	= JRequest::getVar('p',	'',	'post',	'int');
         
 		$rID	= JRequest::getVar('round_id',		'',	'post',	'int');
 		$set_pj	= JRequest::getVar('set_pj',		'',	'post',	'int');
 		$set_r	= JRequest::getVar('set_r',			'',	'post',	'int');
-		
-        /*
-        if ($set_r!=$rID){$rID=$set_r;}
-		if ($set_pj!=$pjID){$pjID=$set_pj;}
-		if (empty($pjID)){$pjID=null;}
-		*/
-        
-        //$link = JoomleagueHelperRoute::getPredictionResultsRoute($pID,$rID,$pjID,'#jl_top');
-		$link = PredictionHelperRoute::getPredictionRankingRoute($pID,$pjID,$rID);
+
+		$link = PredictionHelperRoute::getPredictionRankingRoute($pID,$pjID,$rID,'',$pggroup);
         
 		//echo '<br />' . $link . '<br />';
 		$this->setRedirect($link);
