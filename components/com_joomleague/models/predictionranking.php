@@ -63,6 +63,7 @@ class JoomleagueModelPredictionRanking extends JoomleagueModelPrediction
 	function __construct()
 	{
 		parent::__construct();
+        $this->pggrouprank			= JRequest::getInt('pggrouprank',		0);
   
     $option = JRequest::getCmd('option');    
     $mainframe = JFactory::getApplication();
@@ -86,14 +87,28 @@ function _buildQuery()
 	$query=	"	SELECT	pm.id AS pmID,
 				pm.user_id AS user_id,
 				pm.picture AS avatar,
+                pm.group_id,
 				pm.show_profile AS show_profile,
 				pm.champ_tipp AS champ_tipp,
         pm.aliasName as aliasName,
-				u.name AS name
+				u.name AS name,
+                pg.id as pg_group_id,
+                pg.name as pg_group_name
 				FROM #__joomleague_prediction_member AS pm
 				INNER JOIN #__users AS u ON u.id = pm.user_id
-				WHERE pm.prediction_id = $this->predictionGameID
-				ORDER BY pm.id ASC";
+                left join #__joomleague_prediction_groups as pg
+                on pg.id = pm.group_id
+				WHERE pm.prediction_id = $this->predictionGameID";
+    if ( $this->pggrouprank )
+    {
+    $query .= " GROUP BY pm.group_id ";    
+    $query .= " ORDER BY pm.group_id ASC";    
+    }   
+    else
+    {
+    $query .=	" ORDER BY pm.id ASC";    
+    }         
+	
                 
 return $query;                            
 }

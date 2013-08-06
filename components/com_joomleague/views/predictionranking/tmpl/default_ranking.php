@@ -22,14 +22,6 @@ echo 'this->limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre>
 echo 'this->limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
 }
 
-//echo '<br /><pre>~' . print_r($this->config['limit'],true) . '~</pre><br />';
-
-//if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
-//$this->limit = (int)$this->config['limit'];
-
-//echo 'limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
-//echo 'limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
-//echo 'limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
 
 /*
 <style type="text/css">
@@ -66,24 +58,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 		$this->model->pjID = $predictionProject->project_id;
 		$this->model->predictionProject = $predictionProject;
 		$actualProjectCurrentRound = $this->model->getProjectSettings($predictionProject->project_id);
-		/*
-		if (!isset($this->roundID) || ($this->roundID < 1)){
-			$this->roundID=$actualProjectCurrentRound;
-		}
-		if ($this->roundID < 1){$this->roundID=1;}
-		if ($this->model->from < 1){
-			$this->model->from=1;
-		}
-		if ($this->roundID > $this->model->getProjectRounds($predictionProject->project_id)){
-			$this->roundID=$this->model->_projectRoundsCount;
-		}
-		if ($this->model->to > $this->model->_projectRoundsCount){
-			$this->model->to=$this->model->_projectRoundsCount;
-		}
-		if ($this->model->to == 0){
-			$this->model->to=$actualProjectCurrentRound;
-		}
-		*/
+		
 		?>
 		<form name='resultsRoundSelector' method='post' >
 			<input type='hidden' name='prediction_id' value='<?php echo (int)$this->predictionGame->id; ?>' />
@@ -93,8 +68,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			<input type='hidden' name='task' value='predictionranking.selectprojectround' />
 			<input type='hidden' name='option' value='com_joomleague' />
 			<input type='hidden' name='pggroup' value='<?php echo (int)$this->model->pggroup; ?>' />
-
-
+            <input type='hidden' name='pggrouprank' value='<?php echo (int)$this->model->pggrouprank; ?>' />
 
 			<table class='blog' cellpadding='0' cellspacing='0' >
 				<tr>
@@ -171,6 +145,15 @@ echo $this->pagination->getListFooter();
 			<tr>
 				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK'); ?></td>
 				<?php
+                
+                if ( $this->model->pggrouprank )
+                {
+                    ?>
+                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td>    
+                    <?php
+                }
+                else
+                {    
 				if ($this->config['show_user_icon'])
 				{
 					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_AVATAR'); ?></td><?php
@@ -178,12 +161,15 @@ echo $this->pagination->getListFooter();
 				?>
 				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER'); ?></td>
 				<?php
+                
                 if ($this->config['show_pred_group'])
 				{
 					?>
                 <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td>    
                     <?php
 				}
+                
+                }
 
 
         if ($this->config['show_champion_tip'])
@@ -252,6 +238,12 @@ echo $this->pagination->getListFooter();
 				
 				$membersResultsArray = array();
 				$membersDataArray = array();
+                
+                if ( $this->model->pggrouprank )
+                {
+                $groupmembersResultsArray = array();
+				$groupmembersDataArray = array();
+                }
 
         // anfang der tippmitglieder
 				foreach ($memberList AS $member)
@@ -333,6 +325,20 @@ echo $this->pagination->getListFooter();
 					$membersResultsArray[$member->pmID]['totalDiff']		= $totalDiff;
 					$membersResultsArray[$member->pmID]['totalTend']		= $totalTend;
 					$membersResultsArray[$member->pmID]['totalJoker']		= $totalJoker;
+                    
+                    if ( $this->model->pggrouprank )
+                    {
+                    // für die gruppentabelle
+                    $groupmembersResultsArray[$member->pg_group_id]['pg_group_id']			= $member->pg_group_id;
+                    $groupmembersResultsArray[$member->pg_group_id]['pg_group_name'] = $member->pg_group_name;
+                    $groupmembersResultsArray[$member->pg_group_id]['rank']				= 0;
+					$groupmembersResultsArray[$member->pg_group_id]['predictionsCount']	+= $predictionsCount;
+					$groupmembersResultsArray[$member->pg_group_id]['totalPoints']		+= $totalPoints + $ChampPoints;
+					$groupmembersResultsArray[$member->pg_group_id]['totalTop']			+= $totalTop;
+					$groupmembersResultsArray[$member->pg_group_id]['totalDiff']		+= $totalDiff;
+					$groupmembersResultsArray[$member->pg_group_id]['totalTend']		+= $totalTend;
+					$groupmembersResultsArray[$member->pg_group_id]['totalJoker']		+= $totalJoker;
+                    }
 
 					// check all needed output for later
 					$picture = $member->avatar;
@@ -353,6 +359,12 @@ echo $this->pagination->getListFooter();
 					$membersDataArray[$member->pmID]['show_user_icon'] = $output;
                     $membersDataArray[$member->pmID]['pg_group_name']				= $member->pg_group_name;
                     $membersDataArray[$member->pmID]['pg_group_id']				= $member->pg_group_id;
+                    
+                    if ( $this->model->pggrouprank )
+                    {
+                    $groupmembersDataArray[$member->pg_group_id]['pg_group_name']				= $member->pg_group_name;
+                    $groupmembersDataArray[$member->pg_group_id]['pg_group_id']				= $member->pg_group_id;
+                    }
 
           if ( $member->aliasName )
           {
@@ -391,9 +403,23 @@ echo $this->pagination->getListFooter();
         {
 				echo '<br />membersResultsArray<pre>~' . print_r($membersResultsArray,true) . '~</pre><br />';
 				echo '<br />membersDataArray<pre>~' . print_r($membersDataArray,true) . '~</pre><br />';
+                if ( $this->model->pggrouprank )
+                {
+                echo '<br />groupmembersResultsArray<pre>~' . print_r($groupmembersResultsArray,true) . '~</pre><br />';
+				echo '<br />groupmembersDataArray<pre>~' . print_r($groupmembersDataArray,true) . '~</pre><br />';
+                }
 				}
+                
+                if ( $this->model->pggrouprank )
+                    {
+                        $computedMembersRanking = $this->model->computeMembersRanking($groupmembersResultsArray,$this->config);
+                        }
+                        else
+                        {
+                            $computedMembersRanking = $this->model->computeMembersRanking($membersResultsArray,$this->config);
+                        }
 
-				$computedMembersRanking = $this->model->computeMembersRanking($membersResultsArray,$this->config);
+				
 				$recordCount = count($computedMembersRanking);
 				
 				if ( $this->show_debug_info )
@@ -404,14 +430,27 @@ echo $this->pagination->getListFooter();
 				
 
 				$i=1;
+                
+                if ( $this->model->pggrouprank )
+                    {
+                    $schluessel = 'pg_group_id';
+                    $membersDataArray = $groupmembersDataArray;
+                    $membersResultsArray = $groupmembersResultsArray;
+                    }
+                    else
+                    {
+                    $schluessel = 'pmID';    
+                    }    
 				
+
 
 				foreach ($computedMembersRanking AS $key => $value)
 				{
 				
 				foreach ( $this->items as $items )
 				{
-				if ( $key == $items->pmID )
+				//if ( $key == $items->pmID )
+                if ( $key == $items->$schluessel )
 				{
 
 					$class = ($k==0) ? 'sectiontableentry1' : 'sectiontableentry2';
@@ -425,7 +464,15 @@ echo $this->pagination->getListFooter();
 						<tr class='<?php echo $class; ?>' <?php echo $styleStr; ?> >
 							<td<?php echo $tdStyleStr; ?>><?php echo $value['rank']; ?></td>
 							<?php
-							if ($this->config['show_user_icon'])
+						if ( $this->model->pggrouprank )
+                    {
+                        ?>
+							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['pg_group_name']; ?></td>
+							<?php
+                        }
+                        else
+                        {
+                            if ($this->config['show_user_icon'])
 							{
 								?>
 								<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['show_user_icon']; ?></td>
@@ -440,6 +487,7 @@ echo $this->pagination->getListFooter();
 							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['pg_group_name']; ?></td>
 							<?php
 				    }
+                    }
 							
 							if ($this->config['show_champion_tip'])
 							{

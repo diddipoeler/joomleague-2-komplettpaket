@@ -49,6 +49,7 @@ class JoomleagueModelPrediction extends JModel
 		$this->joomlaUserID			= JRequest::getInt('juid',	0);
 		$this->roundID				= JRequest::getInt('r',		0);
         $this->pggroup				= JRequest::getInt('pggroup',		0);
+        $this->pggrouprank			= JRequest::getInt('pggrouprank',		0);
 		$this->pjID					= JRequest::getInt('p',		0);
 		$this->isNewMember			= JRequest::getInt('s',		0);
 		$this->tippEntryDone		= JRequest::getInt('eok',	0);

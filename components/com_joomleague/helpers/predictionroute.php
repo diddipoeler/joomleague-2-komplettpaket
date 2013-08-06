@@ -40,7 +40,7 @@ public static function getPredictionResultsRoute($predictionID,$roundID=null,$pr
 		return $link;
 	}
 
-public static function getPredictionRankingRoute($predictionID,$projectID=null,$roundID=null,$anchor='',$groupID=null)
+public static function getPredictionRankingRoute($predictionID,$projectID=null,$roundID=null,$anchor='',$groupID=null,$groupRank=0)
 	{
 		$params = array('option' => 'com_joomleague', 
 						'view' => 'predictionranking', 
@@ -51,6 +51,8 @@ public static function getPredictionRankingRoute($predictionID,$projectID=null,$
         if (!is_null($groupID)){$params['pggroup']=$groupID;}
 		if (!is_null($projectID)){$params['pj']=$projectID;}
 		if (!is_null($roundID)){$params['r']=$roundID;}
+        //if (!is_null($groupRank)){$params['pggrouprank']=$groupRank;}
+        $params['pggrouprank']=$groupRank;
 
 		$query = PredictionHelperRoute::buildQuery($params);
 		$link = JRoute::_('index.php?' . $query, false);
