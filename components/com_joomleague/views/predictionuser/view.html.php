@@ -106,7 +106,7 @@ class JoomleagueViewPredictionUser extends JLGView
           $thisTimeDate = JoomleagueHelper::getTimestamp('',1,$predictionProjectSettings->serveroffset);
           $competitionStartTimeDate = JoomleagueHelper::getTimestamp($showDate,1,$predictionProjectSettings->serveroffset);
           $tippAllowed =	( ( $thisTimeDate < $competitionStartTimeDate ) ) ;
-		if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
+		  if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
         
             $predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PREDICTION_MEMBER_GROUP'),'value','text');
 			if ($res=&$mdlPredUsers->getPredictionGroupList()){$predictionMembers=array_merge($predictionMembers,$res);}
