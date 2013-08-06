@@ -12,4 +12,4 @@
 defined('_JEXEC') or die('Restricted access');
 
 
-?><h1><?php echo JText::_($this->optiontext.'JL_PRED_ENTRY_SECTION_TITLE'); ?></h1>
+?><h1><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_SECTION_TITLE'); ?></h1>

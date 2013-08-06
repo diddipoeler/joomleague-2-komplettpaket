@@ -80,7 +80,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_($this->optiontext.'JL_PRED_ENTRY_TITLE');
+			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -88,7 +88,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_($this->optiontext.'JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 	

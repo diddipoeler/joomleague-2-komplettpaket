@@ -13,10 +13,10 @@ defined('_JEXEC') or die('Restricted access');
 
 
 ?><p><?php
-echo JText::_($this->optiontext.'JL_PRED_ENTRY_DENY_INFO_01');
+echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_DENY_INFO_01');
 ?></p><p><?php
-echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_DENY_INFO_02','<a href="index.php?option=com_users&view=login"><b><i>','</i></b></a>'
+echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_DENY_INFO_02','<a href="index.php?option=com_users&view=login"><b><i>','</i></b></a>'
 					);
 ?></p><p><?php
-echo JText::sprintf($this->optiontext.'JL_PRED_ENTRY_DENY_INFO_03','<a href="index.php?option=com_users&view=register"><b><i>','</i></b></a>');
+echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_DENY_INFO_03','<a href="index.php?option=com_users&view=register"><b><i>','</i></b></a>');
 ?></p><br />
