@@ -83,7 +83,17 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			<?php
 			echo JoomleagueModelPredictionUsers::echoLabelTD('COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_GROUP','COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_GROUP');
 			?>
-			<td colspan='2'><?php echo $this->lists['grouplist']; ?></td>
+			<td colspan='2'>
+            <?php 
+            echo $this->lists['grouplist'];
+            
+            if (!$this->tippallowed)
+            {
+            echo '<br>';
+            echo '<font size="2" color="red">'.JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_NO_GROUP_CHANGE').'</font>';  
+            } 
+            ?>
+            </td>
 		</tr>
         
 		<?php
@@ -206,7 +216,11 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 						//echo $this->lists['champ_tipp'][$predictionProject->project_id];
 						
             echo $this->lists['champ_tipp_enabled'][$predictionProject->project_id];
-						
+						if (!$this->tippallowed)
+            {
+            echo '<br>';
+            echo '<font size="2" color="red">'.JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_NO_GROUP_CHANGE').'</font>';    
+            } 
 						?></td><?php
 
 					?><td><?php

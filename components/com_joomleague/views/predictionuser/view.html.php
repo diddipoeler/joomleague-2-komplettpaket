@@ -205,15 +205,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 					$lists['champ_tipp_enabled'][$predictionProject->project_id] = JHTML::_('select.genericList',$projectteams,'champ_tipp['.$predictionProject->project_id.']','class="inputbox"'.$disabled.'','value','text',$champTeamsList[$predictionProject->project_id]);
 					unset($projectteams);
 				}
-
-        /*
-				// image selector
-				$default = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
-				$this->predictionMember->picture = $model->getPredictionMemberAvatar($this->predictionMember->user_id, $this->configavatar['show_image_from'] );
-				if (empty($this->predictionMember->picture)){$this->predictionMember->picture = $default;}
-				$imageselect = ImageSelectJL::getSelector('picture','picture_preview','predictionusers',$this->predictionMember->picture,$default,'');
-				$this->assignRef('imageselect',	$imageselect);
-				*/
+        
 				$this->assignRef('form'      	, $this->get('form'));	
 			}
 			else
@@ -223,6 +215,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 			}
 
 			$this->assignRef('lists',$lists);
+            $this->assignRef('tippallowed',$tippAllowed);
       
 			// Set page title
 			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_TITLE');
