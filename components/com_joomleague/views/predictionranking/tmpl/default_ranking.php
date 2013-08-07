@@ -396,7 +396,18 @@ echo $this->pagination->getListFooter();
 
 					$membersDataArray[$member->pmID]['show_tip_details']	= $output;
 					$membersDataArray[$member->pmID]['champ_tipp']		= $member->champ_tipp;
-				}
+                    
+                    if ( $this->model->pggrouprank )
+                    {
+                    $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
+					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
+					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID,$member->pmID,'',$member->pg_group_id);
+                    $output = JHTML::link( $link, $imgFile);
+                    $groupmembersDataArray[$member->pg_group_id]['show_tip_details']	= $output;    
+                    }    
+				
+                
+                }
         // ende der tippmitglieder
         
         if ( $this->show_debug_info )
@@ -469,6 +480,7 @@ echo $this->pagination->getListFooter();
                     {
                         ?>
 							<td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['pg_group_name']; ?></td>
+                            <td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['show_tip_details']; ?></td>
 							<?php
                         }
                         else
@@ -513,11 +525,13 @@ echo $this->pagination->getListFooter();
               }
               
 							}
-							
+							if ( !$this->model->pggrouprank )
+                            {
 							if ($this->config['show_tip_details'])
 							{
 								?><td<?php echo $tdStyleStr; ?>><?php echo $membersDataArray[$key]['show_tip_details']; ?></td><?php
 							}
+                            }
 							?>
 							<td<?php echo $tdStyleStr; ?>><?php echo $membersResultsArray[$key]['totalPoints']; ?></td>
 							<?php
