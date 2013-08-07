@@ -188,6 +188,7 @@ class JoomleagueModelPrediction extends JModel
     $query = 'SELECT picture
 			FROM #__joomleague_prediction_member
 			WHERE user_id = ' . (int)$members ;
+    $query .= ' AND prediction_id = '.$this->predictionGameID;        
 		$this->_db->setQuery($query);
 		$results = $this->_db->loadResult();
 	if ( $results )
@@ -1785,6 +1786,7 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
     $query =	"SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
+            pm.picture AS picture,
 			pm.show_profile AS show_profile,
 			pm.champ_tipp AS champ_tipp,
             pm.aliasName as aliasName,

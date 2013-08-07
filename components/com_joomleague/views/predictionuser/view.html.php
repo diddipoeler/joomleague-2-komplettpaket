@@ -97,26 +97,9 @@ class JoomleagueViewPredictionUser extends JLGView
 			unset($res);
 			unset($predictionMembers);
         
-        /*    
-            $disabled='';
-            // ist die saison beendet ?
-          $predictionProjectSettings = $mdlPredUsers->getPredictionProject($predictionProject->project_id);
-          $time=strtotime($predictionProject->start_date);
-          $time += 86400; // Ein Tag in Sekunden
-          $showDate=date("Y-m-d",$time);
-          $thisTimeDate = JoomleagueHelper::getTimestamp('',1,$predictionProjectSettings->serveroffset);
-          $competitionStartTimeDate = JoomleagueHelper::getTimestamp($showDate,1,$predictionProjectSettings->serveroffset);
-          $tippAllowed =	( ( $thisTimeDate < $competitionStartTimeDate ) ) ;
-		  if (!$tippAllowed){$disabled=' disabled="disabled" ';}else{$disabled=''; }
-        */
         
-            /*
-            $predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_PREDICTION_MEMBER_GROUP'),'value','text');
-			if ($res=&$mdlPredUsers->getPredictionGroupList()){$predictionMembers=array_merge($predictionMembers,$res);}
-			$lists['grouplist']=JHTML::_('select.genericList',$predictionMembers,'group_id','class="inputbox" '.$disabled.'onchange=""','value','text',$this->predictionMember->group_id);
-			unset($res);
-			unset($predictionMembers);
-            */
+        
+            
 
 			if (empty($this->predictionMember->fav_team)){$this->predictionMember->fav_team='0,0';}
 			$sFavTeamsList=explode(';',$this->predictionMember->fav_team);
@@ -220,7 +203,8 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 					unset($projectteams);
 				}
         
-				$this->assignRef('form'      	, $this->get('form'));	
+				$this->assignRef('form'      	, $this->get('form'));
+                $this->form->setValue('picture', null,$this->predictionMember->picture);	
 			}
 			else
 			{

@@ -242,8 +242,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 		<?php
 		if ($this->config['edit_avatar_upload'])
 		{
-		// echo 'imageselect <pre>'.print_r($this->imageselect ,true).'</pre><br>';
-		// /media/com_joomleague/jl_images/spinner.gif 
+		
 		?>
 		
 		    <tr>
@@ -284,7 +283,6 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 	<input type='hidden' name='user_id'			value='<?php echo $this->actJoomlaUser->id; ?>' />
 	<input type='hidden' name='member_id'		value='<?php echo $this->predictionMember->pmID; ?>' />
 	<input type='hidden' name='option'			value='com_joomleague' />
-	
 	<input type='hidden' name='task' 			value='predictionusers.savememberdata' />
 	<?php echo JHTML::_('form.token'); ?>
 </form><br />

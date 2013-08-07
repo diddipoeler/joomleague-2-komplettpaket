@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form >
+<form 
+addfieldpath="/components/com_joomleague/models/fields">
   <fieldset name="picture">
 			<field
 				name="picture"
