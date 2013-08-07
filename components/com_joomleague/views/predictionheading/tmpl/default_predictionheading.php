@@ -30,10 +30,24 @@ if ((isset($this->config['show_prediction_heading'])) && ($this->config['show_pr
 					$desc = JHTML::image('media/com_joomleague/jl_images/edit.png',$imgTitle,array('border' => 0, 'title' => $imgTitle));
 					echo JHTML::link($link,$desc);
 				}
+                if ( $this->allowedAdmin )
+                {
+                echo '&nbsp;&nbsp;';
+                $imgTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_HEAD_ENTRY_IMAGE_TITLE');
+				$desc = JHTML::image(JURI::root().'media/com_joomleague/jl_images/prediction_entry.png',$imgTitle,array('border' => 0, 'title' => $imgTitle));
+				$link = PredictionHelperRoute::getPredictionTippEntryRoute($this->predictionGame->id,$this->predictionMember->pmID);
+                echo JHTML::link($link,$desc);
+					
+					
+                }
+                
 				?>
 			</td>
 			<?php
-			if (!isset($this->allowedAdmin)){$this->allowedAdmin = false;}
+			if (!isset($this->allowedAdmin))
+            {
+                $this->allowedAdmin = false;
+            }
 			if ( ( $this->getName() == 'predictionusers' ) ||
        ( ( $this->allowedAdmin ) && ( $this->getName() == 'predictionentry' ) )
 //        || ( $this->getName() == 'predictionresults' )

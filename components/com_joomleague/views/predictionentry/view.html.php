@@ -70,7 +70,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 			{
 				$lists = array();
 				if ($this->predictionMember->pmID > 0){$dMemberID=$this->predictionMember->pmID;}else{$dMemberID=0;}
-				$predictionMembers[] = JHTML::_('select.option','0',JText::_('JL_PRED_SELECT_MEMBER'),'value','text');
+				$predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_MEMBER'),'value','text');
 				if ($res=&$model->getPredictionMemberList($this->config)){$predictionMembers=array_merge($predictionMembers,$res);}
 				$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
 				unset($res);
