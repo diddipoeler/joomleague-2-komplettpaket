@@ -842,9 +842,9 @@ $body .= "</table>";
 						
   $body .= "<tr class='" . $class ."'>";
 	$body .= "<td class='td_c'>";
-	$body .= JHTML::date($result->match_date,JText::_('COM_JOOMLEAGUE_GLOBAL_CALENDAR_DATE'));
+	$body .= JHtml::date($result->match_date, 'd.m.Y H:i', false);
 	$body .= " - ";
-	$body .= JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$configprediction['time_format']); 
+	//$body .= JHTML::date(date("Y-m-d H:i:s",$matchTimeDate),$configprediction['time_format']); 
 	$body .= "</td>";
 
   $homeName = $this->getMatchTeam($result->projectteam1_id);
