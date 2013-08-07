@@ -1781,6 +1781,7 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 			";
     break;
     case 'com_users':
+    case 'prediction':
     $query =	"SELECT	pm.id AS pmID,
 			pm.user_id AS user_id,
 			pm.picture AS avatar,
