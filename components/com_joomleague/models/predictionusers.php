@@ -108,7 +108,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
 	//$mainframe->enqueueMessage(JText::_('username ->'.$outputUserName),'Notice');
 	//$mainframe->enqueueMessage(JText::_('user_id ->'.$user_id),'Notice');
 
-/*	
+	
 	if ($this->config['show_photo'])
 	{
 	// von welcher komponente soll das bild kommen
@@ -123,7 +123,7 @@ class JoomleagueModelPredictionUsers extends JoomleagueModelPrediction
     //$mainframe->enqueueMessage(JText::_('die komponente '.$this->config['show_image_from'].' ist f&uuml;r das profilbild nicht installiert'),'Error');
     }
 	//$mainframe->enqueueMessage(JText::_('komponente ->'.$this->config['show_image_from']),'Notice');
-*/
+
 
 	switch ( $this->config['show_image_from'] )
 	{
