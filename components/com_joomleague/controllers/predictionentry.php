@@ -55,7 +55,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 	function register()
 	{
 		$option = JRequest::getCmd('option');
-    $optiontext = strtoupper(JRequest::getCmd('option').'_');
+    
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
     
@@ -90,7 +90,8 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 			}
 			else
 			{
-				$post['registerDate'] = JHTML::date(time(),'%Y-%m-%d %H:%M:%S');
+				//$post['registerDate'] = JHTML::date(time(),'Y-m-d h:i:s');
+                $post['registerDate'] = JHtml::date($input = 'now', 'Y-m-d h:i:s', false);
 				//if (!$model->store($post,'PredictionEntry'))
 				if (!$model->store($post))
 				{
