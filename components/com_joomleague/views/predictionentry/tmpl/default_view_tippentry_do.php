@@ -346,7 +346,8 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 								}
 								?>
 							</td>
-							<td class="td_c">
+						<!-- @ShortBrother <td class="td_c"> -->
+                            <td style="text-align: center;">
 								<?php
 								echo $resultHome . $this->config['seperator'] . $resultAway;
 								?>

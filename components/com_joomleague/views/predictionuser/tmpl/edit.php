@@ -20,7 +20,6 @@ echo 'form<br /><pre>~' . print_r($this->form,true) . '~</pre><br />';
 }
 
 
-
 if (!$this->showediticon)
 {
 	JFactory::getApplication()->redirect(str_ireplace('&layout=edit','',JFactory::getURI()->toString()),JText::_('ALERTNOTAUTH'));
@@ -55,7 +54,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 			?>
 			<td colspan='2'><?php
 				$regDate = substr($this->predictionMember->pmRegisterDate,0,10);
-				$regTime = substr($this->predictionMember->pmRegisterDate,11,5);
+				$regTime = substr($this->predictionMember->pmRegisterDate,11,8);
 				if ($this->allowedAdmin)
 				{
 					echo JText::sprintf(	'%1$s - %2$s',

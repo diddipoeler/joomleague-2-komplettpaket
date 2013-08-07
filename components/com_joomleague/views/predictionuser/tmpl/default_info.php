@@ -12,6 +12,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 //echo '<br /><pre>~' . print_r($this->model->pjID,true) . '~</pre><br />';
+
 ?>
 <h2><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_PERS_DATA'); ?></h2>
 <?php
