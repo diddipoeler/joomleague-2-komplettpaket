@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form >
   <fieldset name="picture">
-
 			<field
 				name="picture"
 				type="media"
@@ -11,8 +10,22 @@
 				class="inputbox"
 				preview="show"
 				directory="images/com_joomleague/database/predictionusers"/>	
-		
 	</fieldset>
+
+<fieldset name="imageselect">
+		
+			<field
+				name="picture"
+				type="imageselect"
+				default="images/com_joomleague/database/placeholders/placeholder_150_2.png"				
+				label="COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_AVATAR"
+				description="COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_AVATAR_DESC"
+				class="inputbox"
+				preview="show"
+				targetfolder="predictionusers"
+				directory="com_joomleague/database/predictionusers"/>	
+</fieldset>
+	
   <fieldset name="group">
 	<field
 			name="group_id"

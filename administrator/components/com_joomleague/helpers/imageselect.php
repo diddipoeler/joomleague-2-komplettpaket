@@ -266,7 +266,11 @@ var $_foldertype = '';
 				break;
       case	"projects":
 				return "projects";
+				break;
+      case	"predictionusers":
+				return "predictionusers";
 				break;	
+                          	
       case	"projectteams":
 				return "projectteams";
 				break;
