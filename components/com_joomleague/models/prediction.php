@@ -182,6 +182,20 @@ class JoomleagueModelPrediction extends JModel
    
   switch ( $configavatar )
 		{
+    
+    case 'prediction':
+	$picture = 'images/com_joomleague/database/placeholders/placeholder_150_2.png';
+    $query = 'SELECT picture
+			FROM #__joomleague_prediction_member
+			WHERE user_id = ' . (int)$members ;
+		$this->_db->setQuery($query);
+		$results = $this->_db->loadResult();
+	if ( $results )
+    {
+    $picture = $results;
+    }  
+    break;
+    
     case 'com_joomleague':
 	  // alles ok
     break;
@@ -197,7 +211,7 @@ class JoomleagueModelPrediction extends JModel
 			WHERE userid = ' . (int)$members ;
 		$this->_db->setQuery($query);
 		$results = $this->_db->loadResult();
-		if ( $results )
+	if ( $results )
     {
     $picture = $results;
     }

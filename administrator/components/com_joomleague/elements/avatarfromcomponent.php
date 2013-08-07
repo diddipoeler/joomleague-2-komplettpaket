@@ -33,6 +33,7 @@ class JFormFieldAvatarFromComponent extends JFormField
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
         */
 		$mitems = array();
+        $mitems[] = JHTML::_('select.option', 'prediction', JText::_('COM_JOOMLEAGUE_GLOBAL_AVATAR_FROM_PREDICTION'));
 		$mitems[] = JHTML::_('select.option', 'com_users', JText::_('COM_JOOMLEAGUE_GLOBAL_AVATAR_FROM_JOOMLA'));
 		
         foreach( $sel_component as $key => $value )
