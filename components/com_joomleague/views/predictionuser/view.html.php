@@ -114,8 +114,8 @@ class JoomleagueViewPredictionUser extends JLGView
 
 			if ($this->getLayout()=='edit')
 			{
-				$dArray[] = JHTML::_('select.option',0,JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-				$dArray[] = JHTML::_('select.option',1,JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+				$dArray[] = JHTML::_('select.option',0,JText::_('JNO'));
+				$dArray[] = JHTML::_('select.option',1,JText::_('JYES'));
 
 				$lists['show_profile']		= JHTML::_('select.radiolist',$dArray,'show_profile',	'class="inputbox" size="1"','value','text',$this->predictionMember->show_profile);
 				$lists['reminder']			= JHTML::_('select.radiolist',$dArray,'reminder',		'class="inputbox" size="1"','value','text',$this->predictionMember->reminder);

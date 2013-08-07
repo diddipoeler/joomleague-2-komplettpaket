@@ -399,7 +399,7 @@ echo $this->pagination->getListFooter();
                     
                     if ( $this->model->pggrouprank )
                     {
-                    $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
+                    $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SHOW_DETAILS_OF',$member->pg_group_name);
 					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
 					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID,$member->pmID,'',$member->pg_group_id);
                     $output = JHTML::link( $link, $imgFile);

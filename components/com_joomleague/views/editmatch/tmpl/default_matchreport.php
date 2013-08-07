@@ -11,8 +11,8 @@
 			</td>
 			<td>
 				<?php
-				$showreport[] = JHTML::_( 'select.option', 0, JText::_( 'COM_JOOMLEAGUE_GLOBAL_NO' ) );
-				$showreport[] = JHTML::_( 'select.option', 1, JText::_( 'COM_JOOMLEAGUE_GLOBAL_YES' ) );
+				$showreport[] = JHTML::_( 'select.option', 0, JText::_( 'JNO' ) );
+				$showreport[] = JHTML::_( 'select.option', 1, JText::_( 'JYES' ) );
 				$showreportlist = JHTML::_(	'select.genericlist',
 											$showreport,
 											'show_report',

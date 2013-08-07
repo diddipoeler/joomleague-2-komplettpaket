@@ -71,8 +71,8 @@ class JoomleagueViewTeamStaff extends JLGView
 
 		// injury details
 		$myoptions = array();
-		$myoptions[]		= JHtml::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_NO' ) );
-		$myoptions[]		= JHtml::_( 'select.option', '1', JText::_( 'COM_JOOMLEAGUE_GLOBAL_YES' ) );
+		$myoptions[]		= JHtml::_( 'select.option', '0', JText::_( 'JNO' ) );
+		$myoptions[]		= JHtml::_( 'select.option', '1', JText::_( 'JYES' ) );
 		$lists['injury']	= JHtml::_( 'select.radiolist',
 										$myoptions,
 										'injury',
@@ -99,8 +99,8 @@ class JoomleagueViewTeamStaff extends JLGView
 
 		// suspension details
 		$myoptions		= array();
-		$myoptions[]	= JHtml::_('select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_NO' ) );
-		$myoptions[]	= JHtml::_('select.option', '1', JText::_( 'COM_JOOMLEAGUE_GLOBAL_YES' ));
+		$myoptions[]	= JHtml::_('select.option', '0', JText::_( 'JNO' ) );
+		$myoptions[]	= JHtml::_('select.option', '1', JText::_( 'JYES' ));
 		$lists['suspension']		= JHtml::_( 'select.radiolist',
 												$myoptions,
 												'suspension',
@@ -127,8 +127,8 @@ class JoomleagueViewTeamStaff extends JLGView
 
 		// away details
 		$myoptions		= array();
-		$myoptions[]	= JHtml::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_NO' ) );
-		$myoptions[]	= JHtml::_( 'select.option', '1', JText::_( 'COM_JOOMLEAGUE_GLOBAL_YES' ) );
+		$myoptions[]	= JHtml::_( 'select.option', '0', JText::_( 'JNO' ) );
+		$myoptions[]	= JHtml::_( 'select.option', '1', JText::_( 'JYES' ) );
 		$lists['away']	= JHtml::_( 'select.radiolist',
 									$myoptions,
 									'away',

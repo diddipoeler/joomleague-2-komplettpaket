@@ -79,8 +79,8 @@ class JoomleagueViewEventtype extends JLGView
 
 		//build the html select list for event
 		$myoptions=array();
-		$myoptions[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_NO'));
-		$myoptions[]=JHTML::_('select.option','1',JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$myoptions[]=JHTML::_('select.option','0',JText::_('JNO'));
+		$myoptions[]=JHTML::_('select.option','1',JText::_('JYES'));
 		$lists['splitt']=JHTML::_('select.radiolist',$myoptions,'splitt','class="inputbox" size="1"','value','text',$event->splitt);
 		$lists['double']=JHTML::_('select.radiolist',$myoptions,'double','class="inputbox" size="1"','value','text',$event->double);
 		unset($myoptions);

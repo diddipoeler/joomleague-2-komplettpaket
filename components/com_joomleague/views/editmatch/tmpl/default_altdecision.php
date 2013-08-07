@@ -28,10 +28,10 @@
 				<select	name="alt_decision" id="alt_decision"
 						   onchange="if (this.selectedIndex==0) {$('alt_decision_enter').style.display='none';} else {$('alt_decision_enter').style.display='block';}FormSwitch('', this.options[this.selectedIndex].value)">
 					<option	value="0"<?php if ($this->match->alt_decision == 0){echo ' selected="selected"';} ?>>
-						<?php echo JText::_( 'COM_JOOMLEAGUE_GLOBAL_NO' ); ?>
+						<?php echo JText::_( 'JNO' ); ?>
 					</option>
 					<option	value="1"<?php if ($this->match->alt_decision == 1){echo ' selected="selected"';} ?>>
-						<?php echo JText::_( 'COM_JOOMLEAGUE_GLOBAL_YES' ); ?>
+						<?php echo JText::_( 'JYES' ); ?>
 					</option>
 				</select>
 			</td>

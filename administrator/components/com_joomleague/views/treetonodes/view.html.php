@@ -68,7 +68,7 @@ class JoomleagueViewTreetonodes extends JLGView
 		$path = 'media/com_joomleague/treebracket/onwhite/';
 		
 		// build the html radio for adding into new round / exist round
-		$createYesNo=array(0 => JText::_('COM_JOOMLEAGUE_GLOBAL_NO'),1 => JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$createYesNo=array(0 => JText::_('JNO'),1 => JText::_('JYES'));
 		$createLeftRight=array(0 => JText::_('L'),1 => JText::_('R'));
 		$ynOptions=array();
 		$lrOptions=array();

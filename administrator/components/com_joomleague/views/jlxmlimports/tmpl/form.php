@@ -614,8 +614,8 @@ if (isset($this->xml) && is_array($this->xml))
 							<tr>
 								<td style='background-color:#EEEEEE'><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_PUBLISH'); ?></td>
 								<td style='background-color:#EEEEEE'>
-									<input type='radio' name='publish' value="0" /><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_NO'); ?>
-									<input type='radio' name='publish' value="1" checked='checked' /><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_YES'); ?>
+									<input type='radio' name='publish' value="0" /><?php echo JText::_('JNO'); ?>
+									<input type='radio' name='publish' value="1" checked='checked' /><?php echo JText::_('JYES'); ?>
 								</td>
 							</tr>
 							<?php

@@ -155,7 +155,7 @@ class JoomleagueViewMatches extends JLGView
 		unset($createTypes);
 
 		// build the html radio for adding into one round / all rounds
-		$createYesNo=array(0 => JText::_('COM_JOOMLEAGUE_GLOBAL_NO'),1 => JText::_('COM_JOOMLEAGUE_GLOBAL_YES'));
+		$createYesNo=array(0 => JText::_('JNO'),1 => JText::_('JYES'));
 		$ynOptions=array();
 		foreach($createYesNo AS $key => $value){
 			$ynOptions[]=JHTMLSelect::option($key,$value);
