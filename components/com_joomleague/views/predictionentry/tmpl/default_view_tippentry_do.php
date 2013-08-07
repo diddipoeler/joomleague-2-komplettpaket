@@ -164,6 +164,7 @@ echo '<br />memberID<pre>~' . print_r($this->predictionMember->pmID,true) . '~</
 						}
 					}
 				</script>
+                
 				<table width='100%' cellpadding='0' cellspacing='0'>
 					<tr>
 						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_DATE_TIME'); ?></th>
@@ -509,6 +510,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 						?>
 					</tr>
 				</table>
+               
 				<?php echo JHTML::_( 'form.token' ); ?>
 			</form><br />
 			<?php

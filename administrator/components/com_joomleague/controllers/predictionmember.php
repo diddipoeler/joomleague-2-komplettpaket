@@ -148,7 +148,7 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 	// send a reminder mail to make a tipp on needed prediction games to selected members
 	function sendReminder()
 	{
-		JToolBarHelper::title( JText::_( 'JL_ADMIN_PMEMBER_CTRL_SEND_REMINDER_MAIL' ), 'generic.png' );
+		JToolBarHelper::title( JText::_( 'COM_JOOMLEAGUE_JL_ADMIN_PMEMBER_CTRL_SEND_REMINDER_MAIL' ), 'generic.png' );
 		JToolBarHelper::back( 'JL_ADMIN_PMEMBER_CTRL_BACK', 'index.php?option=com_joomleague&view=predictionmembers' );
 
 		echo 'This will send an email to all members of the prediction game with reminder option enabled. Are you sure?';
@@ -169,12 +169,10 @@ class JoomleagueControllerPredictionMember extends JoomleagueController
 
 		$model = $this->getModel( 'predictionmember' );
     $model->sendEmailtoMembers($cid,$pgmid);
-    
-    
 
 		$link = 'index.php?option=com_joomleague&view=predictionmembers&task=predictionmember.display';
-		echo $msg;
-		//$this->setRedirect( $link, $msg );
+		//echo $msg;
+		$this->setRedirect( $link, $msg );
 	}
 
 	function publish()

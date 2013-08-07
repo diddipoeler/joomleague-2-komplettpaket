@@ -183,11 +183,11 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
     {
     $member_email = $this->getPredictionMemberEMailAdress( $value );
     
-    echo '<br />member_email<pre>~' . print_r( $member_email, true ) . '~</pre><br />'; 
+    //echo '<br />member_email<pre>~' . print_r( $member_email, true ) . '~</pre><br />'; 
 
     $subject = addslashes(
 				sprintf(
-				JText::_( "JL_EMAIL_PREDICTION_REMINDER_TIPS_RESULTS" ),
+				JText::_( "COM_JOOMLEAGUE_JL_EMAIL_PREDICTION_REMINDER_TIPS_RESULTS" ),
 				'perdictionname' ) );
 				
     $message = 'Tip-Results';
@@ -243,7 +243,7 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
 		$cids = implode( ',', $cids );
 		$query =	'	SELECT u.email
 						FROM #__users AS u
-						WHERE	u.sendEmail = 1 AND
+						WHERE	
 								u.block = 0 AND
 								u.id IN (' . $cids . ')
 						ORDER BY u.email';
@@ -255,7 +255,7 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
 	function getPredictionMemberEMailAdress( $predictionMemberID )
 	{
 		
-    echo '<br />predictionMemberID<pre>~' . print_r( $predictionMemberID, true ) . '~</pre><br />';
+    //echo '<br />predictionMemberID<pre>~' . print_r( $predictionMemberID, true ) . '~</pre><br />';
 		
     $query =	'	SELECT user_id
 						FROM #__joomleague_prediction_member
@@ -270,7 +270,7 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
 
 		$query =	'	SELECT u.email
 						FROM #__users AS u
-						WHERE	u.sendEmail = 1 AND
+						WHERE	
 								u.block = 0 AND
 								u.id = ' . $user_id . '
 						ORDER BY u.email';
