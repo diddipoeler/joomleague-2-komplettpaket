@@ -444,7 +444,8 @@ echo $this->pagination->getListFooter();
 				
 
 
-				foreach ($computedMembersRanking AS $key => $value)
+				// schleife über die sortierte tabelle anfang
+                foreach ($computedMembersRanking AS $key => $value)
 				{
 				
 				foreach ( $this->items as $items )
@@ -569,11 +570,11 @@ echo $this->pagination->getListFooter();
                         //}
 						$k = (1-$k);
 						$i++;
-						//if ($i > $skipMemberCount+$this->config['limit']){break;}
 					  }
           }
           
 				}
+                // schleife über die sortierte tabelle ende
 			?>
             
     
