@@ -116,9 +116,9 @@ $document->addScript(JURI::root().'components/com_joomleague/assets/js/eventsedi
 		<input type='hidden' name='checkmycontainers' value='0' id='checkmycontainers' />
 		<input type='hidden' name='save_data' value='1' class='button' />
 		<!--
-		<input type='submit' name='save' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE' );?>' onclick="$('checkmycontainers').value=0; " />
+		<input type='submit' name='save' value='<?php echo JText::_('JSAVE' );?>' onclick="$('checkmycontainers').value=0; " />
 		-->
-		<input type='submit' name='save' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE' );?>' />
+		<input type='submit' name='save' value='<?php echo JText::_('JSAVE' );?>' />
 		<?php echo JHTML::_('form.token'); ?>
 		<!-- Main END -->
 	</form>

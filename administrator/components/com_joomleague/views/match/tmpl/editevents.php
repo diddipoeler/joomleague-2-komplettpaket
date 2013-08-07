@@ -126,7 +126,7 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 						<td style='text-align:center; ' ><input type="text" size="20" value="" id="notice" name="notice" class="inputbox" /></td>
 						<td style='text-align:center; ' >
 							<?php echo JHTML::_('form.token'); ?>
-							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
+							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('JSAVE'); ?>" />
 						</td>
 					</tr>
 				</tbody>
@@ -208,7 +208,7 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 						<textarea rows="2" cols="70" id="notes" name="notes" ></textarea>
 					</td>
 					<td style='text-align:center; ' >
-						<input id="save-new-comment" type="button" class="inputbox button-save-c" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE' ); ?>" />
+						<input id="save-new-comment" type="button" class="inputbox button-save-c" value="<?php echo JText::_('JSAVE' ); ?>" />
 					</td>
 				</tr>
 			</tbody>

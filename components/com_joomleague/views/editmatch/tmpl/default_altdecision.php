@@ -103,5 +103,5 @@
 	</table>
 </fieldset>
 <div style="text-align:right; ">
-	<input type="submit" value="<?php echo JText::_( 'COM_JOOMLEAGUE_GLOBAL_SAVE' ); ?>">
+	<input type="submit" value="<?php echo JText::_( 'JSAVE' ); ?>">
 </div><br />

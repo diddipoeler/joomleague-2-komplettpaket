@@ -96,7 +96,7 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 						<td><?php echo $this->lists['projectpositions']; ?></td>
 						<td><input type="text" size="3" id="in_out_time" name="in_out_time" class="inputbox" /></td>
 						<td>
-							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
+							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('JSAVE'); ?>" />
 						</td>
 					</tr>
 				</tbody>

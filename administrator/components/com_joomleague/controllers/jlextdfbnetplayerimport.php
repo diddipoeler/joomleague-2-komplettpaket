@@ -128,7 +128,7 @@ function select()
         // Check for request forgeries
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
+		JToolBarHelper::back(JText::_('JPREV'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
 		$mainframe =& JFactory::getApplication();
 		$model = $this->getModel('jlextdfbnetplayerimport');
 		$post = JRequest::get('post');

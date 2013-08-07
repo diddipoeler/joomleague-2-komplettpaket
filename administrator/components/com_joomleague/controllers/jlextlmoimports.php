@@ -95,7 +95,7 @@ parent::display();
 		// Check for request forgeries
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
-		JToolBarHelper::back(JText::_('COM_JOOMLEAGUE_GLOBAL_BACK'),JRoute::_('index.php?option=com_joomleague&view=jllmoimport&controller=jllmoimport'));
+		JToolBarHelper::back(JText::_('JPREV'),JRoute::_('index.php?option=com_joomleague&view=jllmoimport&controller=jllmoimport'));
 		$mainframe =& JFactory::getApplication();
 		$post=JRequest::get('post');
     $model=$this->getModel('jlextlmoimports');

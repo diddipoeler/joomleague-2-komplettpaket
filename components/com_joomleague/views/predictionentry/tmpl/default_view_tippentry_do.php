@@ -488,7 +488,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 								{
 									if ($showSaveButton)
 									{
-									?><input type='submit' name='addtipp' value='<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>' class='button' /><?php
+									?><input type='submit' name='addtipp' value='<?php echo JText::_('JSAVE'); ?>' class='button' /><?php
 									}
 									else
 									{

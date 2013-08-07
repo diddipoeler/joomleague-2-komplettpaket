@@ -213,7 +213,7 @@ class JoomleagueViewMatches extends JLGView
 			JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_MASSADD_WARNING'), 'match.remove');
 			JToolBarHelper::divider();
 
-			JToolBarHelper::back('COM_JOOMLEAGUE_GLOBAL_BACK','index.php?option=com_joomleague&view=rounds&task=round.display');
+			JToolBarHelper::back('JPREV','index.php?option=com_joomleague&view=rounds&task=round.display');
 		}
 		else
 		{
