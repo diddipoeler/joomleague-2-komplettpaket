@@ -1631,7 +1631,8 @@ $lfdnumberperson++;
   }
   
 	//$tempmatch->match_number = $csv->data[$a]['Spielkennung'];
-    $tempmatch->match_number = $lfdnumbermatch;
+    //$tempmatch->match_number = $lfdnumbermatch;
+    $tempmatch->match_number = $csv->data[$a][$jRegistry->get('cfg_dfbnet_game_id')];
 	$tempmatch->published = 1;
 	$tempmatch->count_result = 1;
 	$tempmatch->show_report = 1;
