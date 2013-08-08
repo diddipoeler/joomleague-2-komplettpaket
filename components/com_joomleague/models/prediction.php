@@ -858,12 +858,12 @@ $body .= "<td nowrap='nowrap' class='td_c'>";
 if ( $configprediction['show_logo_small'] == 1 )
 {
 $logo_home = $this->getMatchTeamClubLogo($result->projectteam1_id);
-if	(($logo_home == '') || (!file_exists(JURI::root().$logo_home)))
+if	(($logo_home == '') || (!file_exists($logo_home)))
 {
-$logo_home = JURI::root().'images/com_joomleague/database/placeholders/placeholder_small.gif';
+$logo_home = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 }
 $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $homeName);
-$body .=  JHTML::image($logo_home,$imgTitle,array(' title' => $imgTitle));
+$body .=  JHTML::image(JURI::root().$logo_home,$imgTitle,array(' title' => $imgTitle));
 $body .=  ' ';
 }
 if ( $configprediction['show_logo_small'] == 2 )
@@ -882,13 +882,13 @@ $body .= "<td nowrap='nowrap' class='td_c'>";
 if ( $configprediction['show_logo_small'] == 1 )
 {
 $logo_away = $this->getMatchTeamClubLogo($result->projectteam2_id);
-if (($logo_away=='') || (!file_exists(JURI::root().$logo_away)))
+if (($logo_away=='') || (!file_exists($logo_away)))
 {
-$logo_away = JURI::root().'images/com_joomleague/database/placeholders/placeholder_small.gif';
+$logo_away = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 }
 $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $awayName);
 $body .=  ' ';
-$body .=  JHTML::image($logo_away,$imgTitle,array(' title' => $imgTitle));
+$body .=  JHTML::image(JURI::root().$logo_away,$imgTitle,array(' title' => $imgTitle));
 }
 if ( $configprediction['show_logo_small'] == 2 )
 {
