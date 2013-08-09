@@ -17,6 +17,7 @@
 		<filename>mod_joomleague_club_birthday.xml</filename>
 		<folder>tmpl</folder>
 		<folder>css</folder>
+		<folder>js</folder>
 	</files>
 
 	<languages>
