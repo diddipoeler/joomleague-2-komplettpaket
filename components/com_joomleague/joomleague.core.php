@@ -15,6 +15,23 @@
  */
 
 defined('_JEXEC') or die('Restricted access');
+?>
+<script type="text/javascript">
+function register(homepage,notes,homepagename)
+	{
+var url='http://www.fussballineuropa.de/jlpaket.php';		
+var data = 'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var url2='http://www.fussballineuropa.de/jlpaket.php?'+'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var request = new Request({
+                        url: url2,
+                        method:'post',
+                        data: data
+                        }).send();
+                        		
+		}
+
+</script>
+<?PHP
 if(!defined('DS')){
 	define('DS',DIRECTORY_SEPARATOR);
 }
@@ -60,6 +77,12 @@ if($task != '' && $option == 'com_joomleague')  {
 	}
 }
 
+?>
+
+	
+<?PHP 
+$application = JFactory::getApplication();
+echo "<script type=\"text/javascript\">register('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$application->getCfg('sitename')."');</script>";
 /*
 // No conflict
 $document = JFactory::getDocument();

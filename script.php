@@ -1,9 +1,13 @@
 <?php
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
- 
+JHTML::_( 'behavior.mootools' );
+?>
+
+	
+<?PHP 
 /**
- * Script file of com_sportsmanagement component
+ * Script file of com_joomleague component
  */
 class com_joomleagueInstallerScript
 {
@@ -183,11 +187,14 @@ foreach($form->getFieldset($fieldset->name) as $field)
     
     public function sendInfoMail()
 	{
+	/*   
 	$mainframe =& JFactory::getApplication();
     $to = 'diddipoeler@gmx.de';
     $subject = 'JoomLeague 2.0 Complete Installation';
     $message = 'JoomLeague 2.0 Complete Installation wurde auf der Seite : '.JURI::base().' gestartet.';
     JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
+    */
+
     }
     
     /*

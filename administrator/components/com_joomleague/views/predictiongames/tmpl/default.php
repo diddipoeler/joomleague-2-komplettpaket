@@ -27,7 +27,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 				{
 				?>
 					<?php
-					echo JText::_('COM_JOOMLEAGUE_GLOBAL_FILTER'); ?>: <input	type="text" name="search" id="search"
+					echo JText::_('JGLOBAL_FILTER_BUTTON'); ?>: <input	type="text" name="search" id="search"
 														value="<?php echo $this->lists['search'];?>" class="text_area"
 														onchange="document.adminForm.submit();" />
 					<button onclick="this.form.submit();">
