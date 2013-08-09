@@ -40,8 +40,8 @@
 				<field 	name="sort_order" type="list" default="-"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SORT_ORDER_SAME_DAY_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SORT_ORDER_SAME_DAY_DESCR">
-					<option value="-">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SAME_DAY_SORTING_OLDEST_FIRST</option>
-					<option value="+">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SAME_DAY_SORTING_YOUNGEST_FIRST</option>
+					<option value="-1">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SAME_DAY_SORTING_OLDEST_FIRST</option>
+					<option value="1">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SAME_DAY_SORTING_YOUNGEST_FIRST</option>
 				</field>
 				
 				<field 	name="maxdays" type="text" default=""
@@ -59,8 +59,8 @@
 				<field 	name="show_club_flag" type="radio" default="1"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SHOW_FLAG_LABEL" 
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SHOW_FLAG_DESCR">
-					<option value="0">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_NO</option>
-					<option value="1">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_YES</option>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>
 				
 				<field 	name="heading_style" type="text" default="sectiontableheader"
@@ -70,8 +70,8 @@
 				<field 	name="show_picture" type="radio" default="0"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SHOW_PICTURE_LABEL" 
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_SHOW_PICTURE_DESCR">
-					<option value="0">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_NO</option>
-					<option value="1">MOD_JOOMLEAGUE_CLUB_BIRTHDAY_YES</option>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
 				</field>	
 				
 				<field 	name="picture_width" type="text" default="120"
@@ -94,31 +94,79 @@
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_FUTURE_MESSAGE_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_FUTURE_MESSAGE_DESCR" />
 				
-				<field 	name="todaymessage" type="text" default="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TODAY_MESSAGE_LABEL_TODAY"
+				<field 	name="todaymessage" type="text" 
+        default="Heute"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TODAY_MESSAGE_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TODAY_MESSAGE_DESCR" />
 					
-				<field 	name="tomorrowmessage" type="text" default="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TOMORROW_MESSAGE_LABEL_TOMORROW"
+				<field 	name="tomorrowmessage" type="text" 
+        default="morgen"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TOMORROW_MESSAGE_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_TOMORROW_MESSAGE_DESCR" />
 					
 				<field 	name="birthdaytext" type="textarea" 
-						default="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_DEFAULT"
+						default="... wird %AGE% Jahre alt%BR% %WHEN% am %DATE% %BR% (* %DATE_OF_BIRTH%)"
 						cols="25" rows="5"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_DESCR" /> 
 						
 				<field 	name="birthdaytextyear" type="textarea" 
-						default="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_YEAR_DEFAULT"
+						default="... wird %AGE% Jahre alt%BR%"
 						cols="25" rows="5"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_YEAR_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_MESSAGE_FOR_BIRTHDAY_YEAR_DESCR" />		
 					
 				<field 	name="not_found_text" type="textarea" 
-						default="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_NO_BIRTHDAY_MESSAGE_DEFAULT"
+						default="kein Jubiläum in den nächsten %DAYS% Tagen"
 						cols="25" rows="5"
 						label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_NO_BIRTHDAY_MESSAGE_LABEL"
 						description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_NO_BIRTHDAY_MESSAGE_DESCR" />
+				
+				<field name="mode" type="list" default="" 
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_MODE"
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_MODE">
+					<option value="T">TICKER</option>
+					<option value="L">LIST</option>
+					<option value="V">VERTICAL SCROLL</option>
+					<option value="H">HORIZONTAL SCROLL</option>
+				</field>
+				<field name="@spacer" type="spacer" default="" label=""
+					description="" />
+				   <!--
+        	<field name="refresh" type="radio" default="0" 
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_REFRESH"
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_REFRESH">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				-->
+				<field name="minute" type="text" default="3" 
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_MINUT_NUMBER"
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_MINUT_NUMBER" />
+				<field name="tickerpause" type="text" default="3"
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_PAUSE_TIME" 
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_PAUSE_TIME" />
+				<field name="@spacer" type="spacer" default="" label=""
+					description="" />
+				<field name="scrollspeed" type="text" default="2"
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_SCROLLSPEED" 
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_SCROLLSPEED" />
+				<field name="scrollpause" type="radio" default="1"
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_SCROLLPAUSE" 
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_SCROLLPAUSE">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				
+				<field name="height" type="text" default="50" 
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_TICKER_HEIGHT"
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_TICKER_HEIGHT">
+				</field>
+				<field name="width" type="text" default="200" 
+					label="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_LABEL_TICKER_WIDTH"
+					description="MOD_JOOMLEAGUE_CLUB_BIRTHDAY_DESC_TICKER_WIDTH">
+				</field>
+				
 				
 			</fieldset>
 			

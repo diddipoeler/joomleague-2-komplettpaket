@@ -10,33 +10,41 @@
 // no direct access
 
 defined('_JEXEC') or die('Restricted access');
-$database = JFactory::getDBO();
+jimport( 'joomla.utilities.arrayhelper' );
+
+
+
 $clubs = array();
 $crew = array();
 
-if(!function_exists('jl_birthday_sort'))
+class modJoomleagueClubBirthdayHelper
 {
-	// snippet taken from http://de3.php.net/manual/en/function.uasort.php
-	function jl_birthday_sort ($array, $arguments = array(), $keys = true) {
-		$code = "\$result=0;";
-		foreach ($arguments as $argument) {
-			$field = substr($argument, 2, strlen($argument));
-			$type = $argument[0];
-			$order = $argument[1];
-			$code .= "if (!Is_Numeric(\$result) || \$result == 0) ";
-			if (strtolower($type) == "n") $code .= $order == "-" ? "\$result = (intval(\$a['{$field}']) > intval(\$b['{$field}']) ? -1 : (intval(\$a['{$field}']) < intval(\$b['{$field}']) ? 1 : 0));" : "\$result = (intval(\$a['{$field}']) > intval(\$b['{$field}']) ? 1 : (intval(\$a['{$field}']) < intval(\$b['{$field}']) ? -1 : 0));";
-			else $code .= $order == "-" ? "\$result = strcoll(\$a['{$field}'], \$b['{$field}']) * -1;" : "\$result = strcoll(\$a['{$field}'], \$b['{$field}']);";
-		}
-		$code .= "return \$result;";
-		$compare = create_function('$a, $b', $code);
-		if ($keys) uasort($array, $compare);
-		else usort($array, $compare);
-		return $array;
-	}
-}
+    
+function jl_birthday_sort ($array, $sort) 
+{
 
+/**
+	 * Utility function to sort an array of objects on a given field
+	 *
+	 * @param   array  &$a             An array of objects
+	 * @param   mixed  $k              The key (string) or a array of key to sort on
+	 * @param   mixed  $direction      Direction (integer) or an array of direction to sort in [1 = Ascending] [-1 = Descending]
+	 * @param   mixed  $caseSensitive  Boolean or array of booleans to let sort occur case sensitive or insensitive
+	 * @param   mixed  $locale         Boolean or array of booleans to let sort occur using the locale language or not
+	 *
+	 * @return  array  The sorted array of objects
+	 *
+	 * @since   11.1
+	 */
+     		
+		$res = JArrayHelper::sortObjects($array,'age',$sort);
+        return $res;
+	}    
+
+function getClubs($limit)
+	{
 $birthdaytext='';
-
+$database = JFactory::getDBO();
 // get club info, we have to make a function for this
 $dateformat = "DATE_FORMAT(c.founded,'%Y-%m-%d') AS date_of_birth";
 
@@ -72,13 +80,16 @@ $dateformat = "DATE_FORMAT(c.founded,'%Y-%m-%d') AS date_of_birth";
 
 	$query .= " ORDER BY days_to_birthday ASC ";
 
-	if ($params->get('limit') > 0) $query .= " LIMIT " . $params->get('limit');
+	$query .= " LIMIT " . $limit;
 
 	$database->setQuery($query);
 	//echo("<hr>".$database->getQuery($query));
-	$clubs = $database->loadAssocList();
+	//$clubs = $database->loadAssocList();
+    $result = $database->loadObjectList();
+	return $result;
+}
 
-
+}
 
 
 ?>
