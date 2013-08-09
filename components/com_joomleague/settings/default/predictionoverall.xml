@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <form>
 
+<!-- reiter 1 -->
 	<fieldset group="JL_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 	name="JL_FES_PARAMS_GROUP_PAGE_ELEMENTS"
 			description="JL_FES_PARAMS_DESCR_PAGE_ELEMENTS">
@@ -59,6 +60,7 @@
 
 	</fieldset>
 
+<!-- reiter 2 -->
 	<fieldset	group="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS"
 	name="JL_FES_PARAMS_GROUP_PERSONAL_OPTIONS"
 			description="JL_FES_PARAMS_DESCR_PERSONAL_OPTIONS">
@@ -106,8 +108,21 @@
 			<option value="1">JYES</option>
 		</field>
 
+		<field name="input_alias_length" type="text" size="3" maxlength="3"
+				default="60"
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONOVERALL_PARAM_LABEL_ALIAS_LENGTH"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONOVERALL_PARAM_DESCR_ALIAS_LENGTH" >
+		</field>
+    <field name="input_slogan_length" type="text" size="3" maxlength="3"
+				default="60"
+				label="COM_JOOMLEAGUE_JL_FES_PREDICTIONOVERALL_PARAM_LABEL_SLOGAN_LENGTH"
+				description="COM_JOOMLEAGUE_JL_FES_PREDICTIONOVERALL_PARAM_DESCR_SLOGAN_LENGTH" >
+		</field>
+
+
 	</fieldset>
 
+<!-- reiter 3 -->
 	<fieldset	group= "JL_FES_PARAMS_GROUP_OPTIONS"
 	name= "JL_FES_PARAMS_GROUP_OPTIONS"
 			description="JL_FES_PARAMS_DESCR_OPTIONS">

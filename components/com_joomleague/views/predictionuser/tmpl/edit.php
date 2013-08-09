@@ -104,7 +104,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 				echo JoomleagueModelPredictionUsers::echoLabelTD('COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_ALIAS','COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_HELP_ALIAS');
 				?>
 				<td colspan='2'>
-					<input	class='inputbox' type='text' name='aliasName' size='60' maxlength='255'
+					<input	class='inputbox' type='text' name='aliasName' size='<?php echo $this->config['input_alias_length']; ?>' maxlength='255'
 							value='<?php echo strip_tags($this->predictionMember->aliasName); ?>' />
 				</td>
 			</tr>
@@ -120,7 +120,7 @@ $document->addScript(JURI::root().'includes/js/joomla.javascript.js');
 				echo JoomleagueModelPredictionUsers::echoLabelTD('COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_SLOGAN','COM_JOOMLEAGUE_JL_PRED_USERS_EDIT_LABEL_HELP_SLOGAN');
 				?>
 				<td colspan='2'>
-					<input	class='inputbox' type='text' name='slogan' size='60' maxlength='255'
+					<input	class='inputbox' type='text' name='slogan' size='<?php echo $this->config['input_slogan_length']; ?>' maxlength='255'
 							value='<?php echo strip_tags($this->predictionMember->slogan); ?>' />
 				</td>
 			</tr>
