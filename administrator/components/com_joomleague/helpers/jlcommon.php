@@ -1168,7 +1168,7 @@ class JoomleagueHelper
 	
 		$db->setQuery($query);
 		if(!$required) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_ROUND')));
 			return array_merge($mitems, $db->loadObjectList());
 		} else {
 			return $db->loadObjectList();
