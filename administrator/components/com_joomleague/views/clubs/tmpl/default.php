@@ -65,7 +65,7 @@ JHtml::_('behavior.tooltip');JHtml::_('behavior.modal');
 						?>
 					</th>
 					<th width="1%">
-						<?php echo JHtml::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','a.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+						<?php echo JHtml::_('grid.sort','JGRID_HEADING_ID','a.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 					</th>
 				</tr>
 			</thead>

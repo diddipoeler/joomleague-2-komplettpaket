@@ -82,7 +82,7 @@ fieldset button {
 						<th class="title" ><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCHES_REFEREE'); ?></th>
 						<th width="1%" ><?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
 						<th width="1%" class="title" >
-							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','mc.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','mc.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>

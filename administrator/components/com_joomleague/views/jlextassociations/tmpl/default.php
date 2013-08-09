@@ -61,7 +61,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 						?>
 					</th>
 					<th width="20" style="vertical-align: top; ">
-						<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','objassoc.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+						<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','objassoc.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 					</th>
 				</tr>
 			</thead>

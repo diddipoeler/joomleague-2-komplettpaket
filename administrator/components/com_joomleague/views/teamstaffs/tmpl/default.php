@@ -135,7 +135,7 @@ $uri = JUri::root();
 						</th>
 						<th width="5%" >
 							<?php
-							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'ppl.id', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'ppl.id', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 					</tr>

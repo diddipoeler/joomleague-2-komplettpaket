@@ -100,7 +100,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 					</th>
 					<th class='title' width='20' nowrap='nowrap'>
 						<?php
-						echo JHTML::_('grid.sort',JText::_('COM_JOOMLEAGUE_GLOBAL_ID'),'pre.id',$this->lists['order_Dir'],$this->lists['order']);
+						echo JHTML::_('grid.sort',JText::_('JGRID_HEADING_ID'),'pre.id',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
 				</tr>

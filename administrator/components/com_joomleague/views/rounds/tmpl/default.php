@@ -54,7 +54,7 @@ window.addEvent('domready',function(){
 						echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_PUBLISHED','r.published',$this->lists['order_Dir'],$this->lists['order']);
 						?>
 					</th>
-            <th width="5%"><?php echo JHTML::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'r.id', $this->lists['order_Dir'], $this->lists['order'] ); ?></th>
+            <th width="5%"><?php echo JHTML::_( 'grid.sort', 'JGRID_HEADING_ID', 'r.id', $this->lists['order_Dir'], $this->lists['order'] ); ?></th>
 					</tr>
 				</thead>
 				<tfoot><tr><td colspan="12"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>

@@ -152,7 +152,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 							<?php echo JHTML::_('grid.sort','TID','team_id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="1%">
-							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','tl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','tl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>

@@ -35,7 +35,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 							<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_TEMPLATES_TYPE'); ?>
 						</th>
 						<th>
-							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','tmpl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','tmpl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>

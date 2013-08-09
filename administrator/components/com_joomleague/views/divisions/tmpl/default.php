@@ -77,7 +77,7 @@ JHtml::_( 'behavior.tooltip' );
 						</th>
 						<th style="vertical-align: top; ">
 							<?php
-							echo JHtml::_( 'grid.sort', 'COM_JOOMLEAGUE_GLOBAL_ID', 'dv.id', $this->lists['order_Dir'], $this->lists['order'] );
+							echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'dv.id', $this->lists['order_Dir'], $this->lists['order'] );
 							?>
 						</th>
 					</tr>

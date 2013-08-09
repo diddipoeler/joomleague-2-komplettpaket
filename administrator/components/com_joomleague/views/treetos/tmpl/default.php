@@ -39,7 +39,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 			
 						<th style="text-align: center; vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_TREETOS_HIDE'); ?></th>
 						<th width="1%" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
-						<th class="title" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+						<th class="title" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('JGRID_HEADING_ID'); ?></th>
 					</tr>
 				</thead>
 				<tfoot><tr><td colspan="<?php echo $colspan; ?>"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>

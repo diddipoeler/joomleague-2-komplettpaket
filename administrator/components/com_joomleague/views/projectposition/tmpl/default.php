@@ -55,7 +55,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 							<?php echo JHTML::_('grid.sort','PID','po.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="1%">
-							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pt.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','pt.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 					</tr>
 				</thead>

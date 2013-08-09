@@ -29,7 +29,7 @@ JLToolBarHelper::onlinehelp();
 						<th style="text-align: center; vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_RESULT'); ?></th>
 						<th class="title" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_ADMIN_MATCHES_AWAY_TEAM'); ?></th>
 						<th width="1%" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_PUBLISHED'); ?></th>
-						<th width="1%" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('COM_JOOMLEAGUE_GLOBAL_ID'); ?></th>
+						<th width="1%" nowrap="nowrap" style="vertical-align: top; "><?php echo JTEXT::_('JGRID_HEADING_ID'); ?></th>
 					</tr>
 				</thead>
 				<tfoot><tr><td colspan="<?php echo $colspan; ?>"><?php echo $this->pagination->getListFooter(); ?></td></tr></tfoot>				

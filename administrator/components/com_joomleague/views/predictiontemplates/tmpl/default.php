@@ -76,7 +76,7 @@ JHTML::_( 'behavior.tooltip' );
 
 							<th class='title' width='20' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_GLOBAL_ID' ), 'tmpl.id', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( 'JGRID_HEADING_ID' ), 'tmpl.id', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>
 						</tr>

@@ -99,7 +99,7 @@
 							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_ADMIN_PERSONS_NATIONALITY','pl.country',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 						<th width="1%" class="nowrap">
-							<?php echo JHTML::_('grid.sort','COM_JOOMLEAGUE_GLOBAL_ID','pl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
+							<?php echo JHTML::_('grid.sort','JGRID_HEADING_ID','pl.id',$this->lists['order_Dir'],$this->lists['order']); ?>
 						</th>
 
             					
