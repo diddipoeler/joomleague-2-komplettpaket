@@ -2,7 +2,9 @@
 
 JHTMLBehavior::formvalidation();
 JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
-$component_text = 'COM_JOOMLEAGUE_';
+
+//$component_text = 'COM_JOOMLEAGUE_';
+
 $i    = 1;
 ?>
 <style type="text/css">
@@ -32,12 +34,12 @@ $i    = 1;
         $fieldSets = $this->form->getFieldsets();
         foreach ($fieldSets as $name => $fieldSet) :
             $label = $fieldSet->name;
-            echo JHtml::_('tabs.panel',JText::_($component_text.$label), 'panel'.$i++);
+            echo JHtml::_('tabs.panel',JText::_($label), 'panel'.$i++);
 			?>
 			<fieldset class="panelform">
 				<?php
 				if (isset($fieldSet->description) && !empty($fieldSet->description)) :
-					echo '<fieldset class="adminform">'.JText::_($component_text.$fieldSet->description).'</fieldset>';
+					echo '<fieldset class="adminform">'.JText::_($fieldSet->description).'</fieldset>';
 				endif;
 				?>
 				<ul class="config-option-list">

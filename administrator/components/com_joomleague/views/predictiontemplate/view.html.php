@@ -66,33 +66,14 @@ class JoomleagueViewPredictionTemplate extends JLGView
 		// fail if checked out not by 'me'
 		if ( $model->isCheckedOut( $user->get( 'id' ) ) )
 		{
-			$msg = JText::sprintf( 'DESCBEINGEDITTED', JText::_( 'JL_ADMIN_PTMPL_THE_PTMPL' ), $predictionTemplate->name );
+			$msg = JText::sprintf( 'DESCBEINGEDITTED', JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPL_THE_PTMPL' ), $predictionTemplate->name );
 			$app->redirect( 'index.php?option=' . $option, $msg );
 		}
 
 		// Edit or Create?
 		if ( !$isNew ) { $this->getModel()->checkout( $user->get( 'id' ) ); }
 
-		/*
-    // first check custom template folder if template is not default
-		if ( $predictionGame->extension != '' )
-		{
-			if ( is_dir( $extensiontpath . $predictionGame->extension . DS . 'settings' ) )
-			{
-				$xmlfile = $extensiontpath . $predictionGame->extension . DS . 'settings' . DS . $predictionTemplate->template . ".xml";
-			}
-
-			if ( !isset( $xmlfile ) || !file_exists( $xmlfile ) )
-			{
-				$xmlfile = $defaultpath . DS . 'default' . DS . $predictionTemplate->template . ".xml";
-			}
-		}
-		else
-		{
-		 // xml file for module
-			$xmlfile = $defaultpath . DS . 'default' . DS . $predictionTemplate->template . ".xml";
-		}
-    */
+		
     
     $templatepath=JPATH_COMPONENT_SITE.DS.'settings';
     $xmlfile=$templatepath.DS.'default'.DS.$predictionTemplate->template.'.xml';
