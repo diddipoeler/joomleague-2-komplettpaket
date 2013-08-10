@@ -87,9 +87,9 @@ foreach ($clubs AS $club)
             {
 				$thispic = $club->default_picture;
 			}
-			$birthdaytext .= '<img src="'.JURI::base().'/'.$thispic.'" alt="'.$text.'" title="'.$text.'"';
+			$birthdaytext .= '<div style="width:100%"><center><img style="" src="'.JURI::base().'/'.$thispic.'" alt="'.$text.'" title="'.$text.'"';
 			if ($params->get('picture_width') != '') $birthdaytext .= ' width="'.$params->get('picture_width').'"';
-			$birthdaytext .= ' /><br />';
+			$birthdaytext .= ' /></center></div><br />';
 
 		}
         
@@ -118,7 +118,7 @@ foreach ($clubs AS $club)
             $birthdaytext2 = str_replace('%BR%', '<br />', $birthdaytext2);
 		$birthdaytext2 = str_replace('%BOLD%', '<b>', $birthdaytext2);
 		$birthdaytext2 = str_replace('%BOLDEND%', '</b>', $birthdaytext2);
-            $birthdaytext .= $birthdaytext2.'<br />';
+            $birthdaytext .= '<div style="width:100%"><center>'.$birthdaytext2.'</center></div><br />';
             
             $birthdaytext .= '</div>';
             
