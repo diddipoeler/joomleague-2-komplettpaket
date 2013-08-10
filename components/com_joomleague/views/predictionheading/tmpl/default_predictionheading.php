@@ -109,11 +109,14 @@ if ((isset($this->config['show_prediction_heading'])) && ($this->config['show_pr
 				$output .= JHTML::link($link,$img,array('title' => $imgTitle));
 				$output .= '&nbsp;';
                 
+                if ( $this->config['show_pred_group_link'] )
+                {
                 $imgTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_HEAD_RANKING_GROUP_IMAGE_TITLE');
 				$img = JHTML::image(JURI::root().'media/com_joomleague/jl_images/teaminfo_icon.png',$imgTitle,array('border' => 0, 'title' => $imgTitle));
 				$link = PredictionHelperRoute::getPredictionRankingRoute($this->predictionGame->id,NULL,NULL,'',NULL,1);
 				$output .= JHTML::link($link,$img,array('title' => $imgTitle));
 				$output .= '&nbsp;';
+                }
                 
 				$imgTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_HEAD_RULES_IMAGE_TITLE');
 				$img = JHTML::image(JURI::root().'media/com_joomleague/jl_images/prediction_rules.png',$imgTitle,array('border' => 0, 'title' => $imgTitle));
