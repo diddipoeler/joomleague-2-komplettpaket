@@ -106,6 +106,12 @@
 				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_RANKING_CRITERIA" 
 				rows="4" cols="70">
 		</field>
+		
+		<field 	name="ranking_sort_order" type="textarea" default="DESC, ASC, DESC, DESC" 
+				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_RANKING_SORT_CRITERIA" 
+				description="COM_JOOMLEAGUE_FES_RANKING_PARAM_DESCR_RANKING_SORT_CRITERIA" 
+				rows="4" cols="70">
+		</field>
 
 		<field 	name="ordered_columns" type="textarea" default="PLAYED, WINS, TIES, LOSSES, POINTS, SCOREFOR, SCOREAGAINST, DIFF" 
 				label="COM_JOOMLEAGUE_FES_RANKING_PARAM_LABEL_DISPLAY_COLUMNS" 
@@ -306,15 +312,44 @@
 	<fieldset name="COM_JOOMLEAGUE_FES_PARAMS_GROUP_ADVANCED_OPTIONS" 
 			description="COM_JOOMLEAGUE_FES_PARAMS_DESCR_ADVANCED_OPTIONS">	
 			
-		<field 	name="style_class1" type="text" default="sectiontableentry1" 
+		<field 	name="style_class1" type="text" 
+    default="sectiontableentry1" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_STYLE_ODD" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_STYLE_ODD">
 		</field>
 		
-		<field 	name="style_class2" type="text" default="sectiontableentry2" 
+		<field 	name="style_class2" type="text" 
+    default="sectiontableentry2" 
 				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_STYLE_EVEN" 
 				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_STYLE_EVEN">
 		</field>
+		
+		<field 	name="table_text_1" type="text" 
+    default="Voll" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TABLE_TEXT1" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TABLE_TEXT1">
+		</field>
+		<field 	name="table_text_2" type="text" 
+    default="Heim" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TABLE_TEXT2" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TABLE_TEXT2">
+		</field>
+		<field 	name="table_text_3" type="text" 
+    default="Ausw" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TABLE_TEXT3" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TABLE_TEXT3">
+		</field>
+		<field 	name="table_text_4" type="text" 
+    default="Hin" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TABLE_TEXT4" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TABLE_TEXT4">
+		</field>
+		<field 	name="table_text_5" type="text" 
+    default="Rück" 
+				label="COM_JOOMLEAGUE_FES_PARAM_LABEL_TABLE_TEXT5" 
+				description="COM_JOOMLEAGUE_FES_PARAM_DESCR_TABLE_TEXT5">
+		</field>
+		
 		
 	</fieldset>			
 </form>
