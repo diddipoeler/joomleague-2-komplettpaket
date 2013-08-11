@@ -696,33 +696,21 @@ class JoomleagueControllerMatch extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&task=match.display&view=matches');
 	}
 
+
 	function publish()
 	{
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_PUBLISH'));
-		}
-		$model=$this->getModel('match');
-		if (!$model->publish($cid,1)){
-			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
-		}
-		$this->setRedirect('index.php?option=com_joomleague&task=match.display&view=matches');
+	   $this->view_list = 'matches&task=match.display';
+		parent::publish();
 	}
+
+
 
 	function unpublish()
 	{
-		$cid=JRequest::getVar('cid',array(),'post','array');
-		JArrayHelper::toInteger($cid);
-		if (count($cid) < 1){
-			JError::raiseError(500,JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TO_UNPUBLISH'));
-		}
-		$model=$this->getModel('match');
-		if (!$model->publish($cid,0)){
-			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
-		}
-		$this->setRedirect('index.php?option=com_joomleague&task=match.display&view=matches');
+$this->view_list = 'matches&task=match.display';
+		parent::unpublish();
 	}
+
 
 	function savedetails()
 	{
@@ -899,6 +887,21 @@ class JoomleagueControllerMatch extends JoomleagueController
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();
+	}
+    
+    /**
+	 * Proxy for getModel
+	 *
+	 * @param	string	$name	The model name. Optional.
+	 * @param	string	$prefix	The class prefix. Optional.
+	 *
+	 * @return	object	The model.
+	 * @since	1.6
+	 */
+	function getModel($name = 'Match', $prefix = 'JoomleagueModel', $config = array('ignore_request' => true))
+	{
+		$model = parent::getModel($name, $prefix, $config);
+		return $model;
 	}
 
 }

@@ -11,12 +11,12 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-class JElementmatchid extends JElement
+class JFormFieldmatchid extends JFormField
 {
 
-	var	$_name = 'matchid';
+	protected $type = 'matchid';
 
-	function fetchElement($name, $value, &$node, $control_name)
+	function getInput()
   {
 		$db = &JFactory::getDBO();
     $mainframe			=& JFactory::getApplication();
