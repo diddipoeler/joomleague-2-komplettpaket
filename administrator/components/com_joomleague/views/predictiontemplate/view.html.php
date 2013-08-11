@@ -43,8 +43,7 @@ class JoomleagueViewPredictionTemplate extends JLGView
 
 	function _displayForm( $tpl )
 	{
-		//$mainframe			=& JFactory::getApplication();
-		//$option				= 'com_joomleague';
+		$mainframe			=& JFactory::getApplication();
         $option = JRequest::getCmd('option');
 		$app = JFactory::getApplication();
 
@@ -56,6 +55,8 @@ class JoomleagueViewPredictionTemplate extends JLGView
     $model = $this->getModel();
         
 		$predictionTemplate	=& $this->get( 'Data' );
+        $mainframe->setUserState($option.'template_help',$predictionTemplate->template);
+        
 		$predictionGame		=$model->getPredictionGame( $prediction_id );
 		//$predictionGame		=& $this->getModel()->getPredictionGame( $prediction_id );
 		//$defaultpath		= JPATH_COMPONENT_SITE . DS . 'extensions'.DS.'predictiongame'.DS.'settings';

@@ -66,6 +66,13 @@
 			<option value="2">COM_JOOMLEAGUE_FES_RESULTS_PARAM_OPTION2_LOGO_SMALL</option>
 		</field>
 
+    <field	name="show_team_names" type="radio" default="1"
+				label="COM_JOOMLEAGUE_FES_PREDICTIONRESULTS_PARAM_LABEL_SHOW_TEAM_NAMES"
+				description="COM_JOOMLEAGUE_FES_PREDICTIONRESULTS_PARAM_DESCR_SHOW_TEAM_NAMES">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
 		<field	name="show_help" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_PREDICTIONRESULTS_PARAM_LABEL_SHOW_HELP"
 				description="COM_JOOMLEAGUE_FES_PREDICTIONRESULTS_PARAM_DESCR_SHOW_HELP">

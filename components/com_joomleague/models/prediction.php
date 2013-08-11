@@ -1871,26 +1871,9 @@ $query .= " AND pm.group_id = ".$this->pggroup;
 
 function checkStartExtension()
 {
-$option='com_joomleague';
-$mainframe	=& JFactory::getApplication();
-$user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'tmp'.DS.'predictiongame-2-0.txt';
-$xmlfile = '';
-
-if( !JFile::exists($fileextension) )
-{
-$to = 'diddipoeler@gmx.de';
-$subject = 'Prediction Game Extension';
-$message = 'Prediction Game Extension wurde auf der Seite : '.JURI::base().' gestartet.';
-JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
-
-$xmlfile = $xmlfile.$message;
-JFile::write($fileextension, $xmlfile);
-
+$application = JFactory::getApplication();
+echo "<script type=\"text/javascript\">register('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."');</script>";
 }
-
-}
-
 
 }
 ?>

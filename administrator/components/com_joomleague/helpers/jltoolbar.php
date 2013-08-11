@@ -229,6 +229,7 @@ class JLToolBarHelper extends JToolBarHelper {
     switch ($view)
     {
     case 'Template':
+    case 'Predictiontemplate':
     $template_help = $mainframe->getUserState($option.'template_help');
     $view = $view.'_'.$template_help;
     break;

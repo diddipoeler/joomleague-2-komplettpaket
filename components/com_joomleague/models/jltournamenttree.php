@@ -1182,29 +1182,11 @@ return implode(",",$varresults);
 
 function checkStartExtension()
 {
-$option='com_joomleague';
-$mainframe	=& JFactory::getApplication();
-$user = JFactory::getUser();
-$fileextension = JPATH_SITE.DS.'tmp'.DS.'tt.txt';
-$xmlfile = '';
-
-if( !JFile::exists($fileextension) )
-{
-$to = 'diddipoeler@arcor.de';
-$subject = 'Tournament Tree Extension';
-$message = 'Tournament Tree Extension wurde auf der Seite : '.JURI::base().' gestartet.';
-JUtility::sendMail( '', JURI::base(), $to, $subject, $message );
-
-$xmlfile = $xmlfile.$message;
-JFile::write($fileextension, $xmlfile);
+$application = JFactory::getApplication();
+echo "<script type=\"text/javascript\">register('".JURI::base()."','Tournament Tree Extension','".$application->getCfg('sitename')."');</script>";
 
 }
 
 }
-
-}
-    
-    
-
 
 ?>

@@ -113,14 +113,44 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 					<td <?php echo $tdClassStr; ?> >
           <?php
           // clublogo oder vereinsflagge
-						if ( $this->config['show_logo_small_overview'] == 1 ){echo JoomleagueModelPredictionResults::showClubLogo($match->homeLogo,$match->homeName).'<br />';}
-						if ( $this->config['show_logo_small_overview'] == 2 ){echo Countries::getCountryFlag($match->homeCountry).'<br />';}
+						if ( $this->config['show_logo_small_overview'] == 1 )
+                        {
+                            echo JoomleagueModelPredictionResults::showClubLogo($match->homeLogo,$match->homeName).'<br />';
+                        if ( $this->config['show_team_names'] == 1 )
+                        {
+                            echo $match->homeShortName.'<br />';
+                        }
+                        
+                        }
+                            
+						if ( $this->config['show_logo_small_overview'] == 2 )
+                        {
+                            echo Countries::getCountryFlag($match->homeCountry).'<br />';
+                        if ( $this->config['show_team_names'] == 1 )
+                        {
+                            echo $match->homeCountry.'<br />';
+                        }
+                        }
             $outputStr = (isset($match->homeResult)) ? $match->homeResult : '-';
 						$outputStr .= '&nbsp;'.$this->config['seperator'].'&nbsp;';
 						$outputStr .= (isset($match->awayResult)) ? $match->awayResult : '-';
 						?><span class='hasTip' title="<?php echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RESULTS_RESULT_HINT',$match->homeName,$match->awayName,$outputStr); ?>"><?php echo $outputStr; ?></span><?php
-						if ( $this->config['show_logo_small_overview'] == 1 ){echo '<br />'.JoomleagueModelPredictionResults::showClubLogo($match->awayLogo,$match->awayName);}
-						if ( $this->config['show_logo_small_overview'] == 2 ){echo '<br />'.Countries::getCountryFlag($match->awayCountry);}
+						if ( $this->config['show_logo_small_overview'] == 1 )
+                        {
+                            echo '<br />'.JoomleagueModelPredictionResults::showClubLogo($match->awayLogo,$match->awayName);
+                        if ( $this->config['show_team_names'] == 1 )
+                        {
+                            echo $match->awayShortName.'<br />';
+                        }
+                        }
+						if ( $this->config['show_logo_small_overview'] == 2 )
+                        {
+                            echo '<br />'.Countries::getCountryFlag($match->awayCountry);
+                        if ( $this->config['show_team_names'] == 1 )
+                        {
+                            echo $match->awayCountry.'<br />';
+                        }
+                        }
 						
             ?>
             </td>

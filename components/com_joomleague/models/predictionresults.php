@@ -62,6 +62,8 @@ class JoomleagueModelPredictionResults extends JoomleagueModelPrediction
 								m.team2_result_decision AS awayDecision,
 								t1.name AS homeName,
 								t2.name AS awayName,
+                                t1.short_name AS homeShortName,
+                                t2.short_name AS awayShortName,
 								c1.logo_small AS homeLogo,
 								c2.logo_small AS awayLogo,
 								c1.country AS homeCountry,
