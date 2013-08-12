@@ -17,11 +17,12 @@ class JFormFieldProjects extends JFormField
 	protected $type = 'projects';
 
 	protected function getInput() {
+		$required 	= $this->element['required'] == "true" ? 'true' : 'false';
 		$db = &JFactory::getDBO();
 		$lang = JFactory::getLanguage();
 		$extension = "com_joomleague";
-		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
-		$lang->load("$extension", JPATH_ADMINISTRATOR, null, false, false)
+		$source 	= JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
+		$lang->load($extension, JPATH_ADMINISTRATOR, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
@@ -33,14 +34,14 @@ class JFormFieldProjects extends JFormField
 					WHERE p.published=1 ORDER BY p.id DESC';
 		$db->setQuery( $query );
 		$projects = $db->loadObjectList();
-		if($this->required == false) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+		if($required == 'false') {
+			$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 		}
 		foreach ( $projects as $project ) {
-			$mitems[] = JHTML::_('select.option',  $project->id, '&nbsp;&nbsp;&nbsp;'.$project->name );
+			$mitems[] = JHtml::_('select.option',  $project->id, '&nbsp;&nbsp;&nbsp;'.$project->name );
 		}
 		
-		$output= JHTML::_('select.genericlist',  $mitems, $this->name.'[]', 'class="inputbox" style="width:90%;" multiple="multiple" size="10"', 'value', 'text', $this->value, $this->id );
+		$output= JHtml::_('select.genericlist',  $mitems, $this->name.'[]', 'class="inputbox" style="width:90%;" multiple="multiple" size="10"', 'value', 'text', $this->value, $this->id );
 		return $output;
 	}
 }

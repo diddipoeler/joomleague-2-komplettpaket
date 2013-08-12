@@ -257,22 +257,7 @@ class JoomleagueModelPredictionUser extends JModelForm
 			$pgid	= $this->_db->Quote($this->predictionGameID);
 			$uid	= $this->_db->Quote($this->predictionMemberID);
 
-/*
 
-SELECT rounds.id, 
-rounds.id AS roundcode, 
-rounds.name, 
-SUM(pr.points) AS points 
-FROM jos_joomleague_round AS rounds 
-INNER JOIN jos_joomleague_match AS matches 
-ON rounds.id = matches.round_id 
-LEFT JOIN jos_joomleague_prediction_result AS pr 
-ON pr.match_id = matches.id 				   
-WHERE rounds.project_id = 1
-AND (matches.cancel IS NULL OR matches.cancel = 0)
-GROUP BY rounds.roundcode
-
-*/
 
 			$query = ' SELECT rounds.id, '
 			     . ' rounds.roundcode AS roundcode, '

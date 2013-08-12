@@ -52,7 +52,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		$lists['order']		= $filter_order;
 
 		//build the html select list for prediction games
-		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( $this->optiontext.'JL_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
+		$predictions[] = JHTML::_( 'select.option', '0', '- ' . JText::_( 'COM_JOOMLEAGUE_GLOBAL_SELECT_PRED_GAME' ) . ' -', 'value', 'text' );
 		if ( $res =& $this->getModel()->getPredictionGames() ) { $predictions = array_merge( $predictions, $res ); }
 		$lists['predictions'] = JHTML::_(	'select.genericlist',
 											$predictions,
@@ -67,7 +67,7 @@ class JoomleagueViewPredictionTemplates extends JLGView
 		// Set toolbar items for the page
         $stylelink = '<link rel="stylesheet" href="'.JURI::root().'administrator/components/com_joomleague/assets/css/jlextusericons.css'.'" type="text/css" />' ."\n";
     $document->addCustomTag($stylelink);
-		JToolBarHelper::title( JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE' ), 'pred-cpanel' );
+		JToolBarHelper::title( JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_TITLE' ), 'pred-cpanel' );
         
 		if ( $prediction_id > 0 )
 		{

@@ -21,8 +21,8 @@
 			name="reminder"
 			type="radio"
 			default="0"
-			label="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_SEND_REMINDER"
-			description="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_SEND_REMINDER">
+			label="COM_JOOMLEAGUE_ADMIN_PMEMBERS_SEND_REMINDER"
+			description="COM_JOOMLEAGUE_ADMIN_PMEMBERS_SEND_REMINDER">
 		<option value="0">JNO</option>
 		<option value="1">JYES</option>
 		</field>	
@@ -30,8 +30,8 @@
 			name="receipt"
 			type="radio"
 			default="0"
-			label="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_RECEIPT"
-			description="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_RECEIPT">
+			label="COM_JOOMLEAGUE_ADMIN_PMEMBERS_RECEIPT"
+			description="COM_JOOMLEAGUE_ADMIN_PMEMBERS_RECEIPT">
 		<option value="0">JNO</option>
 		<option value="1">JYES</option>
 		</field>	
@@ -39,8 +39,8 @@
 			name="show_profile"
 			type="radio"
 			default="0"
-			label="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_PROFILE"
-			description="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_PROFILE">
+			label="COM_JOOMLEAGUE_ADMIN_PMEMBERS_PROFILE"
+			description="COM_JOOMLEAGUE_ADMIN_PMEMBERS_PROFILE">
 		<option value="0">JNO</option>
 		<option value="1">JYES</option>
 		</field>	
@@ -48,8 +48,8 @@
 			name="admintipp"
 			type="radio"
 			default="0"
-			label="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_ADMIN_TIP"
-			description="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_ADMIN_TIP">
+			label="COM_JOOMLEAGUE_ADMIN_PMEMBERS_ADMIN_TIP"
+			description="COM_JOOMLEAGUE_ADMIN_PMEMBERS_ADMIN_TIP">
 		<option value="0">JNO</option>
 		<option value="1">JYES</option>
 		</field>	
@@ -57,8 +57,8 @@
 			name="approved"
 			type="radio"
 			default="0"
-			label="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_APPROVED"
-			description="COM_JOOMLEAGUE_JL_ADMIN_PMEMBERS_APPROVED">
+			label="COM_JOOMLEAGUE_ADMIN_PMEMBERS_APPROVED"
+			description="COM_JOOMLEAGUE_ADMIN_PMEMBERS_APPROVED">
 		<option value="0">JNO</option>
 		<option value="1">JYES</option>
 		</field>	

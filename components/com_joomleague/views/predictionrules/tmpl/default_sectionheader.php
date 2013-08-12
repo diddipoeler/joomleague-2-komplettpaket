@@ -11,4 +11,4 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-?><h1><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RULES_SECTION_TITLE'); ?></h1>
+?><h1><?php echo JText::_('COM_JOOMLEAGUE_PRED_RULES_SECTION_TITLE'); ?></h1>

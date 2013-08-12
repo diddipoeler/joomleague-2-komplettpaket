@@ -74,14 +74,15 @@ foreach ($modelpg->_predictionProjectS AS $predictionProject)
             				
             if ($showProjectID > 0)
 						{
-
+if ( $config['show_tip_link_ranking_round'] )
+		        {
 							echo '&nbsp;&nbsp;';
 							$link = JoomleagueHelperRoute::getResultsRoute($predictionProject->project_id,$roundID);
 							$imgTitle=JText::_('JL_PRED_ROUND_RESULTS_TITLE');
 							$desc = JHTML::image('media/com_joomleague/jl_images/icon-16-Matchdays.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 							//echo JHTML::link($link,$desc,array('target' => '_blank'));
 							echo JHTML::link($link,$desc,array('target' => ''));
-						
+				}		
             if ( $config['show_tip_ranking'] )
 		        {
 		        echo '&nbsp;&nbsp;';

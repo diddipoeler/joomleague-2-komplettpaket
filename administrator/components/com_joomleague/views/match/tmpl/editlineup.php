@@ -43,20 +43,20 @@ if($close == 1) {
 		// focus on players tab 
 		$startOffset = 1
 		;
-		echo JHTML::_('tabs.start','tabs', array('startOffset'=>$startOffset));
-		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_SUBST'), 'panel1');
+		echo JHtml::_('tabs.start','tabs', array('startOffset'=>$startOffset));
+		echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_SUBST'), 'panel1');
 		echo $this->loadTemplate('substitutions');
 		
-		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PLAYERS'), 'panel2');
+		echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PLAYERS'), 'panel2');
 		echo $this->loadTemplate('players');
 		
-		echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_STAFF'), 'panel3');
+		echo JHtml::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_STAFF'), 'panel3');
 		echo $this->loadTemplate('staff');
-    
-    echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PLAYER_TRIKOT_NUMBERS'), 'panel4');
-		echo $this->loadTemplate('players_trikot_numbers');
 		
-		echo JHTML::_('tabs.end');
+        echo JHTML::_('tabs.panel',JText::_('COM_JOOMLEAGUE_TABS_PLAYER_TRIKOT_NUMBERS'), 'panel4');
+		echo $this->loadTemplate('players_trikot_numbers');
+        
+		echo JHtml::_('tabs.end');
 		?>
 		<input type="hidden" name="task" value="match.saveroster" />
 		<input type="hidden" name="view" value="match" />
@@ -66,6 +66,6 @@ if($close == 1) {
 		<input type="hidden" name="option" value="com_joomleague" id="option" />
 		<input type="hidden" name="team" value="<?php echo $this->tid; ?>" id="team" />
 		<input type="hidden" name="positionscount" value="<?php echo count($this->positions); ?>" id="positioncount"	/>
-		<?php echo JHTML::_('form.token')."\n"; ?>
+		<?php echo JHtml::_('form.token')."\n"; ?>
 	</div>
 </form>

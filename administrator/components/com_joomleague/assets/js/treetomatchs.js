@@ -10,17 +10,23 @@
 
 Joomla.submitbutton = function(pressbutton) {
 	var form = $('adminForm');
-	if (pressbutton == 'template.cancel') {
-		Joomla.submitform(pressbutton);
-		return;
+	if($('node_matcheslist')) {
+		var mylist = $('node_matcheslist');
+		for ( var i = 0; i < mylist.length; i++) {
+			mylist[i].selected = true;
+		}
 	}
+	Joomla.submitform(pressbutton);
+}
 
-	// do field validation
-	if (document.formvalidator.isValid(form)) {
-		Joomla.submitform(pressbutton);
-		return true;
-	} else {
-		alert(Joomla.JText._('COM_JOOMLEAGUE_ADMIN_TEMPLATE_CSJS_WRONG_VALUES'));
-	}
-	return false;
+function handleLeftToRight() {
+	$('matcheschanges_check').value = 1;
+	move($('matcheslist'), $('node_matcheslist'));
+	selectAll($('node_matcheslist'));
+}
+
+function handleRightToLeft() {
+	$('matcheschanges_check').value = 1;
+	move($('node_matcheslist'), $('matcheslist'));
+	selectAll($('node_matcheslist'));
 }

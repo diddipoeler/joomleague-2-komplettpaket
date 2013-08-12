@@ -74,13 +74,13 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 				<tr>
 					<td class='sectiontableheader'>
 						<?php
-						echo '<b>'.JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SUBTITLE_01').'</b>';
+						echo '<b>'.JText::sprintf('COM_JOOMLEAGUE_PRED_RANK_SUBTITLE_01').'</b>';
 						?>
 					</td>
 					<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
           <?php
           $groups = $this->model->getPredictionGroupList();
-          $predictionGroups[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_GROUPS'),'value','text');
+          $predictionGroups[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_PRED_SELECT_GROUPS'),'value','text');
                         $predictionGroups = array_merge($predictionGroups,$groups);
                         $htmlGroupOptions = JHTML::_('select.genericList',$predictionGroups,'pggroup','class="inputbox" onchange="this.form.submit(); "','value','text',$this->model->pggroup);
           echo $htmlGroupOptions;
@@ -92,7 +92,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 
 							echo '&nbsp;&nbsp;';
 							$link = JoomleagueHelperRoute::getResultsRoute($predictionProject->project_id,$this->roundID);
-							$imgTitle=JText::_('COM_JOOMLEAGUE_JL_PRED_ROUND_RESULTS_TITLE');
+							$imgTitle=JText::_('COM_JOOMLEAGUE_PRED_ROUND_RESULTS_TITLE');
 							$desc = JHTML::image('media/com_joomleague/jl_images/icon-16-Matchdays.png',$imgTitle,array('border' => 0,'title' => $imgTitle));
 							echo JHTML::link($link,$desc,array('target' => '_blank'));
 						}
@@ -143,29 +143,29 @@ echo $this->pagination->getListFooter();
 		?>
 		<table width='100%' cellpadding='0' cellspacing='0'>
 			<tr>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK'); ?></td>
 				<?php
                 
                 if ( $this->model->pggrouprank )
                 {
                     ?>
-                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td>    
+                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_MEMBER_GROUP'); ?></td>    
                     <?php
                 }
                 else
                 {    
 				if ($this->config['show_user_icon'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_AVATAR'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_AVATAR'); ?></td><?php
 				}
 				?>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_MEMBER'); ?></td>
 				<?php
                 
                 if ($this->config['show_pred_group'])
 				{
 					?>
-                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_MEMBER_GROUP'); ?></td>    
+                <td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_MEMBER_GROUP'); ?></td>    
                     <?php
 				}
                 
@@ -174,49 +174,49 @@ echo $this->pagination->getListFooter();
 
         if ($this->config['show_champion_tip'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_CHAMPION_TIP'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_CHAMPION_TIP'); ?></td><?php
 				}
 
 				if ($this->config['show_tip_details'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_DETAILS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_DETAILS'); ?></td><?php
 				}
 				?>
-				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_POINTS'); ?></td>
+				<td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_POINTS'); ?></td>
 				<?php
 				if ($this->config['show_average_points'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_AVERAGE'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_AVERAGE'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_tips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_PREDICTIONS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_PREDICTIONS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_joker'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_JOKERS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_JOKERS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_topptips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_TOPS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_TOPS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_difftips'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_MARGINS'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_MARGINS'); ?></td><?php
 				}
 				?>
 				<?php
 				if ($this->config['show_count_tendtipps'])
 				{
-					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_TENDENCIES'); ?></td><?php
+					?><td class='sectiontableheader' style='text-align:center; vertical-align:top; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_RANK_TENDENCIES'); ?></td><?php
 				}
 				?>
 			</tr>
@@ -382,7 +382,7 @@ echo $this->pagination->getListFooter();
 					}
 					$membersDataArray[$member->pmID]['name'] = $output;
 					
-					$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SHOW_DETAILS_OF',$member->name);
+					$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_RANK_SHOW_DETAILS_OF',$member->name);
 					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
 					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID,$member->pmID);
 					if (($member->show_profile)||($this->predictionMember->pmID==$member->pmID))
@@ -399,7 +399,7 @@ echo $this->pagination->getListFooter();
                     
                     if ( $this->model->pggrouprank )
                     {
-                    $imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RANK_SHOW_DETAILS_OF',$member->pg_group_name);
+                    $imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_RANK_SHOW_DETAILS_OF',$member->pg_group_name);
 					$imgFile=JHTML::image( "media/com_joomleague/jl_images/zoom.png", $imgTitle , array(' title' => $imgTitle));
 					$link=PredictionHelperRoute::getPredictionResultsRoute($this->predictionGame->id ,$actualProjectCurrentRound ,$this->model->pjID,$member->pmID,'',$member->pg_group_id);
                     $output = JHTML::link( $link, $imgFile);
@@ -501,13 +501,41 @@ echo $this->pagination->getListFooter();
 							<?php
 				    }
                     }
-							
+							// soll der meistertipp angezeigt werden ? anfang
 							if ($this->config['show_champion_tip'])
 							{
 							if ( $membersDataArray[$key]['champ_tipp'] )
               {
-              $imgTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_CHAMPION_TIP');
-					    $imgFile = JHTML::image( "media/com_joomleague/event_icons/goal2.png", $imgTitle , array(' title' => $imgTitle));
+                if ($this->config['show_champion_tip_club_logo'])
+							{
+							if ( $showProjectID )
+                            {
+                            $champLogo = $this->model->getChampLogo($showProjectID,$membersDataArray[$key]['champ_tipp']);    
+                            
+                            if ( $champLogo->name )
+                            {
+                            $imgTitle = $champLogo->name;
+				$imgFile = JHTML::image( $champLogo->logo_big, $imgTitle , array('title' => $imgTitle, 'width' => '20' ));
+                            }
+                            else
+                            {
+                                $imgFile = '';
+                            }
+                            
+                            } 
+                            else
+                            {
+                            $imgTitle = JText::_('COM_JOOMLEAGUE_PRED_RANK_CHAMPION_TIP');
+				$imgFile = JHTML::image( "media/com_joomleague/event_icons/goal2.png", $imgTitle , array('title' => $imgTitle));    
+                            }
+                             
+                             
+							 }
+                             else
+                             {
+              $imgTitle = JText::_('COM_JOOMLEAGUE_PRED_RANK_CHAMPION_TIP');
+				$imgFile = JHTML::image( "media/com_joomleague/event_icons/goal2.png", $imgTitle , array('title' => $imgTitle));
+              }
               ?>
               <td <?php echo $tdStyleStr; ?> >
               <?PHP
@@ -525,6 +553,7 @@ echo $this->pagination->getListFooter();
               }
               
 							}
+                            // soll der meistertipp angezeigt werden ? ende
 							if ( !$this->model->pggrouprank )
                             {
 							if ($this->config['show_tip_details'])

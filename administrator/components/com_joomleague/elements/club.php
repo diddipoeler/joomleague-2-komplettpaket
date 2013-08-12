@@ -20,8 +20,8 @@ class JFormFieldClub extends JFormField
 		$db = &JFactory::getDBO();
 		$lang = JFactory::getLanguage();
 		$extension = "com_joomleague";
-		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
-		$lang->load("$extension", JPATH_ADMINISTRATOR, null, false, false)
+		$source = JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
+		$lang->load($extension, JPATH_ADMINISTRATOR, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
@@ -29,13 +29,13 @@ class JFormFieldClub extends JFormField
 		$query = 'SELECT c.id, c.name FROM #__joomleague_club c ORDER BY name';
 		$db->setQuery( $query );
 		$clubs = $db->loadObjectList();
-		$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+		$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 
 		foreach ( $clubs as $club ) {
-			$mitems[] = JHTML::_('select.option',  $club->id, '&nbsp;'.$club->name. ' ('.$club->id.')' );
+			$mitems[] = JHtml::_('select.option',  $club->id, '&nbsp;'.$club->name. ' ('.$club->id.')' );
 		}
 		
-		$output= JHTML::_('select.genericlist',  $mitems, $this->name, 'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id );
+		$output= JHtml::_('select.genericlist',  $mitems, $this->name, 'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id );
 		return $output;
 	}
 }

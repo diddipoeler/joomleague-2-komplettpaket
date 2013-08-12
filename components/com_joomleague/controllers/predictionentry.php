@@ -61,7 +61,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
     
     $mainframe->enqueueMessage(JText::_('PredictionEntry Task -> '.$this->getTask()),'');
     
-    JRequest::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_JL_PRED_INVALID_TOKEN_REFUSED'));
+    JRequest::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_PRED_INVALID_TOKEN_REFUSED'));
 		
     $msg	= '';
 		$link	= '';
@@ -78,14 +78,14 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 		if ( ( $user->id != $joomlaUserID )  )
 		{
-			$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_1');
+			$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ($isMember)
 			{
-				$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_4');
+				$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_4');
 				$link = JFactory::getURI()->toString();
 			}
 			else
@@ -95,7 +95,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 				//if (!$model->store($post,'PredictionEntry'))
 				if (!$model->store($post))
 				{
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_5');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_5');
 					$link = JFactory::getURI()->toString();
 				}
 				else
@@ -104,16 +104,16 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 					$cids[] = $model->getDbo()->insertid();
 					JArrayHelper::toInteger($cids);
 
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_MSG_2');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_MSG_2');
 					if ($model->sendMembershipConfirmation($cids))
 					{
 						$msg .= ' - ';
-						$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_MSG_3');
+						$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_MSG_3');
 					}
 					else
 					{
 						$msg .= ' - ';
-						$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_6');
+						$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_6');
 					}
 					$params = array(	'option' => 'com_joomleague',
 										'view' => 'predictionentry',
@@ -199,14 +199,14 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 		if ( ( ( $user->id != $joomlaUserID ) ) && ( !$allowedAdmin ) )
 		{
-			$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_1');
+			$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ( ( !$isMember ) && ( !$allowedAdmin ) )
 			{
-				$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_2');
+				$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_2');
 				$link = JFactory::getURI()->toString();
 			}
 			else
@@ -240,12 +240,12 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 
 				if ( !$model->savePredictions($allowedAdmin) )
 				{
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_ERROR_3');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_ERROR_3');
 					$link = JFactory::getURI()->toString();
 				}
 				else
 				{
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CONTROLLER_MSG_1');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CONTROLLER_MSG_1');
 					$link = JFactory::getURI()->toString();
 				}
 			}

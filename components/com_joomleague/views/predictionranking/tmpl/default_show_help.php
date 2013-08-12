@@ -11,11 +11,11 @@
 
 defined('_JEXEC') or die('Restricted access');
 //echo '<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
-?><p style='font-weight: bold; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_NOTICE'); ?></p><p><ul><li><i><?php
-							echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_NOTICE_INFO_01');
+?><p style='font-weight: bold; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_NOTICE'); ?></p><p><ul><li><i><?php
+							echo JText::_('COM_JOOMLEAGUE_PRED_RANK_NOTICE_INFO_01');
 							if (!$this->config['show_all_user'])
 							{
 								?></i></li><li><i><?php
-								echo JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_NOTICE_INFO_02');
+								echo JText::_('COM_JOOMLEAGUE_PRED_RANK_NOTICE_INFO_02');
 							}
 							?></i></li></ul></p>

@@ -21,22 +21,22 @@ $visible = 'hidden';
 }
 
 ?><p><?php
-	echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_01');
+	echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_01');
 	?></p><p><?php
-	echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_02');
+	echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_02');
 	?></p><p><?php
-	echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_03',$this->config['ownername'],'<b>'.$this->websiteName.'</b>');
+	echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_03',$this->config['ownername'],'<b>'.$this->websiteName.'</b>');
 	?></p><p>&nbsp;</p><p><?php
 	if ($this->isNotApprovedMember==1)
 	{
-		echo '<span class="button">'.JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_04').'</span>';
+		echo '<span class="button">'.JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_04').'</span>';
 		?></p><p><?php
-		echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_05');
+		echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_05');
 		?></p><?php
 	}
 	else
 	{
-		echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_06');
+		echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_06');
 		?>
     </p>
     <?php
@@ -45,7 +45,7 @@ $visible = 'hidden';
       ?>
       
       <form name='predictionRegisterForm' id='predictionRegisterForm' method='post' >
-			<input type='submit' name='register'		value='<?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NOT_MEMBER_INFO_07') ; ?>' class='button' />
+			<input type='submit' name='register'		value='<?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NOT_MEMBER_INFO_07') ; ?>' class='button' />
 			<input type='<?php echo $visible; ?>' name='prediction_id'	value='<?php echo $this->predictionGame->id; ?>' />
 			<input type='<?php echo $visible; ?>' name='user_id'			value='<?php echo $this->actJoomlaUser->id; ?>' />
 			<input type='<?php echo $visible; ?>' name='approved'		value='<?php echo ( $this->predictionGame->auto_approve ) ? '1' : '0'; ?>' />

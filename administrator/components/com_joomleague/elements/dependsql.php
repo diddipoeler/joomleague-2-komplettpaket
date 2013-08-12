@@ -11,7 +11,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); // Check to ensure this file is included in Joomla!
 
-JHTML::_( 'behavior.mootools' );
+JHtml::_( 'behavior.mootools' );
 
 /**
  * Renders a Dynamic SQL field
@@ -35,7 +35,7 @@ class JFormFieldDependSQL extends JFormField
 
 	function getInput()
 	{
-		$required = $this->element['required'] == "true" ? 'true' : 'false';
+		$required = $this->element['required'] == 'true' ? 'true' : 'false';
 		$key = ($this->element['key_field'] ? $this->element['key_field'] : 'value');
 		$val = ($this->element['value_field'] ? $this->element['value_field'] : $this->name);
 		$task = $this->element['task'];
@@ -68,11 +68,11 @@ class JFormFieldDependSQL extends JFormField
 		
 		$lang = JFactory::getLanguage();
 		$lang->load("com_joomleague", JPATH_ADMINISTRATOR);
-		if ($required) {
+		if ($required=='true') {
 			$options = array();
 		}
 		else {
-			$options = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'), $key, JText::_($val)));
+			$options = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT'), $key, JText::_($val)));
 		}
 
 		$query = $this->element['query'];
@@ -86,9 +86,9 @@ class JFormFieldDependSQL extends JFormField
 		if ($depends)
 		{
 			$doc = JFactory::getDocument();
-			$doc->addScript(JURI::base() . 'components/com_joomleague/assets/js/depend.js' );
+			$doc->addScript(JUri::base() . 'components/com_joomleague/assets/js/depend.js' );
 		}
 
-		return JHTML::_('select.genericlist',  $options, $ctrl, $attribs, $key, $val, $this->value, $this->id);
+		return JHtml::_('select.genericlist',  $options, $ctrl, $attribs, $key, $val, $this->value, $this->id);
 	}
 }

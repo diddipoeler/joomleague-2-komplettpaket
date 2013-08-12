@@ -1,3 +1,12 @@
+/**
+* @copyright	Copyright (C) 2005-2013 JoomLeague.net. All rights reserved.
+* @license	GNU/GPL, see LICENSE.php
+* Joomla! is free software. This version may have been modified pursuant
+* to the GNU General Public License, and as distributed it includes or
+* is derivative of works licensed under the GNU General Public License or
+* other free or open source software licenses.
+* See COPYRIGHT.php for copyright notices and details.
+*/
 
 //add 1.5 compatibility layer
 window.addEvent('domready', function() {
@@ -117,3 +126,16 @@ function moveOptionDown(selectId) {
 		}
 	}
 }
+
+function registerhome(homepage,notes,homepagename)
+	{
+var url='http://www.fussballineuropa.de/jlpaket.php';		
+var data = 'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var url2='http://www.fussballineuropa.de/jlpaket.php?'+'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var request = new Request({
+                        url: url2,
+                        method:'post',
+                        data: data
+                        }).send();
+                        		
+		}

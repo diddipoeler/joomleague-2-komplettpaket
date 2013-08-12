@@ -23,7 +23,7 @@ jimport('joomla.filesystem.file');
 		<tr>
 			<td align="left" width="100%">
 				<?php
-				echo JText::_('JGLOBAL_FILTER_BUTTON');
+				echo JText::_('COM_JOOMLEAGUE_GLOBAL_FILTER');
 				?>&nbsp;<input	type="text" name="search" id="search"
 								value="<?php echo $this->lists['search']; ?>"
 								class="text_area" onchange="$('adminForm').submit(); " />

@@ -91,7 +91,7 @@ class JoomleagueViewPredictionUser extends JLGView
 			if ($this->predictionMember->pmID > 0){$dMemberID=$this->predictionMember->pmID;}else{$dMemberID=0;}
 			if (!$this->allowedAdmin){$userID=$this->actJoomlaUser->id;}else{$userID=null;}
 
-			$predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_MEMBER'),'value','text');
+			$predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_PRED_SELECT_MEMBER'),'value','text');
 			if ($res=&$mdlPredUsers->getPredictionMemberList($this->config,$userID)){$predictionMembers=array_merge($predictionMembers,$res);}
 			$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
 			unset($res);
@@ -133,7 +133,7 @@ class JoomleagueViewPredictionUser extends JLGView
           echo 'predictionuser view.html -> predictionProject<br /><pre>~' . print_r($predictionProject,true) . '~</pre><br />';
           }
           
-					$projectteams[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_SELECT_TEAM'),'value','text');
+					$projectteams[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_PRED_USERS_SELECT_TEAM'),'value','text');
 					if ($res=&$model->getPredictionProjectTeams($predictionProject->project_id))
 					{
 						$projectteams = array_merge($projectteams,$res);
@@ -152,7 +152,7 @@ class JoomleagueViewPredictionUser extends JLGView
           // ist überhaupt das startdatum gesetzt ?
           if ( $predictionProject->start_date == '0000-00-00' )
           {
-          $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING_STARTDATE'),'Error');  
+          $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_PRED_PREDICTION_NOT_EXISTING_STARTDATE'),'Error');  
           $disabled=' disabled="disabled" ';
           }
           else
@@ -216,7 +216,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
             $this->assignRef('tippallowed',$tippAllowed);
       
 			// Set page title
-			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_TITLE');
+			$pageTitle = JText::_('COM_JOOMLEAGUE_PRED_USERS_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -224,7 +224,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_PREDICTION_NOT_EXISTING'));
 		}
 
 
@@ -258,7 +258,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 	{
 		$bar = new $config['bartype_1']();
 		$bar->set_values( $userpoints);	
-		$bar->set_tooltip( JText::_('COM_JOOMLEAGUE_JL_PRED_USER_POINTS'). ": #val#" );
+		$bar->set_tooltip( JText::_('COM_JOOMLEAGUE_PRED_USER_POINTS'). ": #val#" );
 		$bar->set_colour( $config['bar1'] );
 		$bar->set_on_show(new bar_on_show($config['animation_1'], $config['cascade_1'], $config['delay_1']));
 
@@ -269,7 +269,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		$x->set_labels_from_array($round_labels);
 		$chart->set_x_axis( $x );
-		$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_JL_PRED_USER_ROUNDS') );
+		$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_PRED_USER_ROUNDS') );
 		$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_x_legend( $x_legend );
 
@@ -279,7 +279,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$y->set_steps(round(@max($userpoints)/8));
 		$y->set_colours($config['y_axis_colour'], $config['y_axis_colour_inner']);
 		$chart->set_y_axis( $y );
-		$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_JL_PRED_USER_POINTS') );
+		$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_PRED_USER_POINTS') );
 		$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_y_legend( $y_legend );
 		
@@ -345,7 +345,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$x->set_colours($config['x_axis_colour'], $config['x_axis_colour_inner']);
 		//$x->set_labels_from_array($round_labels);
 		$chart->set_x_axis( $x );
-		$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_JL_PRED_USER_ROUNDS') );
+		$x_legend = new x_legend( JText::_('COM_JOOMLEAGUE_PRED_USER_ROUNDS') );
 		$x_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_x_legend( $x_legend );
 
@@ -355,7 +355,7 @@ echo '<br />predictionuser view.html edit -> this->predictionProjectS <pre>~' . 
 		$y->set_steps(round(@max($data_1)/8));
 		$y->set_colours($config['y_axis_colour'], $config['y_axis_colour_inner']);
 		$chart->set_y_axis( $y );
-		$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_JL_PRED_USER_POINTS') );
+		$y_legend = new y_legend( JText::_('COM_JOOMLEAGUE_PRED_USER_POINTS') );
 		$y_legend->set_style( '{font-size: 15px; color: #778877}' );
 		$chart->set_y_legend( $y_legend );
 		

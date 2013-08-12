@@ -63,7 +63,17 @@ class JoomleagueViewMatches extends JLGView
 		//build the html options for teams
 		foreach ($matches as $row)
 		{
-			$teams[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
+			if ( $row->divhomeid == '' )
+            {
+                $row->divhomeid = 0;
+            }
+            if ( $row->divawayid == '' )
+            {
+                $row->divawayid = 0;
+            }
+            
+            
+            $teams[]=JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT_TEAM'));
 			$divhomeid = 0;
 			//apply the filter only if both teams are from the same division
 			//teams are not from the same division in tournament mode with divisions

@@ -417,16 +417,16 @@ class JoomleagueModelPrediction extends JModel
 				$this->_db->setQuery($query);
 				if (!$result=$this->_db->loadResult())
 				{
-					JError::raiseNotice(500,JText::sprintf('COM_JOOMLEAGUE_JL_PRED_MISSING_MASTER_TEMPLATE',$template,$predictionGame->master_template));
-					JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
+					JError::raiseNotice(500,JText::sprintf('COM_JOOMLEAGUE_PRED_MISSING_MASTER_TEMPLATE',$template,$predictionGame->master_template));
+					JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_MISSING_MASTER_TEMPLATE_HINT'));
 					echo '<br /><br />';
 					return false;
 				}
 			}
 			else
 			{
-				JError::raiseNotice(500,JText::sprintf('COM_JOOMLEAGUE_JL_PRED_MISSING_TEMPLATE',$template,$this->predictionGameID));
-				JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_MISSING_MASTER_TEMPLATE_HINT'));
+				JError::raiseNotice(500,JText::sprintf('COM_JOOMLEAGUE_PRED_MISSING_TEMPLATE',$template,$this->predictionGameID));
+				JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_MISSING_MASTER_TEMPLATE_HINT'));
 				echo '<br /><br />';
 				return false;
 			}
@@ -797,7 +797,7 @@ class JoomleagueModelPrediction extends JModel
 	$mailer->setSender($sender);
   $mailer->addRecipient($predictionGameMemberMail);				
 	//Create the mail
-	$mailer->setSubject(JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_MAIL_TITLE'));
+	$mailer->setSubject(JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MAIL_TITLE'));
   
   
   foreach ($predictionProjectS AS $predictionProject)
@@ -811,7 +811,7 @@ class JoomleagueModelPrediction extends JModel
 $body .= "<table class='blog' cellpadding='0' cellspacing='0' width='100%'>";
 $body .= "<tr>";
 $body .= "<td class='sectiontableheader'>";
-$body .= JText::sprintf('COM_JOOMLEAGUE_JL_PRED_HEAD_ACTUAL_PRED_GAME','<b><i>'.$predictionProject->projectName.'</i></b>');
+$body .= JText::sprintf('COM_JOOMLEAGUE_PRED_HEAD_ACTUAL_PRED_GAME','<b><i>'.$predictionProject->projectName.'</i></b>');
 $body .= "</td>";
 $body .= "</tr>";
 $body .= "</table>";
@@ -819,11 +819,11 @@ $body .= "</table>";
   $body .= "<table width='100%' cellpadding='0' cellspacing='0'>";
   
 	$body .= "<tr>";
-	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_DATE_TIME') . "</th>";
-	$body .= "<th class='sectiontableheader' style='text-align:center;' colspan='5' >" . JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_MATCH') . "</th>";
-	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_RESULT') . "</th>";
-	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_YOURS') . "</th>";
-	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_POINTS') . "</th>";
+	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_PRED_ENTRY_DATE_TIME') . "</th>";
+	$body .= "<th class='sectiontableheader' style='text-align:center;' colspan='5' >" . JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MATCH') . "</th>";
+	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_PRED_ENTRY_RESULT') . "</th>";
+	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_PRED_ENTRY_YOURS') . "</th>";
+	$body .= "<th class='sectiontableheader' style='text-align:center;'>" . JText::_('COM_JOOMLEAGUE_PRED_ENTRY_POINTS') . "</th>";
 	$body .= "</tr>";
 	
 	// schleife über die ergebnisse in der runde
@@ -862,7 +862,7 @@ if	(($logo_home == '') || (!file_exists($logo_home)))
 {
 $logo_home = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 }
-$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $homeName);
+$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_LOGO_OF', $homeName);
 $body .=  JHTML::image(JURI::root().$logo_home,$imgTitle,array(' title' => $imgTitle));
 $body .=  ' ';
 }
@@ -886,7 +886,7 @@ if (($logo_away=='') || (!file_exists($logo_away)))
 {
 $logo_away = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 }
-$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $awayName);
+$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_LOGO_OF', $awayName);
 $body .=  ' ';
 $body .=  JHTML::image(JURI::root().$logo_away,$imgTitle,array(' title' => $imgTitle));
 }
@@ -955,11 +955,11 @@ $percentageA = 0;
 }
 
 $body .= "<span style='color:" . $configprediction['color_home_win'] ."' >";
-$body .= JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount) . "</span><br />";
+$body .= JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount) . "</span><br />";
 $body .= "<span style='color:" . $configprediction['color_draw'] ."'>";
-$body .= JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount) . "</span><br />";
+$body .= JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount) . "</span><br />";
 $body .= "<span style='color:" . $configprediction['color_guest_win'] ."'>";
-$body .= JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount) . "</span>";
+$body .= JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount) . "</span>";
 $body .= "</td>";
 //$body .= "<td colspan='8'>&nbsp;</td>";
 $body .= "</tr>";
@@ -973,7 +973,7 @@ $k = (1-$k);
 
 $body .= "<tr>";
 $body .= "<td colspan='8'>&nbsp;</td>";
-$body .= "<td class='td_c'>" . JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints) ."</td>";
+$body .= "<td class='td_c'>" . JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints) ."</td>";
 $body .= "</tr>";            	
 	
   $body .= "<table>";
@@ -996,13 +996,13 @@ $body .= $this->createHelptText($predictionProject->mode);
 	{
 	//echo 'Error sending email to:<br />'.print_r($recipient,true).'<br />';
 	//echo 'Error message: '.$send->message;
-	$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_MAIL_SEND_ERROR'),'Error');
+	$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MAIL_SEND_ERROR'),'Error');
 	}
 	else
 	{
 	//echo 'Mail sent';
 	$emailadresses = implode(",",$predictionGameMemberMail);
-	$mainframe->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_MAIL_SEND_OK',$emailadresses),'');
+	$mainframe->enqueueMessage(JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_MAIL_SEND_OK',$emailadresses),'');
 	}
                           				
   }
@@ -1398,7 +1398,7 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 			{
 				$output .= " selected='selected'";
 			}
-			$output .= '>'.JText::_('COM_JOOMLEAGUE_JL_PRED_TOTAL_RANKING').'</option>';
+			$output .= '>'.JText::_('COM_JOOMLEAGUE_PRED_TOTAL_RANKING').'</option>';
 		}
 		else
 		{
@@ -1872,7 +1872,7 @@ $query .= " AND pm.group_id = ".$this->pggroup;
 function checkStartExtension()
 {
 $application = JFactory::getApplication();
-echo "<script type=\"text/javascript\">register('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."');</script>";
+echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."');</script>";
 }
 
 }

@@ -22,8 +22,8 @@ class JFormFieldSportsTypes extends JFormField
 		$db = JFactory::getDBO();
 		$lang = JFactory::getLanguage();
 		$extension = "com_joomleague_sport_types";
-		$source = JPATH_ADMINISTRATOR . '/components/' . $extension;
-		$lang->load("$extension", JPATH_ADMINISTRATOR, null, false, false)
+		$source 	= JPath::clean(JPATH_ADMINISTRATOR . '/components/' . $extension);
+		$lang->load($extension, JPATH_ADMINISTRATOR, null, false, false)
 		||	$lang->load($extension, $source, null, false, false)
 		||	$lang->load($extension, JPATH_ADMINISTRATOR, $lang->getDefault(), false, false)
 		||	$lang->load($extension, $source, $lang->getDefault(), false, false);
@@ -40,14 +40,14 @@ class JFormFieldSportsTypes extends JFormField
 			$sportstype->name=JText::_($sportstype->name);
 		}
 		if($this->required == false) {
-			$mitems = array(JHTML::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+			$mitems = array(JHtml::_('select.option', '', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 		}
 		
 		foreach ( $result as $item )
 		{
-			$mitems[] = JHTML::_('select.option',  $item->id, '&nbsp;'.$item->name. ' ('.$item->id.')' );
+			$mitems[] = JHtml::_('select.option',  $item->id, '&nbsp;'.$item->name. ' ('.$item->id.')' );
 		}
-		return JHTML::_('select.genericlist',  $mitems, $this->name, 
+		return JHtml::_('select.genericlist',  $mitems, $this->name, 
 				'class="inputbox" size="1"', 'value', 'text', $this->value, $this->id);
 	}
 }

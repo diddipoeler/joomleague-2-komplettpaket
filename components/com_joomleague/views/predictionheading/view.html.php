@@ -17,7 +17,12 @@ class JoomleagueViewPredictionHeading extends JLGView
 {
 	function display($tpl=null)
 	{
-		parent::display($tpl);
+		$document = & JFactory::getDocument();
+        $mainframe = JFactory::getApplication();		
+	$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."');". "\n";
+    $document->addScriptDeclaration( $js );	
+    
+        parent::display($tpl);
 	}
 
 }

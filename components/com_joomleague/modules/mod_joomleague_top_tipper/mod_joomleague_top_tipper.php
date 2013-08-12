@@ -31,7 +31,9 @@ $config['show_user_link'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_USE
 
 $config['show_tip_details'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_TIP_DETAILS');
 $config['show_tip_ranking'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_TIP_RANKING');
+
 $config['show_tip_ranking_round'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_TIP_RANKING_ROUNDID');
+$config['show_tip_link_ranking_round'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_LINK_RANKING_ROUNDID');
 
 $config['show_average_points'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_AVERAGE_POINTS');
 $config['show_count_tips'] = $params->get('JL_MOD_TT_XML_PREDICTION_GAME_SHOW_COUNT_TIPS');
@@ -44,6 +46,7 @@ $config['show_debug_modus'] = $params->get('show_debug_modus');
 
 //echo 'prediction game id -> '.$pg_id.'<br>';
 
+/*
 // sprachedatei der extension nachladen, damit wir nicht noch mal alles eintragen müssen
 $lang =& JFactory::getLanguage();
 $extension = 'com_joomleague_predictiongame';
@@ -56,6 +59,7 @@ $lang->load($extension, $base_dir, $language_tag, $reload);
 $extension = 'com_joomleague';
 $base_dir = JPATH_SITE;
 $lang->load($extension, $base_dir, $language_tag, $reload);
+*/
 
 JRequest::setVar('prediction_id', $pg_id);
 

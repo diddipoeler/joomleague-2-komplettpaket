@@ -23,7 +23,7 @@ defined('_JEXEC') or die('Restricted access');
 <script type="text/javascript">
 <!--
 var matchid = <?php echo $this->teams->id; ?>;
-var baseajaxurl='<?php echo JURI::root();?>administrator/index.php?option=com_joomleague&<?php echo JUtility::getToken() ?>=1';
+var baseajaxurl='<?php echo JUri::root();?>administrator/index.php?option=com_joomleague&<?php echo JUtility::getToken() ?>=1';
 var homeroster = new Array;
 <?php
 $i = 0;
@@ -55,7 +55,7 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 	<fieldset>
 		<div class="fltrt">
 			<button id="cancel" type="button" onclick="<?php echo JRequest::getBool('refresh', 0) ? 'window.parent.location.href=window.parent.location.href;' : '';?>  window.parent.SqueezeBox.close();">
-				<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_CLOSE');?></button>
+				<?php echo JText::_('JCANCEL');?></button>
 		</div>
 		<div class="configuration" >
 			<?php echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_EE_TITLE', $this->teams->team1, $this->teams->team2); ?>
@@ -125,8 +125,8 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 						<td style='text-align:center; ' ><input type="text" size="3" value="" id="event_time" name="event_time" class="inputbox" /></td>
 						<td style='text-align:center; ' ><input type="text" size="20" value="" id="notice" name="notice" class="inputbox" /></td>
 						<td style='text-align:center; ' >
-							<?php echo JHTML::_('form.token'); ?>
-							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('JSAVE'); ?>" />
+							<?php echo JHtml::_('form.token'); ?>
+							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
 						</td>
 					</tr>
 				</tbody>
@@ -208,7 +208,7 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 						<textarea rows="2" cols="70" id="notes" name="notes" ></textarea>
 					</td>
 					<td style='text-align:center; ' >
-						<input id="save-new-comment" type="button" class="inputbox button-save-c" value="<?php echo JText::_('JSAVE' ); ?>" />
+						<input id="save-new-comment" type="button" class="inputbox button-save-c" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE' ); ?>" />
 					</td>
 				</tr>
 			</tbody>

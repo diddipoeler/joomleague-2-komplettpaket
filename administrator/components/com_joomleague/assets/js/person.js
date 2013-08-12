@@ -1,3 +1,12 @@
+/**
+ * @copyright Copyright (C) 2005-2013 JoomLeague.net. All rights reserved.
+ * @license GNU/GPL, see LICENSE.php Joomla! is free software. This version may
+ *          have been modified pursuant to the GNU General Public License, and
+ *          as distributed it includes or is derivative of works licensed under
+ *          the GNU General Public License or other free or open source software
+ *          licenses. See COPYRIGHT.php for copyright notices and details.
+ */
+
 Joomla.submitbutton = function(pressbutton) {
 	var res = true;
 	var validator = document.formvalidator;
@@ -18,4 +27,14 @@ Joomla.submitbutton = function(pressbutton) {
 	} else {
 		return false;
 	}
+}
+
+function projectSelected() {
+	var adminForm = window.top.document.forms.adminForm; 
+	adminForm.elements.project_id.value 	= $('prjid').getSelected().get('value');
+	adminForm.elements.project_name.value 	= $('prjid').getSelected().get('text');
+	adminForm.elements.team_id.value 		= $('xtid').getSelected().get('value');
+	adminForm.elements.team_name.value 		= $('xtid').getSelected().get('text');
+	adminForm.elements.assignperson.value 	= '1';
+	window.parent.SqueezeBox.close();
 }

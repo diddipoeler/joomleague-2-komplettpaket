@@ -111,7 +111,9 @@ class JoomleagueViewJoomleague extends JLGView
 		$document = JFactory::getDocument();
 		$version = urlencode(JoomleagueHelper::getVersion());
 		$document->addScript(JURI::base().'components/com_joomleague/assets/js/quickmenu.js?v='.$version);
-		$uri = JFactory::getURI();
+		
+
+        $uri = JFactory::getURI();
 		$model = $this->getModel('project') ;
 		$params = JComponentHelper::getParams($option);
 

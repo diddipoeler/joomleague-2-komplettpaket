@@ -31,7 +31,8 @@ class JoomleagueViewPredictionRanking extends JLGView
     $mainframe = JFactory::getApplication();
 		$document	=& JFactory::getDocument();
 		$uri = JFactory :: getURI();
-		
+		$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."');". "\n";
+    $document->addScriptDeclaration( $js );	
 		$model		=& $this->getModel();
     $option = JRequest::getCmd('option');
     $optiontext = strtoupper(JRequest::getCmd('option').'_');
@@ -81,16 +82,16 @@ class JoomleagueViewPredictionRanking extends JLGView
 			//echo '<br /><pre>~' . print_r( $this->config, true ) . '~</pre><br />';
 
 			$type_array = array();
-			$type_array[]=JHTML ::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_FULL_RANKING'));
-			$type_array[]=JHTML ::_('select.option','1',JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_FIRST_HALF'));
-			$type_array[]=JHTML ::_('select.option','2',JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_SECOND_HALF'));
+			$type_array[]=JHTML ::_('select.option','0',JText::_('COM_JOOMLEAGUE_PRED_RANK_FULL_RANKING'));
+			$type_array[]=JHTML ::_('select.option','1',JText::_('COM_JOOMLEAGUE_PRED_RANK_FIRST_HALF'));
+			$type_array[]=JHTML ::_('select.option','2',JText::_('COM_JOOMLEAGUE_PRED_RANK_SECOND_HALF'));
 			$lists['type']=$type_array;
 			unset($type_array);
 
 			$this->assignRef('lists',$lists);
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_RANK_TITLE');
+			$pageTitle = JText::_('COM_JOOMLEAGUE_PRED_RANK_TITLE');
 			
 			$mdlProject = JModel::getInstance("Project", "JoomleagueModel");
 			foreach ( $this->predictionProjectS as $project )
@@ -111,7 +112,7 @@ class JoomleagueViewPredictionRanking extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 

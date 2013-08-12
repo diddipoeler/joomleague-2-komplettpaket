@@ -24,13 +24,14 @@ window.addEvent('domready', function() {
 					var team = $('team_id').value;
 					//var token = $('token').value;
 					var time = $('event_time').value;
+                    var notice = encodeURIComponent($('notice').value);
 					var querystring = 'teamplayer_id=' + player +
 					'&projectteam_id=' + team + 
 					'&event_type_id=' + event + 
 					'&event_time=' + time + 
 					'&match_id=' + matchid + 
 					'&event_sum=' + $('event_sum').value +
-					'&notice=' + $('notice').value
+					'&notice=' + notice
 					//+ '&'
 					//+ token
 					;
@@ -54,7 +55,7 @@ window.addEvent('domready', function() {
 				var event = 0;
 				var team = 0;
 				var ctype = $('ctype').value;
-				var comnt = $('notes').value;
+                var comnt = encodeURIComponent($('notes').value)
 				var time = $('c_event_time').value;
 				var querystring = '&teamplayer_id=' + player
 				+ '&projectteam_id=' + team + '&event_type_id='

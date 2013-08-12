@@ -29,13 +29,13 @@ JHTML::_( 'behavior.tooltip' );
 				<?php
 				if ( $this->pred_id > 0 )
 				{
-					$outputStr = JText::sprintf( 	$this->optiontext.'JL_ADMIN_PTMPLS_TITLE2',
+					$outputStr = JText::sprintf( 	'COM_JOOMLEAGUE_ADMIN_PTMPLS_TITLE2',
 													'<i>' . $this->predictiongame->name . '</i>',
 													' ' . $this->predictiongame->id . ' ' );
 				}
 				else
 				{
-					$outputStr = JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_DESCR' );
+					$outputStr = JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_DESCR' );
 				}
 				echo $outputStr;
 				?>
@@ -65,12 +65,12 @@ JHTML::_( 'behavior.tooltip' );
 							</th>
 							<th class='title' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TMPL_FILE' ), 'tmpl.template', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_TMPL_FILE' ), 'tmpl.template', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>							
 							<th class='title' nowrap='nowrap'>
 								<?php
-								echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_TITLE3' ), 'tmpl.title', $this->lists['order_Dir'], $this->lists['order'] );
+								echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_TITLE3' ), 'tmpl.title', $this->lists['order_Dir'], $this->lists['order'] );
 								?>
 							</th>
 
@@ -116,8 +116,8 @@ JHTML::_( 'behavior.tooltip' );
 										<?php
 										echo JHTML::_(	'image',
 														'administrator/components/com_joomleague/assets/images/edit.png',
-														JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ),
-														'title= "' . JText::_( $this->optiontext.'JL_ADMIN_PTMPLS_EDIT_SETTINGS' ) . '"' );
+														JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_EDIT_SETTINGS' ),
+														'title= "' . JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPLS_EDIT_SETTINGS' ) . '"' );
 										?>
 									</a>
 								</td>

@@ -84,6 +84,13 @@
 			<option value="1">JYES</option>
 		</field>
 		
+		<field	name="show_champion_tip_club_logo" type="radio" default="0"
+				label="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_LABEL_SHOW_CHAMPION_TIP_CLUB_LOGO"
+				description="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_DESCR_SHOW_CHAMPION_TIP_CLUB_LOGO">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
 		<field	name="show_average_points" type="radio" default="1"
 				label="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_LABEL_SHOW_AVERAGE_POINTS"
 				description="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_DESCR_SHOW_AVERAGE_POINTS">

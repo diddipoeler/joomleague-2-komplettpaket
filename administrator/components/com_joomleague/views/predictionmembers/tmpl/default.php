@@ -21,7 +21,7 @@ JHTML::_( 'behavior.tooltip' );
 		<tr>
 			<td align="left" width="100%">
 				<?php
-				echo JText::_( 'JGLOBAL_FILTER_BUTTON' ); ?>: <input   type="text" name="search" id="search"
+				echo JText::_( 'COM_JOOMLEAGUE_GLOBAL_FILTER' ); ?>: <input   type="text" name="search" id="search"
 														value="<?php echo $this->lists['search'];?>" class="text_area"
 														onchange="document.adminForm.submit();" />
 				<button onclick="this.form.submit();">
@@ -62,47 +62,47 @@ JHTML::_( 'behavior.tooltip' );
 					</th>
 					<th class="title" nowrap="nowrap">
 						<?php
-						echo JHTML::_( 'grid.sort',  JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_USERNAME' ), 'u.username', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort',  JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_USERNAME' ), 'u.username', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title" nowrap="nowrap">
 						<?php
-						echo JHTML::_( 'grid.sort',  JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_REAL_NAME' ), 'u.name', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort',  JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_REAL_NAME' ), 'u.name', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title" nowrap="nowrap">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_PRED_NAME' ), 'p.name', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_PRED_NAME' ), 'p.name', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title" nowrap="nowrap">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_DATE_LAST_TIP' ), 'tmb.last_tipp', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_DATE_LAST_TIP' ), 'tmb.last_tipp', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_SEND_REMINDER' ), 'tmb.reminder', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_SEND_REMINDER' ), 'tmb.reminder', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_RECEIPT' ), 'tmb.receipt', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_RECEIPT' ), 'tmb.receipt', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_PROFILE' ), 'tmb.show_profile', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_PROFILE' ), 'tmb.show_profile', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th class="title">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_ADMIN_TIP' ), 'tmb.admintipp', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_ADMIN_TIP' ), 'tmb.admintipp', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 					<th width="1%">
 						<?php
-						echo JHTML::_( 'grid.sort', JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_APPROVED' ), 'tmb.approved', $this->lists['order_Dir'], $this->lists['order'] );
+						echo JHTML::_( 'grid.sort', JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_APPROVED' ), 'tmb.approved', $this->lists['order_Dir'], $this->lists['order'] );
 						?>
 					</th>
 				</tr>
@@ -152,7 +152,7 @@ JHTML::_( 'behavior.tooltip' );
 						{
 						?>
 							<a  href="<?php echo $link2; ?>"
-								title="<?php echo JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_EDIT_USER' ); ?>" >
+								title="<?php echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_EDIT_USER' ); ?>" >
 								<?php
 								echo $row->username;
 								?>
@@ -201,41 +201,41 @@ JHTML::_( 'behavior.tooltip' );
 						}
 						else
 						{
-							echo JText::_( $this->optiontext.'JL_ADMIN_PMEMBERS_NEVER_TIPPED' );
+							echo JText::_( 'COM_JOOMLEAGUE_ADMIN_PMEMBERS_NEVER_TIPPED' );
 						}
 						?>
 					</td>
 					<td style='text-align: center; '>
 						<?php
-						if ($row->reminder){$imgfile='ok.png';$imgtitle=JText::_('Active');}else{$imgfile='delete.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_INACTIVE');}
+						if ($row->reminder){$imgfile='ok.png';$imgtitle=JText::_('Active');}else{$imgfile='delete.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_INACTIVE');}
 						echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/' . $imgfile,
 										$imgtitle, 'title= "' . $imgtitle . '"' );
 						?>
 					</td>
 					<td style='text-align: center; '>
 						<?php
-						if ($row->receipt){$imgfile='ok.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_ACTIVE');}else{$imgfile='delete.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_INACTIVE');}
+						if ($row->receipt){$imgfile='ok.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_ACTIVE');}else{$imgfile='delete.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_INACTIVE');}
 						echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/' . $imgfile,
 										$imgtitle, 'title= "' . $imgtitle . '"' );
 						?>
 					</td>
 					<td style='text-align: center; '>
 						<?php
-						if ($row->show_profile){$imgfile='ok.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_ALLOWED');}else{$imgfile='delete.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_NOT_ALLOWED');}
+						if ($row->show_profile){$imgfile='ok.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_ALLOWED');}else{$imgfile='delete.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_NOT_ALLOWED');}
 						echo JHTML::image(	'administrator/components/com_joomleague/assets/images/' . $imgfile,
 											$imgtitle, 'title= "' . $imgtitle . '"' );
 						?>
 					</td>
 					<td style='text-align: center; '>
 						<?php
-						if ($row->admintipp){$imgfile='ok.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_ACTIVE');}else{$imgfile='delete.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_INACTIVE');}
+						if ($row->admintipp){$imgfile='ok.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_ACTIVE');}else{$imgfile='delete.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_INACTIVE');}
 						echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/' . $imgfile,
 										$imgtitle, 'title= "' . $imgtitle . '"' );
 						?>
 					</td>
 					<td style='text-align: center; '>
 						<?php
-						if ($row->approved){$imgfile='ok.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_APPROVED');}else{$imgfile='delete.png';$imgtitle=JText::_($this->optiontext.'JL_ADMIN_PMEMBERS_NOT_APPROVED');}
+						if ($row->approved){$imgfile='ok.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_APPROVED');}else{$imgfile='delete.png';$imgtitle=JText::_('COM_JOOMLEAGUE_ADMIN_PMEMBERS_NOT_APPROVED');}
 						echo JHTML::_(	'image', 'administrator/components/com_joomleague/assets/images/' . $imgfile,
 										$imgtitle, 'title= "' . $imgtitle . '"' );
 						?>

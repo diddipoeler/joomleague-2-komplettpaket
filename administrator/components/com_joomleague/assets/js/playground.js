@@ -1,3 +1,13 @@
+/**
+* @copyright	Copyright (C) 2005-2013 JoomLeague.net. All rights reserved.
+* @license	GNU/GPL, see LICENSE.php
+* Joomla! is free software. This version may have been modified pursuant
+* to the GNU General Public License, and as distributed it includes or
+* is derivative of works licensed under the GNU General Public License or
+* other free or open source software licenses.
+* See COPYRIGHT.php for copyright notices and details.
+*/
+
 Joomla.submitbutton = function(pressbutton) {
 	var res = true;
 	var validator = document.formvalidator;
@@ -28,7 +38,7 @@ Joomla.submitbutton = function(pressbutton) {
 
 function updateVenuePicture(name, path) {
 	var icon = document.getElementById(name);
-	icon.src = '<?php echo JURI::root(); ?>' + path;
+	icon.src = '<?php echo JUri::root(); ?>' + path;
 	icon.alt = path;
 	icon.value = path;
 	var logovalue = document.getElementById('picture');

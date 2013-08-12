@@ -72,26 +72,26 @@ class JoomleagueControllerPredictionUsers extends JControllerForm
 
 		if ( ( ( $user->id != $joomlaUserID ) ) && ( !$allowedAdmin ) )
 		{
-			$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_CONTROLLER_ERROR_1');
+			$msg .= JText::_('COM_JOOMLEAGUE_PRED_USERS_CONTROLLER_ERROR_1');
 			$link = JFactory::getURI()->toString();
 		}
 		else
 		{
 			if ((!$isMember) && (!$allowedAdmin))
 			{
-				$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_CONTROLLER_ERROR_2');
+				$msg .= JText::_('COM_JOOMLEAGUE_PRED_USERS_CONTROLLER_ERROR_2');
 				$link = JFactory::getURI()->toString();
 			}
 			else
 			{
 				if (!$model->savememberdata())
 				{
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_CONTROLLER_ERROR_3');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_USERS_CONTROLLER_ERROR_3');
 					$link = JFactory::getURI()->toString();
 				}
 				else
 				{
-					$msg .= JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_CONTROLLER_MSG_1');
+					$msg .= JText::_('COM_JOOMLEAGUE_PRED_USERS_CONTROLLER_MSG_1');
 					$link = JFactory::getURI()->toString();
 				}
 			}

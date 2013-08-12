@@ -115,7 +115,7 @@ class JoomleagueModelPredictionResults extends JoomleagueModelPrediction
 		{
 			$clubLogo='images/com_joomleague/database/placeholders/placeholder_small.gif';
 		}
-		$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_RESULTS_LOGO_OF',$teamName);
+		$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_RESULTS_LOGO_OF',$teamName);
 		$output .= JHTML::image($clubLogo,$imgTitle,array(' height' => 17, ' title' => $imgTitle));
 		return $output;
 	}

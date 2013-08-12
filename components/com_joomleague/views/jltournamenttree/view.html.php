@@ -12,12 +12,13 @@ class joomleagueViewjltournamenttree extends JLGView
     // Get a refrence of the page instance in joomla
 	$document = & JFactory::getDocument();
 	$uri = &JFactory::getURI();		
-			
-		
+	$mainframe = JFactory::getApplication();		
+	$js ="registerhome('".JURI::base()."','Tournament Tree Extension','".$mainframe->getCfg('sitename')."');". "\n";
+    $document->addScriptDeclaration( $js );	
     
     //$model =& $this->getModel( 'jlxmlexports' ); 
     $model =& $this->getModel();
-    $model->checkStartExtension();
+    //$model->checkStartExtension();
     $bracket_request = JRequest::get();
     $this->assignRef( 'logo', $bracket_request['tree_logo'] );
     

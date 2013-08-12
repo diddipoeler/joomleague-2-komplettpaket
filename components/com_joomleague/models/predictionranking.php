@@ -164,7 +164,26 @@ function getPagination()
   
   }
   
-	function getMatches($roundID,$project_id)
+	
+    function getChampLogo($ProjectID,$champ_tipp)
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe	=& JFactory::getApplication();
+    
+    $sChampTeamsList=explode(';',$champ_tipp);
+	foreach ($sChampTeamsList AS $key => $value){$dChampTeamsList[]=explode(',',$value);}
+	foreach ($dChampTeamsList AS $key => $value){$champTeamsList[$value[0]]=$value[1];}    
+    
+    //$mainframe->enqueueMessage(JText::_('champTeamsList -> '.'<pre>'.print_r($champTeamsList,true).'</pre>' ),'');
+    
+    $projectteamid = $champTeamsList[$ProjectID];  
+    $teaminfo = JoomleagueModelProject::getTeaminfo($projectteamid);
+    //$mainframe->enqueueMessage(JText::_('champTeamsList -> '.'<pre>'.print_r($teaminfo->logo_big,true).'</pre>' ),'');
+    return $teaminfo;
+      
+    }
+    
+    function getMatches($roundID,$project_id)
 	{
 		if ($roundID==0){$roundID=1;}
 		$query = 	"	SELECT	m.id AS mID,

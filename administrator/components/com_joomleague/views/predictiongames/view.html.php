@@ -83,7 +83,7 @@ class JoomleagueViewPredictionGames extends JLGView
     $document->addCustomTag($stylelink);
 		if ($prediction_id==0)
 		{
-			JToolBarHelper::title(JText::_('JL_ADMIN_PGAMES_TITLE'),'pred-cpanel');
+			JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_PGAMES_TITLE'),'pred-cpanel');
 
 			JToolBarHelper::publishList('predictiongame.publish');
 			JToolBarHelper::unpublishList('predictiongame.unpublish');
@@ -94,9 +94,9 @@ class JoomleagueViewPredictionGames extends JLGView
 			//JToolBarHelper::custom( 'copy', 'copy.png', 'copy_f2.png', JText::_( 'Copy'), true );
 			JToolBarHelper::divider();
 			//JToolBarHelper::deleteList( JText::_('JL_ADMIN_PGAMES_DELETE'));
-            JToolBarHelper::deleteList( JText::_('JL_ADMIN_PGAMES_DELETE'), 'predictiongame.remove');
+            JToolBarHelper::deleteList( JText::_('COM_JOOMLEAGUE_ADMIN_PGAMES_DELETE'), 'predictiongame.remove');
 			JToolBarHelper::divider();
-			JToolBarHelper::customX('rebuild','restore.png','restore_f2.png',JText::_('JL_ADMIN_PGAMES_REBUILDS'),true);
+			JToolBarHelper::customX('rebuild','restore.png','restore_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_PGAMES_REBUILDS'),true);
 		}
 		else
 		{

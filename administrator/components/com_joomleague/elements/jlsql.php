@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 * @copyright	Copyright (C) 2007-2013 JoomLeague.net. All rights reserved.
 * @license		GNU/GPL, see LICENSE.php
@@ -11,7 +11,7 @@
 
 defined( '_JEXEC' ) or die( 'Restricted access' ); // Check to ensure this file is included in Joomla!
 
-JHTML::_( 'behavior.mootools' );
+JHtml::_( 'behavior.mootools' );
 /**
  * Renders a Dynamic SQL element
  *
@@ -46,7 +46,7 @@ class JFormFieldJLSQL extends JFormField
 				var combo = $('".$control_name.$this->name."');
 				var value = combo.options[combo.selectedIndex].value;
 				var postStr  = '';
-				var url = '".JURI::base()."' + 'index.php?option=com_joomleague&view=".$view."&format=raw&".$this->name."='+value;
+				var url = '".JUri::base()."' + 'index.php?option=com_joomleague&view=".$view."&format=raw&".$this->name."='+value;
 				var theAjax = new Ajax(url, {
 					method: 'post',
 					postBody : postStr
@@ -60,7 +60,7 @@ class JFormFieldJLSQL extends JFormField
 						comboToUpdate.outerHTML='<SELECT id=\"".$control_name.$updates."\" name=\"".$control_name."[".$updates."]\">'+html+'</SELECT>';
 					}
 					else {
-						comboToUpdate.empty().setHTML(html);
+						comboToUpdate.empty().set('html',html);
 					}
 					if(previousValue!=-1){
 						for (var i=0; i<comboToUpdate.options.length;i++) {
@@ -74,7 +74,7 @@ class JFormFieldJLSQL extends JFormField
 				theAjax.request();
 			}");
 		}
-		$html = JHTML::_('select.genericlist',  $db->loadObjectList(), $this->name, 'class="inputbox"'.($updates ? ' onchange="javascript:update_'.$updates.'()"' : '').($depends ? ' onclick="javascript:update_'.$this->name.'()"' : ''), $key, $val, $this->value, $this->name);
+		$html = JHtml::_('select.genericlist',  $db->loadObjectList(), $this->name, 'class="inputbox"'.($updates ? ' onchange="javascript:update_'.$updates.'()"' : '').($depends ? ' onclick="javascript:update_'.$this->name.'()"' : ''), $key, $val, $this->value, $this->name);
 		return $html;
 	}
 }

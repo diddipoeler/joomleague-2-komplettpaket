@@ -70,7 +70,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 			{
 				$lists = array();
 				if ($this->predictionMember->pmID > 0){$dMemberID=$this->predictionMember->pmID;}else{$dMemberID=0;}
-				$predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_JL_PRED_SELECT_MEMBER'),'value','text');
+				$predictionMembers[] = JHTML::_('select.option','0',JText::_('COM_JOOMLEAGUE_PRED_SELECT_MEMBER'),'value','text');
 				if ($res=&$model->getPredictionMemberList($this->config)){$predictionMembers=array_merge($predictionMembers,$res);}
 				$lists['predictionMembers']=JHTML::_('select.genericList',$predictionMembers,'uid','class="inputbox" onchange="this.form.submit(); "','value','text',$dMemberID);
 				unset($res);
@@ -80,7 +80,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_TITLE');
+			$pageTitle = JText::_('COM_JOOMLEAGUE_PRED_ENTRY_TITLE');
 
 			$document->setTitle($pageTitle);
 
@@ -88,7 +88,7 @@ class JoomleagueViewPredictionEntry extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 	

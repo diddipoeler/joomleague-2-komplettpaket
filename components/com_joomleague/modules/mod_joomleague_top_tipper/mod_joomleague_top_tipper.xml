@@ -81,6 +81,15 @@
 			<option value="0">JL_MOD_TT_XML_PREDICTION_GAME_SHOW_TIP_RANKING_ROUNDID_ALL</option>
 			<option value="1">JL_MOD_TT_XML_PREDICTION_GAME_SHOW_TIP_RANKING_ROUNDID_CURRENT</option>
 		</field>
+		
+		<field name="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_LINK_RANKING_ROUNDID" 
+    type="radio" 
+    default="0" 
+    label="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_LINK_RANKING_ROUNDID_LABEL" 
+    description="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_LINK_RANKING_ROUNDID_DESC">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
     
 		<field name="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_AVERAGE_POINTS" type="radio" default="0" label="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_AVERAGE_POINTS_LABEL" description="JL_MOD_TT_XML_PREDICTION_GAME_SHOW_AVERAGE_POINTS_DESC">
 			<option value="0">JNO</option>

@@ -187,7 +187,7 @@ class JoomleagueModelpredictionmember extends JoomleagueModelItem
 
     $subject = addslashes(
 				sprintf(
-				JText::_( "COM_JOOMLEAGUE_JL_EMAIL_PREDICTION_REMINDER_TIPS_RESULTS" ),
+				JText::_( "COM_JOOMLEAGUE_EMAIL_PREDICTION_REMINDER_TIPS_RESULTS" ),
 				'perdictionname' ) );
 				
     $message = 'Tip-Results';

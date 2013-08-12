@@ -12,7 +12,7 @@
 defined('_JEXEC') or die(JText::_('Restricted access'));
 
 ?><p><?php
-	echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_WELCOME_INFO_01');
+	echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_WELCOME_INFO_01');
 	?></p><p><?php
-		echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_WELCOME_INFO_02',$this->config['ownername'],'<b>' . $this->websiteName . '</b>');
+		echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_WELCOME_INFO_02',$this->config['ownername'],'<b>' . $this->websiteName . '</b>');
 	?></p><hr><br />

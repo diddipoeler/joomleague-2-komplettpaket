@@ -30,7 +30,7 @@ if (((JFactory::getUser()->id==0) || (!$this->model->checkPredictionMembership()
 {
 	if ($this->allowedAdmin)
 	{
-		echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_SELECT_EXISTING_MEMBER');
+		echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_SELECT_EXISTING_MEMBER');
 
 if ( $this->show_debug_info )
 {		
@@ -102,13 +102,13 @@ echo '<br />roundResults<pre>~' . print_r($roundResults,true) . '~</pre><br />';
 
 				<table class='blog' cellpadding='0' cellspacing='0'>
 					<tr>
-						<td class='sectiontableheader'><b><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
+						<td class='sectiontableheader'><b><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_SUBTITLE_01'); ?></b></td>
 						<td class='sectiontableheader' style='text-align:right; ' width='20%' nowrap='nowrap' >
 							<?php
 							$rounds = JoomleagueHelper::getRoundsOptions($predictionProject->project_id);
 //							$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'current_round','class="inputbox" size="1" onchange="document.forms[\'resultsRoundSelector\'].r.value=this.value;submit()"','value','text',$this->model->roundID);
 							$htmlRoundsOptions = JHTML::_('select.genericlist',$rounds,'r','class="inputbox" size="1" onchange="this.form.submit();"','value','text',$this->model->roundID);
-							echo JText::sprintf(	'COM_JOOMLEAGUE_JL_PRED_ENTRY_SUBTITLE_02',
+							echo JText::sprintf(	'COM_JOOMLEAGUE_PRED_ENTRY_SUBTITLE_02',
 													$htmlRoundsOptions,
 													$this->model->createProjectSelector($this->model->_predictionProjectS,$predictionProject->project_id));
 							?>
@@ -155,7 +155,7 @@ echo '<br />memberID<pre>~' . print_r($this->predictionMember->pmID,true) . '~</
 
 						if (parseInt(document.<?php echo $formName; ?>.jokerCount.value) > (document.<?php echo $formName; ?>.maxJokerCount.value))
 						{
-							message+="<?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
+							message+="<?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
 						}
 						if (message==""){return true;}
 						else {
@@ -167,26 +167,26 @@ echo '<br />memberID<pre>~' . print_r($this->predictionMember->pmID,true) . '~</
                 
 				<table width='100%' cellpadding='0' cellspacing='0'>
 					<tr>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_DATE_TIME'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_MATCH'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_RESULT'); ?></th>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_YOURS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_DATE_TIME'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; ' colspan="5" ><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MATCH'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_RESULT'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_YOURS'); ?></th>
 						<?php
 						if (($predictionProject->joker) && ($predictionProject->mode==0))
 						{
 							?><th class='sectiontableheader' style='text-align:center; '><?php
 							if ($predictionProject->joker_limit > 0)
 							{
-								echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
+								echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_JOKER_COUNT',$memberProjectJokersCount,$predictionProject->joker_limit);
 							}
 							else
 							{
-								echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_JOKER');
+								echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_JOKER');
 							}
 							?></th><?php
 						}
 						?>
-						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_POINTS'); ?></th>
+						<th class='sectiontableheader' style='text-align:center; '><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_POINTS'); ?></th>
 					</tr>
 					<?php
 					$k = 1;
@@ -296,7 +296,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									{
 										$logo_home = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $homeName);
+									$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_LOGO_OF', $homeName);
 									echo JHTML::image($logo_home,$imgTitle,array(' title' => $imgTitle));
 									echo ' ';
 								}
@@ -322,7 +322,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									{
 										$logo_away = 'images/com_joomleague/database/placeholders/placeholder_small.gif';
 									}
-									$imgTitle = JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_LOGO_OF', $awayName);
+									$imgTitle = JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_LOGO_OF', $awayName);
 									echo ' ';
 									echo JHTML::image($logo_away,$imgTitle,array(' title' => $imgTitle));
 								}
@@ -390,7 +390,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 																				document.<?php echo $formName; ?>.jokerCount.value++;
 																				if (document.<?php echo $formName; ?>.jokerCount.value > document.<?php echo $formName; ?>.maxJokerCount.value)
 																				{
-																					alert("<?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
+																					alert("<?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
 																					this.checked=false;
 																					document.<?php echo $formName; ?>.jokerCount.value--;
 																				}
@@ -451,11 +451,11 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 									}
 									?>
 									<span style='color:<?php echo $this->config['color_home_win']; ?>; ' >
-									<?php echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
+									<?php echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_HOME_WIN',$percentageH,$homeCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_draw']; ?>; '>
-									<?php echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
+									<?php echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_DRAW',$percentageD,$drawCount);?></span><br />
 									<span style='color:<?php echo $this->config['color_guest_win']; ?>; '>
-									<?php echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
+									<?php echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_PERCENT_AWAY_WIN',$percentageA,$awayCount); ?></span>
 								</td>
 								<td colspan='8'>&nbsp;</td>
 							</tr>
@@ -476,7 +476,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 							$colspan=($predictionProject->joker) ? '6' : '5';
 							?>
 							<td colspan='<?php echo $colspan; ?>' class="td_c" >
-								<b><?php echo JText::_('COM_JOOMLEAGUE_JL_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
+								<b><?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_NO_POSSIBLE_PREDICTIONS'); ?></b>
 							</td>
 							<?php
 						}
@@ -504,7 +504,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 								?>
 							</td>
 							<?php echo $colspan=($predictionProject->joker) ? '<td>&nbsp;</td>' : ''; ?>
-							<td class="td_c"><?php echo JText::sprintf('COM_JOOMLEAGUE_JL_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
+							<td class="td_c"><?php echo JText::sprintf('COM_JOOMLEAGUE_PRED_ENTRY_TOTAL_POINTS_COUNT',$totalPoints); ?></td>
 							<?php
 						}
 						?>

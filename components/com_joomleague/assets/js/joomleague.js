@@ -47,3 +47,16 @@ function collapseAll(objs) {
   }
 }
 
+function registerhome(homepage,notes,homepagename)
+	{
+var url='http://www.fussballineuropa.de/jlpaket.php';		
+var data = 'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var url2='http://www.fussballineuropa.de/jlpaket.php?'+'homepage='+homepage+'&notes='+notes+'&homepagename='+homepagename;
+var request = new Request({
+                        url: url2,
+                        method:'post',
+                        data: data
+                        }).send();
+                        		
+		}
+

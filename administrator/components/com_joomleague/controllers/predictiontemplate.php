@@ -121,11 +121,11 @@ class JoomleagueControllerPredictionTemplate extends JoomleagueController
 			$model = $this->getModel( 'predictiontemplate' );
 			if ( $model->store( $post ) )
 			{
-				$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_SAVED' );
+				$msg .= JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPL_CTRL_SAVED' );
 			}
 			else
 			{
-				$msg .= JText::_( $optiontext.'JL_ADMIN_PTMPL_CTRL_SAVED_ERROR' ) . $index . ": " . $model->getError();
+				$msg .= JText::_( 'COM_JOOMLEAGUE_ADMIN_PTMPL_CTRL_SAVED_ERROR' ) . $index . ": " . $model->getError();
 			}
 			// Check the table in so it can be edited.... we are done with it anyway
 			$model->checkin();

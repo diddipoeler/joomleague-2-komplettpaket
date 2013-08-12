@@ -51,7 +51,7 @@ class JoomleagueViewPredictionRules extends JLGView
 			//echo '<br /><pre>~'.print_r($this,true).'~</pre><br />';
       $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
-			$pageTitle = JText::_('COM_JOOMLEAGUE_JL_PRED_USERS_TITLE'); // 'Tippspiel Regeln'
+			$pageTitle = JText::_('COM_JOOMLEAGUE_PRED_USERS_TITLE'); // 'Tippspiel Regeln'
 
 			$document->setTitle($pageTitle);
 
@@ -59,7 +59,7 @@ class JoomleagueViewPredictionRules extends JLGView
 		}
 		else
 		{
-			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_JL_PRED_PREDICTION_NOT_EXISTING'));
+			JError::raiseNotice(500,JText::_('COM_JOOMLEAGUE_PRED_PREDICTION_NOT_EXISTING'));
 		}
 	}
 

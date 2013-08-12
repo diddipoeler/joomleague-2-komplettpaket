@@ -121,7 +121,8 @@ window.addEvent('domready', function() {
 				?>
 			<div style="text-align: center;"><br />
 			<?php
-			echo JHTML::_('image','administrator/components/com_joomleague/assets/images/jl.png',JText::_('JoomLeague'),array("title" => JText::_('JoomLeague')));
+//			echo JHTML::_('image','administrator/components/com_joomleague/assets/images/jl.png',JText::_('JoomLeague'),array("title" => JText::_('JoomLeague')));
+        echo JHTML::_('image','administrator/components/com_joomleague/assets/images/jl-logo.png',JText::_('extended JoomLeague'),array("title" => JText::_('extended JoomLeague'),"width" => '150'  ));
 			?></div>
 			</div>
 			</div>
