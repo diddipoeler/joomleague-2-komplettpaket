@@ -405,17 +405,25 @@ if (!empty($this->rows))
 			$this->assignRef('InOutStat',$model->getInOutStats($row->pid));
 			if (isset($this->InOutStat) && ($this->InOutStat->played > 0))
 			{
-				$played  = $this->InOutStat->played;
-				$started = $this->InOutStat->started;
-				$subIn   = $this->InOutStat->sub_in;
-				$subOut  = $this->InOutStat->sub_out;
+				//$played  = $this->InOutStat->played;
+				//$started = $this->InOutStat->started;
+				//$subIn   = $this->InOutStat->sub_in;
+				//$subOut  = $this->InOutStat->sub_out;
+                $played = ($this->InOutStat->played > 0 ? $this->InOutStat->played : $this->overallconfig['zero_events_value']);
+                $started = ($this->InOutStat->started > 0 ? $this->InOutStat->started : $this->overallconfig['zero_events_value']);
+				$subIn   = ($this->InOutStat->sub_in > 0 ? $this->InOutStat->sub_in : $this->overallconfig['zero_events_value']);
+				$subOut  = ($this->InOutStat->sub_out > 0 ? $this->InOutStat->sub_out : $this->overallconfig['zero_events_value']);
 			}
 			else
 			{
-				$played  = 0;
-				$started = 0;
-				$subIn   = 0;
-				$subOut  = 0;
+				//$played  = 0;
+				//$started = 0;
+				//$subIn   = 0;
+				//$subOut  = 0;
+                $played  = $this->overallconfig['zero_events_value'];
+				$started = $this->overallconfig['zero_events_value'];
+				$subIn   = $this->overallconfig['zero_events_value'];
+				$subOut  = $this->overallconfig['zero_events_value'];
 			}
 			if ($this->config['show_games_played'])
 			{
@@ -453,7 +461,8 @@ if (!empty($this->rows))
 					}
 					$totalEvents[$eventId]=(int) $totalEvents[$eventId] + (int) $stat;
 				}
-				echo ($stat !='' && $stat > 0) ? number_format($stat, 0, '', '.') : 0;
+				//echo ($stat !='' && $stat > 0) ? number_format($stat, 0, '', '.') : 0;
+                echo ($stat !='' && $stat > 0) ? number_format($stat, 0, '', '.') : $this->overallconfig['zero_events_value'];
 				?>
 		</td>
 				<?php
@@ -495,7 +504,8 @@ if (!empty($this->rows))
 						}
 						else
 						{
-							$value = 0;
+							//$value = 0;
+                            $value = $this->overallconfig['zero_events_value'];
 						}
 					}
 					if (is_numeric($value))
@@ -522,7 +532,10 @@ if (!empty($this->rows))
 	       $total_market_value += $row->market_value;
 	?>
 		<td class="td_r" class="hasTip" title="">
-			<?php echo number_format($row->market_value,0, ",", "."); ?>
+			<?php 
+            //echo number_format($row->market_value,0, ",", ".");
+            echo ($row->market_value > 0 ? number_format($row->market_value, 0, ',', '.') : $this->overallconfig['zero_events_value']); 
+            ?>
 		</td>
 					<?php
 	   }
@@ -561,7 +574,12 @@ if (!empty($this->rows))
 						$value=$totalEvents[$eventtype->eventtype_id];
 					}
 					?>
-		<td class="td_c"><?php echo number_format($value, 0, '', '.');?></td>
+		<td class="td_c">
+        <?php 
+        //echo number_format($value, 0, '', '.');
+        echo ($value > 0 ? number_format($value, 0, '', '.') : $this->overallconfig['zero_events_value']);
+        ?>
+        </td>
 					<?php
 				}
 			}
@@ -583,7 +601,12 @@ if (!empty($this->rows))
 						}
 					}
 					?>
-		<td class="td_c"><?php echo $value; ?></td>
+		<td class="td_c">
+        <?php 
+        //echo $value;
+        echo ($value > 0 ? $value : $this->overallconfig['zero_events_value']); 
+        ?>
+        </td>
 					<?php
 				}
 			}
@@ -592,7 +615,13 @@ if (!empty($this->rows))
         if ($this->config['show_player_market_value'])
 	   {
 	   ?>
-		<td class="td_r"><?php echo number_format($total_market_value,0, ",", "."); ?></td>
+		<td class="td_r">
+        <?php 
+        //echo number_format($total_market_value,0, ",", ".");
+        echo ($total_market_value > 0 ? number_format($total_market_value, 0, ',', '.') : $this->overallconfig['zero_events_value']); 
+
+        ?>
+        </td>
 					<?php    
            }
 		?>

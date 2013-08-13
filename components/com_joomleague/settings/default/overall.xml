@@ -85,6 +85,12 @@
 			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_WHICH_SEPARATOR"
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_WHICH_SEPARATOR">
 		</field>
+
+<field name="zero_events_value" type="text" default="-"
+				label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_ZERO_EVETNS_VALUE"
+				description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_ZERO_EVETNS_VALUE">
+			</field>
+
 		<field name="results_below" type="radio" default="0"
 			label="COM_JOOMLEAGUE_FES_OVERALL_PARAM_LABEL_RESULTS_BELOW"
 			description="COM_JOOMLEAGUE_FES_OVERALL_PARAM_DESCR_RESULTS_BELOW">

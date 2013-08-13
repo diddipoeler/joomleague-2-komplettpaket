@@ -150,15 +150,18 @@ if (count($this->games))
 						?>
 					<td class="td_c"><?php
 					$total['startRoster'] += $game->started;
-					echo ($game->started) ;
+					//echo ($game->started) ;
+                    echo ($game->started > 0 ? $game->started : $this->overallconfig['zero_events_value']);
 					?></td>
 					<td class="td_c"><?php
 					$total['in'] += $game->sub_in;
-					echo ($game->sub_in) ;
+					//echo ($game->sub_in) ;
+                    echo ($game->sub_in > 0 ? $game->sub_in : $this->overallconfig['zero_events_value']);
 					?></td>
 					<td class="td_c"><?php
 					$total['out'] += $game->sub_out;
-					echo ($game->sub_out) ;
+					//echo ($game->sub_out) ;
+                    echo ($game->sub_out > 0 ? $game->sub_out : $this->overallconfig['zero_events_value']);
 					?></td>
                     
                     <td class="td_c"><?php
@@ -186,7 +189,8 @@ if (count($this->games))
 					else
 					{
 						// as only matches are shown here where the player was part of, output a 0 i.s.o. a '-'
-						echo 0;
+						//echo 0;
+                        echo $this->overallconfig['zero_events_value'];
 					}
 					?></td>
 					<?php
@@ -208,7 +212,8 @@ if (count($this->games))
 								else
 								{
 									// as only matches are shown here where the player was part of, output a 0 i.s.o. a '-'
-									echo 0;
+									//echo 0;
+                                    echo $this->overallconfig['zero_events_value'];
 								}
 					?></td>
 					<?php
@@ -234,9 +239,9 @@ if (count($this->games))
 					if ($this->config['show_substitution_stats'] && $this->overallconfig['use_jl_substitution']==1)
 					{
 					?>
-					<td class="td_c"><?php echo ($total['startRoster'] ); ?></td>
-					<td class="td_c"><?php echo ($total['in'] ) ; ?></td>
-					<td class="td_c"><?php echo ($total['out'] ) ; ?></td>
+					<td class="td_c"><?php echo ($total['startRoster'] > 0 ? $total['startRoster'] : $this->overallconfig['zero_events_value']); ?></td>
+					<td class="td_c"><?php echo ($total['in'] > 0 ? $total['in'] : $this->overallconfig['zero_events_value']); ?></td>
+					<td class="td_c"><?php echo ($total['out'] > 0 ? $total['out'] : $this->overallconfig['zero_events_value']); ?></td>
                     <td class="td_c"><?php echo ($total['playedtime'] ) ; ?></td>
 					<?php
 					}
@@ -262,7 +267,10 @@ if (count($this->games))
 							?>
 							    
 					<td class="td_c hasTip" title="<?php echo $stat->name; ?>">
-					<?php echo $stat->gamesstats['totals']->value; ?>
+					<?php 
+                    //echo $stat->gamesstats['totals']->value;
+                    echo ($stat->gamesstats['totals']->value > 0 ? $stat->gamesstats['totals']->value : $this->overallconfig['zero_events_value']); 
+                    ?>
 					</td>
 					<?php
 							    }

@@ -133,7 +133,8 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				</td>
 				<!-- Player stats History - played start -->
 				<td class="td_c"><?php
-				echo ($this->inoutstat->played > 0) ? $this->inoutstat->played : '0';
+				//echo ($this->inoutstat->played > 0) ? $this->inoutstat->played : '0';
+                echo ($this->inoutstat->played > 0) ? $this->inoutstat->played : $this->overallconfig['zero_events_value'];
 				$career['played'] += $this->inoutstat->played;
 				?></td>
 				<?php
@@ -146,17 +147,20 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 						<!-- Player stats History - startroster start -->
 						<td class="td_c"><?php
 						$career['started'] += $this->inoutstat->started;
-						echo ($this->inoutstat->started);
+						//echo ($this->inoutstat->started);
+                        echo ($this->inoutstat->started > 0 ? $this->inoutstat->started : $this->overallconfig['zero_events_value']);
 						?></td>
 						<!-- Player stats History - substitution in start -->
 						<td class="td_c"><?php
 						$career['in'] += $this->inoutstat->sub_in;
-						echo ($this->inoutstat->sub_in );
+						//echo ($this->inoutstat->sub_in );
+                        echo ($this->inoutstat->sub_in > 0 ? $this->inoutstat->sub_in : $this->overallconfig['zero_events_value']);
 						?></td>
 						<!-- Player stats History - substitution out start -->
 						<td class="td_c"><?php
 						$career['out'] += $this->inoutstat->sub_out;
-						echo ($this->inoutstat->sub_out) ;
+						//echo ($this->inoutstat->sub_out) ;
+                        echo ($this->inoutstat->sub_out > 0 ? $this->inoutstat->sub_out : $this->overallconfig['zero_events_value']);
 						?></td>
                         
                         <!-- Player stats History - played time -->
@@ -180,8 +184,9 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 						{
 							$stat=$player->getPlayerEvents($eventtype->id, $player_hist->project_id, $player_hist->ptid);
 							?>
-				<td class="td_c"><?php echo ($stat > 0) ? $stat : 0; ?></td>
-				<?php
+				
+				<td class="td_c"><?php echo ($stat > 0) ? $stat : $this->overallconfig['zero_events_value']; ?></td>
+                <?php
 						}
 					}
 				}
@@ -196,9 +201,11 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				<td class="td_c hasTip" title="<?php echo JText::_($stat->name); ?>">
 				<?php
 							if(isset($this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid])) {
-								echo $this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid];
+								//echo $this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid];
+                                echo ($this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid] > 0 ? $this->projectstats[$stat->id][$player_hist->project_id][$player_hist->ptid] : $this->overallconfig['zero_events_value']);
 							} else {
-								echo 0;
+								//echo 0;
+                                echo $this->overallconfig['zero_events_value'];
 							}
 						    }
 						}
@@ -222,9 +229,10 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 				($this->overallconfig['use_jl_substitution']==1))
 				{
 					?>
-				<td class="td_c"><?php echo ($career['started'] ); ?></td>
-				<td class="td_c"><?php echo ($career['in'] ); ?></td>
-				<td class="td_c"><?php echo ($career['out'] ); ?></td>
+				<td class="td_c"><?php echo ($career['started'] > 0 ? $career['started'] : $this->overallconfig['zero_events_value']); ?></td>
+				<td class="td_c"><?php echo ($career['in'] > 0 ? $career['in'] : $this->overallconfig['zero_events_value']); ?></td>
+				<td class="td_c"><?php echo ($career['out'] > 0 ? $career['out'] : $this->overallconfig['zero_events_value']); ?></td>
+                
                 <td class="td_c"><?php echo ($career['playedtime'] ); ?></td>
 				<?php
 				}
@@ -245,7 +253,12 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 								$total='';
 							}
 							?>
-				<td class="td_c"><?php echo (($total) ? $total : 0); ?></td>
+				<td class="td_c">
+                <?php 
+                //echo (($total) ? $total : 0);
+                echo (($total) ? $total : $this->overallconfig['zero_events_value']); 
+                ?>
+                </td>
 				<?php
 						}
 					}
@@ -262,11 +275,13 @@ echo 'PERSON_PERSONAL_STATISTICS stats<br /><pre>~' . print_r($this->stats,true)
 								if (isset($this->projectstats) &&
 								    array_key_exists($stat->id, $this->projectstats))
 								{
-									echo $this->projectstats[$stat->id]['totals'];
+									//echo $this->projectstats[$stat->id]['totals'];
+                                    echo ($this->projectstats[$stat->id]['totals'] > 0 ? $this->projectstats[$stat->id]['totals'] : $this->overallconfig['zero_events_value']);
 								}
 								else	// In case there are no stats for the player
 								{
-									echo 0;
+									//echo 0;
+                                    echo $this->overallconfig['zero_events_value'];
 								}
 							?>
 							</td>
