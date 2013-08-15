@@ -63,7 +63,7 @@ foreach ($matches as $match)
 	$idstring = $id.$params->get( 'moduleclass_sfx' ) ;
 	if ($mode == 'T')
 	{
-		$textdiv .= '<div id="'.$idstring.'" class="textdiv">';
+		$textdiv .= '<div id="jlticker'.$idstring.'" class="textdiv">';
 	}
 
 	$report_link = JoomleagueHelperRoute::getMatchReportRoute( $match->project_id, $match->match_id);

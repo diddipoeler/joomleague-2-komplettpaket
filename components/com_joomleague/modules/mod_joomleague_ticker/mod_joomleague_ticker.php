@@ -23,14 +23,14 @@ $document = JFactory::getDocument();
 $document->addStyleSheet(JURI::base().'modules/mod_joomleague_ticker/css/mod_joomleague_ticker.css');
 
 $mode = $params->def("mode");
-$results = $params->get('results');
+$resultsmatch = $params->get('results');
 $round = $params->get('round');
 $ordering = $params->get('ordering');
 $matchstatus=$params->get('matchstatus');
 $selectiondate = modJoomleagueTickerHelper::getSelectionDate($params->get('daysback'), $params->get('timezone', 'Europe/Amsterdam'));
 $bUseFav = $params->get('usefavteams');
 
-$matches = modJoomleagueTickerHelper::getMatches($results, $params->get('p'), $params->get('teamid'), $selectiondate, $ordering, $round, $matchstatus,$bUseFav);
+$matches = modJoomleagueTickerHelper::getMatches($resultsmatch, $params->get('p'), $params->get('teamid'), $selectiondate, $ordering, $round, $matchstatus,$bUseFav);
 if(empty($matches) || count($matches) == 0)
 {
 	echo JText::_("No matches");
@@ -40,9 +40,9 @@ if(empty($matches) || count($matches) == 0)
 	$utc = new DateTime();
 	$offset = $timezone->getOffset($utc);
 	$date = modJoomleagueTickerHelper::getCorrectDateFormat($params->get('dateformat'), $matches, $offset);
-	if (count($matches)<$results)
+	if (count($matches)<$resultsmatch)
 	{
-		$results=count($matches);
+		$resultsmatch=count($matches);
 	}
 
 	$tickerpause = $params->def("tickerpause");
