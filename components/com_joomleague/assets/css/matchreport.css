@@ -64,10 +64,37 @@
 	text-align: center;
 }
 
+.matchreport td.resulthome {
+	width: 10%;
+	font-size: 250%;
+	font-weight: bold;
+	text-align: right;
+}
+.matchreport td.resultaway {
+	width: 10%;
+	font-size: 250%;
+	font-weight: bold;
+	text-align: left;
+}
+
 .matchreport td.legs {
 	font-size: 120%;
 	font-style: italic;
 	text-align: center;
+}
+
+.matchreport td.legshome {
+	font-size: 120%;
+	font-style: italic;
+	font-weight: bold;
+	text-align: right;
+}
+
+.matchreport td.legsaway {
+	font-size: 120%;
+	font-style: italic;
+	font-weight: bold;
+	text-align: left;
 }
 
 .matchreport span.heading {

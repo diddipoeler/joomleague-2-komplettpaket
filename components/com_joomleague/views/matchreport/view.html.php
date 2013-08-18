@@ -149,26 +149,42 @@ class JoomleagueViewMatchReport extends JLGView
 		if($this->match->alt_decision==0) {
 			if ($team!=0)
 			{
-				if ($team==1)
+				if ($team == 1)
 				{
-					$result=$this->match->team1_result_split;
+					$result = $this->match->team1_result_split;
 				}
 				else
 				{
-					$result=$this->match->team2_result_split;
+					$result = $this->match->team2_result_split;
 				}
-				$legresult=explode(";",$result);
-				$string=" (";
-				foreach ($legresult as $temp){$string .= $temp.' : ';}
-				$string=substr_replace($string,'',-2);
-				$string.=') ';
+				$legresult = explode(";",$result);
+				//$string = " (";
+				if ($legresult)
+                {
+                if ($team == 1)
+				{
+					$string = "(".$legresult[0];
+				}
+				else
+				{
+					$string = $legresult[0].")";
+				}
+                }
+                /*
+                foreach ($legresult as $temp)
+                {
+                    $string .= $temp.' : ';
+                }
+				$string = substr_replace($string,'',-2);
+				$string .= ') ';
+                */
 				return $string;
 			}
 			else
 			{
-				$legresult1=str_replace(";","",$this->match->team1_result_split);
-				$legresult2=str_replace(";","",$this->match->team2_result_split);
-				if (($legresult1=="") && ($legresult2==""))
+				$legresult1 = str_replace(";","",$this->match->team1_result_split);
+				$legresult2 = str_replace(";","",$this->match->team2_result_split);
+				if (( $legresult1 == "" ) && ( $legresult2 == "" ))
 				{
 					return false;
 				}

@@ -23,6 +23,10 @@
 		</td>
 		<td>
 		</td>
+        <td>
+		</td>
+        <td>
+		</td>
 		<td class="teamlogo">
 			<?php 
 			/*
@@ -54,9 +58,15 @@
 			}
 			?>
 		</td>
+        <td class="resulthome">
+				<?php echo $this->showMatchresult($this->match->alt_decision, 1); ?>
+			</td>
 		<td>
 			<?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_VS') ?>
 		</td>
+        <td class="resultaway">
+				<?php echo $this->showMatchresult($this->match->alt_decision, 2); ?>
+			</td>
 		<td class="team">
 			<?php 
 			if ( $this->config['names'] == "short_name" ) {
@@ -71,6 +81,32 @@
 			?>
 		</td>
 	</tr>
+	<?php
+        if ($this->config['show_period_result'] == 1)
+        {
+            if ( $this->showLegresult() )
+            {
+                ?>
+                <tr>
+                <td>
+		</td>
+                    <td class="legshome">
+                        <?php echo $this->showLegresult(1); ?>
+                    </td>
+                    <td>
+			<?php echo JText::_('COM_JOOMLEAGUE_MATCHREPORT_VS') ?>
+		</td>
+                    <td class="legsaway">
+                        <?php echo $this->showLegresult(2); ?>
+                    </td>
+                    <td>
+		</td>
+                </tr>
+                <?php
+            }
+        }
+        ?>
+	
 </table>
 
 <?php
@@ -90,32 +126,10 @@ else
 {
 	?>
 	<table class="matchreport" border="0">
-		<tr>
-			<td class="result">
-				<?php echo $this->showMatchresult($this->match->alt_decision, 1); ?>
-			</td>
-			<td class="result">
-				<?php echo $this->showMatchresult($this->match->alt_decision, 2); ?>
-			</td>
-		</tr>
+		
         
 		<?php
-        if ($this->config['show_period_result'] == 1)
-        {
-            if ( $this->showLegresult() )
-            {
-                ?>
-                <tr>
-                    <td class="legs">
-                        <?php echo $this->showLegresult(1); ?>
-                    </td>
-                    <td class="legs">
-                        <?php echo $this->showLegresult(2); ?>
-                    </td>
-                </tr>
-                <?php
-            }
-        }
+        
 
         if ($this->config['show_overtime_result'] == 1)
         {
