@@ -78,10 +78,22 @@ class JoomleagueViewPlayer extends JLGView
 		$extended = $this->getExtended($person->extended, 'person');
 		$this->assignRef( 'extended', $extended );
         $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_PARENT_POSITIONS');
-        $this->assignRef ('person_parent_positions', explode(",",$form_value) );
+        // nebenposition vorhanden ?
+        if ( $form_value )
+        {
+            $this->assignRef ('person_parent_positions', explode(",",$form_value) );
+        }
+        
         
         $form_value = $this->extended->getValue('COM_JOOMLEAGUE_EXT_PERSON_POSITION');
+        if ( $form_value )
+        {
         $this->assignRef ('person_position', $form_value );
+        }
+        else
+        {
+        $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_PERSON_NO_POSITION'),'Error');
+        }
         
         $this->assignRef( 'hasDescription',$this->teamPlayer->notes);
         

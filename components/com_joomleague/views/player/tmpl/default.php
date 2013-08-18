@@ -4,7 +4,9 @@
 if ( $this->show_debug_info )
 {
 echo 'player view games<pre>',print_r($this->games,true),'</pre><br>'; 
-echo 'player view teams<pre>',print_r($this->teams,true),'</pre><br>';    
+echo 'player view teams<pre>',print_r($this->teams,true),'</pre><br>';  
+echo 'player view person_position<pre>',print_r($this->person_position,true),'</pre><br>'; 
+echo 'player view person_parent_positions<pre>',print_r($this->person_parent_positions,true),'</pre><br>';   
 }
 
 
