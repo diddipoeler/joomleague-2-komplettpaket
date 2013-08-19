@@ -20,6 +20,10 @@ if(!defined('DS')){
 	define('DS',DIRECTORY_SEPARATOR);
 }
 define('JLG_PATH_SITE',  JPATH_SITE.DS.'components'.DS .'com_joomleague');
+
+define('JLG_VAR_LANGUAGE',  'COM_JOOMLEAGUE');
+define('JLG_VAR_DB_TABLES',  'joomleague');
+
 define('JLG_PATH_ADMIN', JPATH_SITE.DS.'administrator'.DS.'components'.DS.'com_joomleague');
 require_once( JLG_PATH_ADMIN .DS . 'defines.php' );
 
@@ -69,5 +73,6 @@ if($task != '' && $option == 'com_joomleague')  {
 $document = JFactory::getDocument();
 $mainframe = JFactory::getApplication();
 //$document->addScript(JURI::root(true).'/administrator/components/'.$option.'/assets/js/jl2.noconflict.js');
-$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."');". "\n";
-$document->addScriptDeclaration( $js );
+
+//$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."');". "\n";
+//$document->addScriptDeclaration( $js );
