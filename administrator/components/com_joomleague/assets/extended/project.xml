@@ -11,6 +11,8 @@
 	rows="4" cols="100"
 			label="COM_JOOMLEAGUE_PROJECT_RSS_FEED_LIVE_RESULTS" description="COM_JOOMLEAGUE_PROJECT_RSS_FEED_LIVE_RESULTS_DESCR">
 		</field>	
-		
+	
+  
+    	
 	</fieldset>
 </config>

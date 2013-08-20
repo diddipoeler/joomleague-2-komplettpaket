@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 <!-- register 1 -->	
-  <fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
+  <fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL"
+  label="COM_JOOMLEAGUE_SETTINGS_GROUP_GLOBAL">
 		<field name="cfg_edit_club_info_update_notify" type="radio"
 			default="0" label="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_TITLE"
 			description="COM_JOOMLEAGUE_SETTINGS_EDIT_CLUB_NOTIFY_CLUBADMINS_DESCR">
@@ -36,7 +37,8 @@
 </fieldset>
 
 <!-- register 2 -->	
-	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM"
+  label="COM_JOOMLEAGUE_SETTINGS_GROUP_SYSTEM">
 <!--
 		<field name="JoomLeague updates" type="list" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_UPDATES_TITLE" description="COM_JOOMLEAGUE_SETTINGS_UPDATES_DESCR">
@@ -76,8 +78,10 @@
 			label="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT" description="COM_JOOMLEAGUE_SETTINGS_MODALPOPUP_HEIGHT_DESCR">
 		</field>
 	</fieldset>
+	
 <!-- register 3 -->	
-	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
+	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND"
+  label="COM_JOOMLEAGUE_SETTINGS_GROUP_FRONTEND">
 		<field name="show_footer" type="radio" default="1"
 			label="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_SHOW_FOOTER_DESCR">
 			<option value="0">JNO</option>
@@ -121,24 +125,41 @@
 			label="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_TITLE" description="COM_JOOMLEAGUE_SETTINGS_DEFAULT_ITEMID_DESCR">
 		</field>
 	</fieldset>
+	
 <!-- register 4 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_BACKEND"
+	label="COM_JOOMLEAGUE_SETTINGS_GROUP_BACKEND"
 		addfieldpath="/administrator/components/com_joomleague/elements">
-		<field name="defsportstype" type="sql" default="Soccer"
+		
+    <field name="defsportstype" type="sql" default="Soccer"
 			label="COM_JOOMLEAGUE_SETTINGS_SELECT_DEFAULT_SPORTS_TYPE_LABEL"
 			description="COM_JOOMLEAGUE_SETTINGS_SELECT_DEFAULT_SPORTS_TYPE_LABEL_DESCR"
 			query="	SELECT	id AS value,
 								name AS defsportstype
 			 			FROM #__joomleague_sports_type
 			 			ORDER BY id, name" />
+		
+    <field name="current_season" type="sql" default=""
+			label="COM_JOOMLEAGUE_SETTINGS_CURRENT_SEASON_TITLE" 
+      description="COM_JOOMLEAGUE_SETTINGS_CURRENT_SEASON_DESCR"
+      query="	SELECT t.id as value, t.name as current_season FROM #__joomleague_season t ORDER BY name DESC"
+      
+      />
+		
+    	 			
 		<field name="image_max_size" type="text" default="120"
-			label="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_DESCR">
+			label="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_TITLE" 
+      description="COM_JOOMLEAGUE_SETTINGS_MAXIMGSIZE_DESCR">
 		</field>
-		<field name="name_format" type="nameformat" default="0"
-			label="COM_JOOMLEAGUE_SETTINGS_LABEL_NAME_FORMAT" description="COM_JOOMLEAGUE_SETTINGS_DESCR_NAME_FORMAT">
+		<field name="name_format" type="nameformat" 
+    default="0"
+			label="COM_JOOMLEAGUE_SETTINGS_LABEL_NAME_FORMAT" 
+      description="COM_JOOMLEAGUE_SETTINGS_DESCR_NAME_FORMAT">
 		</field>
-		<field name="cfg_be_show_matchdays_order" type="list" default="ASC"
-			label="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_TITLE" description="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_DESCR">
+		<field name="cfg_be_show_matchdays_order" 
+    type="list" default="ASC"
+			label="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_TITLE" 
+      description="COM_JOOMLEAGUE_SETTINGS_MATCHDAY_ORDER_DESCR">
 			<option value="ASC">COM_JOOMLEAGUE_GLOBAL_ASC</option>
 			<option value="DESC">COM_JOOMLEAGUE_GLOBAL_DESC</option>
 		</field>
@@ -148,14 +169,17 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
-		<field name="on_prefill_delete_current_match_roster" type="radio"
+		<field name="on_prefill_delete_current_match_roster" 
+    type="radio"
 			default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER"
 			description="COM_JOOMLEAGUE_SETTINGS_ON_PREFILL_DELETE_CURRENT_MATCH_ROSTER_DESCR">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
-		<field name="use_prefilled_match_roster" type="list" default="0"
+		<field name="use_prefilled_match_roster" 
+    type="list" 
+    default="0"
 			label="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER"
 			description="COM_JOOMLEAGUE_SETTINGS_USE_PREFILLED_MATCH_ROSTER_DESCR">
 			<option value="0">JNO</option>
@@ -190,6 +214,7 @@
 
 <!-- register 5 -->	
 	<fieldset name="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
+	label="COM_JOOMLEAGUE_SETTINGS_GROUP_PLACEHOLDER_IMAGES"
 		addfieldpath="/administrator/components/com_joomleague/models/fields">
 		
 		<field name="ph_flags" type="media"
@@ -297,7 +322,8 @@
 
 <!-- register 8 -->
   <fieldset  
-  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_LABEL"
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS" 
+  label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_COLUMNS_DESC">
 
     <field name="cfg_dfbnet_season_name" type="text" default="C"
@@ -405,7 +431,8 @@
 
 <!-- register 9 -->
   <fieldset  
-  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS" label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_LABEL"
+  name="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS" 
+  label="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_LABEL"
 		description="COM_JOOMLEAGUE_SETTINGS_GROUP_DFBNET_PLAYER_COLUMNS_DESC">
   
   <field name="cfg_dfbnet_player_startrow" type="text" default="10"

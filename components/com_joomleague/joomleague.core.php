@@ -74,5 +74,8 @@ $document = JFactory::getDocument();
 $mainframe = JFactory::getApplication();
 //$document->addScript(JURI::root(true).'/administrator/components/'.$option.'/assets/js/jl2.noconflict.js');
 
-//$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."');". "\n";
-//$document->addScriptDeclaration( $js );
+if($task == '' && $option == 'com_joomleague') 
+{
+$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."');". "\n";
+$document->addScriptDeclaration( $js );
+}

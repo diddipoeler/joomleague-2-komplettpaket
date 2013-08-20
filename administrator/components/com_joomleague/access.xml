@@ -28,6 +28,7 @@
 		<action name="results.saveshort" title="COM_JOOMLEAGUE_SETTINGS_RESULTS_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_RESULTS_ACCESS_SAVE_DESC" />
 		<action name="editmatch.display" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT_DESC" />
 		<action name="editmatch.savematch" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVE" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_SAVE_DESC" />
+		<action name="editmatch.editevents" title="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT_EVENTS" description="COM_JOOMLEAGUE_SETTINGS_MATCH_ACCESS_EDIT_EVENTS_DESC" />
 		
     <!-- round-->
     <action name="round.unpublish" title="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_ROUND_ACCESS_UNPUBLISH_DESC" />
