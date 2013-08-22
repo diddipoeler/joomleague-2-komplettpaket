@@ -747,7 +747,35 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $this->_db->loadObjectList();
 	}
 
-	
+	function getPresseberichtMatchnumber($csv_file)
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe = JFactory::getApplication();  
+    $match_id = JRequest::getVar('match_id');  
+    $tbl = JTable::getInstance("match", "Table");
+    $tbl->load($match_id);
+    $match_number = $tbl->match_number;
+    //$mainframe->enqueueMessage(JText::_('getPresseberichtMatchnumber match number<br><pre>'.print_r($match_number,true).'</pre>'   ),'');
+    $csv_match_number = $csv_file->data[0][Spielberichtsnummer];
+    //$mainframe->enqueueMessage(JText::_('getPresseberichtMatchnumber csv match number<br><pre>'.print_r($csv_match_number,true).'</pre>'   ),'');
+    $teile = explode(".",$csv_match_number);
+    
+    if ( $match_number != $teile[0] )
+    {
+        $mainframe->enqueueMessage(JText::_('Spielnummer der Datei passt nicht zur Spielnummer im Projekt.'),'Error');
+        return false;
+    }
+    else
+    {
+        $mainframe->enqueueMessage(JText::_('Spielnummern sind identisch. Datei wird verarbeitet'),'Notice');
+        return true;
+    }
+    
+    
+    
+    }
+    
+    
     function getPressebericht()
     {
     $option = JRequest::getCmd('option');
@@ -756,6 +784,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     //$cid = JRequest::getVar('cid',array(0),'','array');
     //$match_id = $cid[0];
     $match_id = JRequest::getVar('match_id');
+    $this->_id = $match_id;
     //$mainframe->enqueueMessage(JText::_('getPressebericht match_id<br><pre>'.print_r($match_id,true).'</pre>'   ),'');
     $file = JPATH_SITE.DS.'media'.DS.'com_joomleague'.DS.'pressebericht'.DS.$match_id.'.jlg';   
     //$file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
