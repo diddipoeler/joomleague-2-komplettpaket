@@ -49,6 +49,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	const MATCH_ROSTER_RESERVE			= 3;
     
     var $csv_player = array();
+    var $csv_in_out = array();
 
 	/**
 	 * Method to load content matchday data
@@ -788,18 +789,18 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     // spieler aufbereiten startelf
     for($a=1; $a <= $csv_player_count; $a++ )
     {
-        if ( isset($csv_file->data[0]['H-S'.$a.'-Nr']) && !empty($csv_file->data[0]['H-S'.$a.'-Nr'])  )
+        if ( isset($csv_file->data[0][$find_csv.'-S'.$a.'-Nr']) && !empty($csv_file->data[0][$find_csv.'-S'.$a.'-Nr'])  )
         {
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->nummer = $csv_file->data[0]['H-S'.$a.'-Nr'];
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->name = $csv_file->data[0]['H-S'.$a.'-Spieler'];
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->hinweis = $csv_file->data[0]['H-S'.$a.'-Hinweis'];
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->status = $csv_file->data[0]['H-S'.$a.'-Status'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->nummer = $csv_file->data[0][$find_csv.'-S'.$a.'-Nr'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->name = $csv_file->data[0][$find_csv.'-S'.$a.'-Spieler'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->hinweis = $csv_file->data[0][$find_csv.'-S'.$a.'-Hinweis'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->status = $csv_file->data[0][$find_csv.'-S'.$a.'-Status'];
         
-        $teile = explode(",",$csv_file->data[0]['H-S'.$a.'-Spieler']);
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->lastname = trim($teile[0]);
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->firstname = trim($teile[1]);
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->person_id = 0;
-        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->project_person_id = 0;
+        $teile = explode(",",$csv_file->data[0][$find_csv.'-S'.$a.'-Spieler']);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->lastname = trim($teile[0]);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->firstname = trim($teile[1]);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->person_id = 0;
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_person_id = 0;
         // gibt es den spieler
         $query="SELECT id
 				FROM #__joomleague_person 
@@ -810,13 +811,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         
         if ( $person_id )
         {
-            $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->person_id = $person_id;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->person_id = $person_id;
             $query="SELECT id
 			FROM #__joomleague_team_player
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
 			$projectpersonid = $this->_db->loadResult();
-            $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->project_person_id = $projectpersonid;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_person_id = $projectpersonid;
         }
         
         }
@@ -824,18 +825,18 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     // spieler aufbereiten ersatzbank
     for($a=1; $a <= $csv_player_count; $a++ )
     {
-        if ( isset($csv_file->data[0]['H-A'.$a.'-Nr']) && !empty($csv_file->data[0]['H-A'.$a.'-Nr'])  )
+        if ( isset($csv_file->data[0][$find_csv.'-A'.$a.'-Nr']) && !empty($csv_file->data[0][$find_csv.'-A'.$a.'-Nr'])  )
         {
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->nummer = $csv_file->data[0]['H-A'.$a.'-Nr'];
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->name = $csv_file->data[0]['H-A'.$a.'-Spieler'];
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->hinweis = $csv_file->data[0]['H-A'.$a.'-Hinweis'];
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->status = $csv_file->data[0]['H-A'.$a.'-Status'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->nummer = $csv_file->data[0][$find_csv.'-A'.$a.'-Nr'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->name = $csv_file->data[0][$find_csv.'-A'.$a.'-Spieler'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->hinweis = $csv_file->data[0][$find_csv.'-A'.$a.'-Hinweis'];
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->status = $csv_file->data[0][$find_csv.'-A'.$a.'-Status'];
         
-        $teile = explode(",",$csv_file->data[0]['H-A'.$a.'-Spieler']);
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->lastname = trim($teile[0]);
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->firstname = trim($teile[1]);
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->person_id = 0;
-        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->project_person_id = 0;
+        $teile = explode(",",$csv_file->data[0][$find_csv.'-A'.$a.'-Spieler']);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->lastname = trim($teile[0]);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->firstname = trim($teile[1]);
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->person_id = 0;
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_person_id = 0;
         
         // gibt es den spieler ?
         $query="SELECT id
@@ -847,20 +848,31 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         
         if ( $person_id )
         {
-            $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->person_id = $person_id;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->person_id = $person_id;
             $query="SELECT id
 			FROM #__joomleague_team_player
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
 			$projectpersonid = $this->_db->loadResult();
-            $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->project_person_id = $projectpersonid;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_person_id = $projectpersonid;
         }
         
         }
     }
     
+    // jetzt kommen die wechsel
+    for($a=1; $a <= $csv_player_count; $a++ )
+    {
+        if ( isset($csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Zeit']) && !empty($csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Zeit'])  )
+        {
+            $this->csv_in_out[$a]->in_out_time = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Zeit'];
+            $this->csv_in_out[$a]->came_in = 1;
+            $this->csv_in_out[$a]->in = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Nr'];
+            $this->csv_in_out[$a]->out = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Für Nr'];
+        }
+    }
     $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers player<br><pre>'.print_r($this->csv_player,true).'</pre>'   ),'');
-    
+    $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers wechsel<br><pre>'.print_r($this->csv_in_out,true).'</pre>'   ),'');
     
     
     
