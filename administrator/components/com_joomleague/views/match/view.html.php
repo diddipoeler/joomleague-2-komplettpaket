@@ -92,7 +92,8 @@ $matchnumber = $model->getPresseberichtMatchnumber($csv_file);
 $this->assignRef('matchnumber',$matchnumber);
 if ( $matchnumber )
 {
-$readplayers = $model->getPresseberichtReadPlayers($csv_file);     
+$readplayers = $model->getPresseberichtReadPlayers($csv_file);  
+$this->assignRef('csvplayers',$model->csv_player);   
 } 
         parent::display($tpl);
     }
