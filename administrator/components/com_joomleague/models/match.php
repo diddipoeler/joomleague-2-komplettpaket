@@ -747,7 +747,17 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $this->_db->loadObjectList();
 	}
 
-	function getPresseberichtMatchnumber($csv_file)
+	
+    function getPresseberichtReadPlayers($csv_file)
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe = JFactory::getApplication();  
+    $match_id = JRequest::getVar('match_id');    
+        
+    }
+    
+    
+    function getPresseberichtMatchnumber($csv_file)
     {
     $option = JRequest::getCmd('option');
 	$mainframe = JFactory::getApplication();  

@@ -1,5 +1,7 @@
 <?PHP
 
+if ( $this->matchnumber )
+{
 echo '<pre>',print_r($this->csv, true),'</pre>';
 
 ?>
@@ -23,3 +25,9 @@ echo '<pre>',print_r($this->csv, true),'</pre>';
 	</tr>
 	<?php endforeach; ?>
 </table>
+
+<?PHP
+}
+
+
+?>

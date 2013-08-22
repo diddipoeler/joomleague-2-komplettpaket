@@ -88,7 +88,12 @@ class JoomleagueViewMatch extends JLGView
 $model = $this->getModel();
 $csv_file = $model->getPressebericht(); 
 $this->assignRef('csv',$csv_file); 
-$matchnumber = $model->getPresseberichtMatchnumber($csv_file);     
+$matchnumber = $model->getPresseberichtMatchnumber($csv_file);    
+$this->assignRef('matchnumber',$matchnumber);
+if ( $matchnumber )
+{
+$readplayers = $model->getPresseberichtReadPlayers($csv_file);     
+} 
         parent::display($tpl);
     }
 
