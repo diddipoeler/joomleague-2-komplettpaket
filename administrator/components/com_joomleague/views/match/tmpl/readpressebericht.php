@@ -50,6 +50,45 @@ echo '<pre>',print_r($this->csv, true),'</pre>';
 	
 </table>
 
+<table id="<?php echo $dcsv['tableid']; ?>" class="table_from_csv_sortable<? if ($dcsv['sortable'] == false){ echo '_not';} ?>" width="<?php echo $dcsv['tablewidth']; ?>" border="<?php echo $dcsv['border']; ?>" cellspacing="<?php echo $dcsv['cellspacing']; ?>" cellpadding="<?php echo $dcsv['cellpadding']; ?>" bgcolor="<?php echo $dcsv['tablebgcolor']; ?>">
+<tr>	
+<th class="">Spieler</th>	
+<th class="">Minute</th>
+<th class="">Rückennummer</th>
+<th class="">für</th>
+</tr>	
+	
+	
+		<?php foreach ($this->csvinout as $value): ?>
+		<tr>
+        <td><?php echo $value->spieler; ?></td>
+        <td><?php echo $value->in_out_time; ?></td>
+        <td><?php echo $value->in; ?></td>
+        <td><?php echo $value->out; ?></td>
+		<?php endforeach; ?>
+	
+	
+</table>
+
+<table id="<?php echo $dcsv['tableid']; ?>" class="table_from_csv_sortable<? if ($dcsv['sortable'] == false){ echo '_not';} ?>" width="<?php echo $dcsv['tablewidth']; ?>" border="<?php echo $dcsv['border']; ?>" cellspacing="<?php echo $dcsv['cellspacing']; ?>" cellpadding="<?php echo $dcsv['cellpadding']; ?>" bgcolor="<?php echo $dcsv['tablebgcolor']; ?>">
+<tr>	
+<th class="">Spieler</th>	
+<th class="">Minute</th>
+<th class="">Rückennummer</th>
+<th class="">Grund</th>
+</tr>	
+	
+	
+		<?php foreach ($this->csvcards as $value): ?>
+		<tr>
+        <td><?php echo $value->spieler; ?></td>
+        <td><?php echo $value->event_time; ?></td>
+        <td><?php echo $value->spielernummer; ?></td>
+        <td><?php echo $value->notice; ?></td>
+		<?php endforeach; ?>
+	
+	
+</table>
 
 
 

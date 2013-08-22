@@ -50,6 +50,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     
     var $csv_player = array();
     var $csv_in_out = array();
+    var $csv_cards = array();
 
 	/**
 	 * Method to load content matchday data
@@ -753,7 +754,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	
     function getPresseberichtReadPlayers($csv_file)
     {
-    $csv_player_count = 20;    
+    $csv_player_count = 40;    
     $option = JRequest::getCmd('option');
 	$mainframe = JFactory::getApplication(); 
     $project_id = $mainframe->getUserState($option.'project'); 
@@ -869,11 +870,29 @@ class JoomleagueModelMatch extends JoomleagueModelItem
             $this->csv_in_out[$a]->came_in = 1;
             $this->csv_in_out[$a]->in = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Nr'];
             $this->csv_in_out[$a]->out = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Für Nr'];
+            $this->csv_in_out[$a]->spieler = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Spieler'];
         }
     }
+    
+    // jetzt kommen die karten
+    for($a=1; $a <= $csv_player_count; $a++ )
+    {
+        if ( isset($csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit']) && !empty($csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit'])  )
+        {
+            $this->csv_cards[$a]->event_time = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit'];
+            $this->csv_cards[$a]->event_sum = 1;
+            $this->csv_cards[$a]->spielernummer = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Nr'];
+            $this->csv_cards[$a]->spieler = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Spieler'];
+            $this->csv_cards[$a]->notice = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Grund'];
+        }
+    }
+    
+    
+    
+    
     $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers player<br><pre>'.print_r($this->csv_player,true).'</pre>'   ),'');
     $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers wechsel<br><pre>'.print_r($this->csv_in_out,true).'</pre>'   ),'');
-    
+    $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers wechsel<br><pre>'.print_r($this->csv_cards,true).'</pre>'   ),'');
     
     
     }
