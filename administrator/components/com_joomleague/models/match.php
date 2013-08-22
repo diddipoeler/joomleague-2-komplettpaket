@@ -47,6 +47,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	const MATCH_ROSTER_SUBSTITUTE_IN	= 1;
 	const MATCH_ROSTER_SUBSTITUTE_OUT	= 2;
 	const MATCH_ROSTER_RESERVE			= 3;
+    
+    var $csv_player = array();
 
 	/**
 	 * Method to load content matchday data
@@ -750,10 +752,120 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	
     function getPresseberichtReadPlayers($csv_file)
     {
+    $csv_player_count = 20;    
     $option = JRequest::getCmd('option');
-	$mainframe = JFactory::getApplication();  
+	$mainframe = JFactory::getApplication(); 
+    $project_id = $mainframe->getUserState($option.'project'); 
     $match_id = JRequest::getVar('match_id');    
+    $tblmatch = JTable::getInstance("match", "Table");
+    $tblmatch->load($match_id);
+    $tblproject = JTable::getInstance("project", "Table");
+    $tblproject->load($project_id);
+    $favteam = $tblproject->fav_team;
+    $tblteam = JTable::getInstance("team", "Table");
+    $tblteam->load($favteam);
+    $query="SELECT id
+			FROM #__joomleague_project_team
+			WHERE project_id=$project_id AND team_id=$favteam";
+			$this->_db->setQuery($query);
+			$projectteamid = $this->_db->loadResult();
+    //$mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers projectteamid<br><pre>'.print_r($projectteamid,true).'</pre>'   ),'');    
+    
+    if ( $projectteamid )
+    {
+    $mainframe->enqueueMessage(JText::_('Spieldetails von '.$tblteam->name.' werden verarbeitet.'),'Notice');
+    if ( $projectteamid == $tblmatch->projectteam1_id )
+    {
+        $mainframe->enqueueMessage(JText::_('Heimteam '.$tblteam->name.' wird verarbeitet.'),'Notice');
+        $find_csv = 'H';
+    }
+    elseif ( $projectteamid == $tblmatch->projectteam2_id )
+    {
+        $mainframe->enqueueMessage(JText::_('Auswärtsteam '.$tblteam->name.' wird verarbeitet.'),'Notice');
+        $find_csv = 'G';
+    }        
+    
+    // spieler aufbereiten startelf
+    for($a=1; $a <= $csv_player_count; $a++ )
+    {
+        if ( isset($csv_file->data[0]['H-S'.$a.'-Nr']) && !empty($csv_file->data[0]['H-S'.$a.'-Nr'])  )
+        {
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->nummer = $csv_file->data[0]['H-S'.$a.'-Nr'];
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->name = $csv_file->data[0]['H-S'.$a.'-Spieler'];
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->hinweis = $csv_file->data[0]['H-S'.$a.'-Hinweis'];
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->status = $csv_file->data[0]['H-S'.$a.'-Status'];
         
+        $teile = explode(",",$csv_file->data[0]['H-S'.$a.'-Spieler']);
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->lastname = trim($teile[0]);
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->firstname = trim($teile[1]);
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->person_id = 0;
+        $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->project_person_id = 0;
+        // gibt es den spieler
+        $query="SELECT id
+				FROM #__joomleague_person 
+                WHERE firstname like '".trim($teile[1])."' 
+                AND lastname like '".trim($teile[0])."' ";
+		$this->_db->setQuery($query);
+		$person_id = $this->_db->loadResult();
+        
+        if ( $person_id )
+        {
+            $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->person_id = $person_id;
+            $query="SELECT id
+			FROM #__joomleague_team_player
+			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
+			$this->_db->setQuery($query);
+			$projectpersonid = $this->_db->loadResult();
+            $this->csv_player[$csv_file->data[0]['H-S'.$a.'-Nr']]->project_person_id = $projectpersonid;
+        }
+        
+        }
+    }
+    // spieler aufbereiten ersatzbank
+    for($a=1; $a <= $csv_player_count; $a++ )
+    {
+        if ( isset($csv_file->data[0]['H-A'.$a.'-Nr']) && !empty($csv_file->data[0]['H-A'.$a.'-Nr'])  )
+        {
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->nummer = $csv_file->data[0]['H-A'.$a.'-Nr'];
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->name = $csv_file->data[0]['H-A'.$a.'-Spieler'];
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->hinweis = $csv_file->data[0]['H-A'.$a.'-Hinweis'];
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->status = $csv_file->data[0]['H-A'.$a.'-Status'];
+        
+        $teile = explode(",",$csv_file->data[0]['H-A'.$a.'-Spieler']);
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->lastname = trim($teile[0]);
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->firstname = trim($teile[1]);
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->person_id = 0;
+        $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->project_person_id = 0;
+        
+        // gibt es den spieler ?
+        $query="SELECT id
+				FROM #__joomleague_person 
+                WHERE firstname like '".trim($teile[1])."' 
+                AND lastname like '".trim($teile[0])."' ";
+		$this->_db->setQuery($query);
+		$person_id = $this->_db->loadResult();
+        
+        if ( $person_id )
+        {
+            $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->person_id = $person_id;
+            $query="SELECT id
+			FROM #__joomleague_team_player
+			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
+			$this->_db->setQuery($query);
+			$projectpersonid = $this->_db->loadResult();
+            $this->csv_player[$csv_file->data[0]['H-A'.$a.'-Nr']]->project_person_id = $projectpersonid;
+        }
+        
+        }
+    }
+    
+    $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers player<br><pre>'.print_r($this->csv_player,true).'</pre>'   ),'');
+    
+    
+    
+    
+    }
+    
     }
     
     
@@ -762,9 +874,9 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $option = JRequest::getCmd('option');
 	$mainframe = JFactory::getApplication();  
     $match_id = JRequest::getVar('match_id');  
-    $tbl = JTable::getInstance("match", "Table");
-    $tbl->load($match_id);
-    $match_number = $tbl->match_number;
+    $tblmatch = JTable::getInstance("match", "Table");
+    $tblmatch->load($match_id);
+    $match_number = $tblmatch->match_number;
     //$mainframe->enqueueMessage(JText::_('getPresseberichtMatchnumber match number<br><pre>'.print_r($match_number,true).'</pre>'   ),'');
     $csv_match_number = $csv_file->data[0][Spielberichtsnummer];
     //$mainframe->enqueueMessage(JText::_('getPresseberichtMatchnumber csv match number<br><pre>'.print_r($csv_match_number,true).'</pre>'   ),'');
