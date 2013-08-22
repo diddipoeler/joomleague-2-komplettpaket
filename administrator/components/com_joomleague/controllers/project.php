@@ -24,7 +24,9 @@ jimport('joomla.application.component.controllerform');
 class JoomleagueControllerProject extends JoomleagueController
 {
 
-	function __construct()
+	protected $view_list = 'projects';
+    
+    function __construct()
 	{
 		parent::__construct();
 
@@ -307,7 +309,8 @@ class JoomleagueControllerProject extends JoomleagueController
 			else
 			{
 				echo '<span style="color:green">'.JText::_('COM_JOOMLEAGUE_GLOBAL_SUCCESS').'</span>';
-			}
+			}
+
 			// Delete project divisions in table #__joomleague_division
 			echo '<br /><br />'.JText::_('COM_JOOMLEAGUE_PROJECT_DELETING_DIVISIONS').'&nbsp;&nbsp;';
 			$model=$this->getModel('division');
@@ -502,20 +505,23 @@ class JoomleagueControllerProject extends JoomleagueController
 		$this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
 	}
 
+/*
 	function orderup()
 	{
 		$model=$this->getModel('project');
 		$model->move(-1);
 		$this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
 	}
+*/
 
+/*
 	function orderdown()
 	{
 		$model=$this->getModel('project');
 		$model->move(1);
 		$this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
 	}
-	
+*/	
 	function saveorder()
 	{
 		$cid=JRequest::getVar('cid',array(),'post','array');

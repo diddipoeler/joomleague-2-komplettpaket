@@ -1,6 +1,8 @@
 <?php defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
+jimport( 'joomla.utilities.arrayhelper' );
+
 require_once (JLG_PATH_ADMIN .DS.'models'.DS.'rounds.php');
 
 class JoomleagueModelProject extends JModel
@@ -635,6 +637,28 @@ class JoomleagueModelProject extends JModel
 			return $result;
 		}
 	}
+    
+    /**
+	 * 
+	 * @param $project_id
+	 */
+	function getProjectGameRegularTime($project_id)
+	{
+		$gameprojecttime = 0;
+        $query = 'SELECT game_regular_time 
+					FROM #__joomleague_project 
+					WHERE id='.$project_id;
+		$this->_db->setQuery($query);
+		$result = $this->_db->loadObject();
+		
+        $gameprojecttime += $result->game_regular_time;
+        if ( $result->allow_add_time )
+        {
+            $gameprojecttime += $result->add_time;
+        }
+        
+        return $gameprojecttime;
+	}
 
 	function getReferees()
 	{
@@ -1029,8 +1053,10 @@ class JoomleagueModelProject extends JModel
 		    $addline = '';
 		}
 		$esort = '';
+        $arrayobjectsort = '1';
 		if ($sortdesc == 1) {
 		    $esort = ' DESC';
+            $arrayobjectsort = '-1';
 		}
 		$query = ' 	SELECT 	me.event_type_id,
 							me.id as event_id,
@@ -1060,7 +1086,28 @@ class JoomleagueModelProject extends JModel
 					ORDER BY (me.event_time + 0)'. $esort .', me.event_type_id, me.id';
 			
 		$this->_db->setQuery( $query );
-		return $this->_db->loadObjectList();
+		
+        $events = $this->_db->loadObjectList();
+        
+        $query = "SELECT *  
+    FROM #__joomleague_match_commentary
+    WHERE match_id = ".(int)$this->matchid;
+    $this->_db->setQuery($query);
+		$commentary = $this->_db->loadObjectList();
+        if ( $commentary )
+        {
+            foreach ( $commentary as $comment )
+            {
+                $temp = new stdClass();
+                $temp->event_type_id = 0;
+                $temp->event_sum = $comment->type;
+                $temp->event_time = $comment->event_time;
+                $temp->notes = $comment->notes;
+                $events[] = $temp;
+            }
+        }
+        $events = JArrayHelper::sortObjects($events,'event_time',$arrayobjectsort);
+        return $events;
 	}
 	
 	function hasEditPermission($task=null)

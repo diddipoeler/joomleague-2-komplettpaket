@@ -12,6 +12,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
+// pagination
 require_once (JPATH_COMPONENT . DS . 'helpers' . DS . 'pagination.php');
 
 jimport('joomla.application.component.view');
@@ -31,7 +32,7 @@ class JoomleagueViewPredictionRanking extends JLGView
     $mainframe = JFactory::getApplication();
 		$document	=& JFactory::getDocument();
 		$uri = JFactory :: getURI();
-		$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."');". "\n";
+		$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."','0');". "\n";
     $document->addScriptDeclaration( $js );	
 		$model		=& $this->getModel();
     $option = JRequest::getCmd('option');
@@ -47,7 +48,8 @@ class JoomleagueViewPredictionRanking extends JLGView
 	// push data into the template
 	$this->assignRef('items', $items);	
 	$this->assignRef('pagination', $pagination);
-    
+
+/*    
     // limit, limitstart und limitende
     $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
     $limitstart = JRequest::getVar('limitstart', 0, '', 'int');
@@ -55,6 +57,7 @@ class JoomleagueViewPredictionRanking extends JLGView
     $this->assignRef('limit',$limit);
     $this->assignRef('limitstart',$limitstart);
     $this->assignRef('limitend',$limitend);
+*/
     
 //     $mdlProject = JModel::getInstance("Project", "JoomleagueModel");
 //     $mdlProject->setProjectId($project->id);

@@ -233,6 +233,7 @@ class JoomleagueViewProjectteams extends JLGView
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id = $mainframe->getUserState( $option . 'project' );
+        $show_debug_info = JComponentHelper::getParams($option)->get('show_debug_info',0);
 
 		$db = JFactory::getDBO();
 		$uri = JFactory::getURI();
@@ -300,7 +301,7 @@ class JoomleagueViewProjectteams extends JLGView
 	function _displayCopy($tpl)
 	{
 		$document = JFactory::getDocument();
-		$option = 'com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
 		$project_id = $mainframe->getUserState( $option . 'project' );
 	
@@ -345,7 +346,8 @@ class JoomleagueViewProjectteams extends JLGView
 		JLToolBarHelper::custom('projectteam.copy','copy','copy', JText::_('COM_JOOMLEAGUE_GLOBAL_COPY'), true);
 		JToolBarHelper::divider();
 
-		JLToolBarHelper::onlinehelp();	
+		JLToolBarHelper::onlinehelp();
+    JToolBarHelper::preferences(JRequest::getCmd('option'));	
 	}
 	
 	/**

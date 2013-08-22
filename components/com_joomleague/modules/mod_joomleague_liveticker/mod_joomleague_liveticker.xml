@@ -40,18 +40,24 @@
 			<option value="simple.css">Simple</option>
 		</field>
 		<field name="allow_unregistered" type="radio" default="1" label="Allow unregistered user shout" description="" >
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="@spacer" type="spacer" default="" label="" description="" />
 
 <field name="display_liganame" type="radio" default="0" label="Liganame" >
-			<option value="0">Ja</option>
-			<option value="1">Nein</option>
+			<option value="0">JYES</option>
+			<option value="1">JNO</option>
 					</field>
+					
+<field name="display_commentary" type="radio" default="1" label="Kommentare" >
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+					</field>
+          					
 <field name="display_ligaflagge" type="radio" default="0" label="Ligaflagge" >
-			<option value="0">Ja</option>
-			<option value="1">Nein</option>
+			<option value="0">JYES</option>
+			<option value="1">JNO</option>
 					</field>
                     		
 <field name="display_teamname" type="radio" default="0" label="Mannschaftsname" >
@@ -62,35 +68,35 @@
 		</field>		
 		
 <field name="display_teamwappen" type="radio" default="0" label="Mannschaftswappen" >
-			<option value="0">Ja</option>
-			<option value="1">Nein</option>
+			<option value="0">JYES</option>
+			<option value="1">JNO</option>
 					</field>				
 		<field name="display_anstoss" type="radio" default="0" label="Anstosszeit" >
-			<option value="0">Ja</option>
-			<option value="1">Nein</option>
+			<option value="0">JYES</option>
+			<option value="1">JNO</option>
 					</field>				
 					<field name="display_abpfiff" type="radio" default="0" label="Abpfiff" >
-			<option value="0">Ja</option>
-			<option value="1">Nein</option>
+			<option value="0">JYES</option>
+			<option value="1">JNO</option>
 					</field>				
 		
 		
 		<field name="@spacer" type="spacer" default="" label="" description="" />
 		<field name="display_username" type="radio" default="1" label="Display Username" >
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="display_title" type="radio" default="1" label="Display Title" >
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="display_guests" type="radio" default="1" label="Display 'Guest' mark on not logged users messages" >
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 		<field name="display_welcome" type="radio" default="1" label="Display welcome message for logged in users" >
-			<option value="0">No</option>
-			<option value="1">Yes</option>
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
 		</field>
 
 		<field name="display_num" type="text" default="5" label="Display Num" description="Number of Shouts to display" />

@@ -253,8 +253,18 @@ class JoomleagueModelJLXMLExport extends JModel
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe	= JFactory::getApplication();
+        
+        $pid	= JRequest::getVar('pid',	array(0),'','array');
+        if($pid[0] > 0)
+		{
+			$this->_project_id = $pid[0];
+		}
+        else
+        {
+            $this->_project_id = $mainframe->getUserState($option.'project');
+        }
 
-		$this->_project_id = $mainframe->getUserState($option.'project');
+		
 		if (empty($this->_project_id) || $this->_project_id == 0)
 		{
 			JError::raiseWarning('ERROR_CODE',JText::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'));
@@ -398,7 +408,17 @@ class JoomleagueModelJLXMLExport extends JModel
 		jimport('joomla.filter.output');
 		$filename = $this->_getIdFromData('name', $this->_project);
 		if(empty($filename)) {
-			$this->_project_id = $mainframe->getUserState($option.'project');
+		  
+        $pid	= JRequest::getVar('pid',	array(0),'','array');
+        if($pid[0] > 0)
+		{
+			$this->_project_id = $pid[0];
+		}
+        else
+        {
+            $this->_project_id = $mainframe->getUserState($option.'project');
+        }
+			
 			if (empty($this->_project_id) || $this->_project_id == 0)
 			{
 				JError::raiseWarning('ERROR_CODE',JText::_('COM_JOOMLEAGUE_ADMIN_XML_EXPORT_MODEL_SELECT_PROJECT'));

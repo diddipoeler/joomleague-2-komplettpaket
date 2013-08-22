@@ -124,7 +124,10 @@ class JoomleagueViewTeamStaffs extends JLGView
 		JToolBarHelper::back( 'COM_JOOMLEAGUE_ADMIN_TSTAFFS_BACK', 'index.php?option=com_joomleague&view=projectteams&task=projectteam.display' );
 		JToolBarHelper::divider();
 
-		JToolBarHelper::help( 'screen.joomleague', true );
+		
+		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
+		
 	}
 }
 ?>

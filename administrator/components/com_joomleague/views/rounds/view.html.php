@@ -145,6 +145,7 @@ class JoomleagueViewRounds extends JLGView
 			JLToolBarHelper::custom('round.cancelmassadd','cancel.png','cancel_f2.png',JText::_('COM_JOOMLEAGUE_ADMIN_ROUNDS_MASSADD_CANCEL'),false);
 		}
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}	
 	/**
 	* Add the page title and toolbar.

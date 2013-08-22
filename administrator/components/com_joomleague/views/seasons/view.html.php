@@ -71,6 +71,7 @@ class JoomleagueViewSeasons extends JLGView
 		JLToolBarHelper::deleteList('', 'season.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

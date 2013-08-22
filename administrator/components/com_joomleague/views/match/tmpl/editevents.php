@@ -23,6 +23,8 @@ defined('_JEXEC') or die('Restricted access');
 <script type="text/javascript">
 <!--
 var matchid = <?php echo $this->teams->id; ?>;
+
+var projecttime=<?php echo $this->eventsprojecttime; ?>;
 var baseajaxurl='<?php echo JUri::root();?>administrator/index.php?option=com_joomleague&<?php echo JUtility::getToken() ?>=1';
 var homeroster = new Array;
 <?php
@@ -124,6 +126,9 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 						<td style='text-align:center; ' ><input type="text" size="3" value="" id="event_sum" name="event_sum" class="inputbox" /></td>
 						<td style='text-align:center; ' ><input type="text" size="3" value="" id="event_time" name="event_time" class="inputbox" /></td>
 						<td style='text-align:center; ' ><input type="text" size="20" value="" id="notice" name="notice" class="inputbox" /></td>
+                        
+                        
+                        
 						<td style='text-align:center; ' >
 							<?php echo JHtml::_('form.token'); ?>
 							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
@@ -153,16 +158,16 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 			<tbody>
 				<?php
 				$k=0;
-				if ( isset( $this->matchevents ) )
+				if ( isset( $this->matchcommentary ) )
 				{
-					foreach ( $this->matchevents as $event )
+					foreach ( $this->matchcommentary as $event )
 					{
-						if ($event->event_type_id == 0) {
+						
 						?>
-						<tr class="<?php echo "row$k"; ?>">
+						<tr id="rowcomment-<?php echo $event->id; ?>" class="<?php echo "row$k"; ?>">
 							<td>
 								<?php 
-								switch ($event->event_sum) {
+								switch ($event->type) {
                                     case 2:
                                         echo JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_EE_LIVE_TYPE_2' );
                                         break;
@@ -183,17 +188,17 @@ var str_delete = "<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE'); ?>";
 								?>
 							</td>
 							<td style='text-align:center; ' >
-								<input	id="delete-<?php echo $event->id; ?>" type="button" class="inputbox button-delete"
+								<input	id="deletecomment-<?php echo $event->id; ?>" type="button" class="inputbox button-delete-commentary"
 										value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_DELETE' ); ?>" />
 							</td>
 						</tr>
 						<?php
-						}
+						
 					$k=1 - $k;
 					}
 				}
 				?>
-				<tr id="row-new-comment">
+				<tr id="rowcomment-new">
 
 					<td>
 						<select name="ctype" id="ctype" class="inputbox select-commenttype">

@@ -26,7 +26,15 @@ class JoomleagueControllerTemplate extends JoomleagueController
 
 	function __construct()
 	{
+		$mainframe	= JFactory::getApplication();
+		$option = JRequest::getCmd('option');
 		parent::__construct();
+
+		$pid	= JRequest::getVar('pid',	array(0),'','array');
+		if ( $pid[0] )
+		{
+		$mainframe->setUserState($option.'project',(int)$pid[0]);
+		}
 
 		// Register Extra tasks
 		$this->registerTask('add','display');

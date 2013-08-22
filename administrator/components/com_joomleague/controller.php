@@ -26,15 +26,29 @@ class JoomleagueController extends JControllerAdmin
 	
 	public function display($cachable = false, $urlparams = false)
 	{
-		// display the left menu only if hidemainmenu is not true
+		$option		= JRequest::getCmd('option');
+		$mainframe	= JFactory::getApplication();
+    $currentseason = JComponentHelper::getParams($option)->get('current_season',0);
+    //$mainframe->enqueueMessage(JText::_('display current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
+    // display the left menu only if hidemainmenu is not true
 		$show_menu=!JRequest::getVar('hidemainmenu',false);
 
 		// display left menu
 		$viewName=JRequest::getCmd('view', '');
 		$layoutName=JRequest::getCmd('layout', 'default');
 		if($viewName == '' && $layoutName=='default') {
-			JRequest::setVar('view', 'projects');
+			
+      if ( $currentseason )
+      {
+      JRequest::setVar('view', 'currentseasons');
+			$viewName = "currentseasons";
+      }
+      else
+      {
+      JRequest::setVar('view', 'projects');
 			$viewName = "projects";
+      }
+      
 		}
 		if ($viewName != 'about' && $show_menu) {
 			$this->ShowMenu();
@@ -100,6 +114,8 @@ class JoomleagueController extends JControllerAdmin
 		$stid	= JRequest::getVar('stid',	array(0),'','array');
 		$act	= JRequest::getVar('act',0);
 
+    $currentseason = JComponentHelper::getParams($option)->get('current_season',0);
+    //$mainframe->enqueueMessage(JText::_('selectws current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
 		$seasonnav = JRequest::getInt('seasonnav');
 		$mainframe->setUserState($option.'seasonnav', $seasonnav);
 
@@ -113,7 +129,15 @@ class JoomleagueController extends JControllerAdmin
 				}
 				else
 				{
-					$this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
+					if ( $currentseason )
+					{
+					$this->setRedirect('index.php?option=com_joomleague&view=currentseasons&task=currentseason.display');
+          }
+          else
+          {
+          $this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
+          }
+          
 				}
 				break;
 

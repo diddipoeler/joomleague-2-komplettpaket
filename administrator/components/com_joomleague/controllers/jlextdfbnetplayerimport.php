@@ -129,15 +129,17 @@ function select()
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
 		JToolBarHelper::back(JText::_('JPREV'),JRoute::_('index.php?option=com_joomleague&view=jldfbnetimport&controller=jldfbnetimport'));
-		$mainframe =& JFactory::getApplication();
+		//$mainframe =& JFactory::getApplication();
 		$model = $this->getModel('jlextdfbnetplayerimport');
 		$post = JRequest::get('post');
 
     $delimiter = JRequest::getVar('delimiter',null);
     $whichfile = JRequest::getVar('whichfile',null);
+    $projectid = JRequest::getVar('projektfussballineuropa',null);
     
-    $mainframe->enqueueMessage(JText::_('delimiter '.$delimiter.''),'');
-    $mainframe->enqueueMessage(JText::_('whichfile '.$whichfile.''),'');
+    $mainframe->enqueueMessage(JText::_('delimiter -> '.$delimiter.''),'');
+    $mainframe->enqueueMessage(JText::_('whichfile -> '.$whichfile.''),'');
+    $mainframe->enqueueMessage(JText::_('projectid -> '.$projectid.''),'');
     
     if ( $whichfile == 'playerfile' )
     {
@@ -154,7 +156,27 @@ function select()
     
     }
     
-    
+    if ( $projectid )
+    {
+        $europalink = "http://www.fussballineuropa.de/index.php?option=com_joomleague&view=jlxmlexports&p=".$projectid."&update=0";
+        $mainframe->enqueueMessage(JText::_('hole daten von -> '.$europalink.''),'Notice');
+        //set the target directory
+		$base_Dir = JPATH_SITE . DS . 'tmp' . DS;
+        $filepath = $base_Dir . 'joomleague_import.jlg';
+        if ( !copy($europalink,$filepath) )
+{
+$mainframe->enqueueMessage(JText::_('daten -> '.$europalink.' konnten nicht kopiert werden!'),'Error');
+}
+else
+{
+$upload['name'] = $europalink;     
+$mainframe->setUserState('com_joomleague'.'uploadArray',$upload);  
+$mainframe->setUserState('com_joomleague'.'projectidimport',$projectid);  
+$mainframe->enqueueMessage(JText::_('daten -> '.$europalink.' sind kopiert worden!'),'Notice');    
+}
+        }
+        else
+        {
 		// first step - upload
 		if (isset($post['sent']) && $post['sent']==1)
 		{
@@ -240,9 +262,13 @@ function select()
 					}
 			}
 		}
+        
+        }
 		
-		if (isset($post['dfbimportupdate']) )
-		{
+	
+    
+    if (isset($post['dfbimportupdate']) )
+	{
     $link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&task=jlextdfbnetplayerimport.update';
     }
     else
@@ -250,14 +276,29 @@ function select()
     
     if ( $whichfile == 'matchfile' )
     {
-    $xml_file = $model->getData();
+    if ( $projectid )
+    {
+        $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+        }
+        else
+        {
+            $xml_file = $model->getData();    
     $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+        }
     }
     else
     {
-    $xml_file = $model->getData();    
+        if ( $projectid )
+    {
+        $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+        }
+        else
+        {
+            $xml_file = $model->getData();    
     $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
-    //$link='index.php?option=com_joomleague&view=jlextdfbnetplayerimport&controller=jlextdfbnetplayerimport&task=edit';
+        }
+    
+    
     }
     
     }

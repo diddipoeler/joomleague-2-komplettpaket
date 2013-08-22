@@ -139,7 +139,17 @@ class JoomleagueModelNextMatch extends JoomleagueModelProject
 		return $this->teams;
 	}
 
-	function getReferees()
+	function getMatchCommentary()
+    {
+        $query = "SELECT *  
+    FROM #__joomleague_match_commentary
+    WHERE match_id = ".(int)$this->matchid." 
+    ORDER BY event_time DESC";
+    $this->_db->setQuery($query);
+		return $this->_db->loadObjectList();
+    }
+    
+    function getReferees()
 	{
 		$match = &$this->getMatch();
 		$query = ' SELECT p.firstname, p.nickname, p.lastname, p.country, pos.name AS position_name, p.id as person_id '

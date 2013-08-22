@@ -71,6 +71,7 @@ class JoomleagueViewpredictiongroups extends JLGView
 		JLToolBarHelper::deleteList('', 'predictiongroup.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

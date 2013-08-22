@@ -74,8 +74,16 @@ $document = JFactory::getDocument();
 $mainframe = JFactory::getApplication();
 //$document->addScript(JURI::root(true).'/administrator/components/'.$option.'/assets/js/jl2.noconflict.js');
 
+if ( $mainframe->isAdmin() )
+{
 if($task == '' && $option == 'com_joomleague') 
 {
-//$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."');". "\n";
-//$document->addScriptDeclaration( $js );
+$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','1');". "\n";
+$document->addScriptDeclaration( $js );
+}
+}
+else
+{
+$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','0');". "\n";
+$document->addScriptDeclaration( $js );    
 }

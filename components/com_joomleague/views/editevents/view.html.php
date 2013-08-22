@@ -13,6 +13,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
+jimport('joomla.html.pane');
 
 /**
  * Joomleague Component editmatch View
@@ -48,6 +49,12 @@ class JoomleagueViewEditEvents extends JLGView
 		$this->assignRef('hometeam',$model->getHomeTeam());
 		$this->assignRef('team1_id',$model->getHomeTeamID());
 		$this->assignRef('projectteam1_id',$model->getHomeProjectTeamID());
+        
+        // diddipoeler
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+        $this->assignRef('eventsprojecttime',$model->getProjectGameRegularTime($this->project->id ) );
+        $matchcommentary =& $model->getMatchCommentary();
+        $this->assignRef('matchcommentary',$matchcommentary);
 
 		$this->assignRef('awayteam',$model->getAwayTeam());
 		$this->assignRef('team2_id',$model->getAwayTeamID());

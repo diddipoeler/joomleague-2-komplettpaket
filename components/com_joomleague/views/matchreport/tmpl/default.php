@@ -105,6 +105,11 @@ if (!empty($this->matchplayerpositions ))
 	{
         $output['COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'] = 'summary';
 	}
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+        $output['COM_JOOMLEAGUE_MATCHREPORT_MATCH_COMMENTARY'] = 'commentary';
+	}
 	
 	if (($this->config['show_pictures'])==1 && $this->matchimages )
 	{
@@ -180,6 +185,11 @@ if (!empty($this->matchplayerpositions ))
 	if (($this->config['show_summary'])==1 && $this->match->summary )
 	{
 		echo $this->loadTemplate('summary');
+	}
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+        echo $this->loadTemplate('commentary');
 	}
 	
 	if (($this->config['show_pictures'])==1 && $this->matchimages )
@@ -266,6 +276,12 @@ if (!empty($this->matchplayerpositions ))
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('summary');
 	}
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+	   echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_COMMENTARY'), 'panel'.($idxTab++));
+        echo $this->loadTemplate('commentary');
+	}
   
   if (($this->config['show_pictures'])==1  && $this->matchimages )
 	{
@@ -346,6 +362,12 @@ if (!empty($this->matchplayerpositions ))
 	{
 	echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_SUMMARY'), 'panel'.($idxTab++));
 		echo $this->loadTemplate('summary');
+	}
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+	   echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_MATCHREPORT_MATCH_COMMENTARY'), 'panel'.($idxTab++));
+        echo $this->loadTemplate('commentary');
 	}
  
   echo JHTML::_('sliders.end');

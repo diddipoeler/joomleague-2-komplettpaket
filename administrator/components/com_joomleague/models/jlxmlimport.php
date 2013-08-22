@@ -76,6 +76,77 @@ class JoomleagueModelJLXMLImport extends JModel
 			echo "<script> alert('".JText::sprintf('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_ERROR', 'Missing import file')."'); window.history.go(-1); </script>\n";
 		}
 	}
+    
+    
+    public function getDataUpdateImportID()
+    {
+    $mainframe = JFactory::getApplication();
+    $option = JRequest::getCmd('option');
+    $project_id = $mainframe->getUserState($option.'project', 0);  
+    
+    //$mainframe->enqueueMessage(JText::_('_displayUpdate project_id -> '.'<pre>'.print_r($project_id ,true).'</pre>' ),'');
+      
+    $update_project = JTable::getInstance('Project','Table');
+    $update_project->load($project_id);
+    return $update_project->import_project_id;    
+    }
+        
+    public function getDataUpdate()
+    {
+        $my_text='';
+        foreach ( $this->_datas['match'] as $key => $value )
+        {
+            $query=' SELECT	m.*,
+							CASE m.time_present
+							when NULL then NULL
+							else DATE_FORMAT(m.time_present, "%H:%i")
+							END AS time_present,
+							t1.name AS hometeam, t1.id AS t1id,
+							t2.name as awayteam, t2.id AS t2id,
+							pt1.project_id,
+							m.extended as matchextended
+						FROM #__joomleague_match AS m
+						INNER JOIN #__joomleague_project_team AS pt1 ON pt1.id=m.projectteam1_id
+						INNER JOIN #__joomleague_team AS t1 ON t1.id=pt1.team_id
+						INNER JOIN #__joomleague_project_team AS pt2 ON pt2.id=m.projectteam2_id
+						INNER JOIN #__joomleague_team AS t2 ON t2.id=pt2.team_id
+						WHERE m.import_match_id = '.(int) $value->id;
+			$this->_db->setQuery($query);
+			$match_data = $this->_db->loadObject();
+            $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'Update Match: %1$s / Match: %2$s - %3$s / Result: %4$s - %5$s',
+									'</span><strong>'.$match_data->id.'</strong><span style="color:'.$this->storeSuccessColor.'">',
+									"</span><strong>$match_data->hometeam</strong>",
+									"<strong>$match_data->awayteam</strong>",
+									"<strong>$value->team1_result</strong>",
+									"<strong>$value->team2_result</strong>"
+                                    );
+					$my_text .= '<br />';
+                    
+     $update_match = JTable::getInstance('Match','Table');
+     $match_id = (int) $match_data->id;
+     $update_match->load($match_id);
+     if ( $value->team1_result )
+     {
+     $update_match->team1_result = (int) $value->team1_result;
+     $update_match->team2_result = (int) $value->team2_result;
+     }
+     
+     if ( !$update_match->store() )
+	{
+	   $my_text .= '<span style="color:'.$this->storeFailedColor. '"> nicht gesichert '.' - '.$match_data->match_date.'</span>';
+       $my_text .= '<br />';
+	}
+	else
+	{
+	   $my_text .= '<span style="color:'.$this->storeSuccessColor.'"> gesichert '.' - '.$match_data->match_date.'</span>';
+       $my_text .= '<br />';
+	}
+            
+        }
+        $this->_success_text['Update match data:'] = $my_text;
+        return $this->_success_text;
+    }
 
 	public function getData()
 	{
@@ -3313,6 +3384,9 @@ $this->dump_variable("import_team", $import_team);
 				$p_match->set('extended',$this->_getDataFromObject($match,'extended'));
 				$p_match->set('published',$this->_getDataFromObject($match,'published'));
                 
+                // diddipoeler
+                $p_match->set('import_match_id',$this->_getDataFromObject($match,'id'));
+                
                 $p_match->set('division_id',$this->_getDataFromObject($match,'division_id'));
                 
 			}
@@ -3387,6 +3461,9 @@ $this->dump_variable("import_team", $import_team);
 				$p_match->set('show_report',$this->_getDataFromObject($match,'show_report'));
 				$p_match->set('match_result_detail',$this->_getDataFromObject($match,'match_result_detail'));
 				$p_match->set('published',$this->_getDataFromObject($match,'published'));
+                
+                // diddipoeler
+                $p_match->set('import_match_id',$this->_getDataFromObject($match,'id'));
 			}
 
 			if ($p_match->store()===false)

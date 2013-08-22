@@ -5,3 +5,14 @@
 div.current select {
     margin-bottom: 0 !important;
 }
+
+.ajaxerror
+{
+  color: red;
+  font-weight: bold;
+}
+.ajaxsuccess
+{
+  color: green;
+  font-weight: bold;
+}

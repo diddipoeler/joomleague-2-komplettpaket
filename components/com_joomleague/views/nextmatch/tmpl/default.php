@@ -52,6 +52,11 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$this->currentteam = $this->match->projectteam2_id;
 			echo $this->loadTemplate('previousx');
 		}
+        
+        if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+        echo $this->loadTemplate('commentary');
+	}
 		
 		}
 		else if ( ($this->config['show_nextmatch_tabs']) == "show_tabs" )
@@ -90,6 +95,13 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     $this->currentteam = $this->match->projectteam2_id;
     $params .= $this->loadTemplate('previousx');      
     }
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_NEXTMATCH_COMMENTARY').'}';
+    $params .= $this->loadTemplate('commentary'); 
+	}
+    
     $params .= $endoutput;
     echo JHTML::_('content.prepare', $params);
 
@@ -130,6 +142,13 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$this->currentteam = $this->match->projectteam2_id;
 			echo $this->loadTemplate('previousx');
 		}
+        
+        if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+	   echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_NEXTMATCH_COMMENTARY'), 'panel'.($idxTab++));
+        echo $this->loadTemplate('commentary');
+	}
+        
 	
 	echo JHTML::_('tabs.end');
     }
@@ -174,7 +193,14 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
     $this->currentteam = $this->match->projectteam2_id;
     $params .= $this->loadTemplate('previousx'); 
     $params .= $endoutput;     
-    }    
+    }
+    
+    if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+    $params .= $startoutput.JText::_('COM_JOOMLEAGUE_NEXTMATCH_COMMENTARY').'}';
+    $params .= $this->loadTemplate('commentary'); 
+    $params .= $endoutput; 
+	}   
         
         
         
@@ -216,6 +242,13 @@ JoomleagueHelper::addTemplatePaths($templatesToLoad, $this);
 			$this->currentteam = $this->match->projectteam2_id;
 			echo $this->loadTemplate('previousx');
 		}
+        
+        if (($this->config['show_commentary'])==1 && $this->matchcommentary )
+	{
+	   echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_NEXTMATCH_COMMENTARY'), 'panel'.($idxTab++));
+        echo $this->loadTemplate('commentary');
+	}
+        
 	
 	echo JHTML::_('sliders.end');
     }

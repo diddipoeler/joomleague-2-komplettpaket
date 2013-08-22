@@ -123,7 +123,11 @@ class JoomleagueControllerPerson extends JoomleagueController
 
 			if (JRequest::getVar('assignperson'))
 			{
-				$pid				= $model->getDbo()->insertid();
+				// diddipoeler
+                // wenn man im nächsten model mit einem array arbeitet
+                // sollte man auch ein array übergeben
+                $pid = array();
+                $pid[0]				= $model->getDbo()->insertid();
 				$project_team_id    = JRequest::getVar('team_id',0,'post','int');
 
 				$model=$this->getModel('teamplayers');

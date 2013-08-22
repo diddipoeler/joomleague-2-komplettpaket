@@ -71,6 +71,7 @@ class JoomleagueViewjlextuserextrafields extends JLGView
 		JLToolBarHelper::deleteList('', 'jlextuserextrafield.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

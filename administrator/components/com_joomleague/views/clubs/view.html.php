@@ -79,6 +79,7 @@ class JoomleagueViewClubs extends JLGView
 		JLToolBarHelper::deleteList('', 'club.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 		
 	}
 }

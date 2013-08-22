@@ -5,7 +5,9 @@
 		<tbody><tr><td><?php echo '&nbsp;'; ?></td></tr></tbody>
 	</table>
 	<?php
-	if (is_array($this->importData))
+	
+    
+    if (is_array($this->importData))
 	{
 		foreach ($this->importData as $key => $value)
 		{
@@ -17,12 +19,14 @@
 			<?php
 		}
 	}
-	//if (JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
-	//{
+    
+    
+	if (JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0))
+	{
 		?><fieldset>
 			<legend><?php echo JText::_('Post data from importform was:'); ?></legend>
-			<table class='adminlist'><tr><td><?php echo '<pre>'.print_r($this->postData,true).'</pre>'; ?></td></tr></table>
+			<table class='adminlist'><tr><td><?php echo '<pre>'.print_r($this->xml,true).'</pre>'; ?></td></tr></table>
 		</fieldset><?php
-	//}
+	}
 	?>
 </div>

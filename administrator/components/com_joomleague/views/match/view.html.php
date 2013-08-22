@@ -79,44 +79,12 @@ class JoomleagueViewMatch extends JLGView
     {
         $mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
-/*
-$file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
-$javascript .= "jQuery(document).ready(function() {". "\n";
-$javascript .= "    jQuery.ajax({". "\n";
-$javascript .= "       type: 'GET',". "\n";
-$javascript .= "       url: '".$file."',". "\n";
-$javascript .= "       data: null,". "\n";
-$javascript .= "       success: function(text) {". "\n";
-$javascript .= "       var fields = text.split(/\n/);". "\n";
-$javascript .= "       fields.pop(fields.length-1);". "\n";
-$javascript .= "           var headers = fields[0].split(','),". "\n"; 
-$javascript .= "               html = '<table>';". "\n";
-$javascript .= "           html += '<tr>';". "\n";
-$javascript .= "           for(var i = 0; i < headers.length; i += 1) {". "\n";
-$javascript .= "              html += '<th scope=\"col\">' + headers[i] + '</th>';". "\n";
-$javascript .= "           }". "\n";
-$javascript .= "           html += '</tr>';". "\n";
-$javascript .= "           var data = fields.slice(1, fields.length);". "\n";
-$javascript .= "           for(var j = 0; j < data.length; j += 1) {". "\n";
-$javascript .= "              var dataFields = data[j].split(',');". "\n";
-$javascript .= "              html += '<tr>';". "\n";
-$javascript .= "              html += '<td>' + dataFields[0] + '</td>';". "\n";
-$javascript .= "              html += '<td><a href=\"' + dataFields[1] + '\">' + dataFields[1] + '</a></td>';". "\n";
-$javascript .= "              html += '<td>' + dataFields[2] + '</td>';". "\n";
-$javascript .= "              html += '</tr>';". "\n";
-$javascript .= "           }". "\n";
-$javascript .= "           html += '</table>';". "\n";
-$javascript .= "           jQuery(html).appendTo('body');". "\n";
-$javascript .= "       }". "\n";
-$javascript .= "    });". "\n";
-$javascript .= "});". "\n";        
-$javascript .= "\n";
-    $document->addScriptDeclaration( $javascript );
-*/
-     
+$mainframe->enqueueMessage(JText::_('displayPressebericht<br><pre>'.print_r($this->_datas['match'],true).'</pre>'   ),'');     
 //    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
-    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv.js');
-    
+//    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv.js');
+$model = $this->getModel();
+$csv_file = $model->getPressebericht(); 
+$this->assignRef('csv',$csv_file);    
         parent::display($tpl);
     }
 
@@ -238,6 +206,7 @@ $javascript .= "\n";
 		}
 		$rosters=array('home' => $homeRoster,'away' => $awayRoster);
 		$matchevents =& $model->getMatchEvents();
+        $matchcommentary =& $model->getMatchCommentary();
 		$project_model = $this->getModel('projectws');
 
 		$lists=array();
@@ -265,6 +234,13 @@ $javascript .= "\n";
 		$this->assignRef('rosters',$rosters);
 		$this->assignRef('teams',$teams);
 		$this->assignRef('matchevents',$matchevents);
+        $this->assignRef('matchcommentary',$matchcommentary);
+        
+        // diddipoeler
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+        $mdlMatchProject = JModel::getInstance('project','JoomleagueModel');
+        $this->assignRef('eventsprojecttime',$mdlMatchProject->getProjectGameRegularTime($project_id) );
+        
 
 		parent::display($tpl);
 	}
@@ -304,6 +280,10 @@ $javascript .= "\n";
 		$this->assignRef('awayRoster',$awayRoster);
 		$this->assignRef('teams',$teams);
 		$this->assignRef('events',$events);
+        
+        // diddipoeler
+        $this->assignRef('eventsprojecttime',$project_model->_data->game_regular_time);
+        
 
 		$this->addToolbar_Editeventsbb();			
 		parent::display($tpl);
@@ -560,7 +540,12 @@ $javascript .= "\n";
 		$this->assignRef('playersoptions',	$playersoptions);
 		$this->assignRef('lists',			$lists);
 		$this->assignRef('preFillSuccess',	$preFillSuccess);
-    
+        
+        // diddipoeler
+        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+        $mdlMatchProject = JModel::getInstance('project','JoomleagueModel');
+        $this->assignRef('eventsprojecttime',$mdlMatchProject->getProjectGameRegularTime($project_id) );
+        
     $this->assignRef('starters',			$starters);
     
 		parent::display($tpl);

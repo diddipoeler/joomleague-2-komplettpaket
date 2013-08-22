@@ -3,9 +3,9 @@
 JHTML::_( 'behavior.tooltip' );
 JHTML::_( 'behavior.modal' );
 
-$url = 'components/com_joomleague/extensions/jlextdfbnetplayerimport/admin/assets/images/dfbnet-logo.gif';
-$url16 = 'components/com_joomleague/extensions/jlextdfbnetplayerimport/admin/assets/images/dfbnet-logo-16.gif';
-$alt = 'Lmo Logo';
+$url = 'administrator/components/com_joomleague/assets/icons/dfbnet-logo.gif';
+$url16 = 'components/com_joomleague/extensions/jlextdfbnetplayerimport/admin/assets/images/dfbnet-logo.gif';
+$alt = 'DFBNET Logo';
 // $attribs['width'] = '170px';
 // $attribs['height'] = '26px';
 $attribs['align'] = 'left';
@@ -61,21 +61,7 @@ $pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.
 				echo '<p>';
 					echo JText::sprintf('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_HINT2',$this->revisionDate);
 				echo '</p>';
-				/*
-				$linkParams=array();
-				$linkParams['target']='_blank';
-				$linkURL='http://forum.joomleague.net/viewtopic.php?f=13&t=10985#p51461';
-				$link=JRoute::_($linkURL);
-				$linkParams['title']=JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_TOPIC_FORUM');
-				$forumLink=JHTML::link($link,$linkURL,$linkParams);
-				$linkURL='http://bugtracker.joomleague.net/issues/226';
-				$link=JRoute::_($linkURL);
-				$linkParams['title']=JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_TOPIC_BUGTRACKER');
-				$bugtrackerLink=JHTML::link($link,$linkURL,$linkParams);
-				echo '<p>'.JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_HINT3').'</p>';
-				echo "<p>$forumLink</p>";
-				echo "<p>$bugtrackerLink</p>";
-				*/
+				
 				?>
         </td>
         </tr>
@@ -97,6 +83,20 @@ $pfad = JURI::root().'media/com_joomleague/description/extensions_dfbnet_import.
       </fieldset>
       </td>
       </tr>
+      
+      <tr>
+      <td>
+      <fieldset style='text-align: center; '>
+      <legend>
+				<?php
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_PROJECT_FUSSBALLINEUROPA');
+				?>
+			</legend>      
+      <input class='input_box' type='text' id='projektfussballineuropa' name='projektfussballineuropa'  value=""/><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_USE_PROJECT_ID'); ?>      
+      </fieldset>
+      </td>
+      </tr>
+      
       <?php
       }
       ?>

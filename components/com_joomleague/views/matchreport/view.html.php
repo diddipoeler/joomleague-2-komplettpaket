@@ -41,6 +41,9 @@ class JoomleagueViewMatchReport extends JLGView
 		$this->assignRef('matchstaffs',$model->getMatchStaff());
 		$this->assignRef('matchrefereepositions',$model->getMatchRefereePositions());
 		$this->assignRef('matchreferees',$model->getMatchReferees());
+        
+        $this->assignRef('matchcommentary',$model->getMatchCommentary());
+        
 		$this->assignRef('substitutes',$model->getSubstitutes());
 		$this->assignRef('eventtypes',$model->getEventTypes());
 		$sortEventsDesc = isset($this->config['sort_events_desc']) ? $this->config['sort_events_desc'] : '1';

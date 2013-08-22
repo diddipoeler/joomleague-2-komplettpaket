@@ -29,7 +29,7 @@ class JFormFieldSeasons extends JFormField
 		$query = 'SELECT t.id, t.name FROM #__joomleague_season t ORDER BY name DESC';
 		$db->setQuery( $query );
 		$teams = $db->loadObjectList();
-		$mitems = array(JHtml::_('select.option', 0, JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
+		$mitems = array(JHtml::_('select.option', '0', JText::_('COM_JOOMLEAGUE_GLOBAL_SELECT')));
 
 		foreach ( $teams as $team ) {
 			$mitems[] = JHtml::_('select.option',  $team->id, '&nbsp;'.$team->name. ' ('.$team->id.')' );

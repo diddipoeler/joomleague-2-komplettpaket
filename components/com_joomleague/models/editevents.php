@@ -524,7 +524,24 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 		return $not_assigned_options;
 	}
 
-	/**
+	
+    /**
+	 * get match commentary
+	 *
+	 * @return array
+	 */
+	function getMatchCommentary()
+	{
+		$query=' SELECT	me.*'
+        .' FROM #__joomleague_match_commentary AS me '
+		.' WHERE me.match_id='.(int) $this->matchid
+		.' ORDER BY me.event_time ASC ';
+		$this->_db->setQuery($query);
+		return ($this->_db->loadObjectList());
+	}
+    
+    
+    /**
 	 * returns players who played for the specified team
 	 *
 	 * @param int $team_id
@@ -837,6 +854,22 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 		}
 		return $playersoptions;
 	}
+    
+    function deletecommentary($event_id)
+	{
+		$object =& JTable::getInstance('MatchCommentary','Table');
+		if (!$object->canDelete($event_id))
+		{
+			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_ERROR_DELETE_COMMENTARY');
+			return false;
+		}
+		if (!$object->delete($event_id))
+		{
+			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_DELETE_FAILED_COMMENTARY');
+			return false;
+		}
+		return true;
+	}
 
 	function deleteevent($event_id)
 	{
@@ -853,14 +886,35 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 		}
 		return true;
 	}
-
-	function saveevent($data,$project_id)
+    
+    function savecomment($data, $project_id)
 	{
-		$object =& JTable::getInstance('MatchEvent','Table');
+		
+        // live kommentar speichern
+        if ( empty($data['event_time']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_NO_TIME'));
+		return false;
+		}
+
+        
+        if ( empty($data['notes']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_NO_COMMENT'));
+		return false;
+		}
+            
+        if ( (int)$data['event_time'] > (int)$data['projecttime'] )
+		{
+		$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_TIME_OVER_PROJECTTIME',$data['event_time'],$data['projecttime']));
+		return false;
+		}
+        
+        $object =& JTable::getInstance('MatchCommentary','Table');
 		$object->bind($data);
 		if (!$object->check())
 		{
-			$this->setError(JText::_('CHECK FAILED'));
+			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
 			return false;
 		}
 		if (!$object->store())
@@ -868,6 +922,50 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 			$this->setError($this->_db->getErrorMsg());
 			return false;
 		}
+        else
+        {
+            $object->id = $this->_db->insertid();
+        }
+        
+		return $object->id;
+	}
+
+	function saveevent($data,$project_id)
+	{
+		if ( empty($data['event_time']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_NO_TIME'));
+		return false;
+		}
+        
+        if ( empty($data['event_sum']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_NO_EVENT_SUM'));
+		return false;
+		}
+        
+        if ( (int)$data['event_time'] > (int)$data['projecttime'] )
+		{
+		$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_TIME_OVER_PROJECTTIME',$data['event_time'],$data['projecttime']));
+		return false;
+		}
+   
+        $object =& JTable::getInstance('MatchEvent','Table');
+		$object->bind($data);
+		if (!$object->check())
+		{
+			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			return false;
+		}
+		if (!$object->store())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+        else
+        {
+            $object->id = $this->_db->insertid();
+        }
 		return $object->id;
 	}
 
@@ -1175,12 +1273,19 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 
 	function isAllowed()
 	{
-		$allowed = false;
+		$mainframe	= JFactory::getApplication();
+        $allowed = false;
 		$user = JFactory::getUser();
+        
+        //$mainframe->enqueueMessage(JText::_('isAllowed user-> '.'<pre>'.print_r($user,true).'</pre>' ),'');
 
 		if ($user->id != 0)
 		{
 			$project =& $this->getProject();
+            
+            //$mainframe->enqueueMessage(JText::_('isAllowed user->id-> '.'<pre>'.print_r($user->id,true).'</pre>' ),'');
+            //$mainframe->enqueueMessage(JText::_('isAllowed project->admin-> '.'<pre>'.print_r($project->admin,true).'</pre>' ),'');
+            //$mainframe->enqueueMessage(JText::_('isAllowed project->editor-> '.'<pre>'.print_r($project->editor,true).'</pre>' ),'');
 
 			if (($user->authorise('editmatch.editevents', 'com_joomleague')) &&
 			    (($user->id == $project->admin) || ($user->id == $project->editor)))
@@ -1193,7 +1298,8 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 
 	function isMatchAdmin($matchid,$userid)
 	{
-		$query='	SELECT count(*)
+		$mainframe	= JFactory::getApplication();
+        $query='	SELECT count(*)
 					FROM #__joomleague_match AS m
 						INNER JOIN #__joomleague_project_team AS tt1 ON m.projectteam1_id=tt1.id
 						INNER JOIN #__joomleague_project_team AS tt2 ON m.projectteam2_id=tt2.id
@@ -1205,6 +1311,11 @@ class JoomleagueModelEditEvents extends JoomleagueModelProject
 		{
 			return false;
 		}
+        
+        //$mainframe->enqueueMessage(JText::_('isMatchAdmin matchid-> '.'<pre>'.print_r($matchid,true).'</pre>' ),'');
+        //$mainframe->enqueueMessage(JText::_('isMatchAdmin userid-> '.'<pre>'.print_r($userid,true).'</pre>' ),'');
+        //$mainframe->enqueueMessage(JText::_('isMatchAdmin result-> '.'<pre>'.print_r($result,true).'</pre>' ),'');
+        
 		return true;
 	}
 

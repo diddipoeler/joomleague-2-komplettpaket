@@ -48,7 +48,32 @@ $database = JFactory::getDBO();
 // get club info, we have to make a function for this
 $dateformat = "DATE_FORMAT(c.founded,'%Y-%m-%d') AS date_of_birth";
 
+/*
+SELECT c.id, c.founded, c.name, c.alias, c.founded_year, 
+			c.logo_big AS picture, c.country, 
+			DATE_FORMAT(c.founded, '%m-%d')AS daymonth,
+			YEAR( CURRENT_DATE( ) ) as year,
+			(YEAR( CURRENT_DATE( ) ) - YEAR( c.founded ) +
+			IF(DATE_FORMAT(CURDATE(), '%m.%d') > DATE_FORMAT(c.founded, '%m.%d'), 1, 0)) AS age,
+            YEAR( CURRENT_DATE( ) ) - c.founded_year as age_year,
+			DATE_FORMAT(c.founded,'%Y-%m-%d') AS date_of_birth, 
+			(TO_DAYS(DATE_ADD(c.founded, INTERVAL
+			(YEAR(CURDATE()) - YEAR(c.founded) +
+			IF(DATE_FORMAT(CURDATE(), '%m.%d') >
+			DATE_FORMAT(c.founded, '%m.%d'), 1, 0))
+			YEAR)) - TO_DAYS( CURDATE())+0) AS days_to_birthday,
+            pt.project_id
 
+			FROM b05ce_joomleague_club c 
+            INNER JOIN b05ce_joomleague_team as t 
+            ON t.club_id = c.id
+            INNER JOIN b05ce_joomleague_project_team as pt 
+            ON pt.team_id = t.id  
+			WHERE ( c.founded != '0000-00-00' OR c.founded_year != '0000' )
+            GROUP BY c.id
+            ORDER BY days_to_birthday ASC
+            
+*/
 	$query="SELECT c.id, c.founded, c.name, c.alias, c.founded_year, 
 			c.logo_big AS picture, c.country, 
 			DATE_FORMAT(c.founded, '%m-%d')AS daymonth,
@@ -72,9 +97,8 @@ $dateformat = "DATE_FORMAT(c.founded,'%Y-%m-%d') AS date_of_birth";
             ON t.club_id = c.id
             INNER JOIN #__joomleague_project_team as pt 
             ON pt.team_id = t.id  
-			WHERE ( c.founded != '0000-00-00' AND c.founded_year != '0000' ) 
-            OR ( c.founded != '0000-00-00' AND c.founded_year = '0000' ) 
-            OR ( c.founded = '0000-00-00' AND c.founded_year != '0000' ) ";
+			WHERE ( c.founded != '0000-00-00' OR c.founded_year != '0000' ) 
+             ";
 			
 	$query .= " GROUP BY c.id ";
 

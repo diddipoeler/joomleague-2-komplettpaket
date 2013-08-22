@@ -35,3 +35,14 @@ legend {
 	font-size: 12px;
 	font-weight: bold;
 }
+
+.ajaxerror
+{
+  color: red;
+  font-weight: bold;
+}
+.ajaxsuccess
+{
+  color: green;
+  font-weight: bold;
+}

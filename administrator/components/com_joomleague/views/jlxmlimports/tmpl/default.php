@@ -13,10 +13,43 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 				echo JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_HINT1').'<br>';
 				echo '</p>';
 				?></td></tr></tfoot>
-			<tbody><tr><td><fieldset style='text-align: center; '>
+			<tbody>
+            
+            <tr>
+      <td>
+      <fieldset style='text-align: center; '>
+      <legend>
+				<?php
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_PROJECT_FUSSBALLINEUROPA');
+				?>
+			</legend>      
+      <input class='input_box' type='text' id='projektfussballineuropa' name='projektfussballineuropa'  value="<?php echo $this->projektfussballineuropa; ?>"/><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_USE_PROJECT_ID'); ?>      
+      </fieldset>
+      </td>
+      </tr>
+      
+      <tr>
+      <td>
+      <fieldset style='text-align: center; '>
+      <legend>
+				<?php
+				echo JText::_( 'COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_SELECT_USE_PROJECT');
+				?>
+			</legend>      
+      <input class='input_box' type='checkbox' id='importupdate' name='importupdate'  /><?php echo JText::_('COM_JOOMLEAGUE_ADMIN_DFBNET_IMPORT_USE_PROJECT'); ?>      
+      </fieldset>
+      </td>
+      </tr>
+      
+            <tr>
+            <td>
+            <fieldset style='text-align: center; '>
 				<input class='input_box' id='import_package' name='import_package' type='file' size='57' />
 				<input class='button' type='submit' value='<?php echo JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_UPLOAD_BUTTON'); ?>' />
-				</fieldset></td></tr></tbody>
+			</fieldset>
+            </td>
+            </tr>
+            </tbody>
 		</table>
 		<input type='hidden' name='sent' value='1' />
 		<input type='hidden' name='MAX_FILE_SIZE' value='<?php echo $this->config->get('upload_maxsize'); ?>' />

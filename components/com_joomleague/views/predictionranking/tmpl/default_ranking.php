@@ -22,19 +22,6 @@ echo 'this->limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre>
 echo 'this->limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
 }
 
-
-/*
-<style type="text/css">
-
-ul { 
-    list-style: none; 
-} 
-ul li { 
-    display: inline; 
-} 
-</style>
-
-*/
 ?>
 
 <style type="text/css">
@@ -110,7 +97,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			$from_matchday=$this->model->createFromMatchdayList($predictionProject->project_id);
 			$to_matchday=$this->model->createToMatchdayList($predictionProject->project_id);
 			?>
-			<form name='adminForm' id='adminForm' method='post'>
+			<form action="<?php echo JRoute::_('index.php?option=com_joomleague'); ?>" name='adminForm' id='adminForm' method='post'>
             <input type="hidden" name="view" value="predictionranking" />
 				<table>
 					<tr>

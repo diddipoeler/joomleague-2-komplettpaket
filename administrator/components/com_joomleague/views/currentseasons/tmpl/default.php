@@ -46,7 +46,8 @@ foreach ($this->items as $item)
 											($item->project_type == 'DIVISIONS_LEAGUE'))
 										{
 											$link=JRoute::_('index.php?option=com_joomleague&view=divisions&task=division.display&pid[]='.$item->id);
-											$text=JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS');
+											
+                                            $text=JText::plural('COM_JOOMLEAGUE_P_PANEL_DIVISIONS', $item->count_projectdivisions);
 											$imageFile='icon-48-Divisions.png';
 											$linkParams="<span>$text</span>&nbsp;";
 											$image=JHTML::_('image.administrator',$imageFile,$path,NULL,NULL,$text).$linkParams;
@@ -68,7 +69,8 @@ foreach ($this->items as $item)
 										<?php
 										}
 										$link=JRoute::_('index.php?option=com_joomleague&view=projectposition&task=projectposition.display&pid[]='.$item->id);
-										$text=JText::_('COM_JOOMLEAGUE_P_MENU_POSITIONS');
+										
+                                        $text=JText::plural('COM_JOOMLEAGUE_P_PANEL_POSITIONS', $item->count_projectpositions);
 										$imageFile='icon-48-Positions.png';
 										$linkParams="<span>$text</span>&nbsp;";
 										$image=JHTML::_('image.administrator',$imageFile,$path,NULL,NULL,$text).$linkParams;
@@ -76,7 +78,8 @@ foreach ($this->items as $item)
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
 										$link=JRoute::_('index.php?option=com_joomleague&view=projectreferees&task=projectreferee.display&pid[]='.$item->id);
-										$text=JText::_('COM_JOOMLEAGUE_P_MENU_REFEREES');
+										
+                                        $text=JText::plural('COM_JOOMLEAGUE_P_PANEL_REFEREES', $item->count_projectreferees);
 										$imageFile='icon-48-Referees.png';
 										$linkParams="<span>$text</span>&nbsp;";
 										$image=JHTML::_('image.administrator',$imageFile,$path,NULL,NULL,$text).$linkParams;
@@ -84,7 +87,8 @@ foreach ($this->items as $item)
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
 				 						$link=JRoute::_('index.php?option=com_joomleague&view=projectteams&task=projectteam.display&pid[]='.$item->id);
-										$text=JText::_('COM_JOOMLEAGUE_P_MENU_TEAMS');
+										
+                                        $text=JText::plural('COM_JOOMLEAGUE_P_PANEL_TEAMS', $item->count_projectteams);
 										$imageFile='icon-48-Teams.png';
 										$linkParams="<span>$text</span>&nbsp;";
 										$image=JHTML::_('image.administrator',$imageFile,$path,NULL,NULL,$text).$linkParams;
@@ -92,7 +96,8 @@ foreach ($this->items as $item)
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
 				 						$link=JRoute::_('index.php?option=com_joomleague&view=rounds&task=round.display&pid[]='.$item->id);
-										$text=JText::_('COM_JOOMLEAGUE_P_MENU_MATCHDAYS');
+										
+                                        $text=JText::plural('COM_JOOMLEAGUE_P_PANEL_MATCHDAYS', $item->count_matchdays);
 										$imageFile='icon-48-Matchdays.png';
 										$linkParams="<span>$text</span>&nbsp;";
 										$image=JHTML::_('image.administrator',$imageFile,$path,NULL,NULL,$text).$linkParams;

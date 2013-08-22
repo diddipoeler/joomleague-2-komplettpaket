@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
 jimport( 'joomla.filesystem.file' );
 
+// pagination
 require_once(JPATH_COMPONENT . DS . 'helpers' . DS . 'pagination.php');
 
 /**
@@ -32,8 +33,8 @@ class JoomleagueViewPredictionResults extends JLGView
 		$document	=& JFactory::getDocument();
 		$model		=& $this->getModel();
     $option = JRequest::getCmd('option');
-    $optiontext = strtoupper(JRequest::getCmd('option').'_');
-    $this->assignRef( 'optiontext',			$optiontext );
+    //$optiontext = strtoupper(JRequest::getCmd('option').'_');
+    //$this->assignRef( 'optiontext',			$optiontext );
     
 		$mainframe = JFactory::getApplication();
 
@@ -52,7 +53,9 @@ class JoomleagueViewPredictionResults extends JLGView
 			$this->assignRef('model',				$model);
 			$this->assignRef('roundID',				$this->model->roundID);
 			$this->assignRef('config',				array_merge($overallConfig,$config) );
+            $model->config = $this->config;
 			$this->assignRef('configavatar',				$configavatar );
+            $model->configavatar = $this->configavatar;
 
 			$this->assignRef('predictionMember',	$model->getPredictionMember($configavatar));
 			//$this->assignRef('predictionMember',	$model->getPredictionMemberAvatar($this->predictionMember, $configavatar ));
@@ -71,6 +74,23 @@ class JoomleagueViewPredictionResults extends JLGView
 			$this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
 			// Set page title
 			$pageTitle = JText::_('COM_JOOMLEAGUE_PRED_RESULTS_TITLE');
+        
+        // Get data from the model
+ 	//$items = $model->getPredictionMembersList($this->config,$this->configavatar,false);
+     $items =& $this->get('Data');	
+ 	$pagination =& $this->get('Pagination');
+            $this->assignRef('memberList', $items );
+            $this->assignRef('pagination', $pagination);
+
+/*    
+    // limit, limitstart und limitende
+    $limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
+    $limitstart = JRequest::getVar('limitstart', 0, '', 'int');
+    $limitend = $limitstart + $limit;
+    $this->assignRef('limit',$limit);
+    $this->assignRef('limitstart',$limitstart);
+    $this->assignRef('limitend',$limitend);
+*/
 
 			$document->setTitle($pageTitle);
 

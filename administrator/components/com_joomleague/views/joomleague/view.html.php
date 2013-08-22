@@ -267,6 +267,10 @@ class JoomleagueViewJoomleague extends JLGView
 		$link1=array();
 		$label1=array();
 		$limage1=array();
+        
+        $link1[]=JRoute::_('index.php?option=com_joomleague&view=currentseasons&task=currentseason.display');
+		$label1[]=JText::_('COM_JOOMLEAGUE_D_MENU_CURRENT_PROJECTS');
+		$limage1[]=JHTML::_('image',$imagePath.'projects.png',JText::_('COM_JOOMLEAGUE_D_MENU_CURRENT_PROJECTS'));
 
 		$link1[]=JRoute::_('index.php?option=com_joomleague&view=projects&task=project.display');
 		$label1[]=JText::_('COM_JOOMLEAGUE_D_MENU_PROJECTS');
@@ -397,9 +401,11 @@ class JoomleagueViewJoomleague extends JLGView
 		$pane->alert=false;
 		$tabs[]=$pane;
 
+/*
 		$link3[]=JRoute::_('index.php?option=com_joomleague&task=settings.edit');
 		$label3[]=JText::_('COM_JOOMLEAGUE_M_MENU_SETTINGS');
 		$limage3[]=JHTML::_('image',$imagePath.'settings.png',JText::_('COM_JOOMLEAGUE_M_MENU_SETTINGS'));
+*/
 
 		$link3[]=JRoute::_('index.php?option=com_joomleague&view=jlxmlimports&task=jlxmlimport.display');
 		$label3[]=JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT');

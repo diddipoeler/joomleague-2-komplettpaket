@@ -391,7 +391,30 @@ class JoomleagueModelProject extends JoomleagueModelItem
 		return $configvalues;
 	}
 
-	/**
+	
+    /**
+	 * 
+	 * @param $project_id
+	 */
+	function getProjectGameRegularTime($project_id)
+	{
+		$gameprojecttime = 0;
+        $query = 'SELECT game_regular_time 
+					FROM #__joomleague_project 
+					WHERE id='.$project_id;
+		$this->_db->setQuery($query);
+		$result = $this->_db->loadObject();
+		
+        $gameprojecttime += $result->game_regular_time;
+        if ( $result->allow_add_time )
+        {
+            $gameprojecttime += $result->add_time;
+        }
+        
+        return $gameprojecttime;
+	}
+    
+    /**
 	 * 
 	 * @param $project_id
 	 */

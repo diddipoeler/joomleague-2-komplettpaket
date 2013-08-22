@@ -68,17 +68,22 @@ class JoomleagueModelPredictionRanking extends JoomleagueModelPrediction
     $option = JRequest::getCmd('option');    
     $mainframe = JFactory::getApplication();
     $this->predictionGameID	= JRequest::getInt('prediction_id',0);
-    
+
+if ( JRequest::getVar( "view") == 'predictionranking' )
+{
 	// Get pagination request variables
 	$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
 	$limitstart = JRequest::getVar('limitstart', 0, '', 'int');
- 
+
 	// In case limit has been changed, adjust it
 	$limitstart = ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
  
 	$this->setState('limit', $limit);
 	$this->setState('limitstart', $limitstart);
-  
+}
+
+//$mainframe->enqueueMessage(JText::_('PredictionRanking __construct limit -> '.'<pre>'.print_r($limit ,true).'</pre>' ),'');
+//$mainframe->enqueueMessage(JText::_('PredictionRanking__construct view-> '.'<pre>'.print_r(JRequest::getVar( "view"),true).'</pre>' ),'');   
     
 	}
 

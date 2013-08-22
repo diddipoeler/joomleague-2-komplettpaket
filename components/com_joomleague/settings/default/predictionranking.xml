@@ -43,9 +43,11 @@
 			<option value="1">JYES</option>
 		</field>
 
+<!--
 		<field	name="limit" type="text" size="3" maxlength="2" default="10"
 				label="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_LABEL_USER_LIMIT"
 				description="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_DESCR_USER_LIMIT" />
+-->
 
 		<field	name="link_name_to" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_PREDICTIONRANKING_PARAM_LABEL_LINK_USER_TO"

@@ -70,6 +70,7 @@ class JoomleagueViewjlextcountries extends JLGView
 		JLToolBarHelper::deleteList('', 'jlextcountry.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

@@ -39,10 +39,14 @@ class JoomleagueModelPrediction extends JModel
 	var $_predictionProject		= null;
 	var $predictionProjectID	= null;
 	var $show_debug_info	= false;
+    
+    
 
 	function __construct()
 	{
-		$post	= JRequest::get('post');
+		$option = JRequest::getCmd('option');    
+    $mainframe = JFactory::getApplication();
+        $post	= JRequest::get('post');
 		
 		$this->predictionGameID		= JRequest::getInt('prediction_id',		0);
 		$this->predictionMemberID	= JRequest::getInt('uid',	0);
@@ -60,6 +64,18 @@ class JoomleagueModelPrediction extends JModel
 
 		$this->page  				= JRequest::getInt('page',	1);
 
+/*        
+    // Get pagination request variables
+	$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
+	//$limit=JRequest::getInt('limit',$mainframe->getCfg('list_limit'));
+    $limitstart = JRequest::getVar('limitstart', 0, '', 'int');
+ 
+	// In case limit has been changed, adjust it
+	$limitstart = ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
+    $this->limit = $limit;
+	$this->limitstart = $limitstart;
+*/
+
     $show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0);
     if ( $show_debug_info )
     {
@@ -74,6 +90,14 @@ class JoomleagueModelPrediction extends JModel
 	}
 
 
+
+
+
+
+
+
+
+  
   function getChampionPoints($champ_tipp)
   {
   $ChampPoints = 0;
@@ -1753,10 +1777,20 @@ ok[points_tipp_joker] => 0					Points for wrong prediction with Joker
 		return $dummy;
 	}
 
-	function getPredictionMembersList(&$config, &$configavatar)
+	function getPredictionMembersList(&$config = NULL, &$configavatar = NULL, $total = false, $limit = NULL)
 	{
-		if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
+/*		
+        if ( $total )
+        {
+            $config['show_full_name'] = 0;
+            $configavatar['show_image_from'] = 'prediction';
+        }
+*/        
+        
+        if ($config['show_full_name']==0){$nameType='username';}else{$nameType='name';}
 		
+        
+        
 		switch ( $configavatar['show_image_from'] )
 		{
     case 'com_cbe':
@@ -1857,6 +1891,15 @@ $query .= " AND pm.group_id = ".$this->pggroup;
         $this->_db->setQuery($query);
 		$results = $this->_db->loadObjectList();
 		
+        if ( $total )
+        {
+        
+        return $query;
+            
+        }
+        else
+        {
+        
 		foreach ( $results as $row )
 		{
     $picture = $this->getPredictionMemberAvatar($row->user_id, $configavatar['show_image_from']  );
@@ -1865,14 +1908,15 @@ $query .= " AND pm.group_id = ".$this->pggroup;
     $row->avatar = $picture;
     }
     }
-		
 		return $results;
+        }
+		
 	}
 
 function checkStartExtension()
 {
 $application = JFactory::getApplication();
-echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."');</script>";
+echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."','0');</script>";
 }
 
 }

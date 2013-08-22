@@ -244,7 +244,18 @@ class JoomleagueModelMatchReport extends JoomleagueModelProject
 		return $this->_db->loadObjectList();
 	}
 
-	function getMatchReferees()
+	function getMatchCommentary()
+    {
+        $query = "SELECT *  
+    FROM #__joomleague_match_commentary
+    WHERE match_id = ".(int)$this->matchid." 
+    ORDER BY event_time DESC";
+    $this->_db->setQuery($query);
+		return $this->_db->loadObjectList();
+    }
+    
+    
+    function getMatchReferees()
 	{
 		$query=' SELECT	p.id,'
 		      .' p.firstname,'

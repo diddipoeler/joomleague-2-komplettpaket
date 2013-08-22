@@ -34,6 +34,7 @@ $document->addScript(JURI::base().'administrator/components/com_joomleague/asset
 	</h2>
 	<form name="startingSquadsForm" id="startingSquadsForm" method="post">
 		<?php
+        /*
 		$paneStartOffset=9;
 		$pane =& JPane::getInstance('Tabs',array('startOffset'=>$paneStartOffset));
 					//startOffset: The default tab to start with.
@@ -87,6 +88,60 @@ $document->addScript(JURI::base().'administrator/components/com_joomleague/asset
 			echo $pane->endPanel();
 
 		echo $pane->endPane();
+        */
+        
+// slider anzeigen
+$output = array();
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_SUBST'] = 'edit_home_substitution';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_PLAYER'] = 'edit_home_player';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_STAFF'] = 'edit_home_staff';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_SUBST'] = 'edit_away_substitution';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_PLAYER'] = 'edit_away_player';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_STAFF'] = 'edit_away_staff';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_REFEREES'] = 'edit_referees';
+$output['COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_EVENTS'] = 'edit_events';
+
+$startoutput = '{slider=';
+    $endoutput = '{/slider}';
+    foreach ( $output as $key => $templ ) 
+    {
+    $params .= $startoutput.JText::_($key).'}';
+    $params .= $this->loadTemplate($templ);    
+    $params .= $endoutput;
+    } 
+    
+    echo JHTML::_('content.prepare', $params);
+/*
+$idxTab = 1;
+echo JHTML::_('sliders.start','slider_editevents', array('useCookie'=>1));
+
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_SUBST'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_home_substitution');
+					
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_PLAYER'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_home_player');
+					
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_HOME_STAFF'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_home_staff');
+
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_SUBST'), 'panel'.($idxTab++));					
+echo $this->loadTemplate('edit_away_substitution');
+					
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_PLAYER'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_away_player');
+					
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_AWAY_STAFF'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_away_staff');
+
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_REFEREES'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_referees');
+			
+echo JHTML::_('tabs.panel', JText::_('COM_JOOMLEAGUE_EDIT_EVENTS_EDIT_EVENTS'), 'panel'.($idxTab++));
+echo $this->loadTemplate('edit_events');
+        
+echo JHTML::_('sliders.end');        
+*/        
+        
 		?>
 
 		<input type="hidden" name="p" value="<?php echo $this->project->id; ?>" />

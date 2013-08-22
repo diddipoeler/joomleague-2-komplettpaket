@@ -256,7 +256,11 @@ class JoomleagueModelTeamPlayers extends JoomleagueModelList
 	 */
 	function storeAssigned($cid,$projectteam_id)
 	{
-		if (!count($cid) || !$projectteam_id){return 0;}
+		$mainframe = JFactory::getApplication();
+        //$mainframe->enqueueMessage(JText::_('storeAssigned cid-> '.'<pre>'.print_r($cid,true).'</pre>' ),'');
+        //$mainframe->enqueueMessage(JText::_('storeAssigned projectteam_id-> '.'<pre>'.print_r($projectteam_id,true).'</pre>' ),'');
+        
+        if (!count($cid) || !$projectteam_id){return 0;}
 		$query="	SELECT	p.id
 					FROM #__joomleague_person AS p
 					INNER JOIN #__joomleague_team_player AS tp ON tp.person_id=p.id

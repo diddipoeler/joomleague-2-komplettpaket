@@ -613,7 +613,7 @@ class JoomleagueControllerMatch extends JoomleagueController
 					}
 			}
 		}
-        $csv_file = $model->getPressebericht();  
+        //$csv_file = $model->getPressebericht();  
 		$link='index.php?option=com_joomleague&task=match.readpressebericht';
 		$this->setRedirect($link,$msg);    
         
@@ -759,19 +759,52 @@ $this->view_list = 'matches&task=match.display';
 		$data['teamplayer_id']	= JRequest::getInt('teamplayer_id');
 		$data['projectteam_id']	= JRequest::getInt('projectteam_id');
 		$data['event_type_id']	= JRequest::getInt('event_type_id');
-		$data['event_time']		= JRequest::getVar('event_time', '');
+		$data['event_time']		= JRequest::getVar('event_time','');
 		$data['match_id']		= JRequest::getInt('match_id');
 		$data['event_sum']		= JRequest::getVar('event_sum', '');
 		$data['notice']			= JRequest::getVar('notice', '');
 		$data['notes']			= JRequest::getVar('notes', '');
-		
-		$model=$this->getModel('match');
-		$project_id=$mainframe->getUserState($option.'project',0);
-		if (!$result=$model->saveevent($data, $project_id)) {
-			$result="0"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_EVENT').': '.$model->getError();
-		} else {
-			$result=JRequest::getVar('rowid',0).'\n'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
-		}
+        
+        // diddipoeler
+        $data['projecttime']			= JRequest::getVar('projecttime','');
+        
+        $model = $this->getModel('match');
+		$project_id = $mainframe->getUserState($option.'project',0);
+		if (!$result = $model->saveevent($data, $project_id)) {
+			$result = "0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_EVENT').': '.$model->getError();
+        } else {
+			$result = $model->getDbo()->insertid()."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
+		}    
+ 
+		echo json_encode($result);
+		JFactory::getApplication()->close();
+	}
+    
+    function savecomment()
+	{
+		$option = JRequest::getCmd('option');
+
+		// Check for request forgeries
+		JRequest::checkToken("GET") or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
+
+		$mainframe = JFactory::getApplication();
+		$data = array();
+		$data['event_time']		= JRequest::getVar('event_time','');
+		$data['match_id']		= JRequest::getInt('match_id');
+		$data['type']		= JRequest::getVar('event_sum', '');
+		$data['notes']			= JRequest::getVar('notes', '');
+        
+        // diddipoeler
+        $data['projecttime']			= JRequest::getVar('projecttime','');
+        
+        $model = $this->getModel('match');
+		$project_id = $mainframe->getUserState($option.'project',0);
+		if (!$result = $model->savecomment($data, $project_id)) {
+            $result = "0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT').': '.$model->getError();
+        } else {
+            $result = $model->getDbo()->insertid()."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_COMMENT');
+		}    
+ 
 		echo json_encode($result);
 		JFactory::getApplication()->close();
 	}
@@ -784,15 +817,19 @@ $this->view_list = 'matches&task=match.display';
 		$data['in'] 					= JRequest::getInt('in');
 		$data['out'] 					= JRequest::getInt('out');
 		$data['matchid'] 				= JRequest::getInt('matchid');
-		$data['in_out_time'] 			= JRequest::getVar('in_out_time');
+		$data['in_out_time'] 			= JRequest::getVar('in_out_time','');
 		$data['project_position_id'] 	= JRequest::getInt('project_position_id');
-
-		$model=$this->getModel('match');
-		if (!$result=$model->savesubstitution($data)){
-			$result="0"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_SUBST').': '.$model->getError();
+        
+        // diddipoeler
+        $data['projecttime']			= JRequest::getVar('projecttime','');
+		
+        $model = $this->getModel('match');
+		if (!$result = $model->savesubstitution($data)){
+			$result = "0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_SUBST').': '.$model->getError();
 		} else {
-			$result=JRequest::getVar('rowid',0).'\n'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_SUBST');
+            $result = $model->getDbo()->insertid()."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_SUBST');
 		}
+        
 		echo json_encode($result);
 		JFactory::getApplication()->close();
 	}
@@ -804,11 +841,11 @@ $this->view_list = 'matches&task=match.display';
 		$model=$this->getModel('match');
 		if (!$result=$model->removeSubstitution($substid))
 		{
-			$result="0"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_REMOVE_SUBST').': '.$model->getError();
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_REMOVE_SUBST').': '.$model->getError();
 		}
 		else
 		{
-			$result="1"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_REMOVE_SUBST');
+			$result="1"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_REMOVE_SUBST');
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();
@@ -879,11 +916,30 @@ $this->view_list = 'matches&task=match.display';
 		$model=$this->getModel('match');
 		if (!$result=$model->deleteevent($event_id))
 		{
-			$result="0"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_EVENTS').': '.$model->getError();
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_EVENTS').': '.$model->getError();
 		}
 		else
 		{
-			$result="1"."\n".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_EVENTS');
+			$result="1"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_EVENTS');
+		}
+		echo json_encode($result);
+		JFactory::getApplication()->close();
+	}
+    
+    function removeCommentary()
+	{
+		// Check for request forgeries
+		JRequest::checkToken("GET") or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
+
+		$event_id=JRequest::getInt('event_id');
+		$model=$this->getModel('match');
+		if (!$result=$model->deletecommentary($event_id))
+		{
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENTARY').': '.$model->getError();
+		}
+		else
+		{
+			$result="1"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_COMMENTARY');
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();

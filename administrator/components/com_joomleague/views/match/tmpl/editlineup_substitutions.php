@@ -18,6 +18,8 @@ defined('_JEXEC') or die('Restricted access');
 var baseajaxurl='<?php echo JURI::root();?>administrator/index.php?option=com_joomleague&<?php echo JUtility::getToken() ?>=1';
 var teamid=<?php echo $this->tid; ?>;
 var matchid=<?php echo $this->match->id; ?>;
+
+var projecttime=<?php echo $this->eventsprojecttime; ?>;
 // We need to setup some text variables for translation
 var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 //-->
@@ -95,6 +97,9 @@ var str_delete="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_REMOVE'); ?>";
 						<td><?php echo JHTML::_('select.genericlist',$this->playersoptions,'in','class="inputbox player-in"'); ?></td>
 						<td><?php echo $this->lists['projectpositions']; ?></td>
 						<td><input type="text" size="3" id="in_out_time" name="in_out_time" class="inputbox" /></td>
+                        
+                        
+                        
 						<td>
 							<input id="save-new" type="button" class="inputbox button-save" value="<?php echo JText::_('COM_JOOMLEAGUE_GLOBAL_SAVE'); ?>" />
 						</td>

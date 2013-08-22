@@ -299,7 +299,7 @@ class JoomleagueModelProjectteams extends JoomleagueModelList
 	{
 		$db = JFactory::getDBO();
 		$mainframe = JFactory::getApplication();
-		if ( $pid )
+		if ( $pid[0] )
 		{
 			// jetzt brauchen wir noch das land der liga !
 			$querycountry = "SELECT l.country

@@ -12,10 +12,29 @@
 defined('_JEXEC') or die(JText::_('Restricted access'));
 JHTML::_('behavior.tooltip');
 
+if ( $this->show_debug_info )
+{
+echo 'this->config<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
+echo 'this->items<br /><pre>~' . print_r($this->items,true) . '~</pre><br />';
+echo 'this->pagination<br /><pre>~' . print_r($this->pagination,true) . '~</pre><br />';
+echo 'this->limit<br /><pre>~' . print_r($this->limit,true) . '~</pre><br />';
+echo 'this->limitstart<br /><pre>~' . print_r($this->limitstart,true) . '~</pre><br />';
+echo 'this->limitend<br /><pre>~' . print_r($this->limitend,true) . '~</pre><br />';
+}
 
-//echo '<br /><pre>~' . print_r($this->config,true) . '~</pre><br />';
-//echo '<br /><pre>~' . print_r($this->config['limit'],true) . '~</pre><br />';
 ?>
+
+
+<style type="text/css">
+
+.pred_ranking ul { 
+    list-style: none; 
+} 
+.pred_ranking ul li { 
+    display: inline; 
+} 
+</style>
+
 <a name='jl_top' id='jl_top'></a>
 <?php
 foreach ($this->model->_predictionProjectS AS $predictionProject)
@@ -30,7 +49,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 		if ($this->roundID < 1){$this->roundID=1;}
 		if ($this->roundID > $this->model->getProjectRounds($predictionProject->project_id)){$this->roundID=$this->model->_projectRoundsCount;}
 		?>
-		<form name='resultsRoundSelector' method='post'>
+		<form action="<?php echo JRoute::_('index.php?option=com_joomleague'); ?>" method='post' name="adminForm">
 			<input type='hidden' name='option' value='com_joomleague' />
 			<input type='hidden' name='view' value='predictionresults' />
 			<input type='hidden' name='prediction_id' value='<?php echo (int)$this->predictionGame->id; ?>' />
@@ -44,6 +63,7 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			<input type='hidden' name='task' value='predictionresults.selectprojectround' />
 			
 			<?php echo JHTML::_('form.token'); ?>
+
 
 			<table class='blog' cellpadding='0' cellspacing='0' >
 				<tr>
@@ -74,6 +94,15 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 						echo JHTML::link($link,$desc,array('target' => ''));
 						?></td>
 				</tr>
+
+<tfoot>
+<div class="pred_ranking">
+<?php 
+echo $this->pagination->getListFooter(); 
+?>
+</div>
+</tfoot>  
+                
 			</table><br />
 		</form>
 		<table width='100%' cellpadding='0' cellspacing='0'>
@@ -181,7 +210,9 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 			$k = 0;
 			$tdStyleStr = " style='text-align:center; vertical-align:middle; ' ";
 
-			$memberList = $this->model->getPredictionMembersList($this->config,$this->configavatar);
+			// verlegt in die view.htm.php
+            //$memberList = $this->model->getPredictionMembersList($this->config,$this->configavatar);
+            
 			//$memberResultsList = $this->model->getPredictionMembersResultsList($predictionProject->project_id,$this->roundID);
 
 			$membersResultsArray = array();
@@ -190,10 +221,10 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
 
       if ( $this->show_debug_info )
         {
-				echo '<br />memberList<pre>~' . print_r($memberList,true) . '~</pre><br />';
+				echo '<br />memberList<pre>~' . print_r($this->memberList,true) . '~</pre><br />';
 				}
 				
-			foreach ($memberList AS $member)
+			foreach ($this->memberList AS $member)
 			{
 			
 			  if ( $this->show_debug_info )
@@ -389,11 +420,12 @@ foreach ($this->model->_predictionProjectS AS $predictionProject)
       }
       
 			$i=1;
-			if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
+/*			
+            if ((int)$this->config['limit'] < 1){$this->config['limit']=1;}
 			$rlimit=ceil($recordCount / $this->config['limit']);
 			$this->model->page=($this->model->page > $rlimit) ? $rlimit : $this->model->page;
 			$skipMemberCount=($this->model->page > 0) ? (($this->model->page-1)*$this->config['limit']) : 0;
-
+*/
 			foreach ($computedMembersRanking AS $key => $value)
 			{
 				if ($i <= $skipMemberCount) { $i++; continue; }

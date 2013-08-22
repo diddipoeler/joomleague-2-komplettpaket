@@ -23,7 +23,7 @@ jimport( 'joomla.filter.input' );
  * @since	0.1
  */
 
-class TableMatchcommentary extends JLTable
+class TableMatchCommentary extends JLTable
 {
 	/**
 	 * Constructor

@@ -89,6 +89,13 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
+		
+		<field 	name="show_commentary" type="radio" default="1" 
+				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_COMMENTARY"
+				description="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_DESCR_SHOW_COMMENTARY">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
 
 		<field 	name="show_timeline" type="radio" default="0"
 				label="COM_JOOMLEAGUE_FES_MATCHREPORT_PARAM_LABEL_SHOW_TIMELINE" 

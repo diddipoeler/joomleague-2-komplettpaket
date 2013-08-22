@@ -14,7 +14,6 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
 require_once('prediction.php');
-//require_once(JLG_PATH_SITE . DS . 'helpers' . DS . 'pagination.php');
 
 /**
  * Joomleague Component prediction Results Model
@@ -26,11 +25,92 @@ require_once('prediction.php');
 class JoomleagueModelPredictionResults extends JoomleagueModelPrediction
 {
 
+  var $predictionGameID = 0;
+    
+   /**
+   * Items total
+   * @var integer
+   */
+  var $_total = null;
+ 
+  /**
+   * Pagination object
+   * @var object
+   */
+  var $_pagination = null;
+  
+  var $config = array();
+  var $configavatar = array();
+
+  
 	function __construct()
 	{
 		parent::__construct();
+		
+        $this->pggrouprank			= JRequest::getInt('pggrouprank',		0);
+		$option = JRequest::getCmd('option');    
+    $mainframe = JFactory::getApplication();
+    $this->predictionGameID	= JRequest::getInt('prediction_id',0);
+
+if ( JRequest::getVar( "view") == 'predictionresults' )
+{    
+	// Get pagination request variables
+	$limit = $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
+	$limitstart = JRequest::getVar('limitstart', 0, '', 'int');
+ 
+	// In case limit has been changed, adjust it
+	$limitstart = ($limit != 0 ? (floor($limitstart / $limit) * $limit) : 0);
+ 
+	$this->setState('limit', $limit);
+	$this->setState('limitstart', $limitstart);
+}
+//$mainframe->enqueueMessage(JText::_('PredictionResults __construct limit -> '.'<pre>'.print_r($limit ,true).'</pre>' ),'');
+//$mainframe->enqueueMessage(JText::_('PredictionResults __construct view-> '.'<pre>'.print_r(JRequest::getVar( "view"),true).'</pre>' ),''); 
+    
 	}
 
+  function getPagination()
+  {
+ 	// Load the content if it doesn't already exist
+ 	if (empty($this->_pagination)) 
+     {
+ 	    jimport('joomla.html.pagination');
+ 	    $this->_pagination = new JPagination($this->getTotal(), $this->getState('limitstart'), $this->getState('limit') );
+ 	}
+ 	return $this->_pagination;
+  }    
+  
+  
+  function getTotal()
+  {
+ 	// Load the content if it doesn't already exist
+ 	if (empty($this->_total)) 
+     {
+ 	    //$query = $this->_buildQuery();
+        $query = $this->getPredictionMembersList($this->config,$this->configavatar,true);
+ 	    $this->_total = $this->_getListCount($query);	
+ 	}
+ 	return $this->_total;
+  }
+  
+  function getData() 
+  {
+ 	// if data hasn't already been obtained, load it
+ 	if (empty($this->_data)) 
+     {
+ 	    //$query = $this->_buildQuery();
+        $query = $this->getPredictionMembersList($this->config,$this->configavatar,true);
+ 	    $this->_data = $this->_getList($query, $this->getState('limitstart'), $this->getState('limit'));	
+ 	}
+ 	return $this->_data;
+  }
+
+
+  
+  
+
+
+  
   function getDebugInfo()
   {
   $show_debug_info = JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0);

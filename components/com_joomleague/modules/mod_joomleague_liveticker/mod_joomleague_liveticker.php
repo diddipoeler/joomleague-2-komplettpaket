@@ -23,10 +23,7 @@ $jquery_sub_version = JComponentHelper::getParams('com_joomleague')->get('jquery
 $jquery_ui_version = JComponentHelper::getParams('com_joomleague')->get('jqueryuiversionfrontend',0);
 $jquery_ui_sub_version = JComponentHelper::getParams('com_joomleague')->get('jqueryuisubversionfrontend',0);
 
-/*
-$document->addScript('https://ajax.googleapis.com/ajax/libs/jqueryui/'.$jquery_ui_version.'.'.$jquery_ui_sub_version.'/jquery-ui.min.js');
-$document->addScript('https://ajax.googleapis.com/ajax/libs/jquery/'.$jquery_version.'/jquery.min.js');
-*/
+
 
 $action = JRequest::getCmd('action');
 
@@ -114,6 +111,7 @@ switch ($action) {
 if (!$is_ajaxed || ($action == "turtushout_shouts"))
    {
 	$list      = modTurtushoutHelper::getList($params, $display_num);
+    $listcomment      = modTurtushoutHelper::getListCommentary($list);
 	$list_html = "";
 	
 $list_html .= "<div class='turtushout-entry'>";
@@ -181,13 +179,6 @@ $list_html .=  "</thead>" ;
 
 	for ($i = 0, $ic = count($list); $i<$ic; $i++)
     {
-//		$list_html .= "<div class='turtushout-entry'>";
-
-//        $list_html .=  "<div class='turtushout-name'>" . $list[$i]->name . " </div>";
-//        $list_html .=  "<div class='turtushout-name'>" . $list[$i]->heim . " </div>";
-//        $list_html .=  "<div class='turtushout-name'>" . $list[$i]->gast . " </div>";
-//        $list_html .=  "<div class='turtushout-name'>" . $list[$i]->matchpart1_result . " </div>";
-//        $list_html .=  "<div class='turtushout-name'>" . $list[$i]->matchpart2_result . " </div>";
 
 $anstossdatum = explode(" ",$list[$i]->match_date);
 
@@ -273,28 +264,34 @@ if ( $display_teamname == 3 )
 $list_html .= "<td>" . $list[$i]->team1_result . "</td>";
 $list_html .= "<td>" . $list[$i]->team2_result . "</td>";
 $list_html .= "</tr>" ;
-//$list_html .= "</table>";
-//$list_html .= "</div>";
 
-        
-		/*
-		if ( $list[$i]->created_by_alias && $display_username) {
-			if ($list[$i]->created_by && $display_guests) {
-				$list_html .=  "<div class='turtushout-name'>" . $list[$i]->created_by_alias . " says:</div>";
-			} else {
-				$list_html .=  "<div class='turtushout-name'>Guest " . $list[$i]->created_by_alias . " says:</div>";
-			}
-		}
-		$list_html .=  "<div class='turtushout-created'>" . $list[$i]->created;
-		if ($user->gid == 25)
-			$list_html .= "<a class='turtushout-action' onclick='TurtushoutDelete(" . $list[$i]->id . "); return false;'>[x]</a>";
-		$list_html .= "</div>";
-		if ( $list[$i]->title && $display_title)
-			$list_html .=  "<div class='turtushout-title'>" . $list[$i]->title . "</div>";
-		$list_html .=  "<div class='turtushout-text'>" . $list[$i]->text . "</div>";
-		*/
+if ( isset($listcomment[$list[$i]->match_id]) )
+{
+$list_html .= "<tr>" ;  
+$list_html .= "<td colspan=\"9\">" ; 
+$list_html .= "<div style=\"height:80px; overflow:auto;\">";
+$list_html .= "<table width=\"100%\">";
 
-//		$list_html .= "</div>";
+foreach ( $listcomment[$list[$i]->match_id] as $key => $value )
+{
+$list_html .= "<tr>" ;
+$list_html .= "<td width=\"10%\">" . $value->event_time  . "</td>";
+$list_html .= "<td width=\"10%\">" . JHTML::image( JURI::root().'media/com_joomleague/jl_images/discuss_active.gif', 'Kommentar', array(' title' => 'Kommentar'))  . "</td>";
+$list_html .= "<td width=\"80%\">" . $value->notes  . "</td>";    
+$list_html .= "</tr>" ;
+}
+    
+$list_html .= "</table>";
+$list_html .= "</div>";
+$list_html .= "</td>" ; 
+$list_html .= "</tr>" ;
+}
+
+
+
+
+
+
 	}
         $list_html .= "</table>";
 		$list_html .= "</div>";

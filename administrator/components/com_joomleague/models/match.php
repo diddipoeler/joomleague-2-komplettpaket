@@ -14,7 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.model');
 require_once(JPATH_COMPONENT.DS.'models'.DS.'item.php');
-require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'parsecsv.lib.php' );
+require_once( JLG_PATH_ADMIN . DS. 'helpers' . DS . 'csv_parser.php' );
 
 // import JArrayHelper
 jimport( 'joomla.utilities.array' );
@@ -31,7 +31,15 @@ jimport( 'joomla.utilities.utility' );
  * @package	JoomLeague
  * @since	0.1
  */
-
+/**
+ * JoomleagueModelMatch
+ * 
+ * @package 
+ * @author diddi
+ * @copyright 2013
+ * @version $Id$
+ * @access public
+ */
 class JoomleagueModelMatch extends JoomleagueModelItem
 {
 
@@ -746,29 +754,39 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	$mainframe = JFactory::getApplication();    
     $file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
     $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
+    // Where the cache will be stored
+    $dcsv['file']		= $file;
+$dcsv['cachefile']	= dirname(__FILE__).'/tmp/'.md5($dcsv['file']);
+
+// If there is no chache saved or is older than the cache time create a new cache
+	// open the cache file for writing
+	$fp = fopen($dcsv['cachefile'], 'w');
+	// save the contents of output buffer to the file
+	fwrite($fp, file_get_contents($dcsv['file']));
+	// close the file
+	fclose($fp);
+
+// New ParseCSV object.
+$csv = new parseCSV();
+//$csv->encoding('UTF-8', 'UTF-8');
+// Parse CSV with auto delimiter detection
+$csv->auto($dcsv['cachefile']);
+
+//$mainframe->enqueueMessage(JText::_('getPressebericht csv<br><pre>'.print_r($csv,true).'</pre>'   ),'');
+    //$mainframe->enqueueMessage(JText::_('getPressebericht csv->data<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
+    
+    /*
     # tab delimited, and encoding conversion
 	$csv = new parseCSV();
-	$csv->encoding('UTF-16', 'UTF-8');
-	$csv->delimiter = ";";
-    /*
-    switch ($delimiter)
-    {
-        case ";":
-        $csv->delimiter = ";";
-        break;
-        case ",":
-        $csv->delimiter = ",";
-        break;
-        default:
-        $csv->delimiter = "\t";
-        break;
-    }
-    */
-    
-    $csv->parse($file);
+	//$csv->encoding('UTF-16', 'UTF-8');
+	//$csv->delimiter = ";";
+    $csv->auto($file);
+    //$csv->parse($file);
     $mainframe->enqueueMessage(JText::_('getPressebericht csv<br><pre>'.print_r($csv,true).'</pre>'   ),'');
     $mainframe->enqueueMessage(JText::_('getPressebericht csv->data<br><pre>'.print_r($csv->data,true).'</pre>'   ),'');
-    
+    */
+
+   return $csv;
     }
     
     /**
@@ -1235,7 +1253,38 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 	 */
 	function savesubstitution($data)
 	{
-		if (! ($data['matchid']))
+		
+        if ( empty($data['project_position_id'])  )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_SUBST_POSITION_ID'));
+		return false;
+		}
+        
+        if ( empty($data['in_out_time'])  )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_SUBST_TIME'));
+		return false;
+		}
+        
+        if ( empty($data['in'])  )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_SUBST_IN'));
+		return false;
+		}
+        
+        if ( empty($data['out'])  )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_NO_SUBST_OUT'));
+		return false;
+		}
+        
+        if ( (int)$data['in_out_time'] > (int)$data['projecttime'] )
+		{
+		$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_SUBST_TIME_OVER_PROJECTTIME',$data['in_out_time'],$data['projecttime']));
+		return false;
+		}
+        
+        if (! ($data['matchid']))
 		{
 			$this->setError("in: " . $data['in'].
 							", out: " . $data['out'].
@@ -1312,7 +1361,26 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 
 	function saveevent($data, $project_id)
 	{
-		$object =& JTable::getInstance('MatchEvent','Table');
+
+        if ( empty($data['event_time']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_NO_TIME'));
+		return false;
+		}
+        
+        if ( empty($data['event_sum']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_NO_EVENT_SUM'));
+		return false;
+		}
+        
+        if ( (int)$data['event_time'] > (int)$data['projecttime'] )
+		{
+		$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_EVENT_TIME_OVER_PROJECTTIME',$data['event_time'],$data['projecttime']));
+		return false;
+		}
+   
+        $object =& JTable::getInstance('MatchEvent','Table');
 		$object->bind($data);
 		if (!$object->check())
 		{
@@ -1324,6 +1392,53 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			$this->setError($this->_db->getErrorMsg());
 			return false;
 		}
+        else
+        {
+            $object->id = $this->_db->insertid();
+        }
+		return $object->id;
+	}
+    
+    function savecomment($data, $project_id)
+	{
+		
+        // live kommentar speichern
+        if ( empty($data['event_time']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_NO_TIME'));
+		return false;
+		}
+
+        
+        if ( empty($data['notes']) )
+		{
+		$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_NO_COMMENT'));
+		return false;
+		}
+            
+        if ( (int)$data['event_time'] > (int)$data['projecttime'] )
+		{
+		$this->setError(JText::sprintf('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_COMMENT_TIME_OVER_PROJECTTIME',$data['event_time'],$data['projecttime']));
+		return false;
+		}
+        
+        $object =& JTable::getInstance('MatchCommentary','Table');
+		$object->bind($data);
+		if (!$object->check())
+		{
+			$this->setError(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_CHECK_FAILED'));
+			return false;
+		}
+		if (!$object->store())
+		{
+			$this->setError($this->_db->getErrorMsg());
+			return false;
+		}
+        else
+        {
+            $object->id = $this->_db->insertid();
+        }
+        
 		return $object->id;
 	}
 
@@ -1475,6 +1590,37 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			return false;
 		}
 		return true;
+	}
+    
+    function deletecommentary($event_id)
+	{
+		$object =& JTable::getInstance('MatchCommentary','Table');
+		if (!$object->canDelete($event_id))
+		{
+			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_ERROR_DELETE_COMMENTARY');
+			return false;
+		}
+		if (!$object->delete($event_id))
+		{
+			$this->setError('COM_JOOMLEAGUE_ADMIN_MATCH_MODEL_DELETE_FAILED_COMMENTARY');
+			return false;
+		}
+		return true;
+	}
+    
+    /**
+	 * get match commentary
+	 *
+	 * @return array
+	 */
+	function getMatchCommentary()
+	{
+		$query=' SELECT	me.*'
+        .' FROM #__joomleague_match_commentary AS me '
+		.' WHERE me.match_id='.$this->_db->Quote((int) $this->_id)
+		.' ORDER BY me.event_time ASC ';
+		$this->_db->setQuery($query);
+		return ($this->_db->loadObjectList());
 	}
 
 	/**

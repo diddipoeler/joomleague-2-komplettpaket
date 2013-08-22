@@ -95,6 +95,7 @@ class JoomleagueViewEventtypes extends JLGView
 		JLToolBarHelper::deleteList('', 'eventtype.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

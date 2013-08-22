@@ -230,6 +230,7 @@ class JoomleagueViewPersons extends JLGView
 		JLToolBarHelper::deleteList(JText::_('COM_JOOMLEAGUE_ADMIN_PERSONS_DELETE_WARNING'),'person.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

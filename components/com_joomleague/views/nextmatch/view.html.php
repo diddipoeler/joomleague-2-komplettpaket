@@ -78,6 +78,7 @@ class JoomleagueViewNextMatch extends JLGView
 			
 			$this->assignRef('previousx', $previousx);
 			$this->assignRef('allteams',  $teams);
+            $this->assignRef('matchcommentary',$model->getMatchCommentary());
 		}
         
         $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );

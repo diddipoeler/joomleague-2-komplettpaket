@@ -1,9 +1,13 @@
 <?php defined( '_JEXEC' ) or die( 'Restricted access' );
+
+//echo '#<pre>'; print_r($this->matchcommentary ); echo '</pre>#';
+
 ?>
 <?php /**/ ?>
 <script type="text/javascript">
 <!--
 	var homeroster = new Array;
+    var projecttime=<?php echo $this->eventsprojecttime; ?>;
 	<?php
 	$i = 0;
 	
@@ -32,8 +36,7 @@
 //-->
 </script>
 <div id="gamesevents">
-	<?php // Don't remove following <div id='ajaxresponse-event'></div> as it is neede for ajax changings ?>
-	<?php // <div id='ajaxresponse-event'></div> ?>
+	
 	<fieldset class="adminform">
 		<legend>
 			<?php
@@ -149,16 +152,16 @@
 			</thead>
 			<tbody>
 				<?php
-				if ( isset( $this->matchevents ) )
+				if ( isset( $this->matchcommentary ) )
 				{
-					foreach ( $this->matchevents as $event )
+					foreach ( $this->matchcommentary as $event )
 					{
-						if ($event->event_type_id == 0) {
+						
 						?>
-						<tr id="row-<?php echo $event->event_id; ?>">
+						<tr id="rowcomment-<?php echo $event->id; ?>">
 							<td>
 								<?php 
-								switch ($event->event_sum) {
+								switch ($event->type) {
                                     case 2:
                                         echo JText::_( 'COM_JOOMLEAGUE_EDIT_EVENTS_LIVE_TYPE_2' );
                                         break;
@@ -179,16 +182,16 @@
 								?>
 							</td>
 							<td style='text-align:center; ' >
-								<input	id="delete-<?php echo $event->event_id; ?>" type="button" class="inputbox button-delete"
+								<input	id="deletecomment-<?php echo $event->id; ?>" type="button" class="inputbox button-delete-commentary"
 										value="<?php echo JText::_( 'COM_JOOMLEAGUE_EDIT_EVENTS_DELETE' ); ?>" />
 							</td>
 						</tr>
 						<?php
-						}
+						
 					}
 				}
 				?>
-				<tr id="row-new-comment">
+				<tr id="rowcomment-new">
 
 					<td>
 						<select name="ctype" id="ctype" class="inputbox select-commenttype">
@@ -200,7 +203,7 @@
 						<input type="text" size="3" value="" id="c_event_time" name="c_event_time" class="inputbox" />
 					</td>
 					<td style='text-align:center; ' >
-						<textarea rows="2" cols="80" id="notes" name="notes" ></textarea>
+						<textarea rows="2" cols="60" id="notes" name="notes" ></textarea>
 					</td>
 					<td style='text-align:center; ' >
 						<input id="save-new-comment" type="button" class="inputbox button-save-c" value="<?php echo JText::_( 'COM_JOOMLEAGUE_EDIT_EVENTS_SAVE' ); ?>" />

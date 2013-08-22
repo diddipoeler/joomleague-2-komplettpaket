@@ -11,7 +11,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_club` (
   `location` VARCHAR(50) NOT NULL DEFAULT '' ,
   `state` VARCHAR(50) NOT NULL DEFAULT '' ,
   `country` VARCHAR(3) NULL DEFAULT NULL,
-  `founded` DATE NULL DEFAULT NULL ,
+  `founded` DATE NOT NULL DEFAULT '0000-00-00' ,
   `phone` VARCHAR(20) NOT NULL DEFAULT '' ,
   `fax` VARCHAR(20) NOT NULL DEFAULT '' ,
   `email` VARCHAR(255) NOT NULL DEFAULT '' ,
@@ -203,6 +203,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match` (
   `extendeduser` TEXT NULL ,
   `pressebericht` TEXT NULL ,
   `team_lost` INT(11) NOT NULL DEFAULT '0' ,
+  `import_match_id` INT(11) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`),
   KEY `round_id` (`round_id`),
   KEY `projectteam1_id` (`projectteam1_id`),
@@ -214,6 +215,23 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match` (
 ENGINE = MyISAM
 DEFAULT CHARSET = utf8;
 
+--
+-- Tabellenstruktur für Tabelle `#__joomleague_match_commentary`
+--
+CREATE TABLE IF NOT EXISTS `#__joomleague_match_commentary` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `match_id` int(11) NOT NULL DEFAULT '0',
+  `type` int(11) NOT NULL DEFAULT '0',
+  `event_time` int(11) NOT NULL DEFAULT '0',
+  `notes` text NOT NULL,
+  `checked_out` int(11) NOT NULL DEFAULT '0',
+  `checked_out_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `modified` datetime DEFAULT NULL,
+  `modified_by` int(11) DEFAULT NULL,
+  
+  PRIMARY KEY (`id`),
+  KEY `match_id` (`match_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 ;
 
 -- -----------------------------------------------------
 -- Table `#__joomleague_match_event`
@@ -224,7 +242,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_match_event` (
   `projectteam_id` INT(11) NOT NULL DEFAULT '0' ,
   `teamplayer_id` INT(11) NOT NULL DEFAULT '0' ,
   `teamplayer_id2` INT(11) NOT NULL DEFAULT '0' ,
-  `event_time` VARCHAR(20) NOT NULL DEFAULT '' ,
+  `event_time` int(11) NOT NULL DEFAULT '0' ,
   `event_type_id` INT(11) NOT NULL DEFAULT '0' ,
   `event_sum` DOUBLE NULL DEFAULT NULL ,
   `notice` VARCHAR(64) NOT NULL DEFAULT '' ,
@@ -568,6 +586,7 @@ CREATE  TABLE IF NOT EXISTS `#__joomleague_project` (
   `image_copy` TINYINT(4) NOT NULL DEFAULT '0' ,
   `staffel_id` VARCHAR(100) NOT NULL DEFAULT '' ,
   `extendeduser` TEXT NULL ,
+  `import_project_id` INT(11) NOT NULL DEFAULT '0' ,
   PRIMARY KEY (`id`) ,
   KEY `league_id` (`league_id`),
   KEY `season_id` (`season_id`),

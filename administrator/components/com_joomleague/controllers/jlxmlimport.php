@@ -53,6 +53,13 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 				JRequest::setVar('view','jlxmlimports');
 				JRequest::setVar('edit',true);
 				break;
+                
+           case 'update':
+				JRequest::setVar('hidemainmenu',0);
+				JRequest::setVar('layout','update');
+				JRequest::setVar('view','jlxmlimports');
+				JRequest::setVar('edit',true);
+				break;     
 		}
 
 		parent::display($cachable = false, $urlparams = false);
@@ -81,8 +88,41 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 		JToolBarHelper::back(JText::_('JPREV'),JRoute::_('index.php?option=com_joomleague&task=jlxmlimport.display'));
 		$mainframe = JFactory::getApplication();
 		$post=JRequest::get('post');
+        
+        $projectid = JRequest::getVar('projektfussballineuropa',null);
 
-		// first step - upload
+		
+        if ( $projectid )
+    {
+        
+        if ( $post['importupdate'] )
+        {
+        $europalink = "http://www.fussballineuropa.de/index.php?option=com_joomleague&view=jlxmlexports&p=".$projectid."&update=1";    
+        }
+        else
+        {
+        $europalink = "http://www.fussballineuropa.de/index.php?option=com_joomleague&view=jlxmlexports&p=".$projectid."&update=0";    
+        }
+        
+        $mainframe->enqueueMessage(JText::_('hole daten von -> '.$europalink.''),'Notice');
+        //set the target directory
+		$base_Dir = JPATH_SITE . DS . 'tmp' . DS;
+        $filepath = $base_Dir . 'joomleague_import.jlg';
+        if ( !copy($europalink,$filepath) )
+{
+$mainframe->enqueueMessage(JText::_('daten -> '.$europalink.' konnten nicht kopiert werden!'),'Error');
+}
+else
+{
+$upload['name'] = $europalink;    
+$mainframe->setUserState('com_joomleague'.'uploadArray',$upload); 
+$mainframe->setUserState('com_joomleague'.'projectidimport',$projectid);     
+$mainframe->enqueueMessage(JText::_('daten -> '.$europalink.' sind kopiert worden!'),'Notice');    
+}
+        }
+        else
+        {
+        // first step - upload
 		if (isset($post['sent']) && $post['sent']==1)
 		{
 			$upload=JRequest::getVar('import_package',null,'files','array');
@@ -159,7 +199,17 @@ class JoomleagueControllerJLXMLImport extends JoomleagueController
 					}
 			}
 		}
-		$link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+        }
+        
+        if ( $post['importupdate'] )
+        {
+            $link='index.php?option=com_joomleague&task=jlxmlimport.update';
+        }
+        else
+        {
+            $link='index.php?option=com_joomleague&task=jlxmlimport.edit';
+        }    
+		//$link='index.php?option=com_joomleague&task=jlxmlimport.edit';
 		$this->setRedirect($link,$msg);
 	}
 

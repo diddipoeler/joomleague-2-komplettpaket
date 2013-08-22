@@ -34,6 +34,25 @@ class JoomleagueViewCurrentseasons extends JLGView
         
         foreach ($this->items as $item)
 	{
+	   $item->count_projectdivisions = 0;
+		$mdlProjectDivisions = JModel::getInstance("divisions", "JoomleagueModel");
+		$item->count_projectdivisions = $mdlProjectDivisions->getProjectDivisionsCount($item->id);
+		
+		$item->count_projectpositions = 0;
+		$mdlProjectPositions = JModel::getInstance("Projectposition", "JoomleagueModel");
+		$item->count_projectpositions = $mdlProjectPositions->getProjectPositionsCount($item->id);
+		
+		$item->count_projectreferees = 0;
+		$mdlProjectReferees = JModel::getInstance("Projectreferees", "JoomleagueModel");
+		$item->count_projectreferees = $mdlProjectReferees->getProjectRefereesCount($item->id);
+		
+		$item->count_projectteams = 0;
+		$mdlProjecteams = JModel::getInstance("Projectteams", "JoomleagueModel");
+		$item->count_projectteams = $mdlProjecteams->getProjectTeamsCount($item->id);
+        
+        $item->count_matchdays = 0;
+		$mdlRounds = JModel::getInstance("Rounds", "JoomleagueModel");
+		$item->count_matchdays = $mdlRounds->getRoundsCount($item->id);
 	   
        }
 

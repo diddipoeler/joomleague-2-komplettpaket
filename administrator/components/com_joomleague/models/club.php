@@ -105,7 +105,7 @@ class JoomleagueModelClub extends JoomleagueModelItem
 			$club->location				= null;
 			$club->state				= null;
 			$club->country				= null;
-			$club->founded				= null;
+			$club->founded				= '0000-00-00';
 			$club->phone				= null;
 			$club->fax					= null;
 			$club->email				= null;
@@ -127,7 +127,7 @@ class JoomleagueModelClub extends JoomleagueModelItem
 			$club->modified				= null;
 			$club->modified_by			= null;
       
-      $club->dissolved			= null;
+      $club->dissolved			= '0000-00-00';
       $club->dissolved_year			= '0000';
       $club->founded_year			= '0000';
       $club->unique_id			= null;

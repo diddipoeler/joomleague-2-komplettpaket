@@ -82,6 +82,7 @@ class JoomleagueViewTeams extends JLGView
 		JLToolBarHelper::deleteList('', 'team.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

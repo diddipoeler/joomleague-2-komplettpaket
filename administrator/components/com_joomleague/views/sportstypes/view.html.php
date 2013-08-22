@@ -72,6 +72,7 @@ class JoomleagueViewSportsTypes extends JLGView
 		JLToolBarHelper::deleteList('','sportstype.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+		JToolBarHelper::preferences(JRequest::getCmd('option'));
 	}
 }
 ?>

@@ -28,10 +28,17 @@ class JoomleagueViewJLXMLImports extends JLGView
 	{
 		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
+        $model			=& JModel::getInstance('jlxmlimport', 'joomleaguemodel');
 
 		if ($this->getLayout()=='form')
 		{
 			$this->_displayForm($tpl);
+			return;
+		}
+        
+        if ($this->getLayout()=='update')
+		{
+			$this->_displayUpdate($tpl);
 			return;
 		}
 
@@ -58,17 +65,40 @@ class JoomleagueViewJLXMLImports extends JLGView
 
 		$this->assignRef('request_url',$uri->toString());
 		$this->assignRef('config',$config);
+        $this->assignRef('projektfussballineuropa',$model->getDataUpdateImportID() );
 
 		parent::display($tpl);
 	}
 
-	private function _displayForm($tpl)
+	
+    private function _displayUpdate($tpl)
+	{
+	   $mainframe = JFactory::getApplication();
+       $option = JRequest::getCmd('option');
+       //$project_id = (int) $mainframe->getUserState($option.'project', 0);
+       //$mainframe->enqueueMessage(JText::_('_displayUpdate project_id -> '.'<pre>'.print_r($project_id ,true).'</pre>' ),'');
+       $model			=& JModel::getInstance('jlxmlimport', 'joomleaguemodel');
+	   $data			= $model->getData();
+       $update_matches = $model->getDataUpdate(); 
+       $this->assignRef('xml', $data);
+       $this->assignRef('importData', $update_matches);
+       $this->assignRef('projektfussballineuropa',$model->getDataUpdateImportID() );
+       
+       // Set toolbar items for the page
+		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_4'),'generic.png');
+		JLToolBarHelper::onlinehelp();
+        
+	   parent::display($tpl);
+    }  
+    
+     
+    private function _displayForm($tpl)
 	{
 		$mtime			= microtime();
 		$mtime 			= explode(" ",$mtime);
 		$mtime			= $mtime[1] + $mtime[0];
 		$starttime		= $mtime;
-		$option			= 'com_joomleague';
+		$option = JRequest::getCmd('option');
 		$mainframe		= JFactory::getApplication();
 		$document		= JFactory::getDocument();
 		$db				= JFactory::getDBO();
@@ -82,6 +112,9 @@ class JoomleagueViewJLXMLImports extends JLGView
 		
     $whichfile = $mainframe->getUserState($option.'whichfile');
 		$this->assignRef('whichfile',$whichfile);
+        
+        $projectidimport = $mainframe->getUserState($option.'projectidimport');
+        $this->assignRef('projectidimport',$projectidimport);
 		$countries=new Countries();
 		$this->assignRef('uploadArray',$uploadArray);
 		$this->assignRef('starttime',$starttime);

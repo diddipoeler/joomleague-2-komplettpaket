@@ -72,8 +72,20 @@ class JoomleagueControllerClub extends JoomleagueController
 		JRequest::checkToken() or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
 		$msg='';
 		$address_parts = array();
-		$post=JRequest::get('post');
+		$post = JRequest::get('post');
 		
+        // wurden jahre mitgegeben ?
+        $founded_year = date('Y',strtotime($post['founded']));
+        $dissolved_year = date('Y',strtotime($post['dissolved']));
+        if ( $founded_year != '0000' )
+        {
+            $post['founded_year'] = $founded_year;
+        }
+        if ( $dissolved_year != '0000' )
+        {
+            $post['dissolved_year'] = $dissolved_year;
+        }
+        
 		//$mainframe->enqueueMessage(JText::_('post -> '.'<pre>'.print_r($post,true).'</pre>' ),'');
 		
 		$cid=JRequest::getVar('cid',array(0),'post','array');

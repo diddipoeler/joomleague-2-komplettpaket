@@ -89,6 +89,7 @@ class JoomleagueControllerEditEvents extends JLGController
 	function saveevent()
 	{
 		$mainframe = JFactory::getApplication();
+        $option = JRequest::getCmd('option');
 		$model = $this->getModel('editevents');
 		$data = array();
 		$data['teamplayer_id'] = JRequest::getInt('teamplayer_id');
@@ -98,14 +99,45 @@ class JoomleagueControllerEditEvents extends JLGController
 		$data['match_id'] = JRequest::getInt('match_id');
 		$data['event_sum'] = JRequest::getVar('event_sum', '');
 		$data['notice'] = JRequest::getVar('notice', '');
+        
+        // diddipoeler
+        $data['projecttime']			= JRequest::getVar('projecttime','');
 		
-		$project_id=$mainframe->getUserState('com_joomleague'.'project',0);
+		$project_id=$mainframe->getUserState($option.'project',0);
 		if (!$result=$model->saveevent($data,$project_id))
 		{
-			$result="0\n".JText::sprintf('Adding of new Event failed: %1$s',$model->getError());
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_EVENT').': '.$model->getError();
 		} else {
-			$result='1\n'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
+			$result=$model->getDbo()->insertid().'&'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_EVENT');
 		}
+		echo json_encode($result);
+		JFactory::getApplication()->close();
+	}
+    
+    function savecomment()
+	{
+		$option = JRequest::getCmd('option');
+
+		
+
+		$mainframe = JFactory::getApplication();
+		$data = array();
+		$data['event_time']		= JRequest::getVar('event_time','');
+		$data['match_id']		= JRequest::getInt('match_id');
+		$data['type']		= JRequest::getVar('event_sum', '');
+		$data['notes']			= JRequest::getVar('notes', '');
+        
+        // diddipoeler
+        $data['projecttime']			= JRequest::getVar('projecttime','');
+        
+        $model = $this->getModel('editevents');
+		$project_id = $mainframe->getUserState($option.'project',0);
+		if (!$result = $model->savecomment($data, $project_id)) {
+            $result = "0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_SAVED_COMMENT').': '.$model->getError();
+        } else {
+            $result = $model->getDbo()->insertid()."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_SAVED_COMMENT');
+		}    
+ 
 		echo json_encode($result);
 		JFactory::getApplication()->close();
 	}
@@ -117,15 +149,36 @@ class JoomleagueControllerEditEvents extends JLGController
 
 		if (!$result=$model->deleteevent($event_id))
 		{
-			$result="0"."\n".JText::sprintf('EVENT DELETE FAILED: %1$s',$model->getError());
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_EVENTS').': '.$model->getError();;
 		}
 		else
 		{
-			$result="1"."\n".JText::_('Event deleted');
+			$result="1"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_EVENTS');
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();
 	}
+    
+    function removeCommentary()
+	{
+		// Check for request forgeries
+		//JRequest::checkToken("GET") or die('COM_JOOMLEAGUE_GLOBAL_INVALID_TOKEN');
+
+		$event_id=JRequest::getInt('event_id');
+		$model=$this->getModel('editevents');
+		if (!$result=$model->deletecommentary($event_id))
+		{
+			$result="0"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_ERROR_DELETE_COMMENTARY').': '.$model->getError();
+		}
+		else
+		{
+			$result="1"."&".JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_CTRL_DELETE_COMMENTARY');
+		}
+		echo json_encode($result);
+		JFactory::getApplication()->close();
+	}
+    
+    
 
 	function removesubst()
 	{
@@ -133,11 +186,11 @@ class JoomleagueControllerEditEvents extends JLGController
 		$model=$this->getModel('editevents');
 		if (!$result=$model->removesubstitution($substid))
 		{
-			$result="0"."\n".JText::_('SUBSTITUTION REMOVING FAILED').': '.$model->getError();
+			$result="0"."&".JText::_('SUBSTITUTION REMOVING FAILED').': '.$model->getError();
 		}
 		else
 		{
-			$result="1"."\n".JText::_('SUBSTITUTION REMOVED');
+			$result="1"."&".JText::_('SUBSTITUTION REMOVED');
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();
@@ -149,7 +202,7 @@ class JoomleagueControllerEditEvents extends JLGController
 		$model=$this->getModel('editevents');
 		if (!$result=$model->savesubstitution($post))
 		{
-			$result="0"."\n".JText::_('Save failed').': '.$model->getError();
+			$result="0"."&".JText::_('Save failed').': '.$model->getError();
 		}
 		echo json_encode($result);
 		JFactory::getApplication()->close();

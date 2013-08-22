@@ -125,6 +125,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     self::migratePicturePath();
     //self::deleteInstallFolders();
     self::sendInfoMail();
+    self::InstallJoomla();
     //$parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "update":
@@ -136,6 +137,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     self::setParams($newparams);
     //self::deleteInstallFolders();
     self::sendInfoMail();
+    self::InstallJoomla();
     //$parent->getParent()->setRedirectURL('index.php?option=com_joomleague');
     break;
     case "discover_install":
@@ -145,6 +147,37 @@ foreach($form->getFieldset($fieldset->name) as $field)
     
         
 	}
+    
+    public function InstallJoomla()
+	{
+	$mainframe =& JFactory::getApplication();
+    echo JText::_('Creating Joomla PDF');
+	$dest = JPATH_ROOT.'/libraries/joomla/document/pdf';
+    
+    if ( !JFolder::exists($dest) )
+		{
+		  JFolder::create($dest);
+        }
+    JFile::copy(JPATH_ROOT.'/administrator/components/com_joomleague/joomla/pdf.php', $dest.'/pdf.php');
+    
+    $dest = JPATH_ROOT.'/libraries/joomla/document/pdf/renderer';
+    if ( !JFolder::exists($dest) )
+		{
+		  JFolder::create($dest);
+        }
+    JFolder::copy(JPATH_ROOT.'/libraries/joomla/document/html/renderer', JPATH_ROOT.'/libraries/joomla/document/pdf/renderer', '', true);
+        
+    echo JText::_('Creating Joomla PDF-Folder');
+    $dest = JPATH_ROOT.'/libraries/dompdf';
+    $extractdir=JPATH_SITE.'/libraries';
+    if ( !JFolder::exists($dest) )
+		{
+		  JFolder::create($dest);
+        }
+        
+    $result = JArchive::extract(JPATH_ROOT.'/administrator/components/com_joomleague/joomla/dompdf.zip',$extractdir);
+    }
+    
     
     public function deleteInstallFolders()
 	{
