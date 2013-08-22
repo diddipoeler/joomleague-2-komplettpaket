@@ -74,6 +74,7 @@ echo '<pre>',print_r($this->csv, true),'</pre>';
 <tr>	
 <th class="">Spieler</th>	
 <th class="">Minute</th>
+<th class="">Karte</th>
 <th class="">Rückennummer</th>
 <th class="">Grund</th>
 </tr>	
@@ -83,6 +84,7 @@ echo '<pre>',print_r($this->csv, true),'</pre>';
 		<tr>
         <td><?php echo $value->spieler; ?></td>
         <td><?php echo $value->event_time; ?></td>
+        <td><?php echo $value->event_name; ?></td>
         <td><?php echo $value->spielernummer; ?></td>
         <td><?php echo $value->notice; ?></td>
 		<?php endforeach; ?>
