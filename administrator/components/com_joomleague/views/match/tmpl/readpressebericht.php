@@ -2,7 +2,8 @@
 
 if ( $this->matchnumber )
 {
-echo '<pre>',print_r($this->csv, true),'</pre>';
+
+//echo '<pre>',print_r($this->csv, true),'</pre>';
 
 ?>
 <table id="<?php echo $dcsv['tableid']; ?>" class="table_from_csv_sortable<? if ($dcsv['sortable'] == false){ echo '_not';} ?>" width="<?php echo $dcsv['tablewidth']; ?>" border="<?php echo $dcsv['border']; ?>" cellspacing="<?php echo $dcsv['cellspacing']; ?>" cellpadding="<?php echo $dcsv['cellpadding']; ?>" bgcolor="<?php echo $dcsv['tablebgcolor']; ?>">
