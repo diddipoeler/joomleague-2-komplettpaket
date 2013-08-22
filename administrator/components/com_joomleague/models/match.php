@@ -751,12 +751,19 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     function getPressebericht()
     {
     $option = JRequest::getCmd('option');
-	$mainframe = JFactory::getApplication();    
-    $file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
+	$mainframe = JFactory::getApplication(); 
+    //$post = JRequest::get('post');
+    //$cid = JRequest::getVar('cid',array(0),'','array');
+    //$match_id = $cid[0];
+    $match_id = JRequest::getVar('match_id');
+    //$mainframe->enqueueMessage(JText::_('getPressebericht match_id<br><pre>'.print_r($match_id,true).'</pre>'   ),'');
+    $file = JPATH_SITE.DS.'media'.DS.'com_joomleague'.DS.'pressebericht'.DS.$match_id.'.jlg';   
+    //$file = JPATH_SITE.DS.'tmp'.DS.'pressebericht.jlg';
     $mainframe->enqueueMessage(JText::_('datei = '.$file),'');
     // Where the cache will be stored
     $dcsv['file']		= $file;
-$dcsv['cachefile']	= dirname(__FILE__).'/tmp/'.md5($dcsv['file']);
+//$dcsv['cachefile']	= dirname(__FILE__).'/tmp/'.md5($dcsv['file']);
+$dcsv['cachefile']	= JPATH_SITE.DS.'/tmp/'.md5($dcsv['file']);
 
 // If there is no chache saved or is older than the cache time create a new cache
 	// open the cache file for writing

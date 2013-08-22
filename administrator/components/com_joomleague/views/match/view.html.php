@@ -71,6 +71,9 @@ class JoomleagueViewMatch extends JLGView
         $uri = JFactory::getURI();
 		$this->assignRef('request_url',$uri->toString());
 		$this->assignRef('config',$config);
+        $cid = JRequest::getVar('cid',array(0),'','array');
+        $match_id = $cid[0];
+        $this->assignRef('match_id',$match_id);
 
 		parent::display($tpl);
 	}
@@ -79,7 +82,7 @@ class JoomleagueViewMatch extends JLGView
     {
         $mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
-$mainframe->enqueueMessage(JText::_('displayPressebericht<br><pre>'.print_r($this->_datas['match'],true).'</pre>'   ),'');     
+//$mainframe->enqueueMessage(JText::_('displayPressebericht<br><pre>'.print_r($this->_datas['match'],true).'</pre>'   ),'');     
 //    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
 //    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv.js');
 $model = $this->getModel();

@@ -20,6 +20,7 @@ JHTML::_('behavior.tooltip');JHTML::_('behavior.modal');
 		</table>
 		<input type='hidden' name='sent' value='1' />
 		<input type='hidden' name='MAX_FILE_SIZE' value='<?php echo $this->config->get('upload_maxsize'); ?>' />
+        <input type='hidden' name='match_id' value='<?php echo $this->match_id; ?>' />
 		<input type='hidden' name='task' value='match.savepressebericht' />
 		<?php echo JHTML::_('form.token')."\n"; ?>
 	</form>

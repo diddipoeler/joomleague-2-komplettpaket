@@ -539,18 +539,23 @@ class JoomleagueControllerMatch extends JoomleagueController
 		// first step - upload
 		if (isset($post['sent']) && $post['sent']==1)
 		{
-			$upload=JRequest::getVar('import_package',null,'files','array');
-			$tempFilePath=$upload['tmp_name'];
+			$upload = JRequest::getVar('import_package',null,'files','array');
+            $cid = JRequest::getVar('cid',array(0),'','array');
+            $match_id = $cid[0];
+			$tempFilePath = $upload['tmp_name'];
 			$mainframe->setUserState('com_joomleague'.'uploadArray',$upload);
-			$filename='';
-			$msg='';
-			$dest=JPATH_SITE.DS.'tmp'.DS.$upload['name'];
-			$extractdir=JPATH_SITE.DS.'tmp';
-			$importFile=JPATH_SITE.DS.'tmp'. DS.'pressebericht.jlg';
+			$filename = '';
+			$msg = '';
+			$dest = JPATH_SITE.DS.'tmp'.DS.$upload['name'];
+			$extractdir = JPATH_SITE.DS.'tmp';
+			//$importFile = JPATH_SITE.DS.'tmp'. DS.'pressebericht.jlg';
+            $importFile = JPATH_SITE.DS.'media'.DS.'com_joomleague'.DS.'pressebericht'.DS.$match_id.'.jlg';
+            
 			if (JFile::exists($importFile))
 			{
 				JFile::delete($importFile);
 			}
+            
 			if (JFile::exists($tempFilePath))
 			{
 					if (JFile::exists($dest))
@@ -614,7 +619,7 @@ class JoomleagueControllerMatch extends JoomleagueController
 			}
 		}
         //$csv_file = $model->getPressebericht();  
-		$link='index.php?option=com_joomleague&task=match.readpressebericht';
+		$link='index.php?option=com_joomleague&task=match.readpressebericht&match_id='.$match_id;
 		$this->setRedirect($link,$msg);    
         
         
@@ -623,12 +628,11 @@ class JoomleagueControllerMatch extends JoomleagueController
     function pressebericht()
     {
     JRequest::setVar('hidemainmenu',1);
-		JRequest::setVar('layout','pressebericht');
-		JRequest::setVar('view','match');
-		JRequest::setVar('edit',true);
-
-		
-		parent::display();    
+	JRequest::setVar('layout','pressebericht');
+	JRequest::setVar('view','match');
+	JRequest::setVar('edit',true);
+	
+	parent::display();    
         
     }
     
