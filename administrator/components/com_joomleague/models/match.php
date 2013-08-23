@@ -894,16 +894,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Trainer';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Trainer'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
@@ -922,16 +922,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Trainerassistent';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Trainerassistent'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
@@ -950,16 +950,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Arzt';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Arzt'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
@@ -978,16 +978,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Masseur';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Masseur'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
@@ -1006,16 +1006,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Zeugwart';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Zeugwart'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
@@ -1034,16 +1034,16 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->position = 'Mannschaftsverantwortlicher';
     $this->csv_staff[$i]->name = $csv_file->data[0][$find_csv.'-Mannschaftsverantwortlicher'];
     $teile = explode(" ",$this->csv_staff[$i]->name);
-    $this->csv_staff[$i]->lastname = trim($teile[0]);
-    $this->csv_staff[$i]->firstname = trim($teile[1]);
+    $this->csv_staff[$i]->lastname = trim($teile[1]);
+    $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
 	       	FROM #__joomleague_person 
-            WHERE firstname like '".trim($teile[1])."' 
-            AND lastname like '".trim($teile[0])."' ";
+            WHERE firstname like '".trim($teile[0])."' 
+            AND lastname like '".trim($teile[1])."' ";
     $this->_db->setQuery($query);
 	$person_id = $this->_db->loadResult();
         
