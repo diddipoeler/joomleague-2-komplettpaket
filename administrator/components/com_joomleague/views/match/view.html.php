@@ -96,6 +96,8 @@ $readplayers = $model->getPresseberichtReadPlayers($csv_file);
 $this->assignRef('csvplayers',$model->csv_player);   
 $this->assignRef('csvinout',$model->csv_in_out);
 $this->assignRef('csvcards',$model->csv_cards);
+
+$this->assignRef('csvstaff',$model->csv_staff);
 } 
         parent::display($tpl);
     }
