@@ -875,9 +875,10 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         }
     }
     
-    // jetzt kommen die karten
+    // jetzt kommen die gelben karten
     for($a=1; $a <= $csv_player_count; $a++ )
     {
+
         if ( isset($csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit']) && !empty($csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit'])  )
         {
             $this->csv_cards[$a]->event_time = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Zeit'];
@@ -887,6 +888,24 @@ class JoomleagueModelMatch extends JoomleagueModelItem
             $this->csv_cards[$a]->spieler = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Spieler'];
             $this->csv_cards[$a]->notice = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Grund'];
         }
+
+    }
+    
+    // jetzt kommen die gelb-roten karten
+    $start = sizeof($this->csv_cards) + 1;
+    for($b=$start; $b <= $csv_player_count; $b++ )
+    {
+
+        if ( isset($csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Zeit']) && !empty($csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Zeit'])  )
+        {
+            $this->csv_cards[$b]->event_time = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Zeit'];
+            $this->csv_cards[$b]->event_name = 'Gelbrot-Karte';
+            $this->csv_cards[$b]->event_sum = 1;
+            $this->csv_cards[$b]->spielernummer = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Nr'];
+            $this->csv_cards[$b]->spieler = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Spieler'];
+            $this->csv_cards[$b]->notice = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Grund'];
+        }
+
     }
     
     // mannschaftsverantwortliche
