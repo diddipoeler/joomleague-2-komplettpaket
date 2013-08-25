@@ -107,7 +107,7 @@ $this->assignRef('csvstaff',$model->csv_staff);
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
 		$project_id=$mainframe->getUserState('com_joomleagueproject');
-		$option = 'com_joomleague';
+		$option = JRequest::getCmd('option');
 		$params =& JComponentHelper::getParams( $option );
 		$default_name_format = $params->get("name_format");
 
@@ -251,7 +251,7 @@ $this->assignRef('csvstaff',$model->csv_staff);
         $this->assignRef('matchcommentary',$matchcommentary);
         
         // diddipoeler
-        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+        $this->assign('show_debug_info', JComponentHelper::getParams($option)->get('show_debug_info',0) );
         $mdlMatchProject = JModel::getInstance('project','JoomleagueModel');
         $this->assignRef('eventsprojecttime',$mdlMatchProject->getProjectGameRegularTime($project_id) );
         
@@ -556,7 +556,7 @@ $this->assignRef('csvstaff',$model->csv_staff);
 		$this->assignRef('preFillSuccess',	$preFillSuccess);
         
         // diddipoeler
-        $this->assign('show_debug_info', JComponentHelper::getParams('com_joomleague')->get('show_debug_info',0) );
+        $this->assign('show_debug_info', JComponentHelper::getParams($option)->get('show_debug_info',0) );
         $mdlMatchProject = JModel::getInstance('project','JoomleagueModel');
         $this->assignRef('eventsprojecttime',$mdlMatchProject->getProjectGameRegularTime($project_id) );
         

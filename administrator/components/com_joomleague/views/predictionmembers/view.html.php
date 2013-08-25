@@ -48,8 +48,6 @@ class JoomleagueViewPredictionMembers extends JLGView
   function _editlist( $tpl = null )
 	{
 		$mainframe			=& JFactory::getApplication();
-// 		$option				= 'com_joomleague';
-// 		$component_text = 'COM_JOOMLEAGUE_';
     $db					=& JFactory::getDBO();
 		$uri				=& JFactory::getURI();
 		//$document =& JFactory::getDocument();

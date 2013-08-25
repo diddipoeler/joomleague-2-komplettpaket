@@ -893,7 +893,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     
     // jetzt kommen die gelb-roten karten
     $start = sizeof($this->csv_cards) + 1;
-    $mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers start gelb rote karten<br><pre>'.print_r($start,true).'</pre>'   ),'');
+    //$mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers start gelb rote karten<br><pre>'.print_r($start,true).'</pre>'   ),'');
     
     for($b=1; $b <= $csv_player_count; $b++ )
     {

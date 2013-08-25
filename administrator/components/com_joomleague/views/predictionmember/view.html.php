@@ -43,7 +43,7 @@ class JoomleagueViewPredictionMember extends JLGView
 	function _displayForm( $tpl )
 	{
 		$mainframe			=& JFactory::getApplication();
-		$option				= 'com_joomleague';
+		$option = JRequest::getCmd('option');
 		$db		=& JFactory::getDBO();
 		$uri 	=& JFactory::getURI();
 		$user 	=& JFactory::getUser();

@@ -68,7 +68,7 @@ class JoomleagueViewSportsType extends JLGView
 		$this->assignRef('sportstype',$sportstype);
 		$this->assignRef('request_url',$uri->toString());
 		$this->assignRef('form',  $this->get('form'));
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );
 		//$extended = $this->getExtended($sportstype->extended, 'sporttype');
 		//$this->assignRef( 'extended', $extended );
 		$this->addToolbar();		

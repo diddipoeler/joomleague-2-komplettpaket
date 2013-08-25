@@ -1,15 +1,18 @@
 <?php
 JHTML::_('behavior.tooltip');
 
-/*
-// diddipoeler
-echo 'ranking teams<pre>',print_r($this->teams,true),'</pre>';
-*/
-
 $current  = &$this->current;
 $previous = &$this->previousRanking[$this->division];
 
 $config   = &$this->tableconfig;
+
+if ( $this->show_debug_info )
+{
+echo 'ranking teams<pre>',print_r($this->teams,true),'</pre><br>';
+echo 'ranking current<pre>',print_r($current,true),'</pre><br>';
+}
+
+
 
 $counter = 1;
 $k = 0;

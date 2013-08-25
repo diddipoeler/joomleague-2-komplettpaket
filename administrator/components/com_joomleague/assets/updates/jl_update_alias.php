@@ -104,6 +104,7 @@ case 'team':
 case 'playground':
 case 'division':
 case 'project':
+case 'round':
 $query="SELECT id, name
 	       	FROM #__joomleague_".$table." 
             ";
@@ -146,6 +147,7 @@ echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';s
 echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';sendData(\'playground\')" value="Spielstätten" />';
 echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';sendData(\'division\')" value="Gruppen" />';
 echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';sendData(\'project\')" value="Projekte" />';
+echo '<input type="button" onclick="document.body.innerHTML=\'please wait...\';sendData(\'round\')" value="Spieltage" />';
 echo '</form>';
 
 

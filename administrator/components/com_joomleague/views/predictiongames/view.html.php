@@ -26,9 +26,6 @@ class JoomleagueViewPredictionGames extends JLGView
 {
 	function display( $tpl = null )
 	{
-// 		$mainframe			=& JFactory::getApplication();
-// 		$option				= 'com_joomleague';
-//     $option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
     
     // Get a refrence of the page instance in joomla

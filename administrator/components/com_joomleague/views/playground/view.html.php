@@ -70,7 +70,7 @@ class JoomleagueViewPlayground extends JLGView
 */
 		$extended = $this->getExtended($venue->extended, 'playground');
 		$this->assignRef( 'extended', $extended );
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );
 		//$this->assignRef('lists',$lists);
 		$this->assignRef('venue',$venue);
 		$this->assignRef('form'      	, $this->get('form'));	

@@ -27,6 +27,7 @@ class JoomleagueViewTeamPlayer extends JLGView
 	function display( $tpl = null )
 	{
 		$mainframe	= JFactory::getApplication();
+		$option = JRequest::getCmd('option');
 		$uri		= JFactory::getURI();
 		$user		= JFactory::getUser();
 		$model		= $this->getModel();
@@ -160,7 +161,7 @@ class JoomleagueViewTeamPlayer extends JLGView
 		$this->assignRef( 'teamws',			$teamws );
 		$this->assignRef( 'lists',			$lists );
 		$this->assignRef( 'project_player',	$project_player );
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );
 
 		parent::display( $tpl );
 	}

@@ -143,7 +143,7 @@ class JoomleagueViewPosition extends JLGView
 		$this->assignRef('lists',$lists);
 		$this->assignRef('position',$position);
 		$this->assignRef('form'      	, $this->get('form'));
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );	
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );	
 		//$extended = $this->getExtended($position->extended, 'position');
 		//$this->assignRef( 'extended', $extended );
 		$this->addToolbar();			

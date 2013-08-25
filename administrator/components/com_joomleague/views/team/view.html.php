@@ -39,6 +39,7 @@ class JoomleagueViewTeam extends JLGView
 	function _displayForm($tpl)
 	{
 		$mainframe	= JFactory::getApplication();
+		$option = JRequest::getCmd('option');
 		$db			= JFactory::getDBO();
 		$uri 		= JFactory::getURI();
 		$user 		= JFactory::getUser();
@@ -85,7 +86,7 @@ class JoomleagueViewTeam extends JLGView
 		$extended = $this->getExtended($team->extended, 'team');
 		$this->assignRef( 'extended', $extended );
 		$this->assignRef('form'      	, $this->get('form'));
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );			
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );			
 		$this->addToolbar();		
 		parent::display( $tpl );
 	}

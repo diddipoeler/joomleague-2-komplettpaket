@@ -73,7 +73,7 @@ class JoomleagueViewStatistic extends JLGView
 		$this->assignRef( 'edit', $edit );
 		$this->assignRef('form',  $form);
 		$this->assignRef('fieldsets', $form->getFieldsets());
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );	
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );	
 
 		$this->addToolbar();
 		

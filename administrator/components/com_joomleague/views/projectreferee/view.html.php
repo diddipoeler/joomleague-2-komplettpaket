@@ -27,6 +27,7 @@ class JoomleagueViewProjectReferee extends JLGView
 	function display($tpl=null)
 	{
 		$mainframe	= JFactory::getApplication();
+		$option = JRequest::getCmd('option');
 		$db	 		= JFactory::getDBO();
 		$uri		= JFactory::getURI();
 		$user		= JFactory::getUser();
@@ -73,7 +74,7 @@ class JoomleagueViewProjectReferee extends JLGView
 		$this->assignRef('projectreferee',	$projectreferee);
 		$extended = $this->getExtended($projectreferee->extended, 'projectreferee');		
 		$this->assignRef( 'extended', $extended );
-        $this->assign('cfg_which_media_tool', JComponentHelper::getParams('com_joomleague')->get('cfg_which_media_tool',0) );
+        $this->assign('cfg_which_media_tool', JComponentHelper::getParams($option)->get('cfg_which_media_tool',0) );
 		
 		$this->addToolbar();		
 		parent::display($tpl);
