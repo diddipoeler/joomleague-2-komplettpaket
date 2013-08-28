@@ -457,15 +457,15 @@ class JoomleagueViewMatchReport extends JLGView
 
 		if ($two_substitutions_per_minute == 1) // there were two substitutions in one minute in timelinetop
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%; top: -25px;"';
+			$result .= "\n".'<img class="hasTip" style="position: absolute; left: '.$time2.'%; top: -25px;"';
 		}
 		elseif ($two_substitutions_per_minute == 2) // there were two substitutions in one minute in timelinebottom
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%; top: 25px;"';
+			$result .= "\n".'<img class="hasTip" style="position: absolute; left: '.$time2.'%; top: 25px;"';
 		}
 		else
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute; left: '.$time2.'%;"';
+			$result .= "\n".'<img class="hasTip" style="position: absolute; left: '.$time2.'%;"';
 		}
 
 		$result .= ' src="'.$pic_time.'" alt="'.$tiptext.'" title="'.$tiptext;
