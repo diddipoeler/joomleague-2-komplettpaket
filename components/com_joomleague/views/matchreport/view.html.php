@@ -15,6 +15,13 @@ class JoomleagueViewMatchReport extends JLGView
 		$version = urlencode(JoomleagueHelper::getVersion());
 		$css='components/com_joomleague/assets/css/tabs.css?v='.$version;
 		$document->addStyleSheet($css);
+        
+        // diddipoeler
+        $css='components/com_joomleague/assets/css/tooltipstyle.css';
+        $document->addStyleSheet($css);
+        $css='components/com_joomleague/assets/css/jquery-easy-tooltip.css';
+        $document->addStyleSheet($css);
+        $document->addScript( JURI::base(true).'/components/com_joomleague/assets/js/tooltipscript.js');
 
 		$model = $this->getModel();
 		$config=$model->getTemplateConfig($this->getName());
@@ -569,15 +576,15 @@ class JoomleagueViewMatchReport extends JLGView
 		$time=($matchEvent->event_time / $this->getTimelineMatchTime()) *100;
 		if ($two_events_per_minute == 1) // there were two events in one minute in timelinetop
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%; top: -25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTip" style="position: absolute;left: '.$time.'%; top: -25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 		elseif ($two_events_per_minute == 2) // there were two events in one minute in timelinebottom
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%; top: 25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTip" style="position: absolute;left: '.$time.'%; top: 25px;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 		else
 		{
-			$result .= "\n".'<img class="imgzev" style="position: absolute;left: '.$time.'%;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
+			$result .= "\n".'<img class="hasTip" style="position: absolute;left: '.$time.'%;" src="'.$event->icon.'" alt="'.$tiptext.'" title="'.$tiptext;
 		}
 
 		if ($this->config['use_tabs_events'] == 2) {
@@ -593,15 +600,15 @@ class JoomleagueViewMatchReport extends JLGView
     //$picture = JURI::root(true).'/'.str_replace(JPATH_SITE.DS, "", $picture);
 		$picture = JURI::root().$picture;
 		if($width > 0 && $height==0) {
-			return '&lt;img src=\''.$picture.'\' width=\''.$width.'\' /&gt;';
+			return '&lt;img src=&quot;'.$picture.'&quot; width=&quot;'.$width.'&quot; /&gt;';
 		}
 		if($height>0 && $width==0) {
-			return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' /&gt;';
+			return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot;/&gt;';
 		}
 		if($height > 0 && $width > 0) {
-			return '&lt;img src=\''.$picture.'\' height=\''.$height.'\' width=\''.$width.'\' /&gt;';
+			return '&lt;img src=&quot;'.$picture.'&quot;height=&quot;'.$height.'&quot; width=&quot;'.$width.'&quot; /&gt;';
 		}
-		return '&lt;img src=\''.$picture.'\' /&gt;';
+		return '&lt;img src=&quot;'.$picture.'&quot; /&gt;';
 	}
 
 }
