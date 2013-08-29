@@ -349,6 +349,7 @@ class plgSearchJoomleague extends JPlugin
 			{
 			//echo 'country<pre>'.print_r($output->country,true).'</pre><br>';
 			//echo 'picture<pre>'.print_r($output->picture,true).'</pre><br>';
+            $output->href = JRoute::_($output->href);
 			if ( $output->country)
 			{
 			$flag = Countries::getCountryFlag($output->country);
