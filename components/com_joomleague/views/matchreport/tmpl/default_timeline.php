@@ -2,9 +2,10 @@
 <!-- START of match timeline -->
 
 <script type="text/javascript">
-	window.addEvent('domready', function(){
-		var Tips1 = new Tips($$('.imgzev'));
-	});
+//	window.addEvent('domready', function(){
+//		var Tips1 = new Tips($$('.imgzev'));
+//	});
+    
 	function gotoevent(row) {
         var t=document.getElementById('event-' + row)
         t.scrollIntoView()
