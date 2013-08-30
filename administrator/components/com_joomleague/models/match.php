@@ -1224,10 +1224,10 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     }
     $this->_success_text['Importing general In/Out data:'] = $my_text;
     
-    echo 'savePressebericht csv_player <pre>'.print_r($this->csv_player,true).'</pre>';
-    echo 'savePressebericht csv_staff <pre>'.print_r($this->csv_staff,true).'</pre>';
-    echo 'savePressebericht csv_cards <pre>'.print_r($this->csv_cards,true).'</pre>';
-    echo 'savePressebericht csv_in_out <pre>'.print_r($this->csv_in_out,true).'</pre>';
+//    echo 'savePressebericht csv_player <pre>'.print_r($this->csv_player,true).'</pre>';
+//    echo 'savePressebericht csv_staff <pre>'.print_r($this->csv_staff,true).'</pre>';
+//    echo 'savePressebericht csv_cards <pre>'.print_r($this->csv_cards,true).'</pre>';
+//    echo 'savePressebericht csv_in_out <pre>'.print_r($this->csv_in_out,true).'</pre>';
     
       
     }
