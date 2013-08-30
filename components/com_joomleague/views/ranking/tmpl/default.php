@@ -2,7 +2,7 @@
 
 if ( $this->show_debug_info )
 {
-echo 'allteams<pre>',print_r($this->allteams,true),'</pre><br>';
+echo 'default allteams<pre>',print_r($this->allteams,true),'</pre><br>';
 }
 
 // Make sure that in case extensions are written for mentioned (common) views,

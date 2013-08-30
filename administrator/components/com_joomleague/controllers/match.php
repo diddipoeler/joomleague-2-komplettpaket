@@ -619,12 +619,22 @@ class JoomleagueControllerMatch extends JoomleagueController
 			}
 		}
         //$csv_file = $model->getPressebericht();  
-		$link='index.php?option=com_joomleague&task=match.readpressebericht&match_id='.$match_id;
+		$link='index.php?option=com_joomleague&tmpl=component&task=match.readpressebericht&match_id='.$match_id;
 		$this->setRedirect($link,$msg);    
         
         
     }
     
+    function savecsvpressebericht()
+    {
+    JRequest::setVar('hidemainmenu',1);
+	JRequest::setVar('layout','savepressebericht');
+	JRequest::setVar('view','match');
+	JRequest::setVar('edit',true);
+	
+	parent::display();
+    }
+        
     function pressebericht()
     {
     JRequest::setVar('hidemainmenu',1);

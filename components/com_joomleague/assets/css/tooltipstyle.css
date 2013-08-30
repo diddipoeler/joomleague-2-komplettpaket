@@ -1,0 +1,91 @@
+/**
+ * Stylesheet
+ *
+ * @package         Tooltips
+ * @version         3.3.0
+ *
+ * @author          Peter van Westen <peter@nonumber.nl>
+ * @link            http://www.nonumber.nl
+ * @copyright       Copyright © 2013 NoNumber All Rights Reserved
+ * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+/*
+ * You can override this stylesheet by creating your own in:
+ * /templates/[YOUR TEMPLATE]/media/tooltips/css/style.min.css
+ */
+/* TOOLTIP LINK STYLES */
+span.tooltips-link {
+  cursor: default;
+}
+span.tooltips-link.isimg {
+  border-bottom: none;
+}
+span.tooltips-link.nostyle {
+  border-bottom: none;
+  cursor: inherit;
+}
+/* TOOLTIP STYLES */
+div.tooltips-tip,
+div.tooltips-tip.tool-tip,
+div.tooltips-tip-tip {
+  display: none;
+  float: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  max-width: none;
+  z-index: 200;
+}
+div.tooltips-tip-tip {
+  display: block;
+  visibility: hidden;
+}
+div.tooltips-tip div.tip,
+div.tooltips-tip-tip > div {
+  float: left;
+  margin: 0;
+  padding: 5px 8px;
+  background-color: #F6F6FF;
+  border: 2px solid #CCCCCC;
+  max-width: 400px;
+  z-index: inherit;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+div.tooltips-tip div.tip-title,
+div.tooltips-tip-tip div.tooltips-tip-title {
+  margin: 0;
+  padding: 0;
+  background: none;
+  font-size: 1em;
+  font-weight: bold;
+}
+div.tooltips-tip div.tip-text,
+div.tooltips-tip-tip div.tooltips-tip-text {
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+  padding-top: 0;
+}
+/* IMAGE TIPS */
+div.tooltips-img.tooltips-tip div.tip,
+div.tooltips-img.tooltips-tip-tip > div {
+  line-height: 0;
+  padding: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+div.tooltips-img.tooltips-tip div.tip-title,
+div.tooltips-img.tooltips-tip-tip div.tooltips-tip-title,
+div.tooltips-img.tooltips-tip > div > div:first-child,
+div.tooltips-img.tooltips-tip-tip > div > div:first-child {
+  margin: 0;
+  padding: 0;
+  background: none;
+}

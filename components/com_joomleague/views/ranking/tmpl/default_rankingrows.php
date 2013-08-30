@@ -8,8 +8,8 @@ $config   = &$this->tableconfig;
 
 if ( $this->show_debug_info )
 {
-echo 'ranking teams<pre>',print_r($this->teams,true),'</pre><br>';
-echo 'ranking current<pre>',print_r($current,true),'</pre><br>';
+echo 'default_rankingrows ranking teams<pre>',print_r($this->teams,true),'</pre><br>';
+echo 'default_rankingrows ranking current<pre>',print_r($current,true),'</pre><br>';
 }
 
 

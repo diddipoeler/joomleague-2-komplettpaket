@@ -65,6 +65,12 @@ class JoomleagueViewMatch extends JLGView
 			$this->_displayPressebericht($tpl);
 			return;
 		}
+        elseif ($this->getLayout() == 'savepressebericht')
+		{
+			$this->_displaySavePressebericht($tpl);
+			return;
+		}
+        
         $config =& JComponentHelper::getParams('com_media');
 		$post=JRequest::get('post');
 		$files=JRequest::get('files');
@@ -78,10 +84,24 @@ class JoomleagueViewMatch extends JLGView
 		parent::display($tpl);
 	}
     
+    function _displaySavePressebericht($tpl)
+    {
+    $mainframe = JFactory::getApplication();
+	$document = JFactory::getDocument();
+    $project_id = $mainframe->getUserState('com_joomleagueproject');
+    $model = $this->getModel();
+    $csv_file_save = $model->savePressebericht();
+    
+    $this->assignRef('importData',$model->_success_text);
+        
+    parent::display($tpl);    
+    }
+    
     function _displayPressebericht($tpl)
     {
         $mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
+        $project_id=$mainframe->getUserState('com_joomleagueproject');
 //$mainframe->enqueueMessage(JText::_('displayPressebericht<br><pre>'.print_r($this->_datas['match'],true).'</pre>'   ),'');     
 //    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv-0.71.js');       
 //    $document->addScript(JURI::root() . 'administrator/components/com_joomleague/assets/js/jquery.csv.js');
@@ -96,9 +116,43 @@ $readplayers = $model->getPresseberichtReadPlayers($csv_file);
 $this->assignRef('csvplayers',$model->csv_player);   
 $this->assignRef('csvinout',$model->csv_in_out);
 $this->assignRef('csvcards',$model->csv_cards);
-
 $this->assignRef('csvstaff',$model->csv_staff);
-} 
+}
+
+//build the html options for position
+		$position_id[] = JHTML::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION' ) );
+		if ( $res = $model->getProjectPositionsOptions(0,1) )
+		{
+			$position_id = array_merge( $position_id, $res );
+		}
+		$lists['project_position_id'] = $position_id;
+        $lists['inout_position_id'] = $position_id;
+		unset( $position_id );
+        
+        $position_id[] = JHTML::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_GLOBAL_SELECT_POSITION' ) );
+		if ( $res = $model->getProjectPositionsOptions(0,2) )
+		{
+			$position_id = array_merge( $position_id, $res );
+		}
+		$lists['project_staff_position_id'] = $position_id;
+		unset( $position_id );
+        
+        // events
+		$events=$model->getEventsOptions($project_id);
+		if (!$events)
+		{
+			JError::raiseWarning(440,'<br />'.JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_EVENTS_POS').'<br /><br />');
+			return;
+		}
+		$eventlist=array();
+        $eventlist[] = JHTML::_( 'select.option', '0', JText::_( 'COM_JOOMLEAGUE_ADMIN_XML_IMPORT_SELECT_EVENT' ) );
+		$eventlist=array_merge($eventlist,$events);
+		
+        $lists['events'] = $eventlist;
+        unset( $eventlist );
+        
+        $this->assignRef( 'lists',			$lists );
+ 
         parent::display($tpl);
     }
 

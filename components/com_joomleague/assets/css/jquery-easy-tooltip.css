@@ -1,0 +1,61 @@
+﻿/***********************************************
+*** Designers Home: http://www.easy-tuts.com ***
+***********************************************/
+
+/**** EASY TOOLTIP STYLE START ****/
+
+.easy-tooltip-default, .tip-white, .tip-black, .tip-blue, .tip-red, .tip-green, .tip-yellow {
+	padding:5px;
+	max-width:300px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	-moz-box-shadow: 0 0 7px #ccc;
+	-webkit-box-shadow: 0 0 7px #ccc;
+	box-shadow: 0 0 7px #ccc;
+}
+.easy-tooltip-default {
+	color: #0099FF;
+	border:1px solid orange;
+	background-color:#fff;
+}
+.easy-tooltip-title {
+	display:block;
+	text-align:center;
+	border-bottom:1px dotted;
+	font-weight:bold;
+}
+.tip-white {
+	color: #505050;
+	background-color:#fff;
+	border: 1px solid #ddd;
+}
+.tip-black {
+	color:#fcfcfc;
+	background-color:#333;
+	border:1px solid #111;
+}
+.tip-blue {
+	color:#1b475a;
+	background-color:#d9f1fb;
+	border:1px solid #7fcdee;
+}
+.tip-red {
+	color:#fcfcfc;
+	background-color:#bb3b1d;
+	border:1px solid #8f2a0f;
+}
+.tip-green {
+	color:#558221;
+	background-color:#f2fdf1;
+	border:1px solid #b6e184;
+}
+.tip-yellow {
+	color: #5b5316;
+	background-color:#f9f2ba;
+	border: 1px solid #e9d315;
+}
+.tip-yellow:before{
+	border: 10px solid #e9d315;
+}
+/**** EASY TOOLTIP STYLE END ****/

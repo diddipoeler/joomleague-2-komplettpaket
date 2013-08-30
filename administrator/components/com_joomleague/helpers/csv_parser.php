@@ -369,6 +369,18 @@ class parseCSV {
 			} else return false;
 		}
 		
+		// umlaute und leerezichen entfernen
+        $suchmuster = array();
+        $suchmuster[0] = '/ü/';
+        $suchmuster[1] = '/ä/';
+        $suchmuster[2] = '/ö/';
+        $suchmuster[3] = '/ /';
+        $ersetzungen = array();
+        $ersetzungen[0] = 'ue';
+        $ersetzungen[1] = 'ae';
+        $ersetzungen[2] = 'oe';
+        $ersetzungen[3] = '';
+        
 		$white_spaces = str_replace($this->delimiter, '', " \t\x0B\0");
 		
 		$rows = array();
@@ -444,6 +456,7 @@ class parseCSV {
 			// end of field/row
 			} elseif ( ($ch == $this->delimiter || $ch == "\n" || $ch == "\r") && !$enclosed ) {
 				$key = ( !empty($head[$col]) ) ? $head[$col] : $col ;
+				$key = preg_replace($suchmuster, $ersetzungen, $key );
 				$row[$key] = ( $was_enclosed ) ? $current : trim($current) ;
 				$current = '';
 				$was_enclosed = false;
@@ -480,6 +493,15 @@ class parseCSV {
 			}
 		}
 		$this->titles = $head;
+        
+        
+		foreach ($this->titles as $key => $value )
+		{
+		$valueneu = preg_replace($suchmuster, $ersetzungen, $value);
+		$this->titles[$key] = $valueneu;
+		}
+//        echo 'file_data<pre>',print_r($this->titles,true),'</pre>';        
+        
 		if ( !empty($this->sort_by) ) {
 			$sort_type = SORT_REGULAR;
 			if ( $this->sort_type == 'numeric' ) {

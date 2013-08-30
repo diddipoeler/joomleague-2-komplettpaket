@@ -52,6 +52,10 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     var $csv_staff = array();
     var $csv_in_out = array();
     var $csv_cards = array();
+    
+    var $storeFailedColor = 'red';
+	var $storeSuccessColor = 'green';
+	var $existingInDbColor = 'orange';
 
 	/**
 	 * Method to load content matchday data
@@ -752,7 +756,482 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 		return $this->_db->loadObjectList();
 	}
 
-	
+	function savePressebericht()
+    {
+    $option = JRequest::getCmd('option');
+	$mainframe = JFactory::getApplication(); 
+    $project_id = $mainframe->getUserState($option.'project'); 
+    
+    $this->csv_staff = $mainframe->getUserState($option.'csv_staff');
+    $this->csv_cards = $mainframe->getUserState($option.'csv_cards');
+    $this->csv_in_out = $mainframe->getUserState($option.'csv_in_out');
+    $this->csv_player = $mainframe->getUserState($option.'csv_player');
+    $projectteamid = $mainframe->getUserState($option.'projectteamid');
+    
+    $match_id = JRequest::getVar('match_id'); 
+    $post = JRequest::get('post');  
+    
+    $project_position_id = $post['project_position_id'];
+    $project_staff_position_id = $post['project_staff_position_id'];
+    $inout_position_id = $post['inout_position_id'];
+    $project_events_id = $post['project_events_id'];
+    
+//    echo 'savePressebericht project_position_id <pre>'.print_r($project_position_id,true).'</pre>';
+//    echo 'savePressebericht project_staff_position_id <pre>'.print_r($project_staff_position_id,true).'</pre>';
+//    echo 'savePressebericht inout_position_id <pre>'.print_r($inout_position_id,true).'</pre>';
+//    echo 'savePressebericht project_events_id <pre>'.print_r($project_events_id,true).'</pre>';
+    
+//    echo 'savePressebericht match_id <pre>'.print_r($match_id,true).'</pre>';
+//    echo 'savePressebericht projectteamid <pre>'.print_r($projectteamid,true).'</pre>';
+//    echo 'savePressebericht project_id <pre>'.print_r($project_id,true).'</pre>';
+//    echo 'savePressebericht post <pre>'.print_r($post,true).'</pre>';
+    
+    // positions zuordnung der spieler zum team
+    $my_text = '';
+    foreach ( $project_position_id as $key => $value )
+    {
+    
+    if ( $this->csv_player[$key]->person_id )
+    {
+    $lastname = $this->csv_player[$key]->lastname;
+    $firstname = $this->csv_player[$key]->firstname;
+    $person_id = $this->csv_player[$key]->person_id;
+    $project_position_id = $this->csv_player[$key]->project_position_id;
+    $project_person_id = $this->csv_player[$key]->project_person_id;
+    $trikot_number = $this->csv_player[$key]->nummer;
+    
+    // keine projektposition
+    if ( !$project_position_id && $value )
+    {
+    $tblTeamplayer =& JTable::getInstance( 'Teamplayer', 'Table' );
+    $tblTeamplayer->person_id		= $person_id;
+	$tblTeamplayer->projectteam_id	= $projectteamid;
+    $tblTeamplayer->project_position_id = $value;
+    $tblTeamplayer->published		= 1;
+    // diddipoeler picture
+    $tblPerson =& JTable::getInstance( 'Person', 'Table' );
+    $tblPerson->load($person_id);
+    $tblTeamplayer->picture	= $tblPerson->picture;
+    if ( !$tblTeamplayer->store() )
+	{
+	$this->setError( $tblTeamplayer->getError() );
+	}
+    else
+    {
+        $this->csv_player[$key]->project_person_id = $this->_db->insertid();
+        $this->csv_player[$key]->project_position_id = $value;
+        $project_position_id = $this->csv_player[$key]->project_position_id;
+        $project_person_id = $this->csv_player[$key]->project_person_id;
+    }
+            
+    }   
+     
+    $my_text .= '<span style="color:'.$this->existingInDbColor.'">';
+					$my_text .= JText::sprintf(	'Using existing person data: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Project-Person-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$project_person_id</strong>");
+					$my_text .= '<br />';
+    
+    // ist der spieler der paarung zugeordnet ?
+    if ( $project_position_id && $project_person_id && $key < 12 )
+    {
+    $query="SELECT id
+				FROM #__joomleague_match_player 
+                WHERE match_id = ".$match_id." 
+                AND teamplayer_id = ".$project_person_id." 
+                AND project_position_id = ".$project_position_id." ";
+		$this->_db->setQuery($query);
+		$match_player_id = $this->_db->loadResult();
+        if ( !$match_player_id )
+        {
+        $record =& JTable::getInstance('Matchplayer','Table');
+		$record->match_id = $match_id;
+		$record->teamplayer_id = $project_person_id;
+		$record->project_position_id = $project_position_id;
+        $record->trikot_number = $trikot_number;
+        if (!$record->store())
+					{
+						$this->setError($record->getError());
+						$my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR Assign person data to match: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Match-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$match_id</strong>");
+					$my_text .= '<br />';
+					}
+                    else
+                    {
+                    $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'Assign person data to match: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Match-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$match_id</strong>");
+					$my_text .= '<br />';    
+                    }
+        }
+            
+    }
+    
+    }
+                        
+    }
+    $this->_success_text['Importing general Person data:'] = $my_text;  
+    
+    // positions zuordnung der mitarbeiter zum team
+    $my_text = '';
+    foreach ( $project_staff_position_id as $key => $value )
+    {
+    if ( $this->csv_staff[$key]->person_id )
+    {
+    $lastname = $this->csv_staff[$key]->lastname;
+    $firstname = $this->csv_staff[$key]->firstname;
+    $person_id = $this->csv_staff[$key]->person_id;
+    $project_position_id = $this->csv_staff[$key]->project_position_id;
+    $project_person_id = $this->csv_staff[$key]->project_person_id;
+    
+    
+    // keine projektposition
+    if ( !$project_position_id && $value )
+    {
+    $tblTeamplayer =& JTable::getInstance( 'Teamstaff', 'Table' );
+    $tblTeamplayer->person_id		= $person_id;
+	$tblTeamplayer->projectteam_id	= $projectteamid;
+    $tblTeamplayer->project_position_id = $value;
+    $tblTeamplayer->published		= 1;
+    // diddipoeler picture
+    $tblPerson =& JTable::getInstance( 'Person', 'Table' );
+    $tblPerson->load($person_id);
+    $tblTeamplayer->picture	= $tblPerson->picture;
+    if ( !$tblTeamplayer->store() )
+	{
+	$this->setError( $tblTeamplayer->getError() );
+	}
+    else
+    {
+        $this->csv_staff[$key]->project_person_id = $this->_db->insertid();
+        $this->csv_staff[$key]->project_position_id = $value;
+        $project_position_id = $this->csv_staff[$key]->project_position_id;
+        $project_person_id = $this->csv_staff[$key]->project_person_id;
+    }
+            
+    }   
+     
+    $my_text .= '<span style="color:'.$this->existingInDbColor.'">';
+					$my_text .= JText::sprintf(	'Using existing staff person data: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Project-Person-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$project_person_id</strong>");
+					$my_text .= '<br />';
+    
+    // ist der spieler der paarung zugeordnet ?
+    if ( $project_position_id && $project_person_id )
+    {
+    $query="SELECT id
+				FROM #__joomleague_match_staff 
+                WHERE match_id = ".$match_id." 
+                AND team_staff_id = ".$project_person_id." 
+                AND project_position_id = ".$project_position_id." ";
+		$this->_db->setQuery($query);
+		$match_player_id = $this->_db->loadResult();
+        if ( !$match_player_id )
+        {
+        $record =& JTable::getInstance('Matchstaff','Table');
+		$record->match_id = $match_id;
+		$record->team_staff_id = $project_person_id;
+		$record->project_position_id = $project_position_id;
+        
+        if (!$record->store())
+					{
+						$this->setError($record->getError());
+						$my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR Assign staff person data to match: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Match-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$match_id</strong>");
+					$my_text .= '<br />';
+					}
+                    else
+                    {
+                    $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'Assign staff person data to match: %1$s %2$s [ Person-ID: %3$s] - Position-ID: %4$s - [ Match-ID: %5$s]',
+												"</span><strong>$lastname</strong>",
+												"<strong>$firstname</strong>",
+												"<strong>$person_id</strong>",
+												"<strong>$project_position_id</strong>",
+												"<strong>$match_id</strong>");
+					$my_text .= '<br />';    
+                    }
+        }
+            
+    }
+    
+    }
+    }    
+    $this->_success_text['Importing general Staff Person data:'] = $my_text;
+    
+    // jetzt kommen die karten
+    // positions zuordnung der mitarbeiter zum team
+    $my_text = '';
+    foreach ( $this->csv_cards as $key  )
+    {
+    $spielernummer = $key->spielernummer;
+    $project_person_id = $this->csv_player[$spielernummer]->project_person_id;
+    $spieler = $key->spieler;
+    $event_time = $key->event_time; 
+    $event_name = $key->event_name; 
+    $event_sum = $key->event_sum; 
+    $notice = $key->notice;  
+    $events_id = $project_events_id[$spielernummer];
+    
+    // keine id zum spieler
+    if ( !$events_id )
+    {
+    $my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR No Events ID: Person: %1$s Time: %2$s Eventname: %3$s Eventsum: %4$s Eventnotice: %5$s',
+												"</span><strong>$spieler</strong>",
+												"<strong>$event_time</strong>",
+												"<strong>$event_name</strong>",
+												"<strong>$event_sum</strong>",
+												"<strong>$notice</strong>");
+					$my_text .= '<br />';    
+    }
+    else
+    {
+        if ( $project_person_id )
+        {
+        // gibt es das event schon ?
+        $query="SELECT id
+				FROM #__joomleague_match_event
+                WHERE match_id = ".$match_id." 
+                AND projectteam_id = ".$projectteamid." 
+                AND teamplayer_id = ".$project_person_id."
+                AND event_type_id = ".$events_id."";
+		$this->_db->setQuery($query);
+		$match_event_id = $this->_db->loadResult();
+        if ( !$match_event_id )
+        {
+        $record =& JTable::getInstance('Matchevent','Table');
+		$record->match_id = $match_id;
+		$record->projectteam_id = $projectteamid;
+		$record->teamplayer_id = $project_person_id;    
+        $record->event_type_id = $events_id;
+        $record->event_time = $event_time;
+        $record->event_sum = $event_sum;
+        $record->notice = $notice;
+        if (!$record->store())
+					{
+					$my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR Save Events ID: Person: %1$s Time: %2$s Eventname: %3$s Eventsum: %4$s Eventnotice: %5$s',
+												"</span><strong>$spieler</strong>",
+												"<strong>$event_time</strong>",
+												"<strong>$event_name</strong>",
+												"<strong>$event_sum</strong>",
+												"<strong>$notice</strong>");
+					$my_text .= '<br />';      
+					}
+                    else
+                    {
+                    $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'Save Events ID: Person: %1$s Time: %2$s Eventname: %3$s Eventsum: %4$s Eventnotice: %5$s',
+												"</span><strong>$spieler</strong>",
+												"<strong>$event_time</strong>",
+												"<strong>$event_name</strong>",
+												"<strong>$event_sum</strong>",
+												"<strong>$notice</strong>");
+					$my_text .= '<br />';       
+                    }   
+        
+        }
+        
+        }
+        
+        
+    }
+    
+       
+    }
+    $this->_success_text['Importing general Events data:'] = $my_text;
+    
+    
+    // jetzt die wechsel
+    $my_text = '';
+    foreach ( $this->csv_in_out as $key  )
+    {
+    $in_out_time = $key->in_out_time;
+    $came_in = $key->came_in;
+    $in = $key->in;
+    $out = $key->out;
+    
+    $project_person_id_in = $this->csv_player[$in]->project_person_id;
+    $project_person_id_out = $this->csv_player[$out]->project_person_id;
+    
+    $lastname_in = $this->csv_player[$in]->lastname;
+    $firstname_in = $this->csv_player[$in]->firstname;
+    $trikot_number = $this->csv_player[$in]->nummer;
+    
+    $lastname_out = $this->csv_player[$out]->lastname;
+    $firstname_out = $this->csv_player[$out]->firstname;
+    
+    $project_position_id = $inout_position_id[$in];
+    
+    if ( !$out )
+    {
+    $my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR no assign out player for player : %1$s %2$s [ In-Out Time: %3$s]',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>");
+					$my_text .= '<br />';    
+    }
+    else
+    {
+//        $in_out_position_id = $inout_position_id[$in];
+        if ( !$project_position_id )
+        {
+            $my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR no assign projectposition for player-in : %1$s %2$s [ In-Out Time: %3$s] player-out : %4$s %5$s ',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>",
+                                                "</span><strong>$lastname_out</strong>",
+                                                "<strong>$firstname_out</strong>")
+                                                ;
+					$my_text .= '<br />'; 
+        }
+        else
+        {
+            // gibt es den wechsel schon ?
+            $query="SELECT id
+				FROM #__joomleague_match_player
+                WHERE match_id = ".$match_id." 
+                AND teamplayer_id = ".$project_person_id_in."
+                AND in_for = ".$project_person_id_out." and came_in = 1 ";
+		$this->_db->setQuery($query);
+		$match_event_id = $this->_db->loadResult();
+        // vorhanden
+        if ( $match_event_id )
+        {
+            $my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR in/out available for player-in : %1$s %2$s [ In-Out Time: %3$s] player-out : %4$s %5$s ',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>",
+                                                "</span><strong>$lastname_out</strong>",
+                                                "<strong>$firstname_out</strong>")
+                                                ;
+					$my_text .= '<br />'; 
+        }
+        else
+        {
+            $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'in/out not available for player-in : %1$s %2$s [ In-Out Time: %3$s] player-out : %4$s %5$s ',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>",
+                                                "</span><strong>$lastname_out</strong>",
+                                                "<strong>$firstname_out</strong>")
+                                                ;
+					$my_text .= '<br />'; 
+        // player id des auszuwechselnden spielers holen für ein update            
+        $query="SELECT id
+				FROM #__joomleague_match_player
+                WHERE match_id = ".$match_id." 
+                AND teamplayer_id = ".$project_person_id_out."";
+		$this->_db->setQuery($query);
+		$match_player_id_out = $this->_db->loadResult();
+        // auswechselspieler aktualisieren            
+        if ( $match_player_id_out )
+        {
+        $record =& JTable::getInstance('Matchplayer','Table');
+        $record->load($match_player_id_out);
+		$record->out = 1;
+		$record->in_out_time = $in_out_time;
+        if (!$record->store())
+					{
+					$my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR update player-out : %1$s %2$s [ In-Out Time: %3$s]',
+												"</span><strong>$lastname_out</strong>",
+												"<strong>$firstname_out</strong>",
+												"<strong>$in_out_time</strong>")
+                                                ;
+					$my_text .= '<br />';   
+					}
+                    else
+                    {
+                    $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'update player-out : %1$s %2$s [ In-Out Time: %3$s]',
+												"</span><strong>$lastname_out</strong>",
+												"<strong>$firstname_out</strong>",
+												"<strong>$in_out_time</strong>")
+                                                ;
+					$my_text .= '<br />';     
+                    }   
+        }            
+        // jetzt den einwechselspieler hinzufügen
+        $record =& JTable::getInstance('Matchplayer','Table');
+        $record->match_id = $match_id;
+        $record->teamplayer_id = $project_person_id_in;
+        $record->project_position_id = $project_position_id;
+        $record->came_in = 1;
+        $record->in_for = $project_person_id_out;
+        $record->out = 0;
+        $record->in_out_time = $in_out_time;
+        $record->trikot_number = $trikot_number;
+        if (!$record->store())
+					{
+					$my_text .= '<span style="color:'.$this->storeFailedColor.'">';
+					$my_text .= JText::sprintf(	'ERROR insert player-in : %1$s %2$s [ In-Out Time: %3$s]',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>")
+                                                ;
+					$my_text .= '<br />';   
+					}
+                    else
+                    {
+                    $my_text .= '<span style="color:'.$this->storeSuccessColor.'">';
+					$my_text .= JText::sprintf(	'insert player-in : %1$s %2$s [ In-Out Time: %3$s]',
+												"</span><strong>$lastname_in</strong>",
+												"<strong>$firstname_in</strong>",
+												"<strong>$in_out_time</strong>")
+                                                ;
+					$my_text .= '<br />';     
+                    }   
+        
+        
+                    
+                    
+        }    
+            
+            
+            
+        }
+        
+    }
+    
+    
+    }
+    $this->_success_text['Importing general In/Out data:'] = $my_text;
+    
+    echo 'savePressebericht csv_player <pre>'.print_r($this->csv_player,true).'</pre>';
+    echo 'savePressebericht csv_staff <pre>'.print_r($this->csv_staff,true).'</pre>';
+    echo 'savePressebericht csv_cards <pre>'.print_r($this->csv_cards,true).'</pre>';
+    echo 'savePressebericht csv_in_out <pre>'.print_r($this->csv_in_out,true).'</pre>';
+    
+      
+    }
+    
     function getPresseberichtReadPlayers($csv_file)
     {
     $csv_player_count = 40;    
@@ -773,6 +1252,14 @@ class JoomleagueModelMatch extends JoomleagueModelItem
 			$this->_db->setQuery($query);
 			$projectteamid = $this->_db->loadResult();
     //$mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers projectteamid<br><pre>'.print_r($projectteamid,true).'</pre>'   ),'');    
+    
+    /*
+    // bereinigen des csv files
+    foreach ( $csv_file->data[0] as $key )
+    {
+        $key = ereg_replace(" ", "-", $key);
+    }
+    */
     
     if ( $projectteamid )
     {
@@ -803,6 +1290,8 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->firstname = trim($teile[1]);
         $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->person_id = 0;
         $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_person_id = 0;
+        $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_position_id = 0;
+        
         // gibt es den spieler
         $query="SELECT id
 				FROM #__joomleague_person 
@@ -814,12 +1303,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         if ( $person_id )
         {
             $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_player
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_person_id = $projectpersonid->id;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-S'.$a.'-Nr']]->project_position_id = $projectpersonid->project_position_id;
         }
         
         }
@@ -839,6 +1329,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->firstname = trim($teile[1]);
         $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->person_id = 0;
         $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_person_id = 0;
+        $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_position_id = 0;
         
         // gibt es den spieler ?
         $query="SELECT id
@@ -851,12 +1342,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
         if ( $person_id )
         {
             $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_player
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_person_id = $projectpersonid->id;
+            $this->csv_player[$csv_file->data[0][$find_csv.'-A'.$a.'-Nr']]->project_position_id = $projectpersonid->project_position_id;
         }
         
         }
@@ -870,8 +1362,9 @@ class JoomleagueModelMatch extends JoomleagueModelItem
             $this->csv_in_out[$a]->in_out_time = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Zeit'];
             $this->csv_in_out[$a]->came_in = 1;
             $this->csv_in_out[$a]->in = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Nr'];
-            $this->csv_in_out[$a]->out = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Für Nr'];
+            $this->csv_in_out[$a]->out = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-FuerNr'];
             $this->csv_in_out[$a]->spieler = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-Spieler'];
+            $this->csv_in_out[$a]->spielerout = $csv_file->data[0][$find_csv.'-S'.$a.'-Ausw-fuer-Spieler'];
         }
     }
     
@@ -887,6 +1380,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
             $this->csv_cards[$a]->spielernummer = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Nr'];
             $this->csv_cards[$a]->spieler = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Spieler'];
             $this->csv_cards[$a]->notice = $csv_file->data[0][$find_csv.'-S'.$a.'-Gelb-Grund'];
+            $this->csv_cards[$start]->event_type_id = 0;
         }
 
     }
@@ -906,10 +1400,37 @@ class JoomleagueModelMatch extends JoomleagueModelItem
             $this->csv_cards[$start]->spielernummer = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Nr'];
             $this->csv_cards[$start]->spieler = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Spieler'];
             $this->csv_cards[$start]->notice = $csv_file->data[0][$find_csv.'-S'.$b.'-Gelbrot-Grund'];
+            $this->csv_cards[$start]->event_type_id = 0;
             $start++;
         }
 
     }
+    
+    // gibt es die karten schon ?
+    // gibt es das event schon ?
+    foreach ( $this->csv_cards as $key => $value )
+    {
+    $spielernummer = $value->spielernummer;
+    $project_person_id = $this->csv_player[$spielernummer]->project_person_id;
+    if ( $project_person_id )
+    {
+        $query="SELECT event_type_id
+				FROM #__joomleague_match_event
+                WHERE match_id = ".$match_id." 
+                AND projectteam_id = ".$projectteamid." 
+                AND teamplayer_id = ".$project_person_id."
+                ";
+		$this->_db->setQuery($query);
+		$match_event_id = $this->_db->loadResult();
+        $this->csv_cards[$key]->event_type_id = $match_event_id;
+    }    
+    }
+        
+        
+        
+        
+        
+        
     
     // mannschaftsverantwortliche
     $i = 1;
@@ -920,6 +1441,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -932,12 +1454,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
     
     $i++;
@@ -948,6 +1471,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -960,12 +1484,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
     
     $i++;
@@ -976,6 +1501,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -988,12 +1514,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
     
     $i++;
@@ -1004,6 +1531,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -1016,12 +1544,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
     
     $i++;
@@ -1032,6 +1561,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -1044,12 +1574,13 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
     
     $i++;
@@ -1060,6 +1591,7 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     $this->csv_staff[$i]->firstname = trim($teile[0]);
     $this->csv_staff[$i]->person_id = 0;
     $this->csv_staff[$i]->project_person_id = 0;
+    $this->csv_staff[$i]->project_position_id = 0;
     
     // gibt es den staff ?
     $query="SELECT id
@@ -1072,32 +1604,15 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     if ( $person_id )
     {
             $this->csv_staff[$i]->person_id = $person_id;
-            $query="SELECT id
+            $query="SELECT id,project_position_id
 			FROM #__joomleague_team_staff
 			WHERE person_id=$person_id AND projectteam_id=$projectteamid";
 			$this->_db->setQuery($query);
-			$projectpersonid = $this->_db->loadResult();
-            $this->csv_staff[$i]->project_person_id = $projectpersonid;
+			$projectpersonid = $this->_db->loadObject();
+            $this->csv_staff[$i]->project_person_id = $projectpersonid->id;
+            $this->csv_staff[$i]->project_position_id = $projectpersonid->project_position_id;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     //$mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers player<br><pre>'.print_r($this->csv_player,true).'</pre>'   ),'');
     //$mainframe->enqueueMessage(JText::_('getPresseberichtReadPlayers wechsel<br><pre>'.print_r($this->csv_in_out,true).'</pre>'   ),'');
@@ -1105,6 +1620,12 @@ class JoomleagueModelMatch extends JoomleagueModelItem
     
     
     }
+    
+    $mainframe->setUserState($option.'csv_staff',$this->csv_staff);
+    $mainframe->setUserState($option.'csv_cards',$this->csv_cards);
+    $mainframe->setUserState($option.'csv_in_out',$this->csv_in_out);
+    $mainframe->setUserState($option.'csv_player',$this->csv_player);
+    $mainframe->setUserState($option.'projectteamid',$projectteamid);
     
     }
     
@@ -1213,7 +1734,8 @@ $csv->auto($dcsv['cachefile']);
 		$this->_db->setQuery($query);
 		if (!$result=$this->_db->loadObjectList('value'))
 		{
-			$this->setError($this->_db->getErrorMsg());
+			$mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_PLAYER_POS'),'Error');
+            $this->setError($this->_db->getErrorMsg());
 			return false;
 		}
 		return $result;
@@ -1279,6 +1801,7 @@ $csv->auto($dcsv['cachefile']);
 		if (!$result=$this->_db->loadObjectList('value'))
 		{
 			$this->setError($this->_db->getErrorMsg());
+            $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_STAFF_POS'),'Error');
 			return array();
 		}
 		return $result;
@@ -2113,7 +2636,9 @@ $csv->auto($dcsv['cachefile']);
 
 	function getEventsOptions($project_id)
 	{
-		$query='	SELECT DISTINCT	et.id AS value,
+		$option = JRequest::getCmd('option');
+		$mainframe = JFactory::getApplication();
+        $query='	SELECT DISTINCT	et.id AS value,
 									et.name AS text,
 									et.icon AS icon
 					FROM #__joomleague_match AS m
@@ -2125,6 +2650,10 @@ $csv->auto($dcsv['cachefile']);
 					ORDER BY pet.ordering, et.ordering';
 		$this->_db->setQuery($query);
 		$result=$this->_db->loadObjectList();
+        if ( !$result )
+        {
+            $mainframe->enqueueMessage(JText::_('COM_JOOMLEAGUE_ADMIN_MATCH_NO_EVENTS_POS'),'Error');
+        }
 		foreach ($result as $event){$event->text=JText::_($event->text);}
 		return $result;
 	}
