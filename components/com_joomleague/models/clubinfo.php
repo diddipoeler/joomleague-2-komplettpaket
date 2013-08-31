@@ -122,17 +122,17 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 				       . ' t.name as team_name, '
 				       . ' t.short_name as team_shortcut, '
 				       . ' t.info as team_description, '
-				       . ' (SELECT MAX(project_id) 
+				       . ' (SELECT CONCAT_WS( \':\', MAX(project_id) , p.alias )         
 				       		FROM #__joomleague_project_team 
-				       		RIGHT JOIN #__joomleague_project p on project_id=p.id 
-				       		WHERE team_id=t.id and p.published = 1) as pid,'
+				       		RIGHT JOIN #__joomleague_project p on project_id = p.id 
+				       		WHERE team_id = t.id and p.published = 1) as pid,'
                        . '(SELECT pt.id 
 				       		FROM #__joomleague_project_team as pt 
-				       		RIGHT JOIN #__joomleague_project p on pt.project_id=p.id 
-				       		WHERE team_id=t.id and p.published = 1 and pt.project_id=pid) as ptid'     
+				       		RIGHT JOIN #__joomleague_project p on pt.project_id = p.id 
+				       		WHERE team_id = t.id and p.published = 1 and pt.project_id = pid ) as ptid'     
 				       . ' FROM #__joomleague_team as t 
                left join #__joomleague_project_team as prot
-on prot.team_id=t.id'
+on prot.team_id = t.id'
 				       . ' WHERE club_id = '.(int) $this->clubid. ' group by t.id';
 
 			$this->_db->setQuery( $query );
