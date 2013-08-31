@@ -153,7 +153,7 @@ echo '<br />memberID<pre>~' . print_r($this->predictionMember->pmID,true) . '~</
 					{
 						var message = "";
 
-						if (parseInt(document.<?php echo $formName; ?>.jokerCount.value) > (document.<?php echo $formName; ?>.maxJokerCount.value))
+						if ( parseInt(document.<?php echo $formName; ?>.jokerCount.value) > parseInt(document.<?php echo $formName; ?>.maxJokerCount.value) )
 						{
 							message+="<?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_CHECK_JOKERS_COUNT'); ?>\n";
 						}
@@ -388,7 +388,7 @@ echo '<br />this->use_tipp_admin<pre>~' . print_r($this->config['use_tipp_admin'
 											echo $disabled; ?> onchange='	if(this.checked)
 																			{
 																				document.<?php echo $formName; ?>.jokerCount.value++;
-																				if (document.<?php echo $formName; ?>.jokerCount.value > document.<?php echo $formName; ?>.maxJokerCount.value)
+																				if ( parseInt(document.<?php echo $formName; ?>.jokerCount.value) > parseInt(document.<?php echo $formName; ?>.maxJokerCount.value) )
 																				{
 																					alert("<?php echo JText::_('COM_JOOMLEAGUE_PRED_ENTRY_MAX_JOKER_WARNING'); ?>");
 																					this.checked=false;
