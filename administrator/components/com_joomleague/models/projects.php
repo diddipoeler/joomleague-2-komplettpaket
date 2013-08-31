@@ -30,19 +30,23 @@ class JoomleagueModelProjects extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where      = $this->_buildContentWhere();
 		$orderby    = $this->_buildContentOrderBy();
-
-		$query = '	SELECT	p.*,
-							st.name AS sportstype,
-							s.name AS season,
-							l.name AS league,
-							u.name AS editor
-					FROM	#__joomleague_project AS p
-					LEFT JOIN #__joomleague_season AS s ON s.id = p.season_id
-					LEFT JOIN #__joomleague_league AS l ON l.id = p.league_id
-					LEFT JOIN #__joomleague_sports_type AS st ON st.id = p.sports_type_id
-					LEFT JOIN #__users AS u ON u.id = p.checked_out ' .
-					$where .
-					$orderby;
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select( array('p.*', 'st.name AS sportstype', 's.name AS season', 'l.name AS league', 'u.name AS editor') )
+    ->from('#__joomleague_project AS p')
+    ->join('LEFT', '#__joomleague_season AS s ON s.id = p.season_id')
+    ->join('LEFT', '#__joomleague_league AS l ON l.id = p.league_id')
+    ->join('LEFT', '#__joomleague_sports_type AS st ON st.id = p.sports_type_id')
+    ->join('LEFT', '#__users AS u ON u.id = p.checked_out');
+    if ( $where )
+    {
+        $query->where($where);
+    }
+    if ( $orderby )
+    {
+        $query->order($orderby);
+    }
 
 		return $query;
 	}
@@ -57,11 +61,11 @@ class JoomleagueModelProjects extends JoomleagueModelList
 		
 		if ( $filter_order == 'p.ordering' )
 		{
-			$orderby 	= ' ORDER BY p.ordering ' . $filter_order_Dir;
+			$orderby 	= 'p.ordering ' . $filter_order_Dir;
 		}
 		else
 		{
-			$orderby 	= ' ORDER BY ' . $filter_order . ' ' . $filter_order_Dir . ' , p.ordering ';
+			$orderby 	= '' . $filter_order . ' ' . $filter_order_Dir . ' , p.ordering ';
 		}
 
 		return $orderby;
@@ -107,7 +111,7 @@ class JoomleagueModelProjects extends JoomleagueModelList
 				}
 		}
 
-		$where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
+		$where = ( count( $where ) ? '' . implode( ' AND ', $where ) : '' );
 
 		return $where;
 	}

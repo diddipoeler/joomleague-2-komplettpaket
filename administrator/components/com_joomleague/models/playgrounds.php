@@ -30,12 +30,22 @@ class JoomleagueModelPlaygrounds extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
-		$query='	SELECT v.*,c.name As club,u.name AS editor
-					FROM #__joomleague_playground AS v
-					LEFT JOIN #__joomleague_club AS c ON c.id=v.club_id
-					LEFT JOIN #__users AS u ON u.id=v.checked_out '
-					. $where
-					. $orderby;
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('v.*', 'c.name AS club','u.name AS editor'))
+        ->from('#__joomleague_playground AS v')
+        ->join('LEFT', '#__joomleague_club AS c ON c.id = v.club_id')
+        ->join('LEFT', '#__users AS u ON u.id = v.checked_out');
+
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+ 
 		return $query;
 	}
 
@@ -47,11 +57,11 @@ class JoomleagueModelPlaygrounds extends JoomleagueModelList
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'v_filter_order_Dir','filter_order_Dir','','word');
 		if ($filter_order == 'v.ordering')
 		{
-			$orderby=' ORDER BY v.ordering '.$filter_order_Dir;
+			$orderby='v.ordering '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.',v.ordering ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.',v.ordering ';
 		}
 		return $orderby;
 	}
@@ -77,36 +87,10 @@ class JoomleagueModelPlaygrounds extends JoomleagueModelList
 				$where[]='LOWER(v.name) LIKE '.$this->_db->Quote('%'.$search.'%');
 			}
 		}
-		$where=(count($where) ? ' WHERE '. implode(' AND ',$where) : '');
+		$where=(count($where) ? ''. implode(' AND ',$where) : '');
 		return $where;
 	}
 
-	/**
-	 * Method to remove a club
-	 *
-	 * @access	public
-	 * @return	boolean	True on success
-	 * @since	0.1
-	 */
-	/*
-  function delete($cid=array())
-	{
-		return false;
-		$result=false;
-		if (count($cid))
-		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
-			$query="DELETE FROM #__joomleague_playground WHERE id IN ($cids)";
-			$this->_db->setQuery($query);
-			if(!$this->_db->query())
-			{
-				$this->setError($this->_db->getErrorMsg());
-				return false;
-			}
-		}
-		return true;
-	}
-  */
+
 }
 ?>

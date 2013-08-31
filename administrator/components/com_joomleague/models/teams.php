@@ -30,15 +30,24 @@ class JoomleagueModelTeams extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('t.*', 'c.name as clubname','u.name AS editor'))
+        ->from('#__joomleague_team AS t')
+        ->join('LEFT', '#__joomleague_club AS c ON t.club_id = c.id')
+        ->join('LEFT', '#__users AS u ON u.id = t.checked_out');
 
-		$query = ' SELECT c.name as clubname, t.*, u.name AS editor '
-			. ' FROM #__joomleague_team AS t '
-			. ' LEFT JOIN #__joomleague_club AS c '
-			. ' ON t.club_id = c.id'
-			. ' LEFT JOIN #__users AS u ON u.id = t.checked_out '
-			. $where
-			. $orderby
-		;
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
+		
 		return $query;
 	}
 
@@ -51,9 +60,9 @@ class JoomleagueModelTeams extends JoomleagueModelList
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest( $option.'t_filter_order_Dir','filter_order_Dir','','word' );
 
 		if ($filter_order == 't.ordering'){
-			$orderby 	= ' ORDER BY t.ordering '.$filter_order_Dir;
+			$orderby 	= 't.ordering '.$filter_order_Dir;
 		} else {
-			$orderby 	= ' ORDER BY '.$filter_order.' '.$filter_order_Dir.' , t.ordering ';
+			$orderby 	= ''.$filter_order.' '.$filter_order_Dir.' , t.ordering ';
 		}
 
 		return $orderby;
@@ -83,7 +92,7 @@ class JoomleagueModelTeams extends JoomleagueModelList
                     $where[] = 'club_id ='. $cid;
                 }
 
-                $where 		= ( count( $where ) ? ' WHERE '. implode( ' AND ', $where ) : '' );
+                $where 		= ( count( $where ) ? ''. implode( ' AND ', $where ) : '' );
 		return $where;
 	}
 }

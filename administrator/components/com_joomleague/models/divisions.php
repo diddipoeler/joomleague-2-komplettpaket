@@ -30,14 +30,22 @@ class JoomleagueModelDivisions extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('dv.*', 'dvp.name AS parent_name','u.name AS editor'))
+        ->from('#__joomleague_division AS dv')
+        ->join('LEFT', '#__joomleague_division AS dvp ON dvp.id = dv.parent_id')
+        ->join('LEFT', '#__users AS u ON u.id = dv.checked_out');
 
-		$query = '	SELECT	dv.*,
-							dvp.name AS parent_name,
-							u.name AS editor
-					FROM #__joomleague_division AS dv
-					LEFT JOIN #__joomleague_division AS dvp ON dvp.id = dv.parent_id
-					LEFT JOIN #__users AS u ON u.id = dv.checked_out ' .
-					$where . $orderby;
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
 
 		return $query;
 	}
@@ -52,11 +60,11 @@ class JoomleagueModelDivisions extends JoomleagueModelList
 
 		if ( $filter_order == 'dv.ordering' )
 		{
-			$orderby 	= ' ORDER BY dv.ordering ' . $filter_order_Dir;
+			$orderby 	= 'dv.ordering ' . $filter_order_Dir;
 		}
 		else
 		{
-			$orderby 	= ' ORDER BY ' . $filter_order . ' '.$filter_order_Dir . ' , dv.ordering ';
+			$orderby 	= '' . $filter_order . ' '.$filter_order_Dir . ' , dv.ordering ';
 		}
 
 		return $orderby;
@@ -83,7 +91,7 @@ class JoomleagueModelDivisions extends JoomleagueModelList
 		}
 
 
-		$where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
+		$where = ( count( $where ) ? '' . implode( ' AND ', $where ) : '' );
 
 		return $where;
 	}

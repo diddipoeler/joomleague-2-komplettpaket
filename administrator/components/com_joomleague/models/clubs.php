@@ -28,13 +28,24 @@ class JoomleagueModelClubs extends JoomleagueModelList
 	function _buildQuery()
 	{
 		// Get the WHERE and ORDER BY clauses for the query
-		$where=$this->_buildContentWhere();
-		$orderby=$this->_buildContentOrderBy();
-		$query='	SELECT a.*,u.name AS editor
-					FROM #__joomleague_club AS a
-					LEFT JOIN #__users AS u ON u.id=a.checked_out '
-					. $where
-					. $orderby;
+		$where = $this->_buildContentWhere();
+		$orderby = $this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('a.*', 'u.name AS editor'))
+        ->from('#__joomleague_club AS a')
+        ->join('LEFT', '#__users AS u ON u.id = a.checked_out');
+
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
 		return $query;
 	}
 
@@ -46,11 +57,11 @@ class JoomleagueModelClubs extends JoomleagueModelList
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'a_filter_order_Dir','filter_order_Dir','','word');
 		if ($filter_order == 'a.ordering')
 		{
-			$orderby=' ORDER BY a.ordering '.$filter_order_Dir;
+			$orderby='a.ordering '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.',a.ordering ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.',a.ordering ';
 		}
 		return $orderby;
 	}
@@ -88,36 +99,10 @@ class JoomleagueModelClubs extends JoomleagueModelList
 				$where[]='a.published=0';
 			}
 		}
-		$where=(count($where) ? ' WHERE '. implode(' AND ',$where) : '');
+		$where=(count($where) ? ''. implode(' AND ',$where) : '');
 		return $where;
 	}
 
-	/**
-	 * Method to remove a club
-	 *
-	 * @access	public
-	 * @return	boolean	True on success
-	 * @since	0.1
-	 */
-	/*
-  function delete($cid=array())
-	{
-		return false;
-		$result=false;
-		if (count($cid))
-		{
-			JArrayHelper::toInteger($cid);
-			$cids=implode(',',$cid);
-			$query="DELETE FROM #__joomleague_club WHERE id IN ($cids)";
-			$this->_db->setQuery($query);
-			if(!$this->_db->query())
-			{
-				$this->setError($this->_db->getErrorMsg());
-				return false;
-			}
-		}
-		return true;
-	}
-  */
+
 }
 ?>

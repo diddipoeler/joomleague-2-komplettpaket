@@ -30,13 +30,22 @@ class JoomleagueModelSeasons extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('s.*', 'u.name AS editor'))
+        ->from('#__joomleague_season AS s')
+        ->join('LEFT', '#__users AS u ON u.id = s.checked_out');
 
-		$query='	SELECT	s.*,
-							u.name AS editor
-					FROM #__joomleague_season AS s
-					LEFT JOIN #__users AS u ON u.id=s.checked_out ' .
-					$where .
-					$orderby;
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+		
 		return $query;
 	}
 
@@ -49,11 +58,11 @@ class JoomleagueModelSeasons extends JoomleagueModelList
 
 		if ($filter_order=='s.ordering')
 		{
-			$orderby=' ORDER BY s.ordering '.$filter_order_Dir;
+			$orderby='s.ordering '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.',s.ordering ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.',s.ordering ';
 		}
 		return $orderby;
 	}
@@ -72,7 +81,7 @@ class JoomleagueModelSeasons extends JoomleagueModelList
 		{
 			$where[]='LOWER(s.name) LIKE '.$this->_db->Quote('%'.$search.'%');
 		}
-		$where=(count($where) ? ' WHERE '.implode(' AND ',$where) : '');
+		$where=(count($where) ? ''.implode(' AND ',$where) : '');
 		return $where;
 	}
 
@@ -85,7 +94,11 @@ class JoomleagueModelSeasons extends JoomleagueModelList
 	*/
 	function getSeasons()
 	{
-		$query = 'SELECT id, name FROM #__joomleague_season ORDER BY name ASC ';
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('id', 'name'))
+        ->from('#__joomleague_season')
+        ->order('name ASC');
 		$this->_db->setQuery($query);
 		if (!$result = $this->_db->loadObjectList())
 		{

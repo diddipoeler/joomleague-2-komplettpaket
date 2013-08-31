@@ -31,15 +31,21 @@ class JoomleagueModelPersons extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('pl.*', 'u.name AS editor'))
+        ->from('#__joomleague_person AS pl')
+        ->join('LEFT', '#__users AS u ON u.id = pl.checked_out');
 
-		$query = '	SELECT	pl.*, u.name AS editor
-					FROM #__joomleague_person AS pl
-					LEFT JOIN #__users AS u
-					 ON u.id = pl.checked_out ';
-
-		$query .= $where;
-		$query .= $orderby;
-		//echo '<br />~' . $query . '~<br />';
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+		
 		return $query;
 	}
 
@@ -53,11 +59,11 @@ class JoomleagueModelPersons extends JoomleagueModelList
 
 		if ( $filter_order == 'pl.lastname' )
 		{
-			$orderby 	= ' ORDER BY pl.lastname ' . $filter_order_Dir;
+			$orderby 	= 'pl.lastname ' . $filter_order_Dir;
 		}
 		else
 		{
-			$orderby 	= ' ORDER BY ' . $filter_order . ' ' . $filter_order_Dir . ' , pl.lastname ';
+			$orderby 	= '' . $filter_order . ' ' . $filter_order_Dir . ' , pl.lastname ';
 		}
 
 		return $orderby;
@@ -108,7 +114,7 @@ class JoomleagueModelPersons extends JoomleagueModelList
 			}
 		}
 
-		$where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
+		$where = ( count( $where ) ? '' . implode( ' AND ', $where ) : '' );
 		return $where;
 	}
 
