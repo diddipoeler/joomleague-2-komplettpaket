@@ -74,37 +74,7 @@ class JoomleagueViewClubInfo extends JLGView
     {
     $this->assignRef( 'rssfeeditems', $rssfeeditems );
     }
-    /*
-    if ( $rssfeedlink )
-    {
-    $srfrFeedsArray 							= explode(",",$rssfeedlink);
-    $perFeedItems 								= $this->overallconfig['perFeedItems'];
-    $totalFeedItems 							= $this->overallconfig['totalFeedItems'];
-    $feedTimeout									= $this->overallconfig['feedTimeout'];
-    $this->assignRef( 'feedTitle' , $this->overallconfig['feedTitle'] );
-    $this->assignRef( 'feedFavicon' , $this->overallconfig['feedFavicon'] );
-    $this->assignRef( 'feedItemTitle' , $this->overallconfig['feedItemTitle'] );
-    $this->assignRef( 'feedItemDate' , $this->overallconfig['feedItemDate'] );
-    $feedItemDateFormat						= $this->overallconfig['feedItemDateFormat'];
-    $this->assignRef( 'feedItemDescription' , $this->overallconfig['feedItemDescription'] );
-    $feedItemDescriptionWordlimit	= $this->overallconfig['feedItemDescriptionWordlimit'];
-    $feedItemImageHandling				= $this->overallconfig['feedItemImageHandling'];
-    $feedItemImageResizeWidth			= $this->overallconfig['feedItemImageResizeWidth'];
-    $feedItemImageResampleQuality	= $this->overallconfig['feedItemImageResampleQuality'];
-    $this->assignRef( 'feedItemReadMore' , $this->overallconfig['feedItemReadMore'] );
     
-    $this->assignRef( 'feedsBlockPreText' ,	$this->overallconfig['feedsBlockPreText'] );
-    $this->assignRef( 'feedsBlockPostText' , $this->overallconfig['feedsBlockPostText'] );
-    $this->assignRef( 'feedsBlockPostLink' , $this->overallconfig['feedsBlockPostLink'] );
-    $feedsBlockPostLinkURL				= $this->overallconfig['feedsBlockPostLinkURL'];
-    $feedsBlockPostLinkTitle			= $this->overallconfig['feedsBlockPostLinkTitle'];
-    $srfrCacheTime								= $this->overallconfig['srfrCacheTime'];
-    $cacheLocation								= 'cache'.DS.$mod_name;
-    $this->assignRef( 'rssfeedoutput',SimpleRssFeedReaderHelper::getFeeds($srfrFeedsArray,$totalFeedItems,$perFeedItems,$feedTimeout,$feedItemDateFormat,$feedItemDescriptionWordlimit,$cacheLocation,$srfrCacheTime,$feedItemImageHandling,$feedItemImageResizeWidth,$feedItemImageResampleQuality,$this->feedFavicon) );
-    $css = JURI::root().'components/com_joomleague/assets/css/rssfeedstyle.css';
-		$document->addStyleSheet($css); 
-		}
-        */
     
     }
     
@@ -114,35 +84,7 @@ class JoomleagueViewClubInfo extends JLGView
     
     if (($this->config['show_maps'])==1)
 	  {
-	/*	
-	  $this->map = new simpleGMapAPI();
-  $this->geo = new simpleGMapGeocoder();
-  $this->map->setWidth($this->mapconfig['width']);
-  $this->map->setHeight($this->mapconfig['height']);
-  $this->map->setZoomLevel($this->mapconfig['map_zoom']); 
-  $this->map->setMapType($this->mapconfig['default_map_type']);
-  $this->map->setBackgroundColor('#d0d0d0');
-  $this->map->setMapDraggable(true);
-  $this->map->setDoubleclickZoom(false);
-  $this->map->setScrollwheelZoom(true);
-  $this->map->showDefaultUI(false);
-  $this->map->showMapTypeControl(true, 'DROPDOWN_MENU');
-  $this->map->showNavigationControl(true, 'DEFAULT');
-  $this->map->showScaleControl(true);
-  $this->map->showStreetViewControl(true);
-  $this->map->setInfoWindowBehaviour('SINGLE_CLOSE_ON_MAPCLICK');
-  $this->map->setInfoWindowTrigger('CLICK');
-  
-  $this->map->addMarkerByAddress($this->address_string, $this->club->name, $this->address_string, "http://maps.google.com/mapfiles/kml/pal2/icon49.png");  
-  if ( $lat && $lng )
-  {
-  //$this->map->addMarker($lat, $lng, $this->club->name, $this->address_string,JURI::root().'media/com_joomleague/map_icons/'.'icon49.png' );
-  //$this->map->addMarker($lat, $lng, $this->club->name, $this->address_string,JURI::root().'media/com_joomleague/placeholders/'.'placeholder_150.png' );  
-  }
-  
-  $document->addScript($this->map->JLprintGMapsJS());
-  $document->addScriptDeclaration($this->map->JLshowMap(false));
-  */
+	
 	}
 	
         if (($this->config['show_maps'])==1)

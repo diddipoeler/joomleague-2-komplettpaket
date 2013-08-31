@@ -118,7 +118,7 @@ class JoomleagueModelClubInfo extends JoomleagueModelProject
 			// diddipoeler
 			// query erweitert um die projektteamid
 			$query = ' SELECT t.id,prot.trikot_home,prot.trikot_away, '
-				     	. ' CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS slug, '
+				     	. ' CASE WHEN CHAR_LENGTH( t.alias ) THEN CONCAT_WS( \':\', t.id, t.alias ) ELSE t.id END AS team_slug, '
 				       . ' t.name as team_name, '
 				       . ' t.short_name as team_shortcut, '
 				       . ' t.info as team_description, '

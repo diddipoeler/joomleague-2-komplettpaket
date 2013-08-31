@@ -16,7 +16,10 @@
 			if ( $team->team_name )
 			{
 				//$link = JoomleagueHelperRoute::getProjectTeamInfoRoute( $team->pid, $team->ptid );
-                $link = JoomleagueHelperRoute::getTeamInfoRoute( $team->pid, $team->id );
+                
+                // diddipoeler
+                //$link = JoomleagueHelperRoute::getTeamInfoRoute( $team->pid, $team->id );
+                $link = JoomleagueHelperRoute::getTeamInfoRoute( $team->pid, $team->team_slug );
 				?>
 				<tr>
 				<td>
