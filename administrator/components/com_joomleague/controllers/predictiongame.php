@@ -133,31 +133,31 @@ class JoomleagueControllerPredictionGame extends JoomleagueController
 
 		if ($model->store($post))
 		{
-			$msg .= JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_SAVED_PGAME');
+			$msg .= JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_SAVED_PGAME');
 
 			if ($post['id'] == 0){$post['id']=$model->getDbo()->insertid();}
 
 			if ($model->storePredictionAdmins($post))
 			{
-				$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_SAVED_ADMINS');
+				$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_SAVED_ADMINS');
 			}
 			else
 			{
-				$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_ERROR_SAVE_ADMINS').$model->getError();
+				$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_ERROR_SAVE_ADMINS').$model->getError();
 			}
 
 			if ($model->storePredictionProjects($post))
 			{
-				$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_SAVED_PROJECTS');
+				$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_SAVED_PROJECTS');
 			}
 			else
 			{
-				$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_ERROR_SAVE_PROJECTS').$model->getError();
+				$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_ERROR_SAVE_PROJECTS').$model->getError();
 			}
 		}
 		else
 		{
-			$msg .= JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_ERROR_SAVE_PGAME').$model->getError();
+			$msg .= JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_ERROR_SAVE_PGAME').$model->getError();
 		}
 
 		// Check the table in so it can be edited.... we are done with it anyway
@@ -186,7 +186,7 @@ class JoomleagueControllerPredictionGame extends JoomleagueController
 		$msg='';
 		$cid=JRequest::getVar('cid',array(),'post','array'); JArrayHelper::toInteger($cid);
 
-		if (count($cid) < 1){JError::raiseError(500,JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_ITEM'));}
+		if (count($cid) < 1){JError::raiseError(500,JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_ITEM'));}
 
 		$model=$this->getModel('predictiongame');
 
@@ -195,30 +195,30 @@ class JoomleagueControllerPredictionGame extends JoomleagueController
 			echo "<script> alert('".$model->getError(true)."'); window.history.go(-1); </script>\n";
 		}
 
-		$msg .= JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PGAME');
+		$msg .= JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PGAME');
 		if (!$model->deletePredictionAdmins($cid))
 		{
-			$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_ADMINS_MSG').$model->getError();
+			$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_ADMINS_MSG').$model->getError();
 		}
 
-		$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_ADMINS');
+		$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_ADMINS');
 		if (!$model->deletePredictionProjects($cid))
 		{
-			$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PROJECTS_MSG').$model->getError();
+			$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PROJECTS_MSG').$model->getError();
 		}
 
-		$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PROJECTS');
+		$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PROJECTS');
 		if (!$model->deletePredictionMembers($cid))
 		{
-			$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PMEMBERS_MSG').$model->getError();
+			$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PMEMBERS_MSG').$model->getError();
 		}
 
-		$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PMEMBERS');
+		$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PMEMBERS');
 		if (!$model->deletePredictionResults($cid))
 		{
-			$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PRESULTS_MSG').$model->getError();
+			$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PRESULTS_MSG').$model->getError();
 		}
-		$msg .= $d.JText::_($optiontext.'JL_ADMIN_PGAME_CTRL_DEL_PRESULTS');
+		$msg .= $d.JText::_('COM_JOOMLEAGUE_ADMIN_PGAME_CTRL_DEL_PRESULTS');
 
 		$link='index.php?option=com_joomleague&view=predictiongames';
 		//echo $msg;

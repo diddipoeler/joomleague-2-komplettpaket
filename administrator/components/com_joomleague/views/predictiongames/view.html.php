@@ -99,7 +99,7 @@ class JoomleagueViewPredictionGames extends JLGView
 		{
 			
             
-            JToolBarHelper::title( JText::_( 'JL_ADMIN_PGAMES_PROJLIST_TITLE' ), 'pred-cpanel' );
+            JToolBarHelper::title( JText::_( 'COM_JOOMLEAGUE_ADMIN_PGAMES_PROJLIST_TITLE' ), 'pred-cpanel' );
 
 			//JToolBarHelper::publishList();
 			//JToolBarHelper::unpublishList();
