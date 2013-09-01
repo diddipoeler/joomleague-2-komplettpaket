@@ -31,22 +31,33 @@ class JoomleagueModelProjectReferees extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('p.firstname',
+				'p.lastname',
+				'p.nickname',
+				'p.phone',
+				'p.email',
+				'p.mobile',
+				'pref.*',
+				'pref.project_position_id',
+				'u.name AS editor',
+				'pref.picture'))
+        ->from('#__joomleague_person AS p')
+        ->join('INNER', '#__joomleague_project_referee AS pref on pref.person_id=p.id')
+        ->join('LEFT', '#__users AS u ON u.id = pref.checked_out');
 
-		$query='	SELECT	p.firstname,
-				p.lastname,
-				p.nickname,
-				p.phone,
-				p.email,
-				p.mobile,
-				pref.*,
-				pref.project_position_id,
-				u.name AS editor,
-				pref.picture
-				FROM #__joomleague_person AS p
-				INNER JOIN #__joomleague_project_referee AS pref on pref.person_id=p.id
-				LEFT JOIN #__users AS u ON u.id=pref.checked_out '
-				. $where
-				. $orderby;
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
+		
 		return $query;
 	}
 
@@ -58,11 +69,11 @@ class JoomleagueModelProjectReferees extends JoomleagueModelList
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'p_filter_order_Dir',	'filter_order_Dir',	'',				'word');
 		if ($filter_order=='p.lastname')
 		{
-			$orderby=' ORDER BY p.lastname '.$filter_order_Dir;
+			$orderby='p.lastname '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.', p.lastname ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.', p.lastname ';
 		}
 		return $orderby;
 	}
@@ -93,7 +104,7 @@ class JoomleagueModelProjectReferees extends JoomleagueModelList
 				'OR LOWER(p.nickname) LIKE '.$this->_db->Quote('%'.$search.'%').')';
 			}
 		}
-		$where=(count($where) ? ' WHERE '.implode(' AND ',$where) : '');
+		$where=(count($where) ? ''.implode(' AND ',$where) : '');
 		return $where;
 	}
 

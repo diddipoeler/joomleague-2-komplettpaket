@@ -55,7 +55,21 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
-		$query='SELECT tmpl.*, u.name AS editor,(0) AS isMaster FROM #__joomleague_template_config AS tmpl LEFT JOIN #__users u ON u.id=tmpl.checked_out '.$where.$orderby;
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('tmpl.*', 'u.name AS editor','(0) AS isMaster'))
+        ->from('#__joomleague_template_config AS tmpl')
+        ->join('LEFT', '#__users AS u ON u.id = tmpl.checked_out');
+
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
 		return $query;
 	}
 
@@ -74,7 +88,7 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 		$oldTemplates .= ",'predictionentry','predictionoverall','predictionranking','predictionresults','predictionrules','predictionusers";
 
 		$where[]=" tmpl.template NOT IN ('".$oldTemplates."')";
-		$query=" WHERE ".implode(' AND ',$where);
+		$query="".implode(' AND ',$where);
 
 		return $query;
 	}
@@ -89,11 +103,11 @@ class JoomleagueModelTemplates extends JoomleagueModelList
 
 		if ($filter_order=='tmpl.template')
 		{
-			$orderby=' ORDER BY tmpl.template '.$filter_order_Dir;
+			$orderby='tmpl.template '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.',tmpl.template ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.',tmpl.template ';
 		}
 		return $orderby;
 	}

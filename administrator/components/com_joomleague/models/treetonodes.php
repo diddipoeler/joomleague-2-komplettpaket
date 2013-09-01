@@ -40,25 +40,33 @@ class JoomleagueModelTreetonodes extends JoomleagueModelList
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
 		
-		$query = '	SELECT	ttn.*, '
-			. ' t.name AS team_name, '
-			. ' count(ttm.id) AS countmatch, '
-			. ' tt.tree_i AS tree_i '
-			. ' FROM #__joomleague_treeto_node AS ttn '
-			. ' LEFT JOIN #__joomleague_project_team AS pt ON pt.id = ttn.team_id '
-			. ' LEFT JOIN #__joomleague_team AS t ON t.id = pt.team_id '
-			. ' LEFT JOIN #__joomleague_treeto AS tt ON tt.id = ttn.treeto_id '
-			. ' LEFT JOIN #__joomleague_treeto_match AS ttm ON ttn.id = ttm.node_id ';
-		$query .= $where ;
-		$query .= ' GROUP BY ttn.id ' ;
-		$query .=  $orderby ;
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('ttn.*','t.name AS team_name','count(ttm.id) AS countmatch','tt.tree_i AS tree_i'))
+        ->from('#__joomleague_treeto_node AS ttn')
+        ->join('LEFT', '#__joomleague_project_team AS pt ON pt.id = ttn.team_id')
+        ->join('LEFT', '#__joomleague_team AS t ON t.id = pt.team_id')
+        ->join('LEFT', '#__joomleague_treeto AS tt ON tt.id = ttn.treeto_id ')
+        ->join('LEFT', '#__joomleague_treeto_match AS ttm ON ttn.id = ttm.node_id') ;
+
+        if ($where)
+        {
+            $query->where($where);
+        }
+        $query->group('ttn.id');
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+        
+        
 		return $query;
 	}
 
 	function _buildContentOrderBy()
 	{
 		// order inside db table
-		$orderby 	= ' ORDER BY ttn.row ';
+		$orderby 	= 'ttn.row ';
 		
 		return $orderby;
 	}
@@ -69,7 +77,7 @@ class JoomleagueModelTreetonodes extends JoomleagueModelList
 		$mainframe	= JFactory::getApplication();
 		$project_id = $mainframe->getUserState( $option . 'project' );
 		$treeto_id = $mainframe->getUserState( $option . 'treeto_id' );
-		$where = ' WHERE  ttn.treeto_id = ' . $treeto_id ;
+		$where = 'ttn.treeto_id = ' . $treeto_id ;
 		return $where;
 	}
 

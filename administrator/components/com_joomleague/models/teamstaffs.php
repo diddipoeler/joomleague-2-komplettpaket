@@ -34,19 +34,28 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 		$where=$this->_buildContentWhere();
 		$orderby=$this->_buildContentOrderBy();
         
-        //$mainframe->enqueueMessage(JText::_('JoomleagueModelTeamStaffs orderby<br><pre>'.print_r($orderby,true).'</pre>'),'');
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('ppl.firstname',
+							'ppl.lastname',
+							'ppl.nickname',
+							'ts.*',
+							'ts.project_position_id',
+							'u.name AS editor'))
+        ->from('#__joomleague_person AS ppl')
+        ->join('INNER', '#__joomleague_team_staff AS ts on ts.person_id=ppl.id')
+        ->join('LEFT', '#__users AS u ON u.id = ts.checked_out');
 
-		$query='	SELECT	ppl.firstname,
-							ppl.lastname,
-							ppl.nickname,
-							ts.*,
-							ts.project_position_id,
-							u.name AS editor
-					FROM #__joomleague_person AS ppl
-					INNER JOIN #__joomleague_team_staff AS ts on ts.person_id=ppl.id
-					LEFT JOIN #__users AS u ON u.id=ts.checked_out '
-					. $where
-					. $orderby;
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+        
+
 					return $query;
 	}
 
@@ -59,11 +68,11 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 		$filter_order_Dir	= $mainframe->getUserStateFromRequest($option.'ts_filter_order_Dir',	'filter_order_Dir',	'',				'word');
 		if ($filter_order=='ppl.lastname')
 		{
-			$orderby=' ORDER BY ppl.lastname '.$filter_order_Dir;
+			$orderby='ppl.lastname '.$filter_order_Dir;
 		}
 		else
 		{
-			$orderby=' ORDER BY '.$filter_order.' '.$filter_order_Dir.', ppl.lastname ';
+			$orderby=''.$filter_order.' '.$filter_order_Dir.', ppl.lastname ';
 		}
 		return $orderby;
 	}
@@ -105,7 +114,7 @@ class JoomleagueModelTeamStaffs extends JoomleagueModelList
 			}
 		}
 
-		$where=(count($where) ? ' WHERE '.implode(' AND ',$where) : '');
+		$where=(count($where) ? ''.implode(' AND ',$where) : '');
 		return $where;
 	}
 

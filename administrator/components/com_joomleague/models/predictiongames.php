@@ -32,14 +32,23 @@ class JoomleagueModelPredictionGames extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('pre.*', 'u.name AS editor'))
+        ->from('#__joomleague_prediction_game AS pre')
+        ->join('LEFT', '#__users AS u ON u.id = pre.checked_out');
 
-		$query		=	"	SELECT	pre.*,
-									u.name AS editor
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
 
-							FROM	#__joomleague_prediction_game AS pre
-							LEFT JOIN #__users AS u ON u.id = pre.checked_out
-						" . $where . $orderby;
-//echo '#'.$query.'#<br /><br />';
+		
 		return $query;
 	}
 
@@ -53,11 +62,11 @@ class JoomleagueModelPredictionGames extends JoomleagueModelList
 
 		if ( $filter_order == 'pre.name' )
 		{
-			$orderby 	= ' ORDER BY pre.name ' . $filter_order_Dir;
+			$orderby 	= 'pre.name ' . $filter_order_Dir;
 		}
 		else
 		{
-			$orderby 	= ' ORDER BY ' . $filter_order . ' ' . $filter_order_Dir . ' , pre.name ';
+			$orderby 	= '' . $filter_order . ' ' . $filter_order_Dir . ' , pre.name ';
 		}
 
 		return $orderby;
@@ -99,7 +108,7 @@ class JoomleagueModelPredictionGames extends JoomleagueModelList
 				}
 		}
 
-		$where 	= ( count( $where ) ? ' WHERE '. implode( ' AND ', $where ) : '' );
+		$where 	= ( count( $where ) ? ''. implode( ' AND ', $where ) : '' );
 
 		return $where;
 	}

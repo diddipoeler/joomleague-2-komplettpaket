@@ -32,17 +32,24 @@ class JoomleagueModelPredictionMembers extends JoomleagueModelList
 		// Get the WHERE and ORDER BY clauses for the query
 		$where		= $this->_buildContentWhere();
 		$orderby	= $this->_buildContentOrderBy();
+        
+        // Create a new query object.
+        $query = $this->_db->getQuery(true);
+        $query->select(array('tmb.*','u.name AS realname', 'u.username AS username', 'p.name AS predictionname' ))
+        ->from('#__joomleague_prediction_member AS tmb')
+        ->join('LEFT', '#__joomleague_prediction_game AS p ON p.id = tmb.prediction_id')
+        ->join('LEFT', '#__users AS u ON u.id = tmb.user_id');
 
-		$query		=	'	SELECT	tmb.*,
-									u.name AS realname,
-									u.username AS username,
-									p.name AS predictionname
-							FROM	#__joomleague_prediction_member AS tmb
-							LEFT JOIN #__joomleague_prediction_game AS p ON p.id = tmb.prediction_id
-							LEFT JOIN #__users AS u ON u.id = tmb.user_id '
-							. $where . $orderby
-							;
-//echo '#'.$query.'#<br /><br />';
+        if ($where)
+        {
+            $query->where($where);
+        }
+        if ($orderby)
+        {
+            $query->order($orderby);
+        }
+
+		
 		return $query;
 	}
 
@@ -56,11 +63,11 @@ class JoomleagueModelPredictionMembers extends JoomleagueModelList
 
 		if ( $filter_order == 'u.username' )
 		{
-			$orderby 	= ' ORDER BY u.username ' . $filter_order_Dir;
+			$orderby 	= 'u.username ' . $filter_order_Dir;
 		}
 		else
 		{
-			$orderby 	= ' ORDER BY ' . $filter_order . ' ' . $filter_order_Dir . ' , u.username ';
+			$orderby 	= '' . $filter_order . ' ' . $filter_order_Dir . ' , u.username ';
 		}
 
 		return $orderby;
@@ -102,7 +109,7 @@ class JoomleagueModelPredictionMembers extends JoomleagueModelList
 				}
 		}
 
-		$where 	= ( count( $where ) ? ' WHERE '. implode( ' AND ', $where ) : '' );
+		$where 	= ( count( $where ) ? ''. implode( ' AND ', $where ) : '' );
 
 		return $where;
 	}
