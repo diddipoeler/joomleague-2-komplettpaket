@@ -41,10 +41,10 @@ function toggle_altdecision() {
 						<td colspan="2">
 							<select	name="alt_decision" id="alt_decision">
 								<option	value="0"<?php if ( $this->match->alt_decision == 0 ){echo ' selected="selected"'; } ?>>
-									<?php echo JText::_( 'No' );?>
+									<?php echo JText::_('JNO');?>
 								</option>
 								<option	value="1"<?php if ($this->match->alt_decision==1) echo ' selected="selected"' ?>>
-									<?php echo JText::_( 'Yes' );?>
+									<?php echo JText::_( 'JYES' );?>
 								</option>
 							</select>
 						</td>
