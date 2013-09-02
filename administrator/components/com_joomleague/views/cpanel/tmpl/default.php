@@ -28,7 +28,7 @@ defined('_JEXEC') or die('Restricted access');
 				<?php echo $this->addIcon('icon-48-teams.png','index.php?option=com_joomleague&view=teams', JText::_('COM_JOOMLEAGUE_D_MENU_TEAMS'));?>
 				<?php echo $this->addIcon('icon-48-leagues.png','index.php?option=com_joomleague&view=leagues', JText::_('COM_JOOMLEAGUE_D_MENU_LEAGUES'));?>
 				<?php echo $this->addIcon('icon-48-seasons.png','index.php?option=com_joomleague&view=seasons', JText::_('COM_JOOMLEAGUE_D_MENU_SEASONS'));?>
-				<?php echo $this->addIcon('icon-48-playground.png','index.php?option=com_joomleague&view=playgrounds', JText::_('COM_JOOMLEAGUE_D_MENU_VENUES'));?>
+				<?php echo $this->addIcon('icon-48-playground-2.png','index.php?option=com_joomleague&view=playgrounds', JText::_('COM_JOOMLEAGUE_D_MENU_VENUES'));?>
 				<?php echo $this->addIcon('icon-48-positions.png','index.php?option=com_joomleague&view=positions', JText::_('COM_JOOMLEAGUE_D_MENU_POSITIONS'));?>
 				<?php echo $this->addIcon('icon-48-statistics.png','index.php?option=com_joomleague&view=statistics', JText::_('COM_JOOMLEAGUE_D_MENU_STATISTICS'));?>
 				<?php echo $this->addIcon('icon-48-sportstypes.png','index.php?option=com_joomleague&view=sportstypes', JText::_('COM_JOOMLEAGUE_D_MENU_SPORTSTYPES'));?>
@@ -42,7 +42,7 @@ defined('_JEXEC') or die('Restricted access');
 				<?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=jlxmlimports', JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT'));?>
                 <?php echo $this->addIcon('configuration.gif','index.php?option=com_joomleague&view=databasetools', JText::_('COM_JOOMLEAGUE_M_MENU_TOOLS'));?>
                 <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=updates', JText::_('COM_JOOMLEAGUE_M_MENU_UPDATES'));?>
-                <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=rosterpositions', JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));?>
+                <?php echo $this->addIcon('icon-48-rosterposition.png','index.php?option=com_joomleague&view=rosterpositions', JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));?>
 			</div>
 		</td>
 		<td width="45%" valign="top">
