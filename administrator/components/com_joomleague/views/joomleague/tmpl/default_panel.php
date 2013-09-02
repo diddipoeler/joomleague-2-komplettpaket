@@ -23,7 +23,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										?>
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>		
 										<?php
-				 						$link=JRoute::_('index.php?option=com_joomleague&view=templates');
+				 						$link=JRoute::_('index.php?option=com_joomleague&view=templates&pid[]='.$this->project->id);
 										$text=JText::_('COM_JOOMLEAGUE_P_MENU_FES');
 										$imageFile='icon-48-FrontendSettings.png';
 										$linkParams="<span>$text</span>&nbsp;";
@@ -34,7 +34,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										if ((isset($this->project->project_type)) &&
 											($this->project->project_type == 'DIVISIONS_LEAGUE'))
 										{
-											$link=JRoute::_('index.php?option=com_joomleague&view=divisions');
+											$link=JRoute::_('index.php?option=com_joomleague&view=divisions&pid[]='.$this->project->id);
 											$text=JText::_('COM_JOOMLEAGUE_P_MENU_DIVISIONS');
 											$imageFile='icon-48-Divisions.png';
 											$linkParams="<span>$text</span>&nbsp;";
@@ -47,7 +47,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 											(($this->project->project_type == 'TOURNAMENT_MODE') ||
 											 ($this->project->project_type == 'DIVISIONS_LEAGUE')))
 										{
-											$link=JRoute::_('index.php?option=com_joomleague&view=treetos');
+											$link=JRoute::_('index.php?option=com_joomleague&view=treetos&pid[]='.$this->project->id);
 											$text=JText::_('COM_JOOMLEAGUE_P_MENU_TREE');
 											$imageFile='icon-48-Tree.png';
 											$linkParams="<span>$text</span>&nbsp;";
@@ -56,7 +56,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 											<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
 										}
-										$link=JRoute::_('index.php?option=com_joomleague&view=projectposition');
+										$link=JRoute::_('index.php?option=com_joomleague&view=projectposition&pid[]='.$this->project->id);
 										$text=JText::_('COM_JOOMLEAGUE_P_MENU_POSITIONS');
 										$imageFile='icon-48-Positions.png';
 										$linkParams="<span>$text</span>&nbsp;";
@@ -64,7 +64,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										?>
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
-										$link=JRoute::_('index.php?option=com_joomleague&view=projectreferees');
+										$link=JRoute::_('index.php?option=com_joomleague&view=projectreferees&pid[]='.$this->project->id);
 										$text=JText::_('COM_JOOMLEAGUE_P_MENU_REFEREES');
 										$imageFile='icon-48-Referees.png';
 										$linkParams="<span>$text</span>&nbsp;";
@@ -72,7 +72,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										?>
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
-				 						$link=JRoute::_('index.php?option=com_joomleague&view=projectteams');
+				 						$link=JRoute::_('index.php?option=com_joomleague&view=projectteams&pid[]='.$this->project->id);
 										$text=JText::_('COM_JOOMLEAGUE_P_MENU_TEAMS');
 										$imageFile='icon-48-Teams.png';
 										$linkParams="<span>$text</span>&nbsp;";
@@ -80,7 +80,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										?>
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
-				 						$link=JRoute::_('index.php?option=com_joomleague&view=rounds');
+				 						$link=JRoute::_('index.php?option=com_joomleague&view=rounds&pid[]='.$this->project->id);
 										$text="10 " . JText::_('COM_JOOMLEAGUE_P_MENU_MATCHDAYS');
 										$imageFile='icon-48-Matchdays.png';
 										$linkParams="<span>$text</span>&nbsp;";
@@ -88,7 +88,7 @@ $this->addTemplatePath(JPATH_COMPONENT.DS.'views'.DS.'joomleague');
 										?>
 										<div class="icon-wrapper"><div class="icon"><?php echo JHTML::link($link,$image); ?></div></div>
 										<?php
-				 						$link=JRoute::_('index.php?option=com_joomleague&view=jlxmlexports');
+				 						$link=JRoute::_('index.php?option=com_joomleague&view=jlxmlexports&pid[]='.$this->project->id);
 										$text=JText::_('COM_JOOMLEAGUE_P_MENU_XML_EXPORT');
 										$imageFile='icon-48-XMLExportData.png';
 										$linkParams="<span>$text</span>&nbsp;";
