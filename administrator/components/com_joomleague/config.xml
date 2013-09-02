@@ -15,6 +15,14 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</field>
+		
+		<field name="cfg_use_new_menue" type="radio"
+			default="0" label="COM_JOOMLEAGUE_SETTINGS_USE_NEW_MENUE_TITLE"
+			description="COM_JOOMLEAGUE_SETTINGS_USE_NEW_MENUE_DESCR">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</field>
+		
 		<field name="cfg_help_server" type="text" default="http://joomleaguewiki.grammatikas-grill.de/index.php/"
 		size="100"
     label="COM_JOOMLEAGUE_SETTINGS_HELPSERVER"

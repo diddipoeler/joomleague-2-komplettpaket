@@ -16,7 +16,7 @@ jimport('joomla.application.component.controller');
 jimport('joomla.filesystem.file');
 
 /**
- * Joomleague Component currentseason Controller
+ * Joomleague Component cpanelextensions Controller
  *
  * @package	JoomLeague
  * @since	0.1

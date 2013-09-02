@@ -24,9 +24,10 @@ defined('_JEXEC') or die('Restricted access');
 	<tr>
 		<td width="100%" valign="top">
 			<div id="cpanel">
-				<?php echo $this->addIcon('dfb-key.jpg','index.php?option=com_joomleague&view=predictiongames', JText::_('COM_JOOMLEAGUE_PREDICTION'));?>
-        		
-                
+				<?php echo $this->addIcon('tippspiel.png','index.php?option=com_joomleague&view=predictiongames', JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONGAMES'));?>
+        		<?php echo $this->addIcon('groups.gif','index.php?option=com_joomleague&view=predictiongroups', JText::_('COM_JOOMLEAGUE_ADMIN_PREDICTIONGROUPS_TITLE'));?>
+      			<?php echo $this->addIcon('userpoints.gif','index.php?option=com_joomleague&view=predictionmembers', JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONMEMBERS'));?>
+               	<?php echo $this->addIcon('templates.gif','index.php?option=com_joomleague&view=predictiontemplates', JText::_('COM_JOOMLEAGUE_MENU_PREDICTIONTEMPLATES'));?>
 
 			</div>
 		</td>

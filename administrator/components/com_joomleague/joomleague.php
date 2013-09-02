@@ -24,13 +24,15 @@ if (!JFactory::getUser()->authorise('core.manage', 'com_joomleague')) {
 jimport('joomla.application.component.controller');
 
 require_once(JPATH_ROOT.DS.'components'.DS.'com_joomleague'.DS.'joomleague.core.php');
-
+// require helper file
+//JLoader::register('joomleagueHelper', dirname(__FILE__) . DS . 'helpers' . DS . 'joomleaguehelper.php');
 
         
 // Require the base controller
 require_once ( JPATH_COMPONENT .DS . 'controller.php' );
 require_once ( JPATH_COMPONENT .DS . 'helpers' . DS . 'jlparameter.php' );
 require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'jltoolbar.php' );
+require_once( JLG_PATH_ADMIN.DS.'helpers'.DS.'joomleaguehelper.php' );
 
 $app		= JFactory::getApplication();
 $controller = null;

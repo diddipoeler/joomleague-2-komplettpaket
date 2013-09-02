@@ -14,7 +14,7 @@ class joomleagueModelcpanel extends JModel
 public function getVersion() 
 	{
 	   $mainframe =& JFactory::getApplication();
-	   $this->_db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "com_sportsmanagement"');
+	   $this->_db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague"');
        $manifest_cache = json_decode( $this->_db->loadResult(), true );
 	   //$mainframe->enqueueMessage(JText::_('manifest_cache<br><pre>'.print_r($manifest_cache,true).'</pre>'   ),'');
        return $manifest_cache['version'];	
@@ -23,13 +23,13 @@ public function getVersion()
 public function getGithubRequests()
 {
 $mainframe =& JFactory::getApplication();    
-$paramsdata = JComponentHelper::getParams('com_sportsmanagement');
+$paramsdata = JComponentHelper::getParams('com_joomleague');
 //$mainframe->enqueueMessage(JText::_('getGithubRequests paramsdata<br><pre>'.print_r($paramsdata,true).'</pre>'   ),'');
 
 
 // Load the parameters
-        $uname = JComponentHelper::getParams('com_sportsmanagement')->get('cfg_github_username','diddipoeler');
-        $repo = JComponentHelper::getParams('com_sportsmanagement')->get('cfg_github_repository','sportsmanagement');
+        $uname = JComponentHelper::getParams('com_joomleague')->get('cfg_github_username','diddipoeler');
+        $repo = JComponentHelper::getParams('com_joomleague')->get('cfg_github_repository','joomleague-2-komplettpaket');
 		//$uname		= $paramsdata->get('cfg_github_username', '');
 		//$repo		= $paramsdata->get('cfg_github_repository', '');
 
@@ -111,8 +111,8 @@ $paramsdata = JComponentHelper::getParams('com_sportsmanagement');
 		$i = 0;
 
 		// Load the parameters
-        $uname = JComponentHelper::getParams('com_sportsmanagement')->get('cfg_github_username','');
-        $repo = JComponentHelper::getParams('com_sportsmanagement')->get('cfg_github_repository','');
+        $uname = JComponentHelper::getParams('com_joomleague')->get('cfg_github_username','diddipoeler');
+        $repo = JComponentHelper::getParams('com_joomleague')->get('cfg_github_repository','joomleague-2-komplettpaket');
 		//$uname		= $params->get('cfg_github_username', '');
 		//$repo		= $params->get('cfg_github_repository', '');
 		$count		= 15;
@@ -139,15 +139,15 @@ $paramsdata = JComponentHelper::getParams('com_sportsmanagement');
 				if ($o['author']['id'] != $o['committer']['id'])
 				{
 					// The committer name formatted with link
-					$github[$i]->commit->committer	= JText::_('COM_SPORTSMANAGEMENT_GITHUB_AND_COMMITTED_BY').'<a href="https://github.com/'.$o['committer']['login'].'" target="_blank" rel="nofollow">'.$o['commit']['committer']['name'].'</a>';
+					$github[$i]->commit->committer	= JText::_('COM_JOOMLEAGUE_GITHUB_AND_COMMITTED_BY').'<a href="https://github.com/'.$o['committer']['login'].'" target="_blank" rel="nofollow">'.$o['commit']['committer']['name'].'</a>';
 
 					// The author wasn't the committer
-					$github[$i]->commit->author		= JText::_('COM_SPORTSMANAGEMENT_GITHUB_AUTHORED_BY');
+					$github[$i]->commit->author		= JText::_('COM_JOOMLEAGUE_GITHUB_AUTHORED_BY');
 				}
 				else
 				{
 					// The author is also the committer
-					$github[$i]->commit->author		= JText::_('COM_SPORTSMANAGEMENT_GITHUB_COMMITTED_BY');
+					$github[$i]->commit->author		= JText::_('COM_JOOMLEAGUE_GITHUB_COMMITTED_BY');
 				}
 
 				// The author name formatted with link

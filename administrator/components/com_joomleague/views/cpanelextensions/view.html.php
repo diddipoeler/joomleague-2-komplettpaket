@@ -19,7 +19,8 @@ class joomleagueViewcpanelextensions extends JLGView
 		// Get data from the model
 //		$items = $this->get('Items');
 //		$pagination = $this->get('Pagination');
-//        $model	= $this->getModel();
+        $model	= $this->getModel();
+        $this->assignRef( 'version', $model->getVersion() );
 
 /*        
 		jimport('joomla.html.pane');
@@ -54,8 +55,8 @@ class joomleagueViewcpanelextensions extends JLGView
 	 */
 	protected function addToolBar() 
 	{
-		$canDo = sportsmanagementHelper::getActions();
-		JToolBarHelper::title(JText::_('COM_SPORTSMANAGEMENT_MANAGER'), 'helloworld');
+		//$canDo = sportsmanagementHelper::getActions();
+		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_MANAGER'), 'helloworld');
 		/*
         if ($canDo->get('core.create')) 
 		{
@@ -72,7 +73,7 @@ class joomleagueViewcpanelextensions extends JLGView
         */
 
 			JToolBarHelper::divider();
-			JToolBarHelper::preferences('com_sportsmanagement');
+			JToolBarHelper::preferences('com_joomleague');
 
 	}
 	/**
@@ -83,7 +84,7 @@ class joomleagueViewcpanelextensions extends JLGView
 	protected function setDocument() 
 	{
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('COM_SPORTSMANAGEMENT_EXTENSIONS'));
+		$document->setTitle(JText::_('COM_JOOMLEAGUE_EXTENSIONS'));
 	}
 	
 	public function addIcon( $image , $url , $text , $newWindow = false )

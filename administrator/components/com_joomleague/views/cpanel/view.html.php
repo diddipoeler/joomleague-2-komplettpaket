@@ -4,11 +4,17 @@ defined('_JEXEC') or die('Restricted access');
  
 // import Joomla view library
 jimport('joomla.application.component.view');
+jimport('joomla.html.pane');
+jimport('joomla.filesystem.file');
+
+require_once(JPATH_COMPONENT.DS.'models'.DS.'sportstypes.php');
+require_once(JPATH_COMPONENT.DS.'models'.DS.'leagues.php');
  
 /**
  *  View
  */
-class joomleagueViewcpanel extends JView
+//class joomleagueViewcpanel extends JView
+class joomleagueViewcpanel extends JLGView
 {
 	/**
 	 *  view display method
@@ -52,9 +58,11 @@ class joomleagueViewcpanel extends JView
 	 */
 	protected function addToolBar() 
 	{
-		$canDo = sportsmanagementHelper::getActions();
-		JToolBarHelper::title(JText::_('COM_SPORTSMANAGEMENT_MANAGER'), 'helloworld');
-		/*
+		//$canDo = sportsmanagementHelper::getActions();
+		
+        JToolBarHelper::title(JText::_('COM_SPORTSMANAGEMENT_MANAGER'), 'helloworld');
+		
+        /*
         if ($canDo->get('core.create')) 
 		{
 			JToolBarHelper::addNew('sportsmanagement.add', 'JTOOLBAR_NEW');
@@ -68,11 +76,12 @@ class joomleagueViewcpanel extends JView
 			JToolBarHelper::deleteList('', 'sportsmanagements.delete', 'JTOOLBAR_DELETE');
 		}
         */
-		if ($canDo->get('core.admin')) 
-		{
+		
+        //if ($canDo->get('core.admin')) 
+		//{
 			JToolBarHelper::divider();
 			JToolBarHelper::preferences('com_joomleague');
-		}
+		//}
 	}
 	/**
 	 * Method to set up the document properties

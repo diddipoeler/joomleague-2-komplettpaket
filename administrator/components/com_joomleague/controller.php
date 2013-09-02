@@ -23,160 +23,167 @@ jimport('joomla.application.component.controlleradmin');
 
 class JoomleagueController extends JControllerAdmin
 {
-	
-	public function display($cachable = false, $urlparams = false)
-	{
-		$option		= JRequest::getCmd('option');
-		$mainframe	= JFactory::getApplication();
-    $currentseason = JComponentHelper::getParams($option)->get('current_season',0);
-    //$mainframe->enqueueMessage(JText::_('display current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
-    // display the left menu only if hidemainmenu is not true
-		$show_menu=!JRequest::getVar('hidemainmenu',false);
 
-		// display left menu
-		$viewName=JRequest::getCmd('view', '');
-		$layoutName=JRequest::getCmd('layout', 'default');
-		if($viewName == '' && $layoutName=='default') {
-			
-      if ( $currentseason )
-      {
-      JRequest::setVar('view', 'currentseasons');
-			$viewName = "currentseasons";
-      }
-      else
-      {
-      JRequest::setVar('view', 'projects');
-			$viewName = "projects";
-      }
-      
-		}
-		if ($viewName != 'about' && $show_menu) {
-			$this->ShowMenu();
-		}
-		$document = JFactory::getDocument();
-		$viewType = $document->getType();
-		$view = $this->getView($viewName,$viewType);
-		$view->setLayout($layoutName);
-		$view->setModel($this->getModel($viewName), true);
-		$view->display();
-		parent::display();
-		return $this;
-	}
-	
-	function ShowMenu()
-	{
-		$option		= JRequest::getCmd('option');
-		$mainframe	= JFactory::getApplication();
-		$document	= JFactory::getDocument();
-		$viewType	= $document->getType();
-		$view		= $this->getView('joomleague',$viewType);
-		if ($model = $this->getModel('project'))
-		{
-			// Push the model into the view (as default)
-			$model->setId($mainframe->getUserState($option.'project',0));
-			$view->setModel($model,true);
-		}
-		$view->display();
-	}
+    public function display($cachable = false, $urlparams = false)
+    {
+        $option = JRequest::getCmd('option');
+        $mainframe = JFactory::getApplication();
+        $currentseason = JComponentHelper::getParams($option)->get('current_season', 0);
+        $use_new_menu = JComponentHelper::getParams($option)->get('cfg_use_new_menue', 0);
+        //$mainframe->enqueueMessage(JText::_('display current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
+        // display the left menu only if hidemainmenu is not true
+        $show_menu = !JRequest::getVar('hidemainmenu', false);
 
-	function ShowMenuExtension()
-	{
-		$option = JRequest::getCmd('option');
-		$mainframe = JFactory::getApplication();
-		$document = JFactory::getDocument();
-		$viewType=$document->getType();
-		$view =& $this->getView('joomleague',$viewType);
-		$view->setLayout('extension');
-		$view->display();
-	}
+        // display left menu
+        $viewName = JRequest::getCmd('view', '');
+        $layoutName = JRequest::getCmd('layout', 'default');
 
-	function ShowMenuFooter()
-	{
-		$option = JRequest::getCmd('option');
-		$mainframe = JFactory::getApplication();
-		$document = JFactory::getDocument();
-		$viewType=$document->getType();
-		$view =& $this->getView('joomleague',$viewType);
-		$view->setLayout('footer');
-		$view->display();
-	}
+        if ($use_new_menu) {
+            if ($viewName == '' && $layoutName == 'default') {
+                JRequest::setVar('view', 'cpanel');
+                JRequest::setVar('layout', 'default');
+                JRequest::setVar('hidemainmenu', false);
+                $viewName = "cpanel";
+            }
+            // Set the submenu
+            joomleaguemenueHelper::addSubmenu('messages');
 
-	function selectws()
-	{
-		$option = JRequest::getCmd('option');
-		$mainframe = JFactory::getApplication();
+        } else {
 
-		$stid	= JRequest::getVar('stid',	array(0),'','array');
-		$pid	= JRequest::getVar('pid',	array(0),'','array');
-		$tid	= JRequest::getVar('tid',	array(0),'','array');
-		$rid	= JRequest::getVar('rid',	array(0),'','array');
-		$sid	= JRequest::getVar('sid',	array(0),'','array');
-		$stid	= JRequest::getVar('stid',	array(0),'','array');
-		$act	= JRequest::getVar('act',0);
+            if ($viewName == '' && $layoutName == 'default') {
 
-    $currentseason = JComponentHelper::getParams($option)->get('current_season',0);
-    //$mainframe->enqueueMessage(JText::_('selectws current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
-		$seasonnav = JRequest::getInt('seasonnav');
-		$mainframe->setUserState($option.'seasonnav', $seasonnav);
+                if ($currentseason) {
+                    JRequest::setVar('view', 'currentseasons');
+                    $viewName = "currentseasons";
+                } else {
+                    JRequest::setVar('view', 'projects');
+                    $viewName = "projects";
+                }
 
-		switch ($act)
-		{
-			case 'projects':
-				if ($mainframe->setUserState($option.'project',(int)$pid[0]))
-				{
-					$mainframe->setUserState($option.'project_team_id','0');
-					$this->setRedirect('index.php?option=com_joomleague&task=joomleague.workspace&layout=panel&pid[]='.$pid[0],JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_PROJECT_SELECTED'));
-				}
-				else
-				{
-					if ( $currentseason )
-					{
-					$this->setRedirect('index.php?option=com_joomleague&view=currentseasons&task=currentseason.display');
-          }
-          else
-          {
-          $this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
-          }
-          
-				}
-				break;
+            }
 
-			case 'teams':
-				$mainframe->setUserState($option.'project_team_id',(int)$tid[0]);
-				if ((int) $tid[0] != 0)
-				{
-					$this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display',JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_TEAM_SELECTED'));
-				}
-				else
-				{
-					$this->setRedirect('index.php?option=com_joomleague&task=joomleague.workspace&layout=panel&pid[]='.$pid[0]);
-				}
-				break;
+            if ($viewName != 'about' && $show_menu) {
+                $this->ShowMenu();
+            }
 
-			case 'rounds':
-				if ((int) $rid[0] != 0)
-				{
-					$this->setRedirect('index.php?option=com_joomleague&view=matches&task=match.display&rid[]='.$rid[0],JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_ROUND_SELECTED'));
-				}
-				break;
 
-			case 'seasons':
-				$this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display', JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SEASON_SELECTED'));
-				break;
+        }
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = $this->getView($viewName, $viewType);
+        $view->setLayout($layoutName);
+        $view->setModel($this->getModel($viewName), true);
+        $view->display();
 
-			default:
-				if ($mainframe->setUserState($option.'sportstypes',(int)$stid[0]))
-			{
-				$mainframe->setUserState($option.'project','0');
-				$this->setRedirect('index.php?option=com_joomleague&task=project.display&view=projects&stid[]='.$stid[0],JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SPORTSTYPE_SELECTED'));
-			}
-			else
-			{
-				$this->setRedirect('index.php?option=com_joomleague&view=sportstypes&task=sportstype.display');
-			}
-		}
+        parent::display();
+        return $this;
+    }
 
-	}
+    function ShowMenu()
+    {
+        $option = JRequest::getCmd('option');
+        $mainframe = JFactory::getApplication();
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = $this->getView('joomleague', $viewType);
+        if ($model = $this->getModel('project')) {
+            // Push the model into the view (as default)
+            $model->setId($mainframe->getUserState($option . 'project', 0));
+            $view->setModel($model, true);
+        }
+        $view->display();
+    }
+
+    function ShowMenuExtension()
+    {
+        $option = JRequest::getCmd('option');
+        $mainframe = JFactory::getApplication();
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = &$this->getView('joomleague', $viewType);
+        $view->setLayout('extension');
+        $view->display();
+    }
+
+    function ShowMenuFooter()
+    {
+        $option = JRequest::getCmd('option');
+        $mainframe = JFactory::getApplication();
+        $document = JFactory::getDocument();
+        $viewType = $document->getType();
+        $view = &$this->getView('joomleague', $viewType);
+        $view->setLayout('footer');
+        $view->display();
+    }
+
+    function selectws()
+    {
+        $option = JRequest::getCmd('option');
+        $mainframe = JFactory::getApplication();
+
+        $stid = JRequest::getVar('stid', array(0), '', 'array');
+        $pid = JRequest::getVar('pid', array(0), '', 'array');
+        $tid = JRequest::getVar('tid', array(0), '', 'array');
+        $rid = JRequest::getVar('rid', array(0), '', 'array');
+        $sid = JRequest::getVar('sid', array(0), '', 'array');
+        $stid = JRequest::getVar('stid', array(0), '', 'array');
+        $act = JRequest::getVar('act', 0);
+
+        $currentseason = JComponentHelper::getParams($option)->get('current_season', 0);
+        //$mainframe->enqueueMessage(JText::_('selectws current_season-> '.'<pre>'.print_r($currentseason,true).'</pre>' ),'');
+        $seasonnav = JRequest::getInt('seasonnav');
+        $mainframe->setUserState($option . 'seasonnav', $seasonnav);
+
+        switch ($act) {
+            case 'projects':
+                if ($mainframe->setUserState($option . 'project', (int)$pid[0])) {
+                    $mainframe->setUserState($option . 'project_team_id', '0');
+                    $this->setRedirect('index.php?option=com_joomleague&task=joomleague.workspace&layout=panel&pid[]=' .
+                        $pid[0], JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_PROJECT_SELECTED'));
+                } else {
+                    if ($currentseason) {
+                        $this->setRedirect('index.php?option=com_joomleague&view=currentseasons&task=currentseason.display');
+                    } else {
+                        $this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display');
+                    }
+
+                }
+                break;
+
+            case 'teams':
+                $mainframe->setUserState($option . 'project_team_id', (int)$tid[0]);
+                if ((int)$tid[0] != 0) {
+                    $this->setRedirect('index.php?option=com_joomleague&view=teamplayers&task=teamplayer.display',
+                        JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_TEAM_SELECTED'));
+                } else {
+                    $this->setRedirect('index.php?option=com_joomleague&task=joomleague.workspace&layout=panel&pid[]=' .
+                        $pid[0]);
+                }
+                break;
+
+            case 'rounds':
+                if ((int)$rid[0] != 0) {
+                    $this->setRedirect('index.php?option=com_joomleague&view=matches&task=match.display&rid[]=' .
+                        $rid[0], JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_ROUND_SELECTED'));
+                }
+                break;
+
+            case 'seasons':
+                $this->setRedirect('index.php?option=com_joomleague&view=projects&task=project.display',
+                    JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SEASON_SELECTED'));
+                break;
+
+            default:
+                if ($mainframe->setUserState($option . 'sportstypes', (int)$stid[0])) {
+                    $mainframe->setUserState($option . 'project', '0');
+                    $this->setRedirect('index.php?option=com_joomleague&task=project.display&view=projects&stid[]=' .
+                        $stid[0], JText::_('COM_JOOMLEAGUE_ADMIN_CTRL_SPORTSTYPE_SELECTED'));
+                } else {
+                    $this->setRedirect('index.php?option=com_joomleague&view=sportstypes&task=sportstype.display');
+                }
+        }
+
+    }
 }
 
 /**
@@ -185,5 +192,6 @@ class JoomleagueController extends JControllerAdmin
  * @author And_One
  *
  */
-class JoomleagueControllerJoomleague extends JoomleagueController {
+class JoomleagueControllerJoomleague extends JoomleagueController
+{
 }

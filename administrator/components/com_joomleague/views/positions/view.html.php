@@ -14,6 +14,8 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.view');
 
+require_once(JPATH_COMPONENT.DS.'models'.DS.'sportstypes.php');
+
 /**
  * HTML View class for the Joomleague component
  *

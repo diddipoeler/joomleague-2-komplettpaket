@@ -16,7 +16,7 @@ jimport('joomla.application.component.model');
 require_once (JPATH_COMPONENT.DS.'models'.DS.'list.php');
 
 /**
- * Joomleague Component currentseasons Model
+ * Joomleague Component cpanelextensions Model
  *
  * @package	JoomLeague
  * @since	0.1
@@ -24,6 +24,17 @@ require_once (JPATH_COMPONENT.DS.'models'.DS.'list.php');
 class JoomleagueModelcpanelextensions extends JoomleagueModelList
 {
 	var $_identifier = "cpanelextensions";
+    
+public function getVersion() 
+	{
+	   $mainframe =& JFactory::getApplication();
+	   $this->_db->setQuery('SELECT manifest_cache FROM #__extensions WHERE name = "joomleague"');
+       $manifest_cache = json_decode( $this->_db->loadResult(), true );
+	   //$mainframe->enqueueMessage(JText::_('manifest_cache<br><pre>'.print_r($manifest_cache,true).'</pre>'   ),'');
+       return $manifest_cache['version'];	
+	}
+    
+    
     
     function _buildQuery()
 	{
