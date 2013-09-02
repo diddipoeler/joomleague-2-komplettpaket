@@ -40,7 +40,7 @@ defined('_JEXEC') or die('Restricted access');
         <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=jlextuserextrafields', JText::_('COM_JOOMLEAGUE_USER_FIELDS'));?>
 				
 				<?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=jlxmlimports', JText::_('COM_JOOMLEAGUE_M_MENU_XML_IMPORT'));?>
-                <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=databasetools', JText::_('COM_JOOMLEAGUE_M_MENU_TOOLS'));?>
+                <?php echo $this->addIcon('configuration.gif','index.php?option=com_joomleague&view=databasetools', JText::_('COM_JOOMLEAGUE_M_MENU_TOOLS'));?>
                 <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=updates', JText::_('COM_JOOMLEAGUE_M_MENU_UPDATES'));?>
                 <?php echo $this->addIcon('applications.gif','index.php?option=com_joomleague&view=rosterpositions', JText::_('COM_JOOMLEAGUE_ROSTER_POSITION'));?>
 			</div>
