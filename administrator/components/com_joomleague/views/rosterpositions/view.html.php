@@ -53,6 +53,7 @@ class JoomleagueViewrosterpositions extends JLGView
 		JLToolBarHelper::deleteList('', 'rosterposition.remove');
 		JToolBarHelper::divider();
 		JLToolBarHelper::onlinehelp();
+        JToolBarHelper::preferences(JRequest::getCmd('option'));
 
 		$db =& JFactory::getDBO();
 		$uri =& JFactory::getURI();

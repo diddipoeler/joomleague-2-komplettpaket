@@ -46,6 +46,7 @@ class JoomleagueViewjlextassociations extends JLGView
 		JToolBarHelper::divider();
 
 		JLToolBarHelper::onlinehelp();
+        JToolBarHelper::preferences(JRequest::getCmd('option'));
 
 		
 

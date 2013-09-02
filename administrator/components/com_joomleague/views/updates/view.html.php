@@ -33,6 +33,8 @@ class JoomleagueViewUpdates extends JLGView
 		// Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_UPDATES_TITLE'),'generic.png');
 		JLToolBarHelper::onlinehelp();
+        JToolBarHelper::preferences(JRequest::getCmd('option'));
+        
 		$db = JFactory::getDBO();
 		$uri = JFactory::getURI();
 		$model = $this->getModel();

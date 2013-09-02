@@ -87,6 +87,7 @@ class JoomleagueViewJLXMLImports extends JLGView
        // Set toolbar items for the page
 		JToolBarHelper::title(JText::_('COM_JOOMLEAGUE_ADMIN_XML_IMPORT_TITLE_1_4'),'generic.png');
 		JLToolBarHelper::onlinehelp();
+        JToolBarHelper::preferences(JRequest::getCmd('option'));
         
 	   parent::display($tpl);
     }  
