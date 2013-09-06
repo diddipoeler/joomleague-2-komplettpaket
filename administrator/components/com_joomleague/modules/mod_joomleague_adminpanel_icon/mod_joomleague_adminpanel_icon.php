@@ -22,7 +22,8 @@ if ( !JComponentHelper::isEnabled( 'com_joomleague', true) )
 
 // Initialize defaults
 $lang = JFactory::getLanguage();
-$image = "joomleague-48.png";
+//$image = "joomleague-48.png";
+$image = "jl-48.jpg";
 $label = JText::_( 'MOD_JOOMLEAGUE_ADMINPANEL_ICON_LABEL' );
 ?>
 <div id="cpanel">
