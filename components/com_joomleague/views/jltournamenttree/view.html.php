@@ -13,8 +13,8 @@ class joomleagueViewjltournamenttree extends JLGView
 	$document = & JFactory::getDocument();
 	$uri = &JFactory::getURI();		
 	$mainframe = JFactory::getApplication();		
-	$js ="registerhome('".JURI::base()."','Tournament Tree Extension','".$mainframe->getCfg('sitename')."','0');". "\n";
-    $document->addScriptDeclaration( $js );	
+//	$js ="registerhome('".JURI::base()."','Tournament Tree Extension','".$mainframe->getCfg('sitename')."','0');". "\n";
+//  $document->addScriptDeclaration( $js );	
     
     //$model =& $this->getModel( 'jlxmlexports' ); 
     $model =& $this->getModel();

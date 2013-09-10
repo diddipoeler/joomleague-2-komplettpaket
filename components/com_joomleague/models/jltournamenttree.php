@@ -1183,7 +1183,7 @@ return implode(",",$varresults);
 function checkStartExtension()
 {
 $application = JFactory::getApplication();
-echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Tournament Tree Extension','".$application->getCfg('sitename')."','0');</script>";
+//echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Tournament Tree Extension','".$application->getCfg('sitename')."','0');</script>";
 
 }
 

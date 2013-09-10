@@ -1916,7 +1916,7 @@ $query .= " AND pm.group_id = ".$this->pggroup;
 function checkStartExtension()
 {
 $application = JFactory::getApplication();
-echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."','0');</script>";
+//echo "<script type=\"text/javascript\">registerhome('".JURI::base()."','Prediction Game Extension','".$application->getCfg('sitename')."','0');</script>";
 }
 
 }

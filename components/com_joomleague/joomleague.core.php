@@ -78,12 +78,12 @@ if ( $mainframe->isAdmin() )
 {
 if($task == '' && $option == 'com_joomleague') 
 {
-$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','1');". "\n";
-$document->addScriptDeclaration( $js );
+//$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','1');". "\n";
+//$document->addScriptDeclaration( $js );
 }
 }
 else
 {
-$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','0');". "\n";
-$document->addScriptDeclaration( $js );    
+//$js ="registerhome('".JURI::base()."','JoomLeague 2.0 Complete Installation','".$mainframe->getCfg('sitename')."','0');". "\n";
+//$document->addScriptDeclaration( $js );    
 }

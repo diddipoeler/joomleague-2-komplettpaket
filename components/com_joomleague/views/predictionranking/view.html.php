@@ -32,8 +32,8 @@ class JoomleagueViewPredictionRanking extends JLGView
     $mainframe = JFactory::getApplication();
 		$document	=& JFactory::getDocument();
 		$uri = JFactory :: getURI();
-		$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."','0');". "\n";
-    $document->addScriptDeclaration( $js );	
+//		$js ="registerhome('".JURI::base()."','Prediction Game Extension','".$mainframe->getCfg('sitename')."','0');". "\n";
+//    $document->addScriptDeclaration( $js );	
 		$model		=& $this->getModel();
     $option = JRequest::getCmd('option');
     $optiontext = strtoupper(JRequest::getCmd('option').'_');
