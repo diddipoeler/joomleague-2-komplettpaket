@@ -237,6 +237,7 @@ foreach($form->getFieldset($fieldset->name) as $field)
     {
         $mainframe =& JFactory::getApplication();
         $db = JFactory::getDbo();
+        /*
         if ( count($param_array) > 0 )
         {
             // store the combined new and existing values back as a JSON string
@@ -247,7 +248,25 @@ foreach($form->getFieldset($fieldset->name) as $field)
                                 $db->query();
         $mainframe->enqueueMessage(JText::_('Joomleague Konfiguration gesichert'),'');
         }
-                        
+        */ 
+        
+        if ( count($param_array) > 0 ) {
+                        // read the existing component value(s)
+                        $db = JFactory::getDbo();
+                        $db->setQuery('SELECT params FROM #__extensions WHERE name = "joomleague" and type ="component"');
+                        $params = json_decode( $db->loadResult(), true );
+                        //$mainframe->enqueueMessage(JText::_('setParams params<br><pre>'.print_r($params,true).'</pre>'   ),'');
+                        // add the new variable(s) to the existing one(s)
+                        foreach ( $param_array as $name => $value ) {
+                                $params[ (string) $name ] = (string) $value;
+                        }
+                        // store the combined new and existing values back as a JSON string
+                        $paramsString = json_encode( $params );
+                        $db->setQuery('UPDATE #__extensions SET params = ' .
+                                $db->quote( $paramsString ) .
+                                ' WHERE name = "joomleague" and type ="component"' );
+                                $db->query();
+                }               
                 
         }
         
