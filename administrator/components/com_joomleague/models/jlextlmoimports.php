@@ -703,7 +703,8 @@ if ( $timestamp )
 		{
 		
 // der clubname muss um die mannschaftsnummer verkürzt werden
-if ( substr($value, -4, 4) == ' III')
+//für lmo import nicht ausführen, da mannschaften in der db nivht gefunden werden
+/* if ( substr($value, -4, 4) == ' III')
 {
 $convert = array (
       ' III' => ''
@@ -750,7 +751,8 @@ $value = str_replace(array_keys($convert), array_values($convert), $value );
 $convert = array (
       '.' => ' '
   );
-$value = str_replace(array_keys($convert), array_values($convert), $value );
+$value = str_replace(array_keys($convert), array_values($convert), $value ); 
+*/
 $value = trim($value);
 
     $temp = new stdClass();
