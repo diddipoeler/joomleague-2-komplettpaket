@@ -21,7 +21,7 @@ jimport('joomla.application.component.view');
  * @package	JoomLeague
  * @since	0.1
  */
-class JoomleagueViewCurrentseasons extends JLGView
+class JoomleagueViewCurrentseasons extends JView
 {
 	function display($tpl=null)
 	{
@@ -29,7 +29,7 @@ class JoomleagueViewCurrentseasons extends JLGView
 		$mainframe	= JFactory::getApplication();
 		$uri		= JFactory::getUri();
         // Get data from the model
-		$items		= $this->get('Data');
+		$items		= $this->get('Items');
         $this->assignRef('items', $items);
         
         foreach ($this->items as $item)

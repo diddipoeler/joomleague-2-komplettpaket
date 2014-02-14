@@ -66,7 +66,7 @@ class JoomleagueModelcurrentseasons extends JoomleagueModelList
 		$filter_season = JComponentHelper::getParams($option)->get('current_season',0);
 		
 		if($filter_season > 0) {
-			$where[] = 'p.season_id = ' . $filter_season[0];
+			$where[] = 'p.season_id = ' . $filter_season;
 		}
 
 		$where = ( count( $where ) ? ' WHERE ' . implode( ' AND ', $where ) : '' );
