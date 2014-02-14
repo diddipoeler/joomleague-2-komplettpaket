@@ -1149,13 +1149,14 @@ class JoomleagueModelJLXMLExport extends JModel
 	 */
 	private function _getPositionData()
 	{
-		$position_ids = $this->_getIdFromData('position_id', $this->_projectposition);
+		//$position_ids = $this->_getIdFromData('position_id', $this->_projectposition);
 
 		if (is_array($position_ids) && count($position_ids) > 0)
 		{
 			$ids = implode(",", array_unique($position_ids));
 
-			$query = "SELECT * FROM #__joomleague_position WHERE id IN ($ids)";
+			//$query = "SELECT * FROM #__joomleague_position WHERE id IN ($ids)";
+			$query = "SELECT * FROM #__joomleague_position";
 			$this->_db->setQuery($query);
 			$this->_db->query();
 			if ($this->_db->getNumRows() > 0)
