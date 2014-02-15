@@ -12,8 +12,9 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-jimport('joomla.application.component.model');
-require_once (JPATH_COMPONENT.DS.'models'.DS.'list.php');
+//jimport('joomla.application.component.model');
+//require_once (JPATH_COMPONENT.DS.'models'.DS.'list.php');
+jimport('joomla.application.component.modellist');
 
 /**
  * Joomleague Component currentseasons Model
@@ -21,11 +22,12 @@ require_once (JPATH_COMPONENT.DS.'models'.DS.'list.php');
  * @package	JoomLeague
  * @since	0.1
  */
-class JoomleagueModelcurrentseasons extends JoomleagueModelList
+class JoomleagueModelcurrentseasons extends JModelList
 {
 	var $_identifier = "currentseasons";
     
-    function _buildQuery()
+    protected function getListQuery()
+
 	{
 		// Get the WHERE and ORDER BY clauses for the query
 		$where      = $this->_buildContentWhere();
@@ -59,12 +61,12 @@ class JoomleagueModelcurrentseasons extends JoomleagueModelList
     
     function _buildContentWhere()
 	{
-		$option = JRequest::getCmd('option');
 		$mainframe = JFactory::getApplication();
-        
+		$option = JRequest::getCmd('option');
+		
         $where = array();
 		$filter_season = JComponentHelper::getParams($option)->get('current_season',0);
-		
+
 		if($filter_season > 0) {
 			$where[] = 'p.season_id = ' . $filter_season;
 		}
