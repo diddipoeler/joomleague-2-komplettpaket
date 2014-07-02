@@ -181,8 +181,10 @@ class JoomleagueModelRivals extends JoomleagueModelProject
 			eval($msortline);
 			return $marray;
 		}
-
-		$sorted = array_csort($opo,'match', SORT_DESC, 'win', SORT_DESC, 'g_for', SORT_DESC);
+		$sorted = array();
+		if(count($opo)) {
+				$sorted = array_csort($opo,'match', SORT_DESC, 'win', SORT_DESC, 'g_for', SORT_DESC);
+		}
 		return $sorted;
 
 	}

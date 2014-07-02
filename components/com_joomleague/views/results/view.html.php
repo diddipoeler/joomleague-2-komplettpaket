@@ -769,7 +769,10 @@ if ( ($this->overallconfig['show_project_rss_feed']) == 1 )
 		{
 			$output = $this->showMatchState($game,$this->config);
 		}
-
+		$search_empty_part_results = array(";", "NULL");
+		if($this->config['show_part_results'] && ((str_replace($search_empty_part_results, '', $game->team1_result_split) != "") && (str_replace($search_empty_part_results, '', $game->team2_result_split) != "")) ){
+		$output .= ' (' . implode(':',explode(';', $game->team1_result_split)) . ", " . implode(':', explode(';', $game->team2_result_split)). ')';
+		}
 		return $output;
 
 	}

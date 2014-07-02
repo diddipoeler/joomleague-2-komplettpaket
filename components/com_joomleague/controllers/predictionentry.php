@@ -59,7 +59,7 @@ class JoomleagueControllerPredictionEntry extends JoomleagueController
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
     
-    $mainframe->enqueueMessage(JText::_('PredictionEntry Task -> '.$this->getTask()),'');
+    //$mainframe->enqueueMessage(JText::_('PredictionEntry Task -> '.$this->getTask()),'');
     
     JRequest::checkToken() or jexit(JText::_('COM_JOOMLEAGUE_PRED_INVALID_TOKEN_REFUSED'));
 		
