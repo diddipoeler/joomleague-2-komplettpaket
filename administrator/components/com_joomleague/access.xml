@@ -96,7 +96,7 @@
     <action name="predictiongame.unpublish" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_UNPUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_UNPUBLISH_DESC" />
     <action name="predictiongame.publish" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_PUBLISH" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_PUBLISH_DESC" />
     <action name="predictiongame.register" title="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_REGISTER" description="COM_JOOMLEAGUE_SETTINGS_PRED_ACCESS_REGISTER_DESC" />
-	<action name="predictionentry.register" title="Tippspiel Mail an User" description="Tippspiel Mail an User" />
+	<action name="predictionentry.register" title="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_REGISTER" description="COM_JOOMLEAGUE_SETTINGS_PRED_ENTRY_REGISTER_DESC" />
     
     <!-- association-->
 		<action name="association.saveorder" title="COM_JOOMLEAGUE_SETTINGS_ASSOC_ACCESS_SAVEORDER" description="COM_JOOMLEAGUE_SETTINGS_PRED_ASSOC_ACCESS_SAVEORDER_DESC" />
