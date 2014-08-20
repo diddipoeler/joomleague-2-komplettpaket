@@ -95,7 +95,7 @@ class JoomleagueModelPredictionEntry extends JoomleagueModelPrediction
 		$mainframe = JFactory::getApplication();
 		$document = JFactory::getDocument();
         
-        $mainframe->enqueueMessage(JText::_('PredictionEntry Task -> <pre>'.print_r($data,true).'</pre>'),'');
+        //$mainframe->enqueueMessage(JText::_('PredictionEntry Task -> <pre>'.print_r($data,true).'</pre>'),'');
         
         // get the table
         $row =& $this->getTable();
