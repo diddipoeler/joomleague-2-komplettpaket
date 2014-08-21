@@ -294,22 +294,23 @@ class modMatchesHelper {
 		$row['notice'] = ($match->match_result_detail != '' AND $this->params->get('show_match_notice') == 1) ? $match->match_result_detail : '';
 		if ($this->params->get('show_referee', 1) == 1 AND $match->refname != '') {
 			$row['referee'] = '<span style="float:right;">';
-			$row['referee'] .= ($this->iconpath) ? JHTML :: _('image', $this->iconpath . 'referee.png', 'Referee', array (
-				'title' => 'Referee',
+			$row['referee'] .= ($this->iconpath) ? JHTML :: _('image', $this->iconpath . 'referee.png', JText::_('MOD_JOOMLEAGUE_MATCHES_REFEREE'), array (
+				'title' => JText::_('MOD_JOOMLEAGUE_MATCHES_REFEREE'),
 				'height' => '16',
 				'width' => '16'
-				)) : 'Referee: ';
+				)) : JText::_('MOD_JOOMLEAGUE_MATCHES_REFEREE').': ';
 				$row['referee'] .= $this->jl_utf8_convert($match->refname, 'iso-8859-1', 'utf-8') . '</span>';
 		} else {
 			$row['referee'] = '';
 		}
 		if ($this->params->get('show_spectators', 1) == 1 AND $match->crowd > 0) {
+			$spectators = JText::_('MOD_JOOMLEAGUE_MATCHES_SPECTATORS');
 			$row['spectators'] = '<span style="float:left;">';
-			$row['spectators'] .= ($this->iconpath) ? JHTML :: _('image', $this->iconpath . 'spectators.png', 'Spectators', array (
-				'title' => 'Spectators',
+			$row['spectators'] .= ($this->iconpath) ? JHTML :: _('image', $this->iconpath . 'spectators.png', $spectators, array (
+				'title' => $spectators,
 				'height' => '16',
 				'width' => '16'
-				)) : 'Spectators: ';
+				)) : $spectators.': ';
 				$row['spectators'] .= number_format($match->crowd, 0, ',', '.') . '</span>';
 				;
 		} else {
@@ -362,8 +363,8 @@ class modMatchesHelper {
 			}
 			$rows[$match->match_id]['date'] = JHTML::_('date', $match->match_date, $this->params->get('dateformat'), null);
 			if ($useicons) {
-				$rows[$match->match_id]['date'] = JHTML::_('image', $this->iconpath . 'date.png', 'Datum', array (
-						'title' => 'Datum',
+				$rows[$match->match_id]['date'] = JHTML::_('image', $this->iconpath . 'date.png', JText::_('MOD_JOOMLEAGUE_MATCHES_DATE'), array (
+						'title' => JText::_('MOD_JOOMLEAGUE_MATCHES_DATE'),
 						'height' => '16',
 						'width' => '16'
 				)) .
@@ -372,8 +373,8 @@ class modMatchesHelper {
 			$rows[$match->match_id]['time'] = JHTML :: _('date', $match->match_date, $this->params->get('timeformat'), null);
 
 			if ($useicons) {
-				$rows[$match->match_id]['time'] = JHTML :: _('image', $this->iconpath . 'time.png', 'Beginn', array (
-						'title' => 'Beginn',
+				$rows[$match->match_id]['time'] = JHTML :: _('image', $this->iconpath . 'time.png', JText::_('MOD_JOOMLEAGUE_MATCHES_TIME'), array (
+						'title' => JText::_('MOD_JOOMLEAGUE_MATCHES_TIME'),
 						'height' => '16',
 						'width' => '16'
 				)) .
@@ -383,8 +384,8 @@ class modMatchesHelper {
 			if (isset ($match->meeting)) {
 				$rows[$match->match_id]['meeting'] = JHTML :: _('date', $match->meetingtime, $this->params->get('timeformat'), null);
 				if ($useicons) {
-					$rows[$match->match_id]['meeting'] = JHTML :: _('image', $this->iconpath . 'time_go.png', 'Treffpunkt', array (
-							'title' => 'Treffpunkt',
+					$rows[$match->match_id]['meeting'] = JHTML :: _('image', $this->iconpath . 'time_go.png', JText::_('MOD_JOOMLEAGUE_MATCHES_MEETING'), array (
+							'title' => JText::_('MOD_JOOMLEAGUE_MATCHES_MEETING'),
 							'height' => '16',
 							'width' => '16'
 					)) .

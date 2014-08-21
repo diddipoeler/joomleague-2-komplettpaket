@@ -7,7 +7,7 @@
 	<authorUrl>http://www.joomleague.net</authorUrl>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<copyright>(C) 2005-2013 JoomLeague.net. All rights reserved.</copyright>
-	<version>2.0.43.b3fd04d</version>
+	<version>2.0.81.1376562</version>
 	<description>MOD_JOOMLEAGUE_MATCHES_XML_DESC</description>
 	
 	<files>
@@ -473,7 +473,7 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
-				<field 	name="show_act_report_text" type="text" default="Show Report"
+				<field 	name="show_act_report_text" type="text" default="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_DEFAULT"
 						label="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_DESCR" />
 						
@@ -546,7 +546,7 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
-				<field 	name="reset_text" type="text" default="Reset"
+				<field 	name="reset_text" type="text" default="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_DEFAULT"
 						label="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_DESCR" />
 
