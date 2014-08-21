@@ -448,6 +448,13 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
+				<field	 name="show_spectators" type="radio" default="0" 
+						label="MOD_JOOMLEAGUE_MATCHES_SHOW_SPECTATORS_TITLE"
+						description="MOD_JOOMLEAGUE_MATCHES_SHOW_SPECTATORS_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_MATCHES_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
+				</field>
+				
 				<field 	name="link_venue" type="radio" default="0"
 						label="MOD_JOOMLEAGUE_MATCHES_LINK_TO_VENUE_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_LINK_TO_VENUE_DESCR">
