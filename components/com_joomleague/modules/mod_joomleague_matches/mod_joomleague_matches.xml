@@ -448,6 +448,13 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
+				<field	 name="show_spectators" type="radio" default="0" 
+						label="MOD_JOOMLEAGUE_MATCHES_SHOW_MATCH_SPECTATORS_TITLE"
+						description="MOD_JOOMLEAGUE_MATCHES_SHOW_MATCH_SPECTATORS_DESCR">
+					<option value="0">MOD_JOOMLEAGUE_MATCHES_NO</option>
+					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
+				</field>
+				
 				<field 	name="link_venue" type="radio" default="0"
 						label="MOD_JOOMLEAGUE_MATCHES_LINK_TO_VENUE_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_LINK_TO_VENUE_DESCR">
@@ -473,7 +480,7 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
-				<field 	name="show_act_report_text" type="text" default="Show Report"
+				<field 	name="show_act_report_text" type="text" default="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_DEFAULT"
 						label="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_MATCH_REPORT_LINK_TEXT_DESCR" />
 						
@@ -546,7 +553,7 @@
 					<option value="1">MOD_JOOMLEAGUE_MATCHES_YES</option>
 				</field>
 				
-				<field 	name="reset_text" type="text" default="Reset"
+				<field 	name="reset_text" type="text" default="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_DEFAULT"
 						label="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_TITLE" 
 						description="MOD_JOOMLEAGUE_MATCHES_RESET_TO_FIRST_MATCH_TEXT_DESCR" />
 
